@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_id: 
+  topic_id: 
+  lesson_title: MyString
+  explanation: MyString
+  prompt: MyString
+  role_model: MyString
+  performance: MyString
+  explanation_script: MyText
+  prompt_script: MyText
+  model_script: MyText
+
+two:
+  course_id: 
+  topic_id: 
+  lesson_title: MyString
+  explanation: MyString
+  prompt: MyString
+  role_model: MyString
+  performance: MyString
+  explanation_script: MyText
+  prompt_script: MyText
+  model_script: MyText
