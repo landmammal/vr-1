@@ -26,7 +26,7 @@ group :production do
 end
 group :development, :test do
   gem 'sqlite3'
-  gem 'rspec-rails' # Test Helper
+  # gem 'rspec-rails' # Test Helper
   gem 'capybara'
   gem 'pry-byebug' # Break in console
   gem 'pry-rails'
