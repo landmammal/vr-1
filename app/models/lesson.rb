@@ -1,4 +1,4 @@
 class Lesson < ActiveRecord::Base
   belongs_to :course
-  belongs_to :topic
+  belongs_to :chapter
 end
