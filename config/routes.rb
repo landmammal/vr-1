@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :user_profiles
   resources :chapters
   resources :lessons
   resources :topics
