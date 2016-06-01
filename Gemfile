@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # user authentication and authorization
 gem 'devise'
+gem 'pundit'
 
 # pre install ready gems
 gem 'rails', '4.2.6'
@@ -28,7 +29,8 @@ group :production do
 end
 group :development, :test do
   gem 'sqlite3'
-  # gem 'rspec-rails' # Test Helper
+  gem 'rspec-rails' # Test Helper
+  gem 'factory_girl_rails'
   gem 'capybara'
   gem 'pry-byebug' # Break in console
   gem 'pry-rails'
