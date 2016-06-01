@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# user authentication and authorization
+gem 'devise'
 
 # pre install ready gems
 gem 'rails', '4.2.6'
