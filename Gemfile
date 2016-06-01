@@ -35,6 +35,9 @@ group :development, :test do
   gem 'pry-byebug' # Break in console
   gem 'pry-rails'
   gem 'awesome_print'
+  gem 'faker'
+  gem 'database_cleaner'
+  gem 'shoulda-matchers' # Model Testing Help for Rspec
 
 end
 
