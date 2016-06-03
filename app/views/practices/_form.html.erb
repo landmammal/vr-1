@@ -1,0 +1,33 @@
+<%= form_for(@practice) do |f| %>
+  <% if @practice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@practice.errors.count, "error") %> prohibited this practice from being saved:</h2>
+
+      <ul>
+      <% @practice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :token %><br>
+    <%= f.text_field :token %>
+  </div>
+  <div class="field">
+    <%= f.label :video_token %><br>
+    <%= f.text_field :video_token %>
+  </div>
+  <div class="field">
+    <%= f.label :completed %><br>
+    <%= f.check_box :completed %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
