@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :lesson do
     chapter_id nil
-    lesson_title "123"
-    explanation "speak loud"
+    lesson_title {"#{Faker::Lorem.word}"}
+    explanation {"#{Faker::Lorem.sentence(1)}"}
     prompt "123"
     role_model "dsfsdf"
     performance "dfsdfs"

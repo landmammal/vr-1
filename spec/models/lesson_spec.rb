@@ -5,11 +5,12 @@ RSpec.describe Lesson, type: :model do
     let! (:user) {FactoryGirl.create(:user)}
     let! (:course) {FactoryGirl.create(:course, user: user)}
     let! (:chapter) {FactoryGirl.create(:chapter, course: course)}
-    let! (:lesson) {FactoryGirl.create(:lesson, chapter: chapter)}
+    let! (:lesson) {FactoryGirl.create_list(:lesson, 3, chapter: chapter)}
 
 
       it 'should have all the parents info' do
-        expect(lesson.chapter.course.user).to eq user
+
+        expect(lesson.last.chapter.course.user).to eq user
 
       end
   end
