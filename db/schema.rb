@@ -52,11 +52,11 @@ ActiveRecord::Schema.define(version: 20160603192140) do
   create_table "practices", force: :cascade do |t|
     t.string   "token"
     t.string   "video_token"
-    t.boolean  "completed"
+    t.boolean  "completed",   default: false
     t.integer  "user_id"
     t.integer  "lesson_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "practices", ["lesson_id"], name: "index_practices_on_lesson_id"

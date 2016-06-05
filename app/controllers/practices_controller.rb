@@ -1,5 +1,6 @@
 class PracticesController < ApplicationController
   before_action :set_practice, only: [:show, :edit, :update, :destroy]
+  before_action :set_lesson, only: [:new, :create]
   before_action :authenticate_user!
   # GET /practices
   # GET /practices.json
@@ -61,14 +62,22 @@ class PracticesController < ApplicationController
     end
   end
 
+  def finished
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_practice
       @practice = Practice.find(params[:id])
     end
 
+    def set_lesson
+      @practice = Lesson.find(params[:id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def practice_params
-      params.require(:practice).permit(:token, :video_token, :completed, :user_id)
+      params.require(:practice).permit(:token, :video_token, :completed, :user_id, :lesson_id)
     end
 end

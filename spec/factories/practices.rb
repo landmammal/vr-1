@@ -4,6 +4,7 @@ FactoryGirl.define do
     video_token "098098"
     completed false
     user_id nil
+    lesson_id nil
   end
 
 
