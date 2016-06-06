@@ -5,7 +5,7 @@ class CreatePractices < ActiveRecord::Migration
       t.string :video_token
       t.boolean :completed, default: false
       t.references :user, index: true, foreign_key: true
-      t.belongs_to :lesson, index: true
+      t.references :lesson, index: true, foreign_key: true
 
       t.timestamps null: false
     end

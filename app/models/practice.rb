@@ -1,6 +1,6 @@
 class Practice < ActiveRecord::Base
   belongs_to :user
-  has_one :lesson
+  belongs_to :lesson
 
 
   def finished()
