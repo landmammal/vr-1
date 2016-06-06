@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  resources :practices
-  root 'welcome#index'
 
+  root 'welcome#index'
+  resources :practices
   devise_for :users
   resources :chapters
-  resources :lessons
+  resources :lessons do
+    resources :practices
+  end
   resources :topics
   resources :courses
   # The priority is based upon order of creation: first created -> highest priority.
