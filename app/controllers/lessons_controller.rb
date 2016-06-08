@@ -1,10 +1,13 @@
 class LessonsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_chapter
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
+
 
   # GET /lessons
   # GET /lessons.json
   def index
-    @lessons = Lesson.all
+    @lessons = @chapter.lessons.all
   end
 
   # GET /lessons/1
@@ -14,7 +17,7 @@ class LessonsController < ApplicationController
 
   # GET /lessons/new
   def new
-    @lesson = Lesson.new
+    @lesson = current_user.lessons.new
   end
 
   # GET /lessons/1/edit
@@ -24,10 +27,10 @@ class LessonsController < ApplicationController
   # POST /lessons
   # POST /lessons.json
   def create
-    @lesson = Lesson.new(lesson_params)
-
-    respond_to do |format|
+    @lesson = @chapter.lessons.build(lesson_params)
+    @lesson.user_id = current_user.id
       if @lesson.save
+        respond_to do |format|
         format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
         format.json { render :show, status: :created, location: @lesson }
       else
@@ -54,17 +57,27 @@ class LessonsController < ApplicationController
   # DELETE /lessons/1
   # DELETE /lessons/1.json
   def destroy
-    @lesson.destroy
-    respond_to do |format|
-      format.html { redirect_to lessons_url, notice: 'Lesson was successfully destroyed.' }
-      format.json { head :no_content }
+    if @lesson.user_id == current_user
+      @lesson.destroy
+      respond_to do |format|
+        format.html { redirect_to lessons_url, notice: 'Lesson was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      flash[:alert] = "You do not have permission to delete this lesson."
     end
   end
 
   private
+
+    # set the chapter you are in before you start adding lessons
+    def set_chapter
+      @lesson = Chapter.find(params[:chapter_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_lesson
-      @lesson = Lesson.find(params[:id])
+      @lesson = @chapter.lessons.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

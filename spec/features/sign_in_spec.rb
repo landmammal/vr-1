@@ -1,35 +1,31 @@
 require "rails_helper"
-RSpec.describe 'User signin', type: :feature do
-  # feature 'Sign in', :devise do
+# line below is not need it anymore
+  feature 'Sign in', type: :feature do
     context 'A user signs in' do
-      # it 'user cannot sign in if not registered' do
-      #    signin('person@example.com', 'password')
-      #    expect(page).to have_content 'Invalid Email or password'
-      # end
 
-      it 'user can sign in with valid credentials' do
-        user = FactoryGirl.create(:user)
+      let!(:user){ FactoryGirl.create(:user) }
+
+      it 'fails if not registered' do
+         signin('person@example.com', 'password')
+         expect(page).to have_content 'Invalid Email or password'
+      end
+
+      it 'with valid credentials' do
         visit new_user_session_path
         fill_in 'Email', with: user.email
-
         fill_in 'Password', with: user.password
-
         click_on 'Log in'
-        # signin(user.email, user.password)
         expect(page).to have_content 'Signed in successfully'
       end
-      #
-      # it 'user cannot sign in with invalid email' do
-      #   user = FactoryGirl.create(:user)
-      #   signin('invalid@email.com', user.password)
-      #   expect(page).to have_content 'Invalid Email or password'
-      # end
-      #
-      # it 'user cannot sign in with invalid password' do
-      #   user = FactoryGirl.create(:user)
-      #   signin(user.email, 'invalidpass')
-      #   expect(page).to have_content 'Invalid Email or password'
-      # end
+
+      it 'user cannot sign in with invalid email' do
+        signin('invalid@email.com', user.password)
+        expect(page).to have_content 'Invalid Email or password'
+      end
+
+      it 'user cannot sign in with invalid password' do
+        signin(user.email, 'invalidpass')
+        expect(page).to have_content 'Invalid Email or password'
+      end
     end
-  # end
-end
+  end

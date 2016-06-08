@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User index page', :devise do
+feature 'User index page', type: :feature do
   scenario 'user sees own email address' do
     user = FactoryGirl.create(:user, :admin)
     login_as(user, scope: :user)
