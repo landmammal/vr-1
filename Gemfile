@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# user authentication and authorization
+# user authentication and authorization by role
 gem 'devise'
 gem 'pundit'
 
