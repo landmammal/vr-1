@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   resources :practices
-  resources :chapters
+  
+  resources :chapters do
+    resources :lessons
+  end
+
   resources :lessons do
     resources :practices
   end

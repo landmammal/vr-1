@@ -7,7 +7,14 @@ class LessonsController < ApplicationController
   # GET /lessons
   # GET /lessons.json
   def index
-    @lessons = @chapter.lessons.all
+
+
+    # @lessons = @chapter.lessons.all
+    # if @lessons
+    # else
+
+    @lessons = Lesson.all
+
   end
 
   # GET /lessons/1
@@ -17,7 +24,8 @@ class LessonsController < ApplicationController
 
   # GET /lessons/new
   def new
-    @lesson = current_user.lessons.new
+
+    @lesson = Lesson.new
   end
 
   # GET /lessons/1/edit
@@ -29,15 +37,19 @@ class LessonsController < ApplicationController
   def create
     @lesson = @chapter.lessons.build(lesson_params)
     @lesson.user_id = current_user.id
-      if @lesson.save
-        respond_to do |format|
+
+    if @lesson.save
+      respond_to do |format|
         format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
         format.json { render :show, status: :created, location: @lesson }
-      else
+      end
+    else
+      respond_to do |format|
         format.html { render :new }
         format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /lessons/1
@@ -72,7 +84,7 @@ class LessonsController < ApplicationController
 
     # set the chapter you are in before you start adding lessons
     def set_chapter
-      @lesson = Chapter.find(params[:chapter_id])
+      @chapter = Chapter.find(params[:chapter_id])
     end
 
     # Use callbacks to share common setup or constraints between actions.
