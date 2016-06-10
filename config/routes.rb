@@ -6,10 +6,13 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   resources :practices
-  
+
+
   resources :chapters do
     resources :lessons
   end
+
+  resources :lessons, only: [:show] 
 
   resources :lessons do
     resources :practices

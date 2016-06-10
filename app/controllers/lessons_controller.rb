@@ -1,7 +1,7 @@
 class LessonsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_chapter
-  before_action :set_lesson, only: [:show, :edit, :update, :destroy]
+  before_action :set_chapter, except: [:index, :show]
+  before_action :set_lesson, only: [ :edit, :update, :destroy]
 
 
   # GET /lessons
@@ -20,6 +20,7 @@ class LessonsController < ApplicationController
   # GET /lessons/1
   # GET /lessons/1.json
   def show
+    @lesson = Lesson.find(params[:id])
   end
 
   # GET /lessons/new
@@ -36,7 +37,7 @@ class LessonsController < ApplicationController
   # POST /lessons.json
   def create
     @lesson = @chapter.lessons.build(lesson_params)
-    @lesson.user_id = current_user.id
+
 
     if @lesson.save
       respond_to do |format|
