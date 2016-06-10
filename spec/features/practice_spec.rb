@@ -9,17 +9,15 @@ require "rails_helper"
       let! (:trainee) {FactoryGirl.create(:user)}
 
 
-      it 'with valid credentials', js: true do
+      it 'trainee work thru', js: true do
         visit new_user_session_path
         fill_in 'Email', with: trainee.email
         fill_in 'Password', with: trainee.password
         click_on 'Log in'
         expect(page).to have_content 'Signed in successfully'
         visit lessons_path
-        binding.pry
-
-
-
+        click_on 'Show'
+        expect(page).to have_content lesson.lesson_title
       end
       #
       # it 'user cannot sign in with invalid email' do

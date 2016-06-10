@@ -40,5 +40,7 @@
 </table>
 
 <br>
-
-<%= link_to 'New Lesson', new_chapter_lesson_path %>
+<% if current_user.role == "teacher" %>
+  <%= link_to 'New Lesson', new_chapter_lesson_path %>
+<% else %>
+<% end %>

@@ -12,10 +12,14 @@ Rails.application.routes.draw do
     resources :lessons
   end
 
-  resources :lessons, only: [:show] 
+  resources :lessons, only: [:show]
 
   resources :lessons do
-    resources :practices
+    resources :practices do
+      member do
+        get 'submit'
+      end
+    end
   end
   resources :topics
   resources :courses
