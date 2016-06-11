@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  enum role: [:user, :trainee, :author, :coach, :manager, :admin]
+  enum role: [:admin, :user, :trainee, :author, :coach, :manager]
   after_initialize :set_default_role, :if => :new_record?
   #  persisted? instead of new_record?
 
