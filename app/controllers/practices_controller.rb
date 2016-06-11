@@ -1,5 +1,5 @@
 class PracticesController < ApplicationController
-  before_action :set_practice, only: [:show, :edit, :update, :destroy]
+  before_action :set_practice, only: [:show, :edit, :update, :destroy, :submit]
   before_action :set_lesson
   before_action :authenticate_user!
   # GET /practices
@@ -83,7 +83,9 @@ class PracticesController < ApplicationController
 
   end
 
-  def finished
+  def submit
+    binding.pry
+
 
   end
 

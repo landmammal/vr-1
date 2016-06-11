@@ -6,9 +6,20 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   resources :practices
-  resources :chapters
+
+
+  resources :chapters do
+    resources :lessons
+  end
+
+  resources :lessons, only: [:show]
+
   resources :lessons do
-    resources :practices
+    resources :practices do
+      member do
+        get 'submit'
+      end
+    end
   end
   resources :topics
   resources :courses
