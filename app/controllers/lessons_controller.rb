@@ -8,7 +8,6 @@ class LessonsController < ApplicationController
   # GET /lessons.json
   def index
 
-
     # @lessons = @chapter.lessons.all
     # if @lessons
     # else
@@ -37,7 +36,6 @@ class LessonsController < ApplicationController
   # POST /lessons.json
   def create
     @lesson = @chapter.lessons.build(lesson_params)
-
 
     if @lesson.save
       respond_to do |format|
@@ -70,14 +68,14 @@ class LessonsController < ApplicationController
   # DELETE /lessons/1
   # DELETE /lessons/1.json
   def destroy
-    if @lesson.user_id == current_user
+    # if @lesson.user_id == current_user
       @lesson.destroy
       respond_to do |format|
         format.html { redirect_to lessons_url, notice: 'Lesson was successfully destroyed.' }
         format.json { head :no_content }
       end
-    else
-      flash[:alert] = "You do not have permission to delete this lesson."
+    # else
+      # flash[:alert] = "You do not have permission to delete this lesson."
     end
   end
 

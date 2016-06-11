@@ -1,6 +1,6 @@
 class ChaptersController < ApplicationController
   before_action :set_chapter, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_course, exept: [:index, :show]
   # GET /chapters
   # GET /chapters.json
   def index
@@ -24,7 +24,7 @@ class ChaptersController < ApplicationController
   # POST /chapters
   # POST /chapters.json
   def create
-    @chapter = Chapter.new(chapter_params)
+    @chapter = @course.chapters.build(chapter_params)
 
     respond_to do |format|
       if @chapter.save
@@ -62,9 +62,12 @@ class ChaptersController < ApplicationController
   end
 
   private
+    def set_course
+      @course = Course.find(params[:id])
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_chapter
-      @chapter = Chapter.find(params[:id])
+      @chapter = @course.chapters.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
