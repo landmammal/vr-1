@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   resources :practices
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users
   resources :practices
 
