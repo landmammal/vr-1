@@ -4,6 +4,13 @@ source 'https://rubygems.org'
 gem 'devise'
 gem 'pundit'
 
+# Al Delcy GEMS
+gem 'font-awesome-sass'
+gem 'sprockets', '>= 3.0.0'
+gem 'sprockets-es6'
+gem 'carrierwave'
+#=====================================
+
 # pre install ready gems
 gem 'rails', '4.2.6'
 gem 'sass-rails', '~> 5.0'
