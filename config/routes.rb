@@ -6,13 +6,15 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users
 
-
-
-  resources :chapters do
-    resources :lessons
+  resources :courses do
+    resources :chapters
   end
 
-  resources :lessons, only: [:show]
+    resources :chapters do
+      resources :lessons
+    end
+
+  # resources :lessons, only: [:show]
 
   resources :lessons do
     resources :practices do
@@ -22,11 +24,6 @@ Rails.application.routes.draw do
     end
   end
 
-  
-
-
-  resources :topics
-  resources :courses
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

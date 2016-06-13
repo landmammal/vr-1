@@ -1,5 +1,5 @@
 require "rails_helper"
-# line below is not need it anymore
+
   feature 'Sign in', type: :feature do
     context 'A user signs in' do
 
