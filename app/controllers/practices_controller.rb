@@ -1,6 +1,6 @@
 class PracticesController < ApplicationController
   before_action :set_practice, only: [:show, :edit, :update, :destroy, :submit]
-  before_action :set_lesson
+  before_action :set_lesson, except: [:index]
   before_action :authenticate_user!
   # GET /practices
   # GET /practices.json
@@ -20,7 +20,9 @@ class PracticesController < ApplicationController
 
   # GET /practices/new
   def new
-    @practice = current_user.practices.build
+    @practice = Practice.new
+
+
   end
 
   # GET /practices/1/edit
@@ -32,6 +34,7 @@ class PracticesController < ApplicationController
 
   def create
     @practice = @lesson.practices.build(practice_params)
+
     @practice.user_id = current_user.id
     if @practice.save
       respond_to do |format|
@@ -84,7 +87,7 @@ class PracticesController < ApplicationController
   end
 
   def submit
-    binding.pry
+
 
 
   end
@@ -97,7 +100,7 @@ class PracticesController < ApplicationController
     end
 
     def set_lesson
-      @practice = Lesson.find(params[:lesson_id])
+      @lesson = Lesson.find(params[:lesson_id])
     end
 
 

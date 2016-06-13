@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :practices
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users
-  resources :practices
+
 
 
   resources :chapters do
@@ -21,6 +21,10 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  
+
+
   resources :topics
   resources :courses
 
