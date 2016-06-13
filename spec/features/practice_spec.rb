@@ -18,16 +18,13 @@ require "rails_helper"
         visit lessons_path
         click_on 'Show'
         expect(page).to have_content lesson.lesson_title
+        click_on 'submit your practice practice'
+        expect(page).to have_content 'New Practice'
+        fill_in 'Token', with: 'sdfsd'
+        fill_in 'Video token', with: 'sdfsdfsdfsdfs'
+        click_on 'Create Practice'
+        expect(page).to have_content 'Practice was successfully created'
       end
-      #
-      # it 'user cannot sign in with invalid email' do
-      #   signin('invalid@email.com', user.password)
-      #   expect(page).to have_content 'Invalid Email or password'
-      # end
-      #
-      # it 'user cannot sign in with invalid password' do
-      #   signin(user.email, 'invalidpass')
-      #   expect(page).to have_content 'Invalid Email or password'
-      # end
+
     end
   end
