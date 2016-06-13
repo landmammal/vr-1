@@ -24,7 +24,6 @@ class LessonsController < ApplicationController
 
   # GET /lessons/new
   def new
-
     @lesson = Lesson.new
   end
 
@@ -93,6 +92,6 @@ class LessonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
-      params.require(:lesson).permit(:course_id, :topic_id, :lesson_title, :explanation, :prompt, :role_model, :performance, :explanation_script, :prompt_script, :model_script)
+      params.require(:lesson).permit(:chapter_id, :lesson_title, :explanation, :prompt, :role_model, :performance, :explanation_script, :prompt_script, :model_script)
     end
 end
