@@ -2,6 +2,10 @@
 <html>
 <head>
   <title>VideoRehearser</title>
+  <link rel="stylesheet" href="//assets-cdn.ziggeo.com/v1-latest/ziggeo.css" />
+  <script src="//assets-cdn.ziggeo.com/v1-latest/ziggeo.js"></script>
+  <script> ZiggeoApi.token ='<%= Rails.application.secrets.ziggeo_secret %>'; </script>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -17,5 +21,6 @@
 
     <%= yield %>
   </div>
+
 </body>
 </html>
