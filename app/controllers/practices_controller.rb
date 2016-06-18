@@ -86,11 +86,6 @@ class PracticesController < ApplicationController
 
   end
 
-  def submit
-
-
-
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -20,11 +20,7 @@ Rails.application.routes.draw do
   # resources :lessons, only: [:show]
 
   resources :lessons do
-    resources :practices do
-      member do
-        get 'submit'
-      end
-    end
+    resources :practices
   end
 
 
