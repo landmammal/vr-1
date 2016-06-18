@@ -3,15 +3,18 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   resources :practices
+  # resources :lessons
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users
 
-  resources :courses do
-    resources :chapters
-  end
+  # resources :courses do
+  #   resources :chapters
+  # end
 
-    resources :chapters do
-      resources :lessons
+    resources :courses do
+      resources :chapters, shallow: true do
+        resources :lessons, shallow: true
+      end
     end
 
   # resources :lessons, only: [:show]

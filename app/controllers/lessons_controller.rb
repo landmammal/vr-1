@@ -19,7 +19,7 @@ class LessonsController < ApplicationController
   # GET /lessons/1
   # GET /lessons/1.json
   def show
-    # @lesson = Lesson.find(params[:id])
+    @lesson = Lesson.find(params[:id])
   end
 
   # GET /lessons/new
@@ -34,11 +34,11 @@ class LessonsController < ApplicationController
   # POST /lessons
   # POST /lessons.json
   def create
-    @lesson = @chapter.lessons.new(lesson_params)
+    @lesson = Lesson.new(lesson_params)
 
     if @lesson.save
       respond_to do |format|
-        format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
+        format.html { redirect_to lesson_path(@lesson), notice: 'Lesson was successfully created.' }
         format.json { render :show, status: :created, location: @lesson }
       end
     else
