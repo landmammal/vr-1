@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
   before_action :authenticate_user!
-  # before_action :set_chapter
+  before_action :set_chapter, only: [:create, :new]
   before_action :set_lesson, only: [ :edit, :update, :destroy]
 
 
@@ -35,6 +35,7 @@ class LessonsController < ApplicationController
   # POST /lessons.json
   def create
     @lesson = Lesson.new(lesson_params)
+    @lesson.chapter_id=@chapter.id
 
     if @lesson.save
       respond_to do |format|
@@ -81,9 +82,9 @@ class LessonsController < ApplicationController
   private
 
     # set the chapter you are in before you start adding lessons
-    # def set_chapter
-    #   @chapter = Chapter.find(params[:chapter_id])
-    # end
+    def set_chapter
+      @chapter = Chapter.find(params[:chapter_id])
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_lesson

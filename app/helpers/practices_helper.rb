@@ -1,8 +1,11 @@
 module PracticesHelper
 
   def progress
-    # one = current_user.practices.count
-    # current_user.practices.last.lesson.chapter.chapter_title
+    complete = current_user.practices.count
+    total = current_user.practices.last.lesson.chapter.course.lessons.count
+
+    percent = (complete / total ) * 100
+    p percent
 
   end
 
