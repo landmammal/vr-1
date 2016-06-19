@@ -1,21 +1,20 @@
 class LessonsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_chapter, only: [:create, :new]
-  before_action :set_lesson, only: [ :edit, :update, :destroy]
+  before_action :set_lesson, only: [ :edit, :update, :destroy, :prompt_view, :role_model_view]
 
 
   # GET /lessons
   # GET /lessons.json
 
   def prompt_view
-
   end
 
   def role_model_view
   end
 
   def explanation_token
-
+    
   end
 
   def prompt_token

@@ -8,7 +8,35 @@
   <%= @lesson.lesson_title %>
 </p>
 
-<h3>Explanation</h3>
+<h2>Record Explanation</h2>
+
+<ziggeo
+      ziggeo-width=450
+      ziggeo-height=300>
+</ziggeo>
+
+<%= form_for([@course, @chapter, @lesson]) do |f| %>
+  <% if @lesson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+      <ul>
+      <% @lesson.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :explanation_script %><br>
+    <%= f.text_area :explanation_script %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 <!--
 <p>
   <strong>Explanation:</strong>
@@ -50,8 +78,7 @@
 <%= link_to 'Edit', edit_lesson_path(@lesson) %> |
 <%= link_to 'Back', lessons_path %>
 
-<%= link_to 'record prompt', lessons_prompt_view_path %>
-
+<%= link_to 'record prompt', prompt_view_lesson_path(@lesson) %>
 
 <%= link_to 'submit your practice practice', new_lesson_practice_path(@lesson) %>
 
