@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   # resources :lessons, only: [:show]
 
   resources :lessons do
-    resources :practices
+    resources :practices, shallow: true
   end
 
 

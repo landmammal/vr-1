@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606194216) do
+ActiveRecord::Schema.define(version: 20160619190830) do
 
   create_table "chapters", force: :cascade do |t|
     t.integer  "course_id"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20160606194216) do
   end
 
   add_index "practices", ["lesson_id"], name: "index_practices_on_lesson_id"
+  add_index "practices", ["user_id", "lesson_id"], name: "index_practices_on_user_id_and_lesson_id", unique: true
   add_index "practices", ["user_id"], name: "index_practices_on_user_id"
 
   create_table "users", force: :cascade do |t|

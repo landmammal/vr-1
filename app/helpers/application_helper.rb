@@ -6,9 +6,10 @@ module ApplicationHelper
     else
       complete = current_user.practices.count
       total = current_user.practices.last.lesson.chapter.course.lessons.count
-      percent = (complete / total ) * 100
-      (percent > 100) ? 100 : percent
+
+      percent = complete * 100.00 / total
+      (percent > 100) ? 100 : percent.round
     end
   end
-  
+
 end
