@@ -14,6 +14,7 @@ require "rails_helper"
         fill_in 'Email', with: trainee.email
         fill_in 'Password', with: trainee.password
         click_on 'Log in'
+
         expect(page).to have_content 'Signed in successfully'
         visit lessons_path
         click_on 'Show', match: :first
@@ -23,7 +24,15 @@ require "rails_helper"
         fill_in 'Token', with: 'sdfsd'
         fill_in 'Video token', with: 'sdfsdfsdfsdfs'
         click_on 'Create Practice'
+
         expect(page).to have_content 'Practice was successfully created'
+        visit lessons_path
+        click_on 'Show', match: :first
+        click_on 'submit your practice practice'
+
+        expect(page).to have_content 'New Practice'
+
+
       end
 
     end
