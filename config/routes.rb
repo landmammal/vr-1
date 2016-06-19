@@ -2,14 +2,14 @@ Rails.application.routes.draw do
 
 
   root 'welcome#index'
+
+  get 'lessons/prompt_view'
+  get 'lessons/role_model_view'
+
   resources :practices
   # resources :lessons
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users
-
-  # resources :courses do
-  #   resources :chapters
-  # end
 
     resources :courses do
       resources :chapters, shallow: true do
@@ -26,6 +26,17 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :lessons do
+    member do
+      post 'prompt_token'
+      post 'explanation_token'
+      post 'role_model_token'
+    end
+  end
+
+
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,11 +1,31 @@
 class LessonsController < ApplicationController
   before_action :authenticate_user!
   # before_action :set_chapter
-  before_action :set_lesson, only: [ :edit, :update, :destroy]
+  before_action :set_lesson, only: [ :edit, :update, :destroy, :prompt_view]
 
 
   # GET /lessons
   # GET /lessons.json
+
+  def prompt_view
+    
+  end
+
+  def role_model_view
+  end
+
+  def explanation_token
+
+  end
+
+  def prompt_token
+
+  end
+
+  def role_model_token
+
+  end
+
   def index
 
     # @lessons = @chapter.lessons.all
@@ -87,11 +107,11 @@ class LessonsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_lesson
-      @lesson = Lessons.find(params[:id])
+      @lesson = Lesson.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
-      params.require(:lesson).permit(:chapter_id, :lesson_title, :explanation, :prompt, :role_model, :performance, :explanation_script, :prompt_script, :model_script)
+      params.require(:lesson).permit(:chapter_id, :lesson_title, :explanation, :prompt, :role_model, :performance, :explanation_script, :prompt_script, :model_script, :model_token, :explanation_token, :role_model_token)
     end
 end
