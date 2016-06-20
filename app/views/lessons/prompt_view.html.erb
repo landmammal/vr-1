@@ -1,14 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-
-
-
-<p>
-  <strong>Lesson title:</strong>
-  <%= @lesson.lesson_title %>
-</p>
-
-<h2>Record Explanation</h2>
+<h2>Record Prompt</h2>
 
 <ziggeo
       ziggeo-width=450
@@ -29,64 +19,22 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :explanation_script %><br>
-    <%= f.text_area :explanation_script %>
+    <%= f.label :prompt_script %><br>
+    <%= f.text_area :prompt_script %>
   </div>
 
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-<!--
-<p>
-  <strong>Explanation:</strong>
-  <%= @lesson.explanation %>
-</p>
 
-<p>
-  <strong>Prompt:</strong>
-  <%= @lesson.prompt %>
-</p>
+<%= link_to 'record role model', role_model_view_lesson_path(@lesson.id) %>
 
-<p>
-  <strong>Role model:</strong>
-  <%= @lesson.role_model %>
-</p>
-
-<p>
-  <strong>Performance:</strong>
-  <%= @lesson.performance %>
-</p>
-
-<p>
-  <strong>Explanation script:</strong>
-  <%= @lesson.explanation_script %>
-</p>
-
-<p>
-  <strong>Prompt script:</strong>
-  <%= @lesson.prompt_script %>
-</p>
-
-<p>
-  <strong>Model script:</strong>
-  <%= @lesson.model_script %>
-</p> -->
-
-
-
-<%= link_to 'Edit', edit_lesson_path(@lesson) %> |
-<%= link_to 'Back', lessons_path %>
-
-<%= link_to 'record prompt', prompt_view_lesson_path(@lesson) %>
-
-<%= link_to 'submit your practice practice', new_lesson_practice_path(@lesson) %>
-
-<%= form_for @lesson, url: explanation_token_lesson_path(@lesson.id),
+<%= form_for @lesson, url: prompt_token_lesson_path(@lesson.id),
                                                     html: {id: "tokenForm"},
                                                     remote: true,
                                                     method: 'post' do |f| %>
-<%= f.hidden_field :explanation %>
+<%= f.hidden_field :prompt %>
 <% end %>
 
 <script >
@@ -95,7 +43,7 @@
     // grab form by the id been display in the html and store it in a jquery object
     $form = $('#tokenForm');
     // grab the value field by its the id
-    $field = $('#lesson_explanation');
+    $field = $('#lesson_prompt');
     // assign the value of that field we grab by its id to the value of postVideoToken
     $field.val(videoToken);
     // the form we grabed earlier by its id gets submited to the server

@@ -15,5 +15,10 @@
   <%= @chapter.description %>
 </p>
 
-<%= link_to 'Edit', edit_chapter_path(@chapter) %> |
-<%= link_to 'Back', chapters_path %>
+
+
+
+<%= link_to 'Edit', edit_chapter_path %> |
+<%= link_to 'Back', course_path %>
+
+<%= link_to 'create new lesson', new_chapter_lesson_path(@chapter.id) %>

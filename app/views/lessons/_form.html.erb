@@ -1,4 +1,4 @@
-<%= form_for([@chapter, @lesson]) do |f| %>
+<%= form_for([@course, @chapter, @lesson]) do |f| %>
   <% if @lesson.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
@@ -10,8 +10,6 @@
       </ul>
     </div>
   <% end %>
-
-
 
   <div class="field">
     <%= f.label :lesson_title %><br>
@@ -49,3 +47,44 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+
+
+
+
+
+<script >
+  // this function is getting the video token from ZiggeoApi.Events
+  function postVideoToken(videoToken){
+    // grab form by the id been display in the html and store it in a jquery object
+    $form = $('#tokenForm');
+    // grab the value field by its the id
+    $field = $('#lesson_explanation');
+    // assign the value of that field we grab by its id to the value of postVideoToken
+    $field.val(videoToken);
+    // the form we grabed earlier by its id gets submited to the server
+    $form.submit();
+    // $.ajax ({
+    //   url : "/token",
+    //   type : "post",
+    //   data : {token: videoToken}
+    // });
+  };
+  // function postStreamToken(streamToken){
+  //
+  // };
+      ZiggeoApi.Events.on("submitted", function (data) {
+
+          // getting the string token and storing it in videoToken var to ship it to the outside world
+          var videoToken = data.stream.token
+          var streamToken = data.stream.video_token
+          console.log(videoToken);
+          console.log(streamToken);
+
+          // here is where we grab the token to escort it outside of the ziggeo api on click event
+          postVideoToken(videoToken);
+
+          // console.log(streamToken);
+
+      });
+</script>

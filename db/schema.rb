@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20160619225322) do
   end
 
   add_index "practices", ["lesson_id"], name: "index_practices_on_lesson_id"
+  add_index "practices", ["user_id", "lesson_id"], name: "index_practices_on_user_id_and_lesson_id", unique: true
   add_index "practices", ["user_id"], name: "index_practices_on_user_id"
 
   create_table "tasks", force: :cascade do |t|
@@ -72,9 +73,8 @@ ActiveRecord::Schema.define(version: 20160619225322) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.boolean  "admin"
     t.string   "first_name"
-    t.string   "last_anme"
+    t.string   "last_name"
     t.integer  "age"
     t.string   "education"
     t.string   "race"

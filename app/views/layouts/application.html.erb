@@ -2,6 +2,7 @@
 <html>
 <head>
 
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -28,6 +29,10 @@
   </title>
 
 
+  <title>VideoRehearser</title>
+  <link rel="stylesheet" href="//assets-cdn.ziggeo.com/v1-latest/ziggeo.css" />
+  <script src="//assets-cdn.ziggeo.com/v1-latest/ziggeo.js"></script>
+  <script> ZiggeoApi.token ='<%= Rails.application.secrets.ziggeo_secret %>'; </script>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -50,12 +55,12 @@
       </div>
     <%= render 'layouts/tasks' %>
   </div>
+
 <% else %>
   <%= yield %>
 <% end %>
 
 <%= render 'layouts/footer' %>
-
 
 </body>
 </html>

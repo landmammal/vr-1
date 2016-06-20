@@ -1,12 +1,12 @@
 class PracticesController < ApplicationController
-  before_action :set_practice, only: [:show, :edit, :update, :destroy, :submit]
-  before_action :set_lesson
+  before_action :set_practice, only: [:show, :edit, :update, :destroy]
+  before_action :set_lesson, only: [:index, :new, :create]
   before_action :authenticate_user!
   # GET /practices
   # GET /practices.json
   def index
-    @practices = Practice.all
-    # @practices = @lesson.practices.order("created_at ASC")
+    # @practices = Practice.all
+    @practices = @lesson.practices.order("created_at ASC")
     # respond_to do |format|
     #   format.html { render layout: !request.xhr? }
     #   end
@@ -20,7 +20,9 @@ class PracticesController < ApplicationController
 
   # GET /practices/new
   def new
-    @practice = current_user.practices.build
+    @practice = Practice.new
+
+
   end
 
   # GET /practices/1/edit
@@ -32,11 +34,12 @@ class PracticesController < ApplicationController
 
   def create
     @practice = @lesson.practices.build(practice_params)
+
     @practice.user_id = current_user.id
     if @practice.save
       respond_to do |format|
         # format.html { redirect_to root_path }
-        format.html { redirect_to practices_path, notice: 'Practice was successfully created.' }
+        format.html { redirect_to lesson_practices_path, notice: 'Practice was successfully created.' }
         format.json { render :show, status: :created, location: @practice }
         # format.js
       end
@@ -64,40 +67,35 @@ class PracticesController < ApplicationController
   # DELETE /practices/1
   # DELETE /practices/1.json
   def destroy
-    @practice.destroy
-    respond_to do |format|
-      format.html { redirect_to practices_url, notice: 'Practice was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-
-    #
-    #
-    # if @practice.user_id == current_user.id
-    #   @practice.delete
-    #   respond_to do |format|
-    #     format.html { redirect_to root_path }
-    #     # format.js
-    #   end
+    # @practice.destroy
+    # respond_to do |format|
+    #   format.html { redirect_to practices_url, notice: 'Practice was successfully destroyed.' }
+    #   format.json { head :no_content }
     # end
 
+    #
+    #
+    if @practice.user_id == current_user.id
+      @practice.delete
+      respond_to do |format|
+        format.html { redirect_to :back }
+        # format.js
+      end
+    end
+
 
   end
 
-  def submit
-    binding.pry
-
-
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_practice
-      # @practice = Practice.find(params[:id])
-      @practice = @lesson.practices.find(params[:id])
+      @practice = Practice.find(params[:id])
+      # @practice = @lesson.practices.find(params[:id])
     end
 
     def set_lesson
-      @practice = Lesson.find(params[:lesson_id])
+      @lesson = Lesson.find(params[:lesson_id])
     end
 
 

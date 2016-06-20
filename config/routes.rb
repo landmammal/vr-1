@@ -2,28 +2,34 @@ Rails.application.routes.draw do
 
 
   resources :tasks
+
   root 'welcome#index'
   resources :practices
-  devise_for :users
+
+  devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users
-  resources :practices
 
-
-  resources :chapters do
-    resources :lessons
-  end
-
-  resources :lessons, only: [:show]
-
-  resources :lessons do
-    resources :practices do
-      member do
-        get 'submit'
+    resources :courses do
+      resources :chapters, shallow: true do
+        resources :lessons, shallow: true
       end
     end
+
+  resources :lessons do
+    resources :practices, shallow: true
   end
-  resources :topics
-  resources :courses
+
+  resources :lessons do
+    member do
+      get 'prompt_view'
+      get 'role_model_view'
+      post 'prompt_token'
+      post 'explanation_token'
+      post 'role_model_token'
+    end
+  end
+
+
 
   get "/test" => "welcome#test"
   get "/interfacetest" => "welcome#interface_test"
@@ -76,10 +82,5 @@ Rails.application.routes.draw do
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
 
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+
 end
