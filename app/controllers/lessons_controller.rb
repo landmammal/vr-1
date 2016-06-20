@@ -34,7 +34,12 @@ class LessonsController < ApplicationController
   end
 
   def role_model_token
-  
+    role_model_token = token_params[:role_model]
+    @lesson.role_model = role_model_token
+
+    if @lesson.save!
+      render json: @lesson.role_model, status: :ok
+    end
   end
 
   def index
@@ -112,7 +117,7 @@ class LessonsController < ApplicationController
 
   private
     def token_params
-      params.require(:lesson).permit(:explanation, :prompt)
+      params.require(:lesson).permit(:explanation, :prompt, :role_model)
     end
     # set the chapter you are in before you start adding lessons
     def set_chapter
