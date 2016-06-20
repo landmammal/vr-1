@@ -4,6 +4,12 @@ source 'https://rubygems.org'
 gem 'devise'
 gem 'pundit'
 
+# Al Delcy GEMS
+gem 'font-awesome-sass'
+gem 'sprockets', '>= 3.0.0'
+gem 'sprockets-es6'
+gem 'carrierwave'
+#=====================================
 # for my secrets
 gem 'dotenv'
 gem 'dotenv-rails'
@@ -18,7 +24,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'hirb'
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

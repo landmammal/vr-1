@@ -1,6 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <LINK REL="SHORTCUT ICON" HREF="/assets/ico.png">
+
+    <!-- jQuery -->
+    <script   src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+
+    <!-- BOOSTRAP -->
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+  <script src="/bootstrap/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  
+  <link href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' rel='stylesheet' type='text/css'>
+
+  
+
+  <title>
+    <% if @site_title %>
+      <%= @site_title %>
+    <%else%>
+      Video Rehearser
+    <%end%>
+  </title>
+
+
   <title>VideoRehearser</title>
   <link rel="stylesheet" href="//assets-cdn.ziggeo.com/v1-latest/ziggeo.css" />
   <script src="//assets-cdn.ziggeo.com/v1-latest/ziggeo.js"></script>
@@ -12,15 +40,27 @@
 </head>
 <body>
 
-  <%= render 'layouts/header' %>
+<%= render 'layouts/menu' %>
 
-  <div class="container">
-    <% flash.each do |message_type, message| %>
-      <div id:"flash" class="flash-<%= message_type %>"><%= message %></div>
-    <% end %>
+  <% flash.each do |message_type, message| %>
+    <div id:"flash" class="flash-<%= message_type %>"><%= message %></div>
+  <% end %>
 
-    <%= yield %>
+<% if user_signed_in? %>
+  <div class="inter_wrapper">
+    <%= render 'layouts/leftpanel' %>
+    <%= render 'layouts/banner' %>
+      <div class="inter_content">
+        <%= yield %>
+      </div>
+    <%= render 'layouts/tasks' %>
   </div>
+
+<% else %>
+  <%= yield %>
+<% end %>
+
+<%= render 'layouts/footer' %>
 
 </body>
 </html>
