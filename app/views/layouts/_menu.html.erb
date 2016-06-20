@@ -1,0 +1,13 @@
+<% if user_signed_in? %>
+	<header class="inter_header">
+		<div class="logo"><img src="/assets/logo_home.png"></div>
+      	<div class="inter_header menu_item"><%= link_to "Users", users_path %></div>
+      	<div class="inter_header menu_item"><%= link_to "Log out", destroy_user_session_path, method: "delete" %></div>
+	</header>
+<% else %>
+	<header class="header">
+    	<div class="inter_header menu_item"><%= link_to "Sign In", new_user_session_path %></div>
+    	<div class="inter_header menu_item"><%= link_to "Register", new_user_registration_path %></div>
+    </header>
+<% end %>
+
