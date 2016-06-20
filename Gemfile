@@ -4,6 +4,13 @@ source 'https://rubygems.org'
 gem 'devise'
 gem 'pundit'
 
+# Al Delcy GEMS
+gem 'font-awesome-sass'
+gem 'sprockets', '>= 3.0.0'
+gem 'sprockets-es6'
+gem 'carrierwave'
+#=====================================
+
 # pre install ready gems
 gem 'rails', '4.2.6'
 gem 'sass-rails', '~> 5.0'
@@ -14,7 +21,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'hirb'
-
+gem 'rake', '~> 11.1.2'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,1 +1,17 @@
-<h1>here</h1>
+<% if !current_user %>
+	<div class="bg_scroll dynamic_h login_top" style="background-image:url('/assets/frame_home.png');">
+		<div class="blur-wrapper blur_form">
+					
+			<div class="blur-bg bg_scroll" style="background-image: url('/assets/frame_home.png');"></div>
+		    
+		    <div class="blur-text black-bg_05">
+
+				<hr style="border-top: 0.5px dotted #999; opacity: 0.3; margin: 20px auto; max-width:400px; min-width: 50%;">
+				
+			</div>
+
+		</div>
+	</div>
+<%else%>
+	<META http-equiv="refresh" content="0;URL=/users/<%= current_user.id %>">
+<%end%>

@@ -1,0 +1,38 @@
+<div class="leftpanel">
+	<div class="panel_seperator" style="height: 198px;">
+		<a href="/">
+			<div class="logo_img"><img src="/assets/icon_white.png" width="100%"></div>
+			<div class="logo_text"><img src="/assets/logo_text_white.png" width="100%"></div>
+			<div class="current_user_pic" style="display: none;">
+				<img src="/assets/default_user.png" class="img-circle">
+				<br><br>
+				<span style="font-size: 12px;"> <%= current_user.first_name+" "+current_user.last_anme %> </span>
+			</div>
+		</a>
+	</div>
+	<div class="panel_seperator">
+		<a href="#" class="js-max_min">
+			<div class="panel_icon"> 
+				<span class="icon ion-navicon-round"></span> <div class="text_label">Minimize</div> 
+			</div>
+		</a>
+	</div>
+	<div class="panel_seperator">
+		<a href="/">
+			<div class="panel_icon">
+				<span class="icon ion-home"></span> <div class="text_label">Home</div>
+			</div>
+		</a>
+		<a href="/users/<%= current_user.id %>/edit">
+			<div class="panel_icon">
+				<span class="icon ion-gear-b"></span> <div class="text_label">Settings</div>
+			</div>
+		</a>
+		<a href="#">
+			<div class="panel_icon">
+				<span class="icon ion-chatbubbles"></span> <div class="text_label">Chat</div>
+				<div class="notif_num"> <span class="notif">10</span> </div>
+			</div>
+		</a>
+	</div>
+</div>

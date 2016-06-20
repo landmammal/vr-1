@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :tasks
   root 'welcome#index'
   resources :practices
   devise_for :users
@@ -23,6 +24,9 @@ Rails.application.routes.draw do
   end
   resources :topics
   resources :courses
+
+  get "/test" => "welcome#test"
+  get "/interfacetest" => "welcome#interface_test"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
