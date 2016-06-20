@@ -4,6 +4,10 @@ source 'https://rubygems.org'
 gem 'devise'
 gem 'pundit'
 
+# for user profile and banner
+gem 'paperclip'
+gem 'aws-sdk'
+
 # Al Delcy GEMS
 gem 'font-awesome-sass'
 gem 'sprockets', '>= 3.0.0'
