@@ -4,6 +4,36 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :age %><br />
+    <%= f.number_field :age %>
+  </div>
+
+  <div class="field">
+    <%= f.label :race %><br />
+    <%= f.text_field :race %>
+  </div>
+
+  <!-- <div class="field">
+    <%= f.label :education %><br />
+    <%= f.text_field :education, autofocus: true %>
+  </div> -->
+
+  <!-- <div class="field">
+    <%= f.label :company %><br />
+    <%= f.text_field :company, autofocus: true %>
+  </div> -->
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
@@ -19,6 +49,10 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
   </div>
 
   <div class="actions">
