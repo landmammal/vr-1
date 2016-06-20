@@ -60,9 +60,7 @@
     <%= f.label :background %>
     <%= f.file_field :banner %>
   </div>
-
-
-
+  
   <div class="field">
     <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
   </div>
