@@ -82,3 +82,108 @@ div {
     list-style: square;
   }
 }
+
+
+
+
+
+button{
+  font-size:11px; font-weight: bold;
+  border-radius:3px; border:1px solid #666;
+  width:inherit; float: none;
+  display:inline-block;
+  padding:6px 15px; margin:5px 1% 5px 0;
+  color:#666;
+}button:hover{
+  background-color:#666;
+  color:white;
+}
+
+
+button, input{
+
+  &.red{
+    border:1px solid #7D0009;
+    background-color:#FF0000; color:#fff;
+    &:hover{
+      background-color:#7D0009;
+    }
+  }
+
+  &.blue{
+    border:1px solid #517DAC;
+    background-color:#419EFE; color:#fff;
+    &:hover{
+      background-color:#517DAC;
+    }
+  }
+
+  &.green_sft{
+    border:1px solid #006A0A;
+    background-color:#4EBC52; color:#fff;
+    &:hover{
+      background-color:#006A0A;
+    }
+  }
+
+  &.reg_btn{
+    width:inherit; float: none;
+    border-radius:3px; 
+  }
+  &.small_btn{
+    padding:2px 5px; float: none;
+    border-radius:3px; 
+  }
+
+}
+
+
+textarea, input, select{
+  border-radius:5px; border:1px solid #ccc;
+  background-color: white;
+  font-size:13px; color:#666;
+}
+textarea{ 
+  width: 98%; 
+  padding:5px 8px; margin:5px 1%;
+}
+
+select{padding:5px 8px; margin:5px 1% 5px 0;}
+
+input{padding:5px 8px; margin:5px 5px 5px 0;}
+
+input.full{
+  padding:5px 8px; margin:5px 1% 5px 0; width:98%;
+  display:inline-block; float:none;
+}
+input.half{
+  padding:5px 8px; margin:5px 1% 5px 0; width:48%;
+  display:inline-block; float:left;
+}
+input.stylize{
+  border-radius:0px; border:0; 
+  border-bottom:1px solid #ccc;
+  background-color: transparent;
+  color:white;
+}
+input.space-5{letter-spacing:0.5em;}
+input.space-1{letter-spacing:0.1em;}
+::-webkit-input-placeholder {
+   color:#ccc;
+   letter-spacing:0em;
+}
+input[type='color']{
+  height:40px;
+}
+input[type='file']{
+  font-size:12px;
+  padding:5px; margin-top:10px;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+a:focus {
+    outline: none;
+    text-decoration:none;
+}

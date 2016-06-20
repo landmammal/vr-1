@@ -41,12 +41,19 @@ header.inter_header{
 	width:200px; text-align:left; font-size: 14px; padding:2px 0;
 	& .task_list.max{
 		background-color: white; color:#858585; height:calc(100% - 34px);
+		color: #333;
+		a{
+			color: #333;
+		}
 	}
 }
 
 
-.panel_seperator{
+.panel_seperator, .tpanel_seperator{
 	border-bottom:1px dotted #4C668F; padding:5px; margin:0; overflow:hidden; z-index:1;
+	&.max{
+		padding:5px 10px;
+	}
 }.panel_seperator .logo_img{
 	max-width:30px; margin:10px auto 10px;
 }.panel_seperator .logo_img.max{
