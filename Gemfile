@@ -9,7 +9,7 @@ gem 'font-awesome-sass'
 gem 'sprockets', '>= 3.0.0'
 gem 'sprockets-es6'
 gem 'carrierwave'
-#=====================================
+
 # for my secrets
 gem 'dotenv'
 gem 'dotenv-rails'
