@@ -2,4 +2,8 @@
 
 <%= current_user.email %>
 
-<a href="<%= new_course_path %>"><button class="reg_btn green_sft">New Course</button></a>
+
+
+<%if current_user.role == 0 %>
+  <a href="<%= new_course_path %>"><button class="reg_btn green_sft">New Course</button></a>
+<% end %>
