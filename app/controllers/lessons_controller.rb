@@ -1,7 +1,8 @@
 class LessonsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_chapter, only: [:create, :new]
-  before_action :set_lesson, only: [ :edit, :update, :destroy, :prompt_view, :role_model_view]
+  before_action :set_lesson, only: [ :edit, :update, :destroy, :prompt_view, :role_model_view,
+                                     :explanation_token, :prompt_token, :role_model_token]
 
 
   # GET /lessons
@@ -14,7 +15,13 @@ class LessonsController < ApplicationController
   end
 
   def explanation_token
-    
+    explanation_token = explanation_params[:explanation]
+    @lesson.explanation = explanation_token
+
+    if @lesson.save!
+      binding.pry
+      render json: @lesson.explanation, status: :ok
+    end
   end
 
   def prompt_token
@@ -99,7 +106,9 @@ class LessonsController < ApplicationController
   end
 
   private
-
+    def explanation_params
+      params.require(:lesson).permit(:explanation)
+    end
     # set the chapter you are in before you start adding lessons
     def set_chapter
       @chapter = Chapter.find(params[:chapter_id])

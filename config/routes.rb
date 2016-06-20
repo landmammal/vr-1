@@ -24,4 +24,5 @@ Rails.application.routes.draw do
       post 'role_model_token'
     end
   end
+
 end
