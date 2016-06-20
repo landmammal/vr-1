@@ -139,9 +139,17 @@ button, input{
 
 
 textarea, input, select{
-  border-radius:5px; border:1px solid #ccc;
+  border-radius:2px; border:1px solid #999;
   background-color: white;
   font-size:13px; color:#666;
+  &.half{
+    padding:5px 8px; margin:5px 1% 5px 0; width:48%;
+    display:inline-block; float:left;
+  }
+  &.full{
+    padding:5px 8px; margin:5px 1% 5px 0; width:98%;
+    display:inline-block; float:none;
+  }
 }
 textarea{ 
   width: 98%; 
@@ -152,24 +160,16 @@ select{padding:5px 8px; margin:5px 1% 5px 0;}
 
 input{padding:5px 8px; margin:5px 5px 5px 0;}
 
-input.full{
-  padding:5px 8px; margin:5px 1% 5px 0; width:98%;
-  display:inline-block; float:none;
-}
-input.half{
-  padding:5px 8px; margin:5px 1% 5px 0; width:48%;
-  display:inline-block; float:left;
-}
 input.stylize{
   border-radius:0px; border:0; 
-  border-bottom:1px solid #ccc;
+  border-bottom:1px solid #999;
   background-color: transparent;
   color:white;
 }
 input.space-5{letter-spacing:0.5em;}
 input.space-1{letter-spacing:0.1em;}
 ::-webkit-input-placeholder {
-   color:#ccc;
+   color:#999;
    letter-spacing:0em;
 }
 input[type='color']{
