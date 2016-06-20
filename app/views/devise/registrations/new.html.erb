@@ -11,28 +11,28 @@
         <div class="blur-text register-text black-bg_05 register_height">
           <h2>Register</h2>
 
-          <hr style="border-top:0.5px dotted #999; opacity:0.3; margin:20px auto; max-width:400px; min-width:50%;">
+          <hr style="border-top:0.5px dotted #999; opacity:0.3; margin:20px 0; max-width:400px; min-width:50%;">
           
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), multipart: true) do |f| %>
             <%= devise_error_messages! %>
 
             
-            <%= f.text_field :first_name, autofocus: true, placeholder:'First Name', class:'half' %><br>
-            <%= f.text_field :last_name, placeholder:'Last Name', class:'half' %><br>
-            <%= f.date_field :age, placeholder:'Age', class:'half' %><br>
-            <%= f.select :race, ([["Select Race", "Select Race"], ["Hispanic or Latino", "Hispanic or Latino"], ["American Indian or Alaska Native", "American Indian or Alaska Native"], ["Asian", "Asian"], ["Black or African American", "Black or African American"], ["Native Hawaiian or Pacific Islander", "Native Hawaiian or Pacific Islander"], ["White", "WhiteWhite"]]), class:'half' %>
-            
+            <%= f.text_field :first_name, autofocus: true, placeholder:'First Name'%><br>
+            <%= f.text_field :last_name, placeholder:'Last Name'%><br>
+            <div class="label">Date of birth</div><br>
+            <%= f.date_field :age, placeholder:'Age'%><br>
+            <div class="label">Ethnicity</div><br>
+            <%= f.select :race, ([["Hispanic or Latino", "Hispanic or Latino"], ["American Indian or Alaska Native", "American Indian or Alaska Native"], ["Asian", "Asian"], ["Black or African American", "Black or African American"], ["Native Hawaiian or Pacific Islander", "Native Hawaiian or Pacific Islander"], ["White", "WhiteWhite"]]) %>
             <br><br>
             
-            Email and password
+            <div class="label">Email and password
             <% if @minimum_password_length %>
               <span style="font-size:10px;">(<%= @minimum_password_length %> characters minimum)</span>
-            <% end %>:<br>
+            <% end %>:</div><br>
 
-            <%= f.email_field :email, autofocus: true, placeholder:'email', class:'half' %><br>
-            <%= f.password_field :password, autocomplete: "off", placeholder:'Password', class:'half' %><br>
-            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:'Confirm Password', class:'half' %>
-            <br><br>
+            <%= f.email_field :email, autofocus: true, placeholder:'email'%><br>
+            <%= f.password_field :password, autocomplete: "off", placeholder:'Password' %><br>
+            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:'Confirm Password' %><br>
             
 
              <!-- Profile:<br> 
@@ -44,7 +44,7 @@
             <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %> -->
 
             <br>
-            <%= f.submit "Sign up" %>
+            <%= f.submit "Sign up", class:'button' %>
             <br><br>
 
           
