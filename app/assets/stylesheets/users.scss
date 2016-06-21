@@ -2,54 +2,54 @@
 // // They will automatically be included in application.css.
 // // You can use Sass (SCSS) here: http://sass-lang.com/
 //
-//
-// .banner{
-// 	height:150px; width:calc(100% - 50px); float:left;
-// 	background-color:#C9C9C9; background-size:cover; background-position:center;
-// 	overflow:visible; padding-left:10px;
-// 	&.max{
-// 		width:calc(100% - 140px);
-// 	}
-// 	& .profile_pic{
-// 		position: relative; bottom:-90px;
-// 		img{
-// 			width:100px;
-// 		}
-// 	}
-// }
-//
-// .inter_content{
-// 	height:calc(100% - 140px); width:calc(100% - 100px); float:left;
-// 	background-color:#F2F2F2; padding:50px 20px 10px;
-// 	& a {
-// 	  color: #6195C2;
-//
-// 		&:visited, &:hover, &:focus {
-// 			color: #6195C2; text-decoration:none;
-// 		}
-//
-// 		&.red_link{
-// 			padding:2px 3px; border-radius:3px;
-// 			background-color:#FF0000; color: white;
-// 			&:hover{
-// 			   background-color:#7D0009;
-// 			}
-// 		}
-// 		&.red_text{
-// 			color:#FF0000;
-// 			&:hover{
-// 			   color:#7D0009;
-// 			}
-// 		}
-//
-// 	}
-// 	&.max{
-// 		width:calc(100% - 190px);
-// 		&.tmax{
-// 			width:calc(100% - 340px);
-// 		}
-// 	}
-// 	&.tmax{
-// 		width:calc(100% - 250px);
-// 	}
-// }
+
+.banner{
+	height:150px; width:calc(100% - 50px); float:left;
+	background-color:#C9C9C9; background-size:cover; background-position:center;
+	overflow:visible; padding-left:10px;
+	&.max{
+		width:calc(100% - 140px);
+	}
+	& .profile_pic{
+		position: relative; bottom:-90px;
+		img{
+			width:100px;
+		}
+	}
+}
+
+.inter_content{
+	height:calc(100% - 140px); width:calc(100% - 100px); float:left;
+	background-color:#F2F2F2; padding:50px 20px 10px;
+	& a {
+	  color: #6195C2;
+
+		&:visited, &:hover, &:focus {
+			color: #6195C2; text-decoration:none;
+		}
+
+		&.red_link{
+			padding:2px 3px; border-radius:3px;
+			background-color:#FF0000; color: white;
+			&:hover{
+			   background-color:#7D0009;
+			}
+		}
+		&.red_text{
+			color:#FF0000;
+			&:hover{
+			   color:#7D0009;
+			}
+		}
+
+	}
+	&.max{
+		width:calc(100% - 190px);
+		&.tmax{
+			width:calc(100% - 340px);
+		}
+	}
+	&.tmax{
+		width:calc(100% - 250px);
+	}
+}
