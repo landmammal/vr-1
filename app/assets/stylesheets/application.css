@@ -1,4 +1,4 @@
-//
+/*//
 // This is a manifest file that'll be compiled into application.css, which will
 // include all the files listed below.
 //
@@ -10,7 +10,7 @@
 // the bottom of the compiled file so the styles you add here take precedence
 // over styles defined in any styles defined in the other CSS/SCSS files in this
 // directory. It is generally better to create a new file per style scope.
-//
+//*/
 header.header{
   padding:15px 10px;
 	background-color:#eeeeee; overflow:hidden;
