@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-/*
+
 header.header{
   padding:15px 10px;
 	background-color:#eeeeee; overflow:hidden;
@@ -21,18 +21,18 @@ header.header{
 	display:inline-block; float:right; padding:12px 5px;
 }header.header a{
 	color:#6A6A6A;
-}*/
+}
 
-/*menu{
+menu{
   max-width:1100px; margin:0 auto; padding:0;
 }
 
 header.header .logo{
 	display:inline-block; padding:5px 5px 0 0; width:130px;
-}*/
+}
 
 /*TRANSPARENT BLUR BG CSS =================================*/
-/*
+
 .blur-wrapper{
   position: relative;
   color: white;
@@ -57,9 +57,9 @@ header.header .logo{
 	height:500px;
 }.login_top .blur_form{
 	margin-top:100px; max-width:1100px;
-}*/
+}
 
-/*.register_form{
+.register_form{
   margin: 0; height:calc(100% - 310px);
 }.register-text{
   border-radius:0px; padding:5px 30px; margin:0;
@@ -70,8 +70,8 @@ header.header .logo{
 }.register-text form .label{
   width:300px; text-align:left;
 }
-*/
-/*
+
+
 .black-bg_02{
   background: rgb(0,0,0);
   background: rgba(0,0,0,0.2);
@@ -89,9 +89,9 @@ header.header .logo{
   background: rgba(255,255,255,0.8);
 }.white-bg_09{
   background: rgb(255,255,255);
-}*/
+}
 
-/*.bg_scroll{
+.bg_scroll{
 	background-position:center;
 	background-repeat:no-repeat;
 	background-attachment:fixed;
@@ -104,14 +104,14 @@ header.header .logo{
 	position:relative;
 	overflow:hidden;
 	width: 100%;
-}*/
+}
 
 /*================ END of BLUR BG ==========================*/
-/*.half{
+.half{
   width:50%; float:left; padding: 5px; margin:0;
 }.third{
   width:50%; float:left; padding: 5px;
 }
 .register_height{
     height:100%;
-}*/
+}

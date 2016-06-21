@@ -1,7 +1,6 @@
 class CreateLessons < ActiveRecord::Migration
   def change
     create_table :lessons do |t|
-      t.belongs_to :chapter, index: true, foreign_key: true
       t.string :lesson_title
       t.string :explanation
       t.string :prompt
