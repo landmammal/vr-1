@@ -61,7 +61,7 @@ footer{
   color: white;
   margin: 10px auto;
 }.blur-bg{
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
   position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px;
   z-index: 1;
 
@@ -96,23 +96,22 @@ footer{
 
 
 .black-bg_02{
-  background: rgb(0,0,0); /* for IE */
+  background: rgb(0,0,0);
   background: rgba(0,0,0,0.2);
 }.black-bg_05{
-  background: rgb(0,0,0); /* for IE */
+  background: rgb(0,0,0);
   background: rgba(0,0,0,0.5);
 }.black-bg_08{
-  background: rgb(0,0,0); /* for IE */
+  background: rgb(0,0,0);
   background: rgba(0,0,0,0.8);
 }.white-bg_05{
-  background: rgb(255,255,255); /* for IE */
+  background: rgb(255,255,255);
   background: rgba(255,255,255,0.5);
 }.white-bg_08{
-  background: rgb(255,255,255); /* for IE */
+  background: rgb(255,255,255);
   background: rgba(255,255,255,0.8);
 }.white-bg_09{
-  background: rgb(255,255,255); /* for IE */
-  background: rgba(255,255,255,0.9);
+  background: rgb(255,255,255);
 }
 
 .bg_scroll{
@@ -134,7 +133,7 @@ footer{
 .half{
   width:50%; float:left; padding: 5px; margin:0;
 }.third{
-  width:50%; float:left; padding: 5px; 
+  width:50%; float:left; padding: 5px;
 }
 .register_height{
     height:100%;

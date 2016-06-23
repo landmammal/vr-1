@@ -1,86 +1,90 @@
-<p id="notice"><%= notice %></p>
-
-
-
 
 <p>
   <strong>Lesson title:</strong>
   <%= @lesson.lesson_title %>
 </p>
 
-<h2>Record Explanation</h2>
+<% if @lesson.explanation == nil && current_user.role == 'admin' %>
+  <h2>Record Explanation</h2>
 
-<ziggeo
-      ziggeo-width=450
-      ziggeo-height=300>
-</ziggeo>
+  <ziggeo
+        ziggeo-width=450
+        ziggeo-height=300>
+  </ziggeo>
 
-<%= form_for([@course, @chapter, @lesson]) do |f| %>
-  <% if @lesson.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+  <%= form_for([@course, @chapter, @lesson]) do |f| %>
+    <% if @lesson.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
 
-      <ul>
-      <% @lesson.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @lesson.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :explanation_script %><br>
+      <%= f.text_area :explanation_script %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :explanation_script %><br>
-    <%= f.text_area :explanation_script %>
-  </div>
+  <%= link_to 'record prompt', prompt_view_lesson_path(@lesson) %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<% elsif @lesson.prompt == nil && current_user.role == 'admin' %>
+  <%= link_to 'record prompt', prompt_view_lesson_path(@lesson) %>
+
+<% elsif @lesson.role_model == nil && current_user.role == 'admin' %>
+  <%= link_to 'record role model', role_model_view_lesson_path(@lesson.id) %>
+
+<% else %>
+  <ziggeo
+  ziggeo-video= <%= @lesson.explanation %>
+  ziggeo-width=450
+  ziggeo-height=390>
+  </ziggeo>
+  <%= @lesson.explanation_script %>
+  <ziggeo
+  ziggeo-video= <%= @lesson.prompt %>
+  ziggeo-width=450
+  ziggeo-height=390>
+  </ziggeo>
+  <%= @lesson.prompt_script %>
+  <ziggeo
+  ziggeo-video= <%= @lesson.role_model %>
+  ziggeo-width=450
+  ziggeo-height=390>
+  </ziggeo>
+  <%= @lesson.model_script %>
+<h2>performance</h2>
+  <ziggeo
+  ziggeo-width=450
+  ziggeo-height=390>
+  </ziggeo>
+<%= link_to 'submit your performance', new_lesson_practice_path(@lesson) %>  <br>
 <% end %>
-<!--
-<p>
-  <strong>Explanation:</strong>
-  <%= @lesson.explanation %>
-</p>
-
-<p>
-  <strong>Prompt:</strong>
-  <%= @lesson.prompt %>
-</p>
-
-<p>
-  <strong>Role model:</strong>
-  <%= @lesson.role_model %>
-</p>
-
+<!--<p>
 <p>
   <strong>Performance:</strong>
   <%= @lesson.performance %>
 </p>
-
-<p>
-  <strong>Explanation script:</strong>
-  <%= @lesson.explanation_script %>
-</p>
-
-<p>
-  <strong>Prompt script:</strong>
-  <%= @lesson.prompt_script %>
-</p>
-
-<p>
-  <strong>Model script:</strong>
-  <%= @lesson.model_script %>
-</p> -->
+ -->
 
 
-
-<%= link_to 'Edit', edit_lesson_path(@lesson) %> |
+<% if current_user.role == 'admin'  %>
+  <%= link_to 'Edit explanation', edit_lesson_path(@lesson) %> \
+<% end %>
 <%= link_to 'Back', lessons_path %>
 
-<%= link_to 'record prompt', prompt_view_lesson_path(@lesson) %>
 
-<%= link_to 'submit your practice practice', new_lesson_practice_path(@lesson) %>
+
+
 
 <%= form_for @lesson, url: explanation_token_lesson_path(@lesson.id),
                                                     html: {id: "tokenForm"},
@@ -112,8 +116,8 @@
       ZiggeoApi.Events.on("submitted", function (data) {
 
           // getting the string token and storing it in videoToken var to ship it to the outside world
-          var videoToken = data.stream.token
-          var streamToken = data.stream.video_token
+          var streamToken = data.stream.token
+          var videoToken = data.stream.video_token
           console.log(videoToken);
           console.log(streamToken);
 

@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-
-  resources :tasks
-
   root 'welcome#index'
   resources :practices
 
@@ -33,10 +30,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :tasks
 
-
-  get "/test" => "welcome#test"
-  get "/interfacetest" => "welcome#interface_test"
+  # get "/test" => "welcome#test"
+  # get "/interfacetest" => "welcome#interface_test"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

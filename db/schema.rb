@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160620012249) do
+ActiveRecord::Schema.define(version: 20160621215951) do
 
   create_table "chapters", force: :cascade do |t|
     t.integer  "course_id"
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20160620012249) do
   add_index "courses", ["user_id"], name: "index_courses_on_user_id"
 
   create_table "lessons", force: :cascade do |t|
-    t.integer  "chapter_id"
     t.string   "lesson_title"
     t.string   "explanation"
     t.string   "prompt"
@@ -45,6 +44,7 @@ ActiveRecord::Schema.define(version: 20160620012249) do
     t.text     "model_script"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "chapter_id"
   end
 
   add_index "lessons", ["chapter_id"], name: "index_lessons_on_chapter_id"
@@ -89,10 +89,6 @@ ActiveRecord::Schema.define(version: 20160620012249) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
     t.integer  "failed_attempts",        default: 0,  null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
@@ -109,7 +105,6 @@ ActiveRecord::Schema.define(version: 20160620012249) do
     t.datetime "banner_updated_at"
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true

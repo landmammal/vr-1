@@ -2,7 +2,7 @@
 
 <p>
   <strong>Course:</strong>
-  <%= @chapter.course %>
+  <%= @chapter.course.course_title %>
 </p>
 
 <p>
@@ -15,10 +15,31 @@
   <%= @chapter.description %>
 </p>
 
+<h1>Listing Lessons</h1>
+<p><%= progress %>% progess</p>
+<table>
+  <thead>
+    <tr>
+      <th>Lesson title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
+  <tbody>
+    <% @course.lessons.each do |lesson| %>
+      <tr>
+        <td><%= link_to lesson.lesson_title, lesson %></td>
+        <% if current_user.role == "admin" %>
+          <td><%= link_to 'Edit', edit_lesson_path(lesson) %></td>
+          <td><%= link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 
 <%= link_to 'Edit', edit_chapter_path %> |
-<%= link_to 'Back', course_path %>
+<%= link_to 'Back', course_path %> <br>
 
 <%= link_to 'create new lesson', new_chapter_lesson_path(@chapter.id) %>

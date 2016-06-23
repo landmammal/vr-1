@@ -128,11 +128,11 @@ button, input{
 
   &.reg_btn{
     width:inherit; float: none;
-    border-radius:3px; 
+    border-radius:3px;
   }
   &.small_btn{
     padding:2px 5px; float: none;
-    border-radius:3px; 
+    border-radius:3px;
   }
 
 }
@@ -151,8 +151,8 @@ textarea, input, select{
     display:inline-block; float:none;
   }
 }
-textarea{ 
-  width: 98%; 
+textarea{
+  width: 98%;
   padding:5px 8px; margin:5px 1%;
 }
 
@@ -161,7 +161,7 @@ select{padding:5px 8px; margin:5px 1% 5px 0;}
 input{padding:5px 8px; margin:5px 5px 5px 0;}
 
 input.stylize{
-  border-radius:0px; border:0; 
+  border-radius:0px; border:0;
   border-bottom:1px solid #999;
   background-color: transparent;
   color:white;
