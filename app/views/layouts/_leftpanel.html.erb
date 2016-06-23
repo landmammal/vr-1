@@ -5,7 +5,9 @@
 			<div class="logo_text"><img src="/assets/logo_text_white.png" width="100%"></div>
 		</a>
 		<div class="current_user_pic" style="display: none;">
-			<img src="/assets/default_user.png" class="img-circle">
+			<a href="/users/<%= current_user.id %>">
+				<img src="/assets/default_user.png" class="img-circle">
+			</a>
 			<br><br>
 			<span style="font-size: 12px;"> <%= current_user.first_name+" "+current_user.last_name %> </span>
 		</div>
@@ -18,7 +20,7 @@
 		</a>
 	</div>
 	<div class="panel_seperator">
-		<a href="/">
+		<a href="/users/<%= current_user.id %>">
 			<div class="panel_icon">
 				<span class="icon ion-home"></span> <div class="text_label">Home</div>
 			</div>

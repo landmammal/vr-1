@@ -7,4 +7,4 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-users = User.create([{ first_name:'', last_name:'', race:''}])
+users = User.create([{ first_name:'Al', last_name:'Delcy', race:'Black', email:'aldelcy2000@gmail.com', password:'123456', password_confirmation:'123456', role: 0}])
