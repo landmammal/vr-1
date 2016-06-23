@@ -29,11 +29,12 @@
     <% @course.chapters.each do |chapter| %>
       <tr>
         <td><%= chapter.course.course_title %></td>
-        <td><%= chapter.chapter_title %></td>
+        <td><%= link_to chapter.chapter_title, chapter %></td>
         <td><%= chapter.description %></td>
-        <td><%= link_to 'Show', chapter %></td>
-        <td><%= link_to 'Edit', edit_chapter_path(chapter) %></td>
-        <td><%= link_to 'Destroy', chapter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.role == 'admin'  %>
+          <td><%= link_to 'Edit', edit_chapter_path(chapter) %></td>
+          <td><%= link_to 'Destroy', chapter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -41,9 +42,6 @@
 
 <br>
 
-
-
-
-
-
+<% if current_user.role == 'admin'  %>
 <%= link_to 'New chapter', new_course_chapter_path(@course.id) %>
+<% end %>

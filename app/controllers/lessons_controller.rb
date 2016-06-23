@@ -28,7 +28,6 @@ class LessonsController < ApplicationController
     @lesson.prompt = prompt_token
 
     if @lesson.save!
-      binding.pry
       render json: @lesson.prompt, status: :ok
     end
   end
