@@ -38,7 +38,7 @@ Rails.application.routes.draw do
 
   resources :tasks
 
-  # get "/test" => "welcome#test"
+  get "/test" => "welcome#test"
   # get "/interfacetest" => "welcome#interface_test"
 
   # The priority is based upon order of creation: first created -> highest priority.
