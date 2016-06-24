@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <h3>Search for Courses</h3>
-
-<hr class="">
+  <%= form_tag do %>
+    <%= text_field_tag :search, nil, class:"half", placeholder:"search courses" %>
+    <%= button_tag "Search", class:"reg_btn" %>
+  <%end%>
+<hr>
 
 <div class="course_list">
 
@@ -21,7 +24,6 @@
     <%else%>
       <div class="each_item">
     <%end%>
-    
 
         <div class="each_title">
           <%= link_to course.course_title, course %>

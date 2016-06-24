@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+
+
+
+
+/* Mobile Layout: 480px and below. */
+@media only screen and (max-width: 480px) {
+
+}
+/* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
+
+@media only screen and (min-width: 481px) {
+
+}
+
+/* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
+
+@media only screen and (min-width: 769px) {
+
+}
+
+
+
+/* Custom Fonts START */
+
+@font-face {
+    font-family:'altera';
+    src: url("/fonts/Altera.ttf") format("truetype");
+}
+@font-face {
+    font-family:'webly_reg';
+    src: url("/fonts/weblysleekuil.ttf") format("truetype");
+}
+@font-face {
+    font-family:'webly_bld';
+    src: url("/fonts/weblysleekuisb.ttf") format("truetype");
+}
+@font-face {
+    font-family:'ptc75';
+    src: url("/fonts/PTC75F-webfont.ttf") format("truetype");
+}
+@font-face {
+    font-family:'webserveroff';
+    src: url("/fonts/Web_Serveroff.otf") format("truetype");
+}
+
+/* Custom Fonts END */

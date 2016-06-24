@@ -1,3 +1,80 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.site_wrapper{
+	max-width:1100px; min-height:200px; margin:0 auto; overflow:hidden; padding:5px 10px;
+}
+
+
+
+.demo{
+    display:inline-block; float:none; padding:10px 15px 14px; margin:15px  auto;
+    background-color:#FF3B3B; border-radius:10px; color:white; font-size:20px; font-family:'webly_bld';
+    &:hover{
+      background-color:#A00000; color:white; font-weight:bold;
+    }
+}
+.demo_form{
+	max-width:400px;
+}
+.home_sec{ font-size:60px; font-family:'webserveroff'; color:#858585; margin:100px; text-align:center; }
+.video_info_title{ font-size:25px; font-weight:bold; font-family:'webly_reg'; margin:100px 10px 5px; }
+.video_info_desc{ max-width:300px; float:right; margin-right:10px; line-height: 1.5em; font-size:15px; font-family:'webly_reg';}
+.regis_title{ font-size:40px; color:white; font-weight:bold; font-family:'webly_reg'; }
+.info_box{
+	display: inline-block; margin:5px;
+	img{ max-width:150px; min-width:50%; margin-bottom:20px;}
+	& .image{ width:100%; height:150px; background-size:cover; }
+	& .title{
+		padding: 10px; text-align:center;
+		color:white; font-family:'webly_reg'; font-size:18px;
+		&.red{ background-color:#D27575; }
+		&.blue{ background-color:#6A9FD9; }
+		&.green{ background-color:#5DD05D; }
+		&.yellow{ background-color:#CACA64; }
+		&.trans{ background-color:transparent; font-family:'webly_bld'; color:#5D5D5D; }
+	}
+	& .desc{
+		line-height: 2em;
+	}
+}
+
+/* Mobile Layout: 480px and below. */
+@media only screen and (max-width: 480px) {
+	.home_info_1{ font-size:40px; font-family:'webly_reg'; margin-bottom:10px;}
+	.home_info_2{ font-size:20px; font-family:'webly_reg'; }
+	.info_box{
+		&.hlf{ width:48%; min-width:200px; }
+		&.thrd{ width:31%; min-width:200px; }
+		&.qtr{ width:98%; min-width:200px; margin:0 auto; }
+	}
+}
+/* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
+
+@media only screen and (min-width: 481px) {
+	.home_info_1{ font-size:40px; font-family:'webly_reg'; margin-bottom:10px;}
+	.home_info_2{ font-size:20px; font-family:'webly_reg'; }
+	.home_info_3{ font-size:18px; font-family:'webly_bld'; margin:30px auto; }
+	.info_box{
+		&.hlf{ width:48%; min-width:200px; }
+		&.thrd{ width:31%; min-width:200px; }
+		&.qtr{ width:48%; min-width:200px; margin:0.25%; }
+	}
+}
+
+/* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
+
+@media only screen and (min-width: 769px) {
+	.home_info_1{ font-size:40px; font-family:'webly_reg'; margin-bottom:10px;}
+	.home_info_2{ font-size:20px; font-family:'webly_reg'; }
+	.home_info_3{ font-size:18px; font-family:'webly_bld'; margin:30px auto; }
+	.info_box{
+		&.hlf{ width:48%; min-width:200px;  margin:0.25%; 
+			& .image{ height:250px; }
+		}
+		&.thrd{ width:32%; min-width:200px; margin:0.15%;}
+		&.qtr{ width:24%; min-width:200px; margin:0.25%; }
+	}
+}

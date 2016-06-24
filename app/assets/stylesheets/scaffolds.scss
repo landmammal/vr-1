@@ -1,8 +1,9 @@
 body {
   background-color: #fff;
-  color: #333; font-size: 13px; line-height: 18px;
   margin:0px auto;
-  font-family: verdana, arial, helvetica, sans-serif;
+  color: #333; font-size: 13px; line-height: 18px;
+  // font-family: verdana, arial, helvetica, sans-serif;
+  font-family: 'webly_reg';
 }
 
 html, body {
@@ -17,8 +18,12 @@ body,td,th {
   font-size: 12px; */
 }
 
-br{
+hr, br{
   clear: both;
+}
+hr{
+  margin: 10px;
+  border-bottom:1px solid #ACACAC;
 }
 
 p, ol, ul, td {
@@ -49,7 +54,9 @@ div {
 }
 
 #notice {
-  color: green;
+  padding:0; border-radius:3px; margin:20px auto;
+  background-color:#00B51A; overflow:hidden; width:inherit;
+  text-align:center; font-weight:bold; color: white;
 }
 
 .field_with_errors {
@@ -87,20 +94,16 @@ div {
 
 
 
-button{
+input[type="submit"], button{
   font-size:11px; font-weight: bold;
   border-radius:3px; border:1px solid #666;
-  width:inherit; float: none;
   display:inline-block;
   padding:6px 15px; margin:5px 1% 5px 0;
   color:#666;
-}button:hover{
-  background-color:#666;
-  color:white;
-}
-
-
-button, input{
+  &:hover{
+    background-color:#666;
+    color:white;
+  }
 
   &.red{
     border:1px solid #7D0009;
@@ -119,7 +122,7 @@ button, input{
   }
 
   &.green_sft{
-    border:1px solid #006A0A;
+    border:1px solid #00A30F;
     background-color:#4EBC52; color:#fff;
     &:hover{
       background-color:#006A0A;
@@ -134,51 +137,64 @@ button, input{
     padding:2px 5px; float: none;
     border-radius:3px;
   }
-
 }
-
 
 textarea, input, select{
   border-radius:2px; border:1px solid #999;
   background-color: white;
-  font-size:13px; color:#666;
+  font-size:13px; color:#333;
   &.half{
-    padding:5px 8px; margin:5px 1% 5px 0; width:48%;
+    padding:5px 8px; margin:5px 0.5%; width:49%;
     display:inline-block; float:left;
   }
   &.full{
-    padding:5px 8px; margin:5px 1% 5px 0; width:98%;
+    padding:5px 8px; margin:5px 0.5%; width:99%;
     display:inline-block; float:none;
   }
 }
+
 textarea{
-  width: 98%;
-  padding:5px 8px; margin:5px 1%;
+  min-height: 100px;
+  min-width: 400px;
+}
+
+input{
+  padding:5px 8px; margin:5px 5px 5px 0; color:#333;
+  &.login{
+    border-radius:0px; border:0;
+    border-bottom:1px solid #999;
+    background-color: transparent;
+    float: none; width: 250px;
+  }
+  &.login_submit{
+    float: none; width: 250px; padding-top:12px;
+    background-color:#4482c3; border:0px; 
+    font-family:'altera'; color:#fff; font-weight:bold; font-size:15px;
+    &:hover{
+      background-color:#4F94FF;
+    }
+  }
+
+  &.space-5{letter-spacing:0.5em;}
+  &.space-1{letter-spacing:0.1em;}
+  ::-webkit-input-placeholder {
+     color:#999;
+     letter-spacing:0em;
+  }
+  &[type='color']{
+    height:40px;
+  }
+  &[type='checkbox']{
+    border:0px; background-color:#DDDDDD;
+  }
+  &[type='file']{
+    font-size:12px;
+    padding:5px; margin-top:10px;
+  }
 }
 
 select{padding:5px 8px; margin:5px 1% 5px 0;}
 
-input{padding:5px 8px; margin:5px 5px 5px 0;}
-
-input.stylize{
-  border-radius:0px; border:0;
-  border-bottom:1px solid #999;
-  background-color: transparent;
-  color:white;
-}
-input.space-5{letter-spacing:0.5em;}
-input.space-1{letter-spacing:0.1em;}
-::-webkit-input-placeholder {
-   color:#999;
-   letter-spacing:0em;
-}
-input[type='color']{
-  height:40px;
-}
-input[type='file']{
-  font-size:12px;
-  padding:5px; margin-top:10px;
-}
 input:focus,
 select:focus,
 textarea:focus,

@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Course title:</strong>
+<p class="course_title">
   <%= @course.course_title %>
 </p>
 
@@ -10,10 +9,8 @@
   <%= @course.description %>
 </p>
 
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
 
-<h1>Listing Chapters</h1>
+<h2>Chapters</h2>
 
 <table>
   <thead>
@@ -40,8 +37,15 @@
   </tbody>
 </table>
 
+
 <br>
 
 <% if current_user.role == 'admin'  %>
-<%= link_to 'New chapter', new_course_chapter_path(@course.id) %>
+<%= button_to 'Create Chapter', new_course_chapter_path(@course.id), class:"green_sft" %>
+
+<br>
+
+<%= link_to 'Edit', edit_course_path(@course) %> |
+<%= link_to 'Back', courses_path %>
+
 <% end %>

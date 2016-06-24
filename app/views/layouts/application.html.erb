@@ -2,7 +2,6 @@
 <html>
 <head>
 
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -18,18 +17,11 @@
 
   <link href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' rel='stylesheet' type='text/css'>
 
-
-
   <title>
-    <% if @site_title %>
-      <%= @site_title %>
-    <%else%>
-      Video Rehearser
-    <%end%>
+    <%= @site_title ? @site_title : "Video Rehearser" %>
   </title>
 
 
-  <title>VideoRehearser</title>
   <link rel="stylesheet" href="//assets-cdn.ziggeo.com/v1-latest/ziggeo.css" />
   <script src="//assets-cdn.ziggeo.com/v1-latest/ziggeo.js"></script>
   <script> ZiggeoApi.token ='<%= Rails.application.secrets.ziggeo_secret %>'; </script>

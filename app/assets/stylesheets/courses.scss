@@ -2,10 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
+.course_title{
+	font-weight:bold; font-size:20px;
+}
 .course_list{
 	overflow:hidden;
 	& .c_title{
+		min-width:150px; max-width: 200px; float:left;
+		padding:8px;
+	}
+	& .chap_title{
 		min-width:150px; max-width: 200px; float:left;
 		padding:8px;
 	}

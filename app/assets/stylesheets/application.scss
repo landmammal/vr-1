@@ -25,17 +25,17 @@ header.header{
   }
   & .menu_item{
     display:inline-block; float:none; padding:13px 20px; margin:0;
-    font-weight:bold; font-size:16px; color:#35B9DA;
+    font-family:'webly_reg'; font-size:16px; color:#4482c3;
   }
   & .register_item{
     display:inline-block; float:right; padding:5px 14px; margin:7px;
-    background-color:#35B9DA; border-radius:50px; color:white; font-weight:bold;
+    background-color:#4482c3; border-radius:5px; color:white; font-weight:bold;
     &:hover{
       background-color:#0781BD; color:white; font-weight:bold;
     }
   }
   a{
-    color:#45A9CA; font-weight:bold;
+    color:#4482c3; font-weight:bold;
   }
 }
 
@@ -45,7 +45,7 @@ menu{
 }
 
 footer{
-  background-color:#535353; color:white; height:100px;
+  background-color:#363636; color:white; height:200px;
   & .foot_width{
     max-width: 1100px;
   }
@@ -77,13 +77,13 @@ footer{
 
 
 .login_top{
-	height:500px;
+	min-height:500px;
 }.login_top .blur_form{
-	margin-top:100px; max-width:1100px;
+	margin:50px auto; max-width:1100px;
 }
 
 .register_form{
-  margin: 0; height:calc(100% - 310px);
+  margin: 0; height:calc(100% - 200px);
 }.register-text{
   border-radius:0px; padding:5px 30px; margin:0;
 }.register-text form input, .register-text form select{
@@ -136,5 +136,5 @@ footer{
   width:50%; float:left; padding: 5px;
 }
 .register_height{
-    height:100%;
+    min-height:100%;
 }

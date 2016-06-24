@@ -3,22 +3,22 @@
       	<div class="inter_header right_item">
       		<%= link_to "Log out", destroy_user_session_path, method: "delete" %>      			
       	</div>
-      	<div class="inter_header right_item">
-      		<%= link_to "Users", users_path %>
-      	</div>
+      	<% if current_user.role == "admin" || current_user.role == "manager" %>
+      		<div class="inter_header right_item"><%= link_to "Users", users_path %></div>
+      	<%end%>	
 	</header>
 <% else %>
 	<header class="header">
 		<menu>
 			<div class="logo"><a href="/"><img src="/assets/logo_home.png" width="100%"></a></div>
 			<% @main_menu.each do |menu| %>
-				<div class="menu_item"><%= menu.capitalize %></div> 
+				<a href="/<%= menu %>"> <div class="menu_item"><%= menu.capitalize %></div> </a>
 			<%end%>
 	    	<a href="<%= new_user_registration_path %>">
 	    		<div class="inter_header register_item">Register</div>
 	    	</a>
 	    	<div class="inter_header right_item">
-	    		<%= link_to "Sign In", new_user_session_path %>
+	    		<%= link_to "Log In", new_user_session_path %>
 	    	</div>
     	</menu>
     </header>

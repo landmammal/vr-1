@@ -1,7 +1,7 @@
-<div class="banner" style="background-image: url('/assets/banner.jpg');">
+<div class="banner" style="background-image: url('<%= current_user.top_banner %>');">
 	<div class="profile_pic">
 		<a href="/users/<%= current_user.id %>">
-			<img src="/assets/default_user.png" class="img-circle">
+			<img src="<%= current_user.photo %>" class="img-circle">
 		</a>
 	</div>
 </div>
