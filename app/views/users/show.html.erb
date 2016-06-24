@@ -2,8 +2,8 @@
 
 <%= current_user.email %>
 
+<%= link_to 'edit your profile', edit_user_registration_path %>
 
-
-<%if current_user.role == 0 %>
+<%if current_user.role ='admin' %>
   <a href="<%= new_course_path %>"><button class="reg_btn green_sft">New Course</button></a>
 <% end %>
