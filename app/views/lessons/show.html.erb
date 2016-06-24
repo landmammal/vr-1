@@ -50,6 +50,8 @@
   ziggeo-height=390>
   </ziggeo>
   <%= @lesson.explanation_script %>
+
+
   <ziggeo
   ziggeo-video= <%= @lesson.prompt %>
   ziggeo-width=450
@@ -77,7 +79,7 @@
  -->
 
 
-<% if current_user.role == 'admin'  %>
+<% if current_user.role == 'admin' %>
   <%= link_to 'Edit explanation', edit_lesson_path(@lesson) %> \
 <% end %>
 <%= link_to 'Back', lessons_path %>
