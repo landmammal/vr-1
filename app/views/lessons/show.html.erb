@@ -44,33 +44,7 @@
   <%= link_to 'record role model', role_model_view_lesson_path(@lesson.id) %>
 
 <% else %>
-<<<<<<< HEAD
-  <ziggeo
-  ziggeo-video= <%= @lesson.explanation %>
-  ziggeo-width=450
-  ziggeo-height=390>
-  </ziggeo>
-  <%= @lesson.explanation_script %>
 
-
-  <ziggeo
-  ziggeo-video= <%= @lesson.prompt %>
-  ziggeo-width=450
-  ziggeo-height=390>
-  </ziggeo>
-  <%= @lesson.prompt_script %>
-  <ziggeo
-  ziggeo-video= <%= @lesson.role_model %>
-  ziggeo-width=450
-  ziggeo-height=390>
-  </ziggeo>
-  <%= @lesson.model_script %>
-<h2>performance</h2>
-  <ziggeo
-  ziggeo-width=450
-  ziggeo-height=390>
-  </ziggeo>
-=======
   <!-- show first as lightbox -->
   <div class="site_wrapper" style="width: 1100px;">
     <div class="lesson_explanation" style="display: none;">  
@@ -111,9 +85,7 @@
       </div>
     </div>
   </div>
-
-
->>>>>>> f56a40a64a6689bd8434b4b65138a8eaba8c9f1c
+  
 <%= link_to 'submit your performance', new_lesson_practice_path(@lesson) %>  <br>
 <% end %>
 <!--<p>
