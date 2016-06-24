@@ -41,7 +41,9 @@
 <br>
 
 <% if current_user.role == 'admin'  %>
-<%= button_to 'Create Chapter', new_course_chapter_path(@course.id), class:"green_sft" %>
+<a href="<%= new_course_chapter_path(@course.id) %>">
+  <button class="reg_btn green_sft">Create Chapter</button>
+</a>
 
 <br>
 
