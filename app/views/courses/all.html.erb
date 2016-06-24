@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h3>My Courses</h3>
+<h3>Search for Courses</h3>
 
-<hr>
+<hr class="">
 
 <div class="course_list">
 
@@ -15,13 +15,13 @@
 
 
   <% @courses.each do |course| %>
-
+    
     <%if course.id.odd? %>
       <div class="each_item darker">
     <%else%>
       <div class="each_item">
     <%end%>
-
+    
 
         <div class="each_title">
           <%= link_to course.course_title, course %>
@@ -30,17 +30,9 @@
           <%= course.description %>
         </div>
         <div class="each_edit">
-            <%= link_to 'Edit', edit_course_path(course) %> |
+            <%= link_to 'Edit', edit_course_path(course) %> | 
             <%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, class:'red_text' %>
         </div>
     </div>
   <% end %>
 </div>
-
-
-<hr>
-
-
-<% if current_user.role = 'admin' %>
-<a href="<%= new_course_path %>"><button class="reg_btn green_sft">New Course</button></a>
-<% end %>

@@ -15,20 +15,43 @@
  */
 
 header.header{
-  padding:15px 10px;
-	background-color:#eeeeee; overflow:hidden;
-}header.header .menu_item{
-	display:inline-block; float:right; padding:12px 5px;
-}header.header a{
-	color:#6A6A6A;
+  padding:0 10px; position: relative; z-index:5; text-align:center;
+	background-color:rgba(255,255,255,0.8); overflow:hidden;
+  & .logo{
+  	display:inline-block; float:left; padding:5px 5px; width:130px;
+  }
+  & .right_item{
+    display:inline-block; float:right; padding:12px 5px;
+  }
+  & .menu_item{
+    display:inline-block; float:none; padding:13px 20px; margin:0;
+    font-weight:bold; font-size:16px; color:#35B9DA;
+  }
+  & .register_item{
+    display:inline-block; float:right; padding:5px 14px; margin:7px;
+    background-color:#35B9DA; border-radius:50px; color:white; font-weight:bold;
+    &:hover{
+      background-color:#0781BD; color:white; font-weight:bold;
+    }
+  }
+  a{
+    color:#45A9CA; font-weight:bold;
+  }
 }
+
 
 menu{
   max-width:1100px; margin:0 auto; padding:0;
 }
 
-header.header .logo{
-	display:inline-block; padding:5px 5px 0 0; width:130px;
+footer{
+  background-color:#535353; color:white; height:100px;
+  & .foot_width{
+    max-width: 1100px;
+  }
+  a{
+    color:white;
+  }
 }
 
 /*TRANSPARENT BLUR BG CSS =================================*/

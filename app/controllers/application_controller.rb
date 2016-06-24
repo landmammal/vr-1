@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   	# al--->
+  	before_filter :main_menu
+
+  	def main_menu
+  		@main_menu = ['about','markets','process','contact']
+  	end
 
 	def after_sign_up_path_for(resource)
 	end

@@ -7,10 +7,14 @@ Rails.application.routes.draw do
   resources :users
 
     resources :courses do
+      collection do
+          get 'all'
+      end
       resources :chapters, shallow: true do
         resources :lessons, shallow: true
       end
     end
+    # get "/courses/all" => "courses#all"
 
   resources :lessons do
     resources :practices, shallow: true
