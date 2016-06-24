@@ -20,37 +20,48 @@
 		</a>
 	</div>
 	<div class="panel_seperator">
-		<a href="/users/<%= current_user.id %>">
+		<a href="/users/<%= current_user.id %>" title="Home">
 			<div class="panel_icon">
 				<span class="icon ion-home"></span> <div class="text_label">Home</div>
 			</div>
 		</a>
-		<a href="<%= edit_user_registration_path %>">
+		<a href="<%= edit_user_registration_path %>" title="Settings">
 			<div class="panel_icon">
 				<span class="icon ion-gear-b"></span> <div class="text_label">Settings</div>
 			</div>
 		</a>
-		<a href="#">
+		<a href="#" title="Chat">
 			<div class="panel_icon">
 				<span class="icon ion-chatbubbles"></span> <div class="text_label">Chat</div>
 				<div class="notif_num"> <span class="notif">0</span> </div>
 			</div>
 		</a>
 
-		<a href="/courses/all">
+		<a href="/courses/all" title="All Courses">
 			<div class="panel_icon">
 				<span class="icon ion-map"></span> <div class="text_label">Find Courses</div>
 			</div>
 		</a>
+	</div>
+	<div class="panel_seperator">
 
-    <% if current_user.role == 'admin' || current_user.role == 'author'%>
-  		<a href="/courses">
-  			<div class="panel_icon">
-          <span class="icon ion-university"></span> <div class="text_label">My courses</div>
-  			</div>
-  		</a>
-    <% end %>
-
-
+	    <% if current_user.role == 'admin' || current_user.role == 'author'%>
+	  		<a href="/courses" title="My Courses">
+	  			<div class="panel_icon">
+		          <span class="icon ion-university"></span> <div class="text_label">My courses</div>
+	  			</div>
+	  		</a>
+		    <% if current_user.role == 'admin'%>
+		  		<a href="/demos" title="Demos">
+		  			<div class="panel_icon">
+			          <span class="icon ion-social-youtube"></span> <div class="text_label">Demos</div>
+			          <% if @demos %>
+			          	<div class="notif_num"> <span class="notif"><%= @demos.count.to_s %></span> </div>
+			          <%end%>
+		  			</div>
+		  		</a>
+		    <% end %>
+	    <% end %>
+	    
 	</div>
 </div>

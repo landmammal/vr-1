@@ -1,15 +1,38 @@
 <div class="top_info"> 
 	<div class="user_name"><%= current_user.first_name %> <%= current_user.last_name %></div>
 	<div class="user_stat">
-		<div class="number">2</div>
+		<div class="number">0</div>
 		<div class="stat"> Courses completed</div>
+	</div>
+	<div class="user_stat">
+		<div class="number">0</div>
+		<div class="stat"> Pending Courses</div>
 	</div>
 </div>
 <div class="top_fix"> 
 
-	<%= current_user.email %>
-
-	<%if current_user.role ='admin' %>
-	  <a href="<%= new_course_path %>"><button class="reg_btn green_sft">New Course</button></a>
+	<%if current_user.role == 'admin' %>
+	  <a href="<%= new_course_path %>"><button class="reg_btn green_sft">Create New Course</button></a>
 	<% end %>
+
+	<br>
+
+	<%if current_user.role == 'trainee' %>
+		<div class="info_box thrd">
+			<div class="user_info"></div>
+			<div class="title blue">New Courses</div>
+		</div>
+
+		<div class="info_box thrd">
+			<div class="user_info"></div>
+			<div class="title red">Pending Courses</div>
+		</div>
+
+		<div class="info_box thrd">
+			<div class="user_info"></div>
+			<div class="title green">Completed Courses</div>
+		</div>
+	<% end %>
+	
+
 </div>

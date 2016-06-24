@@ -4,6 +4,22 @@ class WelcomeController < ApplicationController
 
   end
 
+  def about
+
+  end
+
+  def contact
+
+  end
+
+  def theprocess
+
+  end
+
+  def markets
+
+  end
+
   def test
 
   end

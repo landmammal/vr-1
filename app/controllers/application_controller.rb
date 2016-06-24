@@ -4,10 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   	# al--->
-  	before_filter :main_menu
+  	before_filter :main_links
 
-  	def main_menu
+  	def main_links
   		@main_menu = ['about','markets','process','contact']
+  		# @demos = Demo.all
+  		@demos = Demo.where(completed: nil)
   	end
 
 	def after_sign_up_path_for(resource)

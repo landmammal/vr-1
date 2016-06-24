@@ -4,7 +4,7 @@
 
 			<div class="blur-bg bg_scroll" style="background-image: url('/assets/frame_home.jpg');"></div>
 
-		    <div class="blur-text black-bg_05" style="text-align:center; padding:40px 15px;">
+		    <div class="blur-text black-bg_08" style="text-align:center; padding:40px 15px;">
 
 		    	<div class="home_info_1">Virtual Training & Coaching Platform</div> <br> 
 		    	<div class="home_info_2">engineered by Educators to produce more engaged, skillful, and competent employees.</div>
@@ -13,14 +13,20 @@
 		    	<div class="home_info_3">Review . Rehearse . <font color="#F75959" style="text-shadow: 1px 1px #000;">Transform</font></div>
 				<center>
 					<a href="/demo"><div class="demo">Schedule a demo</div></a>
-					<div class="demo_form" style="display: none;">
+					<div id="notice" style="float:none; width: 350px; padding: 5px; display: none;">
+						Thank you for scheduling a demo, we will contact you soon.
+					</div>
+					<div class="demo_form" style="display:none;">
 						<%= form_tag  do %>
-							<%= text_field_tag :first_name, nil, placeholder:'First name', class:'half' %>
-							<%= text_field_tag :last_name, nil, placeholder:'Last name', class:'half' %>
-							<%= text_field_tag :email, nil, placeholder:'email', class:'full' %>
-							<%= text_field_tag :phone, nil, placeholder:'phone number', class:'full' %>
-							<%= date_field :when, class:'full' %><br>
-							<%= submit_tag "schedule demo", class:'green_sft' %>
+							<%= text_field_tag :first_name, nil, placeholder:'First name *', class:'js-first_name half' %>
+							<%= text_field_tag :last_name, nil, placeholder:'Last name *', class:'js-last_name half' %>
+							<%= text_field_tag :email, nil, placeholder:'Email *', class:'js-email full' %>
+							<%= text_field_tag :phone_number, nil, placeholder:'Phone number', class:'js-phone_number full' %>
+							<div class="half" style=" width: calc(100% - 155.39); font-size: 18px; padding: 10px 0; float: left; text-align: left;">
+								Set a schedule date:
+							</div>
+							<%= date_field :date, nil, class:'js-date half'%><br>
+							<%= submit_tag "schedule demo", class:'js-schedule_demo green_sft' %>
 							<button class="js-cancel_sched red">cancel</button>
 						<%end%>
 					</div>

@@ -30,7 +30,7 @@
 		position:relative; top:-40px; width:calc(100% + 30px); background-color:#fff;
 		& .user_name{ font-size:17px; font-weight:bold; padding:11px 50px 11px 5px; float:left; }
 		& .user_stat{ 
-			padding:0; float:left; text-align:center;
+			padding:0; margin:0 15px; float:left; text-align:center;
 			& .number{ float:none; width:100%; margin:4px auto 0 auto; font-family:'webly_bld'; font-size:18px; font-weight:bold; color:#4482c3; }
 			& .stat{ float:none; width:100%; margin:0 auto; padding-top:-3px; font-size:9px; }
 		}

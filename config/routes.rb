@@ -6,15 +6,21 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users
 
-    resources :courses do
-      collection do
-          get 'all'
-      end
-      resources :chapters, shallow: true do
-        resources :lessons, shallow: true
-      end
+  welcome_routes = ['about','markets','process','contact']
+  welcome_routes.each do |menu|
+    get "/#{menu}" => "welcome##{menu}" 
+  end
+
+  resources :demos
+
+  resources :courses do
+    collection do
+        get 'all'
     end
-    # get "/courses/all" => "courses#all"
+    resources :chapters, shallow: true do
+      resources :lessons, shallow: true
+    end
+  end
 
   resources :lessons do
     resources :practices, shallow: true
