@@ -74,7 +74,7 @@ header.inter_header{
 		float:left; margin-right:5px;
 	}
 }
-.notif_num{
+.notif_num, .tnotif_num{
 	width:14px; height:14px;
 	border-radius:50%; background-color:red;
 	position: relative; top:-20px; right:-20px; z-index:3;
@@ -84,8 +84,17 @@ header.inter_header{
 	}
 	&.max{
 		position: relative; top:-20px; right:-80px; z-index:3;
-		border-radius:4px; background-color:red;
+		border-radius:4px; background-color:red; color:red;
 	}
 }
 
 
+.inter_tab_select{
+	padding: 10px; text-align:center;
+	color:white; font-family:'webly_reg'; font-size:18px;
+	&.red{ background-color:#D27575; }
+	&.blue{ background-color:#6A9FD9; }
+	&.green{ background-color:#5DD05D; }
+	&.yellow{ background-color:#CACA64; }
+	&.trans{ background-color:transparent; font-family:'webly_bld'; color:#5D5D5D; }
+}

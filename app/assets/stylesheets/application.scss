@@ -132,9 +132,84 @@ footer{
 /*================ END of BLUR BG ==========================*/
 .half{
   width:50%; float:left; padding: 5px; margin:0;
-}.third{
-  width:50%; float:left; padding: 5px;
 }
+
+.third{
+  width:32%; float:left; padding: 5px; margin:5px 0.5%;
+}.thrd{ width:32%; min-width:200px; margin:0.15%; float:none; display:inline-block;}
+
+.quarter{ 
+  width:24%; float:left; min-width:200px; margin:0.25%;
+}
+
+
 .register_height{
     min-height:100%;
+}
+
+
+.main_title{
+  font-weight:bold; font-size:20px; font-family:'webly_bld'; margin:30px auto 15px; 
+}
+
+.course_chapter{ 
+  progress{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    width: 100%;
+    height: 15px;
+
+    /* Firefox */
+    border: none;
+    background: #EEE;
+    border-radius: 3px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.2) inset;
+  }
+  progress::-webkit-progress-bar {
+    background: #EEE;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.2) inset;
+    border-radius: 3px;
+  }
+
+  progress::-webkit-progress-value {
+    background-color: #08C309;
+    border-radius: 3px;
+  }
+
+  progress::-moz-progress-bar {
+    background-color: #08C309;
+    border-radius: 3px;
+  }
+}
+
+.user_courses{ 
+  progress{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    width: 100%;
+    height: 10px;
+
+    /* Firefox */
+    border: none;
+    background: #ddd;
+    border-radius: 1px;
+  }
+  progress::-webkit-progress-bar {
+    background: #ddd;
+    border-radius: 3px;
+  }
+
+  progress::-webkit-progress-value {
+    background-color: #0883C3;
+    border-radius: 1px;
+  }
+
+  progress::-moz-progress-bar {
+    background-color: #0883C3;
+    border-radius: 1px;
+  }
 }

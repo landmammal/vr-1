@@ -43,9 +43,9 @@
 			</div>
 		</a>
 	</div>
-	<div class="panel_seperator">
 
-	    <% if current_user.role == 'admin' || current_user.role == 'author'%>
+    <% if current_user.role == 'admin' || current_user.role == 'author'%>
+		<div class="panel_seperator">
 	  		<a href="/courses" title="My Courses">
 	  			<div class="panel_icon">
 		          <span class="icon ion-university"></span> <div class="text_label">My courses</div>
@@ -61,7 +61,7 @@
 		  			</div>
 		  		</a>
 		    <% end %>
-	    <% end %>
+		</div>
+    <% end %>
 	    
-	</div>
 </div>
