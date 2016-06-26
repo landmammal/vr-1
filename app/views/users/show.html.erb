@@ -14,135 +14,14 @@
 	<br>
 
 	<%if current_user.role == 'trainee' %>
-			<a href="New Courses"><div class="title inter_tab_select js-new_c blue thrd">New Courses</div></a>
-			<a href="Ongoing Courses"><div class="title inter_tab_select js-ongoing_c red thrd">Ongoing Courses</div></a>
-			<a href="Completed Courses"><div class="title inter_tab_select js-completed_c green thrd">Completed Courses</div></a>
-			
-			<div class="js-new_courses">
-				<div class="half">
-					<div class="main_title">New courses:</div>
-				
-				</div>
 
-				<div class="half">
+		<%= render "trainee" %>
 
-					<div class="third">
-						<div class="user_course_title"> Xerox :: Reprint Process</div>
-						<p class="user_courses">0% progess<br>
-						  <progress class="user_courses" value="0" max="100"></progress>
-						</p>
-					</div>
-					<div class="third">
-						<div class="user_course_title"> Xerox :: Misprints</div>
-						<p class="user_courses">0% progess<br>
-						  <progress class="user_courses" value="0" max="100"></progress>
-						</p>
-					</div>
-					<div class="third">
-						<div class="user_course_title"> Xerox :: Reprint Process</div>
-						<p class="user_courses">0% progess<br>
-						  <progress class="user_courses" value="0" max="100"></progress>
-						</p>
-					</div>
-					<div class="third">
-						<div class="user_course_title"> Olive Garden :: Food Delay</div>
-						<p class="user_courses">0% progess<br>
-						  <progress class="user_courses" value="0" max="100"></progress>
-						</p>
-					</div>
-				</div>
+	<% elsif current_user.role == 'author' || current_user.role == 'admin' %>
 
-			</div>
-
-			<div class="js-ongoing_courses" style="display: none;">
-				<div class="half">
-					<div class="main_title">Ongoing courses:</div>
-				</div>
-
-				<div class="half">
-
-					<div class="third">
-						<div class="user_course_title"> Uber :: Refunds</div>
-						<p class="user_courses">30% progess<br>
-						  <progress class="user_courses" value="30" max="100"></progress>
-						</p>
-					</div>
-					<div class="third">
-						<div class="user_course_title"> Uber :: Pool</div>
-						<p class="user_courses">50% progess<br>
-						  <progress class="user_courses" value="50" max="100"></progress>
-						</p>
-					</div>
-					<div class="third">
-						<div class="user_course_title"> Uber :: Payment Issues</div>
-						<p class="user_courses">60% progess<br>
-						  <progress class="user_courses" value="60" max="100"></progress>
-						</p>
-					</div>
-					<div class="third">
-						<div class="user_course_title"> Uber :: Pool</div>
-						<p class="user_courses">10% progess<br>
-						  <progress class="user_courses" value="10" max="100"></progress>
-						</p>
-					</div>
-					<div class="third">
-						<div class="user_course_title"> Uber :: Payment Issues</div>
-						<p class="user_courses">10% progess<br>
-						  <progress class="user_courses" value="10" max="100"></progress>
-						</p>
-					</div>
-				</div>
-				
-			</div>
-
-			<div class="js-completed_courses" style="display: none;">
-				<div class="half">
-					<div class="main_title">Ongoing courses:</div>
-				</div>
-
-				<div class="half">
-
-					<div class="third">
-						<div class="user_course_title"> Ecotech :: Technical Interview</div>
-						<p class="user_courses">100% progess<br>
-						  <progress class="user_courses" value="100" max="100"></progress>
-						</p>
-					</div>
-					<div class="third">
-						<div class="user_course_title"> Ecotech :: Phone Interview</div>
-						<p class="user_courses">100% progess<br>
-						  <progress class="user_courses" value="100" max="100"></progress>
-						</p>
-					</div>
-					<div class="third">
-						<div class="user_course_title"> Ecotech :: Technical Interview</div>
-						<p class="user_courses">100% progess<br>
-						  <progress class="user_courses" value="100" max="100"></progress>
-						</p>
-					</div>
-				</div>
-				
-			</div>
-	
-	<% end %>
-
-	<%if current_user.role == 'author' || current_user.role == 'admin' %>
-		<div class="info_box thrd">
-			<div class="user_info"></div>
-			<div class="title blue">My Courses</div>
-		</div>
-
-		<div class="info_box thrd">
-			<div class="user_info"></div>
-			<div class="title red">Pending Courses</div>
-		</div>
-
-		<div class="info_box thrd">
-			<div class="user_info"></div>
-			<div class="title green">Courses Stats</div>
-		</div>
-		
+		<%= render "author_admin" %>
 		<a href="<%= new_course_path %>"><button class="reg_btn green_sft">Create New Course</button></a>
+		
 	<% end %>
 	
 	<br>

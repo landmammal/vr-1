@@ -84,8 +84,10 @@
       </div>
     </div>
   </div>
-
-<%= link_to 'submit your performance', new_lesson_practice_path(@lesson) %>  <br>
+  
+<a href="<%= new_lesson_practice_path(@lesson) %>">
+  <button class="green_sft"> Submit </button>
+</a>
 <% end %>
 <!--<p>
 <p>

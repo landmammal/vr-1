@@ -19,3 +19,27 @@
 }
 
 
+.course_user_list{
+	margin:5px 5px 5px 0; display:inline-block;
+	color:white; font-family:'webly_reg'; font-size:14px; font-weight:bold;
+	background-color:#A4A4A4; overflow:hidden;
+	& .title{ padding: 5px 10px; float:left;}
+	& .course_status{
+		padding: 5px 10px;text-align:center; float:right;
+		color:white; font-family:'webly_bld'; font-size:14px; font-weight:bold;
+		&.new{
+			background-color:#FF6161; 
+		}
+		&.current{
+			background-color:#00A6D9; 
+		}
+		&.completed{
+			background-color:#00B41B; 
+		}
+	}
+}
+
+.white_card{ 
+	padding:5px 10px; background-color:rgba(white, 0.6); 
+	display:inline-block; margin:5px 5px 5px 0; border-radius:5px;
+}

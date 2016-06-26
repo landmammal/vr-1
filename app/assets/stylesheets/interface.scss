@@ -153,8 +153,8 @@ $mx_tsk_s: 200px ;
 }
 
 
-.inter_tab_select{
-	padding: 10px; text-align:center;
+.user_tab{
+	padding: 10px; text-align:center; display:inline-block;
 	color:white; font-family:'webly_reg'; font-size:18px;
 	&.red{ background-color:#D27575; }
 	&.blue{ background-color:#6A9FD9; }
