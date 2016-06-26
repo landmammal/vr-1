@@ -2,39 +2,30 @@
 
 <h3>Search for Courses</h3>
   <%= form_tag do %>
-    <%= text_field_tag :search, nil, class:"half", placeholder:"search courses" %>
-    <%= button_tag "Search", class:"reg_btn" %>
+    <%= text_field_tag :search, nil, style:"width:400px;", placeholder:"search courses" %>
+    <%= button_tag "Search", class:"reg_btn blue" %>
   <%end%>
 <hr>
 
 <div class="course_list">
 
-  <div class="c_title">
-    <b>Course title</b>
-  </div>
-  <div class="c_desc">
-    <b>Description</b>
-  </div>
-
-
   <% @courses.each do |course| %>
-    
-    <%if course.id.odd? %>
-      <div class="each_item darker">
-    <%else%>
-      <div class="each_item">
-    <%end%>
 
-        <div class="each_title">
-          <%= link_to course.course_title, course %>
-        </div>
-        <div class="each_desc">
-          <%= course.description %>
-        </div>
+    <div class="each_item">
+      <div class="each_title">
+        <%= link_to course.course_title, course %>
+      </div>
+      <div class="each_desc">
+        <%= course.description %>
+      </div>
+      <% if current_user.role == 'admin'  %>
         <div class="each_edit">
             <%= link_to 'Edit', edit_course_path(course) %> | 
             <%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, class:'red_text' %>
         </div>
+      <%end%>
     </div>
+
   <% end %>
+
 </div>

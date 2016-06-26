@@ -8,7 +8,7 @@
 	background-color:#C9C9C9; background-size:cover; background-position:center;
 	overflow:visible; padding-left:10px;
 	&.max{
-		width:calc(100% - 140px);
+		width:calc(100% - 100px);
 	}
 	& .profile_pic{
 		position: relative; bottom:-90px; z-index: 5; width:100px;
@@ -18,55 +18,4 @@
 	}
 }
 
-.inter_wrapper{
-	height:100%;
-}
 
-.inter_content{
-	min-height:calc(100% - 150px); width:calc(100% - 100px); float:left;
-	background-color:#F2F2F2; padding: 40px 20px 10px;
-	& .top_info{
-		padding:0 5px 0 60px; margin: 0 0 30px 40px; border-bottom:solid #ddd 1px; overflow:hidden;
-		position:relative; top:-40px; width:calc(100% + 30px); background-color:#fff;
-		& .user_name{ font-size:17px; font-weight:bold; padding:11px 50px 11px 5px; float:left; }
-		& .user_stat{ 
-			padding:0; margin:0 15px; float:left; text-align:center;
-			& .number{ float:none; width:100%; margin:4px auto 0 auto; font-family:'webly_bld'; font-size:18px; font-weight:bold; color:#4482c3; }
-			& .stat{ float:none; width:100%; margin:0 auto; padding-top:-3px; font-size:9px; }
-		}
-	}
-	& .top_fix{
-		position:relative; top:-40px;
-	}
-	& a {
-	  color: #6195C2;
-
-		&:visited, &:hover, &:focus {
-			color: #6195C2; text-decoration:none;
-		}
-
-		&.red_link{
-			padding:2px 3px; border-radius:3px;
-			background-color:#FF0000; color: white;
-			&:hover{
-			   background-color:#7D0009;
-			}
-		}
-		&.red_text{
-			color:#FF0000;
-			&:hover{
-			   color:#7D0009;
-			}
-		}
-
-	}
-	&.max{
-		width:calc(100% - 190px);
-		&.tmax{
-			width:calc(100% - 340px);
-		}
-	}
-	&.tmax{
-		width:calc(100% - 250px);
-	}
-}

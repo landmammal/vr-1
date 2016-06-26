@@ -1,48 +1,44 @@
-<p id="notice"><%= notice %></p>
+<center><p id="notice"> <%= notice %> </p></center>
 
-<p>
-  <strong>Course:</strong>
+<div class="course_title">
   <%= @chapter.course.course_title %>
+</div>
+
+
+<p>
+  <strong>
+    <%= @chapter.chapter_title %> <font color="#ccc">|</font> <%= link_to 'Edit', edit_chapter_path %>
+  </strong>
 </p>
 
 <p>
-  <strong>Chapter title:</strong>
-  <%= @chapter.chapter_title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
   <%= @chapter.description %>
 </p>
 
-<h1>Listing Lessons</h1>
+<h3>Listing Lessons</h3>
 <p class="course_chapter"><%= progress %>% progess<br>
   <progress class="course_chapter" value="<%= progress %>" max="100"></progress>
 </p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Lesson title</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @course.lessons.each do |lesson| %>
-      <tr>
-        <td><%= link_to lesson.lesson_title, lesson %></td>
-        <% if current_user.role == "admin" %>
-          <td><%= link_to 'Edit', edit_lesson_path(lesson) %></td>
-          <td><%= link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @course.lessons.each_with_index do |lesson, index| %>
+  Lesson <%= (index + 1).to_s %> - <%= link_to lesson.lesson_title, lesson %></td>
+  <% if current_user.role == "admin" %>
+    <%= link_to 'Delete', lesson, method: :delete, data: { confirm: 'Are you sure?' }, class:'red_text' %>
+  <% end %>
+<% end %>
 
 
-<%= link_to 'Edit', edit_chapter_path %> |
-<%= link_to 'Back', course_path %> <br>
+<hr>
 
-<%= link_to 'create new lesson', new_chapter_lesson_path(@chapter.id) %>
+<% if current_user.role == 'admin'  %>
+  <a href="<%= new_chapter_lesson_path(@chapter.id) %>">
+    <button class="reg_btn blue">Create New Lesson</button>
+  </a>
+  <hr>
+<% end %>
+
+
+<a href="<%= course_path %>"> <div class="back_button"> Back </div> </a>
+
+
