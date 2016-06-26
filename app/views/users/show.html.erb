@@ -11,8 +11,6 @@
 </div>
 <div class="top_fix"> 
 
-	<br>
-
 	<%if current_user.role == 'trainee' %>
 
 		<%= render "trainee" %>
@@ -23,8 +21,5 @@
 		<a href="<%= new_course_path %>"><button class="reg_btn green_sft">Create New Course</button></a>
 		
 	<% end %>
-	
-	<br>
-	<br>
 
 </div>

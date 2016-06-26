@@ -21,21 +21,6 @@ var pageReady = function(){
 		$('.js-completed_courses').show();		
 	});
 
-	$.ajax({
-		url:'/courses/api/user_course',
-		success:function(data){
-			// console.log(data);
-			for(var course in data){
-				var id_adj = parseInt(course)+1; 
-				// console.log(id_adj);
-
-				// $('.js-c_'+id_adj).click(function(event){
-				// 	console.log(id_adj);
-				// });
-			}
-		}
-	});
-
 };
 
 $(document).ready(pageReady);
