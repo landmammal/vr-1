@@ -1,5 +1,4 @@
 <div class="top_info"> 
-	<div class="user_name"><%= current_user.first_name %> <%= current_user.last_name %></div>
 	<div class="user_stat">
 		<div class="number">0</div>
 		<div class="stat"> Courses completed</div>
@@ -9,17 +8,14 @@
 		<div class="stat"> Pending Courses</div>
 	</div>
 </div>
-<div class="top_fix"> 
 
-	<%if current_user.role == 'trainee' %>
+<%if current_user.role == 'trainee' %>
 
-		<%= render "trainee" %>
+	<%= render "trainee" %>
 
-	<% elsif current_user.role == 'author' || current_user.role == 'admin' %>
+<% elsif current_user.role == 'author' || current_user.role == 'admin' %>
 
-		<%= render "author_admin" %>
-		<a href="<%= new_course_path %>"><button class="reg_btn green_sft">Create New Course</button></a>
-		
-	<% end %>
-
-</div>
+	<%= render "author_admin" %>
+	<a href="<%= new_course_path %>"><button class="reg_btn green_sft">Create New Course</button></a>
+	
+<% end %>

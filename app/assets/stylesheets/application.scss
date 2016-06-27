@@ -40,20 +40,6 @@ header.header{
 }
 
 
-menu{
-  max-width:1100px; margin:0 auto; padding:0;
-}
-
-footer{
-  background-color:#363636; color:white; height:200px;
-  & .foot_width{
-    max-width: 1100px;
-  }
-  a{
-    color:white;
-  }
-}
-
 /*TRANSPARENT BLUR BG CSS =================================*/
 
 .blur-wrapper{

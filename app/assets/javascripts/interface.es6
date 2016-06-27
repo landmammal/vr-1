@@ -12,11 +12,6 @@ var pageReady = function(){
 		$('.panel_icon').toggleClass('max');
 		$('.text_label').toggle();
 		$('.icon').toggleClass('max');
-		$('.logo_text').toggle();
-		$('.logo_img').toggleClass('max');
-		$('.current_user_pic').toggle();
-		$('.profile_pic').toggle();
-		$('.banner').toggleClass('max');
 		$('.inter_content').toggleClass('max');
 		$('.notif_num').toggleClass('max');
 	});

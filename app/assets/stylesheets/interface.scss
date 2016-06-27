@@ -5,8 +5,8 @@
 
 
 header.inter_header{
-	height:40px; padding:5px 10px;
-	background-color:#4482c3; overflow:hidden;
+	height:40px; padding:5px 10px; position:relative; z-index: 3;
+	background-color:rgba(0,0,0,0.8); overflow:hidden;
 	& .right_item{
 		float:right; padding:5px 9px; font-weight:bold;
 		&:hover{
@@ -14,10 +14,13 @@ header.inter_header{
 			a{ color:#4482c3; }
 		}
 	}
+	menu{
+ 		max-width:1100px; margin:0 auto; padding:0; z-index: 3;
+	}
 }
 
 .inter_wrapper{
-	height:100%;
+	height:calc(100% - 190px); background-image:url('/assets/blur-bg.jpg');
 }
 
 $mn_pnl_s: 50px ;
@@ -25,10 +28,10 @@ $mx_pnl_s: 100px ;
 $mx_tsk_s: 200px ; 
 
 .leftpanel{
-	float:left; position:relative; top: -50px; color:white; padding:2px 0;
-	background-color:#0e2433; min-height:calc(100% + 50px);
-	width:$mn_pnl_s; text-align:center; font-size: 20px;	
-
+	text-align:center; font-size: 20px; color:white; 
+	// background-color:#0e2433; 
+	min-height:100%;
+	width:$mn_pnl_s; float:left; padding:2px 0;
 	&.max{
 		width:$mx_pnl_s; text-align:left; font-size: 14px; padding:2px 0;
 		& .current_user_pic{
@@ -41,9 +44,10 @@ $mx_tsk_s: 200px ;
 }
 
 .tasks{
-	float:left; position:relative; top: -38px; right:0; color:white; padding:2px 0;
-	background-color:#4482c3; min-height:calc(100% - 112px);
-	width:$mn_pnl_s; text-align:center; font-size: 20px;
+	text-align:center; font-size: 20px; color:white; 
+	// background-color:#4482c3; 
+	min-height:100%;
+	width:$mn_pnl_s; float:left; padding:2px 0;
 	& .panel_seperator{
 		border-bottom:1px dotted #B9FFFE;
 	}
@@ -60,29 +64,17 @@ $mx_tsk_s: 200px ;
 }
 
 .inter_content{
-	min-height:calc(100% - 150px); width: calc(100% - 100px); float:left;
-	background-color:#F2F2F2; padding: 55px 20px 10px;
+	width: calc(100% - 110px); height:100%; float:left; 
+	background-color:rgba(255,255,255,0.8); padding:5px; overflow:auto; margin:0 5px;
+	// background-color:#F2F2F2;
 	&.max{
-		width:calc(100% - 150px);
+		width:calc(100% - 160px);
 		&.tmax{
-			width:calc(100% - 300px);
+			width:calc(100% - 310px);
 		}
 	}
 	&.tmax{
-		width:calc(100% - 250px);
-	}
-	& .top_info{
-		padding:0 5px 0 60px; margin: 0 0 30px 40px; border-bottom:solid #ddd 1px; overflow:hidden;
-		position:relative; top:-55px; width:calc(100% + 30px); background-color:#fff;
-		& .user_name{ font-size:17px; font-weight:bold; padding:11px 50px 11px 5px; float:left; }
-		& .user_stat{ 
-			padding:0; margin:0 15px; float:left; text-align:center;
-			& .number{ float:none; width:100%; margin:4px auto 0 auto; font-family:'webly_bld'; font-size:18px; font-weight:bold; color:#4482c3; }
-			& .stat{ float:none; width:100%; margin:0 auto; padding-top:-3px; font-size:9px; }
-		}
-	}
-	& .top_fix{
-		position:relative; top:-55px;
+		width:calc(100% - 260px);
 	}
 	& a {
 	  color: #6195C2;
@@ -104,7 +96,29 @@ $mx_tsk_s: 200px ;
 			   color:#7D0009;
 			}
 		}
+	}
 
+
+	& .top_info{
+		padding:0 5px; margin:0 0 30px; border-bottom:solid #ddd 2px; overflow:hidden;
+		width:100%; background-color:#fff;
+		& .user_stat{ 
+			padding:0; margin:0 15px; float:left; text-align:center;
+			& .number{ float:none; width:100%; margin:4px auto 0 auto; font-family:'webly_bld'; font-size:18px; font-weight:bold; color:#4482c3; }
+			& .stat{ float:none; width:100%; margin:0 auto; padding-top:-3px; font-size:9px; }
+		}
+	}
+	& .body{
+		height:calc(100% - 200px); padding:10px;
+	}
+}
+footer{
+	background-color:#363636; color:white; height:200px;
+	& .foot_width{
+		max-width: 1100px;
+	}
+	a{
+		color:white;
 	}
 }
 
@@ -120,22 +134,16 @@ $mx_tsk_s: 200px ;
 	&.max{
 		padding:5px 10px;
 	}
-}.panel_seperator .logo_img{
-	max-width:30px; margin:10px auto 10px;
-}.panel_seperator .logo_img.max{
-	max-width:30px; float: left; margin:10px 0 10px;
-}.panel_seperator .logo_text{
-	display:none; padding:10px 0 10px 5px; margin-top:5px; float:left; width:calc(100% - 30px);
 }
 
 .panel_icon, .task_icon{
 	margin:20px auto; width:100%; overflow:hidden; max-height:20px;
 	&:hover{
-		color:#C5C5C5;
+		color:#333;
 	}
-	& .text_label, & .task_label{display:none; float:left; font-size:12px;}
+	& .text_label, & .task_label{display:none; float:left; font-size:13px;}
 	& .icon.max, & .ticon.max{
-		float:left; margin-right:5px;
+		float:left; margin-right:10px;
 	}
 }
 .notif_num, .tnotif_num{

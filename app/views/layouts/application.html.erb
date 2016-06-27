@@ -41,18 +41,19 @@
 <% if user_signed_in? %>
   <div class="inter_wrapper">
     <%= render 'layouts/leftpanel' %>
-    <%= render 'layouts/banner' %>
       <div class="inter_content">
-        <%= yield %>
+        <div class="body">
+          <%= yield %>
+        </div>
       </div>
     <%= render 'layouts/tasks' %>
   </div>
-
 <% else %>
   <%= yield %>
 <% end %>
+<br>
+  <%= render 'layouts/footer' %>
 
-<%= render 'layouts/footer' %>
 
 </body>
 </html>
