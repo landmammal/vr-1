@@ -22,8 +22,8 @@ hr, br{
   clear: both;
 }
 hr{
-  margin: 10px;
-  border-bottom:1px solid #ACACAC;
+  margin: 10px 0;
+  border-bottom:1px solid #ddd;
 }
 
 p, ol, ul, td {
@@ -54,8 +54,8 @@ div {
 }
 
 #notice {
-  padding:0; border-radius:3px; margin:20px auto;
-  background-color:#00B51A; overflow:hidden; width:inherit;
+  padding:0 5px; border-radius:3px; margin:5px;
+  background-color:#00B51A; overflow:hidden; display:inline-block;
   text-align:center; font-weight:bold; color: white;
 }
 
@@ -96,13 +96,12 @@ div {
 
 input[type="submit"], button{
   font-size:11px; font-weight: bold;
-  border-radius:3px; border:1px solid #666;
+  border-radius:3px; border:1px solid #ccc;
   display:inline-block;
-  padding:6px 15px; margin:5px 1% 5px 0;
+  padding:6px 15px 4px 15px; margin:5px 1% 5px 0;
   color:#666;
   &:hover{
-    background-color:#666;
-    color:white;
+    background-color:#ccc;
   }
 
   &.red{
@@ -137,7 +136,11 @@ input[type="submit"], button{
     padding:2px 5px; float: none;
     border-radius:3px;
   }
+  &.circle{
+    border-radius:50%;
+  }
 }
+
 
 textarea, input, select{
   border-radius:2px; border:1px solid #999;

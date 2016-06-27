@@ -1,53 +1,39 @@
-<p id="notice"><%= notice %></p>
+<center><p id="notice"> <%= notice %> </p></center>
 
-<p class="course_title">
-  <%= @course.course_title %>
-</p>
+<div class="course_title">
+  <%= @course.course_title %> <font color="#ccc">|</font>
+</div>  
+<%= link_to 'Edit', edit_course_path(@course), class:'edit' %>
 
-<p>
-  <strong>Description:</strong>
+<div>
   <%= @course.description %>
-</p>
+</div>
 
 
-<h2>Chapters</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Course</th>
-      <th>Chapter title</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @course.chapters.each do |chapter| %>
-      <tr>
-        <td><%= chapter.course.course_title %></td>
-        <td><%= link_to chapter.chapter_title, chapter %></td>
-        <td><%= chapter.description %></td>
-        <% if current_user.role == 'admin'  %>
-          <td><%= link_to 'Edit', edit_chapter_path(chapter) %></td>
-          <td><%= link_to 'Destroy', chapter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<h3>Topics</h3>
 
 
-<br>
-
-<% if current_user.role == 'admin'  %>
-<a href="<%= new_course_chapter_path(@course.id) %>">
-  <button class="reg_btn green_sft">Create Chapter</button>
-</a>
-
-<br>
-
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
-
+<% @course.chapters.each_with_index do |chapter, index| %>
+  <b><%= (index + 1).to_s %></b> - <%= link_to chapter.chapter_title, chapter %>
+  <%= chapter.description %>
+  <% if current_user.role == 'admin'  %>
+    <!-- <%= link_to 'Edit', edit_chapter_path(chapter) %> -->
+    <%= link_to 'Delete', chapter, method: :delete, data: { confirm: 'Are you sure?' }, class:'red_text' %>
+  <% end %>
+  <br>
+  <br>
 <% end %>
+
+<br>
+
+<hr>
+
+<% if current_user.role == 'admin' %>
+  <a href="<%= new_course_chapter_path(@course.id) %>">
+    <button class="reg_btn blue">Create New Topic</button>
+  </a>
+  <hr>
+<% end %>
+
+
+<a href="<%= courses_path %>"> <div class="back_button"> Back </div> </a>

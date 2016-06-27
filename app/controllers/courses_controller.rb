@@ -15,6 +15,16 @@ class CoursesController < ApplicationController
   def show
   end
 
+  def course_api
+    @courses = Course.all
+    render json: @courses 
+  end
+  
+  def user_course_api
+    @courses = Course.all
+    render json: @courses 
+  end
+
   # GET /courses/new
   def new
     @course = Course.new

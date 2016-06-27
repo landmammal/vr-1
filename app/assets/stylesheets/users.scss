@@ -3,70 +3,57 @@
 // // You can use Sass (SCSS) here: http://sass-lang.com/
 //
 
+
 .banner{
-	height:150px; width:calc(100% - 50px); float:left;
-	background-color:#C9C9C9; background-size:cover; background-position:center;
-	overflow:visible; padding-left:10px;
-	&.max{
-		width:calc(100% - 140px);
-	}
-	& .profile_pic{
-		position: relative; bottom:-90px; z-index: 5; width:100px;
-		img{
-			width:100%;
+	background-position: top; background-size:cover;
+	width:100%; height:190px; 
+	padding:0; margin:0;
+	background-color:#C9C9C9; 
+	position: relative;	overflow:hidden;
+	color: white;
+	& .user_info{
+		width:300px;  height:150px;
+		position: relative; top:0; z-index: 3;
+		overflow: hidden; padding:0;
+		backdrop-filter: blur(5px); background-color:rgba(0,0,0,0.7);
+
+		& .user_info_top{
+			border-bottom:1px rgba(255,255,255,0.1) solid; padding:5px 10px; margin-bottom:20px; font-size:17px; font-weight:bold;
+		}
+		& .profile_pic{
+			float:left; width:100px; padding:10px; margin-left:20px;
+			img{
+				width:100%;
+			}
+		}
+		& .profile_info{
+			float:left; width:100px; padding:10px;
 		}
 	}
 }
 
-.inter_wrapper{
-	height:100%;
+
+.course_user_list{
+	margin:5px 5px 5px 0; display:inline-block;
+	color:white; font-family:'webly_reg'; font-size:14px; font-weight:bold;
+	background-color:#A4A4A4; overflow:hidden;
+	& .title{ padding: 5px 10px; float:left;}
+	& .course_status{
+		padding: 5px 10px;text-align:center; float:right;
+		color:white; font-family:'webly_bld'; font-size:14px; font-weight:bold;
+		&.new{
+			background-color:#FF6161; 
+		}
+		&.current{
+			background-color:#00A6D9; 
+		}
+		&.completed{
+			background-color:#00B41B; 
+		}
+	}
 }
 
-.inter_content{
-	min-height:calc(100% - 150px); width:calc(100% - 100px); float:left;
-	background-color:#F2F2F2; padding: 40px 20px 10px;
-	& .top_info{
-		padding:0 5px 0 60px; margin: 0 0 30px 40px; border-bottom:solid #ddd 1px; overflow:hidden;
-		position:relative; top:-40px; width:calc(100% + 30px); background-color:#fff;
-		& .user_name{ font-size:17px; font-weight:bold; padding:11px 50px 11px 5px; float:left; }
-		& .user_stat{ 
-			padding:0; margin:0 15px; float:left; text-align:center;
-			& .number{ float:none; width:100%; margin:4px auto 0 auto; font-family:'webly_bld'; font-size:18px; font-weight:bold; color:#4482c3; }
-			& .stat{ float:none; width:100%; margin:0 auto; padding-top:-3px; font-size:9px; }
-		}
-	}
-	& .top_fix{
-		position:relative; top:-40px;
-	}
-	& a {
-	  color: #6195C2;
-
-		&:visited, &:hover, &:focus {
-			color: #6195C2; text-decoration:none;
-		}
-
-		&.red_link{
-			padding:2px 3px; border-radius:3px;
-			background-color:#FF0000; color: white;
-			&:hover{
-			   background-color:#7D0009;
-			}
-		}
-		&.red_text{
-			color:#FF0000;
-			&:hover{
-			   color:#7D0009;
-			}
-		}
-
-	}
-	&.max{
-		width:calc(100% - 190px);
-		&.tmax{
-			width:calc(100% - 340px);
-		}
-	}
-	&.tmax{
-		width:calc(100% - 250px);
-	}
+.white_card{ 
+	padding:5px 10px; background-color:rgba(white, 0.6); 
+	display:inline-block; margin:5px 5px 5px 0; border-radius:5px;
 }

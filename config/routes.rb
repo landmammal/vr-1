@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   resources :courses do
     collection do
         get 'all'
+        get '/api' => "courses#course_api"
+        get '/api/user_course' => "courses#user_course_api"
     end
     resources :chapters, shallow: true do
       resources :lessons, shallow: true
