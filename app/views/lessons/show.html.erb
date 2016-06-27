@@ -104,7 +104,7 @@
 
 <br>
 <div class="back_button">
-  <%= link_to 'Back', course_path(@course) %>
+  <%= link_to 'Back', {:controller => 'chapters', :action => 'show'} %>
 </div>
 
 <%= form_for @lesson, url: explanation_token_lesson_path(@lesson.id),
