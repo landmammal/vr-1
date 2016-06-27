@@ -1,98 +1,101 @@
-<a href="My Courses"><div class="user_tab js-my_c red" style="width: 400px; min-width: 200px;">My Courses</div></a>
-<a href="My Feedback"><div class="user_tab js-my_f blue" style="width:calc(100% - 610px); min-width: 200px;">Feedback</div></a>
-<a href="Completed Courses"><div class="user_tab js-completed_c green" style="min-width: 200px ;">something else</div></a>
+
+<div class="section user_courses">
+	<a href="My Courses"><div class="user_tab js-my_c red" style="min-width:33%;">My Courses</div></a>
+	<a href="My Feedback"><div class="user_tab js-my_f blue" style="min-width: 33%;">Feedback</div></a>
+	<a href="Completed Courses"><div class="user_tab js-completed_c green" style="min-width: 33% ;">something else</div></a>
 
 
-<div class="js-my_courses" style="overflow: hidden;">
-	
-	<div class="quarter">
-		<div class="main_title">My courses:</div>
-		<div class="js-my_courses_list">
-			<% @courses.each do |course| %>
-				<a class="js-c_<%= course.id %>" href="#">	
-					<div class="course_user_list">
-						<div class="title"><%= course.course_title %></div>
-						<div class="course_status new"> n </div>
-					</div><br>
-				</a>
+	<div class="js-my_courses" style="overflow: hidden;">
+		
+		<div class="float_left">
+			<div class="main_title">My courses:</div>
+			<div class="js-my_courses_list">
+				<% @courses.each do |course| %>
+					<a class="js-c_<%= course.id %>" href="#">	
+						<div class="course_user_list">
+							<div class="title"><%= course.course_title %></div>
+							<div class="course_status new"> n </div>
+						</div><br>
+					</a>
 
-				<div id="topics_for_<%= course.id %>" style="display: none;">
-					<% course.chapters.each_with_index do |topic, index| %>
-						<a class="js-t_<%= topic.id %>" href="#">
-							<div class="white_card">
-								<div class="user_course_title"><%= (index + 1).to_s %> - <%= topic.chapter_title %></div>
-								<p class="user_courses">0% progess <progress value="0" max="100"></progress>
-								</p>
+					<div id="topics_for_<%= course.id %>" style="display: none;">
+						<% course.chapters.each_with_index do |topic, index| %>
+							<a class="js-t_<%= topic.id %>" href="#">
+								<div class="white_card">
+									<div class="user_course_title"><%= (index + 1).to_s %> - <%= topic.chapter_title %></div>
+									<p class="user_courses">0% progess <progress value="0" max="100"></progress>
+									</p>
+								</div>
+							</a><br>
+
+							<div id="lessons_for_<%= topic.id %>" style="display: none;">
+								<% topic.lessons.each_with_index do |lesson, index| %>
+									<a class="js-l_" href="/lessons/<%= lesson.id %> ">
+										<div class="white_card">
+											<div class="user_course_title"><%= (index + 1).to_s %> - <%= lesson.lesson_title %></div>
+											<p class="user_courses">0% progess <progress value="0" max="100"></progress>
+											</p>
+										</div>
+									</a><br>
+								<%end%>
 							</div>
-						</a>
 
-						<div id="lessons_for_<%= topic.id %>" style="display: none;">
-							<% topic.lessons.each_with_index do |lesson, index| %>
-								<a class="js-l_" href="/lessons/<%= lesson.id %> ">
-									<div class="white_card">
-										<div class="user_course_title"><%= (index + 1).to_s %> - <%= lesson.lesson_title %></div>
-										<p class="user_courses">0% progess <progress value="0" max="100"></progress>
-										</p>
-									</div>
-								</a>
-							<%end%>
-						</div>
+							<script type="text/javascript">
+								$('.js-t_<%= topic.id %>').click(function(action){
+									action.preventDefault();							
+									var node_2 = document.getElementById('lessons_for_<%= topic.id %>')
+									var lessons_list = node_2.innerHTML;
+									$('.js-my_course_topic_lessons').html(lessons_list);
+									$('.js-topic_name').text(' :: <%= topic.chapter_title %>');
+								});
+							</script>
 
-						<script type="text/javascript">
-							$('.js-t_<%= topic.id %>').click(function(action){
-								action.preventDefault();							
-								var node_2 = document.getElementById('lessons_for_<%= topic.id %>')
-								var lessons_list = node_2.innerHTML;
-								$('.js-my_course_topic_lessons').html(lessons_list);
-								$('.js-topic_name').text(' :: <%= topic.chapter_title %>');
-							});
-						</script>
+						<%end%>
+					</div>
 
-					<%end%>
-				</div>
+					<script type="text/javascript">
+						$('.js-c_<%= course.id %>').click(function(event){
+							event.preventDefault();													
+							var node = document.getElementById('topics_for_<%= course.id %>')
+							var topics_list = node.innerHTML;
+							$('.js-my_course_topics').html(topics_list);
+							$('.js-my_course_topic_lessons').empty();
+							$('.js-course_name').text(' :: <%= course.course_title %>');
+							$('.js-topic_name').empty();
+						});
+					</script>
 
-				<script type="text/javascript">
-					$('.js-c_<%= course.id %>').click(function(event){
-						event.preventDefault();													
-						var node = document.getElementById('topics_for_<%= course.id %>')
-						var topics_list = node.innerHTML;
-						$('.js-my_course_topics').html(topics_list);
-						$('.js-my_course_topic_lessons').empty();
-						$('.js-course_name').text(' :: <%= course.course_title %>');
-						$('.js-topic_name').empty();
-					});
-				</script>
-
-			<%end%>
+				<%end%>
+			</div>
+		
 		</div>
-	
+
+		<div class="float_left" style="min-width: 200px;">
+			<div class="main_title">Topics<span class="js-course_name"></span></div>
+			<div class="js-my_course_topics"></div>
+		</div>
+		<div class="float_left">
+			<div class="main_title">Lessons<span class="js-topic_name"></span></div>
+			<div class="js-my_course_topic_lessons"></div>
+		</div>
+
 	</div>
 
-	<div class="third">
-		<div class="main_title">Topics<span class="js-course_name"></span></div>
-		<div class="js-my_course_topics"></div>
+
+
+
+	<div class="js-my_feedback" style="display: none; overflow: hidden;">
+		<div class="half">
+			<div class="main_title">Feedback:</div>
+		</div>
 	</div>
-	<div class="third">
-		<div class="main_title">Lessons<span class="js-topic_name"></span></div>
-		<div class="js-my_course_topic_lessons"></div>
-	</div>
-
-</div>
 
 
 
 
-<div class="js-my_feedback" style="display: none; overflow: hidden;">
-	<div class="half">
-		<div class="main_title">Feedback:</div>
-	</div>
-</div>
-
-
-
-
-<div class="js-completed_courses" style="display: none; overflow: hidden;">
-	<div class="half">
-		<div class="main_title">something else:</div>
+	<div class="js-completed_courses" style="display: none; overflow: hidden;">
+		<div class="half">
+			<div class="main_title">something else:</div>
+		</div>
 	</div>
 </div>
