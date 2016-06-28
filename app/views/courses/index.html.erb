@@ -41,7 +41,7 @@
   <hr>
 
 
-  <% if current_user.role = 'admin' %>
+  <% if current_user.role = 'admin' || current_user.role == 'author'  %>
     <a href="<%= new_course_path %>"><button class="reg_btn blue">Create New Course</button></a>
   <% end %>
 

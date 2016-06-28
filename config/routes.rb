@@ -8,14 +8,14 @@ Rails.application.routes.draw do
 
   welcome_routes = ['about','markets','process','contact']
   welcome_routes.each do |menu|
-    get "/#{menu}" => "welcome##{menu}" 
+    get "/#{menu}" => "welcome##{menu}"
   end
 
   resources :demos
 
   resources :courses do
     collection do
-        get 'all'
+        get '/all' => "courses#all"
         get '/api' => "courses#course_api"
         get '/api/user_course' => "courses#user_course_api"
     end

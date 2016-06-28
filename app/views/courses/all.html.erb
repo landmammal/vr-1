@@ -13,10 +13,7 @@
 
     <div class="each_item">
       <div class="each_title">
-        <% if course.user == current_user %>
-          <%= link_to course.course_title, course %>
-            <% binding.pry %> 
-        <% end %>
+        <%= link_to course.course_title, course %>
       </div>
       <div class="each_desc">
         <%= course.description %>
