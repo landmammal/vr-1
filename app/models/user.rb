@@ -18,13 +18,10 @@ class User < ActiveRecord::Base
 
 
   def photo
-      user_profile = profile_file_name
-      user_profile.present? ? user_profile : '/assets/default_user.png'
+      profile_file_name.present? ? profile.url(:square) : '/assets/default_user.png'
   end
   def top_banner 
-      user_banner = banner_file_name
-      user_banner.present? ? user_banner : '/assets/banner.jpg'
-    # user_info.banner.present? ? user_info.banner : '/uploads/user_info/banner/default.jpg'
+      banner_file_name.present? ? banner.url(:medium) : '/assets/banner.jpg'
   end
 
 
