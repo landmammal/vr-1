@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user! , except: [:index, :show]
   # GET /courses
   # GET /courses.json
   def index
@@ -17,17 +17,18 @@ class CoursesController < ApplicationController
 
   def course_api
     @courses = Course.all
-    render json: @courses 
+    render json: @courses
   end
-  
+
   def user_course_api
     @courses = Course.all
-    render json: @courses 
+    render json: @courses
   end
 
   # GET /courses/new
   def new
     @course = Course.new
+    @course = current_user.courses.build
   end
 
   # GET /courses/1/edit
@@ -38,7 +39,7 @@ class CoursesController < ApplicationController
   # POST /courses.json
   def create
     @course = Course.new(course_params)
-
+    @course = current_user.courses.build(course_params)
     respond_to do |format|
       if @course.save
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
