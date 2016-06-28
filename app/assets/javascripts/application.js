@@ -13,3 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+setTimeout(function(){	
+	$('.flash-notice').fadeOut(2000);
+},4000)
+setTimeout(function(){	
+	$('#notice').fadeOut(2000);
+},4000)
