@@ -5,7 +5,7 @@
 		<header class="inter_header">
 			<a href="/"><img src="/assets/logo_white.png" width="30px"></a>
 	      	<div class="inter_header right_item">
-	      		<%= link_to "Log out", destroy_user_session_path, method: "delete" %>      			
+	      		<%= link_to "Log out", destroy_user_session_path, method: "delete" %>
 	      	</div>
 	      	<% if current_user.role == "admin" %>
 	      		<div class="inter_header right_item"><%= link_to "Users", users_path %></div>

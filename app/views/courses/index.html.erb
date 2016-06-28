@@ -1,4 +1,4 @@
-<div class="top_info"> 
+<div class="top_info">
   <div class="user_name"><%= current_user.first_name %> <%= current_user.last_name %></div>
 </div>
 
@@ -15,24 +15,24 @@
   <div class="card_list">
 
     <% @courses.each do |course| %>
-
-      <div class="card_item">
-        <div class="card_title">
-          <%= link_to course.course_title, course %>
-        </div>
-        <div class="card_desc">
-          <%= course.description %>
-        </div>
-        <div class="card_edit_sec">
-          <!-- <div class="card_edit">
-              <%= link_to 'edit', edit_course_path(course) %>
-          </div> -->
-          <div class="card_delete">
-                <%= link_to 'x', course, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% if course.user == current_user || current_user.role == 'admin' %>
+        <div class="card_item">
+          <div class="card_title">
+            <%= link_to course.course_title, course %>
+          </div>
+          <div class="card_desc">
+            <%= course.description %>
+          </div>
+          <div class="card_edit_sec">
+            <!-- <div class="card_edit">
+                <%= link_to 'edit', edit_course_path(course) %>
+            </div> -->
+            <div class="card_delete">
+                  <%= link_to 'x', course, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
           </div>
         </div>
-      </div>
-
+      <% end %>
     <% end %>
 
   </div>
