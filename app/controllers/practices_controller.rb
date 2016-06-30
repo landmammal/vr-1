@@ -4,6 +4,15 @@ class PracticesController < ApplicationController
   before_action :authenticate_user!
   # GET /practices
   # GET /practices.json
+  def token
+    practice_token = token_params[:token]
+    @practice.token = practice_token
+
+    if @practice.save!
+      render json: @practice.token, status :ok
+    end
+  end
+
   def index
     # @practices = Practice.all
     @practices = @lesson.practices.order("created_at ASC")

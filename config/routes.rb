@@ -25,7 +25,11 @@ Rails.application.routes.draw do
   end
 
   resources :lessons do
-    resources :practices, shallow: true
+    resources :practices, shallow: true do
+      member do
+        post :token
+      end
+    end
   end
 
   resources :lessons do

@@ -60,6 +60,7 @@ class LessonsController < ApplicationController
   # GET /lessons/new
   def new
     @lesson = Lesson.new
+    @lesson = current_user.lessons.build
   end
 
   # GET /lessons/1/edit
@@ -70,7 +71,8 @@ class LessonsController < ApplicationController
   # POST /lessons.json
   def create
     @lesson = Lesson.new(lesson_params)
-    @lesson.chapter_id=@chapter.id
+    @lesson = current_user.lessons.build(lesson_params)
+    @lesson.chapter_id = @chapter.id
 
     if @lesson.save
       respond_to do |format|

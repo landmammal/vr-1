@@ -16,6 +16,7 @@ class ChaptersController < ApplicationController
   # GET /chapters/new
   def new
     @chapter = Chapter.new
+    @chapter = current_user.chapters.build
   end
 
   # GET /chapters/1/edit
@@ -27,7 +28,7 @@ class ChaptersController < ApplicationController
   # POST /chapters.json
   def create
     @chapter = @course.chapters.new(chapter_params)
-
+    @chapter = current_user.chapters.build(chapter_params)
     respond_to do |format|
       if @chapter.save
         format.html { redirect_to [@chapter.course], notice: 'Chapter was successfully created.' }

@@ -11,6 +11,13 @@
         ziggeo-height=300>
   </ziggeo>
 
+  <%= form_for @lesson, url: explanation_token_lesson_path(@lesson.id),
+                                                      html: {id: "tokenForm"},
+                                                      remote: true,
+                                                      method: 'post' do |f| %>
+  <%= f.hidden_field :explanation %>
+  <% end %>
+
   <%= form_for([@course, @chapter, @lesson]) do |f| %>
     <% if @lesson.errors.any? %>
       <div id="error_explanation">
@@ -33,8 +40,6 @@
       <%= f.submit %>
     </div>
   <% end %>
-
-  <%= link_to 'record prompt', prompt_view_lesson_path(@lesson) %>
 
 <% elsif @lesson.prompt == nil && current_user.role == 'admin' %>
   <%= link_to 'record prompt', prompt_view_lesson_path(@lesson) %>
@@ -62,6 +67,8 @@
       ziggeo-height=400>
       </ziggeo>
     </div>
+
+  
 
 
     <div class="prompt_model">
@@ -98,7 +105,7 @@
  -->
 
 <br>
-<% if current_user.role == 'admin' %>
+<% if current_user.role == 'admin'  %>
   <%= link_to 'Edit explanation', edit_lesson_path(@lesson) %>
 <% end %>
 
@@ -107,12 +114,6 @@
   <%= link_to 'Back', {:controller => 'chapters', :action => 'show'} %>
 </div>
 
-<%= form_for @lesson, url: explanation_token_lesson_path(@lesson.id),
-                                                    html: {id: "tokenForm"},
-                                                    remote: true,
-                                                    method: 'post' do |f| %>
-<%= f.hidden_field :explanation %>
-<% end %>
 
 <script >
   // this function is getting the video token from ZiggeoApi.Events
