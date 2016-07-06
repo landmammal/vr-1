@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
 
+  resources :lesson_concepts
+  resources :concepts
+  resources :models
+  resources :prompts
+  resources :explanations
+  resources :lesson_models
+  resources :lesson_prompts
+  resources :lesson_explanations
+  resources :topic_lessons
+  resources :course_topics
+  resources :course_registrations
   root 'welcome#index'
   resources :practices
 
@@ -19,7 +30,7 @@ Rails.application.routes.draw do
         get '/api' => "courses#course_api"
         get '/api/user_course' => "courses#user_course_api"
     end
-    resources :chapters, shallow: true do
+    resources :topics, shallow: true do
       resources :lessons, shallow: true
     end
   end

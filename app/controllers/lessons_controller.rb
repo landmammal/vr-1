@@ -1,7 +1,7 @@
 class LessonsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_chapter, only: [:create, :new]
-  before_action :set_lesson, only: [ :edit, :update, :destroy, :prompt_view, :role_model_view,
+  before_action :set_topic, only: [:create, :new]
+  before_action :set_lesson, only: [ :edit, :update, :destroy, :prompt_view,                  :role_model_view,
                                      :explanation_token, :prompt_token, :role_model_token]
 
 
@@ -43,7 +43,7 @@ class LessonsController < ApplicationController
 
   def index
 
-    # @lessons = @chapter.lessons.all
+    # @lessons = @topic.lessons.all
     # if @lessons
     # else
 
@@ -60,7 +60,7 @@ class LessonsController < ApplicationController
   # GET /lessons/new
   def new
     @lesson = Lesson.new
-    @lesson = current_user.lessons.build
+    # @lesson = current_user.lessons.build
   end
 
   # GET /lessons/1/edit
@@ -71,8 +71,8 @@ class LessonsController < ApplicationController
   # POST /lessons.json
   def create
     @lesson = Lesson.new(lesson_params)
-    @lesson = current_user.lessons.build(lesson_params)
-    @lesson.chapter_id = @chapter.id
+    # @lesson = current_user.lessons.build(lesson_params)
+    @lesson.topic_id = @topic.id
 
     if @lesson.save
       respond_to do |format|
@@ -120,9 +120,9 @@ class LessonsController < ApplicationController
     def token_params
       params.require(:lesson).permit(:explanation, :prompt, :role_model)
     end
-    # set the chapter you are in before you start adding lessons
-    def set_chapter
-      @chapter = Chapter.find(params[:chapter_id])
+    # set the topic you are in before you start adding lessons
+    def set_topic
+      @topic = Topic.find(params[:topic_id])
     end
 
     # Use callbacks to share common setup or constraints between actions.
@@ -132,6 +132,6 @@ class LessonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
-      params.require(:lesson).permit(:chapter_id, :lesson_title, :explanation, :prompt, :role_model, :performance, :explanation_script, :prompt_script, :model_script, :model_token, :explanation_token, :role_model_token)
+      params.require(:lesson).permit(:topic_id, :lesson_title, :explanation, :prompt, :role_model, :performance, :explanation_script, :prompt_script, :model_script, :model_token, :explanation_token, :role_model_token)
     end
 end

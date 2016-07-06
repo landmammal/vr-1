@@ -11,27 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160624064221) do
+ActiveRecord::Schema.define(version: 20160706071419) do
 
-  create_table "chapters", force: :cascade do |t|
-    t.integer  "course_id"
-    t.string   "chapter_title"
+  create_table "concepts", force: :cascade do |t|
     t.text     "description"
+    t.integer  "lesson_id_id"
+    t.integer  "user_id_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "course_registrations", force: :cascade do |t|
+    t.integer  "course_id_id"
+    t.integer  "user_id_id"
+    t.string   "user_role"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "course_topics", force: :cascade do |t|
+    t.integer  "course_id_id"
+    t.integer  "topic_id_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "tags"
+    t.string   "status"
+    t.integer  "instructor_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
-
-  add_index "chapters", ["course_id"], name: "index_chapters_on_course_id"
-
-  create_table "courses", force: :cascade do |t|
-    t.string   "course_title"
-    t.text     "description"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "user_id"
-  end
-
-  add_index "courses", ["user_id"], name: "index_courses_on_user_id"
 
   create_table "demos", force: :cascade do |t|
     t.string   "first_name"
@@ -45,21 +58,65 @@ ActiveRecord::Schema.define(version: 20160624064221) do
     t.datetime "updated_at",   null: false
   end
 
-  create_table "lessons", force: :cascade do |t|
-    t.string   "lesson_title"
-    t.string   "explanation"
-    t.string   "prompt"
-    t.string   "role_model"
-    t.string   "performance"
-    t.text     "explanation_script"
-    t.text     "prompt_script"
-    t.text     "model_script"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.integer  "chapter_id"
+  create_table "explanations", force: :cascade do |t|
+    t.integer  "user_id_id"
+    t.integer  "lesson_id_id"
+    t.string   "token"
+    t.string   "video_token"
+    t.string   "script"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  add_index "lessons", ["chapter_id"], name: "index_lessons_on_chapter_id"
+  create_table "lesson_concepts", force: :cascade do |t|
+    t.integer  "concept_id_id"
+    t.integer  "lesson_id_id"
+    t.decimal  "weight"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "lesson_explanations", force: :cascade do |t|
+    t.integer  "lesson_id_id"
+    t.integer  "explanation_id_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "lesson_models", force: :cascade do |t|
+    t.integer  "lesson_id_id"
+    t.integer  "model_id_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "lesson_prompts", force: :cascade do |t|
+    t.integer  "lesson_id_id"
+    t.integer  "prompt_id_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "lessons", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "tags"
+    t.string   "status"
+    t.integer  "course_id_id"
+    t.integer  "instructor_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "models", force: :cascade do |t|
+    t.integer  "user_id_id"
+    t.integer  "lesson_id_id"
+    t.string   "token"
+    t.string   "video_token"
+    t.string   "script"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "practices", force: :cascade do |t|
     t.string   "token"
@@ -75,6 +132,16 @@ ActiveRecord::Schema.define(version: 20160624064221) do
   add_index "practices", ["user_id", "lesson_id"], name: "index_practices_on_user_id_and_lesson_id", unique: true
   add_index "practices", ["user_id"], name: "index_practices_on_user_id"
 
+  create_table "prompts", force: :cascade do |t|
+    t.integer  "user_id_id"
+    t.integer  "lesson_id_id"
+    t.string   "token"
+    t.string   "video_token"
+    t.string   "script"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string   "title"
     t.integer  "user_id"
@@ -84,7 +151,26 @@ ActiveRecord::Schema.define(version: 20160624064221) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "topic_lessons", force: :cascade do |t|
+    t.integer  "lesson_id_id"
+    t.integer  "topic_id_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "tags"
+    t.string   "status"
+    t.integer  "lesson_id_id"
+    t.integer  "instructor_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "users", force: :cascade do |t|
+    t.integer  "role"
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "age"
@@ -106,7 +192,6 @@ ActiveRecord::Schema.define(version: 20160624064221) do
     t.datetime "locked_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "role"
     t.string   "profile_file_name"
     t.string   "profile_content_type"
     t.integer  "profile_file_size"

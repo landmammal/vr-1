@@ -1,7 +1,7 @@
 <center><p id="notice"> <%= notice %> </p></center>
 
 <div class="course_title">
-  <%= @course.course_title %> <font color="#ccc">|</font>
+  <%= @course.title %> <font color="#ccc">|</font>
 </div>
 <%= link_to 'Edit', edit_course_path(@course), class:'edit' %>
 
@@ -13,12 +13,12 @@
 <h3>Topics</h3>
 
 
-<% @course.chapters.each_with_index do |chapter, index| %>
-  <b><%= (index + 1).to_s %></b> - <%= link_to chapter.chapter_title, chapter %>
-  <%= chapter.description %>
+<% @course_topics.each_with_index do |topic, index| %>
+  <b><%= (index + 1).to_s %></b> - <%= link_to topic.topic_title, topic %>
+  <%= topic.description %>
   <% if current_user.role == 'admin'  %>
-    <!-- <%= link_to 'Edit', edit_chapter_path(chapter) %> -->
-    <%= link_to 'Delete', chapter, method: :delete, data: { confirm: 'Are you sure?' }, class:'red_text' %>
+    <!-- <%= link_to 'Edit', edit_topic_path(topic) %> -->
+    <%= link_to 'Delete', topic, method: :delete, data: { confirm: 'Are you sure?' }, class:'red_text' %>
   <% end %>
   <br>
   <br>
@@ -29,7 +29,7 @@
 <hr>
 
 <% if current_user.role == 'admin' %>
-  <a href="<%= new_course_chapter_path(@course.id) %>">
+  <a href="<%= new_course_topic_path(@course.id) %>">
     <button class="reg_btn blue">Create New Topic</button>
   </a>
   <hr>

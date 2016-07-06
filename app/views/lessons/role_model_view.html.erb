@@ -5,7 +5,7 @@
         ziggeo-height=300>
   </ziggeo>
 
-  <%= form_for([@course, @chapter, @lesson]) do |f| %>
+  <%= form_for([@course, @topic, @lesson]) do |f| %>
     <% if @lesson.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>

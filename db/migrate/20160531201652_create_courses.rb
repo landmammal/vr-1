@@ -1,8 +1,11 @@
 class CreateCourses < ActiveRecord::Migration
   def change
     create_table :courses do |t|
-      t.string :course_title
+      t.string :title
       t.text :description
+      t.string :tags
+      t.string :status
+      t.integer :instructor_id
 
       t.timestamps null: false
     end

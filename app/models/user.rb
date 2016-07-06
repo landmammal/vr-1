@@ -20,22 +20,24 @@ class User < ActiveRecord::Base
   def photo
       profile_file_name.present? ? profile.url(:square) : '/assets/default_user.png'
   end
-  def top_banner 
+  def top_banner
       banner_file_name.present? ? banner.url(:medium) : '/assets/banner.jpg'
   end
 
 
-  enum role: [:admin, :user, :trainee, :author, :coach, :manager]
+  enum role: [:admin, :instructor, :coach, :trainee ]
   after_initialize :set_default_role, :if => :new_record?
   #  persisted? instead of new_record?
 
   def set_default_role
-    self.role ||= :user
+    self.role ||= :trainee
   end
 
-  has_many :courses
-  has_many :chapters, :through => :courses
-  has_many :lessons, :through => :chapters
+  has_many :course_registrations
+  has_many :courses, :through => :course_registrations
+
+  # has_many :topics, :through => :courses
+  # has_many :lessons, :through => :topics
   has_many :practices
   # Include default devise modules. Others available are:
   # , :lockable, :timeoutable and :omniauthable

@@ -4,8 +4,8 @@ require "rails_helper"
     context 'Trainee submits a video' do
       let! (:user) {FactoryGirl.create(:user)}
       let! (:course) {FactoryGirl.create(:course, user: user)}
-      let! (:chapter) {FactoryGirl.create(:chapter, course: course)}
-      let! (:lesson) {FactoryGirl.create_list(:lesson, 3, chapter: chapter)}
+      let! (:topic) {FactoryGirl.create(:topic, course: course)}
+      let! (:lesson) {FactoryGirl.create_list(:lesson, 3, topic: topic)}
       let! (:trainee) {FactoryGirl.create(:user)}
 
 

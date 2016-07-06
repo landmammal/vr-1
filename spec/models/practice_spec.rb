@@ -12,8 +12,8 @@ RSpec.describe Practice, type: :model do
   context "new practice" do
     let! (:user) {FactoryGirl.create(:user)}
     let! (:course) {FactoryGirl.create(:course, user: user)}
-    let! (:chapter) {FactoryGirl.create(:chapter, course: course)}
-    let! (:lesson) {FactoryGirl.create(:lesson, chapter: chapter)}
+    let! (:topic) {FactoryGirl.create(:topic, course: course)}
+    let! (:lesson) {FactoryGirl.create(:lesson, topic: topic)}
     let! (:trainee) {FactoryGirl.create(:user)}
     let! (:practice) {FactoryGirl.create(:practice, lesson: lesson, user: trainee)}
 
