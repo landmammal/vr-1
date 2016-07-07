@@ -36,8 +36,12 @@ class User < ActiveRecord::Base
   has_many :course_registrations
   has_many :courses, :through => :course_registrations
 
-  # has_many :topics, :through => :courses
-  # has_many :lessons, :through => :topics
+  has_many :tasks
+  has_many :prompts
+  has_many :models
+  has_many :explanations
+  has_many :concepts
+ 
   has_many :practices
   # Include default devise modules. Others available are:
   # , :lockable, :timeoutable and :omniauthable

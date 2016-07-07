@@ -13,27 +13,30 @@
 
 ActiveRecord::Schema.define(version: 20160706071419) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "concepts", force: :cascade do |t|
     t.text     "description"
-    t.integer  "lesson_id_id"
-    t.integer  "user_id_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "lesson_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "course_registrations", force: :cascade do |t|
-    t.integer  "course_id_id"
-    t.integer  "user_id_id"
+    t.integer  "course_id"
+    t.integer  "user_id"
     t.string   "user_role"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "course_topics", force: :cascade do |t|
-    t.integer  "course_id_id"
-    t.integer  "topic_id_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "course_id"
+    t.integer  "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "courses", force: :cascade do |t|
@@ -59,42 +62,42 @@ ActiveRecord::Schema.define(version: 20160706071419) do
   end
 
   create_table "explanations", force: :cascade do |t|
-    t.integer  "user_id_id"
-    t.integer  "lesson_id_id"
+    t.integer  "user_id"
+    t.integer  "lesson_id"
     t.string   "token"
     t.string   "video_token"
     t.string   "script"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "lesson_concepts", force: :cascade do |t|
-    t.integer  "concept_id_id"
-    t.integer  "lesson_id_id"
+    t.integer  "concept_id"
+    t.integer  "lesson_id"
     t.decimal  "weight"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "lesson_explanations", force: :cascade do |t|
-    t.integer  "lesson_id_id"
-    t.integer  "explanation_id_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.integer  "lesson_id"
+    t.integer  "explanation_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "lesson_models", force: :cascade do |t|
-    t.integer  "lesson_id_id"
-    t.integer  "model_id_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "lesson_id"
+    t.integer  "model_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "lesson_prompts", force: :cascade do |t|
-    t.integer  "lesson_id_id"
-    t.integer  "prompt_id_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "lesson_id"
+    t.integer  "prompt_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "lessons", force: :cascade do |t|
@@ -102,20 +105,20 @@ ActiveRecord::Schema.define(version: 20160706071419) do
     t.text     "description"
     t.string   "tags"
     t.string   "status"
-    t.integer  "course_id_id"
+    t.integer  "course_id"
     t.integer  "instructor_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
   create_table "models", force: :cascade do |t|
-    t.integer  "user_id_id"
-    t.integer  "lesson_id_id"
+    t.integer  "user_id"
+    t.integer  "lesson_id"
     t.string   "token"
     t.string   "video_token"
     t.string   "script"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "practices", force: :cascade do |t|
@@ -128,18 +131,18 @@ ActiveRecord::Schema.define(version: 20160706071419) do
     t.datetime "updated_at",                  null: false
   end
 
-  add_index "practices", ["lesson_id"], name: "index_practices_on_lesson_id"
-  add_index "practices", ["user_id", "lesson_id"], name: "index_practices_on_user_id_and_lesson_id", unique: true
-  add_index "practices", ["user_id"], name: "index_practices_on_user_id"
+  add_index "practices", ["lesson_id"], name: "index_practices_on_lesson_id", using: :btree
+  add_index "practices", ["user_id", "lesson_id"], name: "index_practices_on_user_id_and_lesson_id", unique: true, using: :btree
+  add_index "practices", ["user_id"], name: "index_practices_on_user_id", using: :btree
 
   create_table "prompts", force: :cascade do |t|
-    t.integer  "user_id_id"
-    t.integer  "lesson_id_id"
+    t.integer  "user_id"
+    t.integer  "lesson_id"
     t.string   "token"
     t.string   "video_token"
     t.string   "script"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -152,10 +155,10 @@ ActiveRecord::Schema.define(version: 20160706071419) do
   end
 
   create_table "topic_lessons", force: :cascade do |t|
-    t.integer  "lesson_id_id"
-    t.integer  "topic_id_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "lesson_id"
+    t.integer  "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "topics", force: :cascade do |t|
@@ -202,8 +205,10 @@ ActiveRecord::Schema.define(version: 20160706071419) do
     t.datetime "banner_updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
+  add_foreign_key "practices", "lessons"
+  add_foreign_key "practices", "users"
 end
