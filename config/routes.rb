@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # resources :topic_lessons
   # resources :course_topics
   # resources :course_registrations
+
   root 'welcome#index'
   resources :practices
 

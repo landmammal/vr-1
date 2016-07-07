@@ -1,22 +1,22 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
-  before_action :set_course, only: [:index, :new, :edit, :create]
   # GET /topics
   # GET /topics.json
   def index
-    @topics = @course.topics
+    course = Course.find_by(params[:course_id])
+    @topics = course.topics
   end
 
   # GET /topics/1
   # GET /topics/1.json
   def show
-    @course = @topic.course
+    @topic = Topic.find_by(params[:id])
   end
 
   # GET /topics/new
   def new
-    @topic = Topic.new
-    @topic = current_user.topics.build
+    @new_topic = Topic.new
+    # @topic = current_user.topics.build
   end
 
   # GET /topics/1/edit
@@ -27,14 +27,13 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.json
   def create
-    @topic = @course.topics.new(topic_params)
-    @course_topic = CourseTopic.create(course_id: params[:course_id], topic_id: topic.id)
+    @topic = Topic.new(topic_params)
+    # @topic = current_user.topics.build(topic_params)
     respond_to do |format|
       if @topic.save
-        course_topic = CourseTopic.new
-        # (pass hidden field for course id and )
-        course_topic.course_id =
-        format.html { redirect_to [@topic.course], notice: 'Topic was successfully created.' }
+        course_topic = CourseTopic.create(course_id:params[:course_id], topic_id:@topic.id)
+
+        format.html { redirect_to [@topic.course_id], notice: 'Topic was successfully created.' }
         format.json { render :show, status: :created, location: @topic }
       else
         format.html { render :new }
@@ -70,9 +69,6 @@ class TopicsController < ApplicationController
   end
 
   private
-    def set_course
-      @course = Course.find(params[:course_id])
-    end
     # Use callbacks to share common setup or constraints between actions.
     def set_topic
       @topic = Topic.find(params[:id])
@@ -80,6 +76,6 @@ class TopicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def topic_params
-      params.require(:topic).permit(:course_id, :topic_title, :description)
+      params.require(:topic).permit(:course_id, :title, :description, :tags, :status, :instructor_id)
     end
 end
