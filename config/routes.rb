@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
 
-  resources :lesson_concepts
+  # resources :lesson_concepts
   resources :concepts
   resources :models
   resources :prompts
   resources :explanations
-  resources :lesson_models
-  resources :lesson_prompts
-  resources :lesson_explanations
-  resources :topic_lessons
-  resources :course_topics
-  resources :course_registrations
+  # resources :lesson_models
+  # resources :lesson_prompts
+  # resources :lesson_explanations
+  # resources :topic_lessons
+  # resources :course_topics
+  # resources :course_registrations
   root 'welcome#index'
   resources :practices
 

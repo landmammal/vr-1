@@ -28,12 +28,12 @@ class TopicsController < ApplicationController
   # POST /topics.json
   def create
     @topic = @course.topics.new(topic_params)
-    # @topic = current_user.topics.build(topic_params)
+    @course_topic = CourseTopic.create(course_id: params[:course_id], topic_id: topic.id)
     respond_to do |format|
       if @topic.save
         course_topic = CourseTopic.new
         # (pass hidden field for course id and )
-        # course_topic.course_id =
+        course_topic.course_id =
         format.html { redirect_to [@topic.course], notice: 'Topic was successfully created.' }
         format.json { render :show, status: :created, location: @topic }
       else

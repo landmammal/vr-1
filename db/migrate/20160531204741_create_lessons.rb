@@ -4,7 +4,7 @@ class CreateLessons < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.string :tags
-      t.string :status
+      t.integer :status
       t.integer :course_id
       t.integer :instructor_id, foreign_key: :user_id
 
