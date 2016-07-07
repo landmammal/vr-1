@@ -14,11 +14,10 @@
 
 
 <% @course.topics.each_with_index do |topic, index| %>
-  <b><%= (index + 1).to_s %></b> - <%= link_to topic.title, topic %>
+  <b><%= (index + 1).to_s %></b> - <%= link_to topic.title, course_topic_path(@course, topic.id) %>
   <%= topic.description %>
   <% if current_user.role == 'admin'  %>
-    <!-- <%= link_to 'Edit', edit_topic_path(topic) %> -->
-    <%= link_to 'Delete', topic, method: :delete, data: { confirm: 'Are you sure?' }, class:'red_text' %>
+    <!-- link to delete -->
   <% end %>
   <br>
   <br>

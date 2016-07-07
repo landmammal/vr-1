@@ -1,13 +1,13 @@
 <center><p id="notice"> <%= notice %> </p></center>
 
 <div class="course_title">
-  <%= @topic.course.course_title %>
+  <%= @course.title %>
 </div>
 
 
 <p>
   <strong>
-    <%= @topic.topic_title %> <font color="#ccc">|</font> <%= link_to 'Edit', edit_topic_path %>
+    <%= @topic.title %> <font color="#ccc">|</font> <%= link_to 'Edit', edit_course_topic_path %>
   </strong>
 </p>
 
@@ -21,8 +21,8 @@
 </p>
 
 
-<% @course.lessons.each_with_index do |lesson, index| %>
-  Lesson <%= (index + 1).to_s %> - <%= link_to lesson.lesson_title, lesson %></td>
+<% @lessons.each_with_index do |lesson, index| %>
+  Lesson <%= (index + 1).to_s %> - <%= link_to lesson.title, lesson %></td>
   <% if current_user.role == "admin" %>
     <%= link_to 'Delete', lesson, method: :delete, data: { confirm: 'Are you sure?' }, class:'red_text' %>
   <% end %>
@@ -34,7 +34,7 @@
 <hr>
 
 <% if current_user.role == 'admin'  %>
-  <a href="<%= new_topic_lesson_path(@topic.id) %>">
+  <a href="<%= new_lesson_path(@topic.id) %>">
     <button class="reg_btn blue">Create New Lesson</button>
   </a>
   <hr>

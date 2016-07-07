@@ -3,14 +3,16 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-    course = Course.find_by(params[:course_id])
+    course = Course.find(params[:course_id])
     @topics = course.topics
   end
 
   # GET /topics/1
   # GET /topics/1.json
   def show
-    @topic = Topic.find_by(params[:id])
+    @course = Course.find(params[:course_id])
+    @topic = @topic
+    @lessons = @topic.lessons
   end
 
   # GET /topics/new
