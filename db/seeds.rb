@@ -7,5 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-users = User.create([{ first_name:'Al', last_name:'Delcy', race:'Black', email:'aldelcy2000@gmail.com', password:'123456', password_confirmation:'123456', role: 0},
-					 { first_name:'Al', last_name:'Delcy', race:'Black', email:'aldelcy2000@yahoo.com', password:'abc123', password_confirmation:'abc123', role: 2}])
+           ​
+ users = User.create([{ first_name:'Administrator', last_name:'Man', race:'White', email:'admin@gmail.com', password:'admin123', password_confirmation:'admin123', role: 0},
+  { first_name:'Instructor', last_name:'Sir', race:'Asian', email:'instructor@gmail.com', password:'instructor123', password_confirmation:'instructor123', role: 1},
+  { first_name:'Coach', last_name:'Jane', race:'White', email:'coach@gmail.com', password:'coach123', password_confirmation:'coach123', role: 2},
+  { first_name:'Student', last_name:'John', race:'Black', email:'trainee@gmail.com', password:'trainee123', password_confirmation:'trainee123', role: 3}])
