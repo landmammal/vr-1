@@ -13,8 +13,8 @@
 <h3>Topics</h3>
 
 
-<% @course_topics.each_with_index do |topic, index| %>
-  <b><%= (index + 1).to_s %></b> - <%= link_to topic.topic_title, topic %>
+<% @course.topics.each_with_index do |topic, index| %>
+  <b><%= (index + 1).to_s %></b> - <%= link_to topic.title, topic %>
   <%= topic.description %>
   <% if current_user.role == 'admin'  %>
     <!-- <%= link_to 'Edit', edit_topic_path(topic) %> -->
