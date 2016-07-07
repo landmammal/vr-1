@@ -4,8 +4,8 @@ class CreateTopics < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.string :tags
-      t.string :status
-      t.references :lesson_id
+      t.integer :status
+      t.references :course
       t.integer :instructor_id, foreign_key: :user_id
 
       t.timestamps null: false

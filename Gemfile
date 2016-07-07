@@ -52,7 +52,6 @@ group :development, :test do
   gem 'faker'
   gem 'database_cleaner'
   gem 'shoulda-matchers' # Model Testing Help for Rspec
-
 end
 
 group :development do

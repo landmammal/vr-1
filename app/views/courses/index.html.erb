@@ -15,10 +15,10 @@
   <div class="card_list">
 
     <% @courses.each do |course| %>
-      <% if course.user == current_user || current_user.role == 'admin' %>
+      <% if course.instructor_id == current_user || current_user.role == 'admin' %>
         <div class="card_item">
           <div class="card_title">
-            <%= link_to course.course_title, course %>
+            <%= link_to course.title, course %>
           </div>
           <div class="card_desc">
             <%= course.description %>

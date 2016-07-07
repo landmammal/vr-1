@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20160706071419) do
     t.string   "title"
     t.text     "description"
     t.string   "tags"
-    t.string   "status"
+    t.integer  "status"
     t.integer  "instructor_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
@@ -104,8 +104,8 @@ ActiveRecord::Schema.define(version: 20160706071419) do
     t.string   "title"
     t.text     "description"
     t.string   "tags"
-    t.string   "status"
-    t.integer  "course_id"
+    t.integer  "status"
+    t.integer  "topic_id"
     t.integer  "instructor_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
@@ -165,8 +165,8 @@ ActiveRecord::Schema.define(version: 20160706071419) do
     t.string   "title"
     t.text     "description"
     t.string   "tags"
-    t.string   "status"
-    t.integer  "lesson_id_id"
+    t.integer  "status"
+    t.integer  "course_id"
     t.integer  "instructor_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
