@@ -1,5 +1,5 @@
 class Lesson < ActiveRecord::Base
-  # belongs_to :user
+  belongs_to :instructor, class_name: 'User'
   has_many :practices
 
   serialize :tags

@@ -1,7 +1,9 @@
 class Topic < ActiveRecord::Base
-  # belongs_to :user
+  belongs_to :instructor, class_name: 'User'
   has_many :topic_lessons
-  has_many :lessons, :through => :topic_lessons
+  has_many :original_lessons, :through => :topic_lessons, foreign_key: :lesson_id
+  has_many :lessons
+
 
   serialize :tags
 

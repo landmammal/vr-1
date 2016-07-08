@@ -41,7 +41,6 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
     @course = current_user.courses.build(course_params)
-
     @course.tags = @course.tags.split(', ')
 
     respond_to do |format|

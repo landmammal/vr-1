@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
 
-  root 'welcome#index'
-  
+root 'welcome#index'
+
   welcome_routes = ['about','markets','process','contact']
   welcome_routes.each do |menu|
     get "/#{menu}" => "welcome##{menu}"
   end
-  
+
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users
 
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get '/allcourses' => "courses#all"
   post '/topic/create' => "topics#create"
   post '/lesson/create' => "lessons#create"
-  
+
   resources :courses do
     collection do
         get '/api' => "courses#course_api"
