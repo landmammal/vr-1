@@ -48,6 +48,6 @@ class User < ActiveRecord::Base
   has_many :models
   has_many :explanations
   has_many :concepts
- 
+
   has_many :practices
 end

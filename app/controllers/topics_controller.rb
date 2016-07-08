@@ -1,25 +1,22 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:index, :show, :new]
   # GET /topics
   # GET /topics.json
   def index
-    course = Course.find(params[:course_id])
     @topics = course.topics
   end
 
   # GET /topics/1
   # GET /topics/1.json
   def show
-    @course = Course.find(params[:course_id])
     @topic = @topic
     @lessons = @topic.lessons
   end
 
   # GET /topics/new
   def new
-    @course = Course.find(params[:course_id])
     @new_topic = Topic.new
-    # @topic = current_user.topics.build
   end
 
   # GET /topics/1/edit
@@ -30,17 +27,12 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.json
   def create
-    @topic = Topic.new(topic_params)
-    # @topic = current_user.topics.build(topic_params)
-    @course = @topic.course_id
+    @course = current_user.courses.find(params[:course_id])
+    @topic = @course.topics.build(topic_params)
 
     respond_to do |format|
       if @topic.save
-        course_topic = CourseTopic.create(course_id:@course, topic_id:@topic.id)
-
-        @topic_show = "/courses/#{@course.to_s}/topics/#{@topic.id.to_s}"
-
-        format.html { redirect_to @topic_show, notice: 'Topic was successfully created.' }
+        format.html { redirect_to [@course, @topic], notice: 'Topic was successfully created.' }
         format.json { render :show, status: :created, location: @topic }
       else
         format.html { render :new }
@@ -76,6 +68,9 @@ class TopicsController < ApplicationController
   end
 
   private
+    def set_course
+      @course = Course.find(params[:course_id])
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_topic
       @topic = Topic.find(params[:id])
