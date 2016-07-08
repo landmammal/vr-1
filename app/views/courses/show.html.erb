@@ -4,9 +4,9 @@
   <%= @course.title %> <font color="#ccc">|</font>
 </div>
 <%= link_to 'Edit', edit_course_path(@course), class:'edit' %><br>
-tags: 
+tags:
 <% @course.tags.each do |t| %>
-  <a href="#"><b><%= t %></b></a> 
+  <a href="#"><b><%= t %></b></a>
 <% end %>
 
 <div>
@@ -20,7 +20,7 @@ tags:
 <% @course.topics.each_with_index do |topic, index| %>
   <b><%= (index + 1).to_s %></b> - <%= link_to topic.title, course_topic_path(@course, topic.id) %>
   <%= topic.description %>
-  <% if current_user.role == 'admin'  %>
+  <% if current_user.role == 'admin' || current_user.role == "instructor" %>
     <!-- link to delete -->
   <% end %>
   <br>
@@ -31,7 +31,7 @@ tags:
 
 <hr>
 
-<% if current_user.role == 'admin' %>
+<% if current_user.role == 'admin' || current_user.role == "instructor"%>
   <a href="<%= new_course_topic_path(@course.id) %>">
     <button class="reg_btn blue">Create New Topic</button>
   </a>

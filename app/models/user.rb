@@ -34,14 +34,17 @@ class User < ActiveRecord::Base
 
   enum role: [:admin, :instructor, :coach, :trainee ]
   after_initialize :set_default_role, :if => :new_record?
-  #  persisted? instead of new_record?
 
   def set_default_role
     self.role ||= :trainee
   end
 
   has_many :course_registrations
-  has_many :courses, :through => :course_registrations
+  has_many :registered_courses, :through => :course_registrations, :foreign_key => :course_id
+  
+  has_many :courses, foreign_key: :instructor_id
+  has_many :lessons, foreign_key: :instructor_id
+  has_many :topics, foreign_key: :instructor_id
 
   has_many :tasks
   has_many :prompts

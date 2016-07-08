@@ -23,7 +23,7 @@
 
 <% @lessons.each_with_index do |lesson, index| %>
   Lesson <%= (index + 1).to_s %> - <%= link_to lesson.title, lesson %></td>
-  <% if current_user.role == "admin" %>
+  <% if current_user.role == "admin" || current_user.role == "instructor" %>
     <%= link_to 'Delete', lesson, method: :delete, data: { confirm: 'Are you sure?' }, class:'red_text' %>
   <% end %>
   <br>
@@ -33,7 +33,7 @@
 
 <hr>
 
-<% if current_user.role == 'admin'  %>
+<% if current_user.role == 'admin' || current_user.role == "instructor"  %>
   <a href="<%= new_lesson_path(@topic.id) %>">
     <button class="reg_btn blue">Create New Lesson</button>
   </a>
@@ -42,5 +42,3 @@
 
 
 <a href="<%= course_path %>"> <div class="back_button"> Back </div> </a>
-
-
