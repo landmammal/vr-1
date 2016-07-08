@@ -2,7 +2,7 @@ class CreatePrompts < ActiveRecord::Migration
   def change
     create_table :prompts do |t|
       t.references :user
-      t.references :orig_lesson
+      t.integer :lesson_id
       t.string :token
       t.string :video_token
       t.string :script

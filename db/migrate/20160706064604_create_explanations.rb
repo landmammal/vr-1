@@ -1,8 +1,8 @@
 class CreateExplanations < ActiveRecord::Migration
   def change
     create_table :explanations do |t|
-      t.references :user
-      t.references :orig_lesson
+      t.integer :user_id
+      t.integer :lesson_id
       t.string :token
       t.string :video_token
       t.string :script
