@@ -9,4 +9,5 @@ class Topic < ActiveRecord::Base
 
   has_many :course_topics
   has_many :courses, :through => :course_topics
+  belongs_to :origcourse, class_name: 'Course'
 end

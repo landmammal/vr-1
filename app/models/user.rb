@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
       banner_file_name.present? ? banner.url(:medium) : '/assets/banner.jpg'
   end
 
+
   enum role: [:admin, :instructor, :coach, :trainee ]
   after_initialize :set_default_role, :if => :new_record?
 
@@ -39,8 +40,22 @@ class User < ActiveRecord::Base
     self.role ||= :trainee
   end
 
+  @@r = roles.keys
+  def level_1
+    self.role == @@r[0]
+  end
+  def level_2
+    [@@r[0], @@r[1]].include? self.role
+  end
+  def level_3
+    [@@r[0], @@r[1], @@r[2]].include? self.role
+  end
+  def level_4
+    [@@r[0], @@r[1], @@r[2], @@r[3]].include? self.role
+  end
+
   has_many :course_registrations
-  has_many :registered_courses, :through => :course_registrations, :foreign_key => :course_id
+  has_many :registered_courses, through: :course_registrations, source: :course
   
   has_many :courses, foreign_key: :instructor_id
   has_many :lessons, foreign_key: :instructor_id

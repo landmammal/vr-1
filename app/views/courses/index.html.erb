@@ -6,8 +6,8 @@
 
 <div class="card_list">
 
-  <% @courses.each do |course| %>
-    <% if course.instructor_id == current_user || current_user.role == 'admin' %>
+  <% current_user.courses.each do |course| %>
+    <%if current_user.level_2 %>
       <div class="card_item">
         <div class="card_title">
           <%= link_to course.title, course %>
@@ -33,6 +33,6 @@
 <br>
 
 
-<% if current_user.role == 'instructor' %>
+<% if current_user.level_2 %>
   <a href="<%= new_course_path %>"><button class="reg_btn blue">Create New Course</button></a>
 <% end %>

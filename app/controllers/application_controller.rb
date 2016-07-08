@@ -8,15 +8,18 @@ class ApplicationController < ActionController::Base
 
   	def main_links
   		@main_menu = ['about','markets','process','contact']
-  		# @demos = Demo.all
-  		@demos = Demo.where(completed: nil)
 
       if current_user
+    		# @demos = Demo.all
+    		@demos = Demo.where(completed: nil)
+        @tasks = current_user.tasks
+
+        @r = User.roles.keys
         @user_role = current_user.role.capitalize
+        
         last_login = current_user.last_sign_in_at
         @last_signin = last_login.strftime("%m/%d/%Y at %I:%M%p")
         
-        @tasks = current_user.tasks
       end
     end
 
