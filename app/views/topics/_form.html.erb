@@ -1,5 +1,5 @@
-<%= form_for @new_topic do |f| %>
-  <% if @topic.errors.any? %>
+<%= form_for @new_topic, method: :post, url: '/topic/create' do |f| %>
+  <% if @new_topic.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
 

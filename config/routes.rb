@@ -1,38 +1,28 @@
 Rails.application.routes.draw do
 
-  # resources :lesson_concepts
-  resources :concepts
-  resources :models
-  resources :prompts
-  resources :explanations
-  # resources :lesson_models
-  # resources :lesson_prompts
-  # resources :lesson_explanations
-  # resources :topic_lessons
-  # resources :course_topics
-  # resources :course_registrations
-
-  root 'welcome#index'
-  resources :practices
-
-  devise_for :users, :controllers => { registrations: 'registrations' }
-  resources :users
+root 'welcome#index'
 
   welcome_routes = ['about','markets','process','contact']
   welcome_routes.each do |menu|
     get "/#{menu}" => "welcome##{menu}"
   end
 
-  resources :demos
+  devise_for :users, :controllers => { registrations: 'registrations' }
+  resources :users
+
+  resources :courses do
+    resources :topics do
+      resources :lessons
+    end
+  end
+  get '/allcourses' => "courses#all"
+  post '/topic/create' => "topics#create"
+  post '/lesson/create' => "lessons#create"
 
   resources :courses do
     collection do
-        get '/all' => "courses#all"
         get '/api' => "courses#course_api"
         get '/api/user_course' => "courses#user_course_api"
-    end
-    resources :topics do
-      resources :lessons
     end
   end
 
@@ -44,17 +34,30 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :lessons do
-    member do
-      get 'prompt_view'
-      get 'role_model_view'
-      post 'prompt_token'
-      post 'explanation_token'
-      post 'role_model_token'
-    end
-  end
+  # resources :lessons do
+  #   member do
+  #     get 'prompt_view'
+  #     get 'role_model_view'
+  #     post 'prompt_token'
+  #     post 'explanation_token'
+  #     post 'role_model_token'
+  #   end
+  # end
 
+  resources :concepts
+  resources :models
+  resources :prompts
+  resources :explanations
+  resources :practices
+  resources :demos
   resources :tasks
+  # resources :lesson_concepts
+  # resources :lesson_models
+  # resources :lesson_prompts
+  # resources :lesson_explanations
+  # resources :topic_lessons
+  # resources :course_topics
+  # resources :course_registrations
 
   get "/test" => "welcome#test"
   # get "/interfacetest" => "welcome#interface_test"

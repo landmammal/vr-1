@@ -1,9 +1,13 @@
-<center><p id="notice"> <%= notice %> </p></center>
+<!-- <center><p id="notice"> <%= notice %> </p></center> -->
 
 <div class="course_title">
   <%= @course.title %> <font color="#ccc">|</font>
 </div>
-<%= link_to 'Edit', edit_course_path(@course), class:'edit' %>
+<%= link_to 'Edit', edit_course_path(@course), class:'edit' %><br>
+tags: 
+<% @course.tags.each do |t| %>
+  <a href="#"><b><%= t %></b></a> 
+<% end %>
 
 <div>
   <%= @course.description %>

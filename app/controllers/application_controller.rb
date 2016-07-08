@@ -10,7 +10,15 @@ class ApplicationController < ActionController::Base
   		@main_menu = ['about','markets','process','contact']
   		# @demos = Demo.all
   		@demos = Demo.where(completed: nil)
-  	end
+
+      if current_user
+        @user_role = current_user.role.capitalize
+        last_login = current_user.last_sign_in_at
+        @last_signin = last_login.strftime("%m/%d/%Y at %I:%M%p")
+        
+        @tasks = current_user.tasks
+      end
+    end
 
 	def after_sign_up_path_for(resource)
 	end

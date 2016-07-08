@@ -17,6 +17,7 @@ class TopicsController < ApplicationController
 
   # GET /topics/new
   def new
+    @course = Course.find(params[:course_id])
     @new_topic = Topic.new
     # @topic = current_user.topics.build
   end
@@ -31,11 +32,15 @@ class TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_params)
     # @topic = current_user.topics.build(topic_params)
+    @course = @topic.course_id
+
     respond_to do |format|
       if @topic.save
-        course_topic = CourseTopic.create(course_id:params[:course_id], topic_id:@topic.id)
+        course_topic = CourseTopic.create(course_id:@course, topic_id:@topic.id)
 
-        format.html { redirect_to [@topic.course_id], notice: 'Topic was successfully created.' }
+        @topic_show = "/courses/#{@course.to_s}/topics/#{@topic.id.to_s}"
+
+        format.html { redirect_to @topic_show, notice: 'Topic was successfully created.' }
         format.json { render :show, status: :created, location: @topic }
       else
         format.html { render :new }

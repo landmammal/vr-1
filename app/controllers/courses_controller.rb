@@ -28,7 +28,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/new
   def new
-    @course = Course.new
+    @new_course = Course.new
     @course = current_user.courses.build
   end
 
@@ -41,7 +41,13 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
     @course = current_user.courses.build(course_params)
+<<<<<<< HEAD
     
+=======
+
+    @course.tags = @course.tags.split(', ')
+
+>>>>>>> d7dcf9393b8425d82ad5a9481495015bfa10b4c2
     respond_to do |format|
       if @course.save
         format.html { redirect_to @course, notice: 'Course was successfully created.' }

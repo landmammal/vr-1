@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # , :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, :lockable
 
   has_attached_file :profile, styles: {
     thumb: '100x100>',
@@ -16,6 +20,10 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :profile, :content_type => /\Aimage\/.*\Z/
   validates_attachment_content_type :banner, :content_type => /\Aimage\/.*\Z/
 
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :username, presence: true
+  validates :age, presence: true
 
   def photo
       profile_file_name.present? ? profile.url(:square) : '/assets/default_user.png'
@@ -23,7 +31,6 @@ class User < ActiveRecord::Base
   def top_banner
       banner_file_name.present? ? banner.url(:medium) : '/assets/banner.jpg'
   end
-
 
   enum role: [:admin, :instructor, :coach, :trainee ]
   after_initialize :set_default_role, :if => :new_record?
@@ -43,8 +50,4 @@ class User < ActiveRecord::Base
   has_many :concepts
  
   has_many :practices
-  # Include default devise modules. Others available are:
-  # , :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :lockable
 end

@@ -9,13 +9,5 @@
 	</div>
 </div>
 
-<%if current_user.role == 'trainee' || current_user.role == 'user' %>
-
-	<%= render "trainee" %>
-
-<% elsif current_user.role == 'author' || current_user.role == 'admin' %>
-
-	<%= render "author_admin" %>
-	<a href="<%= new_course_path %>"><button class="reg_btn green_sft">Create New Course</button></a>
-
-<% end %>
+<%= current_user.role.capitalize %> interface:<br>
+<%= render current_user.role %>

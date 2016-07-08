@@ -3,7 +3,7 @@
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     
-      <%= f.email_field :email, autofocus: true, placeholder:'Username', class:'login' %><br>
+      <%= f.email_field :email, autofocus: true, autocomplete: "off", placeholder:'Username', class:'login' %><br>
       <%= f.password_field :password, autocomplete: "off", placeholder:'Password', class:'login' %>
 
     <% if devise_mapping.rememberable? -%>

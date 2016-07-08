@@ -11,6 +11,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @courses = Course.all
+    @user.role == 'instructor' ? @new_course = Course.new : ''
+
     authorize @user
   end
 
@@ -40,6 +42,6 @@ class UsersController < ApplicationController
   private
 
   def secure_params
-    params.require(:user).permit(:role)
+    params.require(:user).permit(:role, :username)
   end
 end
