@@ -6,6 +6,5 @@ class Course < ActiveRecord::Base
   serialize :tags
 
   has_many :course_topics
-  has_many :original_topics, :through => :course_topics, foreign_key: :course_id
-  has_manny :topics
+  has_many :topics, through: :course_topics
 end
