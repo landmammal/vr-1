@@ -31,8 +31,8 @@ Rails.application.routes.draw do
         get '/api' => "courses#course_api"
         get '/api/user_course' => "courses#user_course_api"
     end
-    resources :topics, shallow: true do
-      resources :lessons, shallow: true
+    resources :topics do
+      resources :lessons
     end
   end
 

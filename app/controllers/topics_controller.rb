@@ -1,22 +1,22 @@
 class TopicsController < ApplicationController
-  before_action :set_course, only: [:index, :new, :edit, :create]
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
   # GET /topics
   # GET /topics.json
   def index
-    course = Course.find_by(params[:course_id])
+    course = Course.find(params[:course_id])
     @topics = course.topics
   end
 
   # GET /topics/1
   # GET /topics/1.json
   def show
-    @topic = Topic.find_by(params[:id])
+    @course = Course.find(params[:course_id])
+    @topic = @topic
+    @lessons = @topic.lessons
   end
 
   # GET /topics/new
   def new
-    @course = Course.find(params[:course_id])
     @new_topic = Topic.new
     # @topic = current_user.topics.build
   end
@@ -29,7 +29,6 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.json
   def create
-    @course = Course.find(params[:course_id])
     @topic = Topic.new(topic_params)
     # @topic = current_user.topics.build(topic_params)
     respond_to do |format|
@@ -72,9 +71,6 @@ class TopicsController < ApplicationController
   end
 
   private
-    def set_course
-      @course = Course.find(params[:course_id])
-    end
     # Use callbacks to share common setup or constraints between actions.
     def set_topic
       @topic = Topic.find(params[:id])
