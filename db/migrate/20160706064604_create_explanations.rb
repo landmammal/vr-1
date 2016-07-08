@@ -1,7 +1,7 @@
 class CreateExplanations < ActiveRecord::Migration
   def change
     create_table :explanations do |t|
-      t.integer :user_id
+      t.references :user
       t.integer :lesson_id
       t.string :token
       t.string :video_token
