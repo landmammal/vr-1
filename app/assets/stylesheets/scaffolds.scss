@@ -102,7 +102,9 @@ div {
 
 input[type="submit"], button{
   font-size:11px; font-weight: bold;
-  border-radius:3px; border:1px solid #ccc;
+  border-radius:3px; 
+  // border:1px solid #ccc;
+  border:0;
   display:inline-block;
   padding:6px 15px 4px 15px; margin:5px 1% 5px 0;
   color:#666;
@@ -111,7 +113,7 @@ input[type="submit"], button{
   }
 
   &.red{
-    border:1px solid #7D0009;
+    // border:1px solid #7D0009;
     background-color:#FF0000; color:#fff;
     &:hover{
       background-color:#7D0009;
@@ -119,7 +121,7 @@ input[type="submit"], button{
   }
 
   &.blue{
-    border:1px solid #517DAC;
+    // border:1px solid #517DAC;
     background-color:#419EFE; color:#fff;
     &:hover{
       background-color:#517DAC;
@@ -127,7 +129,7 @@ input[type="submit"], button{
   }
 
   &.green_sft{
-    border:1px solid #00A30F;
+    // border:1px solid #00A30F;
     background-color:#4EBC52; color:#fff;
     &:hover{
       background-color:#006A0A;
@@ -149,7 +151,9 @@ input[type="submit"], button{
 
 
 textarea, input, select{
-  border-radius:2px; border:1px solid #999;
+  border-radius:2px; 
+  // border:1px solid #999;
+  border:0;
   background-color: white;
   font-size:13px; color:#333;
   &.half{
@@ -165,6 +169,7 @@ textarea, input, select{
 textarea{
   min-height: 100px;
   min-width: 400px;
+  padding:5px 8px;
 }
 
 input{

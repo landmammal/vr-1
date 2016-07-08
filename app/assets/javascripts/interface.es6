@@ -12,7 +12,7 @@ var pageReady = function(){
 		$('.panel_icon').toggleClass('max');
 		$('.text_label').toggle();
 		$('.icon').toggleClass('max');
-		$('.inter_content').toggleClass('max');
+		// $('.inter_content').toggleClass('max');
 		$('.notif_num').toggleClass('max');
 	});
 	$('.js-tmax_tmin').click(function(event){
@@ -22,7 +22,7 @@ var pageReady = function(){
 		$('.task_label').toggle();
 		$('.ticon').toggleClass('max');
 		$('.task_list').toggleClass('max');
-		$('.inter_content').toggleClass('tmax');
+		// $('.inter_content').toggleClass('tmax');
 		$('.notif_num').toggleClass('tmax');
 	});
 
