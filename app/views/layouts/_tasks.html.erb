@@ -11,7 +11,9 @@
 		<a href="#" class="js-tmax_tmin">
 			<div class="task_icon">
 				<span class="ticon ion-ios-list-outline"></span>
-				<div class="tnotif_num"> <span class="notif">0</span> </div>
+				<%if @tasks.count > 0 %>
+					<div class="tnotif_num"> <span class="notif">0</span> </div>
+				<%end%>
 			</div>
 		</a>
 	</div>

@@ -37,6 +37,9 @@ header.header{
   a{
     color:#4482c3; font-weight:bold;
   }
+  menu{
+    max-width:1100px; margin:0 auto; padding:10px; z-index: 3;
+  }
 }
 
 
@@ -63,7 +66,7 @@ header.header{
 
 
 .login_top{
-	min-height:500px;
+	height:auto;
 }.login_top .blur_form{
 	margin:50px auto; max-width:1100px;
 }

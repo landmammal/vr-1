@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> -->
 
 <h3>Search for Courses</h3>
   <%= form_tag do %>
@@ -13,7 +13,7 @@
 
     <div class="each_item">
       <div class="each_title">
-        <%= link_to course.course_title, course %>
+        <%= link_to course.title, course %>
       </div>
       <div class="each_desc">
         <%= course.description %>

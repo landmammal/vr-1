@@ -1,5 +1,5 @@
-<%= form_for(@course) do |f| %>
-  <% if @course.errors.any? %>
+<%= form_for @new_course do |f| %>
+  <% if @new_course.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
 
@@ -17,6 +17,8 @@
   <%= f.text_field :tags, placeholder:'tags (comma separated)' %><br>
   <%= f.text_field :status, type:"hidden", value: 0 %><br>
   <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %><br>
-  <%= f.submit %>
+  <%= button_tag 'Create Course', type:'submit', class:"blue" %>
+  <button class="js-cancel_newCourse red small_btn" style="display: none;">cancel</button>
+
 
 <% end %>

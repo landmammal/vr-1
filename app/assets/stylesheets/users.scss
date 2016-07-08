@@ -17,9 +17,9 @@
 		overflow: hidden; padding:0;
 		backdrop-filter: blur(5px); background-color:rgba(0,0,0,0.7);
 
-		& .user_info_top{
-			border-bottom:1px rgba(255,255,255,0.1) solid; padding:5px 10px; margin-bottom:20px; font-size:17px; font-weight:bold;
-		}
+		// & .user_info_top{
+		// 	border-bottom:1px rgba(255,255,255,0.1) solid; padding:5px 10px; margin-bottom:20px; font-size:17px; font-weight:bold;
+		// }
 		& .profile_pic{
 			float:left; width:100px; padding:10px; margin-left:20px;
 			img{
@@ -27,7 +27,7 @@
 			}
 		}
 		& .profile_info{
-			float:left; width:100px; padding:10px;
+			float:left; width:calc(100% - 120px); padding:10px 0 10px 10px;
 		}
 	}
 }
