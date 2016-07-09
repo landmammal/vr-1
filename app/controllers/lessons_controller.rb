@@ -71,9 +71,10 @@ class LessonsController < ApplicationController
   # POST /lessons
   # POST /lessons.json
   def create
+    @course = current_user.courses
     @lesson = Lesson.new(lesson_params)
-    # @lesson = current_user.lessons.build(lesson_params)
-    @lesson.topic_id = @topic.id
+    @lesson = course.lessons.build(lesson_params)
+
 
     if @lesson.save
       respond_to do |format|

@@ -166,7 +166,7 @@ ActiveRecord::Schema.define(version: 20160706071419) do
     t.text     "description"
     t.string   "tags"
     t.integer  "status"
-    t.integer  "origcourse_id"
+    t.integer  "course_id"
     t.integer  "instructor_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false

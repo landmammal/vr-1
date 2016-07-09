@@ -17,7 +17,7 @@ root 'welcome#index'
     end
   get '/allcourses' => "courses#all"
   post '/topic/create' => "topics#create"
-  post '/lesson/create' => "lessons#create"
+  post '/courses/:course_id/topics/:topic_id/lessons/new' => "lessons#create"
 
   resources :courses do
     collection do
