@@ -1,6 +1,7 @@
 class LessonsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_topic, only: [:create, :new]
+  before_action :set_course, only: [:index, :show, :new]
+  before_action :set_topic, only: [:index, :show, :new]
   before_action :set_lesson, only: [ :edit, :update, :destroy, :prompt_view,                  :role_model_view,
                                      :explanation_token, :prompt_token, :role_model_token]
 
@@ -121,10 +122,13 @@ class LessonsController < ApplicationController
       params.require(:lesson).permit(:explanation, :prompt, :role_model)
     end
     # set the topic you are in before you start adding lessons
+    def set_course
+      @course = Course.find(params[:course_id])
+    end
+
     def set_topic
       @topic = Topic.find(params[:topic_id])
     end
-
     # Use callbacks to share common setup or constraints between actions.
     def set_lesson
       @lesson = Lesson.find(params[:id])

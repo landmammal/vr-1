@@ -10,11 +10,11 @@ root 'welcome#index'
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users
 
-  resources :courses do
-    resources :topics do
-      resources :lessons
+    resources :courses do 
+      resources :topics do
+        resources :lessons
+      end
     end
-  end
   get '/allcourses' => "courses#all"
   post '/topic/create' => "topics#create"
   post '/lesson/create' => "lessons#create"
