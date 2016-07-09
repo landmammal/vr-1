@@ -1,13 +1,12 @@
 <!-- <center><p id="notice"> <%= notice %> </p></center> -->
 
 <h3>My Courses</h3>
-
 <br>
 
 <div class="card_list">
 
-  <% @courses.each do |course| %>
-    <% if course.instructor_id == current_user || current_user.role == 'admin' %>
+  <% current_user.courses.each do |course| %>
+    <% if course.instructor_id == current_user.id || current_user.role == 'admin' %>
       <div class="card_item">
         <div class="card_title">
           <%= link_to course.title, course %>

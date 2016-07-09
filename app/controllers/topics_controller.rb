@@ -32,6 +32,7 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       if @topic.save
+        CourseTopic.create(course_id:params[:course_id], topic_id:@topic.id)
         format.html { redirect_to [@course, @topic], notice: 'Topic was successfully created.' }
         format.json { render :show, status: :created, location: @topic }
       else
@@ -78,6 +79,6 @@ class TopicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def topic_params
-      params.require(:topic).permit(:course_id, :title, :description, :tags, :status, :instructor_id)
+      params.require(:topic).permit(:origcourse_id, :title, :description, :tags, :status, :instructor_id)
     end
 end

@@ -70,11 +70,12 @@ class LessonsController < ApplicationController
   # POST /lessons
   # POST /lessons.json
   def create
-    @lesson = Lesson.new(lesson_params)
-    # @lesson = current_user.lessons.build(lesson_params)
-    @lesson.topic_id = @topic.id
+    @topic = current_user.topics.find(params[:topic_id])
+    # @lesson = Lesson.new(lesson_params)
+    @lesson = @topic.lessons.build(lesson_params)
 
     if @lesson.save
+      TopicLesson.create(topic_id:params[:topic_id], lesson_id:@lesson.id)
       respond_to do |format|
         format.html { redirect_to lesson_path(@lesson), notice: 'Lesson was successfully created.' }
         format.json { render :show, status: :created, location: @lesson }

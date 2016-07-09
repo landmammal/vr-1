@@ -37,8 +37,9 @@
   <a href="<%= new_lesson_path(@topic.id) %>">
     <button class="reg_btn blue">Create New Lesson</button>
   </a>
+  <button class="reg_btn green_sft">Add External Lesson</button>
   <hr>
 <% end %>
 
 
-<a href="<%= course_path %>"> <div class="back_button"> Back </div> </a>
+<a href="/courses/<%= @course.id %>"> <div class="back_button"> Back </div> </a>
