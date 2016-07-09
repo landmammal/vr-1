@@ -20,7 +20,7 @@
 <h3>Topics</h3>
 
 
-<% @course.alltopics.each_with_index do |topic, index| %>
+<% @course.topics.each_with_index do |topic, index| %>
   <b><%= (index + 1).to_s %></b> - <%= link_to topic.title, course_topic_path(@course, topic.id) %>
   <%= topic.description %>
   <% if current_user.role == 'admin' || current_user.role == "instructor" %>
