@@ -1,5 +1,5 @@
-<%= form_for([@course, @topic, @lesson]) do |f| %>
-  <% if @lesson.errors.any? %>
+<%= form_for @new_lesson, url: new_course_topic_lesson_path do |f| %>
+  <% if @new_lesson.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
 
@@ -15,6 +15,7 @@
   <%= f.text_area :description, placeholder:'Description' %><br>
   <%= f.text_field :tags, placeholder:'tags (comma separated)' %><br>
   <%= f.text_field :status, type:"hidden", value: 0 %><br>
+  <%= f.text_field :topic_id, type:"hidden", value:params[:topic_id] %><br>
   <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %><br>
   <%= f.submit %>
   

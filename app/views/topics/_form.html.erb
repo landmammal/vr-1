@@ -11,12 +11,12 @@
     </div>
   <% end %>
 
+  <%= f.text_field :status, type:"hidden", value: 0 %><br>
+  <%= f.text_field :course_id, type:"hidden", value:params[:course_id] %><br>
+  <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %><br>
   <%= f.text_field :title, placeholder:'Title' %><br>
   <%= f.text_area :description, placeholder:'Description' %><br>
   <%= f.text_field :tags, placeholder:'tags (comma separated)' %><br>
-  <%= f.text_field :status, type:"hidden", value: 0 %><br>
-  <%= f.text_field :origcourse_id, type:"hidden", value:params[:course_id] %><br>
-  <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %><br>
   <%= f.submit %>
 
 <%end%>

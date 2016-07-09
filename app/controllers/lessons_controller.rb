@@ -43,10 +43,6 @@ class LessonsController < ApplicationController
 
   def index
 
-    # @lessons = @topic.lessons.all
-    # if @lessons
-    # else
-
     @lessons = Lesson.all
 
   end
@@ -59,7 +55,7 @@ class LessonsController < ApplicationController
 
   # GET /lessons/new
   def new
-    @lesson = Lesson.new
+    @new_lesson = Lesson.new
     # @lesson = current_user.lessons.build
   end
 
@@ -71,22 +67,17 @@ class LessonsController < ApplicationController
   # POST /lessons.json
   def create
     @topic = current_user.topics.find(params[:topic_id])
-    # @lesson = Lesson.new(lesson_params)
-    @lesson = @topic.lessons.build(lesson_params)
+    @topic.lessons.build(lesson_params)
 
-    if @lesson.save
-      TopicLesson.create(topic_id:params[:topic_id], lesson_id:@lesson.id)
-      respond_to do |format|
-        format.html { redirect_to lesson_path(@lesson), notice: 'Lesson was successfully created.' }
-        format.json { render :show, status: :created, location: @lesson }
-      end
-    else
-      respond_to do |format|
-        format.html { render :new }
-        format.json { render json: @lesson.errors, status: :unprocessable_entity }
+    respond_to do |format|
+      if @topic.save
+          format.html { redirect_to course_topic_path, notice: 'Lesson was successfully created.' }
+          format.json { render :show, status: :created, location: @lesson }
+      else
+          format.html { render :new }
+          format.json { render json: @lesson.errors, status: :unprocessable_entity }
       end
     end
-
   end
 
   # PATCH/PUT /lessons/1
@@ -122,6 +113,11 @@ class LessonsController < ApplicationController
       params.require(:lesson).permit(:explanation, :prompt, :role_model)
     end
     # set the topic you are in before you start adding lessons
+    
+    def set_course
+      @course = Course.find(params[:course_id])
+    end
+
     def set_topic
       @topic = Topic.find(params[:topic_id])
     end
