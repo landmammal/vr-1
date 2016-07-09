@@ -15,16 +15,8 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
-  end
-
-  def course_api
-    @courses = Course.all
-    render json: @courses
-  end
-
-  def user_course_api
-    @courses = Course.all
-    render json: @courses
+    # get original topics created by that course
+    @orig_topics = Topic.where(course_id: @course.id)
   end
 
   # GET /courses/new

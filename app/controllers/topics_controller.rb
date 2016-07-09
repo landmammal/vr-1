@@ -28,11 +28,10 @@ class TopicsController < ApplicationController
   # POST /topics.json
   def create
     @course = current_user.courses.find(params[:course_id])
-    @topic = @course.topics.build(topic_params)
+    @course.topics.build(topic_params)
 
     respond_to do |format|
-      if @topic.save
-        CourseTopic.create(course_id:params[:course_id], topic_id:@topic.id)
+      if @course.save
         format.html { redirect_to [@course, @topic], notice: 'Topic was successfully created.' }
         format.json { render :show, status: :created, location: @topic }
       else
