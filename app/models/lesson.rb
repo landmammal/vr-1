@@ -2,8 +2,6 @@ class Lesson < ActiveRecord::Base
   belongs_to :instructor, class_name: 'User'
   has_many :practices
 
-  serialize :tags
-
   has_many :topic_lessons
   has_many :topics, through: :topic_lessons
 

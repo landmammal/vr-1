@@ -1,25 +1,31 @@
-<%= form_for @new_course do |f| %>
-  <% if @new_course.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
+<div class="js-open_form" style="display:none;">
+  <h3> New Course </h3>
 
-      <ul>
-      <% @course.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+  <%= form_for @new_course do |f| %>
+    <% if @new_course.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+        <ul>
+        <% @course.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+   
+    <%= f.text_field :title, placeholder:'Title' %><br>
+    <%= f.text_area :description, placeholder:'Description' %><br>
+    <%= f.text_field :tags, placeholder:'tags (comma separated)' %><br>
+    <%= button_tag 'Create Course', type:'submit', class:"blue" %>
+    <button class="js-cancel_form red reg_btn" style="display: none;">cancel</button>
+    
+    <%= f.text_field :status, type:"hidden", value: 0 %><br>
+    <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %>
+
+
   <% end %>
+</div>
 
- 
-  <%= f.text_field :title, placeholder:'Title' %><br>
-  <%= f.text_area :description, placeholder:'Description' %><br>
-  <%= f.text_field :tags, placeholder:'tags (comma separated)' %><br>
-  <%= button_tag 'Create Course', type:'submit', class:"blue" %>
-  <button class="js-cancel_newCourse red reg_btn" style="display: none;">cancel</button>
-  
-  <%= f.text_field :status, type:"hidden", value: 0 %><br>
-  <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %>
-
-
-<% end %>
+<a href="<%= new_course_path %>"><button class="js-show_form reg_btn green_sft">Create New Course</button></a>
