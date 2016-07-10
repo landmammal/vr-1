@@ -4,40 +4,10 @@
 </div>
 
 
+<%= link_to 'record explanation', prompt_view_lesson_path(@lesson) %>  
+<%= link_to 'record prompt', prompt_view_lesson_path(@lesson) %>
+<%= link_to 'record role model', role_model_view_lesson_path(@lesson.id) %>
 
-<% if @lesson.explanation == nil && current_user.role == 'admin' %>
-  
-
-  <%= form_for([@course, @topic, @lesson]) do |f| %>
-    <% if @lesson.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
-
-        <ul>
-        <% @lesson.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div class="field">
-      <%= f.label :explanation_script %><br>
-      <%= f.text_area :explanation_script %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-  <% end %>
-
-<% elsif @lesson.prompt == nil && current_user.role == 'admin' %>
-  <%= link_to 'record prompt', prompt_view_lesson_path(@lesson) %>
-
-<% elsif @lesson.role_model == nil && current_user.role == 'admin' %>
-  <%= link_to 'record role model', role_model_view_lesson_path(@lesson.id) %>
-
-<% else %>
 
   <!-- show first as lightbox -->
   <div class="site_wrapper" style="width: 1100px;">
