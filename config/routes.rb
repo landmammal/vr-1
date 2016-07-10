@@ -6,20 +6,12 @@ root 'welcome#index'
     get "/#{menu}" => "welcome##{menu}"
   end
 
+  ['courses','topics','lessons'].each do |apir|
+    get '/'+apir+'/api' => "api##{apir}_api"
+  end
 
 
-    resources :courses do
-      resources :topics do
-        resources :lessons
-      end
-    end
-  get '/allcourses' => "courses#all"
-  # ['courses','topics','lessons'].each do |apir|
-  #   get '/'+apir+'/api' => "api##{apir}_api"
-  # end
-  #
-  #
-  # get "/test" => "welcome#test"
+  get "/test" => "welcome#test"
 
   post '/topic/create' => "topics#create"
   post '/courses/:course_id/topics/:topic_id/lessons/new' => "lessons#create"
@@ -59,14 +51,11 @@ root 'welcome#index'
   #     post 'role_model_token'
   #   end
   # end
-  resources :explanations do
-    member do
-      post 'explanation_token'
-    end
-  end
+
   resources :concepts
   resources :models
   resources :prompts
+  resources :explanations
   resources :practices
   resources :demos
   resources :tasks

@@ -1,4 +1,11 @@
-<%= form_for [@explanation] do |f| %>
+<h2>Record Explanation</h2>
+
+  <ziggeo
+        ziggeo-width=450
+        ziggeo-height=300>
+  </ziggeo>
+  <br>
+<%= form_for [@explanation],html: {id: "tokenForm"}, remote: true, method: 'post'  do |f| %>
   <% if @explanation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
@@ -17,4 +24,6 @@
   <%= f.text_field :token, type:"hidden" %>
   <%= f.submit %>
 
-<% end %>
+<% end %> <br>
+<%= params.inspect %>
+<% binding.pry %>
