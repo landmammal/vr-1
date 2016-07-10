@@ -34,6 +34,12 @@ root 'welcome#index'
     end
   end
 
+  resources :lessons, shallow: true do
+    resources :explanations
+  end
+
+
+
   resources :lessons do
     resources :practices, shallow: true do
       member do
@@ -52,13 +58,15 @@ root 'welcome#index'
   #   end
   # end
 
-  resources :concepts
-  resources :models
-  resources :prompts
-  resources :explanations
-  resources :practices
+  # resources :concepts
+  # resources :models
+  # resources :prompts
+  # resources :explanations
+  # resources :practices
+
   resources :demos
   resources :tasks
+
   # resources :lesson_concepts
   # resources :lesson_models
   # resources :lesson_prompts
