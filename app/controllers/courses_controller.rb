@@ -19,6 +19,7 @@ class CoursesController < ApplicationController
   def show
     # get original topics created by that course
     @orig_topics = Topic.where(course_id: @course.id)
+    @topic = Topic.new
   end
 
   # GET /courses/new
