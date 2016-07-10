@@ -1,4 +1,14 @@
 class ExplanationsController < ApplicationController
+
+  def new
+    @explanation = Explanation.new
+  end
+  def show
+  end
+
+  def create
+  end
+
   def explanation_token
     explanation_token = token_params[:explanation]
     @lesson.explanation = explanation_token

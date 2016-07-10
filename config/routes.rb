@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
 root 'welcome#index'
 
   ['about','markets','process','contact'].each do |menu|
@@ -59,11 +59,14 @@ root 'welcome#index'
   #     post 'role_model_token'
   #   end
   # end
-
+  resources :explanations do
+    member do
+      post 'explanation_token'
+    end
+  end
   resources :concepts
   resources :models
   resources :prompts
-  resources :explanations
   resources :practices
   resources :demos
   resources :tasks
