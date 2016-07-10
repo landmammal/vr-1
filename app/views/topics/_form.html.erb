@@ -1,5 +1,5 @@
-<%= form_for [@course, @new_topic] do |f| %>
-  <% if @new_topic.errors.any? %>
+<%= form_for [@course, @topic] do |f| %>
+  <% if @topic.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
 

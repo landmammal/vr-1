@@ -5,7 +5,7 @@ class Lesson < ActiveRecord::Base
   serialize :tags
 
   has_many :topic_lessons
-  has_many :topics, :through => :topic_lessons
+  has_many :topics, through: :topic_lessons
 
   has_many :lesson_explanations
   has_many :explanations, :through => :lesson_explanations

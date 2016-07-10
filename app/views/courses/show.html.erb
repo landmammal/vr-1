@@ -4,7 +4,7 @@
   <%= @course.title %> <font color="#ccc">|</font>
 </div>
 <%= link_to 'Edit', edit_course_path(@course), class:'edit' %><br>
- 
+
 <%if !@course.tags.size == 0 %>
   tags:
   <% @course.tags.each do |tag| %>

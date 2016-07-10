@@ -1,55 +1,17 @@
 class LessonsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_course, only: [:index, :show, :new]
-  before_action :set_topic, only: [:index, :show, :new]
-  before_action :set_lesson, only: [ :edit, :update, :destroy, :prompt_view,                  :role_model_view,
-                                     :explanation_token, :prompt_token, :role_model_token]
+  before_action :set_course, only: [:index, :new, :create]
+  before_action :set_topic, only: [:index, :new]
+  before_action :set_lesson, only: [ :show, :edit, :update, :destroy]
 
 
   # GET /lessons
   # GET /lessons.json
-
-  def prompt_view
-  end
-
-  def role_model_view
-  end
-
-  def explanation_token
-    explanation_token = token_params[:explanation]
-    @lesson.explanation = explanation_token
-
-    if @lesson.save!
-      render json: @lesson.explanation, status: :ok
-    end
-  end
-
-  def prompt_token
-    prompt_token = token_params[:prompt]
-    @lesson.prompt = prompt_token
-
-    if @lesson.save!
-      render json: @lesson.prompt, status: :ok
-    end
-  end
-
-  def role_model_token
-    role_model_token = token_params[:role_model]
-    @lesson.role_model = role_model_token
-
-    if @lesson.save!
-      render json: @lesson.role_model, status: :ok
-    end
-  end
-
   def index
-
     # @lessons = @topic.lessons.all
     # if @lessons
     # else
-
     @lessons = Lesson.all
-
   end
 
   # GET /lessons/1
@@ -71,23 +33,18 @@ class LessonsController < ApplicationController
   # POST /lessons
   # POST /lessons.json
   def create
-    @course = current_user.courses
-    @lesson = Lesson.new(lesson_params)
-    @lesson = course.lessons.build(lesson_params)
+    @topic = current_user.topics.find(params[:lesson][:topic_id])
+    @topic.lessons.build(lesson_params)
 
-
-    if @lesson.save
-      respond_to do |format|
-        format.html { redirect_to lesson_path(@lesson), notice: 'Lesson was successfully created.' }
-        format.json { render :show, status: :created, location: @lesson }
-      end
-    else
-      respond_to do |format|
+    respond_to do |format|
+      if @topic.save
+        format.html { redirect_to course_topic_path(@course, @topic), notice: 'Topic was successfully created.' }
+        format.json { render :show, status: :created, location: @topic }
+      else
         format.html { render :new }
-        format.json { render json: @lesson.errors, status: :unprocessable_entity }
+        format.json { render json: @topic.errors, status: :unprocessable_entity }
       end
     end
-
   end
 
   # PATCH/PUT /lessons/1
@@ -137,6 +94,6 @@ class LessonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
-      params.require(:lesson).permit(:topic_id, :lesson_title, :explanation, :prompt, :role_model, :performance, :explanation_script, :prompt_script, :model_script, :model_token, :explanation_token, :role_model_token)
+      params.require(:lesson).permit(:topic_id, :title, :description, :tags, :status, :instructor_id)
     end
 end

@@ -1,22 +1,12 @@
 
 <div class="course_title">
-  <%= @lesson.lesson_title %>
+  <%= @lesson.title %>
 </div>
 
+
+
 <% if @lesson.explanation == nil && current_user.role == 'admin' %>
-  <h2>Record Explanation</h2>
-
-  <ziggeo
-        ziggeo-width=450
-        ziggeo-height=300>
-  </ziggeo>
-
-  <%= form_for @lesson, url: explanation_token_lesson_path(@lesson.id),
-                                                      html: {id: "tokenForm"},
-                                                      remote: true,
-                                                      method: 'post' do |f| %>
-  <%= f.hidden_field :explanation %>
-  <% end %>
+  
 
   <%= form_for([@course, @topic, @lesson]) do |f| %>
     <% if @lesson.errors.any? %>
@@ -68,7 +58,7 @@
       </ziggeo>
     </div>
 
-  
+
 
 
     <div class="prompt_model">
