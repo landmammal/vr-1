@@ -2,27 +2,35 @@ Rails.application.routes.draw do
 
 root 'welcome#index'
 
-  welcome_routes = ['about','markets','process','contact']
-  welcome_routes.each do |menu|
+  ['about','markets','process','contact'].each do |menu|
     get "/#{menu}" => "welcome##{menu}"
   end
+
+
+  ['courses','topics','lessons'].each do |apir|
+    get '/'+apir+'/api' => "api##{apir}_api"
+  end
+  
+
+  get "/test" => "welcome#test"
+  post '/topic/create' => "topics#create"
+  post '/courses/:course_id/topics/:topic_id/lessons/new' => "lessons#create"
+
+
+
 
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users
 
-  resources :courses do
-    resources :topics do
-      resources :lessons
-    end
-  end
-  get '/allcourses' => "courses#all"
-  post '/topic/create' => "topics#create"
-  post '/courses/:course_id/topics/:topic_id/lessons/new' => "lessons#create"
+
+
 
   resources :courses do
     collection do
-        get '/api' => "courses#course_api"
-        get '/api/user_course' => "courses#user_course_api"
+        get '/search' => "courses#search"
+    end
+    resources :topics do
+      resources :lessons
     end
   end
 
@@ -59,7 +67,6 @@ root 'welcome#index'
   # resources :course_topics
   # resources :course_registrations
 
-  get "/test" => "welcome#test"
   # get "/interfacetest" => "welcome#interface_test"
 
   # The priority is based upon order of creation: first created -> highest priority.

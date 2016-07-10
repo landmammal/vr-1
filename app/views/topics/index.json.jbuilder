@@ -1,4 +1,4 @@
 json.array!(@topics) do |topic|
-  json.extract! topic, :id, :course_id, :topic_title, :description
-  json.url topic_url(topic, format: :json)
+  json.extract! topic, :id, :title, :description, :course_id
+  json.url course_topic_url(topic, format: :json)
 end

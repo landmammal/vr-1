@@ -4,10 +4,11 @@
   <%= @course.title %> <font color="#ccc">|</font>
 </div>
 <%= link_to 'Edit', edit_course_path(@course), class:'edit' %><br>
+<br><br>
  
 <%if !@course.tags.size == 0 %>
   tags:
-  <% @course.tags.each do |tag| %>
+  <% @course.tags.split(', ').each do |tag| %>
     <a href="#"><b><%= tab %></b></a>
   <%end%>
 <%end%>
@@ -17,7 +18,7 @@
 </div>
 
 
-<h3>Topics</h3>
+<h4>Topics</h4>
 
 
 <% @course.topics.each_with_index do |topic, index| %>
@@ -32,12 +33,8 @@
 
 <br>
 
-<% if current_user.role == 'admin' || current_user.role == 'instructor' %>
-  <a href="<%= new_course_topic_path(@course.id) %>">
-    <button class="reg_btn blue">Create New Topic</button>
-  </a>
-  <button class="reg_btn green_sft">Add External Topic</button>
-  <hr>
+<% if current_user.level_2 %>
+  <%= render './topics/form' %>
 <% end %>
 
 <br>

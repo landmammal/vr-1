@@ -1,22 +1,29 @@
-<%= form_for [@course, @new_topic] do |f| %>
-  <% if @new_topic.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+<div class="js-open_form" style="display:none;">
+  <h3>New Topic</h3>
+  <%= form_for [@course, @new_topic] do |f| %>
+    <% if @new_topic.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
 
-      <ul>
-      <% @topic.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <ul>
+        <% @topic.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-  <%= f.text_field :status, type:"hidden", value: 0 %><br>
-  <%= f.text_field :course_id, type:"hidden", value:params[:course_id] %><br>
-  <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %><br>
-  <%= f.text_field :title, placeholder:'Title' %><br>
-  <%= f.text_area :description, placeholder:'Description' %><br>
-  <%= f.text_field :tags, placeholder:'tags (comma separated)' %><br>
-  <%= f.submit %>
+    <%= f.text_field :title, placeholder:'Title' %><br>
+    <%= f.text_area :description, placeholder:'Description' %><br>
+    <%= f.text_field :tags, placeholder:'tags (comma separated)' %><br>
+    <%= button_tag 'Create Topic', type:'submit', class:"blue" %>
+    <button class="js-cancel_form red reg_btn" style="display: none;">cancel</button>
 
-<%end%>
+    <%= f.text_field :status, type:"hidden", value: 0 %><br>
+    <%= f.text_field :course_id, type:"hidden", value:params[:id] %><br>
+    <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %><br>
+
+  <%end%>
+</div>
+<button class="js-show_form reg_btn green_sft">Create New Topic</button>
+<button class="js-show_external_form reg_btn green_sft">Add External Topic</button>

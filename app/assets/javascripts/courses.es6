@@ -1,20 +1,20 @@
 var pageReady = function(){
 
-	$('.js-create_newCourse').click(function(event){
+	$('.js-show_form').click(function(event){
 		event.preventDefault();
 
-		$('.js-new_course').fadeIn(500);
-		$('.js-create_newCourse').hide();
-		$('.js-cancel_newCourse').show();
+		$('.js-open_form').fadeIn(500);
+		$('.js-show_form').hide();
+		$('.js-cancel_form').show();
 	});
 
-	$('.js-cancel_newCourse').click(function(event){
+	$('.js-cancel_form').click(function(event){
 		event.preventDefault();
 
-		$('.js-new_course').fadeOut(500);
+		$('.js-open_form').fadeOut(500);
 		
 		setTimeout(function(){
-			$('.js-create_newCourse').show();
+			$('.js-show_form').show();
 		},600);
 	});
 

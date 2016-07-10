@@ -1,6 +1,8 @@
 <!-- <center><p id="notice"> <%= notice %> </p></center> -->
-
 <h3>My Courses</h3>
+<br>
+
+
 <br>
 
 <div class="card_list">
@@ -28,10 +30,6 @@
 
 </div>
 
-
-<br>
-
-
 <% if current_user.level_2 %>
-  <a href="<%= new_course_path %>"><button class="reg_btn blue">Create New Course</button></a>
+  <%= render './courses/form' %></div>
 <% end %>
