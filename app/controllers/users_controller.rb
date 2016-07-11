@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @courses = Course.all
     
-    if @user.role == 'instructor'
+    if ['admin', 'instructor'].include? @user.role
       @course = Course.new
       @topic = Topic.new
       @lesson = Lesson.new

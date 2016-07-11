@@ -1,5 +1,5 @@
 <div class="js-open_form" style="display:none;">
-  <h3> New Course </h3>
+  <!-- <h3> New Course </h3> -->
 
   <%= form_for @course do |f| %>
     <% if @course.errors.any? %>
@@ -28,4 +28,6 @@
   <% end %>
 </div>
 
-<a href="<%= new_course_path %>"><button class="js-show_form small_btn green_sft">Create New Course</button></a>
+<!-- <a href="<%= new_course_path %>"> -->
+<button class="js-show_form js-course_form small_btn green_sft">Create New Course</button>
+<!-- </a> -->

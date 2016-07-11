@@ -15,10 +15,21 @@ var pageReady = function(){
 		
 		setTimeout(function(){
 			$('.js-show_form').show();
+			$('.js-courses_box_title').text('My courses');
 		},600);
 	});
 
 
+
+
+
+	function course_box_change(title){
+		$('.js-courses_box_title').text(title);
+	}
+
+	$('.js-course_form').click(function(){
+		course_box_change('Creating new course');
+	})
 
 };
 
