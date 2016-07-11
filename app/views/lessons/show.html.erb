@@ -3,7 +3,8 @@
   <%= @lesson.title %>
 </div>
 <br>
-
-<%= link_to 'record explanation', new_lesson_explanation_path(@lesson) %><br>
-<%= link_to 'record prompt'  %><br>
-<%= link_to 'record role model' %>
+<%if [@r[0], @r[1]].include? current_user.role %>
+	<%= link_to 'record explanation', new_lesson_explanation_path(@lesson) %><br>
+	<%= link_to 'record prompt' %><br>
+	<%= link_to 'record role model' %>
+<%end%>

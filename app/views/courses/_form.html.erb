@@ -1,8 +1,8 @@
 <div class="js-open_form" style="display:none;">
   <h3> New Course </h3>
 
-  <%= form_for @new_course do |f| %>
-    <% if @new_course.errors.any? %>
+  <%= form_for @course do |f| %>
+    <% if @course.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
 
@@ -28,4 +28,4 @@
   <% end %>
 </div>
 
-<a href="<%= new_course_path %>"><button class="js-show_form reg_btn green_sft">Create New Course</button></a>
+<a href="<%= new_course_path %>"><button class="js-show_form small_btn green_sft">Create New Course</button></a>

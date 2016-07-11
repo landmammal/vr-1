@@ -1,5 +1,4 @@
 class CoursesController < ApplicationController
-  before_action :set_new_forms, only: [:index, :show, :new]
   before_action :set_course, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user! , except: [:index, :show, :all]
 
@@ -8,10 +7,22 @@ class CoursesController < ApplicationController
   def index
     # @courses = Course.where(instructor_id: current_user.id)
     @courses = current_user.courses
+
+    if current_user.role == 'instructor'
+      @course = Course.new
+      @topic = Topic.new
+      @lesson = Lesson.new
+    end
   end
 
   def search
     @courses = Course.all
+
+    if current_user.role == 'instructor'
+      @course = Course.new
+      @topic = Topic.new
+      @lesson = Lesson.new
+    end
   end
 
   # GET /courses/1
@@ -76,13 +87,6 @@ class CoursesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_course
       @course = Course.find(params[:id])
-    end
-
-    def set_new_forms
-      if current_user.level_2
-        @new_course = Course.new
-        @new_topic = Topic.new
-      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

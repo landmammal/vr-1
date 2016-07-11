@@ -14,8 +14,10 @@
 				<a href="/users/<%= current_user.id %>"><img src="<%= current_user.photo %>" class="img-circle"></a>
 			</div>
 			<div class="profile_info">
-				<span style=" font-size:16px; font-weight:bold;"><%= current_user.first_name %> <%= current_user.last_name %></span><br>
-				<%= @user_role %><br><br>
+				<span style=" font-size:16px; font-weight:bold;">
+					<%= current_user.first_name %> <%= current_user.last_name %>
+				</span>
+				<div class="js-user_role"><%= @user_role %></div><br>
 				<b>Last Login:</b><br>
 				<%= @last_signin %><br>
 			</div>
