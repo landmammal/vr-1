@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @courses = Course.all
-    @user.role == 'instructor' ? @new_course = Course.new : ''
+    @new_course = Course.new
 
     authorize @user
   end
