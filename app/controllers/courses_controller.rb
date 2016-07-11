@@ -7,10 +7,22 @@ class CoursesController < ApplicationController
   def index
     # @courses = Course.where(instructor_id: current_user.id)
     @courses = current_user.courses
+
+    if current_user.role == 'instructor'
+      @course = Course.new
+      @topic = Topic.new
+      @lesson = Lesson.new
+    end
   end
 
   def search
     @courses = Course.all
+
+    if current_user.role == 'instructor'
+      @course = Course.new
+      @topic = Topic.new
+      @lesson = Lesson.new
+    end
   end
 
   # GET /courses/1

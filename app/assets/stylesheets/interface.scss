@@ -121,9 +121,16 @@ $panel_color: #0e2433 ;
 		& .body{ padding:10px; }
 	}
 	& .body{
-		height:calc(100% - 200px); padding:10px;
+		height:calc(100% - 200px); padding:10px; overflow:hidden;
 	}
 }
+
+
+.main_title{
+  font-weight:bold; font-size:20px; font-family:'webly_bld'; margin:10px auto 15px; 
+}
+
+
 footer{
 	background-color:#363636; color:white; height:200px;
 	& .foot_width{
@@ -167,20 +174,6 @@ footer{
 }
 
 
-.user_tab{
-	padding: 10px; text-align:center; display:inline-block;
-	color:white; font-family:'webly_reg'; font-size:18px;
-	&.red{ background-color:#D27575; }
-	&.blue{ background-color:#6A9FD9; }
-	&.green{ background-color:#5DD05D; }
-	&.yellow{ background-color:#CACA64; }
-	&.trans{ background-color:transparent; font-family:'webly_bld'; color:#5D5D5D; }
-}
-
-
-
-
-
 
 
 // ========================================================
@@ -189,8 +182,10 @@ footer{
 
 
 .section{
-	display:inline-block; box-shadow:2px 2px #ccc; background-color:white; padding:5px;
-	border-radius:3px;
+	// background-color:white; 
+	padding:5px;
+	border-radius:1px;
+	overflow:hidden;
 }
 
 /* Mobile Layout: 480px and below. */
@@ -200,19 +195,9 @@ footer{
 /* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
 
 @media only screen and (min-width: 481px) {
-	.section{
-		&.user_courses{
-			width:100%; min-width:300px; 
-		}
-	}
 }
 
 /* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
 
 @media only screen and (min-width: 769px) {
-	.section{
-		&.user_courses{
-			width:100%; max-width:60%;
-		}
-	}
 }
