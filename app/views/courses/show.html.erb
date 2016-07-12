@@ -32,8 +32,8 @@
 <% end %>
 
 <br>
-  <!-- the link that was here before was failing cause it was calling a partial that it didnt know about -->
-  <%= link_to 'new topic', new_course_topic_path(@course)%>
-
+  <!-- <%= link_to 'new course', new_course_topic_path(@course)%> -->
+  <!-- This works the problem was in the course controller, you need a Topic.new in the show for the form to work -->
+  <%= render './topics/form' %> <!-- it works -->
 <br>
 <a href="<%= courses_path %>"> <div class="back_button"> Back </div> </a>

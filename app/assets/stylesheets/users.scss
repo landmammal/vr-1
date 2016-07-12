@@ -33,13 +33,13 @@
 }
 
 
-.course_user_list{
+.course_list{
 	margin:5px 5px 5px 0; display:inline-block;
 	color:white; font-family:'webly_reg'; font-size:14px; font-weight:bold;
 	background-color:#A4A4A4; overflow:hidden;
-	& .title{ padding: 5px 10px; float:left;}
+	& .title{ padding: 5px 10px; float:left; color:black;}
 	& .course_status{
-		padding: 5px 10px;text-align:center; float:right;
+		padding: 10px 10px;text-align:center; float:right;
 		color:white; font-family:'webly_bld'; font-size:14px; font-weight:bold;
 		&.new{
 			background-color:#FF6161; 
@@ -56,5 +56,8 @@
 .white_card{ 
 	padding:5px 10px; background-color:rgba(white, 0.6); 
 	display:inline-block; margin:5px 5px 5px 0; border-radius:5px;
-	box-shadow:0 2px #ddd;
+	box-shadow:0 2px #ddd; min-width:220px; width:19.35%;
+	&:hover{
+		background-color:white;
+	}
 }

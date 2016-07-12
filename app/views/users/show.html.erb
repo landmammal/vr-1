@@ -9,7 +9,31 @@
 	</div>
 </div>
 
+	<div class="main_title"><%= current_user.role.capitalize %> interface</div>
 <div class="box_sep">
-	<div class="title"> <%= current_user.role.capitalize %> interface<br> </div>
-	<div class="body"><%= render current_user.role %></div>
+	<div class="title">
+		<span class="js-courses_box_title">My courses</span> 
+		<span class="js-cn" style="display: none;"> > </span>
+		<span class="js-course_name"></span>
+		<span class="js-tn" style="display: none;"> :: </span>
+		<span class="js-topic_name"></span>
+	</div>
+	<div class="body">
+		<%= render current_user.role %>
+		<%if [@r[1], @r[3]].include? current_user.role %>
+			<div class="js-my_topics_list" style="display: none;">
+				<div class="js-topics_list"></div>
+
+				<button class="js-back_to_courses blue small_btn"> << Courses </button>
+			</div>
+
+			<div class="js-my_lessons_list" style="display: none;">
+
+				<div class="js-lessons_list"></div>
+
+				<button class="js-back_to_topics blue small_btn"> << Topics </button>
+				<button class="js-back_to_courses blue small_btn"> << Courses </button>
+			</div>
+		<%end%>
+	</div>
 </div>
