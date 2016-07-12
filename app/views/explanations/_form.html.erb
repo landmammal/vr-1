@@ -17,15 +17,15 @@
       </ul>
     </div>
   <% end %>
-  <%= f.label :user_id, type:"hiden", value:params[:user_id] %><br>
+
+  <%= f.text_field :user_id, type:"hidden", value:current_user.id %><br>
   <%= f.text_field :lesson_id, type:"hidden", value:params[:lesson_id] %><br>
   <%= f.text_area :script, placeholder:'script' %><br>
   <%= f.text_field :video_token, type:"hidden" %>
   <%= f.text_field :token, type:"hidden" %>
   <%= f.submit %>
-
 <% end %> <br>
-<%= params.inspect %>
+
 <script >
   // this function is getting the video token from ZiggeoApi.Events
   function postVideoToken(videoToken, streamToken){
@@ -34,9 +34,14 @@
     // grab the value field by its the id
     $ziggeotoken = $('#explanation_video_token');
     $webtoken = $('#explanation_token');
+  
+    $user = $('explanation_user_id');
+    $lesson = $('explanation_lesson_id');
+
     // assign the value of that field we grab by its id to the value of postVideoToken
     $ziggeotoken.val(videoToken);
     $webtoken.val(streamToken)
+
     // the form we grabed earlier by its id gets submited to the server
     $form.submit();
     // $.ajax ({

@@ -1,9 +1,13 @@
 class ExplanationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_lesson, only: [:new]
+  before_action :set_explanatio, only: [:show, :index]
 
   def new
     @explanation = Explanation.new
+  end
+
+  def show
   end
 
   def create
@@ -12,7 +16,7 @@ class ExplanationsController < ApplicationController
 
     respond_to do |format|
       if @lesson.save
-        format.html { redirect_to @lesson, notice: 'Topic was successfully created.' }
+        format.html { redirect_to new_lesson_explanation_path(@lesson), notice: 'explanation was successfully created.' }
         format.json { render :show, status: :created, location: @topic }
       else
         format.html { render :new }
@@ -21,15 +25,14 @@ class ExplanationsController < ApplicationController
     end
   end
 
-  def explanation_token
-    explanation_token = token_params[:explanation]
-    @lesson.explanation = explanation_token
-
-    if @lesson.save!
-      render json: @lesson.explanation, status: :ok
-    end
-  end
-
+  # def explanation_token
+  #   explanation_token = token_params[:explanation]
+  #   @lesson.explanation = explanation_token
+  #
+  #   if @lesson.save!
+  #     render json: @lesson.explanation, status: :ok
+  #   end
+  # end
   private
   def set_explanation
     @explanation = Explanation.find(params[:id])
