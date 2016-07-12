@@ -5,7 +5,7 @@
         ziggeo-height=300>
   </ziggeo>
   <br>
-<%= form_for [@lesson, @explanation],html: {id: "tokenForm"}, remote: true, method: 'post'  do |f| %>
+<%= form_for [@lesson, @explanation],html: {id: "tokenForm"}, remote: true  do |f| %>
   <% if @explanation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
@@ -23,7 +23,7 @@
   <%= f.text_area :script, placeholder:'script' %><br>
   <%= f.text_field :video_token, type:"hidden" %>
   <%= f.text_field :token, type:"hidden" %>
-  <%= f.submit %>
+  <%= link_to "Submit", new_lesson_prompt_path(@lesson), id: "explanationButton" %>
 <% end %> <br>
 
 <script >
@@ -34,7 +34,7 @@
     // grab the value field by its the id
     $ziggeotoken = $('#explanation_video_token');
     $webtoken = $('#explanation_token');
-  
+
     $user = $('explanation_user_id');
     $lesson = $('explanation_lesson_id');
 

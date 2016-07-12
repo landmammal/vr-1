@@ -39,7 +39,7 @@ class ExplanationsController < ApplicationController
   end
 
   def explanation_params
-      params.require(:explanation).permit(:instructor_id, :lesson_id, :token, :video_token, :script)
+      params.require(:explanation).permit(:user_id, :lesson_id, :token, :video_token, :script)
   end
 
   def set_lesson
