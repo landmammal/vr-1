@@ -1,6 +1,6 @@
   class PromptsController < ApplicationController
   before_action :set_lesson, only: [:new]
-  before_action :set_prompt, only: [:show, :index, :edit, :update, :delete]
+  before_action :set_prompt, only: [:show, :index, :edit, :update, :destroy]
 
   def new
     @prompt = Prompt.new
@@ -9,7 +9,7 @@
   def edit
   end
 
-  def delete
+  def destroy
 
   end
 

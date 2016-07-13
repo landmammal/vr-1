@@ -37,6 +37,7 @@ root 'welcome#index'
   resources :lessons, shallow: true do
     resources :explanations
     resources :prompts
+    resources :models
   end
 
 

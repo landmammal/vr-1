@@ -19,6 +19,7 @@ class LessonsController < ApplicationController
   def show
     @explanation = Explanation.new
     @prompt = Prompt.new
+    @model = Model.new
   end
 
   # GET /lessons/new
