@@ -38,6 +38,8 @@ root 'welcome#index'
   resources :lessons, shallow: true do
     resources :explanations
     resources :prompts
+    resources :models
+    resources :concepts
   end
 
 
@@ -60,7 +62,7 @@ root 'welcome#index'
   #   end
   # end
 
-  # resources :concepts
+
   # resources :models
   # resources :explanations
   # resources :practices

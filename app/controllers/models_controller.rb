@@ -1,22 +1,20 @@
 class ModelsController < ApplicationController
-  before_action :set_model, only: [:index]
-  before_action :set_lesson, only: [new]
-
-  def index
-
-  end
+  before_action :authenticate_user!
+  before_action :set_model, only: [:show, :update, :destroy, :edit]
+  before_action :set_lesson, only: [:new]
 
   def new
     @model = Model.new
   end
 
   def create
-    @lesson = current_user.lessons.build(params[:lesson_id])
+    @lesson = current_user.lessons.find(params[:lesson_id])
     @lesson.models.build(model_params)
 
     respond_to do |format|
       if @lesson.save
-        format.html { redirect_to [@lesson, @mode], notice: 'Lesson was successfully created.' }
+        @model = Model.find(@lesson.models.last)
+        format.html { redirect_to edit_model_path(@model)}
         format.json { render :show, status: :created, location: @topic }
       else
         format.html { render :new }
@@ -24,14 +22,29 @@ class ModelsController < ApplicationController
       end
     end
   end
-  # def role_model_token
-  #   role_model_token = token_params[:role_model]
-  #   @lesson.role_model = role_model_token
-  #
-  #   if @lesson.save!
-  #     render json: @lesson.role_model, status: :ok
-  #   end
-  # end
+
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+       if @model.update(model_params)
+         @model = Model.find(params[:id])
+         @lesson = Lesson.find(@model.lesson_id)
+         @topic = Topic.find(@lesson.topic_id)
+         @course = Course.find(@topic.course_id)
+         format.html { redirect_to  course_topic_lesson_path(@course, @topic, @lesson), notice: 'Role Model was successfully created.' }
+         format.json { render :show, status: :ok, location: @model }
+       else
+         format.html { render :edit }
+         format.json { render json: @model.errors, status: :unprocessable_entity }
+       end
+    end
+  end
+
+  def destroy
+  end
+
   private
   def set_lesson
     @lesson = Lesson.find(params[:lesson_id])
@@ -41,7 +54,7 @@ class ModelsController < ApplicationController
     @model = Model.find(params[:id])
   end
 
-  def lesson_params
+  def model_params
     params.require(:model).permit(:user_id, :lesson_id, :script, :token, :video_token)
   end
 end

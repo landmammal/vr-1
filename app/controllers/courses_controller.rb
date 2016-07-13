@@ -35,7 +35,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/new
   def new
-    @course = current_user.courses.build
+    @course = Course.new
   end
 
   # GET /courses/1/edit
