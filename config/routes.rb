@@ -6,8 +6,9 @@ root 'welcome#index'
     get "/#{menu}" => "welcome##{menu}"
   end
 
-  ['courses','topics','lessons'].each do |apir|
+  ['courses','topics','lessons','course_registrations'].each do |apir|
     get '/'+apir+'/api' => "api##{apir}_api"
+    post '/'+apir+'/api' => "#{apir}#create"
   end
 
 

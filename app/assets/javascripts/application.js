@@ -14,17 +14,16 @@
 //= require jquery_ujs
 //= require_tree .
 
+var pageReady = function(){
 
-setTimeout(function(){
-	$('.flash-notice').fadeOut(2000);
-},4000)
-setTimeout(function(){
-	$('#notice').fadeOut(2000);
-},4000)
+	setTimeout(function(){
+		$('.flash-notice').fadeOut(2000);
+	},4000)
+	setTimeout(function(){
+		$('#notice').fadeOut(2000);
+	},4000)
 
-$(document).on("click", "#explanationButton", function(){
-   $("#tokenForm").submit();
-});
-$(document).on("click", "#promptButton", function(){
-   $("#tokenForm").submit();
-});
+};
+
+$(document).ready(pageReady);
+$(document).on('page:load', pageReady);

@@ -1,0 +1,12 @@
+all of them:
+privacy <- select(method)
+
+lesson:
+lesson_type <- select
+
+
+lesson, explanation, prompt, model
+language <-select(language types)
+
+
+<%= link_to 'x', course, method: :delete, data: { confirm: 'Are you sure?' } %>

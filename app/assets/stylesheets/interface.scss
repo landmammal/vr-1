@@ -21,14 +21,14 @@ header.inter_header{
 
 
 $mn_pnl_s: 50px ;
-$mx_pnl_s: 100px ; 
+$mx_pnl_s: 150px ; 
 $mx_tsk_s: 200px ;
 $min_height: 700px ;
-$panel_color: #0e2433 ; 
+$panel_color: rgba(#4D4D4D,0.7) ; 
 
 .inter_wrapper{
 	// min-height:$min_height; 
-	background-image:url('/assets/blur-bg.jpg');
+	background-image:url('/assets/blur-bg_6.jpg');
 	background-size:cover;
 }
 
@@ -38,7 +38,7 @@ $panel_color: #0e2433 ;
 	// min-height:$min_height;
 	width:$mn_pnl_s; padding:2px 0;
 	&.max{
-		width:$mx_pnl_s; text-align:left; font-size: 14px; padding:2px 0;
+		width:$mx_pnl_s; text-align:left; font-size: 14px; padding:2px 5px;
 		// & .current_user_pic{
 		// 	 float:left; width:100%; margin:20px 20px 10px;
 		// 	img{
@@ -69,7 +69,7 @@ $panel_color: #0e2433 ;
 }
 
 .inter_content{
-	width:100%; float:left; 
+	width:100%; float:left;
 	background-color:rgba(255,255,255,0.5); 
 	padding:5px; margin:0;
 	min-height:$min_height;
@@ -152,7 +152,7 @@ footer{
 .panel_icon, .task_icon{
 	margin:20px auto; width:100%; overflow:hidden; max-height:20px;
 	&:hover{
-		color:#333;
+		color:#ccc;
 	}
 	& .text_label, & .task_label{display:none; float:left; font-size:13px;}
 	& .icon.max, & .ticon.max{
