@@ -1,4 +1,5 @@
-  class PromptsController < ApplicationController
+class PromptsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_lesson, only: [:new]
   before_action :set_prompt, only: [:show, :index, :edit, :update, :destroy]
 
@@ -9,12 +10,11 @@
   def edit
   end
 
-  def destroy
-
+  def show
   end
 
   def create
-    @lesson = current_user.lessons.build(params[:id])
+    @lesson = current_user.lessons.find(params[:lesson_id])
     @lesson.prompts.build(prompt_params)
 
     respond_to do |format|
@@ -43,6 +43,9 @@
         format.json { render json: @explanation.errors, status: :unprocessable_entity }
       end
    end
+  end
+
+  def destroy
   end
 
   private

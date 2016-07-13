@@ -20,6 +20,7 @@ class LessonsController < ApplicationController
     @explanation = Explanation.new
     @prompt = Prompt.new
     @model = Model.new
+    @concept = Concept.new
   end
 
   # GET /lessons/new
@@ -78,9 +79,6 @@ class LessonsController < ApplicationController
   end
 
   private
-    def token_params
-      params.require(:lesson).permit(:explanation, :prompt, :role_model)
-    end
     # set the topic you are in before you start adding lessons
     def set_course
       @course = Course.find(params[:course_id])

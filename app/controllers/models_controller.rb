@@ -1,4 +1,5 @@
 class ModelsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_model, only: [:show, :update, :destroy, :edit]
   before_action :set_lesson, only: [:new]
 
@@ -7,7 +8,7 @@ class ModelsController < ApplicationController
   end
 
   def create
-    @lesson = current_user.lessons.build(params[:id])
+    @lesson = current_user.lessons.find(params[:lesson_id])
     @lesson.models.build(model_params)
 
     respond_to do |format|
@@ -39,6 +40,9 @@ class ModelsController < ApplicationController
          format.json { render json: @model.errors, status: :unprocessable_entity }
        end
     end
+  end
+
+  def destroy
   end
 
   private
