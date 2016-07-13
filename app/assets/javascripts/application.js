@@ -21,13 +21,3 @@ setTimeout(function(){
 setTimeout(function(){
 	$('#notice').fadeOut(2000);
 },4000)
-
-$(document).on("click", "#explanationButton", function(){
-   $("#tokenForm").submit();
-});
-$(document).on("click", "#promptButton", function(){
-   $("#tokenForm").submit();
-});
-$(document).on("click", "#modelButton", function(){
-   $("#tokenForm").submit();
-});
