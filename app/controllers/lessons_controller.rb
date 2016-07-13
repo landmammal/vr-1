@@ -17,7 +17,8 @@ class LessonsController < ApplicationController
   # GET /lessons/1
   # GET /lessons/1.json
   def show
-    @lesson = Lesson.find(params[:id])
+    @explanation = Explanation.new
+    @prompt = Prompt.new
   end
 
   # GET /lessons/new

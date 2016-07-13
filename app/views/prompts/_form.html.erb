@@ -35,12 +35,9 @@ function postVideoToken(videoToken, streamToken){
   $ziggeotoken = $('#explanation_video_token');
   $webtoken = $('#explanation_token');
 
-  $user = $('explanation_user_id');
-  $lesson = $('explanation_lesson_id');
-
   // assign the value of that field we grab by its id to the value of postVideoToken
   $ziggeotoken.val(videoToken);
-  $webtoken.val(streamToken)
+  $webtoken.val(streamToken);
 
   // the form we grabed earlier by its id gets submited to the server
   $form.submit();

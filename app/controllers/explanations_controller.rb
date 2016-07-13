@@ -1,7 +1,7 @@
 class ExplanationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_lesson, only: [:new]
-  before_action :set_explanatio, only: [:show, :index]
+  before_action :set_explanation, only: [:show, :index, :edit, :update, :destroy]
 
   def new
     @explanation = Explanation.new
@@ -10,30 +10,51 @@ class ExplanationsController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
   def create
     @lesson = current_user.lessons.find(params[:lesson_id])
     @lesson.explanations.build(explanation_params)
 
     respond_to do |format|
       if @lesson.save
-        format.html { redirect_to new_lesson_explanation_path(@lesson), notice: 'explanation was successfully created.' }
-        format.json { render :show, status: :created, location: @topic }
+        @explanation = Explanation.find(@lesson.explanations.last)
+        format.html { redirect_to edit_explanation_path(@explanation) }
+        format.json { render :show, status: :created, location: @explanation }
       else
         format.html { render :new }
-        format.json { render json: @topic.errors, status: :unprocessable_entity }
+        format.json { render json: @explanation.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # def explanation_token
-  #   explanation_token = token_params[:explanation]
-  #   @lesson.explanation = explanation_token
-  #
-  #   if @lesson.save!
-  #     render json: @lesson.explanation, status: :ok
-  #   end
-  # end
+  def update
+   respond_to do |format|
+      if @explanation.update(explanation_params)
+        @explanation = Explanation.find(params[:id])
+        @lesson = Lesson.find(@explanation.lesson_id)
+        @topic = Topic.find(@lesson.topic_id)
+        @course = Course.find(@topic.course_id)
+        format.html { redirect_to  course_topic_lesson_path(@course, @topic, @lesson), notice: 'Explanation was successfully created.' }
+        format.json { render :show, status: :ok, location: @explanation }
+      else
+        format.html { render :edit }
+        format.json { render json: @explanation.errors, status: :unprocessable_entity }
+      end
+   end
+  end
+
+  def destroy
+    @explanation.destroy
+    respond_to do |format|
+      format.html { redirect_to explanations_url, notice: 'Explanation was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
+
   def set_explanation
     @explanation = Explanation.find(params[:id])
   end

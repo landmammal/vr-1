@@ -28,3 +28,6 @@ $(document).on("click", "#explanationButton", function(){
 $(document).on("click", "#promptButton", function(){
    $("#tokenForm").submit();
 });
+$(document).on("click", "#modelButton", function(){
+   $("#tokenForm").submit();
+});
