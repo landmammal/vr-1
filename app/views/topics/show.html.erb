@@ -22,9 +22,9 @@
 
 
 <% @lessons.each_with_index do |lesson, index| %>
-  Lesson <%= (index + 1).to_s %> - <%= link_to lesson.title, lesson %></td>
-  <% if current_user.role == "admin" || current_user.role == "instructor" %>
-    <%= link_to 'Delete', lesson, method: :delete, data: { confirm: 'Are you sure?' }, class:'red_text' %>
+  <%= (index + 1).to_s %> - <%= link_to lesson.title, lesson %>
+  <% if current_user.level_2 %>
+    <!-- <%= link_to 'Delete', lesson, method: :delete, data: { confirm: 'Are you sure?' }, class:'red_text' %> -->
   <% end %>
   <br>
   <br>

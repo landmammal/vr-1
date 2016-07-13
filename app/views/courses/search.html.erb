@@ -7,24 +7,60 @@
   <%end%>
 <hr>
 
-<div class="course_list">
+<div class="card_list">
 
   <% @courses.each do |course| %>
 
-    <div class="each_item">
-      <div class="each_title">
-        <%= link_to course.title, course %>
-      </div>
-      <div class="each_desc">
-        <%= course.description %>
-      </div>
-      <% if current_user.role == 'admin'  %>
-        <div class="each_edit">
-            <%= link_to 'Edit', edit_course_path(course) %> |
-            <%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, class:'red_text' %>
+    <div class="card_item">
+
+        <div class="card_title_sec">
+          
+          <a href="<%= course_path(course) %>">
+            <div class="card_title">
+              <%= course.title %>
+            </div>
+          </a>
+
+            <%if current_user.courses.include? course %>
+              <div class="card_edit js-edit_<%= course.id %>">
+                <span class="ion-edit edit_<%= course.id %>"></span>
+                <span class="ion-more more_<%= course.id %>" style="display: none;"></span>
+              </div>
+            <%else%>
+              <div class="card_edit js-start_<%= course.id %>">
+                <%if current_user.registered_courses.include? course %>
+                  <span class="js-user_registered_<%= course.id %>" style="display: none;">registered</span>
+                  <span class="ion-play play_<%= course.id %>"></span>
+                <%else%>
+                  <span class="js_user_registered_<%= course.id %>" style="display: none;">not_registered</span>
+                  <span class="js-course_id_<%= course.id %>" style="display: none;"><%= course.id.to_s %></span>
+                  <span class="js-user_id_<%= course.id %>" style="display: none;"><%= current_user.id.to_s %></span>
+                  <span class="js-user_role_<%= course.id %>" style="display: none;"><%= current_user.role %></span>
+                  
+                  <span class="ion-checkmark-circled check_<%= course.id %>"></span>
+                  <span class="ion-checkmark-circled checked_<%= course.id %>" style="color: #00D932; display: none;"></span>
+                <%end%>
+              </div>
+            <%end%>
+
         </div>
-      <%end%>
-    </div>
+
+        <div class="card_desc card_desc_<%= course.id %>">
+          <%= course.description %>
+          Description
+        </div>
+
+        <div class="card_edit_sec edit_sec_<%= course.id %>" style="display: none;">
+            <button class="blue small_btn">quick edit</button>
+            <a href="<%= course_path(course) %>"><button class="green_sft small_btn">view course</button></a>
+            <%= button_to "delete", course, method: :delete, data: { confirm: 'Are you sure?' }, class:"red small_btn" %>
+        </div>
+
+        <script type="text/javascript">
+          edit_or_start_course('<%= course.id %>')
+        </script>
+
+      </div>
 
   <% end %>
 

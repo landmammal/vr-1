@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @courses = Course.all
+    @courses = current_user.registered_courses
     if ['admin', 'instructor'].include? @user.role
       @course = Course.new
       @topic = Topic.new
