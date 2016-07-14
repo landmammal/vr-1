@@ -1,11 +1,10 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
   before_action :authenticate_user! , except: [:index, :show, :all]
-
+  before_action :set_course, only: [:show, :edit, :update, :destroy]
   # GET /courses
   # GET /courses.json
   def index
-    # @courses = Course.where(instructor_id: current_user.id)
     @courses = current_user.courses
 
     if current_user.role == 'instructor'
