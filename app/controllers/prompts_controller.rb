@@ -46,6 +46,11 @@ class PromptsController < ApplicationController
   end
 
   def destroy
+    @prompt.destroy
+    respond_to do |format|
+      format.html { redirect_to lessons_url, notice: 'Prompt was successfully delete it.' }
+      format.json { head :no_content }
+    end
   end
 
   private

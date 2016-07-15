@@ -43,6 +43,11 @@ class ModelsController < ApplicationController
   end
 
   def destroy
+    @model.destroy
+    respond_to do |format|
+      format.html { redirect_to lessons_url, notice: 'Role Model was successfully delete it.' }
+      format.json { head :no_content }
+    end
   end
 
   private

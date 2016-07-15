@@ -1,10 +1,11 @@
 class TopicsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
   before_action :set_course, only: [:index, :show, :new]
   # GET /topics
   # GET /topics.json
   def index
-    @topics = course.topics
+    @topics = Topic.all
   end
 
   # GET /topics/1
@@ -21,7 +22,6 @@ class TopicsController < ApplicationController
 
   # GET /topics/1/edit
   def edit
-    @topic = @course.topics.find(params[:id])
   end
 
   # POST /topics
@@ -59,7 +59,6 @@ class TopicsController < ApplicationController
   # DELETE /topics/1
   # DELETE /topics/1.json
   def destroy
-    @course = @topic.course
     @topic.destroy
     respond_to do |format|
       format.html { redirect_to topics_url, notice: 'Topic was successfully destroyed.' }

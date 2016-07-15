@@ -9,7 +9,7 @@ class PracticesController < ApplicationController
     @practice.token = practice_token
 
     if @practice.save!
-      render json: @practice.token, status :ok
+      render json: @practice.token, status: :ok
     end
   end
 

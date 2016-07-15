@@ -1,16 +1,13 @@
 class LessonsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_course, only: [:index, :new, :create]
-  before_action :set_topic, only: [:index, :new]
+  before_action :set_course, only: [:new, :create]
+  before_action :set_topic, only: [:new]
   before_action :set_lesson, only: [ :show, :edit, :update, :destroy]
 
 
   # GET /lessons
   # GET /lessons.json
   def index
-    # @lessons = @topic.lessons.all
-    # if @lessons
-    # else
     @lessons = Lesson.all
   end
 
@@ -26,7 +23,6 @@ class LessonsController < ApplicationController
   # GET /lessons/new
   def new
     @lesson = Lesson.new
-    # @lesson = current_user.lessons.build
   end
 
   # GET /lessons/1/edit
@@ -41,7 +37,7 @@ class LessonsController < ApplicationController
 
     respond_to do |format|
       if @topic.save
-        format.html { redirect_to course_topic_path(@course, @topic), notice: 'Topic was successfully created.' }
+        format.html { redirect_to course_topic_path(@course, @topic), notice: 'Lesson was successfully created.' }
         format.json { render :show, status: :created, location: @topic }
       else
         format.html { render :new }
@@ -67,15 +63,11 @@ class LessonsController < ApplicationController
   # DELETE /lessons/1
   # DELETE /lessons/1.json
   def destroy
-    # if @lesson.user_id == current_user
       @lesson.destroy
       respond_to do |format|
         format.html { redirect_to lessons_url, notice: 'Lesson was successfully destroyed.' }
         format.json { head :no_content }
       end
-    # else
-      # flash[:alert] = "You do not have permission to delete this lesson."
-    # end
   end
 
   private

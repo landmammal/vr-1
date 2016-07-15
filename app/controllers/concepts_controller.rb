@@ -46,6 +46,11 @@ class ConceptsController < ApplicationController
   end
 
   def destroy
+    @concept.destroy
+    respond_to do |format|
+      format.html { redirect_to explanations_url, notice: 'Concept was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
 
