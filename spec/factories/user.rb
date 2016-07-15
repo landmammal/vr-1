@@ -10,5 +10,9 @@ FactoryGirl.define do
     trait :admin do
       role 'admin'
     end
+
+    trait :as_instructor do
+      role 'instructor'
+    end
   end
 end

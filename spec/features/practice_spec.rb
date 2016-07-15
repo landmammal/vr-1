@@ -14,15 +14,15 @@
 #         fill_in 'Email', with: trainee.email
 #         fill_in 'Password', with: trainee.password
 #         click_on 'Log in'
-#
+# 
 #         expect(page).to have_content 'Signed in successfully'
 #         visit lessons_path
 #         click_on 'Show', match: :first
 #         expect(page).to have_content lesson.first.lesson_title
 #         click_on 'submit your practice practice'
 #         expect(page).to have_content 'New Practice'
-#         fill_in 'Token', with: 'sdfsd'
-#         fill_in 'Video token', with: 'sdfsdfsdfsdfs'
+#         fill_in 'Token', with: 'dsaonviniavbibvalvjbabsdl'
+#         fill_in 'Video token', with: 'sdfsdfsdfssdvavfdfs'
 #         click_on 'Create Practice'
 #
 #         expect(page).to have_content 'Practice was successfully created'
@@ -34,6 +34,5 @@
 #
 #
 #       end
-#
 #     end
 #   end

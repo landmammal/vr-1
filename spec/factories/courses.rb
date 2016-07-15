@@ -1,10 +1,7 @@
 FactoryGirl.define do
   factory :course do
-    course_title "course one"
+    title "course one"
     description "do it right"
-    user_id nil
-
+    instructor_id nil
   end
-
-
 end

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-  feature 'Sign in', type: :feature, focus: true do
+  feature 'Sign in', type: :feature do
     context 'A user signs in' do
 
       let!(:user){ FactoryGirl.create(:user) }
