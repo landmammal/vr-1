@@ -10,7 +10,7 @@ require "rails_helper"
          expect(page).to have_content 'Invalid Email or password'
       end
 
-      it 'with valid credentials' do
+      it 'passes with valid credentials' do
         visit new_user_session_path
         fill_in 'Email', with: user.email
         fill_in 'Password', with: user.password
@@ -18,12 +18,12 @@ require "rails_helper"
         expect(page).to have_content 'Signed in successfully'
       end
 
-      it 'user cannot sign in with invalid email' do
+      it 'fails with invalid email' do
         signin('invalid@email.com', user.password)
         expect(page).to have_content 'Invalid Email or password'
       end
 
-      it 'user cannot sign in with invalid password' do
+      it 'fails with invalid password' do
         signin(user.email, 'invalidpass')
         expect(page).to have_content 'Invalid Email or password'
       end
