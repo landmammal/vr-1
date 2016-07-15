@@ -32,6 +32,8 @@
 <% end %>
 
 <br>
-  <%= render './topics/form' %> 
+  <%if current_user.level_2 %>
+    <%= render './topics/form' %>
+  <%end%> 
 <br>
 <a href="<%= courses_path %>"> <div class="back_button"> Back </div> </a>

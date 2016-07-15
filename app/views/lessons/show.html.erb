@@ -3,7 +3,30 @@
   <%= @lesson.title %>
 </div>
 <br>
-<%if [@r[0], @r[1]].include? current_user.role %>
+
+
+
+
+
+<%if current_user.role == @r[3] %>
+
+hello
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%if current_user.level_2 %>
   <%= form_for [@lesson, @explanation]  do |f| %>
     <% if @explanation.errors.any? %>
       <div id="error_explanation">

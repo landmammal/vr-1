@@ -1,7 +1,7 @@
 var pageReady = function(){
 	var user_role = $('.js-user_role').text();
 
-	if(['Trainee', 'Instructor'].includes(user_role)){
+	if(['Trainee', 'Admin', 'Instructor'].includes(user_role)){
 		$('.js-display_my_courses').show();
 	}
 
@@ -16,6 +16,8 @@ var pageReady = function(){
 		$('.js-cn').hide();
 		$('.js-topic_name').empty();
 		$('.js-tn').hide();
+
+		$('.js-course_form_hide').show();
 
 	})
 	$('.js-back_to_topics').click(function(event){

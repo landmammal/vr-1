@@ -32,6 +32,31 @@
 			padding:10px 5px; text-align:center;
 		}
 	}
+
+	& .home_card_title_sec{
+		background-color:white; float:left; overflow:hidden; margin:5px;
+		& .home_card_title{
+			font-size:15px; font-family:'webly_bld'; float:left; text-align:left; 
+			padding:5px 15px;
+		}
+		& .home_card_edit{
+			font-size:15px; font-family:'webly_bld'; float:left; text-align:center; 
+			padding:5px 10px; color:#ccc;
+			&:hover{
+				background-color: #0095DD ; color:white;
+			}
+		}
+		& .home_card_delete{
+			font-size:15px; font-family:'webly_bld'; float:left; text-align:center; 
+			padding:5px 10px;
+			&:hover{
+				background-color: #FF0000 ; color:white;
+				a{ color:white; }
+			}
+			a{ color:#aaa; }
+		}
+	}
+
 }
 
 

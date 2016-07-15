@@ -1,8 +1,64 @@
 <div class="js-display_my_courses" style="display: none;"></div>
-<div class="js-all_courses">
-	<%= render './courses/courses' %>
+
+<div class="js-all_courses js-my_courses_list">
+
+	<div class="card_list">
+
+	  <% current_user.courses.each do |course| %>
+	    <%if current_user.level_2 %>
+
+	        <div class="home_card_title_sec">
+	          <a href="<%= course_path(course) %>" class="js-c_<%= course.id %>" >
+	            <div class="home_card_title"><%= course.title %></div>
+	            <div class="home_card_edit js-edit_<%= course.id %>"><span class="ion-edit"></span></div>
+	          </a>
+	          <div class="home_card_delete js-delete_<%= course.id %>">
+	            <%= link_to "X", course, method: :delete, data: { confirm: 'Are you sure?' } %>
+	          </div>
+	        </div>
+
+
+	        <div id="topics_for_<%= course.id %>" style="display: none;">
+				<% course.topics.each_with_index do |topic, index| %>
+					<a class="js-t_<%= topic.id %>" href="#">
+						<div class="white_card">
+							<div class="user_course_title"><%= (index + 1).to_s %> - <%= topic.title %></div>
+							<p class="user_courses"><progress value="0" max="100"></progress>
+							</p>
+						</div>
+					</a>
+
+					<div id="lessons_for_<%= topic.id %>" style="display: none;">
+						<% topic.lessons.each_with_index do |lesson, index| %>
+							<!-- Checks if Lessons are ready to be viewed -->
+							<%if lesson.explanations.size > 0 && lesson.prompts.size > 0 && lesson.models.size > 0 %>
+								<a class="js-l_" href="/lessons/<%= lesson.id %> ">
+									<div class="white_card">
+										<div class="user_course_title"><%= (index + 1).to_s %> - <%= lesson.title %></div>
+										<p class="user_courses"><progress value="0" max="100"></progress></p>
+									</div>
+								</a>
+							<%end%>
+						<%end%>
+					</div>
+
+					<script type="text/javascript">
+						click_on_topic('<%= topic.id %>', '<%= topic.title %>')
+					</script>
+
+				<%end%>
+			</div>
+
+
+	        <script type="text/javascript">
+				click_on_course('<%= course.id %>', '<%= course.title %>')
+			</script>
+	    
+	    <% end %>
+	  <% end %>
+
+	</div>
+
 </div>
 
-<!-- <div class="js-create_course_form"> -->
-	<%= render './courses/form' %>
-<!-- </div> -->
+<div class='js-course_form_hide'><%= render './courses/form' %></div>

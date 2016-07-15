@@ -23,13 +23,12 @@
 
         <div class="card_desc card_desc_<%= course.id %>">
           <%= course.description %>
-          Description
         </div>
 
         <div class="card_edit_sec edit_sec_<%= course.id %>" style="display: none;">
             <button class="blue small_btn">quick edit</button>
             <a href="<%= course_path(course) %>"><button class="green_sft small_btn">view course</button></a>
-            <%= button_to "delete", course, method: :delete, data: { confirm: 'Are you sure?' }, class:"red small_btn" %>
+            <%= link_to "delete", course, method: :delete, data: { confirm: 'Are you sure?' }, class:"red_text" %>
         </div>
 
         <script type="text/javascript">
