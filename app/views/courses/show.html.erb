@@ -32,8 +32,8 @@
 <% end %>
 
 <br>
-  <!-- <%= link_to 'new course', new_course_topic_path(@course)%> -->
-  <!-- This works the problem was in the course controller, you need a Topic.new in the show for the form to work -->
-  <%= render './topics/form' %> <!-- it works -->
+  <%if current_user.level_2 %>
+    <%= render './topics/form' %>
+  <%end%> 
 <br>
 <a href="<%= courses_path %>"> <div class="back_button"> Back </div> </a>

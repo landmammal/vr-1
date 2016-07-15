@@ -33,7 +33,7 @@
 
 <hr>
 
-<% if current_user.role == 'admin' || current_user.role == "instructor"  %>
+<%if current_user.level_2 %>
 <!-- refactor @course from @course.id -->
   <a href="<%= new_course_topic_lesson_path(@course, @topic) %>">
     <button class="reg_btn blue">Create New Lesson</button>

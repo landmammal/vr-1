@@ -2,53 +2,8 @@
 <h3>My Courses</h3>
 <br>
 
-
-<br>
-
-<div class="card_list">
-
-  <% current_user.courses.each do |course| %>
-    <%if current_user.level_2 %>
-      <div class="card_item">
-
-        <div class="card_title_sec">
-          
-          <a href="<%= course_path(course) %>">
-            <div class="card_title">
-              <%= course.title %>
-            </div>
-          </a>
-
-          <div class="card_edit js-edit_<%= course.id %>">
-            <%if current_user.level_2 && course.instructor_id == current_user.id %>
-              <span class="ion-edit edit_<%= course.id %>"></span>
-              <span class="ion-more more_<%= course.id %>" style="display: none;"></span>
-            <%end%>
-          </div>
-
-        </div>
-
-        <div class="card_desc card_desc_<%= course.id %>">
-          <%= course.description %>
-          Description
-        </div>
-
-        <div class="card_edit_sec edit_sec_<%= course.id %>" style="display: none;">
-            <button class="blue small_btn">quick edit</button>
-            <a href="<%= course_path(course) %>"><button class="green_sft small_btn">view course</button></a>
-            <%= button_to "delete", course, method: :delete, data: { confirm: 'Are you sure?' }, class:"red small_btn" %>
-        </div>
-
-        <script type="text/javascript">
-          edit_or_start_course('<%= course.id %>')
-        </script>
-
-      </div>
-    <% end %>
-  <% end %>
-
-</div>
+<%= render 'courses' %>
 
 <% if current_user.level_2 %>
-  <%= render './courses/form' %></div>
+  <%= render 'form' %>
 <% end %>
