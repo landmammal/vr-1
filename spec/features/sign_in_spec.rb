@@ -1,6 +1,6 @@
 require "rails_helper"
 
-  feature 'Sign in', type: :feature do
+  feature 'Sign in', type: :feature, focus: true do
     context 'A user signs in' do
 
       let!(:user){ FactoryGirl.create(:user) }
@@ -10,11 +10,11 @@ require "rails_helper"
          expect(page).to have_content 'Invalid Email or password'
       end
 
-      it 'with valid credentials', js: true do
+      it 'with valid credentials' do
         visit new_user_session_path
         fill_in 'Email', with: user.email
         fill_in 'Password', with: user.password
-        click_on 'Log in'
+        click_on 'LOG IN'
         expect(page).to have_content 'Signed in successfully'
       end
 
