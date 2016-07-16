@@ -35,7 +35,7 @@
 <%= render 'layouts/menu' %>
 
   <% flash.each do |message_type, message| %>
-    <div id:"flash" class="flash_message flash-<%= message_type %>"><%= message %></div>
+    <div id:"flash" class="flash_message flash-<%= message_type %>"><%= message  %></div>
   <% end %>
 
 <% if user_signed_in? %>
