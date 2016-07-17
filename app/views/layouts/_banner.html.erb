@@ -9,6 +9,7 @@
 				<%= current_user.first_name %> <%= current_user.last_name %>
 			</span>
 			<div class="js-user_role"><%= @user_role %></div><br>
+			<div class="js-user_id" style="display: none;"><%= current_user.id %></div>
 			<b>Last Login:</b><br>
 			<%= @last_signin %><br>
 		</div>

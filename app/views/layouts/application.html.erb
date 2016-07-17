@@ -39,7 +39,8 @@
   <% end %>
 
 <% if user_signed_in? %>
-    <table class="inter_wrapper" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <div class="inter_wrapper">
+    <table style="height: 100%;" width="100%" border="0" cellspacing="0" cellpadding="0">
       <tbody>
         <tr>
           <td class="leftpanel" valign="top">
@@ -57,6 +58,7 @@
         </tr>
       </tbody>
     </table>
+  </div>
 <% else %>
   <%= yield %>
 <% end %>

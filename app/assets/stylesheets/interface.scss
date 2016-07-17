@@ -53,21 +53,22 @@ header.inter_header{
 
 $mn_pnl_s: 50px ;
 $mx_pnl_s: 150px ;
-$min_height: 850px ;
+$min_height: 1000px ;
 $panel_color: rgba(#4D4D4D,0.7) ; 
 
 .inter_wrapper{ 
 	background-image:url('/assets/blur-bg_6.jpg');
 	background-size:cover;
-	min-height:$min_height;
+	min-height:$min_height; width:100%;
 }
 
 .leftpanel{
-	width:$mn_pnl_s;
+	width:$mn_pnl_s; min-height:$min_height; float:left;
 	background-color:$panel_color;
 	padding:0;
 	&.max{
-		width:$mx_pnl_s; text-align:left; font-size: 14px; padding:0;
+		width:$mx_pnl_s; min-height:$min_height;
+		text-align:left; font-size: 14px; padding:0;
 	}
 	& .panel_seperator{
 		border-bottom:1px dotted #aaa; padding:0; margin:0; overflow:hidden; z-index:1;
@@ -117,12 +118,12 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 }
 
 .inter_content{
-	width:calc(100% - $mn_pnl_s);
+	width:calc(100% - 50px); min-height:$min_height; float:left;
 	background-color:rgba(255,255,255,0.9); 
 	padding:0; margin:0;
 
 	&.max{
-		width:calc(100% - $mx_pnl_s);
+		width:calc(100% - 150px);
 	}
 
 	a {
