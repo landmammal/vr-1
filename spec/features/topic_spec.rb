@@ -3,7 +3,7 @@ require rails_helper
   feature 'topic', type: :feature do
     context 'instructor' do
 
-      let! (:instructor) { FactoryGirl.create :instructor(as_instructor) }
+      let! (:instructor) { FactoryGirl.create :instructor, :as_instructor }
       let! (:course) { FactoryGirl.create :course, instructor: instructor }
 
       it 'can create a topic' focus: true, js: true do
