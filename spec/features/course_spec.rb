@@ -3,8 +3,9 @@ require 'rails_helper'
   feature 'Course', type: :feature do
     context 'Instructor' do
 
-      let! (:instructor) {FactoryGirl.create(:user, :as_instructor)}
-      # let! (:course) {FactoryGirl.create(: )}
+      let!(:instructor) { FactoryGirl.create(:user, :as_instructor) }
+      let!(:course) { FactoryGirl.create :course, instructor: instructor }
+      # let!(:course) { FactoryGirl.create :course, instructor: instructor }
       # let! (:topic) {FactoryGirl.create(: )}
       # let! (:lesson) {FactoryGirl.create(: )}
       # let! (:explanation) {FactoryGirl.create(: )}
@@ -12,7 +13,7 @@ require 'rails_helper'
       # let! (:model) {FactoryGirl.create(: )}
 
 
-      it "creates a course", focus: true, js: true do
+      it "creates a course", js: true do
         visit new_user_session_path
         fill_in 'Email', with: instructor.email
         fill_in 'Password', with: instructor.password
@@ -26,23 +27,24 @@ require 'rails_helper'
         expect(page).to have_content 'Course was successfully created.'
       end
 
-      it "creates a topic" do
+      it "sees a course he created", js: true do
+        visit new_user_session_path
+        fill_in 'Email', with: instructor.email
+        fill_in 'Password', with: instructor.password
+        click_on 'LOG IN'
+        expect(page).to have_content(:course)
+      end
+
+      it "Edits course" do
+  
 
       end
 
-      it "creates a lesson" do
+      it "deletes course" do
 
       end
 
-      it "creates a explanation" do
-
-      end
-
-      it "creates a prompt" do
-
-      end
-
-      it "creates a model" do
+      it "buys another course" do
 
       end
     end
