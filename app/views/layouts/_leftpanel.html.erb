@@ -2,61 +2,50 @@
 	<a href="#" class="js-max_min">
 		<div class="panel_icon">
 			<!-- <span class="icon ion-navicon-round"></span>  -->
-			<img class="icon" src="/assets/icons/expand.svg" width="17px">
+			<img class="icon" src="/assets/icons/expand.svg">
 			<div class="text_label">Minimize</div>
 		</div>
 	</a>
 </div>
-<div class="panel_seperator">
-	<a href="/users/<%= current_user.id %>" title="Home">
-		<div class="panel_icon">
-			<!-- <span class="icon ion-home"></span> -->
-			<img class="icon" src="/assets/icons/home.svg" width="17px">
-			<div class="text_label">Home</div>
-		</div>
-	</a>
-	<a href="<%= edit_user_registration_path %>" title="Settings">
-		<div class="panel_icon">
-			<!-- <span class="icon ion-gear-b"></span>  -->
-			<img class="icon" src="/assets/icons/setting.svg" width="17px">
-			<div class="text_label">Settings</div>
-		</div>
-	</a>
-	<a href="#" title="Chat">
-		<div class="panel_icon">
-			<!-- <span class="icon ion-chatbubbles"></span>  -->
-			<img class="icon" src="/assets/icons/chat.svg" width="17px">
-			<div class="text_label">Chat</div>
-			<div class="notif_num"> <span class="notif">0</span> </div>
-		</div>
-	</a>
 
-	<a href="/courses/search" title="All Courses">
-		<div class="panel_icon">
-			<span class="icon ion-map"></span> <div class="text_label">Find Courses</div>
-		</div>
-	</a>
+
+<div class="panel_seperator js-site_panel">
+
+	<script type="text/javascript">
+		panel_section('site_panel')
+	</script>
+
+</div>
+
+
+
+<div class="panel_seperator js-common_panel">
+
+	<script type="text/javascript">
+		panel_section('common_panel')
+	</script>
+
 </div>
 
 
 <!-- Instructor Features -->
 
 
-<% if current_user.role == 'instructor' %>
-		<div class="panel_seperator">
-	  		<a href="/courses" title="My Courses">
-	  			<div class="panel_icon">
-		          <span class="icon ion-university"></span> <div class="text_label">My courses</div>
-	  			</div>
-	  		</a>
-		</div>
+<% if current_user.role == @r[1] %>
+	<div class="panel_seperator">
+  		<a href="/courses" title="My Courses">
+  			<div class="panel_icon">
+	          <span class="icon ion-university"></span> <div class="text_label">My courses</div>
+  			</div>
+  		</a>
+	</div>
 <% end %>
 
 
 <!-- Admin Features -->
 
 
-<% if current_user.role == 'admin' %>
+<% if current_user.role == @r[0] %>
 	<div class="panel_seperator">
   		<a href="/demos" title="Demos">
   			<div class="panel_icon">
@@ -68,3 +57,5 @@
   		</a>
   	</div>
 <% end %>
+
+<div class="sidepanel" style="display: none;"></div>

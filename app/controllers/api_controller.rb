@@ -15,4 +15,26 @@ class ApiController < ApplicationController
 		@lesson = Lesson.all
 		render json: @lesson
 	end
+
+
+
+
+
+
+	# LEFT PANEL LINKS
+
+
+	def site_panel_api
+		@site_panel = [{name:'Home', icon:'svg', iname:'home', link:user_path(current_user), link_target:'', notif:false},
+                       {name:'Settigns', icon:'svg', iname:'settings', link:edit_user_registration_path, link_target:'', notif:false}]
+        render json: @site_panel
+	end
+	
+	def common_panel_api
+		@common_panel = [{name:'Chat', icon:'svg', iname:'chat', link:'#', link_target:'', notif:true},
+                         {name:'Courses', icon:'ion', iname:'ion-map', link:search_courses_path, link_target:'', notif:false},
+                         {name:'Tasks', icon:'ion', iname:'ion-android-checkbox-outline', link:'#', link_target:'', notif:true}]
+        render json: @common_panel
+	end
+
 end

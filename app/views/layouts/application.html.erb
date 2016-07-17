@@ -39,25 +39,24 @@
   <% end %>
 
 <% if user_signed_in? %>
-  <div class="inter_wrapper">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <table class="inter_wrapper" width="100%" border="0" cellspacing="0" cellpadding="0">
       <tbody>
         <tr>
           <td class="leftpanel" valign="top">
             <%= render 'layouts/leftpanel' %>
           </td>
+          <!-- <td class="sidepanel" valign="top">
+            <div class="sidepanel_content">
+          </td> -->
           <td class="inter_content" valign="top">
+              <%= render 'layouts/banner' %>
               <div class="body">
                 <%= yield %>
               </div>
           </td>
-          <td class="tasks" valign="top">
-            <%= render 'layouts/tasks' %>
-          </td>
         </tr>
       </tbody>
     </table>
-  </div>
 <% else %>
   <%= yield %>
 <% end %>
