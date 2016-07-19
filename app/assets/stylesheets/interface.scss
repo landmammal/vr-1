@@ -32,7 +32,7 @@ header.inter_header{
 	color: white;
 	& .user_info{
 		width:300px;  height:100%;
-		position: relative; top:0; z-index: 3;
+		position: relative; top:0; z-index: 2;
 		overflow: hidden; padding:10px 0 5px;
 		backdrop-filter: blur(5px); background-color:rgba(0,0,0,0.7);
 
@@ -64,7 +64,7 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 
 .leftpanel{
 	width:$mn_pnl_s; min-height:$min_height; float:left;
-	background-color:$panel_color;
+	background-color:$panel_color; position:relative; z-index:5;
 	padding:0;
 	&.max{
 		width:$mx_pnl_s; min-height:$min_height;
@@ -77,10 +77,19 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 		}
 		& .panel_icon{
 			margin:0; padding:15px;
-			width:100%; color:#ccc; overflow:hidden;
+			width:100%; color:#fff; overflow:hidden;  
 			
-			img{ width:20px; float:left; }
-			& .icon{ font-size:20px; float:left; }
+			img{ width:20px; float:left; opacity: 0.5;
+				&:hover{
+					opacity: 1;
+				}
+			}
+
+			& .icon{ font-size:20px; float:left; opacity: 0.5;
+				&:hover{
+					opacity: 1;
+				}
+			}
 
 			& .text_label{ 
 				display:none; float:left; font-size:15px; padding:1px 0 1px 10px;
@@ -109,11 +118,19 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 }
 
 .sidepanel{
-	position:absolute; left:$mn_pnl_s; top:48px; z-index:5;
-	min-width:200px; min-height:500px;
-	background-color:rgba(#333,0.7);
-	&.max{
-		left:$mx_pnl_s;
+	position:absolute; left:-200px; top:0px; z-index:3;
+	min-width:200px; min-height:100%;
+	padding:10px;
+	background-color:rgba(#222,0.9); opacity: 0; transition: 0.5s;
+	color:white;
+	&.open{
+		left:$mn_pnl_s;
+		transition: 0.5s;
+		opacity: 1;
+		&.max{
+			left:$mx_pnl_s;
+			transition: 0.1s;
+		}
 	}
 }
 

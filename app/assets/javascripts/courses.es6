@@ -56,21 +56,21 @@ function edit_or_start_course(course){
 
 
 
-// function click_on_course(course_id, course_title){
-// 	$('.js-c_'+course_id).click(function(event){
-// 		event.preventDefault();													
-// 		var node = document.getElementById('topics_for_'+course_id);
-// 		var topics_list = node.innerHTML;
+function click_on_course(course_id, course_title){
+	$('.js-c_'+course_id).click(function(event){
+		// event.preventDefault();													
+		// var node = document.getElementById('topics_for_'+course_id);
+		// var topics_list = node.innerHTML;
 
-// 		$('.js-my_courses_list').hide();
-// 		$('.js-my_topics_list').show();
-// 		$('.js-topics_list').html(topics_list);
-// 		$('.js-course_name').text(course_title);
-// 		$('.js-cn').show();
-// 		$('.js-course_form_hide').hide();
+		// $('.js-my_courses_list').hide();
+		// $('.js-my_topics_list').show();
+		// $('.js-topics_list').html(topics_list);
+		// $('.js-course_name').text(course_title);
+		// $('.js-cn').show();
+		// $('.js-course_form_hide').hide();
 
-// 	});
-// };
+	});
+};
 
 function click_on_topic(topic_id, topic_title){
 	$('.js-t_'+topic_id).click(function(action){

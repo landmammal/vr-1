@@ -26,8 +26,9 @@ class ApiController < ApplicationController
 
 	def site_panel_api
 		@site_panel = [{name:'Home', icon:'svg', iname:'home', link:user_path(current_user), link_target:'', notif:false},
-                       {name:'Settigns', icon:'svg', iname:'settings', link:edit_user_registration_path, link_target:'', notif:false}]
+                       {name:'Settings', icon:'svg', iname:'settings', link:edit_user_registration_path, link_target:'', notif:false}]
         render json: @site_panel
+        # edit_user_registration_path
 	end
 	
 	def common_panel_api

@@ -8,7 +8,7 @@ function panel_section(panel_name){
 
 	        for(var panel_item in panel_data){
 	        	var item = panel_data[panel_item];
-	        	console.log(item.name);
+	        	// console.log(item.name);
 
 	        	if(item.icon === 'svg'){
 	        		var icon = `<img class="icon" src="/assets/icons/`+item.iname+`.svg">`;
@@ -16,36 +16,69 @@ function panel_section(panel_name){
 	        		var icon = `<span class="icon `+item.iname+`"></span>`;
 	        	};
 
-	        	if(item.notif){ 
-	        		var notif = `<div class="notif"> <div class="notif_num">0</div></div>`; 
+	        	if(item.notif === true){ 
+	        		var notification = `<div class="notif"> <div class="notif_num">0</div></div>`;
 	        	}else{
-	        		var notif = ``; 
-	        	}
+	        		var notification = ''; 
+	        	};
 
 	        	if(item.link === '#'){ 
-	        		var link_class = ` class="js-open_sidepanel" `; 
+	        		var link_class = ` class="js-open_side_`+item.name+`" `; 
 	        	}else{
-	        		var link_class = ``; 
-	        	}
+	        		var link_class = '';         	
+	        	};
+
 
 	        	var each_item = `<a href="`+item.link+`"`+link_class+`title="`+item.name+`">`+
 		        					`<div class="panel_icon">`+
 		        						icon+`<div class="text_label">`+item.name+`</div>`+
-		        						notif+
+		        						notification+
 		        					`</div>`+
 	        					`</a>`;
 
-	        	$('.js-'+name).append(each_item)
+	        	// execute
 
-
-				$('.js-open_sidepanel').click(function(event){
-					event.preventDefault();
-					$('.sidepanel').toggle();
-				});
+	        	$('.js-'+name).append(each_item);
+		        if(item.link === '#'){
+		        	sidepanel(item.name);
+		        }
 
 	        }
-
 		}
+	});
+
+}
+
+var panelArr = [];
+
+function sidepanel( panel ){
+	panelArr.push(panel);
+	// console.log(panelArr);
+
+	$('.js-open_side_'+panel).click(function(event){
+		event.preventDefault();
+		// console.log("clicked on "+panel);
+		
+		var newpanelArr = panelArr;
+		var i = 0;
+		// console.log(newpanelArr);
+
+		do{
+			if(newpanelArr[i] !== panel){	
+				$('.js-side_'+newpanelArr[i]).removeClass('open');
+				// console.log('removed OPEN from '+newpanelArr[i]);
+			}	
+			i += 1;
+
+		}while(i < newpanelArr.length);
+
+		if($('.js-side_'+panel).hasClass("open")){
+			$('.js-side_'+panel).removeClass('open');
+		}else{
+			$('.js-side_'+panel).addClass('open');
+		};
+		
+
 	});
 }
 
@@ -56,9 +89,6 @@ var pageReady = function(){
 	$('.js-max_min').click(function(event){
 		event.preventDefault();
 
-		// var ltpnl_size = 'max';
-		// document.cookie = "leftpanel="+ltpnl_size;
-
 		$('.leftpanel').toggleClass('max');
 		$('.sidepanel').toggleClass('max');
 		$('.inter_content').toggleClass('max');
@@ -68,26 +98,6 @@ var pageReady = function(){
 		$('.notif_num').toggleClass('max');
 		$('.notif').toggleClass('max');
 	});
-
-
-
-	
-	// function getCookie(cname) {
-	//     var name = cname + "=";
-	//     var ca = document.cookie.split(';');
-	//     for(var i = 0; i <ca.length; i++) {
-	//         var c = ca[i];
-	//         while (c.charAt(0)==' ') {
-	//             c = c.substring(1);
-	//         }
-	//         if (c.indexOf(name) == 0) {
-	//             return c.substring(name.length,c.length);
-	//         }
-	//     }
-	//     console.log(ca);
-	//     // return "";
-	// }
-	// getCookie('leftpanel');
 
 };
 
