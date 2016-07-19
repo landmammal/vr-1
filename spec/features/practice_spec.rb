@@ -14,7 +14,7 @@
 #         fill_in 'Email', with: trainee.email
 #         fill_in 'Password', with: trainee.password
 #         click_on 'Log in'
-# 
+#
 #         expect(page).to have_content 'Signed in successfully'
 #         visit lessons_path
 #         click_on 'Show', match: :first
