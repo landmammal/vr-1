@@ -1,0 +1,2 @@
+class GroupRegistrationsController < ApplicationController
+end

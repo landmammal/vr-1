@@ -7,6 +7,7 @@ class CreateTopics < ActiveRecord::Migration
       t.integer :status
       t.references :course
       t.integer :instructor_id, foreign_key: :user_id
+      t.string :privacy
 
       t.timestamps null: false
     end

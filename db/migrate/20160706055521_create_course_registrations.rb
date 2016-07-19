@@ -3,7 +3,7 @@ class CreateCourseRegistrations < ActiveRecord::Migration
     create_table :course_registrations do |t|
       t.references :course
       t.references :user
-      t.string :user_role
+      t.integer :user_role
 
       t.timestamps null: false
     end
