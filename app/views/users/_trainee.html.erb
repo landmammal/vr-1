@@ -36,34 +36,14 @@
 					</div>
 
 					<script type="text/javascript">
-						$('.js-t_<%= topic.id %>').click(function(action){
-							action.preventDefault();							
-							var node_2 = document.getElementById('lessons_for_<%= topic.id %>')
-							var lessons_list = node_2.innerHTML;
-
-							$('.js-my_topics_list').hide();
-							$('.js-my_lessons_list').show();
-							$('.js-lessons_list').html(lessons_list);
-							$('.js-topic_name').text('<%= topic.title %> :: Lessons');
-							$('.js-tn').show();
-						});
+						click_on_topic('<%= topic.id %>', '<%= topic.title %>')
 					</script>
 
 				<%end%>
 			</div>
 
 			<script type="text/javascript">
-				$('.js-c_<%= course.id %>').click(function(event){
-					event.preventDefault();													
-					var node = document.getElementById('topics_for_<%= course.id %>');
-					var topics_list = node.innerHTML;
-
-					$('.js-my_courses_list').hide();
-					$('.js-my_topics_list').show();
-					$('.js-topics_list').html(topics_list);
-					$('.js-course_name').text('<%= course.title %>');
-					$('.js-cn').show();
-				});
+				click_on_course('<%= course.id %>', '<%= course.title %>')
 			</script>
 
 		<%end%>

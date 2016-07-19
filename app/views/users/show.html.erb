@@ -20,7 +20,8 @@
 	</div>
 	<div class="body">
 		<%= render current_user.role %>
-		<%if [@r[1], @r[3]].include? current_user.role %>
+		<%if [@r[0], @r[1], @r[3]].include? current_user.role %>
+
 			<div class="js-my_topics_list" style="display: none;">
 				<div class="js-topics_list"></div>
 
@@ -34,6 +35,7 @@
 				<button class="js-back_to_topics blue small_btn"> << Topics </button>
 				<button class="js-back_to_courses blue small_btn"> << Courses </button>
 			</div>
+		
 		<%end%>
 	</div>
 </div>
