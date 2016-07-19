@@ -3,7 +3,7 @@ class CreateGroups < ActiveRecord::Migration
     create_table :groups do |t|
       t.string :name
       t.string :description
-      t.references :instructor_id, foreign_key: :user_id
+      t.integer :instructor_id, foreign_key: :user_id
       t.string :privacy
 
       t.timestamps null: false
