@@ -6,5 +6,4 @@ class Group < ActiveRecord::Base
 
   has_many :group_registrations
   has_many :courses, through: :group_registrations
-
 end

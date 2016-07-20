@@ -4,6 +4,7 @@ class CreateCourseRegistrations < ActiveRecord::Migration
       t.references :course
       t.references :user
       t.integer :user_role
+      t.bool :approval_status
 
       t.timestamps null: false
     end
