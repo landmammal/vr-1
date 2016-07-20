@@ -44,9 +44,7 @@ class CoursesController < ApplicationController
   # POST /courses
   # POST /courses.json
   def create
-    # ===== WHEN USING RUBY remove "_js" from params
-    
-    @course = Course.new(course_params_js)
+    # @course = Course.new(course_params_js)
     @course = current_user.courses.build(course_params_js)
 
     # ===== WHEN USING JS 

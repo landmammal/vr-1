@@ -14,14 +14,14 @@
       </div>
     <% end %>
 
-   
+
     <%= f.text_field :title, placeholder:'Title', class:'js-course_title' %><br>
     <%= f.text_area :description, placeholder:'Description', class:'js-course_description' %><br>
     <%= f.text_field :tags, placeholder:'tags (comma separated)', class:'js-course_tags' %><br>
 
     <%= button_tag 'Create Course', type:'submit', class:"blue js-create_course" %>
     <button class="js-cancel_form red reg_btn" style="display: none;">cancel</button>
-    
+
     <%= f.text_field :status, type:"hidden", class:'js-course_status', value: 0 %><br>
     <%= f.text_field :instructor_id, type:"hidden", class:'js-course_instructor', value:current_user.id %>
 

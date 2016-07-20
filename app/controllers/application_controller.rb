@@ -16,19 +16,19 @@ class ApplicationController < ActionController::Base
 
         @r = User.roles.keys
         @user_role = current_user.role.capitalize
-        
+
         last_login = current_user.last_sign_in_at
         @last_signin = last_login.strftime("%m/%d/%Y at %I:%M%p")
-        
+
       end
     end
 
-	def after_sign_up_path_for(resource)
-	end
-
-	def after_sign_in_path_for(resource)
-		request.env['omniauth.origin'] || stored_location_for(resource) || root_path
-	end
+	# def after_sign_up_path_for(resource)
+	# end
+  #
+	# def after_sign_in_path_for(resource)
+	# 	request.env['omniauth.origin'] || stored_location_for(resource) || root_path
+	# end
 	# al
 
   	private
