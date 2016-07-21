@@ -20,8 +20,6 @@ ActiveRecord::Schema.define(version: 20160719063823) do
     t.text     "description"
     t.integer  "lesson_id"
     t.integer  "user_id"
-    t.string   "privacy"
-    t.string   "language"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -29,7 +27,7 @@ ActiveRecord::Schema.define(version: 20160719063823) do
   create_table "course_registrations", force: :cascade do |t|
     t.integer  "course_id"
     t.integer  "user_id"
-    t.integer  "user_role"
+    t.string   "user_role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -47,7 +45,6 @@ ActiveRecord::Schema.define(version: 20160719063823) do
     t.string   "tags"
     t.integer  "status"
     t.integer  "instructor_id"
-    t.string   "privacy"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -70,8 +67,6 @@ ActiveRecord::Schema.define(version: 20160719063823) do
     t.string   "token"
     t.string   "video_token"
     t.string   "script"
-    t.string   "privacy"
-    t.string   "language"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -131,8 +126,6 @@ ActiveRecord::Schema.define(version: 20160719063823) do
     t.integer  "status"
     t.integer  "topic_id"
     t.integer  "instructor_id"
-    t.string   "privacy"
-    t.string   "lesson_type"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -143,8 +136,6 @@ ActiveRecord::Schema.define(version: 20160719063823) do
     t.string   "token"
     t.string   "video_token"
     t.string   "script"
-    t.string   "privacy"
-    t.string   "language"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -169,8 +160,6 @@ ActiveRecord::Schema.define(version: 20160719063823) do
     t.string   "token"
     t.string   "video_token"
     t.string   "script"
-    t.string   "privacy"
-    t.string   "language"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -198,7 +187,6 @@ ActiveRecord::Schema.define(version: 20160719063823) do
     t.integer  "status"
     t.integer  "course_id"
     t.integer  "instructor_id"
-    t.string   "privacy"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
