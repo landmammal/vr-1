@@ -1,8 +1,7 @@
 FactoryGirl.define do
   factory :explanation do
-    user_id ""
-    lesson_id ""
-    token "MyString"
-    video_token "MyString"
+    script { Faker::Lorem.pragraph }
+    token { Faker::Space.agency }
+    video_token { Faker::Space.agency }
   end
 end
