@@ -15,8 +15,14 @@ class LessonsController < ApplicationController
   # GET /lessons/1.json
   def show
     @explanation = Explanation.new
+    @explanations = @lesson.explanations
+
     @prompt = Prompt.new
+    @prompts = @lesson.prompts
+
     @model = Model.new
+    @models = @lesson.models
+
     @concept = Concept.new
   end
 
