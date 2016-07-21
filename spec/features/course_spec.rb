@@ -28,7 +28,7 @@ require 'rails_helper'
         expect(page).to have_content(:course)
       end
 
-      it "Edits course" do
+      it "Edits course", focus: true, js: true do
         visit new_user_session_path
         fill_in 'Email', with: instructor.email
         fill_in 'Password', with: instructor.password
@@ -46,8 +46,11 @@ require 'rails_helper'
         fill_in 'Email', with: instructor.email
         fill_in 'Password', with: instructor.password
         click_on 'LOG IN'
-        click_on(:course)
-        click_on 'X'
+        within '.home_card_delete' do
+          accept_alert do
+            click_on 'X'
+          end
+        end
         expect(page).to have_content 'Course was successfully destroyed.'
       end
     end
