@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160706071419) do
+ActiveRecord::Schema.define(version: 20160719063823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,25 @@ ActiveRecord::Schema.define(version: 20160706071419) do
     t.string   "script"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "group_registrations", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "group_registrations", ["course_id"], name: "index_group_registrations_on_course_id", using: :btree
+  add_index "group_registrations", ["group_id"], name: "index_group_registrations_on_group_id", using: :btree
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "instructor_id"
+    t.string   "privacy"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "lesson_concepts", force: :cascade do |t|
@@ -172,6 +191,17 @@ ActiveRecord::Schema.define(version: 20160706071419) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "user_groups", force: :cascade do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.integer  "user_role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "user_groups", ["group_id"], name: "index_user_groups_on_group_id", using: :btree
+  add_index "user_groups", ["user_id"], name: "index_user_groups_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -210,6 +240,10 @@ ActiveRecord::Schema.define(version: 20160706071419) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
+  add_foreign_key "group_registrations", "courses"
+  add_foreign_key "group_registrations", "groups"
   add_foreign_key "practices", "lessons"
   add_foreign_key "practices", "users"
+  add_foreign_key "user_groups", "groups"
+  add_foreign_key "user_groups", "users"
 end

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :group_registrations
+  resources :user_groups
+  resources :groups
 root 'welcome#index'
 
   ['about','markets','process','contact'].each do |menu|

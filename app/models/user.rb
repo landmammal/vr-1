@@ -56,10 +56,14 @@ class User < ActiveRecord::Base
 
   has_many :course_registrations
   has_many :registered_courses, through: :course_registrations, source: :course
-  
+
+  has_many :user_groups
+  has_many :register_groups, through: :user_groups, source: :group
+
   has_many :courses, foreign_key: :instructor_id
   has_many :lessons, foreign_key: :instructor_id
   has_many :topics, foreign_key: :instructor_id
+  has_many :groups, foreign_key: :instructor_id
 
   has_many :tasks
   has_many :prompts
