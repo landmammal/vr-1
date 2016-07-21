@@ -23,6 +23,7 @@
     <%= @site_title ? @site_title : "Video Rehearser" %>
   </title>
 
+  <script type="text/javascript"></script>
 
   <link rel="stylesheet" href="//assets-cdn.ziggeo.com/v1-latest/ziggeo.css" />
   <script src="//assets-cdn.ziggeo.com/v1-latest/ziggeo.js"></script>
@@ -42,19 +43,20 @@
 
 <% if user_signed_in? %>
   <div class="inter_wrapper">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <table style="height: 100%;" width="100%" border="0" cellspacing="0" cellpadding="0">
       <tbody>
         <tr>
           <td class="leftpanel" valign="top">
             <%= render 'layouts/leftpanel' %>
           </td>
+          <!-- <td class="sidepanel" valign="top">
+            <div class="sidepanel_content">
+          </td> -->
           <td class="inter_content" valign="top">
+              <%= render 'layouts/banner' %>
               <div class="body">
                 <%= yield %>
               </div>
-          </td>
-          <td class="tasks" valign="top">
-            <%= render 'layouts/tasks' %>
           </td>
         </tr>
       </tbody>

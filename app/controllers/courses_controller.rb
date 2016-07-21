@@ -8,9 +8,9 @@ class CoursesController < ApplicationController
     @courses = current_user.courses
 
     if current_user.role == 'instructor'
-      @course = Course.new
-      @topic = Topic.new
-      @lesson = Lesson.new
+      @new_course = Course.new
+      @new_topic = Topic.new
+      @new_lesson = Lesson.new
     end
   end
 
@@ -18,9 +18,9 @@ class CoursesController < ApplicationController
     @courses = Course.all
 
     if current_user.role == 'instructor'
-      @course = Course.new
-      @topic = Topic.new
-      @lesson = Lesson.new
+      @new_course = Course.new
+      @new_topic = Topic.new
+      @new_lesson = Lesson.new
     end
   end
 
@@ -47,6 +47,12 @@ class CoursesController < ApplicationController
     # @course = Course.new(course_params_js)
     @course = current_user.courses.build(course_params_js)
 
+    # ===== WHEN USING JS 
+    # if @course.save
+    #   render json: @course
+    # end
+    # ===== WHEN USING RUBY
+
     respond_to do |format|
       if @course.save
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
@@ -56,6 +62,7 @@ class CoursesController < ApplicationController
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /courses/1
@@ -77,7 +84,7 @@ class CoursesController < ApplicationController
   def destroy
     @course.destroy
     respond_to do |format|
-      format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
+      format.html { redirect_to user_path(current_user), notice: 'Course was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
