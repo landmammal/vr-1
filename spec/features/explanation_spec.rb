@@ -18,14 +18,14 @@ feature 'Explanation', type: :feature do
       click_on topic.title
       click_on lesson.title
       click_on 'Create Explanation'
-      fill_in token, with: { Faker::Space.agency }
-      fill_in video_token, with: { Faker::Space.agency }
+      fill_in token, with: Faker::Space.agency
+      fill_in video_token, with: Faker::Space.agency 
       click_on 'Save Explanation'
       expect(page).to have_content 'Explanation has been saved'
     end
 
     it 'can edit Explanation' do
-      
+
     end
 
     it 'can '

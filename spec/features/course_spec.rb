@@ -13,11 +13,10 @@ require 'rails_helper'
         click_on 'LOG IN'
 
         click_on 'Create New Course'
-        fill_in 'Title', with: { Faker::Space.planet }
-        fill_in 'Description', with: { Faker::Space.agency }
+        fill_in 'Title', with: Faker::Space.planet
+        fill_in 'Description', with: Faker::Lorem.paragraph
         fill_in 'tags (comma separated)', with: 'hello,tags,king'
         click_on 'Create Course'
-        # missing notification
         expect(page).to have_content 'Course was successfully created.'
       end
 
@@ -36,8 +35,8 @@ require 'rails_helper'
         click_on 'LOG IN'
         click_on(:course)
         click_on 'Edit Course'
-        fill_in 'Title', with: { Faker::Space.planet }
-        fill_in 'Description', with: { Faker::Space.agency }
+        fill_in 'Title', with: Faker::Space.planet
+        fill_in 'Description', with: Faker::Space.agency
         click_on 'Update Course'
         expect(page).to have_content 'Course was successfully updated.'
       end

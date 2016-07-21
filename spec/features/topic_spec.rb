@@ -15,8 +15,8 @@ require 'rails_helper'
         click_on course.title
         # there is no button to create a new topic
         click_on 'Create New Topic'
-        fill_in 'title', with: 'test topic title'
-        fill_in 'description', with: 'this is a topic description'
+        fill_in 'title', with: Faker::Space.planet
+        fill_in 'description', with: Faker::Lorem.planet
         fill_in 'tags', with: 'test,this,tags'
         click_on 'Create Topic'
         expect(page).to have_content 'Topic was successfully updated.'
@@ -40,7 +40,7 @@ require 'rails_helper'
         click_on(:topic)
         click_on 'Edit Topic'
 
-        fill_in 'title', with: { Faker::Space.planet }
+        fill_in 'title', with: Faker::Space.planet 
         click_on 'Save Topic'
         expect(page).to have_content 'Topic was successfully updated.'
       end

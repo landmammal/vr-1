@@ -16,8 +16,8 @@ require 'rails_helper'
         click_on course.title
         click_on topic.title
         click_on 'Create Lesson'
-        fill_in 'title', with: { Faker::Lorem.word }
-        fill_in 'description', with: { Faker::Lorem.paragraph }
+        fill_in 'title', with: Faker::Lorem.word
+        fill_in 'description', with: Faker::Lorem.paragraph
         fill_in 'tags', with: 'hello,my,name'
         click_on 'Create Lesson'
         expect(page).to have_content 'Lesson was successfully created.'
@@ -41,8 +41,8 @@ require 'rails_helper'
         click_on topic.title
         click_on(:lesson)
         click_on 'Edit lesson'
-        fill_in 'title', with: { Faker::Lorem.word }
-        fill_in 'description', with: { Faker::Lorem.paragraph }
+        fill_in 'title', with: Faker::Lorem.word
+        fill_in 'description', with: Faker::Lorem.paragraph 
         click_on 'Update Lesson'
         expect(page).to have_content 'Lesson was successfully updated.'
       end
