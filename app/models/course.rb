@@ -6,4 +6,8 @@ class Course < ActiveRecord::Base
 
   has_many :course_topics
   has_many :topics, through: :course_topics
+
+  has_many :group_registrations
+  has_many :groups, through: :group_registrations
+
 end

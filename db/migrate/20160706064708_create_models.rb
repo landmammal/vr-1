@@ -6,7 +6,9 @@ class CreateModels < ActiveRecord::Migration
       t.string :token
       t.string :video_token
       t.string :script
-
+      t.string :privacy
+      t.string :language
+      
       t.timestamps null: false
     end
   end
