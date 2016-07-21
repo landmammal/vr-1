@@ -1,5 +1,6 @@
 var pageReady = function(){
 	var user_role = $('.js-user_role').text();
+	var user_id = $('.js-user_id').text();
 
 	if(['Trainee', 'Admin', 'Instructor'].includes(user_role)){
 		$('.js-display_my_courses').show();

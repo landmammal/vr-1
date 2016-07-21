@@ -1,29 +1,11 @@
 <% if user_signed_in? %>
 
-	<div class="banner" style="background-image: url('<%= current_user.top_banner %>');">
-
-		<header class="inter_header">
-			<a href="/"><img src="/assets/logo_white.png" width="30px"></a>
-	      	<div class="inter_header right_item">
-	      		<%= link_to "Log out", destroy_user_session_path, method: "delete" %>
-	      	</div>
-		</header>
-
-		<div class="user_info">
-			<div class="profile_pic">
-				<a href="/users/<%= current_user.id %>"><img src="<%= current_user.photo %>" class="img-circle"></a>
-			</div>
-			<div class="profile_info">
-				<span style=" font-size:16px; font-weight:bold;">
-					<%= current_user.first_name %> <%= current_user.last_name %>
-				</span>
-				<div class="js-user_role"><%= @user_role %></div><br>
-				<b>Last Login:</b><br>
-				<%= @last_signin %><br>
-			</div>
-		</div>
-
-	</div>
+	<header class="inter_header">
+		<a href="/"><img src="/assets/logo_white.png" width="30px" style="margin:10px 10px 0;"></a>
+      	<!-- <div > -->
+      		<%= link_to "Log out", destroy_user_session_path, method: "delete", class:"right_item" %>
+      	<!-- </div> -->
+	</header>
 
 <% else %>
 
