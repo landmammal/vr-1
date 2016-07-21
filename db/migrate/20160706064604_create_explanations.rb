@@ -7,7 +7,7 @@ class CreateExplanations < ActiveRecord::Migration
       t.string :token
       t.string :video_token
       t.string :script
-      t.string :pos_prior
+      t.string :position
 
       t.timestamps null: false
     end
