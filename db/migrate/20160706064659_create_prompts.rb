@@ -3,11 +3,13 @@ class CreatePrompts < ActiveRecord::Migration
     create_table :prompts do |t|
       t.references :user
       t.references :lesson
+      t.string :title
       t.string :token
       t.string :video_token
       t.string :script
-      t.string :privacy
       t.string :language
+      t.string :privacy
+      t.string :position_prior
       
       t.timestamps null: false
     end
