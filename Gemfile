@@ -10,7 +10,6 @@ gem 'aws-sdk'
 
 # Al Delcy GEMS
 gem 'font-awesome-sass'
-gem 'sprockets', '>= 3.0.0'
 gem 'sprockets-es6'
 gem 'carrierwave'
 
