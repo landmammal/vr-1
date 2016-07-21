@@ -44,7 +44,6 @@ class CoursesController < ApplicationController
   # POST /courses
   # POST /courses.json
   def create
-    # @course = Course.new(course_params_js)
     @course = current_user.courses.build(course_params_js)
 
     # ===== WHEN USING JS 
