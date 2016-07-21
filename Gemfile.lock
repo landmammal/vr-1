@@ -298,7 +298,6 @@ DEPENDENCIES
   selenium-webdriver
   shoulda-matchers
   spring
-  sprockets (>= 3.0.0)
   sprockets-es6
   sqlite3
   turbolinks

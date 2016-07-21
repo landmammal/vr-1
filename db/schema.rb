@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20160719063823) do
     t.text     "description"
     t.integer  "lesson_id"
     t.integer  "user_id"
+    t.string   "privacy"
+    t.string   "language"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -27,9 +29,10 @@ ActiveRecord::Schema.define(version: 20160719063823) do
   create_table "course_registrations", force: :cascade do |t|
     t.integer  "course_id"
     t.integer  "user_id"
-    t.string   "user_role"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_role"
+    t.boolean  "approval_status"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "course_topics", force: :cascade do |t|
@@ -45,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160719063823) do
     t.string   "tags"
     t.integer  "status"
     t.integer  "instructor_id"
+    t.string   "privacy"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -64,11 +68,15 @@ ActiveRecord::Schema.define(version: 20160719063823) do
   create_table "explanations", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "lesson_id"
+    t.string   "title"
     t.string   "token"
     t.string   "video_token"
     t.string   "script"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "language"
+    t.string   "privacy"
+    t.string   "position_prior"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "group_registrations", force: :cascade do |t|
@@ -126,6 +134,8 @@ ActiveRecord::Schema.define(version: 20160719063823) do
     t.integer  "status"
     t.integer  "topic_id"
     t.integer  "instructor_id"
+    t.string   "privacy"
+    t.string   "lesson_type"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -133,11 +143,15 @@ ActiveRecord::Schema.define(version: 20160719063823) do
   create_table "models", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "lesson_id"
+    t.string   "title"
     t.string   "token"
     t.string   "video_token"
     t.string   "script"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "language"
+    t.string   "privacy"
+    t.string   "position_prior"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "practices", force: :cascade do |t|
@@ -157,11 +171,15 @@ ActiveRecord::Schema.define(version: 20160719063823) do
   create_table "prompts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "lesson_id"
+    t.string   "title"
     t.string   "token"
     t.string   "video_token"
     t.string   "script"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "language"
+    t.string   "privacy"
+    t.string   "position_prior"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -187,6 +205,7 @@ ActiveRecord::Schema.define(version: 20160719063823) do
     t.integer  "status"
     t.integer  "course_id"
     t.integer  "instructor_id"
+    t.string   "privacy"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
