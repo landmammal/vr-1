@@ -1,12 +1,12 @@
 require 'rails_helper'
 
   feature 'Course', type: :feature do
-    context 'Instructor' do
+    context 'Instructor', js: true do
 
       let!(:instructor) { FactoryGirl.create(:user, :as_instructor) }
       let!(:course) { FactoryGirl.create :course, instructor: instructor }
 
-      it "creates a course", js: true do
+      it "creates a course" do
         visit new_user_session_path
         fill_in 'Email', with: instructor.email
         fill_in 'Password', with: instructor.password
@@ -20,7 +20,7 @@ require 'rails_helper'
         expect(page).to have_content 'Course was successfully created.'
       end
 
-      it "sees a course he created", js: true do
+      it "sees a course he created" do
         visit new_user_session_path
         fill_in 'Email', with: instructor.email
         fill_in 'Password', with: instructor.password
@@ -28,7 +28,7 @@ require 'rails_helper'
         expect(page).to have_content(:course)
       end
 
-      it "Edits course", focus: true, js: true do
+      it "Edits course" do
         visit new_user_session_path
         fill_in 'Email', with: instructor.email
         fill_in 'Password', with: instructor.password
