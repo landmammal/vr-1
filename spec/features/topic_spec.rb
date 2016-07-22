@@ -1,28 +1,27 @@
 require 'rails_helper'
 
   feature 'topic', type: :feature do
-    context 'instructor' do
+    context 'instructor', js: true do
 
       let! (:instructor) { FactoryGirl.create(:user, :as_instructor) }
       let! (:course) { FactoryGirl.create :course, instructor: instructor }
       let! (:topic) { FactoryGirl.create :topic, instructor: instructor }
 
-      it 'can create a topic', js: true do
+      it 'can create a topic' do
         visit new_user_session_path
         fill_in 'Email', with: instructor.email
         fill_in 'Password', with: instructor.password
         click_on 'LOG IN'
-        click_on course.title
-        # there is no button to create a new topic
+        page.find("#course_title").click
         click_on 'Create New Topic'
-        fill_in 'title', with: Faker::Space.planet
-        fill_in 'description', with: Faker::Lorem.planet
-        fill_in 'tags', with: 'test,this,tags'
+        fill_in 'Title', with: Faker::Space.planet
+        fill_in 'Description', with: Faker::Lorem.paragraph
+        fill_in 'tags (comma separated)', with: 'test,this,tags'
         click_on 'Create Topic'
-        expect(page).to have_content 'Topic was successfully updated.'
+        expect(page).to have_content 'Topic was successfully created.'
       end
 
-      it 'can view a topic he create it', js: true do
+      it 'can view a topic he create it' do
         visit new_user_session_path
         fill_in 'Email', with: instructor.email
         fill_in 'Password', with: instructor.password
@@ -39,8 +38,7 @@ require 'rails_helper'
         click_on course.title
         click_on(:topic)
         click_on 'Edit Topic'
-
-        fill_in 'title', with: Faker::Space.planet 
+        fill_in 'title', with: Faker::Space.planet
         click_on 'Save Topic'
         expect(page).to have_content 'Topic was successfully updated.'
       end

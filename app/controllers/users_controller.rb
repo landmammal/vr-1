@@ -9,7 +9,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    flash[:notice] = "anythign"
 
     @user = User.find(params[:id])
     @courses = current_user.registered_courses

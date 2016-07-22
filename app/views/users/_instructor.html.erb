@@ -9,7 +9,7 @@
 
 	        <div class="home_card_title_sec">
 	          <a href="<%= course_path(course) %>" class="js-c_<%= course.id %>" >
-	            <div class="home_card_title"><%= course.title %></div>
+	            <div class="home_card_title" id="course_title"><%= course.title %></div>
 	            <div class="home_card_edit js-edit_<%= course.id %>"><span class="ion-edit"></span></div>
 	          </a>
 	          <div class="home_card_delete js-delete_<%= course.id %>">
