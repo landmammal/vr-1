@@ -33,7 +33,11 @@
 
 <br>
   <%if current_user.level_2 %>
-    <%= render './topics/form' %>
+    <div class="js-open_form" style="display:none;">
+      <%= render './topics/form' %>
+    </div>
+    <button class="js-show_form reg_btn green_sft">Create New Topic</button>
+    <button class="js-show_external_form reg_btn green_sft">Add External Topic</button>
   <%end%> 
 <br>
 <a href="<%= courses_path %>"> <div class="back_button"> Back </div> </a>

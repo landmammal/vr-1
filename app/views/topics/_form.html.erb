@@ -1,5 +1,3 @@
-<div class="js-open_form" style="display:none;">
-
   <%= form_for [@course, @topic] do |f| %>
     <% if @topic.errors.any? %>
       <div id="error_explanation">
@@ -23,8 +21,3 @@
     <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %><br>
 
   <%end%>
-
-</div>
-
-<button class="js-show_form reg_btn green_sft">Create New Topic</button>
-<button class="js-show_external_form reg_btn green_sft">Add External Topic</button>
