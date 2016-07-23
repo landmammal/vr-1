@@ -10,7 +10,7 @@ class CreateExplanations < ActiveRecord::Migration
       t.string :language
       t.string :privacy
       t.string :position_prior
-      watched :integer
+      t.integer :watched
 
       t.timestamps null: false
     end

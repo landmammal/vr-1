@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  # resources :lesson_rehearsols
+  resources :lesson_rehearsals
+  # resources :lesson_rehearsals
   # resources :rehearsals
   # resources :progresses
   resources :group_registrations
