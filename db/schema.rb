@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719063823) do
+ActiveRecord::Schema.define(version: 20160723020746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,10 @@ ActiveRecord::Schema.define(version: 20160719063823) do
     t.string   "language"
     t.string   "privacy"
     t.string   "position_prior"
+<<<<<<< HEAD
+=======
+    t.integer  "watched"
+>>>>>>> 6795b7bf784d596e36a354650f57a2f5b4e078b4
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
@@ -127,6 +131,16 @@ ActiveRecord::Schema.define(version: 20160719063823) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "lesson_rehearsals", force: :cascade do |t|
+    t.integer  "rehearsal_id"
+    t.integer  "lesson_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "lesson_rehearsals", ["lesson_id"], name: "index_lesson_rehearsals_on_lesson_id", using: :btree
+  add_index "lesson_rehearsals", ["rehearsal_id"], name: "index_lesson_rehearsals_on_rehearsal_id", using: :btree
+
   create_table "lessons", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
@@ -150,6 +164,7 @@ ActiveRecord::Schema.define(version: 20160719063823) do
     t.string   "language"
     t.string   "privacy"
     t.string   "position_prior"
+    t.integer  "watched"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
@@ -168,6 +183,22 @@ ActiveRecord::Schema.define(version: 20160719063823) do
   add_index "practices", ["user_id", "lesson_id"], name: "index_practices_on_user_id_and_lesson_id", unique: true, using: :btree
   add_index "practices", ["user_id"], name: "index_practices_on_user_id", using: :btree
 
+  create_table "progresses", force: :cascade do |t|
+    t.integer  "lesson_id"
+    t.integer  "user_id"
+    t.integer  "explanation_id"
+    t.integer  "prompt_id"
+    t.integer  "model_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "progresses", ["explanation_id"], name: "index_progresses_on_explanation_id", using: :btree
+  add_index "progresses", ["lesson_id"], name: "index_progresses_on_lesson_id", using: :btree
+  add_index "progresses", ["model_id"], name: "index_progresses_on_model_id", using: :btree
+  add_index "progresses", ["prompt_id"], name: "index_progresses_on_prompt_id", using: :btree
+  add_index "progresses", ["user_id"], name: "index_progresses_on_user_id", using: :btree
+
   create_table "prompts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "lesson_id"
@@ -178,9 +209,30 @@ ActiveRecord::Schema.define(version: 20160719063823) do
     t.string   "language"
     t.string   "privacy"
     t.string   "position_prior"
+<<<<<<< HEAD
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+=======
+    t.integer  "watched"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
+
+  create_table "rehearsals", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "progress_id"
+    t.integer  "group_id"
+    t.integer  "course_number"
+    t.string   "token"
+    t.string   "video_token"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+>>>>>>> 6795b7bf784d596e36a354650f57a2f5b4e078b4
+  end
+
+  add_index "rehearsals", ["course_id"], name: "index_rehearsals_on_course_id", using: :btree
+  add_index "rehearsals", ["group_id"], name: "index_rehearsals_on_group_id", using: :btree
+  add_index "rehearsals", ["progress_id"], name: "index_rehearsals_on_progress_id", using: :btree
 
   create_table "tasks", force: :cascade do |t|
     t.string   "title"
@@ -261,8 +313,18 @@ ActiveRecord::Schema.define(version: 20160719063823) do
 
   add_foreign_key "group_registrations", "courses"
   add_foreign_key "group_registrations", "groups"
+  add_foreign_key "lesson_rehearsals", "lessons"
+  add_foreign_key "lesson_rehearsals", "rehearsals"
   add_foreign_key "practices", "lessons"
   add_foreign_key "practices", "users"
+  add_foreign_key "progresses", "explanations"
+  add_foreign_key "progresses", "lessons"
+  add_foreign_key "progresses", "models"
+  add_foreign_key "progresses", "prompts"
+  add_foreign_key "progresses", "users"
+  add_foreign_key "rehearsals", "courses"
+  add_foreign_key "rehearsals", "groups"
+  add_foreign_key "rehearsals", "progresses"
   add_foreign_key "user_groups", "groups"
   add_foreign_key "user_groups", "users"
 end

@@ -1,6 +1,5 @@
 class Lesson < ActiveRecord::Base
   belongs_to :instructor, class_name: 'User'
-  
 
   has_many :topic_lessons
   has_many :topics, through: :topic_lessons
@@ -16,4 +15,7 @@ class Lesson < ActiveRecord::Base
 
   has_many :lesson_concepts
   has_many :concepts, through: :lesson_concepts
+
+  has_many :lesson_rehearsals
+  has_many :rehearsals, through: :lesson_rehearsals
 end

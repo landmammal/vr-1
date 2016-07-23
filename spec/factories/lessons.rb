@@ -1,8 +1,7 @@
 FactoryGirl.define do
   factory :lesson do
-    topic_id nil
-    lesson_title { Faker::Lorem.word }
-    explanation { Faker::Lorem.sentence(1) }
-    tags { Faker::Lorem.word(3) }
+    title { Faker::Lorem.word }
+    description { Faker::Lorem.sentence(3) }
+    tags { Faker::Lorem.word }
   end
 end

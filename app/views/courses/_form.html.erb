@@ -1,4 +1,3 @@
-<div class="js-open_form" style="display:none;">
 
 <!-- <h3> New Course </h3> -->
   <%= form_for @course do |f| %>
@@ -17,17 +16,13 @@
     <%= f.text_field :title, placeholder:'Title', class:'js-course_title' %><br>
     <%= f.text_area :description, placeholder:'Description', class:'js-course_description' %><br>
     <%= f.text_field :tags, placeholder:'tags (comma separated)', class:'js-course_tags' %><br>
-
-    <%= button_tag 'Create Course', type:'submit', class:"blue js-create_course" %>
-    <button class="js-cancel_form red reg_btn" style="display: none;">cancel</button>
-
     <%= f.text_field :status, type:"hidden", class:'js-course_status', value: 0 %><br>
     <%= f.text_field :instructor_id, type:"hidden", class:'js-course_instructor', value:current_user.id %>
 
-
+    <%= button_tag 'Create Course', type:'submit', class:"blue" %>
+    <button class="js-cancel_form red reg_btn" style="display: none;">cancel</button>
   <% end %>
-</div>
 
 <!-- <a href="<%= new_course_path %>"> -->
-<button class="js-show_form js-course_form small_btn green_sft">Create New Course</button>
+
 <!-- </a> -->

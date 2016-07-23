@@ -28,7 +28,6 @@ hr{
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
-  
   font-size: 13px;
   line-height: 18px;
 }
@@ -103,7 +102,7 @@ div {
 
 input[type="submit"], button{
   font-size:11px; font-weight: bold;
-  border-radius:3px; 
+  border-radius:3px;
   // border:1px solid #ccc;
   border:0;
   display:inline-block;
@@ -152,9 +151,9 @@ input[type="submit"], button{
 
 
 textarea, input, select{
-  border-radius:2px; 
-  // border:1px solid #999;
-  border:0;
+  border-radius:2px;
+  border:1px solid #999;
+  // border:0;
   background-color: white;
   font-size:13px; color:#333;
   &.half{
@@ -183,7 +182,7 @@ input{
   }
   &.login_submit{
     float: none; width: 250px; padding-top:12px;
-    background-color:#4482c3; border:0px; 
+    background-color:#4482c3; border:0px;
     font-family:'altera'; color:#fff; font-weight:bold; font-size:15px;
     &:hover{
       background-color:#4F94FF;
