@@ -8,7 +8,7 @@ require 'rails_helper'
       let!(:topic) { FactoryGirl.create :topic, instructor: instructor, courses: [course] }
       let!(:lesson) { FactoryGirl.create :lesson, instructor: instructor, topics: [topic] }
 
-      it 'can create a lesson',focus: true, js: true do
+      it 'can create a lesson' do
         visit new_user_session_path
         fill_in 'Email', with: instructor.email
         fill_in 'Password', with: instructor.password
