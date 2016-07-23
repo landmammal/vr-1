@@ -20,7 +20,7 @@ class ExplanationsController < ApplicationController
     respond_to do |format|
       if @lesson.save
         @explanation = Explanation.find(@lesson.explanations.last)
-        format.html { redirect_to edit_explanation_path(@explanation), flash: 'Explanation has been saved' }
+        format.html { redirect_to edit_explanation_path(@explanation), notice: 'Explanation has been saved' }
         format.json { render :show, status: :created, location: @explanation }
       else
         format.html { render :new }
