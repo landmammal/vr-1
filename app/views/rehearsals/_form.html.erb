@@ -1,0 +1,41 @@
+<%= form_for(@rehearsal) do |f| %>
+  <% if @rehearsal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rehearsal.errors.count, "error") %> prohibited this rehearsal from being saved:</h2>
+
+      <ul>
+      <% @rehearsal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :course_id %><br>
+    <%= f.text_field :course_id %>
+  </div>
+  <div class="field">
+    <%= f.label :progress_id %><br>
+    <%= f.text_field :progress_id %>
+  </div>
+  <div class="field">
+    <%= f.label :group_id %><br>
+    <%= f.text_field :group_id %>
+  </div>
+  <div class="field">
+    <%= f.label :course_number %><br>
+    <%= f.number_field :course_number %>
+  </div>
+  <div class="field">
+    <%= f.label :token %><br>
+    <%= f.text_field :token %>
+  </div>
+  <div class="field">
+    <%= f.label :video_token %><br>
+    <%= f.text_field :video_token %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

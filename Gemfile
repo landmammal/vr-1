@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1' 
+ruby '2.3.1'
 
 # user authentication and authorization by role
 gem 'devise'
@@ -12,7 +12,6 @@ gem 'aws-sdk'
 
 # Al Delcy GEMS
 gem 'font-awesome-sass'
-gem 'sprockets'
 gem 'sprockets-es6'
 gem 'carrierwave'
 
