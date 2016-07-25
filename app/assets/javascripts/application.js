@@ -14,7 +14,20 @@
 //= require jquery_ujs
 //= require_tree .
 
+
+var window_width = $(window).width();
+var window_height = $(window).height();
+var document_width = $(document).width();
+var document_height = $(document).height();
+
+
+function railsToJson(json_string){
+	var newjson = jQuery.parseJSON(json_string.replace(/&quot;/g, '"'));
+    return newjson;
+}
+
 var pageReady = function(){
+
 
 	setTimeout(function(){
 		$('.flash-notice').fadeOut(2000);

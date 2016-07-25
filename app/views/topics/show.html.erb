@@ -1,13 +1,18 @@
-<center><p id="notice"> <%= notice %> </p></center>
+<!-- <center><p id="notice"> <%= notice %> </p></center> -->
 
-<div class="course_title">
-  <%= @course.title %>
+<div class="top_info">
+  <div class="course_title">
+    <span class="grey"><%= @course.title %> ::</span>
+  </div>
+  <div class="course_title">
+    <%= @topic.title %>
+  </div>
 </div>
 
 
 <p>
   <strong>
-    <%= @topic.title %> <font color="#ccc">|</font> <%= link_to 'Edit', edit_course_topic_path %>
+    <%= @topic.title %> (Topic) <font color="#ccc">|</font> <%= link_to 'Edit', edit_course_topic_path %>
   </strong>
 </p>
 
@@ -15,14 +20,16 @@
   <%= @topic.description %>
 </p>
 
-<h3>Listing Lessons</h3>
+<!-- <h3>Listing Lessons</h3>
 <p class="course_topic"><%= progress %>% progess<br>
   <progress class="course_topic" value="<%= progress %>" max="100"></progress>
-</p>
+</p> -->
+
+<h4>Lessons</h4>
 
 
 <% @lessons.each_with_index do |lesson, index| %>
-  <%= (index + 1).to_s %> - <%= link_to lesson.title, lesson %>
+  <%= (index + 1).to_s %> - <%= link_to lesson.title, course_topic_lesson_path(@course, @topic, lesson) %>
   <% if current_user.level_2 %>
     <!-- <%= link_to 'Delete', lesson, method: :delete, data: { confirm: 'Are you sure?' }, class:'red_text' %> -->
   <% end %>
@@ -43,4 +50,4 @@
 <% end %>
 
 
-<a href="/courses/<%= @course.id %>"> <div class="back_button"> Back </div> </a>
+<a href="<%= course_path(@course) %>"><button> < Back </button></a>

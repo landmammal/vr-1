@@ -11,6 +11,7 @@ class ExplanationsController < ApplicationController
   end
 
   def edit
+    @thislesson = Lesson.find(@explanation.lesson_id)
   end
 
   def create
@@ -20,7 +21,7 @@ class ExplanationsController < ApplicationController
     respond_to do |format|
       if @lesson.save
         @explanation = Explanation.find(@lesson.explanations.last)
-        format.html { redirect_to edit_explanation_path(@explanation), flash: 'Explanation has been saved' }
+        format.html { redirect_to edit_explanation_path(@explanation), notice: 'Explanation has been saved' }
         format.json { render :show, status: :created, location: @explanation }
       else
         format.html { render :new }
@@ -60,7 +61,7 @@ class ExplanationsController < ApplicationController
   end
 
   def explanation_params
-      params.require(:explanation).permit(:user_id, :lesson_id, :token, :video_token, :script)
+      params.require(:explanation).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :position_prior)
   end
 
   def set_lesson

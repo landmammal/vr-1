@@ -37,13 +37,27 @@
 
 
 <% if current_user.role == @r[1] %>
-	<div class="panel_seperator">
-  		<a href="/courses" title="My Courses">
+
+	<div class="panel_seperator js-instructor_panel">
+
+		<script type="text/javascript">
+			panel_section('instructor_panel')
+		</script>
+
+		<div class="sidepanel js-side_My_Tools">
+			Intructor Tools
+			<button>Create Course</button><br>
+			<button>View Submissions</button><br>
+			<button>Create Group</button>
+		</div>
+
+  		<!-- <a href="/courses" title="My Courses">
   			<div class="panel_icon">
 	          <span class="icon ion-university"></span> <div class="text_label">My courses</div>
   			</div>
-  		</a>
+  		</a> -->
 	</div>
+
 <% end %>
 
 
@@ -51,7 +65,8 @@
 
 
 <% if current_user.role == @r[0] %>
-	<div class="panel_seperator">
+	<div class="panel_seperator js-admin_panel">
+
   		<a href="/demos" title="Demos">
   			<div class="panel_icon">
 	          <span class="icon ion-social-youtube"></span> <div class="text_label">Demos</div>

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :explanation do
-    script { Faker::Lorem.pragraph }
+    script { Faker::Lorem.sentence(3) }
     token { Faker::Space.agency }
     video_token { Faker::Space.agency }
   end

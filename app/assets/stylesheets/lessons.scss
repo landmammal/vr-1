@@ -23,3 +23,27 @@
 		 margin:10px 0;
 	}
 }
+
+.lesson_progress_bar{
+	max-height:90px; overflow:hidden;
+	margin-bottom:10px; padding:5px 0;
+	text-align:center;
+	& .progress_unit{
+		width: 33.33%; margin:5px 0;
+		float: left; position:relative; top: -35px;
+		text-align:center;
+		& .progress_btn{
+			width:30px; height:30px; margin:5px auto; padding-top:3px;
+			border: grey 3px solid; border-radius:50%; background:white; 
+			font-size: 20px;
+			&.notready{ border: red 3px solid; background: #FF7B7B; color:red;}
+			&.caution1{ border: red 3px solid; background: #FF7B7B; color:red;}
+			&.caution2{ border: orange 3px solid; background: #FFD78C; color:orange;}
+			&.ready{ border: green 3px solid; background: #6EFF6E; color:green;}
+		}
+		&.ready{ background-color:rgba(#6DFF74, 0.5); }
+	}
+}
+
+.lesson_ready{ margin:0 auto 30px; font-size:20px; font-weight:bold; color:#36CF40;}
+.lesson_err{font-weight:bold; color:red;}

@@ -1,130 +1,200 @@
-
-<div class="course_title">
-  <%= @lesson.title %>
+<div class="top_info">
+  <div class="course_title">
+    <span class="grey"><%= @course.title %> ::</span>
+  </div>
+  <div class="course_title">
+    <span class="grey"><%= @topic.title %> ::</span>
+  </div>
+  <div class="course_title">
+    <%= @lesson.title %>
+  </div>
 </div>
-<br>
 
 
 
 
+<div class="box_sep"> <div class="body">
 
-<%if current_user.role == @r[3] %>
+  <%if current_user.role == @r[3] %>
 
-hello
+  hello
 
-<% end %>
-
-
-
+  <% end %>
 
 
 
+  <%if current_user.level_2 %>
 
 
+    <!-- CREATION PROGRESS -->
 
+    <div class="lesson_progress_bar" >
 
+      <hr>
 
-
-
-<%if current_user.level_2 %>
-
-
-  <%@explanations.each do |explanation| %>
-      <%= explanation.title %><br>
-  <%end%>
-
-
-  <!-- EXPLANATION -->
-  <%= form_for [@lesson, @explanation]  do |f| %>
-    <% if @explanation.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
-        <ul>
-        <% @explanation.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
+      <div class="progress_unit js-explanation">
+        <div class="progress_btn js-explanation_prog"></div>
+        Explanation
+        <div class="explanation_prog_err lesson_err" style="display: none;"></div>
       </div>
-    <% end %>
-    <div style="display: none;">
+
+      <div class="progress_unit js-prompt">
+        <div class="progress_btn js-prompt_prog"></div>
+        Prompt
+        <div class="prompt_prog_err lesson_err" style="display: none;"></div>
+      </div>
+      
+      <div class="progress_unit js-model">
+        <div class="progress_btn js-model_prog"></div>
+        Model
+        <div class="model_prog_err lesson_err" style="display: none;"></div>
+      </div>
+
+
+      <script type="text/javascript">
+        lessonProgress('<%= @exp_prog %>', '<%= @prompt_prog %>', '<%= @model_prog %>') 
+      </script>
+    </div>
+
+    <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <center>
+    <!-- ADDING EXPLANATION -->
+    <div class="thrd" style="text-align: center;">
+      <div class="js_listOfexplanations"></div>
+      <script type="text/javascript"> 
+        thisLessonsList('explanations', '<%= @explanations_json %>')
+      </script>
+
+      <%= form_for [@lesson, @explanation]  do |f| %>
+        <% if @explanation.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+            <ul>
+            <% @explanation.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div style="display: none;">
+          <%= f.text_field :user_id, type:"hidden", value:current_user.id %>
+          <%= f.text_field :lesson_id, type:"hidden", value:params[:id] %>
+          <%= f.text_field :language, value:"en", type:'hidden' %>
+          <%= f.text_field :title, type:"hidden", value:'New Explanation (rename)' %>
+        </div>
+        <%= f.submit 'Add Explanation', class:'blue' %>
+      <% end %>
+    </div>
+
+
+
+    <!-- ADDING PROMT -->
+    <div class="thrd" style="text-align: center;">
+
+
+    <div class="js_listOfprompts"></div>
+      <script type="text/javascript"> 
+        thisLessonsList('prompts', '<%= @prompts_json %>')
+      </script>
+
+
+      <%= form_for [@lesson, @prompt]  do |f| %>
+        <% if @prompt.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@prompt.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+            <ul>
+            <% @prompt.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div style="display: none;">
+          <%= f.text_field :user_id, type:"hidden", value:current_user.id %><br>
+          <%= f.text_field :lesson_id, type:"hidden", value:params[:id] %><br>
+          <%= f.text_field :title, type:"hidden", value:'New Prompt (rename)' %>
+        </div>
+        <%= f.submit 'Add Prompt', class:'blue' %>
+      <% end %>
+    </div>
+
+
+
+
+    <!-- ADDING MODEL -->
+    <div class="thrd" style="text-align: center;">
+
+
+      <div class="js_listOfmodels"></div>
+      <script type="text/javascript"> 
+        thisLessonsList('models', '<%= @models_json %>')
+      </script>
+
+
+      <%= form_for [@lesson, @model]  do |f| %>
+        <% if @model.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+            <ul>
+            <% @explanation.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div style="display: none;">
+          <%= f.text_field :user_id, type:"hidden", value:current_user.id %><br>
+          <%= f.text_field :lesson_id, type:"hidden", value:params[:id] %><br>
+          <%= f.text_field :title, type:"hidden", value:'New Model (rename)' %>
+        </div>
+        <%= f.submit 'Add Role Model', class:'blue' %>
+      <% end %>
+    </div>
+    </center>
+
+
+
+
+    <!-- CONCEPTS -->
+    <%= form_for [@lesson, @concept]  do |f| %>
+      <% if @concept.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@concept.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+          <ul>
+          <% @concept.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
       <%= f.text_field :user_id, type:"hidden", value:current_user.id %><br>
       <%= f.text_field :lesson_id, type:"hidden", value:params[:id] %><br>
-      <!-- <%= f.text_field :script, type:"hidden" %><br> -->
-      <!-- <%= f.text_field :video_token, type:"hidden" %> -->
-      <!-- <%= f.text_field :token, type:"hidden" %> -->
-    </div>
-    <%= f.submit 'Add Explanation' %>
-  <% end %>
-
-
-
-  <!-- PROMT -->
-  <%= form_for [@lesson, @prompt]  do |f| %>
-    <% if @prompt.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@prompt.errors.count, "error") %> prohibited this lesson from being saved:</h2>
-
-        <ul>
-        <% @prompt.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
+      <%= f.text_field :description, placeholder: 'Concepts' %><br>
+      <%= f.submit 'Add Lesson Concepts', class:'blue' %>
     <% end %>
+  <%end%>
 
-    <%= f.text_field :user_id, type:"hidden", value:current_user.id %><br>
-    <%= f.text_field :lesson_id, type:"hidden", value:params[:id] %><br>
-    <!-- <%= f.text_field :script, type:"hidden" %><br> -->
-    <!-- <%= f.text_field :video_token, type:"hidden" %> -->
-    <!-- <%= f.text_field :token, type:"hidden" %> -->
-    <%= f.submit 'Add Prompt' %>
-  <% end %>
+  <a href="<%= course_topic_path(@course, @lesson) %>"><button> < Back </button></a>
 
-
-
-
-  <!-- MODEL -->
-  <%= form_for [@lesson, @model]  do |f| %>
-    <% if @model.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
-
-        <ul>
-        <% @explanation.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <%= f.text_field :user_id, type:"hidden", value:current_user.id %><br>
-    <%= f.text_field :lesson_id, type:"hidden", value:params[:id] %><br>
-    <!-- <%= f.text_field :script, type:"hidden" %><br> -->
-    <!-- <%= f.text_field :video_token, type:"hidden" %> -->
-    <!-- <%= f.text_field :token, type:"hidden" %> -->
-    <%= f.submit 'Add Role Model' %>
-  <% end %>
-
-
-
-
-  <!-- CONCEPTS -->
-  <%= form_for [@lesson, @concept]  do |f| %>
-    <% if @concept.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@concept.errors.count, "error") %> prohibited this lesson from being saved:</h2>
-
-        <ul>
-        <% @concept.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <%= f.text_field :user_id, type:"hidden", value:current_user.id %><br>
-    <%= f.text_field :lesson_id, type:"hidden", value:params[:id] %><br>
-    <%= f.text_field :description, placeholder: 'Concepts' %><br>
-    <%= f.submit 'Add Concepts to this lesson' %>
-  <% end %>
-<%end%>
+</div></div>

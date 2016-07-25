@@ -1,8 +1,10 @@
-<h3>Record Explanation</h3>
-<ziggeo
-      ziggeo-width=450
-      ziggeo-height=300>
-</ziggeo>
+<div class="top_info">
+  <div class="course_title">
+    <span class="grey"><%= @thislesson.title %></span> :: Record Explanation
+  </div>
+</div>
+
+<%= render './shared/ziggeoplayer' %>
 
 <%= form_for [@lesson, @explanation],html: {id: "tokenForm"}, remote: true  do |f| %>
   <% if @explanation.errors.any? %>
@@ -37,11 +39,17 @@
 
   <%= f.text_field :title, placeholder: 'Title' %><br>
   <%= f.text_area :script, placeholder: 'Script' %><br>
-  <%= f.select :pos_prior, ([["Secondary", 1],["Priority", 0]]) %>
+  <%= f.select :language, (@languages) %>
+  <%= f.select :language, (@privacy) %>
+  <%= f.check_box :position_prior %> Primary Explanation<br>
 
 
-  <%= f.submit 'Submit Explanation' %>
+  <%= f.submit 'Submit Explanation', class:'green_sft' %>
 <% end %>
+  
+<br>
+<a href=""><button class="red"> Delete Explanation </button></a>
+
 
 
 <script >
