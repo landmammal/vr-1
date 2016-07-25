@@ -56,21 +56,35 @@ function lessonProgress(expl, prompt, model){
 	if(expl==='3' && prompt==='3' && model==='3'){
 		var lessonReady = `<div class="lesson_ready">Lesson is ready to go</div>`;
 		$('.lesson_progress_bar').prepend(lessonReady);
+
+		$('.showIfLessonComplete').toggle();
 	}
 }
 
 var pageReady = function(){
+
+
 	var zig_rec_w = window_width / 2.5;
 	var zig_rec_h = zig_rec_w  / 1.77;
-	$('.ziggeo_rec_elem').width(zig_rec_w).height(zig_rec_h);
+	// $('.ziggeo_rec_elem').width(zig_rec_w).height(zig_rec_h);
+	
+	var zig_play_w = window_width / 2.4;
+	var zig_play_h = zig_play_w  / 1.77;
+	// $('.ziggeo_play_elem').width(zig_play_w).height(zig_play_h);
+	// $('.video-player-outer').width(zig_play_w).height(zig_play_h);
+	// $('.video-player-content').width(zig_play_w).height(zig_play_h);
 
 	$(window).resize(function(){
 		zig_rec_w = $(window).width() / 2.5;
 		zig_rec_h = zig_rec_w  / 1.77;
-		$('.ziggeo_rec_elem').width(zig_rec_w).height(zig_rec_h);
+		// $('.ziggeo_rec_elem').width(zig_rec_w).height(zig_rec_h);
+
+		var zig_play_w = $(window).width() / 2.2;
+		var zig_play_h = zig_play_w  / 1.77;
+		// $('.ziggeo_play_elem').width(zig_play_w).height(zig_play_h);
+		// $('.video-player-outer').width(zig_play_w).height(zig_play_h);
+		// $('.video-player-content').width(zig_play_w).height(zig_play_h);
 	});
-
-
 
 };
 
