@@ -24,6 +24,7 @@ class ModelsController < ApplicationController
   end
 
   def edit
+    @thislesson = Lesson.find(@model.lesson_id)
   end
 
   def update
@@ -60,6 +61,6 @@ class ModelsController < ApplicationController
   end
 
   def model_params
-    params.require(:model).permit(:user_id, :lesson_id, :script, :token, :video_token)
+    params.require(:model).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :position_prior)
   end
 end

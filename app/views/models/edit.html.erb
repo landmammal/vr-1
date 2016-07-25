@@ -1,9 +1,10 @@
-<h3>Record Role Model</h3>
+<div class="top_info">
+  <div class="course_title">
+    <span class="grey"><%= @thislesson.title %></span> :: Record Role Model
+  </div>
+</div>
 
-<ziggeo
-      ziggeo-width=450
-      ziggeo-height=300>
-</ziggeo><br>
+<%= render './shared/ziggeoplayer' %>
 
 <%= form_for [@lesson, @model],html: {id: "tokenForm"}, remote: true  do |f| %>
   <% if @model.errors.any? %>
@@ -35,8 +36,13 @@
       </ul>
     </div>
   <% end %>
+  <%= f.text_field :title, placeholder: 'Title' %><br>
   <%= f.text_area :script, placeholder: 'script' %><br>
-  <%= f.submit 'Submit Role Model' %>
+  <%= f.select :language, (@languages) %>
+  <%= f.select :language, (@privacy) %>
+  <%= f.check_box :position_prior %> Primary Role Model<br>
+  
+  <%= f.submit 'Submit Role Model', class:'green_sft' %>
 <% end %>
 
 <script >

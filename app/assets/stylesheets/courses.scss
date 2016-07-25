@@ -3,7 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .course_title{
-	font-weight:bold; font-size:20px; margin-bottom:5px; display:inline-block;
+	font-weight:bold; font-size:18px; margin:5px; display:inline-block;
+	& .grey{
+		color:#D1D1D1;
+	}
 }
 .card_list{
 	overflow:hidden;
