@@ -24,6 +24,8 @@ class LessonsController < ApplicationController
     @models = @lesson.models
 
     @concept = Concept.new
+
+    @rehearsal = Rehearsal.new
   end
 
   # GET /lessons/new

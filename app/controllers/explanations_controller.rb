@@ -14,7 +14,7 @@ class ExplanationsController < ApplicationController
   end
 
   def create
-    @lesson = current_user.lessons.find(params[:lesson_id])
+    }
     @lesson.explanations.build(explanation_params)
 
     respond_to do |format|

@@ -16,7 +16,9 @@ class RehearsalsController < ApplicationController
   end
 
   def create
-
+    @lesson = current_user.lessons.find(params[:lesson_id])
+    binding.pry
+    @lesson.rehearsals.build(rehearsal_params)
 
     respond_to do |format|
       if @rehearsal.save

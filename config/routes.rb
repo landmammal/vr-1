@@ -2,12 +2,11 @@ Rails.application.routes.draw do
 
   resources :lesson_rehearsals
   # resources :lesson_rehearsals
-  # resources :rehearsals
   # resources :progresses
   resources :group_registrations
   resources :user_groups
   resources :groups
-root 'welcome#index'
+  root 'welcome#index'
 
   ['about','markets','process','contact'].each do |menu|
     get "/#{menu}" => "welcome##{menu}"
@@ -36,7 +35,7 @@ root 'welcome#index'
 
   resources :courses do
     collection do
-        get '/search' => "courses#search"
+      get '/search' => "courses#search"
     end
     resources :topics do
       resources :lessons
@@ -48,6 +47,7 @@ root 'welcome#index'
     resources :prompts
     resources :models
     resources :concepts
+    resources :rehearsals
   end
 
 
