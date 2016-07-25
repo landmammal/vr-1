@@ -75,7 +75,10 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.string   "language"
     t.string   "privacy"
     t.string   "position_prior"
+<<<<<<< HEAD
+=======
     t.integer  "watched"
+>>>>>>> 6795b7bf784d596e36a354650f57a2f5b4e078b4
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
@@ -206,6 +209,10 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.string   "language"
     t.string   "privacy"
     t.string   "position_prior"
+<<<<<<< HEAD
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+=======
     t.integer  "watched"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -220,6 +227,7 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.string   "video_token"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+>>>>>>> 6795b7bf784d596e36a354650f57a2f5b4e078b4
   end
 
   add_index "rehearsals", ["course_id"], name: "index_rehearsals_on_course_id", using: :btree
