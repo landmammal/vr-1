@@ -1,4 +1,11 @@
-<%= form_for(@rehearsal) do |f| %>
+<h1>Traineee here</h1>
+
+<ziggeo
+ziggeo-width=450
+ziggeo-height=300>
+</ziggeo>
+
+<%= form_for(@lesson, @rehearsal) do |f| %>
   <% if @rehearsal.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@rehearsal.errors.count, "error") %> prohibited this rehearsal from being saved:</h2>
@@ -13,29 +20,81 @@
 
   <div class="field">
     <%= f.label :course_id %><br>
-    <%= f.text_field :course_id %>
   </div>
-  <div class="field">
-    <%= f.label :progress_id %><br>
-    <%= f.text_field :progress_id %>
-  </div>
-  <div class="field">
-    <%= f.label :group_id %><br>
-    <%= f.text_field :group_id %>
-  </div>
-  <div class="field">
-    <%= f.label :course_number %><br>
-    <%= f.number_field :course_number %>
-  </div>
-  <div class="field">
-    <%= f.label :token %><br>
-    <%= f.text_field :token %>
-  </div>
-  <div class="field">
-    <%= f.label :video_token %><br>
-    <%= f.text_field :video_token %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="field">
+      <%= f.label :progress_id %><br>
+    </div>
+    <div class="field">
+      <%= f.label :group_id %><br>
+      <%= f.text_field :group_id %>
+    </div>
+    <div class="field">
+      <%= f.label :course_number %><br>
+      <%= f.number_field :course_number %>
+    </div>
+    <div class="field">
+      <%= f.label :token %><br>
+      <%= f.text_field :token %>
+    </div>
+    <div class="field">
+      <%= f.label :video_token %><br>
+      <%= f.text_field :video_token %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 <% end %>
+
+
+<%= form_for [@lesson, @explanation],html: {id: "tokenForm"}, remote: true  do |f| %>
+    <% if @explanation.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+          <ul>
+            <% @explanation.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <%= f.text_field :progress_id, type:"hidden" %>
+    <%= f.text_field :course_id, type:"hidden", value: %><br> %>
+    <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
+    <%= f.text_field :lesson_id, type:"hidden", value:params[:lesson_id] %><br>
+    <%= f.text_field :video_token, type:"hidden" %>
+    <%= f.text_field :token, type:"hidden" %>
+<% end %>
+
+<script >
+
+  function postVideoToken(videoToken, streamToken){
+
+    $form = $('#tokenForm');
+    $ziggeotoken = $('#rehearsal_video_token');
+    $webtoken = $('#rehearsal_token');
+
+    $ziggeotoken.val(videoToken);
+    $webtoken.val(streamToken)
+    $form.submit();
+  };
+  // function postStreamToken(streamToken){
+  //
+  // };
+  ZiggeoApi.Events.on("submitted", function (data) {
+
+    // getting the string token and storing it in videoToken var to ship it to the outside world
+    var streamToken = data.stream.token
+    var videoToken = data.stream.video_token
+    console.log(videoToken);
+    console.log(streamToken);
+
+    // here is where we grab the token to escort it outside of the ziggeo api on click event
+    postVideoToken(videoToken, streamToken);
+
+
+    // console.log(streamToken);
+
+  });
+</script>

@@ -38,6 +38,8 @@ class LessonsController < ApplicationController
       @models ? @model_prog = 1 : @model_prog = 0)
 
     @concept = Concept.new
+
+    @rehearsal = Rehearsal.new
   end
 
   # GET /lessons/new

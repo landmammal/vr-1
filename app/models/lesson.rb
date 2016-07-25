@@ -5,7 +5,7 @@ class Lesson < ActiveRecord::Base
   has_many :topics, through: :topic_lessons
 
   has_many :lesson_explanations
-  has_many :explanations, :through => :lesson_explanations
+  has_many :explanations, through: :lesson_explanations
 
   has_many :lesson_prompts
   has_many :prompts, :through => :lesson_prompts
