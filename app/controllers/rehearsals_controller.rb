@@ -1,5 +1,6 @@
 class RehearsalsController < ApplicationController
   before_action :set_rehearsal, only: [:show, :edit, :update, :destroy]
+  before_action :set_lesson, only: [:new]
 
   def index
     @rehearsals = Rehearsal.all
@@ -10,18 +11,18 @@ class RehearsalsController < ApplicationController
 
   def new
     @rehearsal = Rehearsal.new
+
   end
 
   def edit
   end
 
   def create
-    @lesson = current_user.lessons.find(params[:lesson_id])
-    binding.pry
-    @lesson.rehearsals.build(rehearsal_params)
 
+    @lesson = Lesson.find(params[:lesson_id])
+    @lesson.rehearsals.build(rehearsal_params)
     respond_to do |format|
-      if @rehearsal.save
+      if @lesson.save
         format.html { redirect_to @rehearsal, notice: 'Rehearsal was successfully created.' }
         format.json { render :show, status: :created, location: @rehearsal }
       else
@@ -58,6 +59,10 @@ class RehearsalsController < ApplicationController
     end
 
     def rehearsal_params
-      params.require(:rehearsal).permit(:course_id, :progress_id, :group_id, :course_number, :token, :video_token)
+      params.require(:rehearsal).permit(:course_id, :progress_id, :group_id, :course_number, :token, :video_token, :trainee_id)
     end
+
+  def set_lesson
+    @lesson = Lesson.find(params[:lesson_id])
+  end
 end
