@@ -10,6 +10,8 @@ function panel_section(panel_name){
 	        	var item = panel_data[panel_item];
 	        	// console.log(item.name);
 
+	        	var joinedName = item.name.split(' ').join('_');
+
 	        	if(item.icon === 'svg'){
 	        		var icon = `<img class="icon" src="/assets/icons/`+item.iname+`.svg">`;
 	        	}else{
@@ -23,7 +25,7 @@ function panel_section(panel_name){
 	        	};
 
 	        	if(item.link === '#'){ 
-	        		var link_class = ` class="js-open_side_`+item.name+`" `; 
+	        		var link_class = ` class="js-open_side_`+joinedName+`" `; 
 	        	}else{
 	        		var link_class = '';         	
 	        	};
@@ -40,7 +42,7 @@ function panel_section(panel_name){
 
 	        	$('.js-'+name).append(each_item);
 		        if(item.link === '#'){
-		        	sidepanel(item.name);
+		        	sidepanel(joinedName);
 		        }
 
 	        }

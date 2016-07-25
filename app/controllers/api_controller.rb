@@ -38,4 +38,10 @@ class ApiController < ApplicationController
         render json: @common_panel
 	end
 
+	def instructor_panel_api
+		@instructor_panel = [{name:'My Courses', icon:'ion', iname:'ion-university', link:courses_path, link_target:'', notif:false},
+                         {name:'My Tools', icon:'ion', iname:'ion-settings', link:'#', link_target:'', notif:false}]
+        render json: @instructor_panel
+	end
+
 end
