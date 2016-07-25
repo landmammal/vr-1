@@ -18,7 +18,6 @@ class RehearsalsController < ApplicationController
   end
 
   def create
-
     @lesson = Lesson.find(params[:lesson_id])
     @lesson.rehearsals.build(rehearsal_params)
     respond_to do |format|

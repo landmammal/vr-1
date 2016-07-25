@@ -62,9 +62,10 @@ Rails.application.routes.draw do
   # resources :course_registrations
   # resources :user_groups
 
+
   # resources :course_topics
   # resources :topic_lessons
-
+  
   # resources :lesson_concepts
   # resources :lesson_models
   # resources :lesson_prompts

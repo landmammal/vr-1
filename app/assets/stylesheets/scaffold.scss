@@ -144,6 +144,10 @@ input[type="submit"], button{
     padding:2px 5px; float: none;
     border-radius:3px;
   }
+  &.big_btn{
+    padding:15px 20px; float: none;
+    border-radius:3px; font-size:15px;
+  }
   &.circle{
     border-radius:50%;
   }
