@@ -77,7 +77,8 @@ var pageReady = function(){
 	function playSize(item){ $(item).width(zig_play_w).height(zig_play_h); }
 	function changePropSize(element){ $(element).prop('width', zig_play_w); $(element).prop('height', zig_play_h); }
 	function runChangeSize(){
-		changePropSize('embed'); changePropSize('object'); playSize('.ziggeo_play_elem');
+		changePropSize('embed'); changePropSize('object'); 
+		playSize('.ziggeo_play_elem'); playSize('.video-player-inner'); playSize('.video-player-outer');
 		recSize('.ziggeo_rec_elem'); recSize('div[data-view-id=cid_3]'); recSize('.video-recorder-flash');
 		// recSize('#video-recorder-view-cid_3');
 	}
