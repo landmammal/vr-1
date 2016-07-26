@@ -36,12 +36,12 @@
             <div class="label">User Information</div><br>
             <%= f.text_field :first_name, autofocus: true, placeholder:'First Name'%><br>
             <%= f.text_field :last_name, placeholder:'Last Name'%><br>
-            <%= f.text_field :username, placeholder:'Create a username'%><br>
+            
             <div class="label">Date of birth</div><br>
             <%= f.date_field :age, placeholder:'Age'%><br>
             <div class="label">Ethnicity</div><br>
+            <%= f.select :race, ([["Hispanic or Latino", "Hispanic or Latino"], ["American Indian or Alaska Native", "American Indian or Alaska Native"], ["Asian", "Asian"], ["Black or African American", "Black or African American"], ["Native Hawaiian or Pacific Islander", "Native Hawaiian or Pacific Islander"], ["White", "WhiteWhite"]]) %>
             <br><br>
-
 
              <!-- Profile:<br> 
             <%= f.file_field :profile, class:'half' %><br>
