@@ -8,6 +8,8 @@
       t.references :course
       t.integer :instructor_id, foreign_key: :user_id
       t.string :privacy
+      t.string :video_type
+      t.string :video_link
 
       t.timestamps null: false
     end

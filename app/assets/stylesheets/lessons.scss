@@ -33,7 +33,7 @@
 		float: left; position:relative; top: -35px;
 		text-align:center; padding-bottom:5px;
 		& .progress_btn{
-			width:30px; height:30px; margin:5px auto; padding-top:3px;
+			width:30px; height:30px; margin:5px auto; padding-top:2px;
 			border: grey 3px solid; border-radius:50%; background:white; 
 			font-size: 20px;
 			&.notready{ border: red 3px solid; background: #FF7B7B; color:red;}
@@ -50,6 +50,7 @@
 
 .instructor_videos, .trainee_rehearsal{
 	text-align:left;
+	& .big_btn{ width:31%; }
 	textarea, & .lesson_script{
 		height:100px; padding:10px;
 		border:1px solid #AAAAAA; 
@@ -62,7 +63,7 @@
 	.instructor_videos, .trainee_rehearsal{
 		width: 98%; float:none; margin:0 1%; text-align:center;
 		& .big_btn{ padding:10px 15px; font-size:15px; }
-		& .vid_title{ font-size:20px; margin:3px 0; background-color:none;}
+		& .vid_title{ font-size:20px; margin:10px 0; background-color:none;}
 		textarea, & .lesson_script{ min-width: 100%; margin:0;}
 	}
 }
@@ -72,7 +73,7 @@
 	.instructor_videos, .trainee_rehearsal{
 		width: auto; float:left; margin:0 5px 0 0;
 		& .big_btn{ padding:5px; font-size:13px; }
-		& .vid_title{ font-size:30px; margin:10px 0; background-color:none;}
+		& .vid_title{ font-size:30px; margin:10px 0 20px; background-color:none;}
 		textarea, & .lesson_script{ min-width: 100%; margin:10px 0 5px;}
 	}
 }
@@ -81,6 +82,6 @@
 @media only screen and (min-width: 827px) {
 	.instructor_videos, .trainee_rehearsal{
 		& .big_btn{ padding:10px 15px; font-size:15px; }
-		& .vid_title{ margin: 20px 0 10px;}
+		& .vid_title{ margin: 20px 0;}
 	}
 }

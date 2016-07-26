@@ -18,22 +18,22 @@ class LessonsController < ApplicationController
     @explanations = @lesson.explanations.order('id ASC')
     @explanations_json = @explanations.to_json
     @prior_expl = @lesson.explanations.find_by(position_prior: '1')
-    @explanations && @prior_expl ? (@prior_expl.video_token ? @exp_prog = 3 : @exp_prog = 2 ) : (
-      @explanations ? @exp_prog = 1 : @exp_prog = 0) 
+    @explanations.count>0 && @prior_expl ? (@prior_expl.video_token ? @exp_prog = 3 : @exp_prog = 2 ) : (
+      @explanations.count>0 ? @exp_prog = 1 : @exp_prog = 0) 
 
     @prompt = Prompt.new
     @prompts = @lesson.prompts.order('id ASC')
     @prompts_json = @prompts.to_json
     @prior_prompt = @lesson.prompts.find_by(position_prior: '1')
-    @prompts && @prior_prompt ? (@prior_prompt.video_token ? @prompt_prog = 3 : @prompt_prog = 2 ) : (
-      @prompts ? @prompt_prog = 1 : @prompt_prog = 0) 
+    @prompts.count>0 && @prior_prompt ? (@prior_prompt.video_token ? @prompt_prog = 3 : @prompt_prog = 2 ) : (
+      @prompts.count>0 ? @prompt_prog = 1 : @prompt_prog = 0) 
 
     @model = Model.new
     @models = @lesson.models.order('id ASC')
     @models_json = @models.to_json
     @prior_model = @lesson.models.find_by(position_prior: '1')
-    @models && @prior_model ? (@prior_model.video_token ? @model_prog = 3 : @model_prog = 2 ) : (
-      @models ? @model_prog = 1 : @model_prog = 0)
+    @models.count>0 && @prior_model ? (@prior_model.video_token ? @model_prog = 3 : @model_prog = 2 ) : (
+      @models.count>0 ? @model_prog = 1 : @model_prog = 0)
 
     @concept = Concept.new
 

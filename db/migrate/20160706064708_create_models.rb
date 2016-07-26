@@ -4,6 +4,7 @@ class CreateModels < ActiveRecord::Migration
       t.references :user
       t.references :lesson
       t.string :title
+      t.string :video_type
       t.string :token
       t.string :video_token
       t.string :script

@@ -21,31 +21,31 @@
     <div class="showIfLessonComplete" style="display: none;">
 
       <div class="instructor_videos">
+
         <button class="green_sft big_btn js-show_explanation">Explanation</button>
         <button class="green_sft big_btn js-show_prompt">Prompt</button>
         <button class="green_sft big_btn js-show_model">Role Model</button>
+
+        <hr>
         <br>
 
         <div class="explanation_video">
-          <ziggeoplayer ziggeo-theme="modern" class='ziggeo_play_elem' ziggeo-video="<%= @prior_expl.video_token %>" ziggeo-stretch>
-          </ziggeoplayer>
-          
+          <% @this_video_token = @prior_expl.video_token %>
+          <%= render './shared/ziggeoplayer' %>          
           <div class="lesson_script"><%= @prior_expl.script %></div>
         </div>
 
         <div class="prompt_video" style="display: none;">
-          <ziggeoplayer ziggeo-theme="modern" class='ziggeo_play_elem' ziggeo-video="<%= @prior_prompt.video_token %>" ziggeo-stretch>
-          </ziggeoplayer>
-          
+          <% @this_video_token = @prior_prompt.video_token %>
+          <%= render './shared/ziggeoplayer' %>  
           <div class="lesson_script"><%= @prior_prompt.script %></div>
         </div>
+
         <div class="model_video" style="display: none;">
-          <ziggeoplayer ziggeo-theme="modern" class='ziggeo_play_elem' ziggeo-video="<%= @prior_model.video_token %>" ziggeo-stretch>
-          </ziggeoplayer>
-          
+          <% @this_video_token = @prior_model.video_token %>
+          <%= render './shared/ziggeoplayer' %>  
           <div class="lesson_script"><%= @prior_model.script %></div>
         </div>
-
 
 
       </div>
@@ -57,11 +57,19 @@
       <div class="trainee_rehearsal">
 
         <div class="vid_title">Rehearsal</div>
+        <hr style="margin-bottom: 28px;">
 
         <ziggeo ziggeo-theme='modern-blue' class='ziggeo_rec_elem' ziggeo-stretch ziggeo-disable_first_screen >        
         </ziggeo>
-        <br>
-        <textarea> SCRIPT  </textarea>
+
+        <!-- <%= @prior_model.script %> -->
+        <!-- <textarea placeholder="Write your script here..." style="margin-top:14px;"></textarea> -->
+
+
+
+
+
+
         <%= form_for [@lesson, @rehearsal],html: {id: "tokenForm"}, remote: true  do |f| %>
             <% if @rehearsal.errors.any? %>
                 <div id="error_explanation">
@@ -75,6 +83,7 @@
                 </div>
             <% end %>
 
+            <%= f.text_area :script, placeholder:'Write your script here...', style:'margin-top:15px;' %>
             <%= f.text_field :progress_id, type:"hidden" %>
             <%= f.text_field :course_id, type:"hidden", value:@course.id  %><br>
             <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
@@ -121,11 +130,14 @@
     <a href="<%= user_path(current_user) %>"><button> < Back </button></a>
     </div>
   </div>
-  <% end %>
 
 
 
-  <%if current_user.level_2 %>
+  <% elsif current_user.level_2 %>
+  
+
+
+
   <div class="body">
 
     <!-- CREATION PROGRESS -->
@@ -192,6 +204,7 @@
         <div style="display: none;">
           <%= f.text_field :user_id, type:"hidden", value:current_user.id %>
           <%= f.text_field :lesson_id, type:"hidden", value:params[:id] %>
+          <%= f.text_field :video_type, value:"ziggeo", type:'hidden' %>
           <%= f.text_field :language, value:"en", type:'hidden' %>
           <%= f.text_field :title, type:"hidden", value:'New Explanation (rename)' %>
         </div>
@@ -225,8 +238,10 @@
         <% end %>
 
         <div style="display: none;">
-          <%= f.text_field :user_id, type:"hidden", value:current_user.id %><br>
-          <%= f.text_field :lesson_id, type:"hidden", value:params[:id] %><br>
+          <%= f.text_field :user_id, type:"hidden", value:current_user.id %>
+          <%= f.text_field :lesson_id, type:"hidden", value:params[:id] %>
+          <%= f.text_field :video_type, value:"ziggeo", type:'hidden' %>
+          <%= f.text_field :language, value:"en", type:'hidden' %>
           <%= f.text_field :title, type:"hidden", value:'New Prompt (rename)' %>
         </div>
         <%= f.submit 'Add Prompt', class:'blue' %>
@@ -260,8 +275,10 @@
         <% end %>
 
         <div style="display: none;">
-          <%= f.text_field :user_id, type:"hidden", value:current_user.id %><br>
-          <%= f.text_field :lesson_id, type:"hidden", value:params[:id] %><br>
+          <%= f.text_field :user_id, type:"hidden", value:current_user.id %>
+          <%= f.text_field :lesson_id, type:"hidden", value:params[:id] %>
+          <%= f.text_field :video_type, value:"ziggeo", type:'hidden' %>
+          <%= f.text_field :language, value:"en", type:'hidden' %>
           <%= f.text_field :title, type:"hidden", value:'New Model (rename)' %>
         </div>
         <%= f.submit 'Add Role Model', class:'blue' %>
@@ -288,14 +305,22 @@
 
       <%= f.text_field :user_id, type:"hidden", value:current_user.id %><br>
       <%= f.text_field :lesson_id, type:"hidden", value:params[:id] %><br>
-      <%= f.text_field :description, placeholder: 'Concepts' %><br>
-      <%= f.submit 'Add Lesson Concepts', class:'blue' %>
+      <%= f.text_field :description, placeholder: 'add a lesson concept...', style:'width:300px;' %>
+      <%= f.submit 'Add Concept', class:'blue' %>
     <% end %>
 
-    </div>
     <a href="<%= course_topic_path(@course, @lesson) %>"><button> < Back </button></a>
+    </div>
+
+  <%else%>
+
+    <div class="body">Lesson is not yet completed for viewing.</div>
+
   <%end%>
-  
+
+
+
+
   <script type="text/javascript">
         lessonProgress('<%= @exp_prog %>', '<%= @prompt_prog %>', '<%= @model_prog %>') 
   </script>

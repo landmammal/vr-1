@@ -66,6 +66,9 @@ var pageReady = function(){
 	if(window_width < 615){
 		var zig_rec_w = window_width / 1.22;
 		var zig_play_w = window_width / 1.22;
+	}else if(window_width > 827){
+		var zig_rec_w = window_width / 2.3;
+		var zig_play_w = window_width / 2.3;
 	}else{
 		var zig_rec_w = window_width / 2.4;
 		var zig_play_w = window_width / 2.4;
@@ -89,6 +92,9 @@ var pageReady = function(){
 		if($(window).width() < 615){
 			zig_rec_w = $(window).width() / 1.22;
 			zig_play_w = $(window).width() / 1.22;
+		}else if($(window).width() > 827){
+			zig_rec_w = $(window).width() / 2.3;
+			zig_play_w = $(window).width() / 2.3;
 		}else{
 			zig_rec_w = $(window).width() / 2.4;
 			zig_play_w = $(window).width() / 2.4;
@@ -98,6 +104,32 @@ var pageReady = function(){
 
 		runChangeSize()
 	});
+
+
+
+
+
+
+
+	var lessonShowWindows = ['explanation', 'prompt', 'model'];
+	var toRemove = lessonShowWindows.map((item) => item);
+	
+	function showLessonItem(name){
+		$('.js-show_'+name).click(function(){
+			var index = toRemove.indexOf(name);
+			toRemove.splice(index, 1);
+
+			var i = 0;
+			do{	$('.'+toRemove[i]+'_video').hide(); i+=1; }while(i < toRemove.length);
+			$('.'+name+'_video').show();
+			toRemove = lessonShowWindows.map((item) => item);
+
+		});
+	}
+
+	var a = 0;
+	do{	showLessonItem(lessonShowWindows[a]); a+=1; }while(a < lessonShowWindows.length);
+
 
 };
 

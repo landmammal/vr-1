@@ -4,7 +4,14 @@
   </div>
 </div>
 
-<%= render './shared/ziggeoplayer' %>
+<%if @prompt.video_token == '' || @prompt.video_token.nil? %>
+  <%= render './shared/ziggeorecorder' %>
+<% else %>
+  <% @this_video_token = @prompt.video_token %>
+  <%= render './shared/ziggeoplayer' %>
+  <br>
+  <button class="js-re_record red">Re-Record?</button>
+<% end %>
 
 <%= form_for [@lesson, @prompt],html: {id: "tokenForm"}, remote: true  do |f| %>
   <% if @prompt.errors.any? %>

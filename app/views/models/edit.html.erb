@@ -4,7 +4,14 @@
   </div>
 </div>
 
-<%= render './shared/ziggeoplayer' %>
+<%if @model.video_token == '' || @model.video_token.nil? %>
+  <%= render './shared/ziggeorecorder' %>
+<% else %>
+  <% @this_video_token = @model.video_token %>
+  <%= render './shared/ziggeoplayer' %>
+  <br>
+  <button class="js-re_record red">Re-Record?</button>
+<% end %>
 
 <%= form_for [@lesson, @model],html: {id: "tokenForm"}, remote: true  do |f| %>
   <% if @model.errors.any? %>

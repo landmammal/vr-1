@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.integer  "status"
     t.integer  "instructor_id"
     t.string   "privacy"
+    t.string   "video_type"
+    t.string   "video_link"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -69,6 +71,7 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.integer  "user_id"
     t.integer  "lesson_id"
     t.string   "title"
+    t.string   "video_type"
     t.string   "token"
     t.string   "video_token"
     t.string   "script"
@@ -155,6 +158,7 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.integer  "user_id"
     t.integer  "lesson_id"
     t.string   "title"
+    t.string   "video_type"
     t.string   "token"
     t.string   "video_token"
     t.string   "script"
@@ -200,6 +204,7 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.integer  "user_id"
     t.integer  "lesson_id"
     t.string   "title"
+    t.string   "video_type"
     t.string   "token"
     t.string   "video_token"
     t.string   "script"
@@ -217,8 +222,10 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.integer  "progress_id"
     t.integer  "group_id"
     t.string   "course_number"
+    t.string   "video_type"
     t.string   "token"
     t.string   "video_token"
+    t.string   "script"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -251,6 +258,8 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.integer  "course_id"
     t.integer  "instructor_id"
     t.string   "privacy"
+    t.string   "video_type"
+    t.string   "video_link"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
