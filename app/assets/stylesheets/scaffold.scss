@@ -144,6 +144,10 @@ input[type="submit"], button{
     padding:2px 5px; float: none;
     border-radius:3px;
   }
+  &.big_btn{
+    padding:10px 15px; float: none;
+    border-radius:3px; font-size:15px;
+  }
   &.circle{
     border-radius:50%;
   }
@@ -216,4 +220,16 @@ button:focus,
 a:focus {
     outline: none;
     text-decoration:none;
+}
+
+
+.reddot, .greendot{
+  width:8px; height:8px; display:inline-block;
+  border-radius:50%; margin-bottom:0.5px;
+}
+.reddot{
+  background-color:red;
+}
+.greendot{
+  background-color:#0FDF0F;
 }

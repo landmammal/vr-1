@@ -13,76 +13,121 @@
 
 
 
-<div class="box_sep"> <div class="body">
+<div class="box_sep">
 
-  <%if current_user.role == @r[3] %>
+  <%if @prior_expl && @prior_prompt && @prior_model && current_user.role == @r[3] %>
+  <div class="body">
 
-    <h1>Traineee here</h1>
+    <div class="showIfLessonComplete" style="display: none;">
 
-    <ziggeo
-    ziggeo-width=450
-    ziggeo-height=300>
-    </ziggeo>
+      <div class="instructor_videos">
+        <button class="green_sft big_btn js-show_explanation">Explanation</button>
+        <button class="green_sft big_btn js-show_prompt">Prompt</button>
+        <button class="green_sft big_btn js-show_model">Role Model</button>
+        <br>
+
+        <div class="explanation_video">
+          <ziggeoplayer ziggeo-theme="modern" class='ziggeo_play_elem' ziggeo-video="<%= @prior_expl.video_token %>" ziggeo-stretch>
+          </ziggeoplayer>
+          
+          <div class="lesson_script"><%= @prior_expl.script %></div>
+        </div>
+
+        <div class="prompt_video" style="display: none;">
+          <!-- <ziggeoplayer ziggeo-theme="modern" class='ziggeo_play_elem' ziggeo-video="<%= @prior_prompt.video_token %>" ziggeo-stretch> -->
+          <!-- </ziggeoplayer> -->
+          
+          <div class="lesson_script"><%= @prior_prompt.script %></div>
+        </div>
+        <div class="model_video" style="display: none;">
+          <!-- <ziggeoplayer ziggeo-theme="modern" class='ziggeo_play_elem' ziggeo-video="<%= @prior_model.video_token %>" ziggeo-stretch> -->
+          <!-- </ziggeoplayer> -->
+          
+          <div class="lesson_script"><%= @prior_model.script %></div>
+        </div>
 
 
 
-    <%= form_for [@lesson , @rehearsal],html: {id: "tokenForm"}, remote: true  do |f| %>
-        <% if @rehearsal.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this rehearsal from being saved:</h2>
+      </div>
 
-              <ul>
-                <% @rehearsal.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
+
+
+
+
+      <div class="trainee_rehearsal">
+
+        <div class="vid_title">Rehearsal</div>
+
+        <ziggeo ziggeo-theme='modern-blue' class='ziggeo_rec_elem' ziggeo-stretch ziggeo-disable_first_screen >
+        </ziggeo>
+        <br>
+        <textarea> SCRIPT  </textarea>
+        <%= form_for [@lesson, @rehearsal],html: {id: "tokenForm"}, remote: true  do |f| %>
+            <% if @rehearsal.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this rehearsal from being saved:</h2>
+
+                  <ul>
+                    <% @rehearsal.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+            <% end %>
+
+            <%= f.text_field :progress_id, type:"hidden", value:'' %>
+            <%= f.text_field :course_id, type:"hidden", value:@course.id  %><br>
+            <!-- Dont forget to associate Trainee_id to user_id in the models -->
+            <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
+            <%= f.text_field :lesson_id, type:"hidden", value:@lesson.id %><br>
+            <%= f.text_field :video_token, type:"hidden" %>
+            <%= f.text_field :token, type:"hidden" %>
         <% end %>
 
-        <%= f.text_field :progress_id, type:"hidden" %>
-        <%= f.text_field :course_id, type:"hidden"  %><br>
-        <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
-        <%= f.text_field :lesson_id, type:"hidden", value:@lesson.id %><br>
-        <%= f.text_field :video_token, type:"hidden" %>
-        <%= f.text_field :token, type:"hidden" %>
-    <% end %>
+        <script >
 
-    <script >
+          function postVideoToken(videoToken, streamToken){
 
-      function postVideoToken(videoToken, streamToken){
+            $form = $('#tokenForm');
+            $ziggeotoken = $('#rehearsal_video_token');
+            $webtoken = $('#rehearsal_token');
 
-        $form = $('#tokenForm');
-        $ziggeotoken = $('#rehearsal_video_token');
-        $webtoken = $('#rehearsal_token');
+            $ziggeotoken.val(videoToken);
+            $webtoken.val(streamToken)
+            $form.submit();
+          };
+          // function postStreamToken(streamToken){
+          //
+          // };
+          ZiggeoApi.Events.on("submitted", function (data) {
 
-        $ziggeotoken.val(videoToken);
-        $webtoken.val(streamToken)
-        $form.submit();
-      };
-      // function postStreamToken(streamToken){
-      //
-      // };
-      ZiggeoApi.Events.on("submitted", function (data) {
+            // getting the string token and storing it in videoToken var to ship it to the outside world
+            var streamToken = data.stream.token
+            var videoToken = data.stream.video_token
+            console.log(videoToken);
+            console.log(streamToken);
 
-        // getting the string token and storing it in videoToken var to ship it to the outside world
-        var streamToken = data.stream.token
-        var videoToken = data.stream.video_token
-        console.log(videoToken);
-        console.log(streamToken);
-
-        // here is where we grab the token to escort it outside of the ziggeo api on click event
-        postVideoToken(videoToken, streamToken);
+            // here is where we grab the token to escort it outside of the ziggeo api on click event
+            postVideoToken(videoToken, streamToken);
 
 
-        // console.log(streamToken);
+            // console.log(streamToken);
 
-      });
-    </script>
+          });
+        </script>
+      </div>
+
+    <hr>
+    
+    <a href="<%= user_path(current_user) %>"><button> < Back </button></a>
+    </div>
+  </div>
   <% end %>
 
 
 
   <%if current_user.level_2 %>
+  <div class="body">
 
     <!-- CREATION PROGRESS -->
 
@@ -108,10 +153,6 @@
         <div class="model_prog_err lesson_err" style="display: none;"></div>
       </div>
 
-
-      <script type="text/javascript">
-        lessonProgress('<%= @exp_prog %>', '<%= @prompt_prog %>', '<%= @model_prog %>') 
-      </script>
     </div>
 
     <br>
@@ -251,8 +292,14 @@
       <%= f.text_field :description, placeholder: 'Concepts' %><br>
       <%= f.submit 'Add Lesson Concepts', class:'blue' %>
     <% end %>
+
+    </div>
+    <a href="<%= course_topic_path(@course, @lesson) %>"><button> < Back </button></a>
   <%end%>
+  
+  <script type="text/javascript">
+        lessonProgress('<%= @exp_prog %>', '<%= @prompt_prog %>', '<%= @model_prog %>') 
+  </script>
+  <br>
 
-  <a href="<%= course_topic_path(@course, @lesson) %>"><button> < Back </button></a>
-
-</div></div>
+</div>

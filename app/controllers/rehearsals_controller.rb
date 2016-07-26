@@ -17,11 +17,10 @@ class RehearsalsController < ApplicationController
 
   def create
     @lesson = current_user.lessons.find(params[:lesson_id])
-    binding.pry
     @lesson.rehearsals.build(rehearsal_params)
 
     respond_to do |format|
-      if @rehearsal.save
+      if @lesson.save
         format.html { redirect_to @rehearsal, notice: 'Rehearsal was successfully created.' }
         format.json { render :show, status: :created, location: @rehearsal }
       else

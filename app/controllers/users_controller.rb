@@ -17,8 +17,6 @@ class UsersController < ApplicationController
       @course = Course.new
       @topic = Topic.new
       @lesson = Lesson.new
-    elsif
-
     end
     authorize @user
   end
