@@ -32,7 +32,7 @@ function lessonProgress(expl, prompt, model){
 		}else if(stat==='2'){
 			$('.js-'+name+'_prog').addClass('caution1 ion-alert');
 
-			$('.'+name+'_prog_err').text('Missing the video');
+			$('.'+name+'_prog_err').text('Primary selection is missing video');
 			$('.js-'+name+'_prog').hover(function(){
 				$('.'+name+'_prog_err').toggle();
 			});
@@ -63,27 +63,39 @@ function lessonProgress(expl, prompt, model){
 
 var pageReady = function(){
 
-
-	var zig_rec_w = window_width / 2.5;
+	if(window_width < 615){
+		var zig_rec_w = window_width / 1.22;
+		var zig_play_w = window_width / 1.22;
+	}else{
+		var zig_rec_w = window_width / 2.4;
+		var zig_play_w = window_width / 2.4;
+	}
 	var zig_rec_h = zig_rec_w  / 1.77;
-	// $('.ziggeo_rec_elem').width(zig_rec_w).height(zig_rec_h);
-	
-	var zig_play_w = window_width / 2.4;
 	var zig_play_h = zig_play_w  / 1.77;
-	// $('.ziggeo_play_elem').width(zig_play_w).height(zig_play_h);
-	// $('.video-player-outer').width(zig_play_w).height(zig_play_h);
-	// $('.video-player-content').width(zig_play_w).height(zig_play_h);
+
+	function recSize(item){ $(item).width(zig_rec_w).height(zig_rec_h); }
+	function playSize(item){ $(item).width(zig_play_w).height(zig_play_h); }
+	function changePropSize(element){ $(element).prop('width', zig_play_w); $(element).prop('height', zig_play_h); }
+	function runChangeSize(){
+		changePropSize('embed'); changePropSize('object'); playSize('.ziggeo_play_elem');
+		recSize('.ziggeo_rec_elem'); recSize('div[data-view-id=cid_3]'); recSize('.video-recorder-flash');
+		// recSize('#video-recorder-view-cid_3');
+	}
+	
+	runChangeSize()
 
 	$(window).resize(function(){
-		zig_rec_w = $(window).width() / 2.5;
+		if($(window).width() < 615){
+			zig_rec_w = $(window).width() / 1.22;
+			zig_play_w = $(window).width() / 1.22;
+		}else{
+			zig_rec_w = $(window).width() / 2.4;
+			zig_play_w = $(window).width() / 2.4;
+		}
 		zig_rec_h = zig_rec_w  / 1.77;
-		// $('.ziggeo_rec_elem').width(zig_rec_w).height(zig_rec_h);
+		zig_play_h = zig_play_w  / 1.77;
 
-		var zig_play_w = $(window).width() / 2.2;
-		var zig_play_h = zig_play_w  / 1.77;
-		// $('.ziggeo_play_elem').width(zig_play_w).height(zig_play_h);
-		// $('.video-player-outer').width(zig_play_w).height(zig_play_h);
-		// $('.video-player-content').width(zig_play_w).height(zig_play_h);
+		runChangeSize()
 	});
 
 };

@@ -25,13 +25,13 @@
 }
 
 .lesson_progress_bar{
-	max-height:90px; overflow:hidden;
+	max-height:95px; overflow:hidden;
 	margin-bottom:10px; padding:5px 0;
 	text-align:center;
 	& .progress_unit{
 		width: 33.33%; margin:5px 0;
 		float: left; position:relative; top: -35px;
-		text-align:center;
+		text-align:center; padding-bottom:5px;
 		& .progress_btn{
 			width:30px; height:30px; margin:5px auto; padding-top:3px;
 			border: grey 3px solid; border-radius:50%; background:white; 
@@ -47,7 +47,40 @@
 
 .lesson_ready{ margin:0 auto 30px; font-size:20px; font-weight:bold; color:#36CF40;}
 .lesson_err{font-weight:bold; color:red;}
-.lesson_script{
-	width:500px; height:100px; margin-top:10px; padding:10px;
-	border:1px solid #AAAAAA; 
+
+.instructor_videos, .trainee_rehearsal{
+	text-align:left;
+	textarea, & .lesson_script{
+		height:100px; padding:10px;
+		border:1px solid #AAAAAA; 
+	}
+}
+
+
+/* Mobile Layout: 480px and below. */
+@media only screen and (max-width: 614px) {
+	.instructor_videos, .trainee_rehearsal{
+		width: 98%; float:none; margin:0 1%; text-align:center;
+		& .big_btn{ padding:10px 15px; font-size:15px; }
+		& .vid_title{ font-size:20px; margin:3px 0; background-color:none;}
+		textarea, & .lesson_script{ min-width: 100%; margin:0;}
+	}
+}
+
+/* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
+@media only screen and (min-width: 615px) {
+	.instructor_videos, .trainee_rehearsal{
+		width: auto; float:left; margin:0 5px 0 0;
+		& .big_btn{ padding:5px; font-size:13px; }
+		& .vid_title{ font-size:30px; margin:10px 0; background-color:none;}
+		textarea, & .lesson_script{ min-width: 100%; margin:10px 0 5px;}
+	}
+}
+
+/* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
+@media only screen and (min-width: 827px) {
+	.instructor_videos, .trainee_rehearsal{
+		& .big_btn{ padding:10px 15px; font-size:15px; }
+		& .vid_title{ margin: 20px 0 10px;}
+	}
 }
