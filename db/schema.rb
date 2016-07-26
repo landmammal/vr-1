@@ -212,10 +212,11 @@ ActiveRecord::Schema.define(version: 20160723020746) do
   end
 
   create_table "rehearsals", force: :cascade do |t|
+    t.integer  "trainee_id"
     t.integer  "course_id"
     t.integer  "progress_id"
     t.integer  "group_id"
-    t.integer  "course_number"
+    t.string   "course_number"
     t.string   "token"
     t.string   "video_token"
     t.datetime "created_at",    null: false
