@@ -39,6 +39,8 @@ gem 'hirb'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 group :production do
+  gem 'puma
+'
   gem 'pg'
   gem 'rails_12factor'
 end
