@@ -31,19 +31,19 @@
 
         <div class="explanation_video">
           <% @this_video_token = @prior_expl.video_token %>
-          <%= render './shared/ziggeoplayer' %>          
+          <%= render './shared/ziggeoplayer' %>
           <div class="lesson_script"><%= @prior_expl.script %></div>
         </div>
 
         <div class="prompt_video" style="display: none;">
           <% @this_video_token = @prior_prompt.video_token %>
-          <%= render './shared/ziggeoplayer' %>  
+          <%= render './shared/ziggeoplayer' %>
           <div class="lesson_script"><%= @prior_prompt.script %></div>
         </div>
 
         <div class="model_video" style="display: none;">
           <% @this_video_token = @prior_model.video_token %>
-          <%= render './shared/ziggeoplayer' %>  
+          <%= render './shared/ziggeoplayer' %>
           <div class="lesson_script"><%= @prior_model.script %></div>
         </div>
 
@@ -51,21 +51,18 @@
       </div>
 
 
-
-
-
       <div class="trainee_rehearsal">
 
         <div class="vid_title">Rehearsal</div>
         <hr style="margin-bottom: 28px;">
 
-        <ziggeo ziggeo-theme='modern-blue' class='ziggeo_rec_elem' ziggeo-stretch ziggeo-disable_first_screen >        
-        </ziggeo>
+        <div class="vid_title">Rehearsal</div>
+           <hr style="margin-bottom: 28px;">
 
-        <!-- <%= @prior_model.script %> -->
-        <!-- <textarea placeholder="Write your script here..." style="margin-top:14px;"></textarea> -->
-
-
+           <ziggeo ziggeo-theme='modern-blue' class='ziggeo_rec_elem' ziggeo-stretch ziggeo-disable_first_screen >
+           </ziggeo>
+          <!-- <%= @prior_model.script %> -->
+          <!-- <textarea placeholder="Write your script here..." style="margin-top:14px;"></textarea> -->
 
 
 
@@ -90,7 +87,9 @@
             <%= f.text_field :lesson_id, type:"hidden", value:@lesson.id %><br>
             <%= f.text_field :video_token, type:"hidden" %>
             <%= f.text_field :token, type:"hidden" %>
+
         <% end %>
+
 
         <script >
 
@@ -123,10 +122,13 @@
 
           });
         </script>
+
+
+
       </div>
 
     <hr>
-    
+
     <a href="<%= user_path(current_user) %>"><button> < Back </button></a>
     </div>
   </div>
@@ -134,7 +136,7 @@
 
 
   <% elsif current_user.level_2 %>
-  
+
 
 
 
@@ -157,7 +159,7 @@
         Prompt
         <div class="prompt_prog_err lesson_err" style="display: none;"></div>
       </div>
-      
+
       <div class="progress_unit js-model">
         <div class="progress_btn js-model_prog"></div>
         Model
@@ -186,7 +188,7 @@
     <!-- ADDING EXPLANATION -->
     <div class="thrd" style="text-align: center;">
       <div class="js_listOfexplanations"></div>
-      <script type="text/javascript"> 
+      <script type="text/javascript">
         thisLessonsList('explanations', '<%= @explanations_json %>')
       </script>
 
@@ -219,7 +221,7 @@
 
 
     <div class="js_listOfprompts"></div>
-      <script type="text/javascript"> 
+      <script type="text/javascript">
         thisLessonsList('prompts', '<%= @prompts_json %>')
       </script>
 
@@ -256,7 +258,7 @@
 
 
       <div class="js_listOfmodels"></div>
-      <script type="text/javascript"> 
+      <script type="text/javascript">
         thisLessonsList('models', '<%= @models_json %>')
       </script>
 
@@ -322,7 +324,7 @@
 
 
   <script type="text/javascript">
-        lessonProgress('<%= @exp_prog %>', '<%= @prompt_prog %>', '<%= @model_prog %>') 
+        lessonProgress('<%= @exp_prog %>', '<%= @prompt_prog %>', '<%= @model_prog %>')
   </script>
   <br>
 
