@@ -148,6 +148,9 @@ input[type="submit"], button{
     padding:10px 15px; float: none;
     border-radius:3px; font-size:15px;
   }
+  .btn_selected{
+    background-color:#5B5B5B; color:#fff;
+  }
   &.circle{
     border-radius:50%;
   }

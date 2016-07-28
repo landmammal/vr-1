@@ -1,114 +1,107 @@
-<div class="body">
-
-    <div class="showIfLessonComplete" style="display: none;">
-
-      <div class="instructor_videos">
-
-        <button class="green_sft big_btn js-show_explanation">Explanation</button>
-        <button class="green_sft big_btn js-show_prompt">Prompt</button>
-        <button class="green_sft big_btn js-show_model">Role Model</button>
-
-        <hr>
-        <br>
-
-        <div class="explanation_video">
-          <% @this_video_token = @prior_expl.video_token %>
-          <%= render './shared/ziggeoplayer' %>          
-          <div class="lesson_script"><%= @prior_expl.script %></div>
-        </div>
-
-        <div class="prompt_video" style="display: none;">
-          <% @this_video_token = @prior_prompt.video_token %>
-          <%= render './shared/ziggeoplayer' %>  
-          <div class="lesson_script"><%= @prior_prompt.script %></div>
-        </div>
-
-        <div class="model_video" style="display: none;">
-          <% @this_video_token = @prior_model.video_token %>
-          <%= render './shared/ziggeoplayer' %>  
-          <div class="lesson_script"><%= @prior_model.script %></div>
-        </div>
 
 
+  <div class="showIfLessonComplete" style="display: none;">
+
+    <div class="instructor_videos">
+
+      <button class="big_btn js-show_explanation btn_selected">Explanation</button>
+      <button class="green_sft big_btn js-show_prompt btn_selected">Prompt</button>
+      <button class="green_sft big_btn js-show_model btn_selected">Role Model</button>
+
+      <hr>
+      <br>
+
+      <div class="explanation_video">
+        <% @this_video_token = @prior_expl.video_token %>
+        <%= render './shared/ziggeoplayer' %>          
+        <div class="lesson_script"><%= @prior_expl.script %></div>
+      </div>
+
+      <div class="prompt_video" style="display: none;">
+        <% @this_video_token = @prior_prompt.video_token %>
+        <%= render './shared/ziggeoplayer' %>  
+        <div class="lesson_script"><%= @prior_prompt.script %></div>
+      </div>
+
+      <div class="model_video" style="display: none;">
+        <% @this_video_token = @prior_model.video_token %>
+        <%= render './shared/ziggeoplayer' %>  
+        <div class="lesson_script"><%= @prior_model.script %></div>
       </div>
 
 
-
-
-
-      <div class="trainee_rehearsal">
-
-        <div class="vid_title">Rehearsal</div>
-        <hr style="margin-bottom: 28px;">
-
-        <ziggeo ziggeo-theme='modern-blue' class='ziggeo_rec_elem' ziggeo-disable_first_screen >
-        </ziggeo>
-
-        <!-- <%= @prior_model.script %> -->
-        <!-- <textarea placeholder="Write your script here..." style="margin-top:14px;"></textarea> -->
-
-
-
-
-
-
-        <%= form_for [@lesson, @rehearsal],html: {id: "tokenForm"}, remote: true  do |f| %>
-            <% if @rehearsal.errors.any? %>
-                <div id="error_explanation">
-                  <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this rehearsal from being saved:</h2>
-
-                  <ul>
-                    <% @rehearsal.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                    <% end %>
-                  </ul>
-                </div>
-            <% end %>
-
-            <%= f.text_area :script, placeholder:'Write your script here...', style:'margin-top:15px;' %>
-            <%= f.text_field :progress_id, type:"hidden" %>
-            <%= f.text_field :course_id, type:"hidden", value:@course.id  %><br>
-            <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
-            <%= f.text_field :lesson_id, type:"hidden", value:@lesson.id %><br>
-            <%= f.text_field :video_token, type:"hidden" %>
-            <%= f.text_field :token, type:"hidden" %>
-        <% end %>
-
-        <script >
-
-          function postVideoToken(videoToken, streamToken){
-
-            $form = $('#tokenForm');
-            $ziggeotoken = $('#rehearsal_video_token');
-            $webtoken = $('#rehearsal_token');
-
-            $ziggeotoken.val(videoToken);
-            $webtoken.val(streamToken)
-            $form.submit();
-          };
-          // function postStreamToken(streamToken){
-          //
-          // };
-          ZiggeoApi.Events.on("submitted", function (data) {
-
-            // getting the string token and storing it in videoToken var to ship it to the outside world
-            var streamToken = data.stream.token
-            var videoToken = data.stream.video_token
-            console.log(videoToken);
-            console.log(streamToken);
-
-            // here is where we grab the token to escort it outside of the ziggeo api on click event
-            postVideoToken(videoToken, streamToken);
-
-
-            // console.log(streamToken);
-
-          });
-        </script>
-      </div>
-
-    <hr>
-    
-    <a href="<%= user_path(current_user) %>"><button> < Back </button></a>
     </div>
-  </div>
+
+
+
+    <div class="trainee_rehearsal">
+
+      <div class="vid_title">Rehearsal</div>
+      <hr style="margin-bottom: 28px;">
+
+      <ziggeo ziggeo-theme='modern-blue' class='ziggeo_rec_elem' ziggeo-disable_first_screen >
+      </ziggeo>
+
+      <!-- <%= @prior_model.script %> -->
+      <!-- <textarea placeholder="Write your script here..." style="margin-top:14px;"></textarea> -->
+
+
+
+
+
+
+      <%= form_for [@lesson, @rehearsal],html: {id: "tokenForm"}, remote: true  do |f| %>
+          <% if @rehearsal.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this rehearsal from being saved:</h2>
+
+                <ul>
+                  <% @rehearsal.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+
+          <%= f.text_area :script, placeholder:'Write your script here...', style:'margin-top:15px;' %>
+          <%= f.text_field :progress_id, type:"hidden" %>
+          <%= f.text_field :course_id, type:"hidden", value:@course.id  %><br>
+          <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
+          <%= f.text_field :lesson_id, type:"hidden", value:@lesson.id %><br>
+          <%= f.text_field :video_token, type:"hidden" %>
+          <%= f.text_field :token, type:"hidden" %>
+      <% end %>
+
+      <script >
+
+        function postVideoToken(videoToken, streamToken){
+
+          $form = $('#tokenForm');
+          $ziggeotoken = $('#rehearsal_video_token');
+          $webtoken = $('#rehearsal_token');
+
+          $ziggeotoken.val(videoToken);
+          $webtoken.val(streamToken)
+          $form.submit();
+        };
+        // function postStreamToken(streamToken){
+        //
+        // };
+        ZiggeoApi.Events.on("submitted", function (data) {
+
+          // getting the string token and storing it in videoToken var to ship it to the outside world
+          var streamToken = data.stream.token
+          var videoToken = data.stream.video_token
+          console.log(videoToken);
+          console.log(streamToken);
+
+          // here is where we grab the token to escort it outside of the ziggeo api on click event
+          postVideoToken(videoToken, streamToken);
+
+
+          // console.log(streamToken);
+
+        });
+      </script>
+    </div>
+</div>

@@ -2,6 +2,7 @@ class ExplanationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_lesson, only: [:new]
   before_action :set_explanation, only: [:show, :index, :edit, :update, :destroy]
+  before_action :set_explanation_update, only: [:edit, :update, :destroy]
 
   def new
     @explanation = Explanation.new
@@ -33,11 +34,7 @@ class ExplanationsController < ApplicationController
   def update
    respond_to do |format|
       if @explanation.update(explanation_params)
-        @explanation = Explanation.find(params[:id])
-        @lesson = Lesson.find(@explanation.lesson_id)
-        @topic = Topic.find(@lesson.topic_id)
-        @course = Course.find(@topic.course_id)
-        format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Explanation was successfully created.' }
+        format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Explanation was successfully updated.' }
         format.json { render :show, status: :ok, location: @explanation }
       else
         format.html { render :edit }
@@ -49,7 +46,7 @@ class ExplanationsController < ApplicationController
   def destroy
     @explanation.destroy
     respond_to do |format|
-      format.html { redirect_to explanations_url, notice: 'Explanation was successfully destroyed.' }
+      format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Explanation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -66,5 +63,12 @@ class ExplanationsController < ApplicationController
 
   def set_lesson
     @lesson = Lesson.find(params[:lesson_id])
+  end
+
+  def set_explanation_update
+    @explanation = Explanation.find(params[:id])
+    @lesson = Lesson.find(@explanation.lesson_id)
+    @topic = Topic.find(@lesson.topic_id)
+    @course = Course.find(@topic.course_id)
   end
 end

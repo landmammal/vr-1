@@ -1,106 +1,111 @@
 <div class="top_info">
   <div class="course_title">
-    <span class="grey"><%= @thislesson.title %></span> :: Record Explanation
+    <span class="grey"><%= link_to @thislesson.title, course_topic_lesson_path(@course, @topic, @lesson) %></span> :: Record Explanation
   </div>
 </div>
 
+<div class="box_sep">
+  <div class="body">
+    <%if @explanation.video_token == '' || @explanation.video_token.nil? %>
+      <%= render './shared/ziggeorecorder' %>
+    <% else %>
+      <% @this_video_token = @explanation.video_token %>
+      <div class="js-re_record_ziggeo"><%= render './shared/ziggeoplayer' %></div>
+      <div class="js-recorded_player" style="display: none;"><%= render './shared/ziggeorecorder' %></div>
+      <br>
+      <button class="js-re_record red">Re-Record?</button>
+    <% end %>
 
-<%if @explanation.video_token == '' || @explanation.video_token.nil? %>
-  <%= render './shared/ziggeorecorder' %>
-<% else %>
-  <% @this_video_token = @explanation.video_token %>
-  <%= render './shared/ziggeoplayer' %>
-  <br>
-  <button class="js-re_record red">Re-Record?</button>
-<% end %>
 
+    <%= form_for @explanation,html: {id: "tokenForm"}, remote: true  do |f| %>
+      <% if @explanation.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
 
-<%= form_for [@lesson, @explanation],html: {id: "tokenForm"}, remote: true  do |f| %>
-  <% if @explanation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
-
-      <ul>
-      <% @explanation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% @explanation.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <%= f.text_field :video_token, type:"hidden" %>
-  <%= f.text_field :token, type:"hidden" %>
+      <%= f.text_field :video_token, type:"hidden" %>
+      <%= f.text_field :token, type:"hidden" %>
 
-<% end %> <br>
+    <% end %> <br>
 
-<%= form_for [@lesson, @explanation]  do |f| %>
-  <% if @explanation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+    <%= form_for @explanation do |f| %>
+      <% if @explanation.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
 
-      <ul>
-      <% @explanation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% @explanation.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <%= f.text_field :title, placeholder: 'Title' %><br>
-  <%= f.text_area :script, placeholder: 'Script' %><br>
-  <%= f.select :language, (@languages) %>
-  <%= f.select :language, (@privacy) %>
-  <%= f.check_box :position_prior %> Primary Explanation<br>
+      <%= f.text_field :title, placeholder: 'Title' %><br>
+      <%= f.text_area :script, placeholder: 'Script' %><br>
+      <%= f.select :language, (@languages) %>
+      <%= f.select :language, (@privacy) %>
+      <%= f.check_box :position_prior %> Primary Explanation<br>
 
 
-  <%= f.submit 'Submit Explanation', class:'green_sft' %>
-<% end %>
-  
-<br>
-<a href=""><button class="red"> Delete Explanation </button></a>
+      <%= f.submit 'Submit Explanation', class:'green_sft' %>
+    <% end %>
+      
+    <br>
+    <a href=""><button class="red"> Delete Explanation </button></a>
 
 
 
-<script >
-  // this function is getting the video token from ZiggeoApi.Events
-  function postVideoToken(videoToken, streamToken){
-    // grab form by the id been display in the html and store it in a jquery object
-    $form = $('#tokenForm');
-    // grab the value field by its the id
-    $ziggeotoken = $('#explanation_video_token');
-    $webtoken = $('#explanation_token');
+    <script >
+      // this function is getting the video token from ZiggeoApi.Events
+      function postVideoToken(videoToken, streamToken){
+        // grab form by the id been display in the html and store it in a jquery object
+        $form = $('#tokenForm');
+        // grab the value field by its the id
+        $ziggeotoken = $('#explanation_video_token');
+        $webtoken = $('#explanation_token');
 
-    $user = $('explanation_user_id');
-    $lesson = $('explanation_lesson_id');
+        $user = $('explanation_user_id');
+        $lesson = $('explanation_lesson_id');
 
-    // assign the value of that field we grab by its id to the value of postVideoToken
-    $ziggeotoken.val(videoToken);
-    $webtoken.val(streamToken)
+        // assign the value of that field we grab by its id to the value of postVideoToken
+        $ziggeotoken.val(videoToken);
+        $webtoken.val(streamToken)
 
-    // the form we grabed earlier by its id gets submited to the server
-    $form.submit();
-    // $.ajax ({
-    //   url : "/token",
-    //   type : "post",
-    //   data : {token: videoToken}
-    // });
-  };
-  // function postStreamToken(streamToken){
-  //
-  // };
-      ZiggeoApi.Events.on("submitted", function (data) {
+        // the form we grabed earlier by its id gets submited to the server
+        $form.submit();
+        // $.ajax ({
+        //   url : "/token",
+        //   type : "post",
+        //   data : {token: videoToken}
+        // });
+      };
+      // function postStreamToken(streamToken){
+      //
+      // };
+          ZiggeoApi.Events.on("submitted", function (data) {
 
-          // getting the string token and storing it in videoToken var to ship it to the outside world
-          var streamToken = data.stream.token
-          var videoToken = data.stream.video_token
-          console.log(videoToken);
-          console.log(streamToken);
+              // getting the string token and storing it in videoToken var to ship it to the outside world
+              var streamToken = data.stream.token
+              var videoToken = data.stream.video_token
+              console.log(videoToken);
+              console.log(streamToken);
 
-          // here is where we grab the token to escort it outside of the ziggeo api on click event
-          postVideoToken(videoToken, streamToken);
+              // here is where we grab the token to escort it outside of the ziggeo api on click event
+              postVideoToken(videoToken, streamToken);
 
 
-          // console.log(streamToken);
+              // console.log(streamToken);
 
-      });
-</script>
+          });
+    </script>
+
+  </div>
+</div>

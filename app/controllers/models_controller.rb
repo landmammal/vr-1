@@ -34,7 +34,7 @@ class ModelsController < ApplicationController
          @lesson = Lesson.find(@model.lesson_id)
          @topic = Topic.find(@lesson.topic_id)
          @course = Course.find(@topic.course_id)
-         format.html { redirect_to  course_topic_lesson_path(@course, @topic, @lesson), notice: 'Role Model was successfully created.' }
+         format.html { redirect_to  course_topic_lesson_path(@course, @topic, @lesson), notice: 'Role Model was successfully updated.' }
          format.json { render :show, status: :ok, location: @model }
        else
          format.html { render :edit }
@@ -46,7 +46,7 @@ class ModelsController < ApplicationController
   def destroy
     @model.destroy
     respond_to do |format|
-      format.html { redirect_to lessons_url, notice: 'Role Model was successfully delete it.' }
+      format.html { redirect_to lessons_url, notice: 'Role Model was successfully deleted.' }
       format.json { head :no_content }
     end
   end

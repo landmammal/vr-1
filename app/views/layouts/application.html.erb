@@ -56,6 +56,7 @@
               <%= render 'layouts/banner' %>
               <div class="body">
                 <%= yield %>
+                <input type="hidden" name="thisPath" value="<%= request.original_fullpath %>">
               </div>
           </td>
         </tr>

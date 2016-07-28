@@ -14,7 +14,8 @@
       </div>
     <% else %>
       <% @this_video_token = @prompt.video_token %>
-      <%= render './shared/ziggeoplayer' %>
+      <div class="js-re_record_ziggeo"><%= render './shared/ziggeoplayer' %></div>
+      <div class="js-recorded_player" style="display: none;"><%= render './shared/ziggeorecorder' %></div>
       <br>
       <button class="js-re_record red">Re-Record?</button>
     <% end %>
@@ -57,6 +58,9 @@
       
       <%= f.submit 'Submit Prompt', class:'green_sft' %>
     <% end %>
+    
+    <br>
+    <a href=""><button class="red"> Delete Explanation </button></a>
 
     <script >
     // this function is getting the video token from ZiggeoApi.Events
