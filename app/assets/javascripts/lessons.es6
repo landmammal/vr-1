@@ -73,8 +73,8 @@ var pageReady = function(){
 		var zig_rec_w = window_width / 2.4;
 		var zig_play_w = window_width / 2.4;
 	}
-	var zig_rec_h = zig_rec_w  / 1.77;
-	var zig_play_h = zig_play_w  / 1.77;
+	var zig_rec_h = zig_rec_w  / 1.35;
+	var zig_play_h = zig_play_w  / 1.35;
 
 	function recSize(item){ $(item).width(zig_rec_w).height(zig_rec_h); }
 	function playSize(item){ $(item).width(zig_play_w).height(zig_play_h); }
@@ -99,8 +99,8 @@ var pageReady = function(){
 			zig_rec_w = $(window).width() / 2.4;
 			zig_play_w = $(window).width() / 2.4;
 		}
-		zig_rec_h = zig_rec_w  / 1.77;
-		zig_play_h = zig_play_w  / 1.77;
+		zig_rec_h = zig_rec_w  / 1.35;
+		zig_play_h = zig_play_w  / 1.35;
 
 		runChangeSize()
 	});

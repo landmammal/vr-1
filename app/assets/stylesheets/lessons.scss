@@ -71,7 +71,7 @@
 /* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
 @media only screen and (min-width: 615px) {
 	.instructor_videos, .trainee_rehearsal{
-		width: auto; float:left; margin:0 5px 0 0;
+		width: 48%; float:left; margin:0 5px 0 0;
 		& .big_btn{ padding:5px; font-size:13px; }
 		& .vid_title{ font-size:30px; margin:10px 0 20px; background-color:none;}
 		textarea, & .lesson_script{ min-width: 100%; margin:10px 0 5px;}
