@@ -2,6 +2,7 @@ class PromptsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_lesson, only: [:new]
   before_action :set_prompt, only: [:show, :index, :edit, :update, :destroy]
+  before_action :set_prompt_update, only: [:edit, :update, :destroy]
 
   def new
     @prompt = Prompt.new
@@ -32,11 +33,6 @@ class PromptsController < ApplicationController
 
   def update
    respond_to do |format|
-        @prompt = Prompt.find(params[:id])
-        @lesson = Lesson.find(@prompt.lesson_id)
-        @topic = Topic.find(@lesson.topic_id)
-        @course = Course.find(@topic.course_id)
-        
       if @prompt.update(prompt_params)
         format.html { redirect_to  course_topic_lesson_path(@course, @topic, @lesson), notice: 'Prompt was successfully updated.' }
         format.json { render :show, status: :ok, location: @explanation }
@@ -50,7 +46,7 @@ class PromptsController < ApplicationController
   def destroy
     @prompt.destroy
     respond_to do |format|
-      format.html { redirect_to lessons_url, notice: 'Prompt was successfully deleted.' }
+      format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Prompt was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -66,5 +62,12 @@ class PromptsController < ApplicationController
 
   def prompt_params
     params.require(:prompt).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :position_prior)
+  end
+
+  def set_prompt_update
+    @prompt = Prompt.find(params[:id])
+    @lesson = Lesson.find(@prompt.lesson_id)
+    @topic = Topic.find(@lesson.topic_id)
+    @course = Course.find(@topic.course_id)
   end
 end

@@ -59,7 +59,7 @@
     <% end %>
       
     <br>
-    <a href=""><button class="red"> Delete Explanation </button></a>
+    <%= button_to "Delete Explanation", @explanation, class:'red', method: :delete, data: { confirm: 'Are you sure?' } %>
 
 
 

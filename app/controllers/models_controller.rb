@@ -2,6 +2,8 @@ class ModelsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_model, only: [:show, :update, :destroy, :edit]
   before_action :set_lesson, only: [:new]
+  before_action :set_model_update, only: [:edit, :update, :destroy]
+
 
   def new
     @model = Model.new
@@ -30,10 +32,6 @@ class ModelsController < ApplicationController
   def update
     respond_to do |format|
        if @model.update(model_params)
-         @model = Model.find(params[:id])
-         @lesson = Lesson.find(@model.lesson_id)
-         @topic = Topic.find(@lesson.topic_id)
-         @course = Course.find(@topic.course_id)
          format.html { redirect_to  course_topic_lesson_path(@course, @topic, @lesson), notice: 'Role Model was successfully updated.' }
          format.json { render :show, status: :ok, location: @model }
        else
@@ -46,7 +44,7 @@ class ModelsController < ApplicationController
   def destroy
     @model.destroy
     respond_to do |format|
-      format.html { redirect_to lessons_url, notice: 'Role Model was successfully deleted.' }
+      format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Role Model was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -62,5 +60,12 @@ class ModelsController < ApplicationController
 
   def model_params
     params.require(:model).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :position_prior)
+  end
+
+  def set_model_update
+    @model = Model.find(params[:id])
+    @lesson = Lesson.find(@model.lesson_id)
+    @topic = Topic.find(@lesson.topic_id)
+    @course = Course.find(@topic.course_id)
   end
 end

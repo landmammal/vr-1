@@ -1,6 +1,6 @@
 <div class="top_info">
   <div class="course_title">
-    <span class="grey"><%= @thislesson.title %></span> :: Record Role Model
+    <span class="grey"><%= link_to @thislesson.title, course_topic_lesson_path(@course, @topic, @lesson) %></span> :: Record Role Model
   </div>
 </div>
 
@@ -17,7 +17,7 @@
       <button class="js-re_record red">Re-Record?</button>
     <% end %>
 
-    <%= form_for [@lesson, @model],html: {id: "tokenForm"}, remote: true  do |f| %>
+    <%= form_for @model,html: {id: "tokenForm"}, remote: true  do |f| %>
       <% if @model.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
@@ -35,7 +35,7 @@
 
     <% end %> <br>
 
-    <%= form_for [@lesson, @model]  do |f| %>
+    <%= form_for @model do |f| %>
       <% if @model.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@models.errors.count, "error") %> prohibited this lesson from being saved:</h2>
@@ -57,7 +57,7 @@
     <% end %>
     
     <br>
-    <%= button_to "Delete Explanation", @model, class:'red', method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= button_to "Delete Model", @model, class:'red', method: :delete, data: { confirm: 'Are you sure?' } %>
 
     <script >
     // this function is getting the video token from ZiggeoApi.Events
