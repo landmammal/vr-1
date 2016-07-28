@@ -36,8 +36,12 @@ class LessonsController < ApplicationController
       @models.count>0 ? @model_prog = 1 : @model_prog = 0)
 
     @concept = Concept.new
-
     @rehearsal = Rehearsal.new
+    
+    @lessons_arr = []
+    @lessons = @topic.lessons
+    @lessons.each { |lesson| @lessons_arr << lesson.id } 
+
   end
 
   # GET /lessons/new

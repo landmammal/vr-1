@@ -70,6 +70,7 @@
           <%= f.text_field :lesson_id, type:"hidden", value:@lesson.id %><br>
           <%= f.text_field :video_token, type:"hidden" %>
           <%= f.text_field :token, type:"hidden" %>
+
       <% end %>
 
       <script >
@@ -104,4 +105,15 @@
         });
       </script>
     </div>
+
+      <a href="<%= course_topic_lesson_path(@course, @topic, @lesson.id-1)%>">
+        <button class="blue lesson_previous">PREVIOUS LESSON</button>
+      </a>
+      <a href="<%= course_topic_lesson_path(@course, @topic, @lesson.id+1)%>">
+        <button class="blue lesson_next" style="float: right;">NEXT LESSON</button>
+      </a>
+
+      <script type="text/javascript"> allLessons('<%= @lesson.id %>','<%= @lessons_arr %>') </script>
+      <br>
+      <br>
 </div>

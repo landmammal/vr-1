@@ -17,6 +17,22 @@ function thisLessonsList(name, json_object){
 	};
 }
 
+function allLessons( current_lesson, arr){
+	var lessonsArray = railsToJson(arr);
+	console.log(current_lesson);
+	console.log(lessonsArray);
+	var index = lessonsArray.indexOf(current_lesson)+1;
+	console.log(index);
+
+	if(index===lessonsArray.length){
+		$('.lesson_next').hide();
+	}
+	if(index===0){
+		$('.lesson_previous').hide();
+	}
+
+}
+
 
 function lessonProgress(expl, prompt, model){
 	// console.log(expl, prompt, model)
