@@ -62,7 +62,7 @@
 @media only screen and (max-width: 614px) {
 	.instructor_videos, .trainee_rehearsal{
 		width: 98%; float:none; margin:0 1%; text-align:center;
-		& .big_btn{ padding:10px 15px; font-size:15px; }
+		& .big_btn{ padding:10px 15px; font-size:13px; }
 		& .vid_title{ font-size:20px; margin:10px 0; background-color:none;}
 		textarea, & .lesson_script{ min-width: 100%; margin:0;}
 	}

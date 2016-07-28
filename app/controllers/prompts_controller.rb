@@ -37,7 +37,7 @@ class PromptsController < ApplicationController
         @lesson = Lesson.find(@prompt.lesson_id)
         @topic = Topic.find(@lesson.topic_id)
         @course = Course.find(@topic.course_id)
-        format.html { redirect_to  course_topic_lesson_path(@course, @topic, @lesson), notice: 'Prompt was successfully created.' }
+        format.html { redirect_to  course_topic_lesson_path(@course, @topic, @lesson), notice: 'Prompt was successfully updated.' }
         format.json { render :show, status: :ok, location: @explanation }
       else
         format.html { render :edit }
@@ -49,7 +49,7 @@ class PromptsController < ApplicationController
   def destroy
     @prompt.destroy
     respond_to do |format|
-      format.html { redirect_to lessons_url, notice: 'Prompt was successfully delete it.' }
+      format.html { redirect_to lessons_url, notice: 'Prompt was successfully deleted.' }
       format.json { head :no_content }
     end
   end

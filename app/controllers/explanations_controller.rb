@@ -37,7 +37,7 @@ class ExplanationsController < ApplicationController
         @lesson = Lesson.find(@explanation.lesson_id)
         @topic = Topic.find(@lesson.topic_id)
         @course = Course.find(@topic.course_id)
-        format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Explanation was successfully created.' }
+        format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Explanation was successfully updated.' }
         format.json { render :show, status: :ok, location: @explanation }
       else
         format.html { render :edit }

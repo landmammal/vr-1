@@ -16,20 +16,28 @@
 <div class="box_sep">
 
   <%if @prior_expl && @prior_prompt && @prior_model && current_user.role == @r[3] %>
-  
-    <%= render 'trainee' %>
+    <div class="body">
+      <%= render 'trainee' %>
+      <a href="<%= user_path(current_user) %>"><button> < Back </button></a>
+    </div>
 
   <% elsif current_user.level_2 %>
   
-
-
 
   <div class="body">
 
     <!-- CREATION PROGRESS -->
 
+    <div class="show_trainee_view" style="display: none;">
+        <%if @prior_expl && @prior_prompt && @prior_model %>
+          <%= render 'trainee' %>
+          <br>
+        <% end %>
+    </div>
     <div class="lesson_progress_bar" >
-
+      <div class="lesson_ready" style="display: none;">
+        Lesson is ready to go <button class="js-trainee_view"> Toggle trainee view </button>
+      </div>
       <hr>
 
       <div class="progress_unit js-explanation">
