@@ -13,19 +13,19 @@
 
       <div class="explanation_video">
         <% @this_video_token = @prior_expl.video_token %>
-        <%= render './shared/ziggeoplayer' %>          
+        <%= render './shared/ziggeoplayer' %>
         <div class="lesson_script"><%= @prior_expl.script %></div>
       </div>
 
       <div class="prompt_video" style="display: none;">
         <% @this_video_token = @prior_prompt.video_token %>
-        <%= render './shared/ziggeoplayer' %>  
+        <%= render './shared/ziggeoplayer' %>
         <div class="lesson_script"><%= @prior_prompt.script %></div>
       </div>
 
       <div class="model_video" style="display: none;">
         <% @this_video_token = @prior_model.video_token %>
-        <%= render './shared/ziggeoplayer' %>  
+        <%= render './shared/ziggeoplayer' %>
         <div class="lesson_script"><%= @prior_model.script %></div>
       </div>
 
@@ -73,6 +73,8 @@
 
       <% end %>
 
+      <%= link_to 'Submit Lesson', course_topic_path(@course, @topic) %>
+
       <script >
 
         function postVideoToken(videoToken, streamToken){
@@ -104,6 +106,10 @@
 
         });
       </script>
+
+
+
+
     </div>
 
       <a href="<%= course_topic_lesson_path(@course, @topic, @lesson.id-1)%>">

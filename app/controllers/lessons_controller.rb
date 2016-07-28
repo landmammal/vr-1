@@ -19,14 +19,14 @@ class LessonsController < ApplicationController
     @explanations_json = @explanations.to_json
     @prior_expl = @lesson.explanations.find_by(position_prior: '1')
     @explanations.count>0 && @prior_expl ? (@prior_expl.video_token ? @exp_prog = 3 : @exp_prog = 2 ) : (
-      @explanations.count>0 ? @exp_prog = 1 : @exp_prog = 0) 
+      @explanations.count>0 ? @exp_prog = 1 : @exp_prog = 0)
 
     @prompt = Prompt.new
     @prompts = @lesson.prompts.order('id ASC')
     @prompts_json = @prompts.to_json
     @prior_prompt = @lesson.prompts.find_by(position_prior: '1')
     @prompts.count>0 && @prior_prompt ? (@prior_prompt.video_token ? @prompt_prog = 3 : @prompt_prog = 2 ) : (
-      @prompts.count>0 ? @prompt_prog = 1 : @prompt_prog = 0) 
+      @prompts.count>0 ? @prompt_prog = 1 : @prompt_prog = 0)
 
     @model = Model.new
     @models = @lesson.models.order('id ASC')
