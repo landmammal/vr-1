@@ -10,6 +10,7 @@ class CreateRehearsals < ActiveRecord::Migration
       t.string :token
       t.string :video_token
       t.string :script
+      t.string :status
 
       t.timestamps null: false
     end
