@@ -7,8 +7,8 @@ class CoursesController < ApplicationController
   def index
     @courses = current_user.courses
 
-    if current_user.role == 'instructor'
-      @new_course = Course.new
+    if current_user.level_2
+      @course = Course.new
       @new_topic = Topic.new
       @new_lesson = Lesson.new
     end
@@ -17,8 +17,8 @@ class CoursesController < ApplicationController
   def search
     @courses = Course.all
 
-    if current_user.role == 'instructor'
-      @new_course = Course.new
+    if current_user.level_2
+      @course = Course.new
       @new_topic = Topic.new
       @new_lesson = Lesson.new
     end

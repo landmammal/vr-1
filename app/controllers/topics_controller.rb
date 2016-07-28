@@ -11,6 +11,7 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.json
   def show
+    @rehearsal = Rehearsal.new
     @lessons = @topic.lessons
   end
 
