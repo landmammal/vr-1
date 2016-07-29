@@ -19,12 +19,14 @@ function thisLessonsList(name, json_object){
 
 function allLessons( current_lesson, arr){
 	var lessonsArray = railsToJson(arr);
-	console.log(current_lesson);
-	console.log(lessonsArray);
-	var index = lessonsArray.indexOf(current_lesson)+1;
-	console.log(index);
+	// console.log(current_lesson);
+	// console.log(lessonsArray);
+	console.log(lessonsArray.length-1);
+	var ind = lessonsArray.indexOf(current_lesson);
+	var index = ind+1;
+	// console.log(index);
 
-	if(index===lessonsArray.length){
+	if(index===lessonsArray.length-1){
 		$('.lesson_next').hide();
 	}
 	if(index===0){
