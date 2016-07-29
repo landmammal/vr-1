@@ -6,6 +6,10 @@ class RehearsalsController < ApplicationController
     @rehearsals = Rehearsal.all
   end
 
+  def all
+    @rehearsals = Rehearsal.all
+  end
+
   def show
   end
 
