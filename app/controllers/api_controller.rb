@@ -17,10 +17,6 @@ class ApiController < ApplicationController
 	end
 
 
-
-
-
-
 	# LEFT PANEL LINKS
 
 
