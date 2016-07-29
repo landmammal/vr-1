@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   end
 
 
+  get "/rehearsals/all" => "rehearsals#all"
   resources :lessons, shallow: true do
     resources :explanations
     resources :prompts
