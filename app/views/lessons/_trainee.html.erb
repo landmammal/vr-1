@@ -39,9 +39,22 @@
       <div class="vid_title">Rehearsal</div>
       <hr style="margin-bottom: 28px;">
 
-      <ziggeo ziggeo-theme='modern-blue' class='ziggeo_rec_elem' ziggeo-disable_first_screen >
-      </ziggeo>
+      <ziggeorecorder
+       ziggeo-width=640
+       ziggeo-height=480
+       id="ziggeo-recorder">
+   </ziggeorecorder>
 
+      <script>
+      var recorder = new ZiggeoApi.V2.Recorder({
+          element: document.getElementById("myID"),
+          attrs: {
+              video: "video-token",
+              stretch: true
+          }
+       });
+       recorder.activate();
+  </script>
       <!-- <%= @prior_model.script %> -->
       <!-- <textarea placeholder="Write your script here..." style="margin-top:14px;"></textarea> -->
 
