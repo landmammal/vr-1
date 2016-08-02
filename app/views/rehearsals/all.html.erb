@@ -3,8 +3,11 @@
 <h3>Rehearsals</h3>
 <hr>
 <% @rehearsals.each do |rehearsal| %>
-  <a href="#">
-    <%= rehearsal.trainee.first_name %> <%= rehearsal.trainee.last_name %> 
-  </a> 
+
+  <a href="<%= rehearsal_path(rehearsal)%>">
+    <%= rehearsal.trainee.first_name %> <%= rehearsal.trainee.last_name %>
+  </a>
+  
   submitted a Rehearsal.
+  <br>
 <%end%>
