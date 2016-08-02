@@ -4,7 +4,7 @@
 <hr>
 <% @rehearsals.each do |rehearsal| %>
   <a href="#">
-    <%= rehearsal.user.firstname %> <%= rehearsal.user.firstname %> 
+    <%= rehearsal.trainee.first_name %> <%= rehearsal.trainee.last_name %> 
   </a> 
   submitted a Rehearsal.
 <%end%>
