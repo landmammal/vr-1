@@ -39,8 +39,7 @@
       <div class="vid_title">Rehearsal</div>
       <hr style="margin-bottom: 28px;">
 
-      <ziggeo ziggeo-theme='modern-blue' class='ziggeo_rec_elem' ziggeo-disable_first_screen >
-      </ziggeo>
+      <%= render './shared/ziggeorecordertrainee' %>
 
       <!-- <%= @prior_model.script %> -->
       <!-- <textarea placeholder="Write your script here..." style="margin-top:14px;"></textarea> -->
@@ -63,7 +62,7 @@
               </div>
           <% end %>
 
-          <%= f.text_area :script, placeholder:'Write your script here...', style:'margin-top:15px;' %>
+          <%= f.text_area :script, placeholder:'Write your script here...' %>
           <%= f.text_field :progress_id, type:"hidden" %>
           <%= f.text_field :course_id, type:"hidden", value:@course.id  %><br>
           <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
@@ -72,7 +71,7 @@
           <%= f.text_field :token, type:"hidden" %>
 
       <% end %>
-
+      
 
       <script >
 
