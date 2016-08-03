@@ -2,14 +2,14 @@
 
   <div class="showIfLessonComplete" style="display: none;">
 
+    <button class="big_btn lesson_btn js-show_explanation btn_selected">Explanation</button>
+    <button class="green_sft big_btn lesson_btn js-show_prompt btn_selected">Prompt</button>
+    <button class="green_sft big_btn lesson_btn js-show_model btn_selected">Role Model</button>
+    
+    <br>
+    <hr>
+
     <div class="instructor_videos">
-
-      <button class="big_btn js-show_explanation btn_selected">Explanation</button>
-      <button class="green_sft big_btn js-show_prompt btn_selected">Prompt</button>
-      <button class="green_sft big_btn js-show_model btn_selected">Role Model</button>
-
-      <hr>
-      <br>
 
       <div class="explanation_video">
         <% @this_video_token = @prior_expl.video_token %>
@@ -35,9 +35,6 @@
 
 
     <div class="trainee_rehearsal">
-
-      <div class="vid_title">Rehearsal</div>
-      <hr style="margin-bottom: 28px;">
 
       <%= render './shared/ziggeorecordertrainee' %>
 
