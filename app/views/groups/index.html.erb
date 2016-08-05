@@ -1,0 +1,4 @@
+<h1>Groups coming soon</h1>
+<% @groups.each do |f| %>
+  <%= link_to f.name, [current_user, f] %> <br>
+<% end %>

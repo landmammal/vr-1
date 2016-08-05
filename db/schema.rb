@@ -226,6 +226,7 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.string   "token"
     t.string   "video_token"
     t.string   "script"
+    t.string   "status"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end

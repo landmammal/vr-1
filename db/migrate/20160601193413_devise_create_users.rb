@@ -9,7 +9,17 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.integer :age
       t.string :education
       t.string :race
-      t.string :company
+      t.string :zip_code
+      t.string :gender
+      t.string :preferred_language
+      t.text :bio
+      t.text :skills
+      t.text :experience
+      t.string :website
+      t.string :phone_number
+      t.string :facebook
+      t.string :twitter
+      t.string :linkedin
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
