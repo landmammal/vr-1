@@ -1,16 +1,21 @@
-<%= form_for [current_user, @group, @group_registration ] do |f| %>
-  <% if @group_registration.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@group_registration.errors.count, "error") %> prohibited this group to register a course:</h2>
 
-      <ul>
-      <% @group_registration.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<% @courses.each do |c| %>
+
+    <%= form_for [current_user, @group, @group_registration ] do |f| %>
+      <% if @group_registration.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@group_registration.errors.count, "error") %> prohibited this group to register a course:</h2>
+
+          <ul>
+          <% @group_registration.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <%= f.text_field :group_id, type:"hidden", value:@group.id %>
-  <%= f.submit "Register this group for a Course"%>
+      <%= f.text_field :course_id, type:"hidden", value:c.id %>
+      <%= f.submit "Register Group for"%><%= c.title %>
+    <% end %>
+
 <% end %>

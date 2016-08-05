@@ -21,13 +21,17 @@ class GroupRegistrationsController < ApplicationController
 
   def edit
     @group = Group.find(params[:group_id])
+    @courses = current_user.courses.all
   end
 
   def update
+
     respond_to do |format|
        if @group_registration.update(group_registration_params)
-         binding.pry
-         format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Explanation was successfully updated.' }
+
+          @group = Group.find(params[:group_id])
+            binding.pry
+         format.html { redirect_to user_groups_path(current_user, @group), notice: 'Group was successfully register.' }
          format.json { render :show, status: :ok, location: @explanation }
        else
          format.html { render :edit }
