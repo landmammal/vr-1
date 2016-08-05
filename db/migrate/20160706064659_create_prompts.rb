@@ -12,6 +12,7 @@ class CreatePrompts < ActiveRecord::Migration
       t.string :privacy
       t.string :position_prior
       t.integer :watched
+      t.string :approval_status
 
       t.timestamps null: false
     end

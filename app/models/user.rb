@@ -71,6 +71,4 @@ class User < ActiveRecord::Base
   has_many :explanations
   has_many :concepts
   has_many :rehearsals, foreign_key: :trainee_id
-
-  has_many :practices
 end

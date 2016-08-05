@@ -26,9 +26,10 @@
 	<script type="text/javascript">
 		panel_section('common_panel')
 	</script>
-	
+
 	<div class="sidepanel js-side_Tasks">TASKS</div>
 	<div class="sidepanel js-side_Chat">CHAT</div>
+  <%= link_to 'Groups', user_groups_path(current_user) %>
 
 </div>
 
@@ -48,7 +49,9 @@
 			Intructor Tools
 			<button>Create Course</button><br>
 			<button>View Submissions</button><br>
-			<button>Create Group</button>
+
+
+      <%= link_to 'Create Group', new_user_group_path(current_user) %>
 		</div>
 
   		<!-- <a href="/courses" title="My Courses">

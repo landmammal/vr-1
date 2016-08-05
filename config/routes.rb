@@ -20,7 +20,10 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users do
-    resources :groups
+    resources :groups do
+      resources :user_groups
+      resources :group_registrations
+    end
   end
 
 
@@ -66,7 +69,7 @@ Rails.application.routes.draw do
 
   # resources :course_topics
   # resources :topic_lessons
-  
+
   # resources :lesson_concepts
   # resources :lesson_models
   # resources :lesson_prompts
