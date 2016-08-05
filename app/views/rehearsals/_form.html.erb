@@ -22,9 +22,6 @@ ziggeo-height=300>
     <%= f.label :course_id %><br>
   </div>
     <div class="field">
-      <%= f.label :progress_id %><br>
-    </div>
-    <div class="field">
       <%= f.label :group_id %><br>
       <%= f.text_field :group_id %>
     </div>
@@ -59,7 +56,6 @@ ziggeo-height=300>
         </div>
     <% end %>
 
-    <%= f.text_field :progress_id, type:"hidden" %>
     <%= f.text_field :course_id, type:"hidden", value: %><br> %>
     <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
     <%= f.text_field :lesson_id, type:"hidden", value:params[:lesson_id] %><br>

@@ -63,12 +63,24 @@
     <br>
     <%= button_to "Delete Explanation", @explanation, class:'red', method: :delete, data: { confirm: 'Are you sure?' } %>
 
+    <script>
+      ZiggeoApi.Events.on("system_ready", function() {
+          var element = document.getElementById('ziggeo-recorder');
+          var recorder = ZiggeoApi.V2.Recorder.findByElement(element);
+          recorder.on("submitted", function() {
+              console.log("Video Token", recorder.get('video'));
+          });
+      });
+    </script>
+
+
+
+
+
+
 
 
     <script >
-
-
-
       // this function is getting the video token from ZiggeoApi.Events
       function postVideoToken(videoToken, streamToken){
         // grab form by the id been display in the html and store it in a jquery object

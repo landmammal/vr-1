@@ -46,13 +46,12 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.string   "title"
     t.text     "description"
     t.string   "tags"
-    t.integer  "status"
     t.integer  "instructor_id"
     t.string   "privacy"
-    t.string   "video_type"
-    t.string   "video_link"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "language"
+    t.string   "approval_status"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "demos", force: :cascade do |t|
@@ -79,15 +78,17 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.string   "privacy"
     t.string   "position_prior"
     t.integer  "watched"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "approval_status"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "group_registrations", force: :cascade do |t|
     t.integer  "course_id"
     t.integer  "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "approval_status"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "group_registrations", ["course_id"], name: "index_group_registrations_on_course_id", using: :btree
@@ -98,6 +99,11 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.string   "description"
     t.integer  "instructor_id"
     t.string   "privacy"
+    t.string   "language"
+    t.string   "website"
+    t.string   "tags"
+    t.integer  "member_limit"
+    t.string   "group_type"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -145,13 +151,16 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.string   "title"
     t.text     "description"
     t.string   "tags"
-    t.integer  "status"
     t.integer  "topic_id"
     t.integer  "instructor_id"
     t.string   "privacy"
     t.string   "lesson_type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "language"
+    t.string   "approval_status"
+    t.string   "succession"
+    t.string   "lesson_level"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "models", force: :cascade do |t|
@@ -166,8 +175,9 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.string   "privacy"
     t.string   "position_prior"
     t.integer  "watched"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "approval_status"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "practices", force: :cascade do |t|
@@ -184,22 +194,6 @@ ActiveRecord::Schema.define(version: 20160723020746) do
   add_index "practices", ["user_id", "lesson_id"], name: "index_practices_on_user_id_and_lesson_id", unique: true, using: :btree
   add_index "practices", ["user_id"], name: "index_practices_on_user_id", using: :btree
 
-  create_table "progresses", force: :cascade do |t|
-    t.integer  "lesson_id"
-    t.integer  "user_id"
-    t.integer  "explanation_id"
-    t.integer  "prompt_id"
-    t.integer  "model_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "progresses", ["explanation_id"], name: "index_progresses_on_explanation_id", using: :btree
-  add_index "progresses", ["lesson_id"], name: "index_progresses_on_lesson_id", using: :btree
-  add_index "progresses", ["model_id"], name: "index_progresses_on_model_id", using: :btree
-  add_index "progresses", ["prompt_id"], name: "index_progresses_on_prompt_id", using: :btree
-  add_index "progresses", ["user_id"], name: "index_progresses_on_user_id", using: :btree
-
   create_table "prompts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "lesson_id"
@@ -212,28 +206,30 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.string   "privacy"
     t.string   "position_prior"
     t.integer  "watched"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "approval_status"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "rehearsals", force: :cascade do |t|
     t.integer  "trainee_id"
     t.integer  "course_id"
-    t.integer  "progress_id"
+    t.integer  "topic_id"
+    t.integer  "lesson_id"
     t.integer  "group_id"
-    t.string   "course_number"
     t.string   "video_type"
     t.string   "token"
     t.string   "video_token"
     t.string   "script"
-    t.string   "status"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.boolean  "submission"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "rehearsals", ["course_id"], name: "index_rehearsals_on_course_id", using: :btree
   add_index "rehearsals", ["group_id"], name: "index_rehearsals_on_group_id", using: :btree
-  add_index "rehearsals", ["progress_id"], name: "index_rehearsals_on_progress_id", using: :btree
+  add_index "rehearsals", ["lesson_id"], name: "index_rehearsals_on_lesson_id", using: :btree
+  add_index "rehearsals", ["topic_id"], name: "index_rehearsals_on_topic_id", using: :btree
 
   create_table "tasks", force: :cascade do |t|
     t.string   "title"
@@ -255,22 +251,22 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.string   "title"
     t.text     "description"
     t.string   "tags"
-    t.integer  "status"
     t.integer  "course_id"
     t.integer  "instructor_id"
     t.string   "privacy"
-    t.string   "video_type"
-    t.string   "video_link"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "language"
+    t.string   "approval_status"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "user_groups", force: :cascade do |t|
     t.integer  "group_id"
     t.integer  "user_id"
     t.integer  "user_role"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "approval_status"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "user_groups", ["group_id"], name: "index_user_groups_on_group_id", using: :btree
@@ -284,7 +280,17 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.integer  "age"
     t.string   "education"
     t.string   "race"
-    t.string   "company"
+    t.string   "zip_code"
+    t.string   "gender"
+    t.string   "preferred_language"
+    t.text     "bio"
+    t.text     "skills"
+    t.text     "experience"
+    t.string   "website"
+    t.string   "phone_number"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "linkedin"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -320,14 +326,10 @@ ActiveRecord::Schema.define(version: 20160723020746) do
   add_foreign_key "lesson_rehearsals", "rehearsals"
   add_foreign_key "practices", "lessons"
   add_foreign_key "practices", "users"
-  add_foreign_key "progresses", "explanations"
-  add_foreign_key "progresses", "lessons"
-  add_foreign_key "progresses", "models"
-  add_foreign_key "progresses", "prompts"
-  add_foreign_key "progresses", "users"
   add_foreign_key "rehearsals", "courses"
   add_foreign_key "rehearsals", "groups"
-  add_foreign_key "rehearsals", "progresses"
+  add_foreign_key "rehearsals", "lessons"
+  add_foreign_key "rehearsals", "topics"
   add_foreign_key "user_groups", "groups"
   add_foreign_key "user_groups", "users"
 end
