@@ -18,8 +18,13 @@ function panel_section(panel_name){
 	        		var icon = `<span class="icon `+item.iname+`"></span>`;
 	        	};
 
-	        	if(item.notif === true){ 
-	        		var notification = `<div class="notif"> <div class="notif_num">0</div></div>`;
+	        	if(item.notif === true){
+	        		var notification = `<div class="notif"> <div class="notif_num"></div></div>`;
+	        		$.ajax({
+						url:'/'+item.name.toLowerCase()+'/api',
+						success:function(notifi){
+						}
+					});
 	        	}else{
 	        		var notification = ''; 
 	        	};

@@ -36,7 +36,7 @@
 <!-- Instructor Features -->
 
 
-<% if current_user.role == @r[1] %>
+<% if current_user.level_2 %>
 
 	<div class="panel_seperator js-instructor_panel">
 
@@ -59,16 +59,14 @@
 <!-- Admin Features -->
 
 
-<% if current_user.role == @r[0] %>
+<% if current_user.level_1 %>
+	
 	<div class="panel_seperator js-admin_panel">
 
-  		<a href="/demos" title="Demos">
-  			<div class="panel_icon">
-	          <span class="icon ion-social-youtube"></span> <div class="text_label">Demos</div>
-	          <%if @demos.size > 0 %>
-	          	<div class="notif_num"> <span class="notif"><%= @demos.count.to_s %></span> </div>
-	          <%end%>
-  			</div>
-  		</a>
+		<script type="text/javascript">
+			panel_section('admin_panel')
+		</script>
+		
   	</div>
+
 <% end %>
