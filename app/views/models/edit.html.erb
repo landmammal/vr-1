@@ -7,15 +7,17 @@
 
 <div class="box_sep">
   <div class="body">
-    <%if @model.video_token == '' || @model.video_token.nil? %>
-      <%= render './shared/ziggeorecorder' %>
-    <% else %>
-      <% @this_video_token = @model.video_token %>
-      <div class="js-re_record_ziggeo"><%= render './shared/ziggeoplayer' %></div>
-      <div class="js-recorded_player" style="display: none;"><%= render './shared/ziggeorecorder' %></div>
-      <br>
-      <button class="js-re_record red">Re-Record?</button>
-    <% end %>
+    <div class="lesson_half main_recorder">
+      <%if @model.video_token == '' || @model.video_token.nil? %>
+        <%= render './shared/ziggeorecorder' %>
+      <% else %>
+        <% @this_video_token = @model.video_token %>
+        <div class="js-re_record_ziggeo"><%= render './shared/ziggeoplayer' %></div>
+        <div class="js-recorded_player" style="display: none;"><%= render './shared/ziggeorecorder' %></div>
+        <br>
+        <button class="js-re_record red">Re-Record?</button>
+      <% end %>
+    </div>
 
     <%= form_for @model,html: {id: "tokenForm"}, remote: true  do |f| %>
       <% if @model.errors.any? %>

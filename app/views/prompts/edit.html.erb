@@ -7,18 +7,19 @@
 
 <div class="box_sep">
   <div class="body">
-
-    <%if @prompt.video_token == '' || @prompt.video_token.nil? %>
-      <div class="half js-ziggeo">
-        <%= render './shared/ziggeorecorder' %>
-      </div>
-    <% else %>
-      <% @this_video_token = @prompt.video_token %>
-      <div class="js-re_record_ziggeo"><%= render './shared/ziggeoplayer' %></div>
-      <div class="js-recorded_player" style="display: none;"><%= render './shared/ziggeorecorder' %></div>
-      <br>
-      <button class="js-re_record red">Re-Record?</button>
-    <% end %>
+    <div class="lesson_half main_recorder">
+      <%if @prompt.video_token == '' || @prompt.video_token.nil? %>
+        <div class="half js-ziggeo">
+          <%= render './shared/ziggeorecorder' %>
+        </div>
+      <% else %>
+        <% @this_video_token = @prompt.video_token %>
+        <div class="js-re_record_ziggeo"><%= render './shared/ziggeoplayer' %></div>
+        <div class="js-recorded_player" style="display: none;"><%= render './shared/ziggeorecorder' %></div>
+        <br>
+        <button class="js-re_record red">Re-Record?</button>
+      <% end %>
+    </div>
 
     <%= form_for @prompt,html: {id: "tokenForm"}, remote: true  do |f| %>
       <% if @prompt.errors.any? %>

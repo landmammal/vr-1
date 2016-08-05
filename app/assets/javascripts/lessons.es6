@@ -21,7 +21,7 @@ function allLessons( current_lesson, arr){
 	var lessonsArray = railsToJson(arr);
 	// console.log(current_lesson);
 	// console.log(lessonsArray);
-	console.log(lessonsArray.length-1);
+	// console.log(lessonsArray.length-1);
 	var ind = lessonsArray.indexOf(current_lesson);
 	var index = ind+1;
 	// console.log(index);
@@ -85,46 +85,43 @@ function lessonProgress(expl, prompt, model){
 
 var pageReady = function(){
 
-	if(window_width < 615){
-		var zig_rec_w = window_width / 1.22;
-		var zig_play_w = window_width / 1.22;
-	}else if(window_width > 827){
-		var zig_rec_w = window_width / 2.3;
-		var zig_play_w = window_width / 2.3;
-	}else{
-		var zig_rec_w = window_width / 2.4;
-		var zig_play_w = window_width / 2.4;
-	}
-	var zig_rec_h = zig_rec_w  / 1.35;
-	var zig_play_h = zig_play_w  / 1.35;
+	var zig_rec_w = $('.lesson_half').width() - 10;
+	var zig_play_w = $('.lesson_half').width() - 10;
+	var zig_rec_h = zig_rec_w  / 1.77;
+	var zig_play_h = zig_play_w  / 1.77;
 
 	function recSize(item){ $(item).width(zig_rec_w).height(zig_rec_h); }
 	function playSize(item){ $(item).width(zig_play_w).height(zig_play_h); }
 	function changePropSize(element){ $(element).prop('width', zig_play_w); $(element).prop('height', zig_play_h); }
 	function runChangeSize(){
-		changePropSize('embed'); changePropSize('object'); 
+
+		changePropSize('embed'); changePropSize('object'); changePropSize('ba-ziggeoplayer');
+
 		playSize('.ziggeo_play_elem'); playSize('.video-player-inner'); playSize('.video-player-outer');
+		playSize('.ba-videoplayer-theme-modern-overlay');
+		playSize('.ba-videoplayer-theme-modern-stretch-height');
+
 		recSize('.ziggeo_rec_elem'); recSize('div[data-view-id=cid_3]'); recSize('.video-recorder-flash');
-		// recSize('#video-recorder-view-cid_3');
+		recSize('.ba-videorecorder-theme-modern-chooser-container');
+		recSize('.ba-videorecorder-theme-modern-size-normal');
+		recSize('.ba-videorecorder-theme-modern-size-medium');
+		recSize('.ba-videorecorder-theme-modern-blue');
+		recSize('.ba-videorecorder-noie8s');
+		recSize('.ba-videorecorder-theme-modern-container');
+		recSize('.ba-videorecorder-theme-modern-norecorder');
+		recSize('.ba-videorecorder-theme-modern-video');
+		recSize('.ba-videorecorder-theme-modern-overlay');
 	}
 	
-	runChangeSize()
+	setInterval(function(){ runChangeSize(); }, 1000);
 
 	$(window).resize(function(){
-		if($(window).width() < 615){
-			zig_rec_w = $(window).width() / 1.22;
-			zig_play_w = $(window).width() / 1.22;
-		}else if($(window).width() > 827){
-			zig_rec_w = $(window).width() / 2.3;
-			zig_play_w = $(window).width() / 2.3;
-		}else{
-			zig_rec_w = $(window).width() / 2.4;
-			zig_play_w = $(window).width() / 2.4;
-		}
-		zig_rec_h = zig_rec_w  / 1.35;
-		zig_play_h = zig_play_w  / 1.35;
+		zig_rec_w = $('.lesson_half').width() - 10;
+		zig_play_w = $('.lesson_half').width() - 10;
+		zig_rec_h = zig_rec_w  / 1.77;
+		zig_play_h = zig_play_w  / 1.77;
 
-		runChangeSize()
+		setInterval(function(){ runChangeSize(); }, 1000);
 	});
 
 

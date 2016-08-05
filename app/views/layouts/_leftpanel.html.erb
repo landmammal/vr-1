@@ -29,7 +29,6 @@
 
 	<div class="sidepanel js-side_Tasks">TASKS</div>
 	<div class="sidepanel js-side_Chat">CHAT</div>
-  <%= link_to 'Groups', user_groups_path(current_user) %>
 
 </div>
 
@@ -49,16 +48,9 @@
 			Intructor Tools
 			<button>Create Course</button><br>
 			<button>View Submissions</button><br>
-
-
-      <%= link_to 'Create Group', new_user_group_path(current_user) %>
+      		<%= link_to 'Create Group', new_user_group_path(current_user) %><br>
+      		<%= link_to 'My Groups', user_groups_path(current_user) %>
 		</div>
-
-  		<!-- <a href="/courses" title="My Courses">
-  			<div class="panel_icon">
-	          <span class="icon ion-university"></span> <div class="text_label">My courses</div>
-  			</div>
-  		</a> -->
 	</div>
 
 <% end %>
@@ -73,7 +65,7 @@
   		<a href="/demos" title="Demos">
   			<div class="panel_icon">
 	          <span class="icon ion-social-youtube"></span> <div class="text_label">Demos</div>
-	          <%if @demos.count > 0 %>
+	          <%if @demos.size > 0 %>
 	          	<div class="notif_num"> <span class="notif"><%= @demos.count.to_s %></span> </div>
 	          <%end%>
   			</div>

@@ -1,0 +1,12 @@
+<ziggeorecorder ziggeo-theme='modern-blue' class='ziggeo_rec_elem' ziggeo-stretch id="ziggeo-redocer">
+</ziggeorecorder>
+
+<script>
+     ZiggeoApi.Events.on("system_ready", function() {
+         var element = document.getElementById('ziggeo-recorder');
+         var recorder = ZiggeoApi.V2.Recorder.findByElement(element);
+         recorder.on("uploading", function() {
+             console.log("Video Token", recorder.get('video'));
+         });
+     });
+ </script>

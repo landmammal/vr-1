@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   	before_filter :main_links
 
   	def main_links
-  		@main_menu = ['about','markets','process','contact']
+  		@main_menu = ['product','contact']
       @languages = [['English','en'],['Spanish', 'sp']]
       @privacy = [['Public', 0],['Only me', 1],['Paid Members', 2],['Registered members', 3]]
       @ziggeo_priority = [["Not Primary", ],["Primary", true]]

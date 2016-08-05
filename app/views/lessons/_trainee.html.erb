@@ -2,14 +2,14 @@
 
   <div class="showIfLessonComplete" style="display: none;">
 
+    <button class="big_btn lesson_btn js-show_explanation btn_selected">Explanation</button>
+    <button class="green_sft big_btn lesson_btn js-show_prompt btn_selected">Prompt</button>
+    <button class="green_sft big_btn lesson_btn js-show_model btn_selected">Role Model</button>
+    
+    <br>
+    <hr>
+
     <div class="instructor_videos">
-
-      <button class="big_btn js-show_explanation btn_selected">Explanation</button>
-      <button class="green_sft big_btn js-show_prompt btn_selected">Prompt</button>
-      <button class="green_sft big_btn js-show_model btn_selected">Role Model</button>
-
-      <hr>
-      <br>
 
       <div class="explanation_video">
         <% @this_video_token = @prior_expl.video_token %>
@@ -35,26 +35,8 @@
 
 
     <div class="trainee_rehearsal">
+      <%= render './shared/ziggeorecordertrainee' %>
 
-      <div class="vid_title">Rehearsal</div>
-      <hr style="margin-bottom: 28px;">
-
-      <ziggeorecorder
-       ziggeo-width=640
-       ziggeo-height=480
-       id="ziggeo-recorder">
-   </ziggeorecorder>
-
-      <script>
-      var recorder = new ZiggeoApi.V2.Recorder({
-          element: document.getElementById("myID"),
-          attrs: {
-              video: "video-token",
-              stretch: true
-          }
-       });
-       recorder.activate();
-  </script>
       <!-- <%= @prior_model.script %> -->
       <!-- <textarea placeholder="Write your script here..." style="margin-top:14px;"></textarea> -->
 
@@ -76,7 +58,7 @@
               </div>
           <% end %>
 
-          <%= f.text_area :script, placeholder:'Write your script here...', style:'margin-top:15px;' %>
+          <%= f.text_area :script, placeholder:'Write your script here...' %>
           <%= f.text_field :progress_id, type:"hidden" %>
           <%= f.text_field :course_id, type:"hidden", value:@course.id  %><br>
           <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
@@ -85,7 +67,7 @@
           <%= f.text_field :token, type:"hidden" %>
 
       <% end %>
-
+      
 
       <script >
 
@@ -112,8 +94,7 @@
 
           // here is where we grab the token to escort it outside of the ziggeo api on click event
           postVideoToken(videoToken, streamToken);
-
-
+          
           // console.log(streamToken);
 
         });
