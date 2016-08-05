@@ -25,6 +25,7 @@
 
   <script type="text/javascript"></script>
 
+  <!-- ziggeo api token and styles -->
   <link rel="stylesheet" href="//assets-cdn.ziggeo.com/v1-latest/ziggeo.css" />
   <script src="//assets-cdn.ziggeo.com/v1-latest/ziggeo.js"></script>
   <script> ZiggeoApi.token ='<%= Rails.application.secrets.ziggeo_secret %>'; </script>
@@ -64,7 +65,7 @@
       </tbody>
     </table>
   </div>
-  
+
 <% else %>
 
   <%= yield %>
