@@ -11,17 +11,23 @@
 
 	<header class="header">
 		<menu>
+		
 			<div class="logo"><a href="/"><img src="/assets/logo_home.png" width="100%"></a></div>
-			<% @main_menu.each do |menu| %>
-				<a href="/<%= menu %>"> <div class="menu_item"><%= menu.capitalize %></div> </a>
-			<%end%>
-			
-	    	<a href="<%= new_user_registration_path %>">
-	    		<div class="inter_header register_item">Register</div>
-	    	</a>
-	    	<div class="inter_header right_item">
-	    		<%= link_to "Log In", new_user_session_path %>
-	    	</div>
+
+			<div class="menu_list">
+				<% @main_menu.each do |menu| %>
+					<a href="/<%= menu %>"> <div class="menu_item"><%= menu.capitalize %></div> </a>
+				<%end%>
+				
+		    	<div class="menu_item">
+		    		<%= link_to "Log In", new_user_session_path %>
+		    	</div>
+
+		    	<a href="<%= new_user_registration_path %>">
+		    		<div class="register_item menu_item">Register</div>
+		    	</a>
+		    </div>
+
     	</menu>
     </header>
 
