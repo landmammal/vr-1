@@ -1,4 +1,8 @@
 
 <% @this_video_token = @rehearsal.video_token %>
-<%= render './shared/ziggeoplayer' %>
+
+<div class="lesson_half main_recorder">
+	<%= render './shared/ziggeoplayer' %>
+</div>
+
 <%= link_to 'Back', rehearsals_all_path %>
