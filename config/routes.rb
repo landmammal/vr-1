@@ -56,7 +56,7 @@ Rails.application.routes.draw do
 
   resources :demos
   resources :tasks
-  resources :progresses
+
 
   # resources :models
   # resources :explanations

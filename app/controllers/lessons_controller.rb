@@ -37,10 +37,10 @@ class LessonsController < ApplicationController
 
     @concept = Concept.new
     @rehearsal = Rehearsal.new
-    
+
     @lessons_arr = []
     @lessons = @topic.lessons
-    @lessons.each { |lesson| @lessons_arr << lesson.id } 
+    @lessons.each { |lesson| @lessons_arr << lesson.id }
 
   end
 
@@ -110,6 +110,6 @@ class LessonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
-      params.require(:lesson).permit(:topic_id, :title, :description, :tags, :status, :instructor_id)
+      params.require(:lesson).permit(:topic_id, :title, :description, :tags, :approval_status, :instructor_id)
     end
 end

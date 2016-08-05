@@ -11,7 +11,7 @@ class RehearsalsController < ApplicationController
   end
 
   def show
-  
+
   end
 
   def new
@@ -63,7 +63,7 @@ class RehearsalsController < ApplicationController
     end
 
     def rehearsal_params
-      params.require(:rehearsal).permit(:course_id, :progress_id, :group_id, :course_number, :token, :video_token, :trainee_id, :script)
+      params.require(:rehearsal).permit(:course_id, :lesson_id, :group_id, :token, :video_token, :trainee_id, :script)
     end
 
   def set_lesson

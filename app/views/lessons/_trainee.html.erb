@@ -5,7 +5,7 @@
     <button class="big_btn lesson_btn js-show_explanation btn_selected">Explanation</button>
     <button class="green_sft big_btn lesson_btn js-show_prompt btn_selected">Prompt</button>
     <button class="green_sft big_btn lesson_btn js-show_model btn_selected">Role Model</button>
-    
+
     <br>
     <hr>
 
@@ -59,7 +59,6 @@
           <% end %>
 
           <%= f.text_area :script, placeholder:'Write your script here...' %>
-          <%= f.text_field :progress_id, type:"hidden" %>
           <%= f.text_field :course_id, type:"hidden", value:@course.id  %><br>
           <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
           <%= f.text_field :lesson_id, type:"hidden", value:@lesson.id %><br>
@@ -67,7 +66,7 @@
           <%= f.text_field :token, type:"hidden" %>
 
       <% end %>
-      
+
 
       <script >
 
@@ -94,7 +93,7 @@
 
           // here is where we grab the token to escort it outside of the ziggeo api on click event
           postVideoToken(videoToken, streamToken);
-          
+
           // console.log(streamToken);
 
         });
