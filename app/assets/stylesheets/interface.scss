@@ -103,14 +103,14 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 				& .notif_num{
 					font-size: 0;
 					&.max{
-						position: relative; top:-23px; z-index:3;
+						position: relative; top:-2px; z-index:3;
 						font-size: 11px; font-weight:bold;
 					}
 				}
 				&.max{
-					width:20px;  height:14px; 
-					position: relative; top:3px; right:-70px; z-index:3;
-					border-radius:5px; background-color:red; 
+					width:20px;  height:14px; display:inline-block;
+					border-radius:5px; background-color:red;
+					margin-top: 3px;
 				}
 			}
 		}

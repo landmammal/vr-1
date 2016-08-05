@@ -15,6 +15,20 @@ class ApiController < ApplicationController
 		@lesson = Lesson.all
 		render json: @lesson
 	end
+	def demos_api
+		@demos = Demo.all
+		render json: @demos
+	end
+
+	def tasks_api
+		@tasks = Task.all
+		render json: @tasks
+	end
+
+	def chat_api
+		@demos = Demo.all
+		render json: @demos
+	end
 
 
 	# LEFT PANEL LINKS
@@ -41,4 +55,8 @@ class ApiController < ApplicationController
         render json: @instructor_panel
 	end
 
+	def admin_panel_api
+		@admin_panel = [{name:'Demos', icon:'ion', iname:'ion-social-youtube', link:demos_path, link_target:'', notif:true}]
+        render json: @admin_panel
+	end
 end
