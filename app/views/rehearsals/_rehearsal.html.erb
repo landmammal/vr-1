@@ -1,0 +1,10 @@
+<ul>
+  <% @rehearsals.each do |r| %>
+    <li>
+      <%= form_for [@lesson , @rehearsal] , url: { :controller => 'rehearsals', :action => "update", :method => :put } do |f| %>
+          <%= f.text_field :token, type:"hidden" %>
+          <%= f.submit %>
+      <% end %>
+    </li>
+  <% end %>
+</ul

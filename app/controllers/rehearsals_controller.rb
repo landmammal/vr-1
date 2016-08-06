@@ -1,5 +1,5 @@
 class RehearsalsController < ApplicationController
-  before_action :set_rehearsal, only: [:show, :edit, :update, :destroy]
+  before_action :set_rehearsal, only: [:show, :edit, :destroy]
   before_action :set_lesson, only: [:create]
 
   def index
@@ -22,11 +22,11 @@ class RehearsalsController < ApplicationController
   end
 
   def create
-    @lesson.rehearsals.build(rehearsal_params)
+    @rehearsal = @lesson.rehearsals.build(rehearsal_params)
     respond_to do |format|
       if @lesson.save
+        format.js {  }
         format.html { redirect_to @rehearsal, notice: 'Rehearsal was successfully created.' }
-        format.json { render :show, status: :created, location: @rehearsal }
       else
         format.html { render :new }
         format.json { render json: @rehearsal.errors, status: :unprocessable_entity }
@@ -35,6 +35,7 @@ class RehearsalsController < ApplicationController
   end
 
   def update
+  
     respond_to do |format|
       if @rehearsal.update(rehearsal_params)
         format.html { redirect_to @rehearsal, notice: 'Rehearsal was successfully updated.' }

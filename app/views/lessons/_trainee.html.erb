@@ -35,8 +35,9 @@
 
 
     <div class="trainee_rehearsal">
-      <%= render './shared/ziggeorecordertrainee' %>
+      <%= render './rehearsals/ziggeorecordertrainee' %>
 
+      <%= render './rehearsals/rehearsal' %>
 
       <!-- <%= @prior_model.script %> -->
       <!-- <textarea placeholder="Write your script here..." style="margin-top:14px;"></textarea> -->
@@ -67,7 +68,7 @@
           <%= f.text_field :token, type:"hidden" %>
 
       <% end %>
-
+      <!-- rendering rehearsals from reheasals view folder -->
 
       <script >
 
@@ -80,6 +81,8 @@
           $ziggeotoken.val(videoToken);
           $webtoken.val(streamToken)
           $form.submit();
+
+
         };
         // function postStreamToken(streamToken){
         //
@@ -99,7 +102,6 @@
 
         });
       </script>
-
 
 
 
