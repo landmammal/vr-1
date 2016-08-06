@@ -204,7 +204,8 @@
       <%= f.submit 'Add Concept', class:'blue' %>
     <% end %>
 
-    <a href="<%= course_topic_path(@course, @lesson) %>"><button> < Back </button></a>
+    <button> <%= link_to 'Add more Lesson', course_topic_path(@course, @topic) %> </button>
+
     </div>
 
   <%else%>

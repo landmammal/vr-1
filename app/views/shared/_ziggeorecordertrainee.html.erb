@@ -1,2 +1,13 @@
 <ziggeo ziggeo-theme='modern-blue' class='ziggeo_rec_elem' ziggeo-stretch id="ziggeo-redocer">
 </ziggeo>
+
+
+<ul>
+  <% @rehearsals.each do |todo| %>
+    <li>
+      <%= todo.description %><br>
+      <strong>priority: </strong><%= todo.priority %><br>
+      <%= link_to "done", todo_path(todo), method: 'delete' %>
+    </li>
+  <% end %>
+</ul>

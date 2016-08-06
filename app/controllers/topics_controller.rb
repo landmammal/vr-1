@@ -32,7 +32,8 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to [@course, @topic], notice: 'Topic was successfully created.' }
+        @topic = @course.topics.last
+        format.html { redirect_to course_topic_path(@course, @topic), notice: 'Topic was successfully created.' }
         format.json { render :show, status: :created, location: @topic }
       else
         format.html { render :new }

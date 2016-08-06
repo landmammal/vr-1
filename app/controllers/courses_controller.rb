@@ -99,6 +99,6 @@ class CoursesController < ApplicationController
       params.require(:course).permit(:title, :description, :tags, :instructor_id, :approval_status)
     end
     def course_params_js
-      params.permit(:title, :description, :tags, :instructor_id, :status)
+      params.permit(:title, :description, :tags, :instructor_id, :approval_status)
     end
 end

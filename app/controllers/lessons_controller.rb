@@ -37,6 +37,7 @@ class LessonsController < ApplicationController
 
     @concept = Concept.new
     @rehearsal = Rehearsal.new
+    @rehearsals = Rehearsal.all
 
     @lessons_arr = []
     @lessons = @topic.lessons
@@ -61,7 +62,8 @@ class LessonsController < ApplicationController
 
     respond_to do |format|
       if @topic.save
-        format.html { redirect_to course_topic_path(@course, @topic), notice: 'Lesson was successfully created.' }
+        @lesson = @topic.lessons.last
+        format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Lesson was successfully created.' }
         format.json { render :show, status: :created, location: @topic }
       else
         format.html { render :new }
