@@ -1,6 +1,6 @@
 class RehearsalsController < ApplicationController
   before_action :set_rehearsal, only: [:show, :edit, :update, :destroy]
-  before_action :set_lesson, only: [:new]
+  before_action :set_lesson, only: [:create]
 
   def index
     @rehearsals = Rehearsal.all
@@ -16,14 +16,12 @@ class RehearsalsController < ApplicationController
 
   def new
     @rehearsal = Rehearsal.new
-
   end
 
   def edit
   end
 
   def create
-    @lesson = Lesson.find(params[:lesson_id])
     @lesson.rehearsals.build(rehearsal_params)
     respond_to do |format|
       if @lesson.save
@@ -58,13 +56,13 @@ class RehearsalsController < ApplicationController
 
   private
 
-    def set_rehearsal
-      @rehearsal = Rehearsal.find(params[:id])
-    end
+  def set_rehearsal
+    @rehearsal = Rehearsal.find(params[:id])
+  end
 
-    def rehearsal_params
-      params.require(:rehearsal).permit(:course_id, :lesson_id, :group_id, :token, :video_token, :trainee_id, :script)
-    end
+  def rehearsal_params
+    params.require(:rehearsal).permit(:course_id, :lesson_id, :group_id, :token, :video_token, :trainee_id, :script)
+  end
 
   def set_lesson
     @lesson = Lesson.find(params[:lesson_id])
