@@ -37,7 +37,7 @@
     <div class="trainee_rehearsal">
       <%= render './rehearsals/ziggeorecordertrainee' %>
 
-      <%= render './rehearsals/rehearsal' %>
+
 
       <!-- <%= @prior_model.script %> -->
       <!-- <textarea placeholder="Write your script here..." style="margin-top:14px;"></textarea> -->
@@ -118,3 +118,12 @@
       <br>
       <br>
 </div>
+<ul>
+    <%= render './rehearsals/rehearsal' %>
+</ul>
+ <script>$("ul").on('click',".submission", function () {
+
+   console.log($(this).data('token');
+
+
+ });</script>

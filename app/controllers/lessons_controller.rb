@@ -37,7 +37,6 @@ class LessonsController < ApplicationController
 
     @concept = Concept.new
     @rehearsal = Rehearsal.new
-    @rehearsals = Rehearsal.all
 
     @lessons_arr = []
     @lessons = @topic.lessons

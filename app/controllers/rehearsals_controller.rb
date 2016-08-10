@@ -35,7 +35,7 @@ class RehearsalsController < ApplicationController
   end
 
   def update
-  
+
     respond_to do |format|
       if @rehearsal.update(rehearsal_params)
         format.html { redirect_to @rehearsal, notice: 'Rehearsal was successfully updated.' }
@@ -62,7 +62,7 @@ class RehearsalsController < ApplicationController
   end
 
   def rehearsal_params
-    params.require(:rehearsal).permit(:course_id, :lesson_id, :group_id, :token, :video_token, :trainee_id, :script)
+    params.require(:rehearsal).permit(:course_id, :lesson_id, :group_id, :token, :video_token, :trainee_id, :script, :submission)
   end
 
   def set_lesson
