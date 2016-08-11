@@ -1,8 +1,14 @@
-class ApiController < ApplicationController	
+class ApiController < ApplicationController
 	def courses_api
 		@courses = Course.all
 		render json: @courses
 	end
+
+  def rehearsals_single_api
+    @rehearsal = Rehearsal.find(params[:id])
+    render json: @rehearsal
+  end
+
 	def course_registrations_api
 		@course_registrations = CourseRegistration.all
 		render json: @course_registrations
@@ -40,7 +46,7 @@ class ApiController < ApplicationController
         render json: @site_panel
         # edit_user_registration_path
 	end
-	
+
 	def common_panel_api
 		@common_panel = [{name:'Chat', icon:'svg', iname:'chat', link:'#', link_target:'', notif:true},
                          {name:'Courses', icon:'ion', iname:'ion-map', link:search_courses_path, link_target:'', notif:false},

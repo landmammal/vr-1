@@ -1,6 +1,8 @@
 class RehearsalsController < ApplicationController
-  before_action :set_rehearsal, only: [:show, :edit, :destroy]
+  before_action :set_rehearsal, only: [:show, :edit, :destroy, :update]
   before_action :set_lesson, only: [:create]
+  before_action :set_topic, only: [:update]
+  before_action :set_course, only: [:update]
 
   def index
     @rehearsals = Rehearsal.all
@@ -11,7 +13,6 @@ class RehearsalsController < ApplicationController
   end
 
   def show
-
   end
 
   def new
@@ -35,14 +36,12 @@ class RehearsalsController < ApplicationController
   end
 
   def update
-
+    @rehearsal.submission = false
     respond_to do |format|
-      if @rehearsal.update(rehearsal_params)
-        format.html { redirect_to @rehearsal, notice: 'Rehearsal was successfully updated.' }
-        format.json { render :show, status: :ok, location: @rehearsal }
+      if @rehearsal.save!
+        format.html { redirect_to course_topic_path(@course, @topic), notice: 'Rehearsal was successfully updated.' }
       else
-        format.html { render :edit }
-        format.json { render json: @rehearsal.errors, status: :unprocessable_entity }
+        binding.pry
       end
     end
   end
@@ -56,6 +55,14 @@ class RehearsalsController < ApplicationController
   end
 
   private
+  def set_topic
+    @topic = Topic.find(params[:topic_id])
+    binding.pry
+  end
+
+  def set_course
+    @course = Course.find(params[:course_id])
+  end
 
   def set_rehearsal
     @rehearsal = Rehearsal.find(params[:id])

@@ -4,12 +4,12 @@
 // }
 //
 //     debugger
-//     $.ajax({
-//       url: "/rehearsals/test",
-//       type: "PUT",
-//       data: '#{@rehearsal}'
-//
-//     });
+    // $.ajax({
+    //   url: "/rehearsals/test",
+    //   type: "PUT",
+    //   data: '#{@rehearsal}'
+    //
+    // });
 //
 //   });
 // });
