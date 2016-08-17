@@ -1,4 +1,4 @@
-require 'faker'
+# require 'faker'
 
 User.create([{ first_name:'Administrator', last_name:'Man', username:'admin', race:'White', email:'admin@gmail.com', password:'admin123', password_confirmation:'admin123', age:Time.now, role: 0},
 			 { first_name:'Instructor', last_name:'Sir', username:'instructor', race:'Asian', email:'instructor@gmail.com', password:'instructor123', password_confirmation:'instructor123', age:Time.now, role: 1},
