@@ -36,7 +36,7 @@ class RehearsalsController < ApplicationController
   end
 
   def update
-    @rehearsal.submission = false
+    @rehearsal.submission = true
     respond_to do |format|
       if @rehearsal.save!
         format.html { redirect_to course_topic_path(@course, @topic), notice: 'Rehearsal was successfully updated.' }

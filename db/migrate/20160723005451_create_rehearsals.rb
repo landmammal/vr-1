@@ -9,7 +9,8 @@ class CreateRehearsals < ActiveRecord::Migration
       t.string :video_type
       t.string :token
       t.string :video_token
-      t.string :script
+      t.text :script
+      t.integer :approval_status
       t.boolean :submission
 
       t.timestamps null: false

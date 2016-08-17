@@ -9,10 +9,10 @@ class CreateModels < ActiveRecord::Migration
       t.string :video_token
       t.string :script
       t.string :language
-      t.string :privacy
-      t.string :position_prior
+      t.integer :privacy
+      t.integer :position_prior
       t.integer :watched
-      t.string :approval_status
+      t.integer :approval_status
 
       t.timestamps null: false
     end

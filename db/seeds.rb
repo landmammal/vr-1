@@ -41,9 +41,8 @@ User.create([{ first_name:'Administrator', last_name:'Man', username:'admin', ra
     token: "26695d8c37e99ecfce9a4e3290883e04",
     video_token: "4f8bca227273050849582c9ab3e710d4",
     script: Faker::Lorem.sentence(5),
-    position_prior: "1",
+    position_prior: 1,
     privacy: 'public',
-    approval_status: "1",
     lesson_id: lesson,
     user_id:2
   )
@@ -53,9 +52,8 @@ User.create([{ first_name:'Administrator', last_name:'Man', username:'admin', ra
     token: "26695d8c37e99ecfce9a4e3290883e04",
     video_token: "4f8bca227273050849582c9ab3e710d4",
     script: Faker::Lorem.sentence(5),
-    position_prior: "1",
+    position_prior: 1,
     privacy: 'public',
-    approval_status: "1",
     lesson_id: lesson,
     user_id:2
   )
@@ -65,9 +63,8 @@ User.create([{ first_name:'Administrator', last_name:'Man', username:'admin', ra
     token: "26695d8c37e99ecfce9a4e3290883e04",
     video_token: "4f8bca227273050849582c9ab3e710d4",
     script: Faker::Lorem.sentence(5),
-    position_prior: "1",
+    position_prior: 1,
     privacy: 'public',
-    approval_status: "1",
     lesson_id: lesson,
     user_id:2
   )

@@ -4,9 +4,10 @@ class CreateConcepts < ActiveRecord::Migration
       t.text :description
       t.references :lesson
       t.references :user
-      t.string :privacy
+      t.string :tags
+      t.integer :privacy
       t.string :language
-      
+
       t.timestamps null: false
     end
   end

@@ -6,8 +6,8 @@ class CreateDemos < ActiveRecord::Migration
       t.string :email
       t.string :phone_number
       t.date :date
-      t.string :contacted
-      t.string :completed
+      t.integer :contacted
+      t.boolean :completed
 
       t.timestamps null: false
     end
