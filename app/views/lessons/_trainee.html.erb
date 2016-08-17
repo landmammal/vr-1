@@ -60,7 +60,7 @@
               </div>
           <% end %>
 
-          
+          <%= f.text_area :script, placeholder:'Write your script here...' %><br>
           <%= f.text_field :course_id, type:"hidden", value:@course.id  %><br>
           <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
           <%= f.text_field :lesson_id, type:"hidden", value:@lesson.id %><br>

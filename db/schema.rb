@@ -20,7 +20,8 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.text     "description"
     t.integer  "lesson_id"
     t.integer  "user_id"
-    t.string   "privacy"
+    t.string   "tags"
+    t.integer  "privacy"
     t.string   "language"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -47,9 +48,9 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.text     "description"
     t.string   "tags"
     t.integer  "instructor_id"
-    t.string   "privacy"
+    t.integer  "privacy"
     t.string   "language"
-    t.string   "approval_status"
+    t.integer  "approval_status"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -60,8 +61,8 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.string   "email"
     t.string   "phone_number"
     t.date     "date"
-    t.string   "contacted"
-    t.string   "completed"
+    t.integer  "contacted"
+    t.boolean  "completed"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -69,16 +70,17 @@ ActiveRecord::Schema.define(version: 20160723020746) do
   create_table "explanations", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "lesson_id"
+    t.text     "description"
     t.string   "title"
     t.string   "video_type"
     t.string   "token"
     t.string   "video_token"
     t.string   "script"
     t.string   "language"
-    t.string   "privacy"
-    t.string   "position_prior"
+    t.integer  "privacy"
+    t.integer  "position_prior"
     t.integer  "watched"
-    t.string   "approval_status"
+    t.integer  "approval_status"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -96,14 +98,16 @@ ActiveRecord::Schema.define(version: 20160723020746) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
+    t.string   "title"
     t.string   "description"
     t.integer  "instructor_id"
-    t.string   "privacy"
+    t.integer  "privacy"
     t.string   "language"
     t.string   "website"
     t.string   "tags"
     t.integer  "member_limit"
-    t.string   "group_type"
+    t.integer  "group_type"
+    t.text     "note"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -153,12 +157,12 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.string   "tags"
     t.integer  "topic_id"
     t.integer  "instructor_id"
-    t.string   "privacy"
-    t.string   "lesson_type"
+    t.integer  "privacy"
+    t.integer  "lesson_type"
     t.string   "language"
-    t.string   "approval_status"
-    t.string   "succession"
-    t.string   "lesson_level"
+    t.integer  "approval_status"
+    t.integer  "succession"
+    t.integer  "lesson_level"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -172,27 +176,13 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.string   "video_token"
     t.string   "script"
     t.string   "language"
-    t.string   "privacy"
-    t.string   "position_prior"
+    t.integer  "privacy"
+    t.integer  "position_prior"
     t.integer  "watched"
-    t.string   "approval_status"
+    t.integer  "approval_status"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
-
-  create_table "practices", force: :cascade do |t|
-    t.string   "token"
-    t.string   "video_token"
-    t.boolean  "completed",   default: false
-    t.integer  "user_id"
-    t.integer  "lesson_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-  end
-
-  add_index "practices", ["lesson_id"], name: "index_practices_on_lesson_id", using: :btree
-  add_index "practices", ["user_id", "lesson_id"], name: "index_practices_on_user_id_and_lesson_id", unique: true, using: :btree
-  add_index "practices", ["user_id"], name: "index_practices_on_user_id", using: :btree
 
   create_table "prompts", force: :cascade do |t|
     t.integer  "user_id"
@@ -203,10 +193,10 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.string   "video_token"
     t.string   "script"
     t.string   "language"
-    t.string   "privacy"
-    t.string   "position_prior"
+    t.integer  "privacy"
+    t.integer  "position_prior"
     t.integer  "watched"
-    t.string   "approval_status"
+    t.integer  "approval_status"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -220,10 +210,11 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.string   "video_type"
     t.string   "token"
     t.string   "video_token"
-    t.string   "script"
+    t.text     "script"
+    t.integer  "approval_status"
     t.boolean  "submission"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "rehearsals", ["course_id"], name: "index_rehearsals_on_course_id", using: :btree
@@ -232,12 +223,17 @@ ActiveRecord::Schema.define(version: 20160723020746) do
   add_index "rehearsals", ["topic_id"], name: "index_rehearsals_on_topic_id", using: :btree
 
   create_table "tasks", force: :cascade do |t|
-    t.string   "title"
     t.integer  "user_id"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "priority"
+    t.boolean  "flagged"
+    t.integer  "reminder"
+    t.string   "reminder_type"
     t.date     "due_date"
-    t.string   "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "status"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "topic_lessons", force: :cascade do |t|
@@ -253,9 +249,9 @@ ActiveRecord::Schema.define(version: 20160723020746) do
     t.string   "tags"
     t.integer  "course_id"
     t.integer  "instructor_id"
-    t.string   "privacy"
+    t.integer  "privacy"
     t.string   "language"
-    t.string   "approval_status"
+    t.integer  "approval_status"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -324,8 +320,6 @@ ActiveRecord::Schema.define(version: 20160723020746) do
   add_foreign_key "group_registrations", "groups"
   add_foreign_key "lesson_rehearsals", "lessons"
   add_foreign_key "lesson_rehearsals", "rehearsals"
-  add_foreign_key "practices", "lessons"
-  add_foreign_key "practices", "users"
   add_foreign_key "rehearsals", "courses"
   add_foreign_key "rehearsals", "groups"
   add_foreign_key "rehearsals", "lessons"

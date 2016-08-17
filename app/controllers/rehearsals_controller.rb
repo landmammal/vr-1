@@ -1,6 +1,7 @@
 class RehearsalsController < ApplicationController
   before_action :set_rehearsal, only: [:show, :edit, :destroy, :update]
   before_action :set_lesson, only: [:create]
+
   # before_action :set_topic, only: [:update]
   # before_action :set_course, only: [:update]
 
@@ -36,7 +37,7 @@ class RehearsalsController < ApplicationController
   end
 
   def update
-    @rehearsal.submission = false
+    @rehearsal.submission = true
     respond_to do |format|
       if @rehearsal.save!
         format.html { redirect_to course_topic_path(@course, @topic), notice: 'Rehearsal was successfully updated.' }
