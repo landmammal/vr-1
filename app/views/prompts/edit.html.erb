@@ -54,12 +54,12 @@
       <%= f.text_field :title, placeholder: 'Title' %><br>
       <%= f.text_area :script, placeholder: 'script' %><br>
       <%= f.select :language, (@languages) %>
-      <%= f.select :language, (@privacy) %>
+      <%= f.select :privacy, (@privacy) %>
       <%= f.check_box :position_prior %> Primary Prompt<br>
-      
+
       <%= f.submit 'Submit Prompt', class:'green_sft' %>
     <% end %>
-    
+
     <br>
     <%= button_to "Delete Prompt", @prompt, class:'red', method: :delete, data: { confirm: 'Are you sure?' } %>
 

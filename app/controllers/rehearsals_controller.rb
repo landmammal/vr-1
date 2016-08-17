@@ -1,8 +1,8 @@
 class RehearsalsController < ApplicationController
   before_action :set_rehearsal, only: [:show, :edit, :destroy, :update]
   before_action :set_lesson, only: [:create]
-  before_action :set_topic, only: [:update]
-  before_action :set_course, only: [:update]
+  # before_action :set_topic, only: [:update]
+  # before_action :set_course, only: [:update]
 
   def index
     @rehearsals = Rehearsal.all
@@ -36,7 +36,7 @@ class RehearsalsController < ApplicationController
   end
 
   def update
-    @rehearsal.submission = true
+    @rehearsal.submission = false
     respond_to do |format|
       if @rehearsal.save!
         format.html { redirect_to course_topic_path(@course, @topic), notice: 'Rehearsal was successfully updated.' }
@@ -56,8 +56,9 @@ class RehearsalsController < ApplicationController
 
   private
   def set_topic
+
     @topic = Topic.find(params[:topic_id])
-    binding.pry
+
   end
 
   def set_course

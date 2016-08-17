@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   	def main_links
   		@main_menu = ['product','contact']
       @languages = [['English','en'],['Spanish', 'sp']]
-      @privacy = [['Public', 0],['Only me', 1],['Paid Members', 2],['Registered members', 3]]
+      @privacy = [['Public', "0"],['Only me', "1"],['Paid Members', '2'],['Registered members', '3']]
       @ziggeo_priority = [["Not Primary", ],["Primary", true]]
 
       if current_user

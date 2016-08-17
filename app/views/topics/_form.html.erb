@@ -13,6 +13,8 @@
     <%= f.text_field :title, placeholder:'Title' %><br>
     <%= f.text_area :description, placeholder:'Description' %><br>
     <%= f.text_field :tags, placeholder:'tags (comma separated)' %><br>
+    <%= f.select :privacy, (@privacy) %>
+    <%= f.select :language, (@languages) %>
     <%= button_tag 'Create Topic', type:'submit', class:"blue" %>
     <button class="js-cancel_form red reg_btn" style="display: none;">cancel</button>
 

@@ -76,7 +76,6 @@ class TopicsController < ApplicationController
       @topic = Topic.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def topic_params
       params.require(:topic).permit(:course_id, :title, :description, :tags, :approval_status, :instructor_id)
     end

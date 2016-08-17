@@ -60,12 +60,14 @@
               </div>
           <% end %>
 
-          <%= f.text_area :script, placeholder:'Write your script here...' %>
+          
           <%= f.text_field :course_id, type:"hidden", value:@course.id  %><br>
           <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
           <%= f.text_field :lesson_id, type:"hidden", value:@lesson.id %><br>
+          <%= f.text_field :topic_id, type:"hidden", value:@topic.id %><br>
           <%= f.text_field :video_token, type:"hidden" %>
           <%= f.text_field :token, type:"hidden" %>
+
 
       <% end %>
       <!-- rendering rehearsals from reheasals view folder -->
