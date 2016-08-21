@@ -3,24 +3,26 @@ ZiggeoApi.Events.on("system_ready", function() {
   var recorder = ZiggeoApi.V2.Recorder.findByElement( document.getElementById('recorderElement') );
 
   function postVideoToken(videoToken, streamToken){
-
-    $form = $('#rehearsalsForm');
-    $ziggeotoken = $('#rehearsal_video_token');
-    $webtoken = $('#rehearsal_token');
+    // grab form by the id been display in the html and store it in a jquery object
+    $form = $('#promptsForm');
+    $ziggeotoken = $('#prompt_video_token');
+    $webtoken = $('#prompt_token');
     $ziggeotoken.val(videoToken);
-    $webtoken.val(streamToken)
+    $webtoken.val(streamToken);
+
     $form.submit();
   };
 
+
   recorder.on('verified', function() {
   // console.log(streamToken);
-  // getting the streamtoken and storing it in streamToken var to ship it to the outside world
+  // getting the string token and storing it in videoToken var to ship it to the outside world
   var streamToken = recorder.get('stream'); //to get the stream token
   var videoToken = recorder.get('video'); //to get the video token
   // console.log(videoToken);
   // console.log(streamToken);
 
-  // here is where we call the postVideoToken function and pass it both token vars
+  // here is where we call the postVideoToken function
   postVideoToken(videoToken, streamToken);
   });
 });

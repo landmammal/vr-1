@@ -10,10 +10,15 @@ class RehearsalsController < ApplicationController
   end
 
   def all
+
     @rehearsals = Rehearsal.all
+
   end
 
   def show
+    @rehearsal.lessons    
+    user = @rehearsal.trainee
+    @rehearsals = user.rehearsals
   end
 
   def new

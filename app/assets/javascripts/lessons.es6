@@ -74,11 +74,11 @@ function lessonProgress(expl, prompt, model){
 	if(expl==='3' && prompt==='3' && model==='3'){
 		var lessonReady = ``;
 		$('.lesson_ready').toggle();
-		
+
 		$('.js-trainee_view').click(function(){
 			$('.show_trainee_view').fadeToggle(500);
 		});
-		
+
 		$('.showIfLessonComplete').toggle();
 	}
 }
@@ -112,7 +112,7 @@ var pageReady = function(){
 		recSize('.ba-videorecorder-theme-modern-video');
 		recSize('.ba-videorecorder-theme-modern-overlay');
 	}
-	
+
 	setInterval(function(){ runChangeSize(); }, 1000);
 
 	$(window).resize(function(){
@@ -132,21 +132,21 @@ var pageReady = function(){
 
 	var lessonShowWindows = ['explanation', 'prompt', 'model'];
 	var toRemove = lessonShowWindows.map((item) => item);
-	
+
 	function showLessonItem(name){
 		$('.js-show_'+name).click(function(){
 			var index = toRemove.indexOf(name);
 			toRemove.splice(index, 1);
 
 			var i = 0;
-			do{	
+			do{
 				$('.'+toRemove[i]+'_video').hide();
-				$('.js-show_'+toRemove[i]).addClass('green_sft'); 
-				i+=1; 
+				$('.js-show_'+toRemove[i]).addClass('green_sft');
+				i+=1;
 			}while(i < toRemove.length);
 			$('.'+name+'_video').show();
-			$('.js-show_'+name).removeClass('green_sft'); 
-			
+			$('.js-show_'+name).removeClass('green_sft');
+
 			toRemove = lessonShowWindows.map((item) => item);
 
 		});

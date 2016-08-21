@@ -1,13 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h3>Rehearsals</h3>
+<h3>Rehearsals submitted by lesson</h3>
 <hr>
+<% @rehearsals.each do |rehearsal| %>
+  <% if rehearsal.submission == true %>
+    <% rehearsal.lessons.each do |l| %>
+      <%= link_to l.title, rehearsal_path(rehearsal) %>
+    <% end %>
+  <% end %>
+  <br>
+<%end%>
+
+<h3>All Rehearsals by trainees</h3>
 <% @rehearsals.each do |rehearsal| %>
 
   <a href="<%= rehearsal_path(rehearsal)%>">
     <%= rehearsal.trainee.first_name %> <%= rehearsal.trainee.last_name %>
   </a>
-  
+
   submitted a Rehearsal.
   <br>
 <%end%>
