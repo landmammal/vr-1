@@ -1,6 +1,43 @@
 var pageReady = function(){
 
 
+
+
+
+	var homeTitleChange = ['Interview Skills', 'Languages', 'Pronunciation', 'Customer Service', 'Anything'];
+	$('.js-learn_home').text(homeTitleChange[0]);
+	
+	console.log(homeTitleChange.length);
+
+	var i = 1;
+	
+	function homeChange(){
+		if(i < homeTitleChange.length){
+			setTimeout(function(){
+				$('.js-learn_home').text(homeTitleChange[i]);
+				console.log(i);
+				i+=1;
+				runChange();
+			}, 1500);
+		}else{
+			setTimeout(function(){
+				$('.js-learn_home').fadeOut(1000);
+				$('.js-start').fadeOut(1000);
+			}, 1100);
+			setTimeout(function(){
+				$('.js-title').fadeIn(1000);
+			}, 2100);
+		}
+	}
+
+	function runChange(){
+		homeChange();
+	}
+
+
+	homeChange();
+	
+
 	$('.demo').click(function(event){
 		event.preventDefault();
 		$('.demo_form').fadeIn(400);
