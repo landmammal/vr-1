@@ -31,12 +31,11 @@ var pageReady = function(){
 
 	setTimeout(function(){
 		$('.flash-notice').fadeOut(2000);
-	},4000)
+	},4000);
 
 	setTimeout(function(){
 		$('#notice').fadeOut(2000);
 	},4000)
-	
 };
 
 $(document).ready(pageReady);

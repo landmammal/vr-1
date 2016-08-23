@@ -1,9 +1,8 @@
 <h2>Record Prompt</h2>
 
-<ziggeo
-      ziggeo-width=450
-      ziggeo-height=300>
-</ziggeo>
+
+<%= render './rehearsals/ziggeorecordertrainee' %>
+
 <br>
 <%= form_for [@lesson, @prompt],html: {id: "tokenForm"}, remote: true  do |f| %>
 <% if @prompt.errors.any? %>
