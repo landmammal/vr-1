@@ -7,7 +7,11 @@
 	max-width:1100px; min-height:calc(100% - 245px); margin:0 auto; overflow:hidden; padding:5px 10px;
 }
 
-
+.home_top{
+	height:80%;
+	text-align:center;
+	& .home_info_1, & .home_info_2, & .home_info_3{ color:white; text-shadow:1px 1px black;}
+}
 
 .demo{
     display:inline-block; float:none; padding:10px 15px 14px; margin:15px  auto;
@@ -19,6 +23,8 @@
 .demo_form{
 	max-width:400px;
 }
+
+
 .home_sec{ font-size:40px; font-family:'webserveroff'; color:#858585; margin:50px auto; text-align:center; }
 .video_info_title{ font-size:25px; font-weight:bold; font-family:'webly_reg'; margin:100px 10px 5px; }
 .video_info_desc{ max-width:300px; float:right; margin-right:10px; line-height: 1.5em; font-size:15px; font-family:'webly_reg';}
@@ -50,6 +56,7 @@
 @media only screen and (max-width: 480px) {
 	.home_info_1{ font-size:40px; font-family:'webly_reg'; margin-bottom:10px;}
 	.home_info_2{ font-size:20px; font-family:'webly_reg'; }
+	.home_info_3{ font-size:16px; font-family:'webly_bld'; margin:30px auto; }
 	.info_box{
 		&.hlf{ width:48%; min-width:200px; }
 		&.thrd{ width:31%; min-width:200px; }
@@ -59,9 +66,9 @@
 /* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
 
 @media only screen and (min-width: 481px) {
-	.home_info_1{ font-size:40px; font-family:'webly_reg'; margin-bottom:10px;}
+	.home_info_1{ font-size:40px; font-family:'webly_reg'; margin-bottom:10px; padding:150px 15px 10px;}
 	.home_info_2{ font-size:20px; font-family:'webly_reg'; }
-	.home_info_3{ font-size:18px; font-family:'webly_bld'; margin:30px auto; }
+	.home_info_3{ font-size:18px; font-family:'webly_bld'; margin:10px auto;}
 	.info_box{
 		&.hlf{ width:48%; min-width:200px; }
 		&.thrd{ width:31%; min-width:200px; }
@@ -72,9 +79,9 @@
 /* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
 
 @media only screen and (min-width: 769px) {
-	.home_info_1{ font-size:50px; font-family:'webly_reg'; margin-bottom:10px;}
+	.home_info_1{ font-size:60px; font-family:'webly_reg'; margin-bottom:20px;}
 	.home_info_2{ font-size:20px; font-family:'webly_reg'; line-height:1.5em;}
-	.home_info_3{ font-size:18px; font-family:'webly_bld'; margin:30px auto; }
+	.home_info_3{ font-size:18px; font-family:'webly_bld'; margin:10px auto; }
 	.info_box{
 		&.hlf{ width:48%; min-width:200px;  margin:0.25%; 
 			& .image{ height:250px; }

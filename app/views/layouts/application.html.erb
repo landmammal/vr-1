@@ -36,7 +36,7 @@
 </head>
 <body>
 
-<%= render 'layouts/menu' %>
+<%= render 'layouts/menu' unless request.original_fullpath == '/' && !current_user %>
 
   <% flash.each do |message_type, message| %>
     <div id:"flash" class="flash_message flash-<%= message_type %>"><%= message  %></div>
