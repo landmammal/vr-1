@@ -3,7 +3,11 @@ class UsersController < ApplicationController
   # after_action :verify_authorized
 
   def index
-    @users = User.all
+    if params[:approved] == "false"
+      @users = User.where( approved: false )
+    else
+      @users = User.all
+    end
     # you have to be and admin to access this page
     authorize User
   end
@@ -47,6 +51,6 @@ class UsersController < ApplicationController
   private
 
   def secure_params
-    params.require(:user).permit(:role, :username)
+    params.require(:user).permit(:role, :username, :approved)
   end
 end
