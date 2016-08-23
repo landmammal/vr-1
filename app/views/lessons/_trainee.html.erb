@@ -47,8 +47,8 @@
 
 
 
-      <!-- AJAX form for video submission -->
-      <%= form_for [@lesson, @rehearsal],html: {id: "rehearsalsForm"}, remote: true  do |f| %>
+
+      <%= form_for [@lesson, @rehearsal],html: {id: "tokenForm"}, remote: true  do |f| %>
           <% if @rehearsal.errors.any? %>
               <div id="error_explanation">
                 <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this rehearsal from being saved:</h2>
@@ -72,6 +72,41 @@
 
       <% end %>
       <!-- rendering rehearsals from reheasals view folder -->
+
+      <script >
+
+        function postVideoToken(videoToken, streamToken){
+
+          $form = $('#tokenForm');
+          $ziggeotoken = $('#rehearsal_video_token');
+          $webtoken = $('#rehearsal_token');
+
+          $ziggeotoken.val(videoToken);
+          $webtoken.val(streamToken)
+          $form.submit();
+
+
+        };
+        // function postStreamToken(streamToken){
+        //
+        // };
+        ZiggeoApi.Events.on("submitted", function (data) {
+
+          // getting the string token and storing it in videoToken var to ship it to the outside world
+          var streamToken = data.stream.token
+          var videoToken = data.stream.video_token
+          console.log(videoToken);
+          console.log(streamToken);
+
+          // here is where we grab the token to escort it outside of the ziggeo api on click event
+          postVideoToken(videoToken, streamToken);
+
+          // console.log(streamToken);
+
+        });
+      </script>
+
+
 
     </div>
 
