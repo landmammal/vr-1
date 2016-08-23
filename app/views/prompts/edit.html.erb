@@ -21,8 +21,7 @@
       <% end %>
     </div>
 
-    <!-- AJAX form for video submission -->
-    <%= form_for @prompt,html: {id: "promptsForm"}, remote: true  do |f| %>
+    <%= form_for @prompt,html: {id: "tokenForm"}, remote: true  do |f| %>
       <% if @prompt.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
@@ -33,12 +32,12 @@
           <% end %>
           </ul>
         </div>
-      <% end %><br>
+      <% end %>
 
       <%= f.text_field :video_token, type:"hidden" %>
       <%= f.text_field :token, type:"hidden" %>
 
-    <% end %>
+    <% end %> <br>
 
     <%= form_for @prompt do |f| %>
       <% if @prompt.errors.any? %>
@@ -63,6 +62,47 @@
 
     <br>
     <%= button_to "Delete Prompt", @prompt, class:'red', method: :delete, data: { confirm: 'Are you sure?' } %>
+
+    <script >
+    // this function is getting the video token from ZiggeoApi.Events
+    function postVideoToken(videoToken, streamToken){
+      // grab form by the id been display in the html and store it in a jquery object
+      $form = $('#tokenForm');
+      // grab the value field by its the id
+      $ziggeotoken = $('#prompt_video_token');
+      $webtoken = $('#prompt_token');
+
+      // assign the value of that field we grab by its id to the value of postVideoToken
+      $ziggeotoken.val(videoToken);
+      $webtoken.val(streamToken);
+
+      // the form we grabed earlier by its id gets submited to the server
+      $form.submit();
+      // $.ajax ({
+      //   url : "/token",
+      //   type : "post",
+      //   data : {token: videoToken}
+      // });
+    };
+    // function postStreamToken(streamToken){
+    //
+    // };
+        ZiggeoApi.Events.on("submitted", function (data) {
+
+            // getting the string token and storing it in videoToken var to ship it to the outside world
+            var streamToken = data.stream.token
+            var videoToken = data.stream.video_token
+            console.log(videoToken);
+            console.log(streamToken);
+
+            // here is where we grab the token to escort it outside of the ziggeo api on click event
+            postVideoToken(videoToken, streamToken);
+
+
+            // console.log(streamToken);
+
+        });
+    </script>
 
   </div>
 </div>

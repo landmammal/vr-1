@@ -36,7 +36,7 @@ var pageReady = function(){
 	setTimeout(function(){
 		$('#notice').fadeOut(2000);
 	},4000)
-
+	
 };
 
 $(document).ready(pageReady);

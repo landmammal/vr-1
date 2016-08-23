@@ -1,7 +1,9 @@
 <h2>Record Explanation</h2>
 
-<ziggeorecorder ziggeo-theme="modern-blue" class='ziggeo_play_elem' ziggeo-video="<%= @this_video_token %>" ziggeo-stretch id="recorderElement">
-</ziggeorecorder>
+  <ziggeo
+        ziggeo-width=450
+        ziggeo-height=300>
+  </ziggeo>
   <br>
 <%= form_for [@lesson, @explanation],html: {id: "tokenForm"}, remote: true  do |f| %>
   <% if @explanation.errors.any? %>
