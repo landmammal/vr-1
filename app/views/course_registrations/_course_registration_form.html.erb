@@ -2,16 +2,14 @@
 
 <%=form_for [@course, @course_registration], remote: true do |f| %>
     <% if @course_registration.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(@course_registration.errors.count, "error") %> prohibited the registration to this course from being saved:</h2>
-
-              <ul>
-                <% @course_registration.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-        <% end %>
-          <%= f.text_field :user_role, type:"hidden", value: User.roles[current_user.role] %>
-          <%= button_tag "Register for #{@course.title} ", type:'submit', class:"blue" %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@course_registration.errors.count, "error") %> prohibited the registration to this course from being saved:</h2>
+          <ul>
+            <% @course_registration.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+      </div>
     <% end %>
+    <%= button_tag "Register for #{@course.title} ", type:'submit', class:"blue" %>
+<% end %>
