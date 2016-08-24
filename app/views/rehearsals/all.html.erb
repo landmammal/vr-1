@@ -1,13 +1,11 @@
-<p id="notice"><%= notice %></p>
-
-<h3>Rehearsals</h3>
-<hr>
-<% @rehearsals.each do |rehearsal| %>
-
-  <a href="<%= rehearsal_path(rehearsal)%>">
-    <%= rehearsal.trainee.first_name %> <%= rehearsal.trainee.last_name %>
-  </a>
-  
-  submitted a Rehearsal.
-  <br>
-<%end%>
+<% current_user.courses.each do |course| %>
+  <%if current_user.level_2 %>
+    <% course.course_registrations.each do |cr| %>
+      <% cr.user.rehearsals.each do |r| %>
+        <% if r.submission == true %>
+          <%= link_to course.title, course_path(course) %><br>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
