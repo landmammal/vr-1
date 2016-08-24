@@ -30,6 +30,7 @@ class CoursesController < ApplicationController
     # get original topics created by that course
     @orig_topics = Topic.where(course_id: @course.id)
     @topic = Topic.new
+    @course_registration = CourseRegistration.new
   end
 
   # GET /courses/new
@@ -54,7 +55,7 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
+        w
         format.json { render :show, status: :created, location: @course }
       else
         format.html { render :new }

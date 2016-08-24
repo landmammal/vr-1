@@ -35,18 +35,7 @@
 
 
     <div class="trainee_rehearsal">
-      <!-- <%= render './rehearsals/ziggeorecordertrainee' %> -->
-      <%= render './shared/ziggeorecorder' %>
-
-
-
-      <!-- <%= @prior_model.script %> -->
-      <!-- <textarea placeholder="Write your script here..." style="margin-top:14px;"></textarea> -->
-
-
-
-
-
+       <%= render './rehearsals/ziggeorecordertrainee' %>
 
       <%= form_for [@lesson, @rehearsal],html: {id: "tokenForm"}, remote: true  do |f| %>
           <% if @rehearsal.errors.any? %>

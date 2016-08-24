@@ -1,3 +1,3 @@
 class CoursePolicy
-attr_reader :current_user, :model
+# attr_reader :current_user, :model
 end
