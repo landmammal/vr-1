@@ -56,6 +56,7 @@ class RehearsalsController < ApplicationController
   end
 
   private
+
   def set_topic
 
     @topic = Topic.find(params[:topic_id])
@@ -71,7 +72,7 @@ class RehearsalsController < ApplicationController
   end
 
   def rehearsal_params
-    params.require(:rehearsal).permit(:course_id, :lesson_id, :group_id, :token, :video_token, :trainee_id, :script, :submission)
+    params.require(:rehearsal).permit(:course_id, :lesson_id, :group_id, :token, :video_token, :trainee_id, :script, :submission, :topic_id)
   end
 
   def set_lesson

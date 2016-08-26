@@ -1,5 +1,5 @@
 
-<!--add button for trainees to register the course there viewing-->
+<!--add button for trainees to register to the course there viewing-->
 <%= render './course_registrations/course_registration_form' %>
 
 <div class="top_info">
@@ -43,6 +43,8 @@
     </div>
     <button class="js-show_form reg_btn green_sft">Create New Topic</button>
     <button class="js-show_external_form reg_btn green_sft">Add External Topic</button>
-  <%end%> 
+  <%end%>
 <br>
 <a href="<%= user_path(current_user) %>"> <button> < Back to dashboard </button> </a>
+  <!-- renders the topics that have rehearsals that need to be checked -->
+  <%= render './rehearsals/by_topic' %>
