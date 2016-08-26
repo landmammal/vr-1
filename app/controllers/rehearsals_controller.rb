@@ -1,6 +1,6 @@
 class RehearsalsController < ApplicationController
   before_action :set_rehearsal, only: [:show, :edit, :destroy, :update]
-  before_action :set_lesson, only: [:create]
+  before_action :set_lesson, only: [:index, :create]
 
   # before_action :set_topic, only: [:update]
   # before_action :set_course, only: [:update]

@@ -1,5 +1,13 @@
+<br>
+<% t = [] %>
 <% @course.topics.each do |topic| %>
   <% topic.lessons.each do |lesson| %>
-    
+    <% lesson.rehearsals.each do |rehearsal| %>
+      <% if rehearsal.submission == true %>
+        <% t << topic %>
+        <%= link_to topic.title, course_topic_path(@course, topic)%> <br>
+      <% end %>
+    <% end %>
   <% end %>
 <% end %>
+<%= t.uniq %>

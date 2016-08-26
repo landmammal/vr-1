@@ -1,0 +1,7 @@
+<% @topic.lessons.each do |lesson| %>
+  <% lesson.rehearsals.each do |rehearsal| %>
+    <% if rehearsal.submission== true %>
+      <%= link_to lesson.title, lesson_rehearsals_path(lesson) %>
+    <% end %>
+  <% end %>
+<% end %>
