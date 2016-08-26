@@ -4,12 +4,12 @@
     <% course.course_registrations.each do |cr| %>
       <% cr.user.rehearsals.each do |r| %>
         <% if r.submission == true %>
-          <% c << course %>        
+          <% c << course %>
         <% end %>
       <% end %>
     <% end %>
   <% end %>
 <% end %>
 <% c.uniq.each do |c| %>
-  <%= link_to c.title, course_path(c) %>
+  <%= link_to c.title, course_path(c) %> <br>
 <% end %>

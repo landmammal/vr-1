@@ -1,7 +1,11 @@
+<% l = [] %>
 <% @topic.lessons.each do |lesson| %>
   <% lesson.rehearsals.each do |rehearsal| %>
     <% if rehearsal.submission== true %>
-      <%= link_to lesson.title, lesson_rehearsals_path(lesson) %>
+      <% l << lesson %>
     <% end %>
   <% end %>
+<% end %>
+<% l.uniq.each do |l| %>
+  <%= link_to l.title, lesson_rehearsals_path(l) %> <br>
 <% end %>

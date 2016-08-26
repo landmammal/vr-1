@@ -5,9 +5,10 @@
     <% lesson.rehearsals.each do |rehearsal| %>
       <% if rehearsal.submission == true %>
         <% t << topic %>
-        <%= link_to topic.title, course_topic_path(@course, topic)%> <br>
       <% end %>
     <% end %>
   <% end %>
 <% end %>
-<%= t.uniq %>
+<% t.uniq.each do |t| %>
+  <%= link_to t.title, course_topic_path(@course, t) %> <br>
+<% end %>

@@ -1,13 +1,13 @@
-<h1>Listing Rehearsals</h1>
+<h1>Lesson Rehearsals</h1>
 <% @lesson.rehearsals.each do |rehearsal| %>
   <% if rehearsal.submission == true %>
-      <%= render './shared/ziggeoplayer' %><br>
-      <% @this_video_token = rehearsal.video_token %>
-      <div class="profile_pic">
-        <a href="/users/<%= rehearsal.trainee.id %>"><img src="<%= rehearsal.trainee.photo %>" class="img-circle"></a>
-      </div>
-      <%=  rehearsal.trainee.first_name %>,
-      <%=  rehearsal.trainee.last_name %><br>
+    <div class="profile_pic">
+      <a href="/users/<%= rehearsal.trainee.id %>"><img src="<%= rehearsal.trainee.photo %>" class="img-circle"></a>
+    </div>
+    <%=  rehearsal.trainee.first_name %>,
+    <%=  rehearsal.trainee.last_name %><br>
+    <% @this_video_token = rehearsal.video_token %>
+    <%= render './shared/rehearsalplayer' %><br>
   <% end %>
 <% end %>
 <br>
