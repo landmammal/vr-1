@@ -1,11 +1,13 @@
+<br>
 <h1>Lesson Rehearsals</h1>
+<br>
 <% @lesson.rehearsals.each do |rehearsal| %>
   <% if rehearsal.submission == true %>
     <div class="profile_pic">
       <a href="/users/<%= rehearsal.trainee.id %>"><img src="<%= rehearsal.trainee.photo %>" class="img-circle"></a>
     </div>
-    <%=  rehearsal.trainee.first_name %>,
-    <%=  rehearsal.trainee.last_name %><br>
+    <%=  link_to rehearsal.trainee.first_name, rehearsal_path(rehearsal) %>,
+    <%=  link_to rehearsal.trainee.last_name, rehearsal_path(rehearsal) %><br>
     <% @this_video_token = rehearsal.video_token %>
     <%= render './shared/rehearsalplayer' %><br>
   <% end %>
