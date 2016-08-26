@@ -1,22 +1,25 @@
-<!-- get user id  -->
-<% user = @rehearsal.trainee %>
-<div class="profile_pic">
-  <a href="/users/<%= user %>"><img src="<%= user.photo %>" class="img-circle"></a>
-</div>
-<%=  user.first_name %>,<%= user.last_name %>
-<br>
-<br>
-<!-- get all rehearsals from that user  display rehearsal lesson its coming from -->
-<% user.rehearsals.each do |rehearsal| %>
-  <% if current_user == rehearsal.course.instructor %>
-    
-    <% topic = Topic.find(rehearsal.topic_id)%>
-    <% lesson = Lesson.find(rehearsal.lesson_id)%>
-    <%= rehearsal.course.title %> >> <%= topic.title %> >> <%= lesson.title %>
-    <% @this_video_token = rehearsal.video_token %>
-    <div class="lesson_half main_recorder">
-    	<%= render './shared/ziggeoplayer' %>
-    </div>
+<% if current_user.level_2 %>
+  <!-- get user id  -->
+  <% user = @rehearsal.trainee %>
+
+  <div class="profile_pic">
+    <a href="/users/<%= user %>"><img src="<%= user.photo %>" class="img-circle"></a>
+  </div>
+  <%=  user.first_name %>,<%= user.last_name %>
+  <br>
+  <br>
+  <!-- get all rehearsals from that user  display rehearsal lesson its coming from -->
+  <% user.rehearsals.each do |rehearsal| %>
+    <% if current_user == rehearsal.course.instructor %>
+      <% topic = Topic.find(rehearsal.topic_id)%>
+      <% lesson = Lesson.find(rehearsal.lesson_id)%>
+      <%= rehearsal.course.title %> >> <%= topic.title %> >> <%= lesson.title %>
+      <% @this_video_token = rehearsal.video_token %>
+      <div class="lesson_half main_recorder">
+      	<%= render './shared/ziggeoplayer' %>
+      </div>
+    <% end %>
   <% end %>
+  
+  <%= link_to 'Back', lesson_rehearsals_path(@rehearsal.lesson_id) %>
 <% end %>
-<%= link_to 'Back', lesson_rehearsals_path(@rehearsal.lesson_id) %>

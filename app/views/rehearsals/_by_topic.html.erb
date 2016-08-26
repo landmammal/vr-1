@@ -1,14 +1,22 @@
 <br>
-<% t = [] %>
-<% @course.topics.each do |topic| %>
-  <% topic.lessons.each do |lesson| %>
-    <% lesson.rehearsals.each do |rehearsal| %>
-      <% if rehearsal.submission == true %>
-        <% t << topic %>
+<% if current_user.level_2 %>
+  <h2>Topics to check</h2>
+  <% t = [] %>
+
+  <% @course.topics.each do |topic| %>
+    <% topic.lessons.each do |lesson| %>
+      <% lesson.rehearsals.each do |rehearsal| %>
+        <% if rehearsal.submission == true %>
+          <% t << topic %>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
-<% end %>
-<% t.uniq.each do |t| %>
-  <%= link_to t.title, course_topic_path(@course, t) %> <br>
+
+  <% t.uniq.each do |t| %>
+    <%= link_to t.title, course_topic_path(@course, t) %> <br>
+  <% end %>
+
+  <h4>There are <%= t.length %> Topics to check</h3>
+
 <% end %>
