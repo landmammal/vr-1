@@ -17,6 +17,8 @@
     <%= link_to t.title, course_topic_path(@course, t) %> <br>
   <% end %>
 
+  <% t = t.uniq %>
+  
   <h4>There are <%= t.length %> Topics to check</h3>
 
 <% end %>

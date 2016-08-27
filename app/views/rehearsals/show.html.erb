@@ -10,7 +10,7 @@
   <br>
   <!-- get all rehearsals from that user  display rehearsal lesson its coming from -->
   <% user.rehearsals.each do |rehearsal| %>
-    <% if current_user == rehearsal.course.instructor %>
+    <% if current_user == rehearsal.course.instructor && rehearsal.submission == true %>
       <% topic = Topic.find(rehearsal.topic_id)%>
       <% lesson = Lesson.find(rehearsal.lesson_id)%>
       <%= rehearsal.course.title %> >> <%= topic.title %> >> <%= lesson.title %>
@@ -20,6 +20,6 @@
       </div>
     <% end %>
   <% end %>
-  
+
   <%= link_to 'Back', lesson_rehearsals_path(@rehearsal.lesson_id) %>
 <% end %>
