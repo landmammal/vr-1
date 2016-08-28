@@ -15,7 +15,7 @@ var pageReady = function(){
 		if(i < homeTitleChange.length){
 			setTimeout(function(){
 				$('.js-learn_home').text(homeTitleChange[i]);
-				console.log(i);
+				// console.log(i);
 				i+=1;
 				runChange();
 			}, 1500);
@@ -27,6 +27,17 @@ var pageReady = function(){
 			setTimeout(function(){
 				$('.js-title').fadeIn(1000);
 			}, 2100);
+
+			setTimeout(function(){
+				i = 0;
+				$('.js-title').fadeOut(500);
+				$('.js-learn_home').text(homeTitleChange[i]);
+				setTimeout(function(){
+					$('.js-learn_home').fadeIn(1500);
+					$('.js-start').fadeIn(1500);
+				}, 2100);
+				runChange();
+			}, 5000);
 		}
 	}
 
