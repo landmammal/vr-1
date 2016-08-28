@@ -4,8 +4,9 @@
 <td>
    <%= form_for(user) do |f| %>
      <%= f.select( :role, User.roles.keys.map {|role| [role.titleize,role]} ) %>
+     <%= f.select :approved, [['Active', true], ['Inactive', false]] %>
      <td>
-       <%= f.submit 'Change Role', class:'small_btn' %>
+       <%= f.submit 'Modify User', class:'small_btn' %>
      </td>
    <% end %>
 </td>

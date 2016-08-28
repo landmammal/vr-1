@@ -1,11 +1,12 @@
 
+<!--add button for trainees to register to the course there viewing-->
+<%= render './course_registrations/course_registration_form' %>
+
 <div class="top_info">
   <div class="course_title">
     <%= @course.title %>
   </div>
 </div>
-
-
 
 <%= link_to 'Edit', edit_course_path(@course), class:'edit' %><br>
 
@@ -45,3 +46,5 @@
   <%end%>
 <br>
 <a href="<%= user_path(current_user) %>"> <button> < Back to dashboard </button> </a>
+  <!-- renders the topics that have rehearsals that need to be checked -->
+  <%= render './rehearsals/by_topic' %>

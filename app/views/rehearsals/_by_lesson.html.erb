@@ -1,0 +1,21 @@
+<% if current_user.level_2 %>
+  <h2>Lessons to check</h2>
+  <% l = [] %>
+
+  <% @topic.lessons.each do |lesson| %>
+    <% lesson.rehearsals.each do |rehearsal| %>
+      <% if rehearsal.submission== true %>
+        <% l << lesson %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% l.uniq.each do |l| %>
+    <%= link_to l.title, lesson_rehearsals_path(l) %> <br>
+  <% end %>
+
+  <% l = l.uniq %>
+
+  <h4>There are <%= l.length %> Lessons to check</h3>
+
+<% end %>

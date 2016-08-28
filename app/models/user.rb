@@ -22,8 +22,21 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  # validates :username, presence: true
   validates :age, presence: true
+  # validates :username, presence: true
+
+  # checking for approved in user field
+  def active_for_authentication?
+    super && approved?
+  end
+
+  def inactive_message
+    if !approved?
+      :not_approved
+    else
+      super # Use whatever other message
+    end
+  end
 
   def photo
       profile_file_name.present? ? profile.url(:square) : '/assets/default_user.png'
@@ -37,7 +50,7 @@ class User < ActiveRecord::Base
   after_initialize :set_default_role, :if => :new_record?
 
   def set_default_role
-    self.role ||= :trainee
+    self.role ||= 3
   end
 
   @@r = roles.keys

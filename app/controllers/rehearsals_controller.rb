@@ -1,6 +1,6 @@
 class RehearsalsController < ApplicationController
   before_action :set_rehearsal, only: [:show, :edit, :destroy, :update]
-  before_action :set_lesson, only: [:create]
+  before_action :set_lesson, only: [:index, :create]
 
   # before_action :set_topic, only: [:update]
   # before_action :set_course, only: [:update]
@@ -10,15 +10,10 @@ class RehearsalsController < ApplicationController
   end
 
   def all
-
     @rehearsals = Rehearsal.all
-
   end
 
   def show
-    @rehearsal.lessons    
-    user = @rehearsal.trainee
-    @rehearsals = user.rehearsals
   end
 
   def new
@@ -61,6 +56,7 @@ class RehearsalsController < ApplicationController
   end
 
   private
+
   def set_topic
 
     @topic = Topic.find(params[:topic_id])
@@ -76,7 +72,7 @@ class RehearsalsController < ApplicationController
   end
 
   def rehearsal_params
-    params.require(:rehearsal).permit(:course_id, :lesson_id, :group_id, :token, :video_token, :trainee_id, :script, :submission)
+    params.require(:rehearsal).permit(:course_id, :lesson_id, :group_id, :token, :video_token, :trainee_id, :script, :submission, :topic_id)
   end
 
   def set_lesson
