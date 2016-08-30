@@ -18,6 +18,6 @@
     <%= link_to c.title, course_path(c) %> <br>
   <% end %>
   <% c = c.uniq %>
-  <h3>There are <%= c.length %> Courses to check</h3>
+  <h4>Number of courses to check: <%= c.length %></h3>
 
 <% end %>
