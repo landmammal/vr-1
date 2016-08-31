@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160822202157) do
+ActiveRecord::Schema.define(version: 20160831071807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,23 @@ ActiveRecord::Schema.define(version: 20160822202157) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.integer  "instructor"
+    t.integer  "coach"
+    t.integer  "review_status"
+    t.integer  "concept_review"
+    t.text     "notes"
+    t.string   "token"
+    t.string   "video_token"
+    t.boolean  "approved"
+    t.string   "video_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "feedbacks", ["coach"], name: "index_feedbacks_on_coach", using: :btree
+  add_index "feedbacks", ["instructor"], name: "index_feedbacks_on_instructor", using: :btree
 
   create_table "group_registrations", force: :cascade do |t|
     t.integer  "course_id"
@@ -179,6 +196,17 @@ ActiveRecord::Schema.define(version: 20160822202157) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  create_table "performance_feedbacks", force: :cascade do |t|
+    t.integer  "rehearsal_id"
+    t.integer  "feedback_id"
+    t.boolean  "approved",     default: false, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "performance_feedbacks", ["feedback_id"], name: "index_performance_feedbacks_on_feedback_id", using: :btree
+  add_index "performance_feedbacks", ["rehearsal_id"], name: "index_performance_feedbacks_on_rehearsal_id", using: :btree
 
   create_table "practices", force: :cascade do |t|
     t.string   "token"
@@ -326,6 +354,8 @@ ActiveRecord::Schema.define(version: 20160822202157) do
   add_foreign_key "group_registrations", "groups"
   add_foreign_key "lesson_rehearsals", "lessons"
   add_foreign_key "lesson_rehearsals", "rehearsals"
+  add_foreign_key "performance_feedbacks", "feedbacks"
+  add_foreign_key "performance_feedbacks", "rehearsals"
   add_foreign_key "practices", "lessons"
   add_foreign_key "practices", "users"
   add_foreign_key "rehearsals", "courses"
