@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :performance_feedbacks
   resources :feedbacks
   root 'welcome#index'
 
