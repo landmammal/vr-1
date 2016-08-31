@@ -41,10 +41,10 @@ class User < ActiveRecord::Base
   def photo
       profile_file_name.present? ? profile.url(:square) : '/assets/default_user.png'
   end
+
   def top_banner
       banner_file_name.present? ? banner.url(:medium) : '/assets/banner.jpg'
   end
-
 
   enum role: [:admin, :instructor, :coach, :trainee]
   after_initialize :set_default_role, :if => :new_record?

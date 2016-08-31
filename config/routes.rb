@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :feedbacks
   root 'welcome#index'
 
   ['about','markets','process','contact'].each do |menu|
