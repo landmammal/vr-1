@@ -7,6 +7,8 @@ class RehearsalsController < ApplicationController
 
   def index
     @rehearsals = Rehearsal.all
+    @feedback = Feedback.new
+    @performance_feedback = PerformanceFeedback.new
   end
 
   def all
@@ -37,7 +39,11 @@ class RehearsalsController < ApplicationController
   end
 
   def update
-    @rehearsal.submission = true
+    if @rehearsal.submission = nil
+      @rehearsal.submission = true
+    else
+      @rehearsal.submission = false
+    end
     respond_to do |format|
       if @rehearsal.save!
         format.html { redirect_to course_topic_path(@course, @topic), notice: 'Rehearsal was successfully updated.' }

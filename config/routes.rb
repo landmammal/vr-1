@@ -50,8 +50,11 @@ Rails.application.routes.draw do
     resources :prompts
     resources :models
     resources :concepts
-    resources :rehearsals
+    resources :rehearsals do
+      resources :feedbacks
+    end
   end
+
 
   resources :lessons do
     resources :practices, shallow: true do

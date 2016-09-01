@@ -84,8 +84,8 @@ ActiveRecord::Schema.define(version: 20160831071807) do
   end
 
   create_table "feedbacks", force: :cascade do |t|
-    t.integer  "instructor"
-    t.integer  "coach"
+    t.integer  "user_id"
+    t.integer  "rehearsal_id"
     t.integer  "review_status"
     t.integer  "concept_review"
     t.text     "notes"
@@ -97,8 +97,7 @@ ActiveRecord::Schema.define(version: 20160831071807) do
     t.datetime "updated_at",     null: false
   end
 
-  add_index "feedbacks", ["coach"], name: "index_feedbacks_on_coach", using: :btree
-  add_index "feedbacks", ["instructor"], name: "index_feedbacks_on_instructor", using: :btree
+  add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
 
   create_table "group_registrations", force: :cascade do |t|
     t.integer  "course_id"
@@ -350,6 +349,7 @@ ActiveRecord::Schema.define(version: 20160831071807) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
+  add_foreign_key "feedbacks", "users"
   add_foreign_key "group_registrations", "courses"
   add_foreign_key "group_registrations", "groups"
   add_foreign_key "lesson_rehearsals", "lessons"
