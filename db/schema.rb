@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160828211643) do
+ActiveRecord::Schema.define(version: 20160901075943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -326,6 +326,7 @@ ActiveRecord::Schema.define(version: 20160828211643) do
     t.integer  "banner_file_size"
     t.datetime "banner_updated_at"
     t.boolean  "approved",               default: false, null: false
+    t.string   "terms_of_use"
   end
 
   add_index "users", ["approved"], name: "index_users_on_approved", using: :btree
