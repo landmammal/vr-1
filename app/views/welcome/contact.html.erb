@@ -1,5 +1,21 @@
 <% if !current_user %>
-	<div class="site_wrapper"></div>
+	<div class="site_wrapper">
+		
+
+
+
+
+	
+		<% form_for @new_contact do |contact| %>
+			
+		<% end %>
+
+
+
+
+
+
+	</div>
 <%else%>
 	<META http-equiv="refresh" content="0;URL=/users/<%= current_user.id %>">
 <%end%>

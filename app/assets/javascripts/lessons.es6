@@ -11,7 +11,7 @@ function thisLessonsList(name, json_object){
 		}
 
 		var listOfItems = `<a href="/`+name+`/`+item.id+`/edit">`+
-								item.title+` `+ispriority+`</a><br>`;
+							item.title+` `+ispriority+`</a><br>`;
 
 		$('.js_listOf'+name).append(listOfItems);
 	};

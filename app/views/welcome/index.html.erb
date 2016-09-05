@@ -1,7 +1,11 @@
 <% if !current_user %>
 
-	<div class="home_top bg_scroll" style="background-image:url('/assets/frame_home.jpg');">
-		<%= render 'layouts/menuhome' %>
+	<div class="home_top_wrapper" style="background-image:url('/assets/frame_home.jpg');">
+		<div class="home_top">
+			<%= render 'layouts/menuhome' %>
+			<!-- <div class="sub_menu_home">
+				for indivituals | for managers
+			</div> -->
 	    	<div class="home_info_1">
 	    		<span class="js-start">Learn</span>
 	    		<span class="js-title" style="display:none;" >Video Rehearser</span>
@@ -9,13 +13,130 @@
 	    	</div>
 
 	    	<div class="home_info_3"> Virtual Video Training & Coaching Platform </div>
-		    <button class="big_btn green_sft">Get Started</button>
+		    <!-- <button class="big_btn green_sft get_started">Transform Yourself</button> -->
+
+			
+			<center style="margin:60px auto;">
+				<a href="demo"><div class="demo">Schedule a demo</div></a>
+				<div class="demo_form" style="display:none;">
+					<h2>Schedule a Demo</h2>
+					<%= form_tag  do %>
+						<%= text_field_tag :first_name, nil, placeholder:'First name *', class:'js-first_name js-form half' %>
+						<%= text_field_tag :last_name, nil, placeholder:'Last name *', class:'js-last_name js-form half' %>
+						<%= text_field_tag :email, nil, placeholder:'Email *', class:'js-email js-form full' %>
+						<%= text_field_tag :phone_number, nil, placeholder:'Phone number', class:'js-phone_number js-form full' %>
+						<div class="half" style=" width: calc(100% - 155.39); font-size: 18px; padding: 10px 0; float: left; text-align: left;">
+							Set a date:
+						</div>
+						<%= date_field :date, nil, class:'js-date half'%><br>
+						<%= submit_tag "schedule demo", class:'js-schedule_demo green_sft' %>
+						<button class="js-cancel_sched red">cancel</button>
+						<div class="form_err">  </div>
+					<%end%>
+				</div>
+				<div class="check_mark" style="display:none;"></div>
+				<div id="notice" style="float:none; width: 350px; padding: 5px; display: none;">
+					Thank you for scheduling a demo, we will contact you soon.
+				</div>
+			</center>
+
+
+		    <br><br><br>
+			
+
+			<a href="#"><div class="search_popup">Search Courses</div></a>
+			<div class="search_box">
+				<script type="text/javascript"> allCoursesjson('<%= @courses %>') </script>
+		    	<form class="search_course_form" method="get">
+			    	<input type="text" class="search_course_term" placeholder="Search Courses">
+			    	<select class="search_course_type" name="search_course_type">
+			    		<option value="all">All</option>
+			    		<option value="paid">Paid</option>
+			    		<option value="free">Free</option>
+			    		<option value="invite">Invite</option>
+			    	</select>
+			    	<button class="blue search_course_btn" type="submit">Search</button>
+			    </form>
+		    </div>
+		</div>
 	</div>
 
+	<div class="site_wrapper" style="padding:0 10px 30px; margin-top:0; text-align: center; overflow:hidden;">
+		<div class="search_results_home">
+			<div class="result_search_terms"></div>
+			<hr>
+			<div class="search_result">NO RESULTS FOUND</div>
+			<div class="search_tags"></div>
 
+			<script type="text/javascript">
+				var coursejson = railsToJson('<%= @courses %>');
+	
+				// console.log(coursejson);
+				$('.search_course_form').on('input', function(){
+					for(var i in coursejson){
+						var item = coursejson[i];
+						// console.log(item);
 
+						function listExactTitles(){
+							if(item.title === $('.search_course_term').val()){
+								if($('.search_result').text()==='NO RESULTS FOUND'){$('.search_result').empty();};
+								$('.search_result').append(item.title);
+								console.log(item.title);
+								// var foundPerfectMatches = true;
+							}else{
+								// $('.search_result').text('NO RESULTS FOUND');
+								// var foundPerfectMatches = false;
+							}
+							// return foundPerfectMatches;
+						}
 
-	<div class="site_wrapper" style="padding:30px 10px; text-align: center;">
+						function listCloseToTitles(){
+							var termSplit = $('.search_course_term').val().split(' ');
+							if(item.tags.length > 0 && item.tags !== ''){
+								var tagSplit = item.tags.split(',')
+								var hasTags = true;
+							}else{
+								var hasTags = false;
+							}
+
+							// console.log(tagSplit);
+							// console.log(termSplit);
+							
+							if(hasTags){
+								var ta = 0;
+								var te = 0;
+								var foundTags = 'na';
+
+								do{
+
+									if($.inArray(termSplit[te], tagSplit) !== -1){
+										$('.search_result').append(item.title);
+										foundTags = true;
+									}else{
+										ta+=1;
+										if( ta === tagSplit.length ){
+											foundTags = false;
+										}
+									}
+
+								}while(ta < tagSplit.length && foundTags === 'na');
+							}
+							// console.log(foundTags);
+							// return foundTags;
+
+						}
+
+						listExactTitles();
+						// listCloseToTitles();
+
+						// if(!listExactTitles() && !listCloseToTitles()){
+						// 	$('.search_result').text("NO RESULTS FOUND");
+						// }
+
+					};
+				});
+			</script>
+		</div>
 
 		<a href="/markets"><div class="info_box qtr">
 			<div class="image" style="background-image: url('/assets/home/interview_training.jpg');"></div>
@@ -34,27 +155,7 @@
 			<div class="title blue">Hospitality</div>
 		</div></a>
 
-		<center style="margin:60px auto;>
-			<a href="/demo"><div class="demo">Schedule a demo</div></a>
-			<div id="notice" style="float:none; width: 350px; padding: 5px; display: none;">
-				Thank you for scheduling a demo, we will contact you soon.
-			</div>
-			<div class="demo_form" style="display:none;">
-				<h2>Schedule a Demo</h2>
-				<%= form_tag  do %>
-					<%= text_field_tag :first_name, nil, placeholder:'First name *', class:'js-first_name half' %>
-					<%= text_field_tag :last_name, nil, placeholder:'Last name *', class:'js-last_name half' %>
-					<%= text_field_tag :email, nil, placeholder:'Email *', class:'js-email full' %>
-					<%= text_field_tag :phone_number, nil, placeholder:'Phone number', class:'js-phone_number full' %>
-					<div class="half" style=" width: calc(100% - 155.39); font-size: 18px; padding: 10px 0; float: left; text-align: left;">
-						Set a schedule date:
-					</div>
-					<%= date_field :date, nil, class:'js-date half'%><br>
-					<%= submit_tag "schedule demo", class:'js-schedule_demo green_sft' %>
-					<button class="js-cancel_sched red">cancel</button>
-				<%end%>
-			</div>
-		</center>
+		
 
 		<hr style="margin:100px 0 50px; border: #fff;">
 		<div class="home_sec">ENGINEERED TO TRAIN</div>
@@ -79,7 +180,20 @@
 			<div class="desc">With authentic & long lasting growth, become who you’re destined to be.</div>
 		</div>
 
-		<hr style="margin:100px 0; border: #fff;">
+	</div>
+
+
+	
+	<div class="devices" style="background-image:url('/assets/home/device_bg.jpg');">
+		<div class="half1">l</div>
+		<div class="half2" style="text-align:center;">
+			<img src="/assets/home/devices.png" alt="" width="90%">
+		</div>
+	</div>
+
+
+
+	<div class="site_wrapper" style="padding:0 10px 30px; margin-top:0; text-align: center; overflow:hidden;">
 
 		<div class="half" style="text-align:right;">
 			<div class="video_info_title">What is Video Rehearser?</div>

@@ -7,25 +7,227 @@
 	max-width:1100px; min-height:calc(100% - 245px); margin:0 auto; overflow:hidden; padding:5px 10px;
 }
 
+.loading_app{
+	height:100%; width:100%;
+	padding:25% 5px; text-align:center;
+	position:fixed; z-index:100;
+	background-color:white;
+	& .load_text{
+		color:#569DDF; font-size:25px; font-family:'webly_bld';
+		margin: 5px auto;
+	}
+	& .loading_prog{
+		margin-top: 20px;
+	}
+
+	progress{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    width: 90%; max-width: 210px;
+    height:2px;
+
+    /* Firefox */
+    border: none;
+    background: #ddd;
+    border-radius: 2px;
+  }
+  progress::-webkit-progress-bar {
+    background: #ddd;
+    border-radius: 2px;
+  }
+
+  progress::-webkit-progress-value {
+    background-color: #0883C3;
+    border-radius: 2px;
+  }
+
+  progress::-moz-progress-bar {
+    background-color: #0883C3;
+    border-radius: 2px;
+  }
+}
+
+.home_top_wrapper{
+	background-size:cover; background-position:0% 110%;
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	transition:2s;
+}
+
 .home_top{
-	height:80%;
-	text-align:center;
-	& .home_info_1, & .home_info_2, & .home_info_3{ color:white; text-shadow:1px 1px black;}
+	min-height:50%; text-align:center; overflow:hidden;
+	background-color:rgba(black, 0.3);
+	& .home_info_1, & .home_info_2, & .home_info_3{ color:#eee; text-shadow:1px 1px black;}
+	transition:2s;
 }
 
 .demo{
-    display:inline-block; float:none; padding:10px 15px 14px; margin:15px  auto;
-    background-color:#FF3B3B; border-radius:10px; color:white; font-size:20px; font-family:'webly_bld';
+    display:inline-block; float:none; padding:10px 15px; margin:15px  auto;
+    background-color:#FF3B3B; border-radius:5px; color:white; font-size:15px; font-family:'webly_reg';
+    box-shadow:2px 2px #880006;
     &:hover{
-      background-color:#A00000; color:white; font-weight:bold;
+      background-color:#DF010C;
+      box-shadow:1px 1px #880006;
     }
 }
-.demo_form{
-	max-width:400px;
+
+.demo_form, .check_mark{
+	max-width:500px; padding:10px 20px 30px; 
+	color:white; background-color:rgba(black, 0.5);
+	border-radius:5px;
+}
+
+.form_err{
+	color:red; margin:5px auto; border-radius:3px; border:1px solid red;
+	padding:0 5px; background-color:rgba(red, 0.1); display:none;
+	text-align:center;
+}
+
+.get_started{
+	margin:50px auto 100px; padding:20px 25px;
 }
 
 
-.home_sec{ font-size:40px; font-family:'webserveroff'; color:#858585; margin:50px auto; text-align:center; }
+
+
+
+
+.search_popup{
+	background-color:#6A9FD9; color:white;
+	padding:4px 10px; font-weight:bold;
+	width:auto; display:inline-block;
+	border-radius:5px 5px 0 0; 
+	position:relative; bottom:-82px;
+	transition: 0.5s;
+	&.fade{
+		position:relative; bottom:0px;
+		transition: 0.5s; opacity:0.2;
+	}
+}
+.search_box{
+	background-color:rgba(black, 0.5);
+	padding:15px; position:relative; bottom:-82px;
+	transition: 0.5s;
+	input.search_course_term{
+		width:400px; border:0; border-radius:3px 0 0 3px; margin:-2px; box-shadow:1px 1px #aaa; padding:10px 15px;
+	}
+	select{
+		-webkit-appearance:none; padding:10px 15px; box-shadow:1px 1px #aaa;
+		width:auto; border-radius: 0 3px 3px 0;  border:0;
+	}
+	button.search_course_btn{
+		 padding:11px 15px; font-size:15px;
+	}
+	&.popup{
+		position:relative; bottom:0px;
+		transition: 0.5s;
+	}
+}
+.search_results_home{
+	padding:0px; background-color:#f8f8f8; border-radius:0 0 5px 5px;
+	position:relative; top:-40px; transition: 0.5s;
+	&.show{
+		padding:10px; position:relative; top:0px;
+		transition: 0.5s; margin:0 auto 20px;
+	}
+}
+
+.theproduct{
+	padding:120px 0; margin:0 auto; text-align:center;
+	overflow:hidden;
+	background-position:0 -20%; background-size:100%;
+	background-repeat:no-repeat; background-attachment:fixed;
+}
+
+.devices{
+	padding:40px 10px 0; margin-bottom:30px; text-align:center;
+	overflow:hidden;
+	background-position:center; background-size:cover;
+	background-repeat:no-repeat; background-attachment:fixed;
+	& .half1{
+		width:40%; float:left;
+	}
+	& .half2{
+		width:60%; float:left;
+	}
+}
+
+
+
+.newsletter{
+	font-size:13px; font-weight: thin; letter-spacing:0.05em; margin-bottom:8px;
+}
+
+
+
+
+.register_top{
+	margin:150px 0 50px; padding: 5px;
+	background-position:left 85%;
+	background-size:cover;
+	background-repeat:no-repeat;
+	height:550px;
+}
+
+.register_form{
+	overflow:hidden;
+	max-width:1100px; margin:0 auto;
+	position:relative; top:-80px; z-index:20;
+	& .title{
+		font-family:'webly_reg'; font-size:40px;
+		float: left;
+		position:relative; top:10px;
+	}
+}
+
+.register{
+	padding:5px 30px 20px; margin:0; width:400px; float:right;
+	background-color:rgba(white, 0.8); 
+	background: linear-gradient(rgba(white,1) 15%, rgba(white,0.2) 100%);
+	color:#999;
+	border-top:5px solid #999;
+
+	form{
+		color:#333; font-size:12px;
+	}
+
+	form input, form select{
+	  width:100%; margin:5px auto; float:none; display:inline-block;
+	  &.name{
+	  	width:49.4%; margin-bottom:25px;
+	  }
+	}
+	form input.button{
+	  width:inherit;
+	}
+
+	form .register_label{
+	 	text-align:left;  color:#333; font-size:12px; margin:0 0 5px;
+	}
+}
+
+
+.modal-body{
+	height:450px; overflow:scroll;
+}
+
+
+
+.teammember{
+	max-width:200px; width:18%; text-align:center;
+	font-size:12px; font-family:'webly_reg';
+	display: inline-block; margin:20px 5px;
+	img{
+		width: 100%; border-radius:35%;
+	}
+	& .name{
+		font-family:'webly_bld'; font-size:17px; margin:3px auto 5px;
+	}
+}
+
+.home_sec{ font-size:30px; font-family:'webly_reg'; color:#858585; margin:50px auto; text-align:center; }
 .video_info_title{ font-size:25px; font-weight:bold; font-family:'webly_reg'; margin:100px 10px 5px; }
 .video_info_desc{ max-width:300px; float:right; margin-right:10px; line-height: 1.5em; font-size:15px; font-family:'webly_reg';}
 .regis_title{ font-size:40px; color:white; font-weight:bold; font-family:'webly_reg'; }
@@ -66,7 +268,7 @@
 /* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
 
 @media only screen and (min-width: 481px) {
-	.home_info_1{ font-size:40px; font-family:'webly_reg'; margin-bottom:10px; padding:150px 15px 10px;}
+	.home_info_1{ font-size:40px; font-family:'gotham_bld'; margin-bottom:10px; padding:150px 15px 10px;}
 	.home_info_2{ font-size:20px; font-family:'webly_reg'; }
 	.home_info_3{ font-size:18px; font-family:'webly_bld'; margin:10px auto;}
 	.info_box{
@@ -79,7 +281,7 @@
 /* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
 
 @media only screen and (min-width: 769px) {
-	.home_info_1{ font-size:60px; font-family:'webly_reg'; margin-bottom:20px;}
+	.home_info_1{ font-size:60px; font-family:'gotham_bld'; margin-bottom:20px;}
 	.home_info_2{ font-size:20px; font-family:'webly_reg'; line-height:1.5em;}
 	.home_info_3{ font-size:18px; font-family:'webly_bld'; margin:10px auto; }
 	.info_box{

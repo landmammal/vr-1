@@ -1,0 +1,8 @@
+<% if !current_user %>
+	<div class="site_wrapper">
+		<h2>Frequently Asked Questions</h2>
+		<hr style=" width:90%; margin:30px auto;">
+	</div>
+<%else%>
+	<META http-equiv="refresh" content="0;URL=/users/<%= current_user.id %>">
+<%end%>

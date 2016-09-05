@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :contacts
   root 'welcome#index'
 
-  ['about','markets','process','contact'].each do |menu|
+  menu_routes = ['about','markets','product','process','contact']
+  menu_routes.push('theteam','termsandservices','FAQs','requirements')
+  menu_routes.each do |menu|
     get "/#{menu}" => "welcome##{menu}"
   end
 
