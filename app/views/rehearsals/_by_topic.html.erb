@@ -1,0 +1,24 @@
+<br>
+<% if current_user.level_2 %>
+  <h2>Topics to check</h2>
+  <% t = [] %>
+
+  <% @course.topics.each do |topic| %>
+    <% topic.lessons.each do |lesson| %>
+      <% lesson.rehearsals.each do |rehearsal| %>
+        <% if rehearsal.submission == true %>
+          <% t << topic %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% t.uniq.each do |t| %>
+    <%= link_to t.title, course_topic_path(@course, t) %> <br>
+  <% end %>
+
+  <% t = t.uniq %>
+
+  <h4>Number of topics to check: <%= t.length %></h3>
+
+<% end %>

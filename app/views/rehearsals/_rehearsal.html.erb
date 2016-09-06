@@ -1,16 +1,18 @@
-<li><button data-token="<%= @rehearsal.token %>" class="submission"><%= @rehearsal.id %></button>
-  <script>$("ul").on('click',".submission", function () {
+<li>
+  <button class="submission"><%= @rehearsal.id %></button>
+</li>
+<script>
+  $("ul li").on('click',".submission", function () {
+    // console.log('hi');
     // var example= name {name: name};
     // example.id = '<%= @rehearsal.id %>';
-  $.ajax({
+    $.ajax({
     url: '/rehearsals/<%= @rehearsal.id %>/api',
     type: "PUT",
     // data: { @rehearsal = '<%= @rehearsal.id %>' },
     success: function(data){
-      console.log(data);
-    }
+      // console.log(data);
+    }});
 
   });
-
-});</script>
-</li>
+</script>

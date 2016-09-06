@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
   after_initialize :set_default_role, :if => :new_record?
 
   def set_default_role
-    self.role ||= :trainee
+    self.role ||= 3
   end
 
   @@r = roles.keys

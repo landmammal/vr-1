@@ -74,9 +74,12 @@ class LessonsController < ApplicationController
   # PATCH/PUT /lessons/1
   # PATCH/PUT /lessons/1.json
   def update
+    @topic = current_user.topics.find(params[:lesson][:topic_id])
+    @course = @topic.courses.first
+
     respond_to do |format|
       if @lesson.update(lesson_params)
-        format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }
+        format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Lesson was updated created.' }
         format.json { render :show, status: :ok, location: @lesson }
       else
         format.html { render :edit }
@@ -88,9 +91,15 @@ class LessonsController < ApplicationController
   # DELETE /lessons/1
   # DELETE /lessons/1.json
   def destroy
+    # this is madness and a quick fix for deleting a topic
+    # when this topic gets delete it all rehearsals associated with the topic are delete it.
+    # this is madness .. this is sparta
+      @topic = @lesson.topics.first
+      @course = @topic.courses.first
+      @lesson.rehearsals.delete_all
       @lesson.destroy
       respond_to do |format|
-        format.html { redirect_to lessons_url, notice: 'Lesson was successfully destroyed.' }
+        format.html { redirect_to course_topic_path(@course, @topic), notice: 'Lesson was successfully destroyed.' }
         format.json { head :no_content }
       end
   end

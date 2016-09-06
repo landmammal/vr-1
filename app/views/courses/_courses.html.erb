@@ -5,7 +5,7 @@
       <div class="card_item">
 
         <div class="card_title_sec">
-          
+
           <a href="<%= course_path(course) %>">
             <div class="card_title">
               <%= course.title %>
@@ -18,10 +18,16 @@
               <span class="ion-more more_<%= course.id %>" style="display: none;"></span>
             <%end%>
           </div>
-
         </div>
 
         <div class="card_desc card_desc_<%= course.id %>">
+          Students = <%=	course.course_registrations.length  %> <br>
+          <% course.course_registrations.each do |cr| %>
+              <% if User.roles[cr.user.role] == 2 %>
+                <% coaches = [] << cr %>
+                Coaches = <%= coaches.length %>
+              <% end %>              
+          <% end %>
           <%= course.description %>
         </div>
 

@@ -9,7 +9,12 @@ class ApiController < ApplicationController
     render json: @rehearsal
   end
 
+	def course_registrations_single
+		@course_registration = CourseRegistration.find(params[:id])
+	end
+
 	def course_registrations_api
+
 		@course_registrations = CourseRegistration.all
 		render json: @course_registrations
 	end
