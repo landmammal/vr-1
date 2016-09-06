@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160822202157) do
+ActiveRecord::Schema.define(version: 20160901075943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,22 @@ ActiveRecord::Schema.define(version: 20160822202157) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "rehearsal_id"
+    t.integer  "review_status"
+    t.integer  "concept_review"
+    t.text     "notes"
+    t.string   "token"
+    t.string   "video_token"
+    t.boolean  "approved"
+    t.string   "video_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
 
   create_table "group_registrations", force: :cascade do |t|
     t.integer  "course_id"
@@ -179,6 +195,17 @@ ActiveRecord::Schema.define(version: 20160822202157) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  create_table "performance_feedbacks", force: :cascade do |t|
+    t.integer  "rehearsal_id"
+    t.integer  "feedback_id"
+    t.boolean  "approved",     default: false, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "performance_feedbacks", ["feedback_id"], name: "index_performance_feedbacks_on_feedback_id", using: :btree
+  add_index "performance_feedbacks", ["rehearsal_id"], name: "index_performance_feedbacks_on_rehearsal_id", using: :btree
 
   create_table "practices", force: :cascade do |t|
     t.string   "token"
@@ -315,6 +342,7 @@ ActiveRecord::Schema.define(version: 20160822202157) do
     t.integer  "banner_file_size"
     t.datetime "banner_updated_at"
     t.boolean  "approved",               default: false, null: false
+    t.string   "terms_of_use"
   end
 
   add_index "users", ["approved"], name: "index_users_on_approved", using: :btree
@@ -322,10 +350,13 @@ ActiveRecord::Schema.define(version: 20160822202157) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
+  add_foreign_key "feedbacks", "users"
   add_foreign_key "group_registrations", "courses"
   add_foreign_key "group_registrations", "groups"
   add_foreign_key "lesson_rehearsals", "lessons"
   add_foreign_key "lesson_rehearsals", "rehearsals"
+  add_foreign_key "performance_feedbacks", "feedbacks"
+  add_foreign_key "performance_feedbacks", "rehearsals"
   add_foreign_key "practices", "lessons"
   add_foreign_key "practices", "users"
   add_foreign_key "rehearsals", "courses"

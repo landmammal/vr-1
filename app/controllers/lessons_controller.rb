@@ -74,9 +74,12 @@ class LessonsController < ApplicationController
   # PATCH/PUT /lessons/1
   # PATCH/PUT /lessons/1.json
   def update
+    @topic = current_user.topics.find(params[:lesson][:topic_id])
+    @course = @topic.courses.first
+
     respond_to do |format|
       if @lesson.update(lesson_params)
-        format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }
+        format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Lesson was updated created.' }
         format.json { render :show, status: :ok, location: @lesson }
       else
         format.html { render :edit }

@@ -27,7 +27,8 @@
 <% @lessons.each_with_index do |lesson, index| %>
   <%= (index + 1).to_s %> - <%= link_to lesson.title, course_topic_lesson_path(@course, @topic, lesson) %>
   <% if current_user.level_2 %>
-    <%= link_to 'Delete', lesson, method: :delete, data: { confirm: 'Are you sure?' }, class:'red_text' %>
+        <strong><%= link_to 'Edit', edit_course_topic_lesson_path(@course, @topic, lesson) %></strong> |
+        <%= link_to 'Delete', lesson, method: :delete, data: { confirm: 'Are you sure?' }, class:'red_text' %>
   <% end %>
   <br>
   <br>
