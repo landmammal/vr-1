@@ -9,7 +9,7 @@ class WelcomeController < ApplicationController
   end
 
   def contact
-    @new_contact = Contact.new
+    
   end
 
   def theprocess

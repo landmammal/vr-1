@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :contacts
   root 'welcome#index'
 
   menu_routes = ['about','markets','product','process','contact']
