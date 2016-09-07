@@ -37,7 +37,7 @@
           <div class="unchecked_lesson"></div>
         <% end %>
       <% elsif topic_creator %>
-        <strong><%= link_to 'Edit', edit_course_topic_lesson_path(@course, @topic, lesson) %></strong>
+        <strong> | <%= link_to 'Edit', edit_course_topic_lesson_path(@course, @topic, lesson) %></strong>
       <% end %>
     </div>
   <% end %>
