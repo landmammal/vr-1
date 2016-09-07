@@ -2,50 +2,71 @@
 
 <div class="top_info">
   <div class="course_title">
-    <span class="grey"><%= @course.title %> ::</span>
+    <span class="grey"><%= link_to @course.title, course_path(@course) %> :: </span>
   </div>
   <div class="course_title">
     <%= @topic.title %>
+    <% if topic_creator %>
+      <a href="<%= edit_course_topic_path(@course, @topic) %>" title="edit <%= @topic.title %>">
+        <span class="ion-edit edit" style="font-size:15px; margin:50px 10px;"></span>
+      </a>
+    <% end %>
   </div>
 </div>
 
 
-<p>
-  <strong>
-    <%= @topic.title %> (Topic) <font color="#ccc">|</font> <%= link_to 'Edit', edit_course_topic_path %>
-  </strong>
-</p>
+<%= @topic.description %>
 
-<p>
-  <%= @topic.description %>
-</p>
+
 
 
 <h4>Lessons</h4>
 
+<%if topic_creator || course_trainee %>
+  <% @lessons.each_with_index do |lesson, index| %>
+    <div class="lesson_list <%= (index + 1).even? ? 'even' : 'odd' %>">
+      <a href="<%= course_topic_lesson_path(@course, @topic, lesson) %>">
+        <%= (index + 1).to_s %> - <%= lesson.title %>
+      </a>
+      <% if course_trainee %>
+        <% if lesson_completed %>
+          <div class="checked_lesson">
+            <span class="ion-checkmark-circled"></span>
+          </div>
+        <% else %>
+          <div class="unchecked_lesson"></div>
+        <% end %>
+      <% end %>
+    </div>
 
-<% @lessons.each_with_index do |lesson, index| %>
-  <%= (index + 1).to_s %> - <%= link_to lesson.title, course_topic_lesson_path(@course, @topic, lesson) %>
-  <% if current_user.level_2 %>
-    <%= link_to 'Delete', lesson, method: :delete, data: { confirm: 'Are you sure?' }, class:'red_text' %>
   <% end %>
-  <br>
-  <br>
 <% end %>
 
 
-<hr>
 
-<%if current_user.level_2 %>
+
+<br><br><br>
+<%if !@topic.tags.empty? %>
+  tags:
+  <% @topic.tags.split(', ').each do |tag| %>
+    <a href="#"><b><%= tag %></b></a>
+  <%end%>
+<%end%>
+<br><br><br>
+
+
+<%if topic_creator %>
 <!-- refactor @course from @course.id -->
   <a href="<%= new_course_topic_lesson_path(@course, @topic) %>">
-    <button class="reg_btn blue">Create New Lesson</button>
+    <button class="reg_btn blue add_btn">+</button>
   </a>
-  <button class="reg_btn green_sft">Add External Lesson</button>
-  <hr>
+  <!-- <button class="reg_btn green_sft">Add External Lesson</button> -->
+  <br><br><br>
 <% end %>
 
-
-<a href="<%= course_path(@course) %>"><button> < Back to Topics </button></a>
+<br><br>
+<a href="<%= course_path(@course) %>">
+  <button class="red small_btn"> < Back </button>
+</a>
 
 <%= render './rehearsals/by_lesson' %>

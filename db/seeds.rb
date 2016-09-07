@@ -7,7 +7,7 @@ User.create([{ first_name:'Administrator', last_name:'Man', username:'admin', ra
 
 #
 #
-200.times do
+10.times do
   course = Course.create(
     title: Faker::Space.planet,
     description: Faker::Lorem.sentence(4),
