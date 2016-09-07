@@ -40,7 +40,9 @@ class User < ActiveRecord::Base
   end
   # sends admin and email for everyuser waiting for approval
   def send_admin_mail
-   AdminMailer.new_user_waiting_for_approval(self).deliver
+
+    # admin = User.first
+   AdminMailer.new_user_waiting_for_approval.deliver
   end
 
   def photo
