@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
 
   def index
-        
+        @courses = Course.all.select(:id, :title, :tags).to_json
   end
 
   def about
@@ -9,7 +9,7 @@ class WelcomeController < ApplicationController
   end
 
   def contact
-
+    
   end
 
   def theprocess
@@ -20,6 +20,10 @@ class WelcomeController < ApplicationController
 
   end
 
+  def product
+
+  end
+
   def test
 
   end
@@ -27,5 +31,23 @@ class WelcomeController < ApplicationController
   def interface_test
   		render "interface"
   end
-  
+
+
+
+  # FOOTER
+
+  def theteam
+
+  end
+
+  def termsandservices
+
+  end
+  def FAQs
+
+  end
+  def requirements
+
+  end
+
 end

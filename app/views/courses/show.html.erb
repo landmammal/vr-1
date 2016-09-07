@@ -1,50 +1,91 @@
-
-<!--add button for trainees to register to the course there viewing-->
-<%= render './course_registrations/course_registration_form' %>
-
 <div class="top_info">
   <div class="course_title">
     <%= @course.title %>
+    <% if course_creator %>
+      <a href="<%= edit_course_path(@course) %>" title="edit <%= @course.title %>">
+        <span class="ion-edit edit" style="font-size:15px; margin:50px 10px;"></span>
+      </a>
+    <% end %>
   </div>
 </div>
 
-<%= link_to 'Edit', edit_course_path(@course), class:'edit' %><br>
 
-<br><br>
-<%if !@course.tags.size == 0 %>
-  tags:
+
+<div class="about_course">
+  <span class="title">About course</span><br>
+  <%= @course.description %>
+</div>
+<div class="course_instructor">
+  <span class="title">Instructor</span><br>
+  <%= instructor_name %><br>
+  <img src="<%= instructor_profile %>" class="img-circle" width='60px'>
+</div>
+
+<br>
+<% if course_creator || course_trainee %>
+
+  <h4>Topics</h4>
+  <hr>
+
+  <div class="card_list">
+    <% @course.topics.each_with_index do |topic, index| %>
+      <a href="<%= course_topic_path(@course, topic) %>">
+        <div class="course_card">
+          <div class="card_title">
+            <%= topic.title %>
+          </div>
+          <div class="card_desc">
+            <%= topic.description %>
+          </div>
+          <% if course_trainee %>
+            <div class="topic_progress">
+              <!-- <progress value="<%= 0  %>" max="<%= @topic.lessons.to_s %>"> -->
+              <!-- </progress> -->
+            </div>
+          <% end %>
+        </div>
+      </a>
+    <% end %>
+  </div>
+<% else %>
+  <center>
+    <%= @course.description %>
+    <br><br>
+  
+    <%= render './course_registrations/course_registration_form' if !course_creator %>
+    <% current_user.registered_courses.each do |r_c|  %>
+      <%= @registered_courses %>
+    <% end %>
+  </center>
+
+<% end %>
+
+
+
+
+
+<br>
+<%if !@course.tags.empty? %>
+  <span style="font-family:'webly_bld';">tags:</span>
   <% @course.tags.split(', ').each do |tag| %>
-    <a href="#"><b><%= tab %></b></a>
+    <a href="#"><b><%= tag %></b></a>
   <%end%>
 <%end%>
 
-<div>
-  <%= @course.description %>
-</div>
 
 
-<h4>Topics</h4>
 
 
-<% @course.topics.each_with_index do |topic, index| %>
-  <b><%= (index + 1).to_s %></b> - <%= link_to topic.title, course_topic_path(@course, topic) %>
-  <%= topic.description %>
-  <% if current_user.role == 'admin' || current_user.role == "instructor" %>
-    <!-- link to delete -->
-  <% end %>
-  <br>
-  <br>
-<% end %>
+<br><br><br>
+<%if course_creator %>
+  <div class="js-open_form" style="display:none;">
+    <%= render './topics/form' %>
+  </div>
+  <button class="js-show_form green_sft add_btn">+</button>
+  <!-- <button class="js-show_external_form reg_btn green_sft">Add External Topic</button> -->
+<%end%>
+<br><br><br>
 
-<br>
-  <%if current_user.level_2 %>
-    <div class="js-open_form" style="display:none;">
-      <%= render './topics/form' %>
-    </div>
-    <button class="js-show_form reg_btn green_sft">Create New Topic</button>
-    <button class="js-show_external_form reg_btn green_sft">Add External Topic</button>
-  <%end%>
-<br>
-<a href="<%= user_path(current_user) %>"> <button> < Back to dashboard </button> </a>
-  <!-- renders the topics that have rehearsals that need to be checked -->
-  <%= render './rehearsals/by_topic' %>
+<!-- <a href="<%= user_path(current_user) %>"> <button> < Back to dashboard </button> </a> -->
+<!-- renders the topics that have rehearsals that need to be checked -->
+<%= render './rehearsals/by_topic' %>

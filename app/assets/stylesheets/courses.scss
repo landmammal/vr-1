@@ -8,6 +8,16 @@
 		color:#D1D1D1;
 	}
 }
+
+.about_course{
+	width:70%; max-width:600px; float:left; margin-bottom:30px;
+	& .title{ font-family:'webly_bld'; }
+}
+.course_instructor{
+	width:200px; margin:0 0 0 5px; float:right; text-align:left;
+	& .title{ font-family:'webly_bld'; }
+}
+
 .card_list{
 	overflow:hidden;
 	& .card_item{
@@ -57,6 +67,26 @@
 				a{ color:white; }
 			}
 			a{ color:#aaa; }
+		}
+	}
+
+	& .course_card{
+		width:250px; margin:1% 1% 1% 0; border-radius:5px;
+		float:none; display:inline-block; border:1px solid #ddd;
+		overflow: hidden; 
+		transition:0.5s;
+		& .card_title{
+			background-color: #00B1D8; padding:5px 8px; font-size:14px;
+			font-family:'webly_bld'; color: white;
+		}
+		& .card_desc{
+			height: 110px; background-color:#fff; overflow:hidden;
+			padding:5px 8px; color:#333;
+		}
+		&:hover{
+			box-shadow:2px 2px #ccc;
+			position: relative; top:-2px;
+			transition:0.5s;
 		}
 	}
 

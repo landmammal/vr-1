@@ -11,6 +11,13 @@ class ApplicationController < ActionController::Base
       @languages = [['English','en'],['Spanish', 'sp']]
       @privacy = [['Public', "0"],['Only me', "1"],['Paid Members', '2'],['Registered members', '3']]
       @ziggeo_priority = [["Not Primary", ],["Primary", true]]
+      @theteam = [{ name:'Carlos Vazquez', role:'CEO/Co-Founder' },
+                  { name:'David Kay', role:'Co-Founder' },
+                  { name:'Peter Cummings', role:'Account Director' },
+                  { name:'Al Delcy', role:'Product Manager' },
+                  { name:'Roger Rodriguez', role:'Lead Developer' },
+                  { name:'Alexis Mabe', role:'Instructional Designer' },
+                  { name:'Mevurah Deleon', role:'Digital Strategist' }]
 
       if current_user
     		# @demos = Demo.all

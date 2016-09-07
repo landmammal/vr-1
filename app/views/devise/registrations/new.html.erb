@@ -1,34 +1,69 @@
-<h2>Register</h2>
+<div class="register_top" style="background-image:url('/assets/frame_home_1.jpg');">
+  <div class="register_form">
+    <div class="title"> Review . Rehearse . Transform </div>
+    <div class="register">
+      <h2>Register</h2>
+      
+      <hr style="border-top:0.5px dotted #999; opacity:0.3; margin:20px 0; max-width:400px; min-width:50%;">
+      <div class='form_err'></div>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), multipart: true, remote: true) do |f| %>
+        <%= devise_error_messages! %>
 
-<hr style="border-top:0.5px dotted #999; opacity:0.3; margin:20px 0; max-width:400px; min-width:50%;">
+        
+        <div class="register_label">User Information</div>
+        <%= f.text_field :first_name, class:'firstname name clearform', autofocus: true, placeholder:'First Name'%>
+        <%= f.text_field :last_name, class:'lastname name clearform', placeholder:'Last Name'%><br>
+       
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), multipart: true) do |f| %>
-  <%= devise_error_messages! %>
+        <div class="register_label">Email and password
+          <% if @minimum_password_length %>
+            <span style="font-size:10px;">(<%= @minimum_password_length %> characters minimum)</span>
+          <% end %>:
+        </div>
 
-  <div class="label">Email and password
-    <% if @minimum_password_length %>
-      <span style="font-size:10px;">(<%= @minimum_password_length %> characters minimum)</span>
-    <% end %>:
-  </div><br>
+        <%= f.email_field :email, class:'email clearform', autofocus: true, placeholder:'email'%><br>
+        <%= f.password_field :password, class:'pass clearform', autocomplete: "off", placeholder:'Password' %><br>
+        <%= f.password_field :password_confirmation, class:'passComf clearform', autocomplete: "off", placeholder:'Confirm Password' %><br>
+        
 
-  <%= f.email_field :email, autofocus: true, placeholder:'email'%><br>
-  <%= f.password_field :password, autocomplete: "off", placeholder:'Password' %><br>
-  <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:'Confirm Password' %><br>
-  
 
-  <div class="label">User Information</div><br>
-  <%= f.text_field :first_name, autofocus: true, placeholder:'First Name'%><br>
-  <%= f.text_field :last_name, placeholder:'Last Name'%><br>
+          <!--this line is broken therefore is not in production-->
+        <div class="register_label">Date of birth</div>
+        <%= f.date_field :age, placeholder:'Age'%><br>
+        <div class="register_label">Ethnicity</div>
+        <%= f.select :race, ([["Hispanic or Latino", "Hispanic or Latino"], ["American Indian or Alaska Native", "American Indian or Alaska Native"], ["Asian", "Asian"], ["Black or African American", "Black or African American"], ["Native Hawaiian or Pacific Islander", "Native Hawaiian or Pacific Islander"], ["White", "WhiteWhite"]]) %>
+        
+        <br><br>
+        <input type="checkbox" class="termsServices" id="termsServices" name="terms_services" style="width:20px; float:left;">
+        
+        <font color="#fff" style="position:reltive; top:6px;">I have read the <a href="#" data-toggle="modal" data-target="#myModal" style="color:#73C8DF;">Terms & Services</a></font>
+        <br><br>
+        
+        <%= f.submit "Sign up", class:'blue reg_btn register_btn' %>
+        <br><br>
 
-    <!--this line is broken therefore is not in production-->
-  <div class="label">Date of birth</div><br>
-  <%= f.date_field :age, placeholder:'Age'%><br>
-  <div class="label">Ethnicity</div><br>
-  <%= f.select :race, ([["Hispanic or Latino", "Hispanic or Latino"], ["American Indian or Alaska Native", "American Indian or Alaska Native"], ["Asian", "Asian"], ["Black or African American", "Black or African American"], ["Native Hawaiian or Pacific Islander", "Native Hawaiian or Pacific Islander"], ["White", "WhiteWhite"]]) %>
-  <br>
-  <br>
-  <%= f.submit "Sign up", class:'button' %>
-  <br>
+      <% end %>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
 
-<% end %>
-<%= render "devise/shared/links" %>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="myModalLabel">Terms of Use ("Terms")</h2>
+      </div>
+      <div class="modal-body">
+        <%= render 'termsandservicesV1Aug192016' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="small_btn red disagreeTerms" data-dismiss="modal">I Disagree</button>
+        <button type="button" class="small_btn green_sft agreeTerms" data-dismiss="modal">I Agree</button>
+      </div>
+    </div>
+  </div>
+</div>

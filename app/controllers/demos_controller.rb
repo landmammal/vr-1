@@ -20,6 +20,6 @@ class DemosController < ApplicationController
 	private
 
 	def demo_params
-		params.permit(:first_name, :last_name, :email, :date)
+		params.permit(:first_name, :last_name, :phone_number, :email, :date)
 	end
 end
