@@ -33,7 +33,7 @@ class PromptsController < ApplicationController
 
   def update
    respond_to do |format|
-      if @prompt.update(prompt_params)
+      if @prompt.update(prompt_update)
         format.html { redirect_to  course_topic_lesson_path(@course, @topic, @lesson), notice: 'Prompt was successfully updated.' }
         format.json { render :show, status: :ok, location: @explanation }
       else
@@ -62,6 +62,9 @@ class PromptsController < ApplicationController
 
   def prompt_params
     params.require(:prompt).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :position_prior)
+  end
+  def prompt_update
+    params.require(:prompt).permit(:lesson_id, :title, :script, :privacy, :language, :token, :video_token, :position_prior)
   end
 
   def set_prompt_update

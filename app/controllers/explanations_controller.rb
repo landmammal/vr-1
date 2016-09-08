@@ -33,7 +33,7 @@ class ExplanationsController < ApplicationController
 
   def update
    respond_to do |format|
-      if @explanation.update(explanation_params)
+      if @explanation.update(explanation_update)
         format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Explanation was successfully updated.' }
         format.json { render :show, status: :ok, location: @explanation }
       else
@@ -59,6 +59,10 @@ class ExplanationsController < ApplicationController
 
   def explanation_params
       params.require(:explanation).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :position_prior)
+  end
+
+  def explanation_update
+      params.require(:explanation).permit(:lesson_id, :title, :script, :privacy, :language, :token, :video_token, :position_prior)
   end
 
   def set_lesson

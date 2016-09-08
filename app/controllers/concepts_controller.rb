@@ -31,7 +31,7 @@ class ConceptsController < ApplicationController
 
   def update
     respond_to do |format|
-       if @concept.update(model_params)
+       if @concept.update(concept_update)
          @concept = Concept.find(params[:id])
          @lesson = Lesson.find(@concept.lesson_id)
          @topic = Topic.find(@lesson.topic_id)
@@ -62,6 +62,9 @@ class ConceptsController < ApplicationController
 
   def concept_params
     params.require(:concept).permit(:description, :lesson_id, :user_id)
+  end
+  def concept_update
+    params.require(:concept).permit(:description, :lesson_id)
   end
 
   def set_lesson
