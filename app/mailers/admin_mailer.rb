@@ -1,7 +1,7 @@
 class AdminMailer < ActionMailer::Base
   add_template_helper(EmailHelper)
   default from: 'notification@videorehearser.com'
-
+  
   def new_user_waiting_for_approval
     @url  = 'https://videorehearser.herokuapp.com/users/sign_in'
     mail(to: 'carlos@videorehearser.com', subject: "New User Signup")
