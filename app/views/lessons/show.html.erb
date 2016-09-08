@@ -11,6 +11,9 @@
 </div>
 
 
+<div class="lesson_type" style="display:none;">
+  <%= @lesson.lesson_type %>
+</div>
 
 
 <div class="box_sep">
@@ -37,7 +40,7 @@
     </div>
     <div class="lesson_progress_bar" >
       <div class="lesson_ready" style="display: none;">
-        Lesson is ready to go <button class="js-trainee_view"> Toggle trainee view </button>
+        Lesson is ready to go <button class="js-trainee_view"> Trainee view </button>
       </div>
       <hr>
 
@@ -79,7 +82,7 @@
 
     <center>
     <!-- ADDING EXPLANATION -->
-    <div class="thrd" style="text-align: center;">
+    <div class="explanation_check thrd" style="text-align: center;">
       <div class="js_listOfexplanations"></div>
       <script type="text/javascript">
         thisLessonsList('explanations', '<%= @explanations_json %>')
@@ -110,7 +113,7 @@
 
 
     <!-- ADDING PROMT -->
-    <div class="thrd" style="text-align: center;">
+    <div class="prompt_check thrd" style="text-align: center;">
 
 
     <div class="js_listOfprompts"></div>
@@ -147,7 +150,7 @@
 
 
     <!-- ADDING MODEL -->
-    <div class="thrd" style="text-align: center;">
+    <div class="model_check thrd" style="text-align: center;">
 
 
       <div class="js_listOfmodels"></div>
@@ -179,12 +182,24 @@
         <%= f.submit 'Add Role Model', class:'blue' %>
       <% end %>
     </div>
+
+    
+    <div class="lesson_desc" style="margin:70px;"></div>
+
+
     </center>
 
 
 
 
+
+    <a href="<%= course_topic_path(@course, @topic) %>">
+      <button class=" blue"> Add lesson </button>
+    </a>
+    
+
     <!-- CONCEPTS -->
+    <br><br><br><br><br><br>
     <%= form_for [@lesson, @concept]  do |f| %>
       <% if @concept.errors.any? %>
         <div id="error_explanation">
@@ -206,7 +221,7 @@
       <%= f.submit 'Add Concept', class:'blue' %>
     <% end %>
 
-    <button> <%= link_to 'Add more Lesson', course_topic_path(@course, @topic) %> </button>
+    
 
     </div>
 

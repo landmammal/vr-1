@@ -5,9 +5,9 @@ class CourseRegistrationsController < ApplicationController
 		@course_registration = current_user.course_registrations.build(course_regis_params)
 		@course_registration.course_id = @course.id
 		@course_registration.user_role = User.roles[current_user.role]
+		
 		if @course_registration.save
-      render json: @course_registration
-		else
+      		render json: @course_registration
 		end
 
 

@@ -1,15 +1,18 @@
 
+<div class="js-register_course">
+  <%=form_for [@course, @course_registration], remote: true do |f| %>
+      <% if @course_registration.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@course_registration.errors.count, "error") %> prohibited the registration to this course from being saved:</h2>
+            <ul>
+              <% @course_registration.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+        </div>
+      <% end %>
+      <%= button_tag "Register for #{@course.title} ", type:'submit', class:"big_btn blue js-course_register_btn" %>
+  <% end %>
+</div>
 
-<%=form_for [@course, @course_registration], remote: true do |f| %>
-    <% if @course_registration.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@course_registration.errors.count, "error") %> prohibited the registration to this course from being saved:</h2>
-          <ul>
-            <% @course_registration.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-      </div>
-    <% end %>
-    <%= button_tag "Register for #{@course.title} ", type:'submit', class:"blue" %>
-<% end %>
+<div class="js-register_confirm" style="display:none;"></div>

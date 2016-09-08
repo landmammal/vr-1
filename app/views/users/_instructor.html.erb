@@ -5,58 +5,39 @@
 
 	<div class="card_list">
 
-	  <% current_user.courses.each do |course| %>
-	    <%if current_user.level_2 %>
+		<% current_user.courses.each do |course| %>
 
-	        <div class="home_card_title_sec">
-	          <a href="<%= course_path(course) %>" class="js-c_<%= course.id %>" >
-	            <div class="home_card_title" id="course_title"><%= course.title %></div>
-	            <div class="home_card_edit js-edit_<%= course.id %>"><span class="ion-edit"></span></div>
-	          </a>
-	          <div class="home_card_delete js-delete_<%= course.id %>">
-	            <%= link_to "X", course, method: :delete, data: { confirm: 'Are you sure?' } %>
-	          </div>
+	        <div class="home_card">
+	        	<div class="card_title">
+			        <a href="<%= course_path(course) %>" class="js-c_<%= course.id %>" >
+			        	<div class="title_name">
+			        		<%= course.title %>
+			        	</div>
+			        </a>
+
+			        <div class="card_delete js-delete_<%= course.id %>">
+			        	<%= link_to "X", course, method: :delete, data: { confirm: 'Are you sure?' } %>
+			        </div>
+		            
+		            <a href="<%= edit_course_path(course) %>" >
+			            <div class="card_edit js-edit_<%= course.id %>">
+			            	<span class="ion-edit"></span>
+			            </div>
+			        </a>
+			    </div>
+			    <div class="card_desc">
+					<%= course.description[0...130] %>
+					<% if course.description.length > 130 %>
+		               ... <span class="blue">more</span>
+		            <% end %>
+
+	        <% course.topics.each do |top| %>
+				<div class="circle_count"></div>
+		    <% end %>
+			    </div>
 	        </div>
 
-
-	        <div id="topics_for_<%= course.id %>" style="display: none;">
-				<% course.topics.each_with_index do |topic, index| %>
-					<a class="js-t_<%= topic.id %>" href="#">
-						<div class="white_card">
-							<div class="user_course_title"><%= (index + 1).to_s %> - <%= topic.title %></div>
-							<p class="user_courses"><progress value="0" max="100"></progress>
-							</p>
-						</div>
-					</a>
-
-					<div id="lessons_for_<%= topic.id %>" style="display: none;">
-						<% topic.lessons.each_with_index do |lesson, index| %>
-							<!-- Checks if Lessons are ready to be viewed -->
-							<%if lesson.explanations.size > 0 && lesson.prompts.size > 0 && lesson.models.size > 0 %>
-								<a class="js-l_" href="/lessons/<%= lesson.id %> ">
-									<div class="white_card">
-										<div class="user_course_title"><%= (index + 1).to_s %> - <%= lesson.title %></div>
-										<p class="user_courses"><progress value="0" max="100"></progress></p>
-									</div>
-								</a>
-							<%end%>
-						<%end%>
-					</div>
-
-					<script type="text/javascript">
-						click_on_topic('<%= topic.id %>', '<%= topic.title %>')
-					</script>
-
-				<%end%>
-			</div>
-
-
-	        <script type="text/javascript">
-				click_on_course('<%= course.id %>', '<%= course.title %>')
-			</script>
-
 	    <% end %>
-	  <% end %>
 
 	</div>
 
