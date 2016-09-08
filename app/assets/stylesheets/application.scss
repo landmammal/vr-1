@@ -27,7 +27,7 @@ header.header{
     }
   }
   & .logo{
-  	display:inline-block; float:left; padding:5px; width:130px;
+  	float:left; padding:5px; width:auto;
     img{ height:30px; }
   }
   & .menu_item{
@@ -38,8 +38,8 @@ header.header{
     float:right; overflow:hidden;
 
     & .register_item{
-      background-color:#4482c3; border-radius:3px; color:white; font-weight:bold;
-      &:hover{ background-color:#3566FF; transition:0.5s;}
+      background-color:#419EFE; border-radius:3px; color:white; font-weight:bold; padding:5px 9px;
+      &:hover{ background-color:#517DAC; transition:0.5s;}
     }
   }
   a{
@@ -78,19 +78,6 @@ header.header{
 }.login_top .blur_form{
 	margin:50px auto; max-width:1100px;
 }
-
-.register_form{
-  margin: 0; height:calc(100% - 200px);
-}.register-text{
-  border-radius:0px; padding:5px 30px; margin:0;
-}.register-text form input, .register-text form select{
-  width:300px; margin:5px auto; float:none;
-}.register-text form input.button{
-  width:inherit;
-}.register-text form .label{
-  width:300px; text-align:left;
-}
-
 
 .black-bg_02{
   background: rgb(0,0,0);
@@ -146,9 +133,7 @@ header.header{
 }
 
 
-.register_height{
-    min-height:100%;
-}
+
 
 .course_topic{ 
   progress{

@@ -193,13 +193,40 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 
 
 footer{
-	background-color:#363636; color:white; height:200px;
-	& .foot_width{
-		max-width: 1100px;
+	background-color:#363636; color:white; min-height:200px;
+	& .footer_width{
+		max-width: 1100px; margin:10px auto 0; padding:5px; overflow: hidden;
+		text-align: center;
+		
+		& .footer_newsletter{
+			border-bottom:1px solid #454545; max-width:80%; margin:10px auto; padding-bottom:20px;
+		}
+
+		& .footer_l, & .footer_m, & .footer_r{
+			margin:1%; padding:1%; float:none; display:inline-block; text-align:left; overflow:hidden;
+			& .footer_sec{
+				float:left; margin: 0 40px 0 0;
+				line-height: 2em;
+			}
+		}
+
+		& .footer_l{ width: 410px; }
+		& .footer_m{ width: 26%; }
+		& .footer_r{ width: 21%; text-align:right; margin-bottom:20px; line-height:2em;}
 	}
-	a{
-		color:white;
-	}
+	a{ color:white; }
+	& .title{ font-family:'webly_bld'; font-size:15px; margin-bottom:10px; }
+	& .contact_footer{
+      background-color:transparent; border:1px solid; border-radius:3px; color:white; font-weight:bold; width:100%;
+      margin-top: 25px;
+      &:hover{ background-color:#999; transition:0.5s;}
+    }
+    & .social_icon{
+    	font-size: 20px; margin:5px 15px;
+    }
+    & .social_icon_2{
+    	font-size: 15px; margin:8px 15px;
+    }
 }
 
 

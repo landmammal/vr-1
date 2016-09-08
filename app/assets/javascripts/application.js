@@ -27,15 +27,12 @@ function railsToJson(json_string){
 }
 
 var pageReady = function(){
-
-
-	setTimeout(function(){
-		$('.flash-notice').fadeOut(2000);
-	},4000);
-
-	setTimeout(function(){
-		$('#notice').fadeOut(2000);
-	},4000)
+	$('#myModal').on('shown.bs.modal', function () {
+		$('#myInput').focus();
+	})
+	$('.agreeTerms').click(function(){
+		$('#termsServices').prop('checked', true);
+	});
 };
 
 $(document).ready(pageReady);
