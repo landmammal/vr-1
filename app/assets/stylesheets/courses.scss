@@ -73,50 +73,52 @@
 			position: relative; top:-2px;
 			transition:0.5s;
 		}
-		& .circle_count{
-			width:10px; height:10px; float: left; 
-		    color:#00BDFF; border-radius:50%; border:3px solid;
-		    position:relative; bottom:-20px; z-index:5;
-
-		    position: absolute;
+		& .bottom_count{
+			position: absolute;
 		    left: 5px;
 		    bottom: 5px;
-		}
-		& .bar_count{
-			width:20px; float: left; 
-		    color:#00BDFF; border-radius:2px; border:3px solid;
-		    position:relative; bottom:-20px; z-index:5;
+		    overflow: hidden;
+		    width: 95%;
 
-		    position: absolute;
-		    left: 5px;
-		    bottom: 5px;
-		}
-		& .topic_progress{
-			margin:0; padding:0; background-color:white;
-			text-align:center; 
-
-			progress{
-				-webkit-appearance: none;
-				-moz-appearance: none;
-				appearance: none;
-
-				width: 90%;
-				height: 3px;
-				margin: 0 auto; padding:0;
-
-				/* Firefox */
-				border: none;
-				background: red;
-				border-radius: 1px;
+			& .circle_count{
+				width:10px; height:10px; float: left; 
+			    color:#00BDFF; border-radius:50%; border:3px solid;
+			    margin: 2px 2px;
 			}
-			progress::-webkit-progress-bar {
-				background: red;
-				border-radius: 3px;
+			& .bar_count{
+				width:20px; float: left; 
+			    color:#00BDFF; border-radius:2px; border:3px solid;
+			    margin: 2px 2px; position:relative; bottom:-8px;
 			}
+			& .topic_progress{
+				margin:0; padding:0; background-color:white;
+				text-align:center; float: none; width: 100%;
 
-			progress::-webkit-progress-value, progress::-moz-progress-bar {
-				background-color: #00B514;
-				border-radius: 1px;
+				progress{
+					-webkit-appearance: none;
+					-moz-appearance: none;
+					appearance: none;
+
+					width: 98%;
+					height: 2px;
+					margin: 0 auto; padding:0;
+
+					/* Firefox */
+					border: none;
+					background: transparent;
+					border-radius: 3px;
+				}
+				progress::-webkit-progress-bar {
+					background: transparent;
+					border-radius: 3px;
+					margin: 0 auto; padding:0;
+				}
+
+				progress::-webkit-progress-value, progress::-moz-progress-bar {
+					background-color: #00B514;
+					border-radius: 3px;
+					margin: 0 auto; padding:0;
+				}
 			}
 		}
 	}

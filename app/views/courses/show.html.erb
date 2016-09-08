@@ -39,16 +39,19 @@
             <% if topic.description.length > 130 %>
                ... <span class="blue">more</span>
             <% end %>
-            <% topic.lessons.each do |top| %>
-              <div class="bar_count"></div>
-            <% end %>
             
-            <% if course_trainee %>
-              <div class="topic_progress">
-                <!-- <progress value="<%= 0  %>" max="<%= @topic.lessons.to_s %>"> -->
-                <!-- </progress> -->
-              </div>
-            <% end %>
+            <div class="bottom_count">
+                <% topic.lessons.each do |i| %>
+                  <div class="bar_count"></div>
+                <% end %>
+                <% if course_trainee %>
+                  <div class="topic_progress">
+                    <progress value="<%= 0  %>" max="<%= @topic.lessons.to_s %>">
+                    </progress>
+                  </div>
+                <% end %>
+            </div>
+
           </div>
         </a>
         </div>
