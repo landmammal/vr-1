@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
 
   # sends the user and email when they register for the site
   def send_user_notice
-    AdminMailer.create_user_register_notice(self).deliver_later
+    AdminMailer.user_register_notice(self).deliver_now
   end
 
   def photo
