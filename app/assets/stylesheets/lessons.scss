@@ -53,12 +53,22 @@
 	& .big_btn{ width:32%; float:none; display:inline-block; }
 }
 
-.instructor_videos, .trainee_rehearsal{
+.lesson_video_left, .lesson_video_right, .lesson_video_center{
 	text-align:left;
 	textarea, & .lesson_script{
 		height:100px; padding:10px;
-		border:1px solid #AAAAAA; 
+		border:1px solid #AAAAAA;
+		background-color:white;
 	}
+}
+.lesson_video_center{
+	text-align:center;
+	background-color:black;
+}
+
+
+.lesson_vid{
+	display:none;
 }
 
 
@@ -71,7 +81,7 @@
 	.showIfLessonComplete{
 		& .big_btn{ padding:10px 15px; font-size:13px; }
 	}
-	.instructor_videos, .trainee_rehearsal, .lesson_half{
+	.lesson_video_left, .lesson_video_right, .lesson_half{
 		width: 98%; float:none; margin:0 1%; text-align:center;
 		& .vid_title{ font-size:20px; margin:10px 0; background-color:none;}
 		textarea, & .lesson_script{ min-width: 100%; margin:0;}
@@ -86,7 +96,7 @@
 	.showIfLessonComplete{
 		& .big_btn{ padding:5px; font-size:13px; }
 	}
-	.instructor_videos, .trainee_rehearsal, .lesson_half{
+	.lesson_video_left, .lesson_video_right, .lesson_half{
 		width: 49%; float:left; margin:0 1% 0 0;
 		& .vid_title{ font-size:30px; margin:10px 0 20px; background-color:none;}
 		textarea, & .lesson_script{ min-width: 100%; margin:10px 0 5px;}
@@ -101,7 +111,7 @@
 	.showIfLessonComplete{
 		& .big_btn{ padding:10px 15px; font-size:15px; }
 	}
-	.instructor_videos, .trainee_rehearsal, .lesson_half{
+	.lesson_video_left, .trainee_rehearsal, .lesson_half{
 		& .vid_title{ margin: 20px 0;}
 	}
 }

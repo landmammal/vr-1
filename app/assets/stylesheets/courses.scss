@@ -11,6 +11,7 @@
 
 .about_course{
 	width:70%; max-width:600px; float:left; margin-bottom:30px;
+	font-size:16px;
 	& .title{ font-family:'webly_bld'; }
 }
 .course_instructor{
@@ -45,48 +46,77 @@
 			padding:10px 5px; text-align:center;
 		}
 	}
-
-	& .home_card_title_sec{
-		background-color:white; float:left; overflow:hidden; margin:5px;
-		& .home_card_title{
-			font-size:15px; font-family:'webly_bld'; float:left; text-align:left; 
-			padding:5px 15px;
-		}
-		& .home_card_edit{
-			font-size:15px; font-family:'webly_bld'; float:left; text-align:center; 
-			padding:5px 10px; color:#ccc;
-			&:hover{
-				background-color: #0095DD ; color:white;
-			}
-		}
-		& .home_card_delete{
-			font-size:15px; font-family:'webly_bld'; float:left; text-align:center; 
-			padding:5px 10px;
-			&:hover{
-				background-color: #FF0000 ; color:white;
-				a{ color:white; }
-			}
-			a{ color:#aaa; }
-		}
-	}
-
-	& .course_card{
-		width:250px; margin:1% 1% 1% 0; border-radius:5px;
-		float:none; display:inline-block; border:1px solid #ddd;
-		overflow: hidden; 
+	
+	& .card, & .home_card{
+		margin:1% 1% 1% 0;
+		float:none; display:inline-block; 
+		border-radius: 5px ;
+		overflow: hidden; text-align:left;
 		transition:0.5s;
 		& .card_title{
-			background-color: #00B1D8; padding:5px 8px; font-size:14px;
-			font-family:'webly_bld'; color: white;
+			padding:5px 8px; font-size:14px;
+			font-family:'webly_bld'; border-radius:5px 5px 0 0;
 		}
 		& .card_desc{
-			height: 110px; background-color:#fff; overflow:hidden;
+			height: 110px; overflow:hidden; position:relative;
 			padding:5px 8px; color:#333;
+			border:1px solid #ddd; border-radius:0 0 5px 5px ;
+			border-top:0;
 		}
 		&:hover{
 			box-shadow:2px 2px #ccc;
 			position: relative; top:-2px;
 			transition:0.5s;
+		}
+		& .circle_count{
+			width:10px; height:10px; float: left; 
+		    color:#00BDFF; border-radius:50%; border:3px solid;
+		    position:relative; bottom:-20px; z-index:5;
+
+		    position: absolute;
+		    left: 5px;
+		    bottom: 5px;
+		}
+	}
+
+	& .home_card{
+		width:300px; 
+		overflow:hidden;
+		& .card_title{
+			background-color: #FF7C86; color: white; overflow:hidden;
+			padding:0;
+			& .title_name{ width:calc(100% - 60.92px); color: white; float:left;  padding:5px 10px;}
+		}
+		& .card_desc{
+			position:relative;
+		}
+		& .card_edit{
+			font-size:14px; font-family:'webly_bld'; float:right; text-align:center; 
+			padding:5px 10px; color:#fff;
+			&:hover{
+				background-color: #0095DD ; color:white;
+			}
+		}
+		& .card_delete{
+			font-size:14px; font-family:'webly_bld'; float:right; text-align:center; 
+			padding:5px 10px;
+			&:hover{
+				background-color: #FF0000 ; color:white;
+				a{ color:white; }
+			}
+			a{ color:red; }
+		}
+	}
+
+	& .card{
+		width:250px;
+		& .card_title{
+			&.course{ background-color: #FF7C86; color: white; }
+			&.topic{ background-color: #00B1D8; color: white; }
+		}
+		& .card_desc{
+			&.course{ background-color:rgba(#fff, 0.5); }
+			&.topic{ background-color:#fff; }
 		}
 	}
 

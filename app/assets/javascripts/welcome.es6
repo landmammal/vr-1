@@ -105,6 +105,13 @@ var pageReady = function(){
 			$('.clearform').val('');
 			$('#user_age').val('');
 			$('#termsServices').prop('checked', false);
+
+			$('.form').fadeOut(500);
+			$('.registered_confirmation').html('Thank you for signing up with Video Rehearser.<br>  <br> <img src="/assets/checkmark_white.png" width="50px"><br> <br> We will send you a message shortly with the next steps.');
+			setTimeout(function(){
+				$('.form').empty();
+				$('.registered_confirmation').fadeIn(500);
+			}, 500);
 		}
 
 	});

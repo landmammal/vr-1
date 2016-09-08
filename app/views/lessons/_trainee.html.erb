@@ -1,76 +1,42 @@
 <div class="showIfLessonComplete" style="display: none;">
 
-  <button class="big_btn lesson_btn js-show_explanation btn_selected">Explanation</button>
-  <button class="green_sft big_btn lesson_btn js-show_prompt btn_selected">Prompt</button>
-  <button class="green_sft big_btn lesson_btn js-show_model btn_selected">Role Model</button>
+    <div class="js-lesson_buttons"></div>
 
     <br>
     <hr>
+  
+    <!-- VIDEO WINDOWS -->
+    <div class="lesson_video_center lesson_vid">
+      <div class="explanation_video lesson_vid"><%= render 'explanation' %></div>
+    </div>
 
-    <div class="instructor_videos">
+    <div class="lesson_video_left lesson_vid">
+      <div class="prompt_video lesson_vid"><%= render 'prompt' %></div>
+      <div class="model_video_1 lesson_vid"><%= render 'rolemodel' %></div>
+    </div>
 
-      <div class="explanation_video">
-        <% @this_video_token = @prior_expl.video_token %>
-        <%= render './shared/ziggeoplayer' %>
-        <div class="lesson_script"><%= @prior_expl.script %></div>
-      </div>
-
-      <div class="prompt_video" style="display: none;">
-        <% @this_video_token = @prior_prompt.video_token %>
-        <%= render './shared/ziggeoplayer' %>
-        <div class="lesson_script"><%= @prior_prompt.script %></div>
-      </div>
-
-      <div class="model_video" style="display: none;">
-        <% @this_video_token = @prior_model.video_token %>
-        <%= render './shared/ziggeoplayer' %>
-        <div class="lesson_script"><%= @prior_model.script %></div>
-      </div>
-
-
+    <div class="lesson_video_right lesson_vid">
+      <div class="model_video_2 lesson_vid"><%= render 'rolemodel' %></div>
+      <div class="rehearsal_video lesson_vid"><%= render 'rehearsal' %></div>
     </div>
 
 
 
-    <div class="trainee_rehearsal">
-       <%= render './shared/ziggeorecorder' %>
 
-      <%= form_for [@lesson, @rehearsal],html: {id: "rehearsalsForm"}, remote: true  do |f| %>
-          <% if @rehearsal.errors.any? %>
-              <div id="error_explanation">
-                <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this rehearsal from being saved:</h2>
+    <!-- PREVIOUS && NEXT -->
+    <a href="<%= course_topic_lesson_path(@course, @topic, @lesson.id-1)%>">
+      <button class="blue lesson_previous">PREVIOUS LESSON</button>
+    </a>
+    <a href="<%= course_topic_lesson_path(@course, @topic, @lesson.id+1)%>">
+      <button class="blue lesson_next" style="float: right;">NEXT LESSON</button>
+    </a>
 
-                <ul>
-                  <% @rehearsal.errors.full_messages.each do |message| %>
-                      <li><%= message %></li>
-                  <% end %>
-                </ul>
-              </div>
-          <% end %>
-
-          <%= f.text_area :script, placeholder:'Write your script here...' %><br>
-          <%= f.text_field :course_id, type:"hidden", value:@course.id  %><br>
-          <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
-          <%= f.text_field :lesson_id, type:"hidden", value:@lesson.id %><br>
-          <%= f.text_field :topic_id, type:"hidden", value:@topic.id %><br>
-          <%= f.text_field :video_token, type:"hidden" %>
-          <%= f.text_field :token, type:"hidden" %>
-
-
-      <% end %>
-    </div>
-
-      <a href="<%= course_topic_lesson_path(@course, @topic, @lesson.id-1)%>">
-        <button class="blue lesson_previous">PREVIOUS LESSON</button>
-      </a>
-      <a href="<%= course_topic_lesson_path(@course, @topic, @lesson.id+1)%>">
-        <button class="blue lesson_next" style="float: right;">NEXT LESSON</button>
-      </a>
-
-      <script type="text/javascript"> allLessons('<%= @lesson.id %>','<%= @lessons_arr %>') </script>
-      <br>
-      <br>
+    <script type="text/javascript"> allLessons('<%= @lesson.id %>','<%= @lessons_arr %>') </script>
+    <br>
+    <br>
 </div>
+
+
 <!-- rendering rehearsals from reheasals view folder -->
 <ul>
     <%= render './rehearsals/rehearsal' %>

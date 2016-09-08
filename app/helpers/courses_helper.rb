@@ -12,7 +12,7 @@ module CoursesHelper
 
 	def instructor_profile
 		@instructor = User.find(@course.instructor_id)
-		@instructor.profile_file_name.present? ? profile = profile.url(:square) : profile = '/assets/default_user.png'
+		@instructor.profile_file_name.present? ? profile = @instructor.profile.url(:square) : profile = '/assets/default_user.png'
 		instructor_pic = profile
 
 		return instructor_pic

@@ -89,6 +89,7 @@ function sidepanel( panel ){
 	});
 }
 
+$('.liveninja-iframe-chat-min-wide').css('height','100px');
 
 var pageReady = function(){
 	var doc_cookie = document.cookie;

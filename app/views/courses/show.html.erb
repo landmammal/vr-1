@@ -12,7 +12,7 @@
 
 
 <div class="about_course">
-  <span class="title">About course</span><br>
+  <span class="title">About the course</span><br>
   <%= @course.description %>
 </div>
 <div class="course_instructor">
@@ -29,14 +29,18 @@
 
   <div class="card_list">
     <% @course.topics.each_with_index do |topic, index| %>
-      <a href="<%= course_topic_path(@course, topic) %>">
-        <div class="course_card">
-          <div class="card_title">
+      <div class="card">
+        <a href="<%= course_topic_path(@course, topic) %>">
+          <div class="card_title topic">
             <%= topic.title %>
           </div>
-          <div class="card_desc">
-            <%= topic.description %>
+          <div class="card_desc topic">
+            <%= topic.description[0...130] %>
+            <% if topic.description.length > 130 %>
+               ... <span class="blue">more</span>
+            <% end %>
           </div>
+        </a>
           <% if course_trainee %>
             <div class="topic_progress">
               <!-- <progress value="<%= 0  %>" max="<%= @topic.lessons.to_s %>"> -->
@@ -44,21 +48,26 @@
             </div>
           <% end %>
         </div>
-      </a>
     <% end %>
   </div>
 <% else %>
-  <center>
-    <%= @course.description %>
-    <br><br>
-  
+  <center style="margin:50px auto 200px;">
     <%= render './course_registrations/course_registration_form' if !course_creator %>
-    <% current_user.registered_courses.each do |r_c|  %>
-      <%= @registered_courses %>
-    <% end %>
   </center>
 
 <% end %>
+
+
+
+<br>
+<%if course_creator %>
+  <div class="js-open_form" style="display:none;">
+    <%= render './topics/form' %>
+  </div>
+  <button class="js-show_form green_sft add_btn">+</button>
+  <!-- <button class="js-show_external_form reg_btn green_sft">Add External Topic</button> -->
+<%end%>
+<br><br>
 
 
 
@@ -76,15 +85,6 @@
 
 
 
-<br><br><br>
-<%if course_creator %>
-  <div class="js-open_form" style="display:none;">
-    <%= render './topics/form' %>
-  </div>
-  <button class="js-show_form green_sft add_btn">+</button>
-  <!-- <button class="js-show_external_form reg_btn green_sft">Add External Topic</button> -->
-<%end%>
-<br><br><br>
 
 <!-- <a href="<%= user_path(current_user) %>"> <button> < Back to dashboard </button> </a> -->
 <!-- renders the topics that have rehearsals that need to be checked -->
