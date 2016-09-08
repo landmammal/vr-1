@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  after_create :send_admin_mail
   # Include default devise modules. Others available are:
   # , :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -36,6 +37,12 @@ class User < ActiveRecord::Base
     else
       super # Use whatever other message
     end
+  end
+  # sends admin and email for everyuser waiting for approval
+  def send_admin_mail
+
+    # admin = User.first
+   AdminMailer.new_user_waiting_for_approval.deliver_now
   end
 
   def photo

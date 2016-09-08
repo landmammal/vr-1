@@ -26,17 +26,6 @@ ActiveRecord::Schema.define(version: 20160901075943) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "contacts", force: :cascade do |t|
-    t.string   "firstname"
-    t.string   "lastname"
-    t.string   "phonenumber"
-    t.string   "email"
-    t.string   "contact_type"
-    t.string   "message"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
   create_table "course_registrations", force: :cascade do |t|
     t.integer  "course_id"
     t.integer  "user_id"

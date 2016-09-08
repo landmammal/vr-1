@@ -11,6 +11,18 @@ Rails.application.configure do
    }
   }
 
+  # action mailer settings
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      address:              'smtp.gmail.com',
+      port:                 587,
+      domain:               'gmail.com',
+      user_name:            ENV['GOOGLE_USERNAME'],
+      password:             ENV['GOOGLE_PASSWORD'],
+      authentication:       'plain',
+      enable_starttls_auto: true  }
+  config.action_mailer.perform_deliveries = true
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
