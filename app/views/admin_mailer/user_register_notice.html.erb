@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style>
+      .wrapper {
+        background-color: white;
+        width: 80%;
+        max-width: 500px;
+        margin: auto;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row; /* works with row or column */
+        flex-direction: column;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        /*padding: 5px 15px 5px 15px;*/
+      }
+      .content {
+        text-align: left;
+        padding: 30px 40px;
+        color: #666666;
+      }
+      .header {
+        background-color: #0090ff;
+        padding: 20px 0px;
+        text-align: center;
+        width: 100%;
+      }
+      p {
+        font-family: "arial";
+        font-size: 15px;
+      }
+      .small {
+        font-size: 11px;
+      }
+      .header img {
+        width: 90px;
+      }
+      .footer {
+        background-color: grey;
+        padding: 10px 0px;
+        width: 100%;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header">
+        <%= email_image_tag("logo_text_white.png")%>
+      </div>
+      <div class="content">
+        <p>
+        Hi <%= @user.first_name.capitalize %>,
+        </p>
+
+        <p>
+        Welcome to Video Rehearser
+          <div class="small">
+            review. rehearse. transform
+          </div>
+        </p>
+
+        <div class="main-body">
+         We are a group of educators that have build a completely personalize and customizable educational experience to train and transform individuals careers & increase the ROI for professionals and enterprises. VR(Video Rehearser) was build with you in mind.
+        </div>
+        <br>
+
+        <div>
+         Your application is currently pending approval.
+        </div>
+        <br>
+
+        <div>
+          for support request. contact us support@videorehearser.com or if you just wanna say hi!
+          tell us what you think.
+        </div>
+        <br>
+        <div class="small">
+          -The VR Team
+        </div>
+      </div>
+      <div class="footer">
+
+      </div>
+    </div>
+  </body>
+</html>
