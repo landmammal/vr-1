@@ -78,7 +78,7 @@ class LessonsController < ApplicationController
     @course = @topic.courses.first
 
     respond_to do |format|
-      if @lesson.update(lesson_params)
+      if @lesson.update(lesson_update)
         format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Lesson was updated created.' }
         format.json { render :show, status: :ok, location: @lesson }
       else
@@ -121,5 +121,9 @@ class LessonsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
       params.require(:lesson).permit(:topic_id, :title, :description, :lesson_type, :tags, :approval_status, :instructor_id)
+    end
+
+    def lesson_update
+      params.require(:lesson).permit(:topic_id, :title, :description, :lesson_type, :tags, :approval_status)
     end
 end

@@ -47,7 +47,7 @@ class TopicsController < ApplicationController
   def update
     @topic = @course.topics.find(params[:id])
     respond_to do |format|
-      if @topic.update(topic_params)
+      if @topic.update(topic_update)
         format.html { redirect_to([@topic.post, @topic], notice: 'Topic was successfully updated.') }
         format.json { render :show, status: :ok, location: @topic }
       else
@@ -78,5 +78,8 @@ class TopicsController < ApplicationController
 
     def topic_params
       params.require(:topic).permit(:course_id, :title, :description, :tags, :approval_status, :instructor_id)
+    end
+    def topic_update
+      params.require(:topic).permit(:course_id, :title, :description, :tags, :approval_status)
     end
 end
