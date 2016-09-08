@@ -5,13 +5,23 @@
 
 	<div class="card_list">
 
-		<% current_user.courses.each do |course| %>
+		<% current_user.courses.order('id DESC').each do |course| %>
 
 	        <div class="home_card">
 	        	<div class="card_title">
 			        <a href="<%= course_path(course) %>" class="js-c_<%= course.id %>" >
 			        	<div class="title_name">
-			        		<%= course.title %>
+			        		<%= course.title[0...25] %>
+							<% if course.title.length > 25 %>
+				               ...
+				            <% end %>
+			        		<% if course.privacy == '0' %>
+			        			<span class="privacy ion-earth"></span>
+			        		<% elsif course.privacy == '2' || course.privacy == '3' %>
+			        			<span class="privacy ion-lock-combination"></span>
+			        		<% else %>
+			        			<span class="privacy ion-locked"></span>
+			        		<% end %>
 			        	</div>
 			        </a>
 
@@ -31,9 +41,9 @@
 		               ... <span class="blue">more</span>
 		            <% end %>
 
-	        <% course.topics.each do |top| %>
-				<div class="circle_count"></div>
-		    <% end %>
+			        <% course.topics.each do |top| %>
+						<div class="circle_count"></div>
+				    <% end %>
 			    </div>
 	        </div>
 

@@ -3,40 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.topic_progress{
-	margin:0; padding:0; background-color:white;
-	text-align:center;
-	progress{
-		-webkit-appearance: none;
-		-moz-appearance: none;
-		appearance: none;
-
-		width: 90%;
-		height: 3px;
-		margin: 0 auto; padding:0;
-
-		/* Firefox */
-		border: none;
-		background: red;
-		border-radius: 1px;
-	}
-	progress::-webkit-progress-bar {
-		background: red;
-		border-radius: 3px;
-	}
-
-	progress::-webkit-progress-value {
-		background-color: #00B514;
-		border-radius: 1px;
-	}
-
-	progress::-moz-progress-bar {
-		background-color: #00B514;
-		border-radius: 1px;
-	}
-
-}
-
 .lesson_list{
 	margin:5px 0;
 	overflow:hidden; width:90%; max-width:700px;
