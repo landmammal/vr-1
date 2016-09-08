@@ -43,12 +43,8 @@
             <div class="bottom_count">
                 <% topic.lessons.each do |i| %>
                   <div class="bar_count"></div>
-                <% end %>
-                <% if course_trainee %>
-                  <div class="topic_progress">
-                    <progress value="<%= 0  %>" max="<%= @topic.lessons.to_s %>">
-                    </progress>
-                  </div>
+                  <% if course_trainee %>
+                  <% end %>
                 <% end %>
             </div>
 

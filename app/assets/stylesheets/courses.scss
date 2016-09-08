@@ -84,41 +84,13 @@
 				width:10px; height:10px; float: left; 
 			    color:#00BDFF; border-radius:50%; border:3px solid;
 			    margin: 2px 2px;
+			    &.done{ color:#28D024; background-color:#28D024; }
 			}
 			& .bar_count{
 				width:20px; float: left; 
-			    color:#00BDFF; border-radius:2px; border:3px solid;
-			    margin: 2px 2px; position:relative; bottom:-8px;
-			}
-			& .topic_progress{
-				margin:0; padding:0; background-color:white;
-				text-align:center; float: none; width: 100%;
-
-				progress{
-					-webkit-appearance: none;
-					-moz-appearance: none;
-					appearance: none;
-
-					width: 98%;
-					height: 2px;
-					margin: 0 auto; padding:0;
-
-					/* Firefox */
-					border: none;
-					background: transparent;
-					border-radius: 3px;
-				}
-				progress::-webkit-progress-bar {
-					background: transparent;
-					border-radius: 3px;
-					margin: 0 auto; padding:0;
-				}
-
-				progress::-webkit-progress-value, progress::-moz-progress-bar {
-					background-color: #00B514;
-					border-radius: 3px;
-					margin: 0 auto; padding:0;
-				}
+			    color:#00BDFF; border-radius:4px; border:3px solid;
+			    margin: 2px 2px;
+			    &.done{ color:#28D024; }
 			}
 		}
 	}
