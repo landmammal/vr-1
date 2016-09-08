@@ -4,6 +4,6 @@ class AdminMailer < ActionMailer::Base
   def new_user_waiting_for_approval
     # @user = admin
     @url  = 'http://videorehearser.com/login'
-    mail(to: 'roger.rodriguez666@gmail.com', subject: "New User Signup")
+    mail(to: 'carlos@videorehearser.com', subject: "New User Signup")
   end
 end

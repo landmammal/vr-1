@@ -11,8 +11,8 @@ Rails.application.configure do
       address:              'smtp.gmail.com',
       port:                 587,
       domain:               'gmail.com',
-      user_name:            'developingroger@gmail.com',
-      password:             'gianinna',
+      user_name:            ENV['GOOGLE_USERNAME'],
+      password:             ENV['GOOGLE_PASSWORD'],
       authentication:       'plain',
       enable_starttls_auto: true  }
   config.action_mailer.perform_deliveries = true

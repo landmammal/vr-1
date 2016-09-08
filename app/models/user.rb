@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   def send_admin_mail
 
     # admin = User.first
-   AdminMailer.new_user_waiting_for_approval.deliver
+   AdminMailer.new_user_waiting_for_approval.deliver_now
   end
 
   def photo
