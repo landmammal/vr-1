@@ -123,7 +123,7 @@ class LessonsController < ApplicationController
       params.require(:lesson).permit(:topic_id, :title, :description, :lesson_type, :tags, :approval_status, :instructor_id)
     end
 
-    def lesson_params
+    def lesson_update
       params.require(:lesson).permit(:topic_id, :title, :description, :lesson_type, :tags, :approval_status)
     end
 end
