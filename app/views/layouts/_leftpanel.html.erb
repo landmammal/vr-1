@@ -45,9 +45,11 @@
 		</script>
 
 		<div class="sidepanel js-side_My_Tools">
-			Intructor Tools
+			Intructor Tools<br>
 			<button>Create Course</button><br>
-			<button>View Submissions</button><br>
+			<a href="/courseregistrations/">
+				<button>Course Registrations</button>
+			</a><br>
       		<%= link_to 'Create Group', new_user_group_path(current_user) %><br>
       		<%= link_to 'My Groups', user_groups_path(current_user) %>
 		</div>

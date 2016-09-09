@@ -22,7 +22,7 @@
 </div>
 
 <br>
-<% if course_creator || course_trainee %>
+<% if course_creator || course_trainee || @course.privacy == 0 %>
 
   <h4>Topics</h4>
   <hr>

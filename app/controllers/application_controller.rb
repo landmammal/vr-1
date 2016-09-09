@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
       @languages = [['English','en'],['Spanish', 'sp']]
       @privacy = [['Public', "0"],['Only me', "1"],['Paid Members', '2'],['Registered members', '3']]
 
-      @lesson_type = [['Full', "0"],['Demonstration', "1"],['Question', "2"]]
+      @lesson_type = [['Full Layout', "0"],['Demonstration', "1"],['Question/Answer', "2"]]
 
       @ziggeo_priority = [["Not Primary", ],["Primary", true]]
       @theteam = [{ name:'Carlos Vazquez', role:'CEO/Co-Founder' },

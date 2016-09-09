@@ -15,7 +15,7 @@ class CoursesController < ApplicationController
   end
 
   def search
-    @courses = Course.where(privacy:'0').order('id DESC')
+    @courses = Course.where.not(privacy:'1').order('id DESC')
 
     if current_user.level_2
       @course = Course.new

@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
       profile_file_name.present? ? profile.url(:square) : '/assets/default_user.png'
   end
   def top_banner
-      banner_file_name.present? ? banner.url(:medium) : '/assets/banner.jpg'
+      banner_file_name.present? ? banner.url(:large) : '/assets/banner.jpg'
   end
 
 
