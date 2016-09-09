@@ -10,8 +10,6 @@ class AdminMailer < ActionMailer::Base
   def user_register_notice(user)
     @user = user
     @url = 'https://videorehearser.herokuapp.com/users/sign_in'
-    mail( to: @user.email,
-          from: 'notification@videorehearser.com',
-          subject: "Welcome to VR!")
+    mail( to: @user.email, subject: "Welcome to VR!")
   end
 end
