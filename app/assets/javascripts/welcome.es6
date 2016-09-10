@@ -147,6 +147,24 @@ var pageReady = function(){
 
 
 
+	// DEVICES SECTION
+
+	// var halfsec = $('.halfsec').width();
+	// $('.halfsec').height(halfsec / 4.85);
+	// if (window_width < 481) {
+	// 	$('.halfsec').height(halfsec);
+	// }
+
+	// $(window).resize(function(){
+	// 	var halfsec = $('.halfsec').width();
+	// 	$('.halfsec').height(halfsec / 4.85);
+	// 	if (window_width < 481) {
+	// 		$('.halfsec').height(halfsec);
+	// 	}
+	// });
+
+
+
 	// NOTICES AND FLASHES FADEOUT
 	$('.close_notice').click(function(){
 		$('.notice').empty();
@@ -234,6 +252,19 @@ var pageReady = function(){
 		event.preventDefault();
 		$('.search_box').toggleClass('popup');
 		$('.search_popup').toggleClass('fade');
+
+		if($('.search_popup').hasClass('fade')){
+			setTimeout(function(){
+				$( ".search_course_term" ).focus();
+	    	}, 500);
+			$('html, body').animate({
+	        	scrollTop: $(".demo").offset().top
+	    	}, 1500);
+		}else{
+			$('html, body').animate({
+	        	scrollTop: $(".home_top_wrapper").offset().top
+	    	}, 1500);
+		}
 	});
 
 	$('.search_course_btn').click(function(event){
@@ -250,7 +281,6 @@ var pageReady = function(){
 				$('.search_results_home').addClass('show');
 			}
 			$('.result_search_terms').text("Searching for : '"+$('.search_course_term').val()+"'");
-
 		}
 		
 		if($('.search_course_term').val.length === 0 || $('.search_course_term').val() === ''){
@@ -263,7 +293,6 @@ var pageReady = function(){
 
 		}
 	});
-	
 
 
 
@@ -275,6 +304,7 @@ var pageReady = function(){
 	$('.demo').click(function(event){
 		event.preventDefault();
 		$('.demo').fadeOut(400);
+		$('.home_top_text').addClass('demo_open');
 		setTimeout(function(){
 			$('.demo_form').fadeIn(400);
 		}, 400);
@@ -285,6 +315,7 @@ var pageReady = function(){
 		$('.demo_form').fadeOut(400);
 		setTimeout(function(){
 			$('.demo').fadeIn(400);
+			$('.home_top_text').removeClass('demo_open');
 		}, 400);
 	});
 
@@ -328,6 +359,7 @@ var pageReady = function(){
 						$('#notice').fadeOut(400);					
 						setTimeout(function(){
 							$('.demo').fadeIn(400);
+							$('.home_top_text').removeClass('demo_open');
 						}, 400);
 					}, 2000);
 

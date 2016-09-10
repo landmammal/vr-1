@@ -28,6 +28,7 @@
     font-family:'altera';
     src: url("/fonts/Altera.ttf") format("truetype");
 }
+
 @font-face {
     font-family:'webly_reg';
     src: url("/fonts/weblysleekuil.ttf") format("truetype");
@@ -36,10 +37,24 @@
     font-family:'webly_bld';
     src: url("/fonts/weblysleekuisb.ttf") format("truetype");
 }
+
+@font-face {
+    font-family:'gotham_light';
+    src: url("/fonts/gotham_light.OTF") format("truetype");
+}
+@font-face {
+    font-family:'gotham_thin';
+    src: url("/fonts/gotham_thin.TTF") format("truetype");
+}
 @font-face {
     font-family:'gotham_bld';
     src: url("/fonts/gotham_bold.TTF") format("truetype");
 }
+@font-face {
+    font-family:'gotham_book';
+    src: url("/fonts/gotham_book.TTF") format("truetype");
+}
+
 @font-face {
     font-family:'ptc75';
     src: url("/fonts/PTC75F-webfont.ttf") format("truetype");

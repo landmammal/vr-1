@@ -9,6 +9,7 @@ body {
 html, body {
   margin:0px auto;
   height:100%;
+  transition: 0.5s;
 }
 html{overflow-y:scroll;}
 
@@ -49,6 +50,7 @@ div {
   &.field, &.actions {
     margin-bottom: 10px;
   }
+  transition: 0.5s;
 }
 
 #notice , .notice{
@@ -64,6 +66,7 @@ span{
   &.blue{
     color:#00B1D8;
   }
+  transition: 0.5s;
 }
 
 
@@ -178,6 +181,7 @@ textarea, input, select{
   border-bottom:2px solid #999;
   background-color: white;
   font-size:13px; color:#333;
+  transition: 0.5s;
   &.half{
     padding:5px 8px; margin:5px 0.5%; width:49%;
     display:inline-block; float:left;
@@ -190,6 +194,10 @@ textarea, input, select{
     padding:5px 8px; width:50%; max-width:300px;
     display:inline-block; float:left;
   }
+  &:focus{
+    border-bottom:2px solid #0883C3;
+    transition: 0.5s;
+  }
 }
 
 textarea{
@@ -200,11 +208,16 @@ textarea{
 
 input{
   padding:8px 15px; margin:5px 5px 5px 0; color:#333;
+  transition: 0.5s;
   &.login{
     border-radius:0px; border:0;
     border-bottom:1px solid #999;
     background-color: transparent;
     float: none; width: 250px;
+    &:focus{
+      border-bottom:1px solid #0883C3;
+      transition: 0.5s;
+    }
   }
   &.login_submit{
     float: none; width: 250px; padding-top:12px;

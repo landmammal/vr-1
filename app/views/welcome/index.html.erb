@@ -3,65 +3,97 @@
 	<div class="home_top_wrapper" style="background-image:url('/assets/frame_home.jpg');">
 		<div class="home_top">
 			<%= render 'layouts/menuhome' %>
-			<!-- <div class="sub_menu_home">
-				for indivituals | for managers
-			</div> -->
-	    	<div class="home_info_1">
-	    		<span class="js-start">Learn</span>
-	    		<span class="js-title" style="display:none;" >Video Rehearser</span>
-	    		<span class="js-learn_home"> Anything </span>
-	    	</div>
 
-	    	<div class="home_info_3"> Virtual Video Training & Coaching Platform </div>
-		    <!-- <button class="big_btn green_sft get_started">Transform Yourself</button> -->
+		    	
+			<div class="home_top_text">
+		    	<div class="home_info_1">
+		    		<span class="js-start">Learn</span>
+		    		<span class="js-title" style="display:none;" >
+		    			Video Rehearser
+		    		</span>
+		    		<span class="js-learn_home"> Anything </span>
+		    	</div>
+
+		    	<div class="home_info_3"> Virtual Video Training & Coaching Platform </div>
 
 			
-			<center style="margin:60px auto;">
-				<a href="demo"><div class="demo">Schedule a demo</div></a>
-				<div class="demo_form" style="display:none;">
-					<h2>Schedule a Demo</h2>
-					<%= form_tag  do %>
-						<%= text_field_tag :first_name, nil, placeholder:'First name *', class:'js-first_name js-form half' %>
-						<%= text_field_tag :last_name, nil, placeholder:'Last name *', class:'js-last_name js-form half' %>
-						<%= text_field_tag :email, nil, placeholder:'Email *', class:'js-email js-form full' %>
-						<%= text_field_tag :phone_number, nil, placeholder:'Phone number', class:'js-phone_number js-form full' %>
-						<div class="half" style=" width: calc(100% - 155.39); font-size: 18px; padding: 10px 0; float: left; text-align: left;">
-							Set a date:
-						</div>
-						<%= date_field :date, nil, class:'js-date half'%><br>
-						<%= submit_tag "schedule demo", class:'js-schedule_demo green_sft' %>
-						<button class="js-cancel_sched red">cancel</button>
-						<div class="form_err">  </div>
-					<%end%>
-				</div>
-				<div class="check_mark" style="display:none;"></div>
-				<div id="notice" style="float:none; width: 350px; padding: 5px; display: none;">
-					Thank you for scheduling a demo, we will contact you soon.
-				</div>
-			</center>
-
-
-		    <br><br><br>
-			
-
-			<a href="#"><div class="search_popup">Search Courses</div></a>
-			<div class="search_box">
-				<script type="text/javascript"> allCoursesjson('<%= @courses %>') </script>
-		    	<form class="search_course_form" method="get">
-			    	<input type="text" class="search_course_term" placeholder="Search Courses">
-			    	<select class="search_course_type" name="search_course_type">
-			    		<option value="all">All</option>
-			    		<option value="paid">Paid</option>
-			    		<option value="free">Free</option>
-			    		<option value="invite">Invite</option>
-			    	</select>
-			    	<button class="blue search_course_btn" type="submit">Search</button>
-			    </form>
+				<center style="margin:60px auto;">
+					<a href="demo"><div class="demo">Schedule a demo</div></a>
+					<div class="demo_form" style="display:none;">
+						<h2>Schedule a Demo</h2>
+						<%= form_tag  do %>
+							<%= text_field_tag :first_name, nil, placeholder:'First name *', class:'js-first_name js-form half' %>
+							<%= text_field_tag :last_name, nil, placeholder:'Last name *', class:'js-last_name js-form half' %>
+							<%= text_field_tag :email, nil, placeholder:'Email *', class:'js-email js-form full' %>
+							<%= text_field_tag :phone_number, nil, placeholder:'Phone number', class:'js-phone_number js-form full' %>
+							<div class="half" style=" width: calc(100% - 155.39); font-size: 18px; padding: 10px 0; float: left; text-align: left;">
+								Set a date:
+							</div>
+							<%= date_field :date, nil, class:'js-date half'%><br>
+							<%= submit_tag "schedule demo", class:'js-schedule_demo green_sft' %>
+							<button class="js-cancel_sched red">cancel</button>
+							<div class="form_err">  </div>
+						<%end%>
+					</div>
+					<div class="check_mark" style="display:none;"></div>
+					<div id="notice" style="float:none; width: 350px; padding: 5px; display: none;">
+						Thank you for scheduling a demo, we will contact you soon.
+					</div>
+				</center>
 		    </div>
+
+
+
+			
+			<div class="search_section">
+				<a href="#"><div class="search_popup">Search Courses</div></a>
+				<div class="search_box">
+					<script type="text/javascript"> allCoursesjson('<%= @courses %>') </script>
+			    	<form class="search_course_form" method="get">
+				    	<input type="text" class="search_course_term" placeholder="Search Courses">
+				    	<select class="search_course_type" name="search_course_type">
+				    		<option value="all">All</option>
+				    		<option value="paid">Paid</option>
+				    		<option value="free">Free</option>
+				    		<option value="invite">Invite</option>
+				    	</select>
+				    	<button class="blue search_course_btn" type="submit">Search</button>
+				    </form>
+			    </div>
+			</div>
 		</div>
 	</div>
 
+
+
+		<div class="home_submenu">
+			<div class="menu"> 
+				<a href="#">	
+					<div class="menu_item"><span class="text">OVERVIEW</span></div>
+				</a>
+						
+				<a href="#">	
+					<div class="menu_item"><span class="text">INSTRUCTORS</span></div>
+				</a>
+						
+				<a href="#">	
+					<div class="menu_item"><span class="text">TRAINEES</span></div>
+				</a>
+						
+				<a href="#">	
+					<div class="menu_item"><span class="text">MANAGERS</span></div>
+				</a>
+						
+				<a href="#">	
+					<div class="menu_item"><span class="text">CREATORS</span></div>
+				</a>
+			</div>
+		</div>
+
+
+
 	<div class="site_wrapper" style="padding:0 10px 30px; margin-top:0; text-align: center; overflow:hidden;">
+
 		<div class="search_results_home">
 			<div class="result_search_terms"></div>
 			<hr>
@@ -138,7 +170,7 @@
 			</script>
 		</div>
 
-		<a href="/markets"><div class="info_box qtr">
+		<!-- <a href="/markets"><div class="info_box qtr">
 			<div class="image" style="background-image: url('/assets/home/interview_training.jpg');"></div>
 			<div class="title blue">Interview Training</div>
 		</div></a>
@@ -153,30 +185,33 @@
 		<a href="/markets"><div class="info_box qtr">
 			<div class="image" style="background-image: url('/assets/home/hospitality.jpg');"></div>
 			<div class="title blue">Hospitality</div>
-		</div></a>
+		</div></a> -->
 
 		
 
 		<hr style="margin:100px 0 50px; border: #fff;">
-		<div class="home_sec">ENGINEERED TO TRAIN</div>
+		<div class="home_sec">
+			<img src="/assets/transform.svg"><br>
+			ENGINEERED TO TRANSFORM
+		</div>
 		<hr style="margin:50px 0; border: #fff;">
 
 
 		<div class="info_box thrd">
-			<img src="/assets/expert.svg">
-			<div class="title trans">Emulate to Achieve</div>
+			<!-- <img src="/assets/expert.svg"> -->
+			<div class="title">Emulate to Achieve</div>
 			<div class="desc">Use the platform to exceed personal and professional expectations.</div>
 		</div>
 
 		<div class="info_box thrd">
-			<img src="/assets/review_rehearse.svg">
-			<div class="title trans">Review & Rehearse to Mastery</div>
+			<!-- <img src="/assets/review_rehearse.svg"> -->
+			<div class="title">Review & Rehearse to Mastery</div>
 			<div class="desc">Watch, rehearse and evaluate yourself with the help of a role model.</div>
 		</div>
 
 		<div class="info_box thrd">
-			<img src="/assets/transform.svg">
-			<div class="title trans">Transform Your Career</div>
+			<!-- <img src="/assets/transform.svg"> -->
+			<div class="title">Transform Your Career</div>
 			<div class="desc">With authentic & long lasting growth, become who you’re destined to be.</div>
 		</div>
 
@@ -185,9 +220,15 @@
 
 	
 	<div class="devices" style="background-image:url('/assets/home/device_bg.jpg');">
-		<div class="half1">l</div>
-		<div class="half2" style="text-align:center;">
-			<img src="/assets/home/devices.png" alt="" width="90%">
+		<div class="halfsec">
+		<div class="devicetext">
+			<span class="from_anywhere">
+				Easy to use
+			</span><br>
+			All you need is a working webcam
+		</div>
+			<img class="computers" src="/assets/home/devices.png" alt="">
+			<img class="camera" src="/assets/home/camera.png" alt="">
 		</div>
 	</div>
 

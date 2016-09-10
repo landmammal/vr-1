@@ -17,6 +17,7 @@
 header.header{
   padding:0 10px; position: relative; z-index:5; text-align:center;
 	background-color:rgba(255,255,255,0.8); overflow:hidden;
+  transition: 0.5s;
   &.home{ background-color:rgba(0,0,0,0.5); 
     a{ color:white; }
     & .menu_list{
@@ -219,4 +220,31 @@ header.header{
   padding: 45px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+
+
+
+
+/* Mobile Layout: 480px and below. */
+@media only screen and (max-width: 480px) {
+  header.header{
+    padding:0 10px 10px;
+    text-align: center;
+    & .logo{
+      float:none; padding:10px 0; width:100%;
+      img{ height:40px; }
+    }
+  }
+}
+/* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
+
+@media only screen and (min-width: 481px) {
+
+}
+
+/* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
+
+@media only screen and (min-width: 769px) {
+
 }
