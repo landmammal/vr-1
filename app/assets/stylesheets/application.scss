@@ -236,6 +236,9 @@ header.header{
       img{ height:40px; }
     }
   }
+  .half{
+    width:95%; float:none; padding: 5px; margin:2.5%; overflow:hidden;
+  }
 }
 /* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
 

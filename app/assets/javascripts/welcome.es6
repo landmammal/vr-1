@@ -162,6 +162,20 @@ var pageReady = function(){
 	// 		$('.halfsec').height(halfsec);
 	// 	}
 	// });
+	function youtubeSize(){
+		if (window_width < 481) {
+			$('iframe[class=youtube_home]').width('100%');
+			$('iframe[class=youtube_home]').height($('iframe[class=youtube_home]').width()/1.77);
+		}else{
+			$('iframe[class=youtube_home]').width('520');
+			$('iframe[class=youtube_home]').height('315');
+		}
+	}
+	youtubeSize();
+
+	$(window).resize(function(){
+		youtubeSize();
+	});
 
 
 
@@ -243,7 +257,13 @@ var pageReady = function(){
 	}, 10000);
 
 
+	$('.submenu_item').click(function(event){
+		event.preventDefault();
 
+		$('html, body').animate({
+	        scrollTop: $(".home_submenu").offset().top
+	    }, 1000);
+	});
 
 
 
