@@ -2,10 +2,11 @@
 
 	<div class="home_top_wrapper" style="background-image:url('/assets/frame_home.jpg');">
 		<div class="home_top">
-			<%= render 'layouts/menuhome' %>
+			<%= render 'layouts/menu' if request.original_fullpath == '/' && !current_user %>
 
 		    	
 			<div class="home_top_text">
+
 		    	<div class="home_info_1">
 		    		<span class="js-start">Learn</span>
 		    		<span class="js-title" style="display:none;" >
@@ -15,31 +16,29 @@
 		    	</div>
 
 		    	<div class="home_info_3"> Virtual Video Training & Coaching Platform </div>
+				<div class="demo_separation"></div>
+				<a href="#"><div class="demo">Schedule Demo</div></a>
+				<div class="demo_form" style="display:none;">
+					<h2>Schedule a Demo</h2>
+					<%= form_tag  do %>
+						<%= text_field_tag :first_name, nil, placeholder:'First name *', class:'js-first_name js-form half' %>
+						<%= text_field_tag :last_name, nil, placeholder:'Last name *', class:'js-last_name js-form half' %>
+						<%= text_field_tag :email, nil, placeholder:'Email *', class:'js-email js-form full' %>
+						<%= text_field_tag :phone_number, nil, placeholder:'Phone number', class:'js-phone_number js-form full' %>
+						<div class="half" style=" width: calc(100% - 155.39); font-size: 18px; padding: 10px 0; float: left; text-align: left;">
+							Set a date:
+						</div>
+						<%= date_field :date, nil, class:'js-date half'%><br>
+						<%= submit_tag "schedule demo", class:'js-schedule_demo green_sft' %>
+						<button class="js-cancel_sched red">cancel</button>
+						<div class="form_err">  </div>
+					<%end%>
+				</div>
+				<div class="check_mark" style="display:none;"></div>
+				<div id="notice" style="float:none; width: 350px; padding: 5px; margin:5px auto; display: none;">
+					Thank you for scheduling a demo, we will contact you soon.
+				</div>
 
-			
-				<center style="margin:60px auto;">
-					<a href="demo"><div class="demo">Schedule a demo</div></a>
-					<div class="demo_form" style="display:none;">
-						<h2>Schedule a Demo</h2>
-						<%= form_tag  do %>
-							<%= text_field_tag :first_name, nil, placeholder:'First name *', class:'js-first_name js-form half' %>
-							<%= text_field_tag :last_name, nil, placeholder:'Last name *', class:'js-last_name js-form half' %>
-							<%= text_field_tag :email, nil, placeholder:'Email *', class:'js-email js-form full' %>
-							<%= text_field_tag :phone_number, nil, placeholder:'Phone number', class:'js-phone_number js-form full' %>
-							<div class="half" style=" width: calc(100% - 155.39); font-size: 18px; padding: 10px 0; float: left; text-align: left;">
-								Set a date:
-							</div>
-							<%= date_field :date, nil, class:'js-date half'%><br>
-							<%= submit_tag "schedule demo", class:'js-schedule_demo green_sft' %>
-							<button class="js-cancel_sched red">cancel</button>
-							<div class="form_err">  </div>
-						<%end%>
-					</div>
-					<div class="check_mark" style="display:none;"></div>
-					<div id="notice" style="float:none; width: 350px; padding: 5px; display: none;">
-						Thank you for scheduling a demo, we will contact you soon.
-					</div>
-				</center>
 		    </div>
 
 

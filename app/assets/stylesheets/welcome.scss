@@ -1,10 +1,76 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+@import 'scaffold';
 
 .site_wrapper{
 	max-width:1100px; min-height:calc(100% - 245px); margin:0 auto; overflow:hidden; padding:5px 10px;
+}
+
+header.header{
+	padding:0; position: relative; z-index:5; text-align:center;
+	background-color:rgba(255,255,255,0.8); overflow:hidden;
+	transition: 0.5s;
+
+	& .menu{
+		overflow:hidden; max-width:1100px; margin:0 auto; padding:0 10px; z-index: 3;
+		position:relative;
+		&.app{ width:100%; max-width:100%; }
+	}
+
+	& .logo{
+		float:left; width:auto; position:absolute; bottom:30%;
+		font-size: 20px; color:white; font-family:'gotham_thin';
+		letter-spacing:0.05em;
+		img{ width:40px; position:relative; bottom:2px;}
+	}
+	& .menu_list{
+		float:right; overflow:hidden;
+		& .menu_item{
+			display:inline-block; float:none; padding:30px 20px; margin:0 10px;
+			font-family:'gotham_book'; font-size:13px; letter-spacing:0.05em; color:#437cbf; transition:0.5s;
+			&:hover{ transition:0.5s; }
+		}
+		& .register_item{
+		  background-color:#437cbf; border-radius:3px; color:white; font-weight:bold; padding:5px 9px;
+		  transition: 0.5s;
+		  &:hover{ background-color:#52A4FF; transition:0.5s;}
+		}
+	}
+	a{
+		color:#4482c3; font-weight:bold;
+	}
+
+
+
+	&.home{ 
+		background-color:rgba(0,0,0,0.5); 
+		// position:fixed; width:100%;
+		a{ color:white; }
+		& .menu_list{
+		  & .register_item{
+		    background-color:transparent; border:white solid 1px; border-radius:3px; color:white;
+		    &:hover{ background-color:rgba(255,255,255,0.5);}
+		  }
+		}
+	}
+
+
+	&.app{
+		position:relative; z-index: 3;
+		background-color:rgba(0,0,0,0.8); overflow:hidden;
+		a{ color:white; }
+		& .logo{
+			img{ width:40px; position:relative; bottom:-5px; left:10px;}
+		}
+		& .menu_list{
+		  & .menu_item{
+		    background-color:transparent; color:white;
+		    padding:15px 20px;
+		    &:hover{ background-color:white; color:black;}
+		  }
+		}
+	}
 }
 
 
@@ -18,7 +84,7 @@
 		width: 100%;
 		position:absolute; bottom:50%;
 		& .load_text{
-			color:#0883C3; font-size:20px; font-family:'webly_bld';
+			color:#0883C3; font-size:20px; font-family:'gotham_book';
 			margin: 5px auto;
 		}
 		& .loading_prog{
@@ -73,7 +139,8 @@
 		width: 100%;
 		transition: 1s;
 		& .home_info_1, & .home_info_2, & .home_info_3{ 
-			color:#eee; text-shadow:1px 1px black;
+			color:#eee;
+			@include text_extrude(black, 1);
 		}
 		&.demo_open{
 			top: 20%;
@@ -101,7 +168,7 @@
 	width:100%; 
 	position:absolute; bottom:0;
 	.search_popup{
-		background-color:#6A9FD9; color:white;
+		background-color:#fff; color:#333;
 		padding:4px 10px; font-weight:bold;
 		width:auto; display:inline-block;
 		border-radius:5px 5px 0 0;
@@ -153,7 +220,7 @@
 	height:100px;  width:100%; background-color:white;
 	position:relative;  z-index:3;  overflow:hidden;
 	text-align: center;
-	a .submenu_item{ color:#ccc; }
+	a .submenu_item{ color:#999; }
 	& .submenu_item{
 		position:relative;
 		height: 100px; width: 16%; display:inline-block; margin:0 0.5%;
@@ -189,6 +256,10 @@
 
 
 
+
+
+
+// REGISTER FORM
 .register_top{
 	margin:150px 0 50px; padding: 5px;
 	background-position:left 85%;
@@ -235,9 +306,18 @@
 }
 
 
+
+
+
+
+
 .modal-body{
 	height:450px; overflow:scroll;
 }
+
+
+
+
 
 
 
@@ -322,15 +402,47 @@
 
 
 /* Mobile Layout: 480px and below. */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 400px) {
 	.home_top_wrapper{
-		height:calc(100% - 120px);
+		height:100%; max-height:calc(100% - 0px);
+	}
+	.home_top{
+		& .home_top_text{
+			top: 5px;
+			&.demo_open{
+				top: 5px;
+			}
+		}
+	}
+}
+@media only screen and (max-width: 480px) {
+	header.header{
+		padding:0 10px 10px;
+		text-align: center;
+		
+	    & .logo{
+	      float:none; padding:10px 0; width:100%; position:relative;
+	    }
+	    & .menu_list{
+	      float:none; width:100%; text-align:center;
+	      & .menu_item{
+	        padding:5px 7px; margin:5px 3px 0;
+	      }
+	    }
+
+	    &.home{ position:relative; }
+		&.app{ padding:0 10px; }
+	}
+
+	.home_top_wrapper{
+		height:100%; max-height:calc(100% - 120px);
 	}
 	.home_top{
 		& .home_top_text{
 			top: 35%;
 			&.demo_open{
 				top: 20%;
+				transition: 1s;
 			}
 		}
 	}
@@ -356,7 +468,7 @@
 			}
 		}
 	}
-	.home_info_1{ font-size:40px; font-family:'webly_bld'; margin:5px auto; line-height:50px;}
+	.home_info_1{ font-size:30px; font-family:'gotham_book'; margin:5px auto; line-height:50px;}
 	.home_info_2{ font-size:20px; font-family:'webly_reg'; }
 	.home_info_3{ font-size:14px; font-family:'webly_reg'; margin:0 auto; }
 	.info_box{
@@ -401,7 +513,7 @@
 /* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
 
 @media only screen and (min-width: 481px) {
-	.home_info_1{ font-size:40px; font-family:'gotham_bld'; margin:10px auto 15px;}
+	.home_info_1{ font-size:40px; font-family:'gotham_light'; margin:10px auto 15px;}
 	.home_info_2{ font-size:20px; font-family:'webly_reg'; }
 	.home_info_3{ font-size:18px; font-family:'webly_reg'; margin:10px auto;}
 	.info_box{
@@ -437,7 +549,7 @@
 /* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
 
 @media only screen and (min-width: 769px) {
-	.home_info_1{ font-size:60px; font-family:'webly_bld'; margin:0 auto 35px;}
+	.home_info_1{ font-size:60px; font-family:'gotham_light'; margin:0 auto 35px;}
 	.home_info_2{ font-size:20px; font-family:'webly_reg'; line-height:1.5em;}
 	.home_info_3{ font-size:18px; font-family:'webly_reg'; margin:10px auto; }
 	.info_box{
