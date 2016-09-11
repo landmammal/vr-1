@@ -163,10 +163,10 @@ var pageReady = function(){
 			$('.show_practice').toggleClass('green_sft');
 			$('.lesson_video_left').show();
 			$('.lesson_video_right').show();
-			if( lesson_type == 1){
-				$('.model_video_1').show();
-			}else if( lesson_type == 2){
+			if( lesson_type == 2){
 				$('.prompt_video').show();
+			}else{
+				$('.model_video_1').show();
 			}
 			$('.rehearsal_video').show();
 	});

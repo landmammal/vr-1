@@ -35,7 +35,7 @@ class LessonsController < ApplicationController
     @models.count>0 && @prior_model ? (@prior_model.video_token ? @model_prog = 3 : @model_prog = 2 ) : (
       @models.count>0 ? @model_prog = 1 : @model_prog = 0)
 
-    @lesson_ready = true, @all_prt = true if @lesson.lesson_type == '0' && @prior_expl && @prior_prompt && @prior_model 
+    @lesson_ready = true, @all_prt = true if @lesson.lesson_type == '0' || @lesson.lesson_type == nil && @prior_expl && @prior_prompt && @prior_model 
     @lesson_ready = true, @mdl_prt = true  if @lesson.lesson_type == '1' && @prior_expl && @prior_model 
     @lesson_ready = true, @prmt_prt = true  if @lesson.lesson_type == '2' && @prior_expl && @prior_prompt
 
