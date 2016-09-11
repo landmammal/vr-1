@@ -1,3 +1,5 @@
-<% @this_video_token = @prior_prompt.video_token %>
-<%= render './shared/ziggeoplayer' %>
-<div class="lesson_script"><%= @prior_prompt.script %></div>
+<% if @all_prt || @prmt_prt %>
+	<% @this_video_token = @prior_prompt.video_token %>
+	<%= render './shared/ziggeoplayer' %>
+	<div class="lesson_script"><%= @prior_prompt.script %></div>
+<% end %>

@@ -5,13 +5,13 @@ function thisLessonsList(name, json_object){
 	for(var i in newjson){
 		var item = newjson[i];
 		// console.log(item);
-
+		var itemorder = parseInt(i)+1;
 		if(item.position_prior == 1){ var ispriority = `<div class="greendot"></div>`; }else{
 			var ispriority = ``;
 		}
 
 		var listOfItems = `<a href="/`+name+`/`+item.id+`/edit">`+
-							item.title+` `+ispriority+`</a><br>`;
+							itemorder+' - '+item.title+` `+ispriority+`</a><br>`;
 
 		$('.js_listOf'+name).append(listOfItems);
 	};
@@ -74,11 +74,11 @@ function lessonProgress(expl, prompt, model){
 	var lesson_type = $('.lesson_type').text();
 	var lessonReady = null;
 
-	if( lesson_type === '1' ){
+	if( lesson_type == 1 ){
 		if(expl==='3' && model==='3'){ lessonReady = true; }
-	}else if( lesson_type === '2' ){
+	}else if( lesson_type == 2 ){
 		if(expl==='3' && prompt==='3'){ lessonReady = true; }
-	}else if( lesson_type === '3' ){
+	}else if( lesson_type == 3 ){
 		if(prompt==='3' && model==='3'){ lessonReady = true; }
 	}else{
 		if(expl==='3' && prompt==='3' && model==='3'){ lessonReady = true; }
@@ -104,7 +104,7 @@ var pageReady = function(){
 	var practice =  '<button class="green_sft big_btn lesson_btn show_practice">Practice</button>';
 
 	var lesson_type = $('.lesson_type').text();
-	console.log(lesson_type);
+	// console.log(lesson_type);
 
 	var lesson_desc = '';
 
@@ -163,7 +163,11 @@ var pageReady = function(){
 			$('.show_practice').toggleClass('green_sft');
 			$('.lesson_video_left').show();
 			$('.lesson_video_right').show();
-			$('.model_video_1').show();
+			if( lesson_type == 1){
+				$('.model_video_1').show();
+			}else if( lesson_type == 2){
+				$('.prompt_video').show();
+			}
 			$('.rehearsal_video').show();
 	});
 

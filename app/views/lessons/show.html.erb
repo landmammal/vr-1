@@ -18,7 +18,7 @@
 
 <div class="box_sep">
   <div class="lesson_half"></div>
-  <%if @prior_expl && @prior_prompt && @prior_model && current_user.role == @r[3] %>
+  <%if @lesson_ready && current_user.role == @r[3] %>
 
     <div class="body">
       <%= render 'trainee' %>
@@ -33,7 +33,7 @@
     <!-- CREATION PROGRESS -->
 
     <div class="show_trainee_view" style="display: none;">
-        <%if @prior_expl && @prior_prompt && @prior_model %>
+        <%if @lesson_ready %>
           <%= render 'trainee' %>
           <br>
         <% end %>

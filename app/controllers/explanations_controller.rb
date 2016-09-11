@@ -32,6 +32,7 @@ class ExplanationsController < ApplicationController
   end
 
   def update
+    # @explanation.title = 'New Explanation (rename)' if params[:title] == '' || params[:title] == nil
    respond_to do |format|
       if @explanation.update(explanation_update)
         format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Explanation was successfully updated.' }
