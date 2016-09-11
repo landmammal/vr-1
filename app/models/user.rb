@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
+
   has_attached_file :profile, styles: {
     thumb: '100x100>',
     square: '200x200#',
