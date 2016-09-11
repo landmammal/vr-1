@@ -74,11 +74,11 @@ function lessonProgress(expl, prompt, model){
 	var lesson_type = $('.lesson_type').text();
 	var lessonReady = null;
 
-	if( lesson_type === 1 ){
+	if( lesson_type === '1' ){
 		if(expl==='3' && model==='3'){ lessonReady = true; }
-	}else if( lesson_type === 2 ){
+	}else if( lesson_type === '2' ){
 		if(expl==='3' && prompt==='3'){ lessonReady = true; }
-	}else if( lesson_type === 3 ){
+	}else if( lesson_type === '3' ){
 		if(prompt==='3' && model==='3'){ lessonReady = true; }
 	}else{
 		if(expl==='3' && prompt==='3' && model==='3'){ lessonReady = true; }
