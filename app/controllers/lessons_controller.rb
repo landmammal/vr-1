@@ -16,28 +16,24 @@ class LessonsController < ApplicationController
   def show
     @explanation = Explanation.new
     @explanations = @lesson.explanations.order('id ASC')
-    @explanations_json = @explanations.to_json
     @prior_expl = @lesson.explanations.find_by(position_prior: '1')
-    @explanations.count>0 && @prior_expl ? (@prior_expl.video_token ? @exp_prog = 3 : @exp_prog = 2 ) : (
-      @explanations.count>0 ? @exp_prog = 1 : @exp_prog = 0)
 
     @prompt = Prompt.new
     @prompts = @lesson.prompts.order('id ASC')
-    @prompts_json = @prompts.to_json
     @prior_prompt = @lesson.prompts.find_by(position_prior: '1')
-    @prompts.count>0 && @prior_prompt ? (@prior_prompt.video_token ? @prompt_prog = 3 : @prompt_prog = 2 ) : (
-      @prompts.count>0 ? @prompt_prog = 1 : @prompt_prog = 0)
 
     @model = Model.new
     @models = @lesson.models.order('id ASC')
-    @models_json = @models.to_json
     @prior_model = @lesson.models.find_by(position_prior: '1')
-    @models.count>0 && @prior_model ? (@prior_model.video_token ? @model_prog = 3 : @model_prog = 2 ) : (
-      @models.count>0 ? @model_prog = 1 : @model_prog = 0)
+    
 
-    @lesson_ready = true, @all_prt = true if (@lesson.lesson_type == '0' || @lesson.lesson_type == nil) && @prior_expl && @prior_prompt && @prior_model 
-    @lesson_ready = true, @mdl_prt = true  if @lesson.lesson_type == '1' && @prior_expl && @prior_model 
-    @lesson_ready = true, @prmt_prt = true  if @lesson.lesson_type == '2' && @prior_expl && @prior_prompt
+    if (@lesson.lesson_type == '0' || @lesson.lesson_type == nil) && @prior_expl && @prior_prompt && @prior_model
+      @lesson_ready = true, @all_prt = true 
+    elsif @lesson.lesson_type == '1' && @prior_expl && @prior_model 
+      @lesson_ready = true, @mdl_prt = true  
+    elsif @lesson.lesson_type == '2' && @prior_expl && @prior_prompt
+      @lesson_ready = true, @prmt_prt = true  
+    end
 
     @concept = Concept.new
     @rehearsal = Rehearsal.new

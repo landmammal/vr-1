@@ -42,6 +42,7 @@ class ModelsController < ApplicationController
   end
 
   def destroy
+    LessonModel.find_by(model_id: @model.id).destroy
     @model.destroy
     respond_to do |format|
       format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Role Model was successfully deleted.' }

@@ -45,7 +45,9 @@ class ExplanationsController < ApplicationController
   end
 
   def destroy
+    LessonExplanation.find_by(explanation_id: @explanation.id).destroy
     @explanation.destroy
+
     respond_to do |format|
       format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Explanation was successfully destroyed.' }
       format.json { head :no_content }

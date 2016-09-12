@@ -44,6 +44,7 @@ class PromptsController < ApplicationController
   end
 
   def destroy
+    LessonPrompt.find_by(prompt_id: @prompt.id).destroy
     @prompt.destroy
     respond_to do |format|
       format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Prompt was successfully deleted.' }
