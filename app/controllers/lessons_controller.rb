@@ -15,15 +15,15 @@ class LessonsController < ApplicationController
   # GET /lessons/1.json
   def show
     @explanation = Explanation.new
-    @explanations = @lesson.explanations.order('id ASC')
+    @explanations = @lesson.explanations.select(:id, :title, :position_prior, :privacy, :video_token).order('id ASC')
     @prior_expl = @lesson.explanations.find_by(position_prior: '1')
 
     @prompt = Prompt.new
-    @prompts = @lesson.prompts.order('id ASC')
+    @prompts = @lesson.prompts.select(:id, :title, :position_prior, :privacy, :video_token).order('id ASC')
     @prior_prompt = @lesson.prompts.find_by(position_prior: '1')
 
     @model = Model.new
-    @models = @lesson.models.order('id ASC')
+    @models = @lesson.models.select(:id, :title, :position_prior, :privacy, :video_token).order('id ASC')
     @prior_model = @lesson.models.find_by(position_prior: '1')
     
 

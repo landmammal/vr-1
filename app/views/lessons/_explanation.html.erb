@@ -1,5 +1,5 @@
 <% if @all_prt || @mdl_prt || @prmt_prt %>
 	<% @this_video_token = @prior_expl.video_token %>
 	<%= render './shared/ziggeoplayer' %>
-	<div class="lesson_script"><%= @prior_expl.script %></div>
+	<div class="lesson_script"><%= simple_format(@prior_expl.script) %></div>
 <% end %>

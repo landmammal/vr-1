@@ -22,7 +22,7 @@ var document_height = $(document).height();
 
 
 function railsToJson(json_string){
-	var newjson = jQuery.parseJSON(json_string.replace(/&quot;/g, '"'));
+    var newjson = jQuery.parseJSON(json_string.replace(/&quot;/g, '"'));
     return newjson;
 }
 

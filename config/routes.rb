@@ -19,10 +19,7 @@ Rails.application.routes.draw do
   end
 
   get "/test" => "welcome#test"
-  get "/courseregistrations/" => "course_registrations#index"
   get "/lessonexp/" => "lesson_explanations#index"
-  delete "/lessonexp/:id" => "lesson_explanations#delete"
-  delete "/delete_reg/:id" => "course_registrations#delete"
 
   post '/topic/create' => "topics#create"
   post '/courses/:course_id/topics/:topic_id/lessons/new' => "lessons#create"

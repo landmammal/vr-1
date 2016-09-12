@@ -1,7 +1,7 @@
 class ExplanationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_lesson, only: [:new]
-  before_action :set_explanation, only: [:show, :index, :edit, :update, :destroy]
+  before_action :set_explanation, only: [:show, :edit, :update, :destroy]
   before_action :set_explanation_update, only: [:edit, :update, :destroy]
 
   def new
