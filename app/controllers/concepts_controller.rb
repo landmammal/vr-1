@@ -46,6 +46,7 @@ class ConceptsController < ApplicationController
   end
 
   def destroy
+    @concept.lesson_concept.delete_all
     @concept.destroy
     respond_to do |format|
       format.html { redirect_to explanations_url, notice: 'Concept was successfully destroyed.' }

@@ -45,7 +45,7 @@ class ExplanationsController < ApplicationController
   end
 
   def destroy
-    LessonExplanation.find_by(explanation_id: @explanation.id).destroy
+    @explanation.lesson_explanation.delete_all
     @explanation.destroy
 
     respond_to do |format|
