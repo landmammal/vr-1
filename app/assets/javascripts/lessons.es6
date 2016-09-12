@@ -108,13 +108,13 @@ function lessonProgress(les_type, expl_arr, prompt_arr, model_arr){
 	var lessonReady = false;
 
 	
-	if( lesson_type === 0 || !lesson_type ){
+	if( lesson_type == 0 || !lesson_type ){
 		if(explanation_progress && prompt_progress && model_progress){ lessonReady = true; }
-	}else if( lesson_type === 1 ){
+	}else if( lesson_type == 1 ){
 		if(explanation_progress && model_progress){ lessonReady = true; }
-	}else if( lesson_type === 2 ){
+	}else if( lesson_type == 2 ){
 		if(explanation_progress && prompt_progress){ lessonReady = true; }
-	}else if( lesson_type === 3 ){
+	}else if( lesson_type == 3 ){
 		if(prompt_progress && model_progress){ lessonReady = true; }
 	}
 
@@ -142,21 +142,21 @@ var pageReady = function(){
 
 	var lesson_desc = '';
 
-	if(lesson_type === 1 || lesson_type === 2 || lesson_type === 3 ){
+	if(lesson_type == 1 || lesson_type == 2 || lesson_type == 3 ){
 		$('.thrd').width('48%');
 		$('.progress_unit').width('50%');
 	}
 
-	if( lesson_type === 0  || !lesson_type ){
+	if( lesson_type == 0  || !lesson_type ){
 		$('.js-lesson_buttons').html(explanation+demonstration+practice);
 
-	}else if(lesson_type === 1 || lesson_type === 2){
+	}else if(lesson_type == 1 || lesson_type == 2){
 		$('.js-lesson_buttons').html(explanation+practice);
 		$('.lesson_btn').width('19%');
-		if( lesson_type === 1){ $('.prompt_check').hide(); $('.js-prompt').hide(); lesson_desc = 'This is a Demonstration lesson, you only need the Explanation and the Role Model.';}
-		if( lesson_type === 2){ $('.model_check').hide(); $('.js-model').hide(); lesson_desc = 'This is a Question/Answer lesson, you only need the Explanation and the Prompt.';}
+		if( lesson_type == 1){ $('.prompt_check').hide(); $('.js-prompt').hide(); lesson_desc = 'This is a Demonstration lesson, you only need the Explanation and the Role Model.';}
+		if( lesson_type == 2){ $('.model_check').hide(); $('.js-model').hide(); lesson_desc = 'This is a Question/Answer lesson, you only need the Explanation and the Prompt.';}
 
-	}else if(lesson_type === 3){
+	}else if(lesson_type == 3){
 		$('.js-lesson_buttons').html(demonstration+practice);
 		$('.lesson_btn').width('19%');
 		$('.explanation_check').hide(); $('.js-explanation').hide();
