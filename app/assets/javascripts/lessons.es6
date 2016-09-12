@@ -88,7 +88,7 @@ function lessonProgress(les_type, expl_arr, prompt_arr, model_arr){
 					progressErr('caution1 ion-alert', 'Primary selection is missing video');
 				}else{
 					isReady = true;
-					console.log('READY');
+					// console.log('READY');
 					progressErr('ready ion-checkmark', name+' is ready');
 					$('.js-'+name).addClass('ready');
 				}
@@ -107,14 +107,15 @@ function lessonProgress(les_type, expl_arr, prompt_arr, model_arr){
 	var lesson_type = parseInt(les_type);
 	var lessonReady = false;
 
-	if( lesson_type == 1 ){
-		if(explanation_progress && model_progress){ lessonReady = true; }
-	}else if( lesson_type == 2 ){
-		if(explanation_progress && prompt_progress){ lessonReady = true; }
-	}else if( lesson_type == 3 ){
-		if(prompt_progress && model_progress){ lessonReady = true; }
-	}else{
+	
+	if( lesson_type === 0 || !lesson_type ){
 		if(explanation_progress && prompt_progress && model_progress){ lessonReady = true; }
+	}else if( lesson_type === 1 ){
+		if(explanation_progress && model_progress){ lessonReady = true; }
+	}else if( lesson_type === 2 ){
+		if(explanation_progress && prompt_progress){ lessonReady = true; }
+	}else if( lesson_type === 3 ){
+		if(prompt_progress && model_progress){ lessonReady = true; }
 	}
 
 
@@ -136,31 +137,32 @@ var pageReady = function(){
 	var demonstration =  '<button class="green_sft big_btn lesson_btn show_demonstrastion">Demonstration</button>';
 	var practice =  '<button class="green_sft big_btn lesson_btn show_practice">Practice</button>';
 
-	var lesson_type = $('.lesson_type').text();
+	var lesson_type = parseInt($('.lesson_type').text());
 	// console.log(lesson_type);
 
 	var lesson_desc = '';
 
-	if(lesson_type != 0){
+	if(lesson_type === 1 || lesson_type === 2 || lesson_type === 3 ){
 		$('.thrd').width('48%');
 		$('.progress_unit').width('50%');
 	}
 
-	if(lesson_type == 1 || lesson_type == 2){
+	if( lesson_type === 0  || !lesson_type ){
+		$('.js-lesson_buttons').html(explanation+demonstration+practice);
+
+	}else if(lesson_type === 1 || lesson_type === 2){
 		$('.js-lesson_buttons').html(explanation+practice);
 		$('.lesson_btn').width('19%');
-		if( lesson_type == 1){ $('.prompt_check').hide(); $('.js-prompt').hide(); lesson_desc = 'This is a Demonstration lesson, you only need the Explanation and the Role Model.';}
-		if( lesson_type == 2){ $('.model_check').hide(); $('.js-model').hide(); lesson_desc = 'This is a Question/Answer lesson, you only need the Explanation and the Prompt.';}
+		if( lesson_type === 1){ $('.prompt_check').hide(); $('.js-prompt').hide(); lesson_desc = 'This is a Demonstration lesson, you only need the Explanation and the Role Model.';}
+		if( lesson_type === 2){ $('.model_check').hide(); $('.js-model').hide(); lesson_desc = 'This is a Question/Answer lesson, you only need the Explanation and the Prompt.';}
 
-	}else if(lesson_type == 3){
+	}else if(lesson_type === 3){
 		$('.js-lesson_buttons').html(demonstration+practice);
 		$('.lesson_btn').width('19%');
 		$('.explanation_check').hide(); $('.js-explanation').hide();
 
 		lesson_desc = 'This is a direct lesson, you only need the Prompt and the Role Model.';
 
-	}else{
-		$('.js-lesson_buttons').html(explanation+demonstration+practice);
 	}
 
 	$('.lesson_desc').text(lesson_desc);
