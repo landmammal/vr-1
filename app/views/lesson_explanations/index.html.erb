@@ -30,3 +30,15 @@ MODELS: <br>
 	<%= @model %>
 	<br>
 <% end %>
+
+
+_____________<br><br>
+
+
+COURSE REGISTRATION: <br>
+
+<% @courseReg.each do |creg| %>
+	
+	<%= creg.id %> - course: <%= creg.course_id %> - user: <%= creg.user_id %> 
+	<br>
+<% end %>

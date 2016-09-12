@@ -4,6 +4,7 @@ class LessonExplanationsController < ApplicationController
 		@lessonExp = LessonExplanation.all
 		@lessonPrm = LessonPrompt.all
 		@lessonMdl = LessonModel.all
+		@courseReg = CourseRegistration.all
 
 	end
 
