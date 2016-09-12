@@ -1,0 +1,35 @@
+EXPLANATIONS: <br>
+
+<% @lessonExp.each do |lex| %>
+	<% @explanation = Explanation.where(id: lex.explanation_id) %>
+	<% if @explanation %>
+	<% else %>
+		<%= lex.id %> - lesson: <%= lex.lesson_id %> - explanation: <%= lex.explanation_id %> | <br>
+	<% end %>
+<% end %>
+
+___________<br><br>
+
+
+PROMPTS: <br>
+
+<% @lessonPrm.each do |prmt| %>
+	<% @prompt = Prompt.where(id: prmt.prompt_id) %>
+	<% if @prompt %>
+	<% else %>
+		<%= prmt.id %> - lesson: <%= prmt.lesson_id %> - prompt: <%= prmt.prompt_id %> | <br>
+	<% end %>
+<% end %>
+
+_____________<br><br>
+
+
+MODELS: <br>
+
+<% @lessonMdl.each do |mdl| %>
+	<% @model = Model.where(id: mdl.model_id) %>
+	<% if @model %>
+	<% else %>
+		<%= mdl.id %> - lesson: <%= mdl.lesson_id %> - model: <%= mdl.model_id %> | <br>
+	<% end %>
+<% end %>
