@@ -1,11 +1,10 @@
 EXPLANATIONS: <br>
 
 <% @lessonExp.each do |lex| %>
-	<% @explanation = Explanation.where(id: lex.explanation_id) %>
-	<% if @explanation %>
-	<% else %>
-		<%= lex.id %> - lesson: <%= lex.lesson_id %> - explanation: <%= lex.explanation_id %> | <br>
-	<% end %>
+	<% @explanation = Explanation.find_by(id: lex.explanation_id) %>
+	<%= lex.id %> - lesson: <%= lex.lesson_id %> - explanation: <%= lex.explanation_id %> | ------>>>> 
+	<%= @explanation %>
+	<br>
 <% end %>
 
 ___________<br><br>
@@ -14,11 +13,10 @@ ___________<br><br>
 PROMPTS: <br>
 
 <% @lessonPrm.each do |prmt| %>
-	<% @prompt = Prompt.where(id: prmt.prompt_id) %>
-	<% if @prompt %>
-	<% else %>
-		<%= prmt.id %> - lesson: <%= prmt.lesson_id %> - prompt: <%= prmt.prompt_id %> | <br>
-	<% end %>
+	<% @prompt = Prompt.find_by(id: prmt.prompt_id) %>
+	<%= prmt.id %> - lesson: <%= prmt.lesson_id %> - prompt: <%= prmt.prompt_id %> | ------>>>> 
+	<%= @prompt %>
+	<br>
 <% end %>
 
 _____________<br><br>
@@ -27,9 +25,8 @@ _____________<br><br>
 MODELS: <br>
 
 <% @lessonMdl.each do |mdl| %>
-	<% @model = Model.where(id: mdl.model_id) %>
-	<% if @model %>
-	<% else %>
-		<%= mdl.id %> - lesson: <%= mdl.lesson_id %> - model: <%= mdl.model_id %> | <br>
-	<% end %>
+	<% @model = Model.find_by(id: mdl.model_id) %>
+	<%= mdl.id %> - lesson: <%= mdl.lesson_id %> - model: <%= mdl.model_id %> | ------>>>> 
+	<%= @model %>
+	<br>
 <% end %>
