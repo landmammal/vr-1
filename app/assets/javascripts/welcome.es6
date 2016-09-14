@@ -21,7 +21,7 @@ function startLoadingProg(){
 	}, 100);
 
 	function startchangeLoadText(){
-		var loadText = ['Doing magic <span class="ion-ios-flask"></span>', 
+		var loadText = ['Mixing codes <span class="ion-ios-flask"></span>', 
 						'Adding love <span class="ion-ios-heart"></span>', 
 						'Fixing gears <span class="ion-gear-b"></span>', 
 						'Sharing happiness <span class="ion-happy"></span>', 
@@ -107,7 +107,7 @@ var pageReady = function(){
 			$('#termsServices').prop('checked', false);
 
 			$('.form').fadeOut(500);
-			$('.registered_confirmation').html('Thank you for signing up with Video Rehearser.<br>  <br> <img src="/assets/checkmark_white.png" width="50px"><br> <br> We will send you a message shortly with the next steps.');
+			$('.registered_confirmation').html('Thank you for signing up with Video Rehearser.<br>  <br> <img src="/assets/checkmark_white.png" width="50px"><br> <br> You will recieve an email shortly.');
 			setTimeout(function(){
 				$('.form').empty();
 				$('.registered_confirmation').fadeIn(500);
@@ -142,6 +142,8 @@ var pageReady = function(){
 		$('#termsServices').prop('checked', false);
 		changeSignupBtn();
 	});
+
+
 
 
 
@@ -225,6 +227,18 @@ var pageReady = function(){
 	}, 10000);
 
 
+	$('.submenu_item').click(function(event){
+		event.preventDefault();
+
+		$('html, body').animate({
+	        scrollTop: $(".home_submenu").offset().top
+	    }, 1000);
+	});
+
+
+
+
+
 
 
 
@@ -234,6 +248,19 @@ var pageReady = function(){
 		event.preventDefault();
 		$('.search_box').toggleClass('popup');
 		$('.search_popup').toggleClass('fade');
+
+		if($('.search_popup').hasClass('fade')){
+			setTimeout(function(){
+				$( ".search_course_term" ).focus();
+	    	}, 500);
+			$('html, body').animate({
+	        	scrollTop: $(".demo").offset().top
+	    	}, 1500);
+		}else{
+			$('html, body').animate({
+	        	scrollTop: $(".home_top_wrapper").offset().top
+	    	}, 1500);
+		}
 	});
 
 	$('.search_course_btn').click(function(event){
@@ -250,7 +277,6 @@ var pageReady = function(){
 				$('.search_results_home').addClass('show');
 			}
 			$('.result_search_terms').text("Searching for : '"+$('.search_course_term').val()+"'");
-
 		}
 		
 		if($('.search_course_term').val.length === 0 || $('.search_course_term').val() === ''){
@@ -263,81 +289,7 @@ var pageReady = function(){
 
 		}
 	});
-	
 
-
-
-
-
-
-
-	//HOME DEMO FUNCTIONALITY AND DEMO FORM
-	$('.demo').click(function(event){
-		event.preventDefault();
-		$('.demo').fadeOut(400);
-		setTimeout(function(){
-			$('.demo_form').fadeIn(400);
-		}, 400);
-	});
-
-	$('.js-cancel_sched').click(function(event){
-		event.preventDefault();
-		$('.demo_form').fadeOut(400);
-		setTimeout(function(){
-			$('.demo').fadeIn(400);
-		}, 400);
-	});
-
-	$('.js-schedule_demo').click(function(event){
-		event.preventDefault();
-		
-		var new_demo = new Object();
-		new_demo.first_name = $('.js-first_name').val();
-		new_demo.last_name = $('.js-last_name').val();
-		new_demo.email = $('.js-email').val();
-		new_demo.phone_number = $('.js-phone_number').val();
-		new_demo.date = $('.js-date').val();
-
-		var formFilled = true;
-		if($('.js-first_name').val().length === 0){ 
-			var err_name = 'first name'; formFilled = false; 
-		}else if($('.js-last_name').val().length === 0){ 
-			var err_name = 'last name'; formFilled = false; 
-		}else if($('.js-email').val().length === 0){ 
-			var err_name = 'email'; formFilled = false; 
-		}
-
-		if(formFilled){
-			$.ajax({
-				type:'POST',
-				url:'/demos',
-				data:new_demo,
-				success:function(data){
-					console.log(data);
-					console.log('Demo Posted');
-
-					$('.demo_form').toggle();
-					$('.check_mark').show();
-					$('.check_mark').html('<img src="/assets/checkmark_white.gif" width="50px">');
-					$('#notice').toggle();
-
-					$('.js-form').val('');
-
-					setTimeout(function(){
-						$('.check_mark').fadeOut(400);
-						$('#notice').fadeOut(400);					
-						setTimeout(function(){
-							$('.demo').fadeIn(400);
-						}, 400);
-					}, 2000);
-
-				}
-			});
-		}else{
-			var err = 'The '+err_name+' field has not been filled in.';
-			formERR(err);
-		}
-	});
 
 };
 

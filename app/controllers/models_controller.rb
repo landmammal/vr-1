@@ -31,7 +31,7 @@ class ModelsController < ApplicationController
 
   def update
     respond_to do |format|
-       if @model.update(model_params)
+       if @model.update(model_update)
          format.html { redirect_to  course_topic_lesson_path(@course, @topic, @lesson), notice: 'Role Model was successfully updated.' }
          format.json { render :show, status: :ok, location: @model }
        else
@@ -42,6 +42,7 @@ class ModelsController < ApplicationController
   end
 
   def destroy
+    LessonModel.find_by(model_id: @model.id).destroy
     @model.destroy
     respond_to do |format|
       format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Role Model was successfully deleted.' }
@@ -60,6 +61,9 @@ class ModelsController < ApplicationController
 
   def model_params
     params.require(:model).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :position_prior)
+  end
+  def model_update
+    params.require(:model).permit(:lesson_id, :title, :script, :privacy, :language, :token, :video_token, :position_prior)
   end
 
   def set_model_update

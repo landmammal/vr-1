@@ -5,13 +5,13 @@ function thisLessonsList(name, json_object){
 	for(var i in newjson){
 		var item = newjson[i];
 		// console.log(item);
-
+		var itemorder = parseInt(i)+1;
 		if(item.position_prior == 1){ var ispriority = `<div class="greendot"></div>`; }else{
 			var ispriority = ``;
 		}
 
 		var listOfItems = `<a href="/`+name+`/`+item.id+`/edit">`+
-							item.title+` `+ispriority+`</a><br>`;
+							itemorder+' - '+item.title+` `+ispriority+`</a><br>`;
 
 		$('.js_listOf'+name).append(listOfItems);
 	};
@@ -36,52 +36,86 @@ function allLessons( current_lesson, arr){
 }
 
 
-function lessonProgress(expl, prompt, model){
+function lessonProgress(les_type, expl_arr, prompt_arr, model_arr){
 	// console.log(expl, prompt, model)
 
-	progressStatus('explanation', expl);
-	progressStatus('prompt', prompt);
-	progressStatus('model', model);
+	var explanation_progress = progressStatus('explanation', expl_arr);
+	var prompt_progress = progressStatus('prompt', prompt_arr);
+	var model_progress = progressStatus('model', model_arr);
+
+	var isReady = false;
 
 	function progressStatus(name, stat){
-		if(stat==='3'){
-			$('.js-'+name+'_prog').addClass('ready ion-checkmark');
-			$('.js-'+name).addClass('ready');
-		}else if(stat==='2'){
-			$('.js-'+name+'_prog').addClass('caution1 ion-alert');
+		var statjson = railsToJson(stat);
+		// console.log(statjson);
+		var count_item = 0;
+		var count_prior = 0;
+		var token_check = '';
+		for( var i in statjson){
+			var item = statjson[i];
+			// console.log(item);
+			count_item += 1;
+			var vid_token = typeof(item.video_token) == 'string';
+			if(item.position_prior == '1'){ 
+				count_prior += 1 
 
-			$('.'+name+'_prog_err').text('Primary selection is missing video');
-			$('.js-'+name+'_prog').hover(function(){
-				$('.'+name+'_prog_err').toggle();
-			});
-		}else if(stat==='1'){
-			$('.js-'+name+'_prog').addClass('caution2 ion-alert');
-
-			$('.'+name+'_prog_err').text('At least one needs to be set as Primary');
-			$('.js-'+name+'_prog').hover(function(){
-				$('.'+name+'_prog_err').toggle();
-			});
-		}else{
-			$('.js-'+name+'_prog').addClass('notready ion-close');
-
-			$('.'+name+'_prog_err').text('You havent created one yet');
-			$('.js-'+name+'_prog').hover(function(){
-				$('.'+name+'_prog_err').toggle();
-			});
+				if(vid_token){
+					token_check = item.video_token;
+				}else{ 
+					token_check = '';
+				}
+			}
 		}
+		// console.log(token_check);
+		// console.log(count_prior);
+
+		function progressErr(errclass, err){
+			$('.js-'+name+'_prog').addClass(errclass);
+			$('.'+name+'_prog_err').text(err);
+		}
+
+		if(count_item > 0){
+			if( count_prior > 1 ){ 
+				isReady = false;
+				progressErr('caution2 ion-alert', 'More than one has been set as Primary, please only choose one.');
+				
+			}else if( count_prior < 1 ){
+				isReady = false;
+				progressErr('caution2 ion-alert', 'At least one needs to be set as Primary');
+			}else{
+				if(token_check == ''){
+					isReady = false;
+					progressErr('caution1 ion-alert', 'Primary selection is missing video');
+				}else{
+					isReady = true;
+					// console.log('READY');
+					progressErr('ready ion-checkmark', name+' is ready');
+					$('.js-'+name).addClass('ready');
+				}
+			}
+		}else{
+			isReady = false;
+			progressErr('notready ion-close', 'You havent created one yet');
+		}
+
+		$('.js-'+name+'_prog').hover(function(){
+			$('.'+name+'_prog_err').toggle();
+		});
+		return isReady;
 	}
 
-	var lesson_type = $('.lesson_type').text();
-	var lessonReady = null;
+	var lesson_type = parseInt(les_type);
+	var lessonReady = false;
 
-	if( lesson_type === 1 ){
-		if(expl==='3' && model==='3'){ lessonReady = true; }
-	}else if( lesson_type === 2 ){
-		if(expl==='3' && prompt==='3'){ lessonReady = true; }
-	}else if( lesson_type === 3 ){
-		if(prompt==='3' && model==='3'){ lessonReady = true; }
-	}else{
-		if(expl==='3' && prompt==='3' && model==='3'){ lessonReady = true; }
+	
+	if( lesson_type == 0 || !lesson_type ){
+		if(explanation_progress && prompt_progress && model_progress){ lessonReady = true; }
+	}else if( lesson_type == 1 ){
+		if(explanation_progress && model_progress){ lessonReady = true; }
+	}else if( lesson_type == 2 ){
+		if(explanation_progress && prompt_progress){ lessonReady = true; }
+	}else if( lesson_type == 3 ){
+		if(prompt_progress && model_progress){ lessonReady = true; }
 	}
 
 
@@ -99,60 +133,24 @@ function lessonProgress(expl, prompt, model){
 
 var pageReady = function(){
 
-	var zig_rec_w = $('.lesson_half').width() - 10;
-	var zig_play_w = $('.lesson_half').width() - 10;
-	var zig_rec_h = zig_rec_w  / 1.77;
-	var zig_play_h = zig_play_w  / 1.77;
-
-	function recSize(item){ $(item).width(zig_rec_w).height(zig_rec_h); }
-	function playSize(item){ $(item).width(zig_play_w).height(zig_play_h); }
-	function changePropSize(element){ $(element).prop('width', zig_play_w); $(element).prop('height', zig_play_h); }
-	function runChangeSize(){
-
-		changePropSize('embed'); changePropSize('object'); changePropSize('ba-ziggeoplayer');
-
-		playSize('.ziggeo_play_elem'); playSize('.video-player-inner'); playSize('.video-player-outer');
-		playSize('.ba-videoplayer-theme-modern-overlay');
-		playSize('.ba-videoplayer-theme-modern-stretch-height');
-
-		recSize('.ziggeo_rec_elem'); recSize('div[data-view-id=cid_3]'); recSize('.video-recorder-flash');
-		recSize('.ba-videorecorder-theme-modern-chooser-container');
-		recSize('.ba-videorecorder-theme-modern-size-normal');
-		recSize('.ba-videorecorder-theme-modern-size-medium');
-		recSize('.ba-videorecorder-theme-modern-blue');
-		recSize('.ba-videorecorder-noie8s');
-		recSize('.ba-videorecorder-theme-modern-container');
-		recSize('.ba-videorecorder-theme-modern-norecorder');
-		recSize('.ba-videorecorder-theme-modern-video');
-		recSize('.ba-videorecorder-theme-modern-overlay');
-	}
-	
-	setInterval(function(){ runChangeSize(); }, 1000);
-
-	$(window).resize(function(){
-		zig_rec_w = $('.lesson_half').width() - 10;
-		zig_play_w = $('.lesson_half').width() - 10;
-		zig_rec_h = zig_rec_w  / 1.77;
-		zig_play_h = zig_play_w  / 1.77;
-
-		setInterval(function(){ runChangeSize(); }, 1000);
-	});
-
 	var explanation =  '<button class="big_btn lesson_btn show_explanation">Explanation</button>';
 	var demonstration =  '<button class="green_sft big_btn lesson_btn show_demonstrastion">Demonstration</button>';
 	var practice =  '<button class="green_sft big_btn lesson_btn show_practice">Practice</button>';
 
-	var lesson_type = $('.lesson_type').text();
-	console.log(lesson_type);
+	var lesson_type = parseInt($('.lesson_type').text());
+	// console.log(lesson_type);
 
 	var lesson_desc = '';
 
-	if(lesson_type != 0){
+	if(lesson_type == 1 || lesson_type == 2 || lesson_type == 3 ){
 		$('.thrd').width('48%');
 		$('.progress_unit').width('50%');
 	}
 
-	if(lesson_type == 1 || lesson_type == 2){
+	if( lesson_type == 0  || !lesson_type ){
+		$('.js-lesson_buttons').html(explanation+demonstration+practice);
+
+	}else if(lesson_type == 1 || lesson_type == 2){
 		$('.js-lesson_buttons').html(explanation+practice);
 		$('.lesson_btn').width('19%');
 		if( lesson_type == 1){ $('.prompt_check').hide(); $('.js-prompt').hide(); lesson_desc = 'This is a Demonstration lesson, you only need the Explanation and the Role Model.';}
@@ -165,8 +163,6 @@ var pageReady = function(){
 
 		lesson_desc = 'This is a direct lesson, you only need the Prompt and the Role Model.';
 
-	}else{
-		$('.js-lesson_buttons').html(explanation+demonstration+practice);
 	}
 
 	$('.lesson_desc').text(lesson_desc);
@@ -202,7 +198,11 @@ var pageReady = function(){
 			$('.show_practice').toggleClass('green_sft');
 			$('.lesson_video_left').show();
 			$('.lesson_video_right').show();
-			$('.model_video_1').show();
+			if( lesson_type == 2){
+				$('.prompt_video').show();
+			}else{
+				$('.model_video_1').show();
+			}
 			$('.rehearsal_video').show();
 	});
 

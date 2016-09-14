@@ -1,3 +1,5 @@
-<% @this_video_token = @prior_model.video_token %>
-<%= render './shared/ziggeoplayer' %>
-<div class="lesson_script"><%= @prior_model.script %></div>
+<% if @all_prt || @mdl_prt %>
+	<% @this_video_token = @prior_model.video_token %>
+	<%= render './shared/ziggeoplayer' %>
+	<div class="lesson_script"><%= simple_format(@prior_model.script) %></div>
+<% end %>

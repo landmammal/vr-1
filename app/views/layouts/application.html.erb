@@ -52,9 +52,14 @@
 <body>
 
 <div class="loading_app" style="display:none;">
-  <span class="load_text">loading ... <span class="ion-ios-cloud-download"></span></span><br>
-  <progress class="loading_prog" value="0" max="101"></progress>
+  <div class="loading_wrapper">
+    <span class="load_text"> 
+      <span class="ion-ios-cloud-download"></span> 
+    </span><br>
+    <progress class="loading_prog" value="0" max="101"></progress>
+  </div>
 </div>
+
 <script type="text/javascript">$('.loading_app').show(); startLoadingProg();</script>
 
 
@@ -64,6 +69,7 @@
     <%= message  %><div class="close_notice"> X </div>
   </div>
 <% end %>
+
 
 <%= render 'layouts/menu' unless request.original_fullpath == '/' && !current_user %>
 

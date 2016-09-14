@@ -22,9 +22,28 @@ var document_height = $(document).height();
 
 
 function railsToJson(json_string){
-	var newjson = jQuery.parseJSON(json_string.replace(/&quot;/g, '"'));
+    var newjson = jQuery.parseJSON(json_string.replace(/&quot;/g, '"'));
     return newjson;
 }
+
+
+
+window.getCount = function(parent, getChildrensChildren){
+    var relevantChildren = 0;
+    var children = parent.childNodes.length;
+    for(var i=0; i < children; i++){
+        if(parent.childNodes[i].nodeType != 3){
+            if(getChildrensChildren)
+                relevantChildren += getCount(parent.childNodes[i],true);
+            relevantChildren++;
+        }
+    }
+    return relevantChildren;
+}
+
+// getCount(document.getElementById('test'), true);
+
+
 
 var pageReady = function(){
 	$('#myModal').on('shown.bs.modal', function () {

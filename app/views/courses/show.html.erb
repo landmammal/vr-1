@@ -22,7 +22,7 @@
 </div>
 
 <br>
-<% if course_creator || course_trainee %>
+<% if course_creator || course_trainee || @course.privacy == 0 %>
 
   <h4>Topics</h4>
   <hr>
@@ -39,14 +39,17 @@
             <% if topic.description.length > 130 %>
                ... <span class="blue">more</span>
             <% end %>
+            
+            <div class="bottom_count">
+                <% topic.lessons.each do |i| %>
+                  <div class="bar_count"></div>
+                  <% if course_trainee %>
+                  <% end %>
+                <% end %>
+            </div>
+
           </div>
         </a>
-          <% if course_trainee %>
-            <div class="topic_progress">
-              <!-- <progress value="<%= 0  %>" max="<%= @topic.lessons.to_s %>"> -->
-              <!-- </progress> -->
-            </div>
-          <% end %>
         </div>
     <% end %>
   </div>

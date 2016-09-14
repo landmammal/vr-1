@@ -9,8 +9,6 @@ class CourseRegistrationsController < ApplicationController
 		if @course_registration.save
       		render json: @course_registration
 		end
-
-
 	end
 
 	private

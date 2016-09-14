@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
+
   has_attached_file :profile, styles: {
     thumb: '100x100>',
     square: '200x200#',
@@ -42,12 +43,12 @@ class User < ActiveRecord::Base
   # sends admin and email for everyuser waiting for approval
   def send_admin_mail
     # admin = User.first
-   AdminMailer.new_user_waiting_for_approval.deliver_now
+   AdminMailer.new_user_waiting_for_approval.deliver_now!
   end
 
   # sends the user and email when they register for the site
   def send_user_notice
-    AdminMailer.user_register_notice(self).deliver_now
+    AdminMailer.user_register_notice(self).deliver_later!
   end
 
   def photo

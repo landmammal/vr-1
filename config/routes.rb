@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   get "/test" => "welcome#test"
+  get "/lessonexp/" => "lesson_explanations#index"
 
   post '/topic/create' => "topics#create"
   post '/courses/:course_id/topics/:topic_id/lessons/new' => "lessons#create"

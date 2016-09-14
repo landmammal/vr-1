@@ -1,0 +1,44 @@
+EXPLANATIONS: <br>
+
+<% @lessonExp.each do |lex| %>
+	<% @explanation = Explanation.find_by(id: lex.explanation_id) %>
+	<%= lex.id %> - lesson: <%= lex.lesson_id %> - explanation: <%= lex.explanation_id %> | ------>>>> 
+	<%= @explanation %>
+	<br>
+<% end %>
+
+___________<br><br>
+
+
+PROMPTS: <br>
+
+<% @lessonPrm.each do |prmt| %>
+	<% @prompt = Prompt.find_by(id: prmt.prompt_id) %>
+	<%= prmt.id %> - lesson: <%= prmt.lesson_id %> - prompt: <%= prmt.prompt_id %> | ------>>>> 
+	<%= @prompt %>
+	<br>
+<% end %>
+
+_____________<br><br>
+
+
+MODELS: <br>
+
+<% @lessonMdl.each do |mdl| %>
+	<% @model = Model.find_by(id: mdl.model_id) %>
+	<%= mdl.id %> - lesson: <%= mdl.lesson_id %> - model: <%= mdl.model_id %> | ------>>>> 
+	<%= @model %>
+	<br>
+<% end %>
+
+
+_____________<br><br>
+
+
+COURSE REGISTRATION: <br>
+
+<% @courseReg.each do |creg| %>
+	
+	<%= creg.id %> - course: <%= creg.course_id %> - user: <%= creg.user_id %> 
+	<br>
+<% end %>

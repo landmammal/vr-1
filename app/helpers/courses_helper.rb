@@ -1,7 +1,7 @@
 module CoursesHelper
 
 	def course_trainee
-		access = true if current_user.registered_courses.include? @course
+		access = true if current_user.registered_courses.include? @course || @course.privacy == 0
 		return access
 	end
 
