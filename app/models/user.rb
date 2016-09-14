@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   after_create :send_admin_mail, :send_user_notice
+  after_update :send_approved_email, :if => :approved_changed?
   # Include default devise modules. Others available are:
   # , :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -51,14 +52,21 @@ class User < ActiveRecord::Base
     AdminMailer.user_register_notice(self).deliver_later!
   end
 
+  # send the user and email once there able to access the website
+  def send_approved_email
+    AdminMailer.user_approved_notice(self).deliver_now!
+  end
+
+  # setting the default user avatar and banner if the user hasnt set it
   def photo
       profile_file_name.present? ? profile.url(:square) : '/assets/default_user.png'
   end
+
   def top_banner
       banner_file_name.present? ? banner.url(:medium) : '/assets/banner.jpg'
   end
 
-
+  # user roles
   enum role: [:admin, :instructor, :coach, :trainee]
   after_initialize :set_default_role, :if => :new_record?
 
