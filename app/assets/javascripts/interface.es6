@@ -172,12 +172,12 @@ var pageReady = function(){
 
 
 	// RESIZE RUN ON WINDOW CHANGE ======= //
-		setTimeout(function(){ 
+		setInterval(function(){ 
 			runChangeSize(); 
 			youtubeSize();
 			searchBtn();
 			runChangeSize(); 
-		}, 100);
+		}, 1000);
 
 		$(window).resize(function(){
 
@@ -188,11 +188,11 @@ var pageReady = function(){
 
 			
 			// devicesHome();
-			setTimeout(function(){ 
+			setInterval(function(){ 
 				youtubeSize();
 				searchBtn();
 				runChangeSize(); 
-			}, 100);
+			}, 1000);
 		});
 
 };

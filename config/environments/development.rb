@@ -15,8 +15,9 @@ Rails.application.configure do
       password:             ENV['GOOGLE_PASSWORD'],
       authentication:       'plain',
       enable_starttls_auto: true  }
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
+  # set to false for developement
+  config.action_mailer.perform_deliveries = false
+  config.action_mailer.raise_delivery_errors = false
   config.cache_classes = false
 
   # Do not eager load code on boot.

@@ -48,9 +48,11 @@ function lessonProgress(les_type, expl_arr, prompt_arr, model_arr){
 	function progressStatus(name, stat){
 		var statjson = railsToJson(stat);
 		// console.log(statjson);
+
 		var count_item = 0;
 		var count_prior = 0;
 		var token_check = '';
+		
 		for( var i in statjson){
 			var item = statjson[i];
 			// console.log(item);
@@ -111,13 +113,16 @@ function lessonProgress(les_type, expl_arr, prompt_arr, model_arr){
 	if( lesson_type == 0 || !lesson_type ){
 		if(explanation_progress && prompt_progress && model_progress){ lessonReady = true; }
 	}else if( lesson_type == 1 ){
+		// console.log(lesson_type);
+		// console.log(explanation_progress);
+		// console.log(model_progress);
+
 		if(explanation_progress && model_progress){ lessonReady = true; }
 	}else if( lesson_type == 2 ){
 		if(explanation_progress && prompt_progress){ lessonReady = true; }
 	}else if( lesson_type == 3 ){
 		if(prompt_progress && model_progress){ lessonReady = true; }
 	}
-
 
 
 	if(lessonReady){
