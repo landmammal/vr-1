@@ -1,6 +1,7 @@
 // Place all the styles related to the Courses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'scaffold';
 
 .course_title{
 	font-weight:bold; font-size:18px; margin:5px; display:inline-block;
@@ -8,10 +9,26 @@
 		color:#D1D1D1;
 	}
 }
+
+.about_course{
+	width:70%; max-width:600px; float:left; margin-bottom:30px;
+	font-size:16px;
+	& .title{ font-family:'webly_bld'; }
+}
+.course_instructor{
+	width:200px; margin:0 0 0 5px; float:right; text-align:left;
+	& .title{ font-family:'webly_bld'; }
+}
+
+.privacy{
+	font-size:12px;
+	margin:0 5px;
+}
+
 .card_list{
 	overflow:hidden;
 	& .card_item{
-		background-color:rgba(white, 0.6); border-radius:1px; border:0;
+		border-radius:1px; border:0;
 		min-width: 250px; width:24%; display:inline-block; overflow:hidden;
 		& .card_title_sec{
 			margin:0; background-color:white; overflow:hidden;
@@ -28,35 +45,99 @@
 			}
 		}
 		& .card_desc, & .card_edit_sec{
-			height: 100px; overflow:hidden;
+			background-color:rgba(white, 0.5);
+			height: 100px; overflow:hidden; position:relative;
 			padding:5px; border-top:1px dotted #CDCDCD;
+			&:hover{
+				background-color:white;
+			}
 		}
 		& .card_edit_sec{
-			padding:10px 5px; text-align:center;
+			padding:20px 5px; text-align:center;
+		}
+	}
+	
+	& .card, & .home_card{
+		margin:1% 1% 1% 0;
+		float:none; display:inline-block; 
+		border-radius: 5px ;
+		overflow: hidden; text-align:left;
+		transition:0.5s;
+		& .card_title{
+			padding:5px 8px; font-size:14px;
+			font-family:'webly_bld'; border-radius:5px 5px 0 0;
+		}
+		& .card_desc{
+			height: 110px; overflow:hidden; position:relative;
+			padding:5px 8px; color:#333;
+			border:1px solid #ddd; border-radius:0 0 5px 5px ;
+			border-top:0;
+		}
+		&:hover{
+			@include box_extrude(#ccc, 3);
+			position: relative; top:-2px;
+			transition:0.5s;
+		}
+		& .bottom_count{
+			position: absolute;
+		    left: 5px;
+		    bottom: 5px;
+		    overflow: hidden;
+		    width: 95%;
+
+			& .circle_count{
+				width:10px; height:10px; float: left; 
+			    color:#00BDFF; border-radius:50%; border:3px solid;
+			    margin: 2px 2px;
+			    &.done{ color:#28D024; background-color:#28D024; }
+			}
+			& .bar_count{
+				width:20px; float: left; 
+			    color:#00BDFF; border-radius:4px; border:3px solid;
+			    margin: 2px 2px;
+			    &.done{ color:#28D024; }
+			}
 		}
 	}
 
-	& .home_card_title_sec{
-		background-color:white; float:left; overflow:hidden; margin:5px;
-		& .home_card_title{
-			font-size:15px; font-family:'webly_bld'; float:left; text-align:left; 
-			padding:5px 15px;
+	& .home_card{
+		width:300px; 
+		overflow:hidden;
+		& .card_title{
+			background-color: #FF7C86; color: white; overflow:hidden;
+			padding:0;
+			& .title_name{ width:calc(100% - 60.92px); color: white; float:left;  padding:5px 10px;}
 		}
-		& .home_card_edit{
-			font-size:15px; font-family:'webly_bld'; float:left; text-align:center; 
-			padding:5px 10px; color:#ccc;
+		& .card_desc{
+			position:relative;
+		}
+		& .card_edit{
+			font-size:14px; font-family:'webly_bld'; float:right; text-align:center; 
+			padding:5px 10px; color:#fff;
 			&:hover{
 				background-color: #0095DD ; color:white;
 			}
 		}
-		& .home_card_delete{
-			font-size:15px; font-family:'webly_bld'; float:left; text-align:center; 
+		& .card_delete{
+			font-size:14px; font-family:'webly_bld'; float:right; text-align:center; 
 			padding:5px 10px;
 			&:hover{
 				background-color: #FF0000 ; color:white;
 				a{ color:white; }
 			}
-			a{ color:#aaa; }
+			a{ color:red; }
+		}
+	}
+
+	& .card{
+		width:250px;
+		& .card_title{
+			&.course{ background-color: #FF7C86; color: white; }
+			&.topic{ background-color: #00B1D8; color: white; }
+		}
+		& .card_desc{
+			&.course{ background-color:rgba(#fff, 0.5); }
+			&.topic{ background-color:#fff; }
 		}
 	}
 

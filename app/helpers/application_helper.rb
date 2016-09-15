@@ -11,5 +11,5 @@ module ApplicationHelper
   #     (percent > 100) ? 100 : percent.round
   #   end
   # end
-
+  
 end

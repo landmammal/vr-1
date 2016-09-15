@@ -1,50 +1,31 @@
 <div class="section js-display_my_courses" style="display: none;">
 
-	<div class="js-my_courses_list">
-		<!-- <div class="main_title">My courses:</div> -->
+	<div class="js-my_courses_list card_list">
+
 		<% @courses.each_with_index do |course, index| %>
-			<a class="js-c_<%= course.id %>" href="#">	
-				<div class="course_list">
-					<div class="title"><%= (index + 1).to_s %> - <%= course.title %></div>
-					<div class="course_status new"> n </div>
-				</div>
-				<br>
-			</a>
 
-			<div id="topics_for_<%= course.id %>" style="display: none;">
-				<% course.topics.each_with_index do |topic, index| %>
-					<a class="js-t_<%= topic.id %>" href="#">
-						<div class="white_card">
-							<div class="user_course_title"><%= (index + 1).to_s %> - <%= topic.title %></div>
-							<p class="user_courses"><progress value="0" max="100"></progress>
-							</p>
+			<a class="js-c_<%= course.id %>" href="<%= course_path(course) %>">	
+				<div class="card">
+					<div class="card_title course">
+						<%= course.title[0...30] %>
+						<% if course.title.length > 30 %>
+				            ...
+				        <% end %>
+				    </div>
+					<div class="card_desc course">
+						<%= course.description[0...130] %>
+						<% if course.description.length > 130 %>
+			               ... <span class="blue">more</span>
+			            <% end %>
+
+			            <div class="bottom_count">
+					        <% course.topics.each do |i| %>
+								<div class="circle_count"></div>
+						    <% end %>
 						</div>
-					</a>
-
-					<div id="lessons_for_<%= topic.id %>" style="display: none;">
-						<% topic.lessons.each_with_index do |lesson, index| %>
-							<!-- Checks if Lessons are ready to be viewed -->
-							<%if lesson.explanations.size > 0 && lesson.prompts.size > 0 && lesson.models.size > 0 %>
-								<a class="js-l_" href="/lessons/<%= lesson.id %> ">
-									<div class="white_card">
-										<div class="user_course_title"><%= (index + 1).to_s %> - <%= lesson.title %></div>
-										<p class="user_courses"><progress value="0" max="100"></progress></p>
-									</div>
-								</a>
-							<%end%>
-						<%end%>
 					</div>
-
-					<script type="text/javascript">
-						click_on_topic('<%= topic.id %>', '<%= topic.title %>')
-					</script>
-
-				<%end%>
-			</div>
-
-			<script type="text/javascript">
-				click_on_course('<%= course.id %>', '<%= course.title %>')
-			</script>
+				</div>
+			</a>
 
 		<%end%>
 	</div>

@@ -22,20 +22,36 @@ var document_height = $(document).height();
 
 
 function railsToJson(json_string){
-	var newjson = jQuery.parseJSON(json_string.replace(/&quot;/g, '"'));
+    var newjson = jQuery.parseJSON(json_string.replace(/&quot;/g, '"'));
     return newjson;
 }
 
+
+
+window.getCount = function(parent, getChildrensChildren){
+    var relevantChildren = 0;
+    var children = parent.childNodes.length;
+    for(var i=0; i < children; i++){
+        if(parent.childNodes[i].nodeType != 3){
+            if(getChildrensChildren)
+                relevantChildren += getCount(parent.childNodes[i],true);
+            relevantChildren++;
+        }
+    }
+    return relevantChildren;
+}
+
+// getCount(document.getElementById('test'), true);
+
+
+
 var pageReady = function(){
-
-
-	setTimeout(function(){
-		$('.flash-notice').fadeOut(2000);
-	},4000);
-
-	setTimeout(function(){
-		$('#notice').fadeOut(2000);
-	},4000)
+	$('#myModal').on('shown.bs.modal', function () {
+		$('#myInput').focus();
+	})
+	$('.agreeTerms').click(function(){
+		$('#termsServices').prop('checked', true);
+	});
 };
 
 $(document).ready(pageReady);

@@ -3,12 +3,13 @@ body {
   margin:0px auto;
   color: #333; font-size: 13px; line-height: 18px;
   // font-family: verdana, arial, helvetica, sans-serif;
-  font-family: 'webly_reg';
+  font-family: 'gotham_light';
 }
 
 html, body {
   margin:0px auto;
   height:100%;
+  transition: 0.5s;
 }
 html{overflow-y:scroll;}
 
@@ -27,9 +28,7 @@ hr{
 }
 
 p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+  font-family: 'gotham_light';
 }
 
 pre {
@@ -51,17 +50,24 @@ div {
   &.field, &.actions {
     margin-bottom: 10px;
   }
+  // transition: 0.5s;
 }
 
-#notice {
-  padding:0 5px; border-radius:3px; margin:5px;
-  background-color:#00B51A; overflow:hidden; display:inline-block;
-  text-align:center; font-weight:bold; color: white;
+#notice, .notice{
+  padding:10px 20px; margin:0;
+  background-color:#00B51A; font-size:12px; color: white;
+  & .close_notice{
+    float: right;
+  }
+  &.flash-alert{ background-color:red; }
 }
-.flash_message{
-  position: absolute; top:50px; left:200px; padding:10px; border-radius:3px; margin:5px;
-  background-color:#00B51A; overflow:hidden; display:inline-block;
-  text-align:center; font-size:15px; z-index:10; font-weight:bold; color: white;
+
+
+span{
+  &.blue{
+    color:#00B1D8;
+  }
+  transition: 0.5s;
 }
 
 
@@ -98,8 +104,6 @@ div {
 
 
 
-
-
 input[type="submit"], button{
   font-size:11px; font-weight: bold;
   border-radius:3px;
@@ -108,6 +112,7 @@ input[type="submit"], button{
   display:inline-block;
   padding:6px 15px 4px 15px; margin:5px 1% 5px 0;
   color:#666;
+  transition: 0.5s;
   &:hover{
     background-color:#ccc;
   }
@@ -122,7 +127,7 @@ input[type="submit"], button{
 
   &.blue{
     // border:1px solid #517DAC;
-    background-color:#419EFE; color:#fff;
+    background-color:#437cbf; color:#fff;
     &:hover{
       background-color:#517DAC;
     }
@@ -141,12 +146,25 @@ input[type="submit"], button{
     border-radius:3px;
   }
   &.small_btn{
-    padding:2px 5px; float: none;
+    padding:2px 6px; float: none;
     border-radius:3px;
   }
   &.big_btn{
     padding:10px 15px; float: none;
     border-radius:3px; font-size:15px;
+  }
+  &.huge_btn{
+    padding:20px 25px; float: none;
+    border-radius:3px; font-size:20px;
+    font-family: 'webly_reg';
+  }
+  &.add_btn{
+    padding:15px 14px 13px; float: none; 
+    font-size:30px; color:#fff;
+    border-radius:50%; 
+    &:hover{
+      border-radius:25%;
+    }
   }
   .btn_selected{
     background-color:#5B5B5B; color:#fff;
@@ -158,11 +176,11 @@ input[type="submit"], button{
 
 
 textarea, input, select{
-  border-radius:2px;
-  border:1px solid #999;
-  // border:0;
+  border-radius:1.5px; border:0;
+  border-bottom:2px solid #ccc;
   background-color: white;
   font-size:13px; color:#333;
+  transition: 0.5s;
   &.half{
     padding:5px 8px; margin:5px 0.5%; width:49%;
     display:inline-block; float:left;
@@ -171,28 +189,41 @@ textarea, input, select{
     padding:5px 8px; margin:5px 0.5%; width:99%;
     display:inline-block; float:none;
   }
+  &.course_create{
+    padding:5px 8px; width:50%; max-width:300px;
+    display:inline-block; float:left;
+  }
+  &:focus{
+    border-bottom:2px solid #437cbf;
+    transition: 0.5s;
+  }
 }
 
 textarea{
   min-height: 100px;
   min-width: 400px;
-  padding:5px 8px;
+  padding:5px 8px; margin:5px 5px 5px 0;
 }
 
 input{
-  padding:5px 8px; margin:5px 5px 5px 0; color:#333;
+  padding:8px 15px; margin:5px 5px 5px 0; color:#333;
+  transition: 0.5s;
   &.login{
     border-radius:0px; border:0;
     border-bottom:1px solid #999;
     background-color: transparent;
     float: none; width: 250px;
+    &:focus{
+      border-bottom:1px solid #437cbf;
+      transition: 0.5s;
+    }
   }
   &.login_submit{
-    float: none; width: 250px; padding-top:12px;
-    background-color:#4482c3; border:0px;
-    font-family:'altera'; color:#fff; font-weight:bold; font-size:15px;
+    float: none; width: 250px; padding:10px 0;
+    background-color:#437cbf; border:0px;
+    font-family:'gotham_light'; color:#fff; font-weight:bold; font-size:15px;
     &:hover{
-      background-color:#4F94FF;
+      background-color:#52A4FF;
     }
   }
 
@@ -214,7 +245,14 @@ input{
   }
 }
 
-select{padding:5px 8px; margin:5px 1% 5px 0;}
+select{
+  -webkit-appearance:none;
+  padding:5px 25px 5px 8px; margin:5px 1% 5px 0;
+  background-image:url('/assets/select-bottom.png;');
+  background-repeat: no-repeat;
+  background-size:20px; background-position:right 50%;
+
+}
 
 input:focus,
 select:focus,
@@ -235,4 +273,20 @@ a:focus {
 }
 .greendot{
   background-color:#0FDF0F;
+}
+
+@function extrude($color, $size) {
+  $t: ();
+  @for $i from 0 through $size*10{
+    $t: $t, $i*0.1px $i*0.1px $color ;
+  }
+  @return $t;
+}
+
+@mixin box_extrude($color, $size){
+  box-shadow: extrude($color, $size) ;
+}
+
+@mixin text_extrude($color, $size){
+  text-shadow: extrude($color, $size) ;
 }

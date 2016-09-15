@@ -14,41 +14,8 @@
  *= require_self
  */
 
-header.header{
-  padding:0 10px; position: relative; z-index:5; text-align:center;
-	background-color:rgba(255,255,255,0.8); overflow:hidden;
-  &.home{ background-color:rgba(0,0,0,0.5); 
-    a{ color:white; }
-    & .menu_list{
-      & .register_item{
-        background-color:transparent; border:white solid 1px; border-radius:3px; color:white;
-        &:hover{ background-color:rgba(255,255,255,0.5); transition:0.5s;}
-      }
-    }
-  }
-  & .logo{
-  	display:inline-block; float:left; padding:5px; width:130px;
-    img{ height:30px; }
-  }
-  & .menu_item{
-    display:inline-block; float:none; padding:5px 7px; margin:5px 10px 0;
-    font-family:'webly_reg'; font-size:13px; letter-spacing:0.1em; color:#4482c3;
-  }
-  & .menu_list{
-    float:right; overflow:hidden;
 
-    & .register_item{
-      background-color:#4482c3; border-radius:3px; color:white; font-weight:bold;
-      &:hover{ background-color:#3566FF; transition:0.5s;}
-    }
-  }
-  a{
-    color:#4482c3; font-weight:bold;
-  }
-  menu{
-    overflow:hidden; max-width:1100px; margin:0 auto; padding:4px 10px; z-index: 3;
-  }
-}
+
 
 
 /*TRANSPARENT BLUR BG CSS =================================*/
@@ -78,19 +45,6 @@ header.header{
 }.login_top .blur_form{
 	margin:50px auto; max-width:1100px;
 }
-
-.register_form{
-  margin: 0; height:calc(100% - 200px);
-}.register-text{
-  border-radius:0px; padding:5px 30px; margin:0;
-}.register-text form input, .register-text form select{
-  width:300px; margin:5px auto; float:none;
-}.register-text form input.button{
-  width:inherit;
-}.register-text form .label{
-  width:300px; text-align:left;
-}
-
 
 .black-bg_02{
   background: rgb(0,0,0);
@@ -146,9 +100,7 @@ header.header{
 }
 
 
-.register_height{
-    min-height:100%;
-}
+
 
 .course_topic{ 
   progress{
@@ -220,3 +172,40 @@ header.header{
   display: inline-block;
 }
 .edit { font-weight:bold; }
+
+.emailbox {
+
+  font-family: 'Architects Daughter', cursive;
+  font-size: 150%;
+  font-weight: 400;
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 50em;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+
+
+
+
+/* Mobile Layout: 480px and below. */
+@media only screen and (max-width: 480px) {
+  .half{
+    width:95%; float:none; padding: 5px; margin:2.5%; overflow:hidden;
+  }
+}
+/* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
+
+@media only screen and (min-width: 481px) {
+
+}
+
+/* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
+
+@media only screen and (min-width: 769px) {
+
+}

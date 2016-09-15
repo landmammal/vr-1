@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   
-  def index
+  def  index
     if params[:approved] == "false"
       @users = User.where( approved: false )
     else
@@ -52,4 +52,5 @@ class UsersController < ApplicationController
   def secure_params
     params.require(:user).permit(:role, :username, :approved)
   end
+  
 end

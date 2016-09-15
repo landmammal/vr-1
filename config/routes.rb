@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :feedbacks
   root 'welcome#index'
 
-  ['about','markets','process','contact'].each do |menu|
+  menu_routes = ['about','markets','product','process','contact']
+  menu_routes.push('theteam','termsandservices','FAQs','requirements')
+  menu_routes.each do |menu|
     get "/#{menu}" => "welcome##{menu}"
   end
 
@@ -19,6 +21,7 @@ Rails.application.routes.draw do
   end
 
   get "/test" => "welcome#test"
+  get "/lessonexp/" => "lesson_explanations#index"
 
   post '/topic/create' => "topics#create"
   post '/courses/:course_id/topics/:topic_id/lessons/new' => "lessons#create"

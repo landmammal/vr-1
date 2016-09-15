@@ -1,8 +1,11 @@
 class User < ActiveRecord::Base
+  after_create :send_admin_mail, :send_user_notice
+  after_update :send_approved_email, :if => :approved_changed?
   # Include default devise modules. Others available are:
   # , :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
+
 
   has_attached_file :profile, styles: {
     thumb: '100x100>',
@@ -16,14 +19,12 @@ class User < ActiveRecord::Base
     medium: '300x300>'
   }
 
-  # Validate the attached image is image/jpg, image/png, etc
+  # validations
   validates_attachment_content_type :profile, :content_type => /\Aimage\/.*\Z/
   validates_attachment_content_type :banner, :content_type => /\Aimage\/.*\Z/
-
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :age, presence: true
-  # validates :username, presence: true
 
   # checking for approved in user field
   def active_for_authentication?
@@ -38,6 +39,23 @@ class User < ActiveRecord::Base
     end
   end
 
+  # sends admin and email for everyuser waiting for approval
+  def send_admin_mail
+    # admin = User.first
+   AdminMailer.new_user_waiting_for_approval.deliver_now!
+  end
+
+  # sends the user and email when they register for the site
+  def send_user_notice
+    AdminMailer.user_register_notice(self).deliver_later!
+  end
+
+  # send the user and email once there able to access the website
+  def send_approved_email
+    AdminMailer.user_approved_notice(self).deliver_now!
+  end
+
+  # setting the default user avatar and banner if the user hasnt set it
   def photo
       profile_file_name.present? ? profile.url(:square) : '/assets/default_user.png'
   end
@@ -46,6 +64,7 @@ class User < ActiveRecord::Base
       banner_file_name.present? ? banner.url(:medium) : '/assets/banner.jpg'
   end
 
+  # user roles
   enum role: [:admin, :instructor, :coach, :trainee]
   after_initialize :set_default_role, :if => :new_record?
 
@@ -67,6 +86,7 @@ class User < ActiveRecord::Base
     [@@r[0], @@r[1], @@r[2], @@r[3]].include? self.role
   end
 
+  # associations
   has_many :course_registrations
   has_many :registered_courses, through: :course_registrations, source: :course
 

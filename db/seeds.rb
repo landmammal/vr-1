@@ -5,9 +5,10 @@ User.create([{ first_name:'Administrator', last_name:'Man', username:'admin', ra
 			 { first_name:'Coach', last_name:'Jane', username:'coach', race:'White', email:'coach@gmail.com', password:'coach123', password_confirmation:'coach123', age:Time.now, role: 2, approved: true},
 			 { first_name:'Student', last_name:'John', username:'trainee', race:'Black', email:'trainee@gmail.com', password:'trainee123', password_confirmation:'trainee123', age:Time.now, role: 3, approved: true}])
 
+
 #
 #
-# 200.times do
+# 10.times do
 #   course = Course.create(
 #     title: Faker::Space.planet,
 #     description: Faker::Lorem.sentence(4),
@@ -16,7 +17,7 @@ User.create([{ first_name:'Administrator', last_name:'Man', username:'admin', ra
 #     approval_status: "1",
 #     instructor_id: 2
 #   )
-#
+
 # # you can create more topics but then have to itirate over the topics while making lesson same for lessons and exp,prompt,model.
 #   topic = course.topics.create(
 #     title: Faker::Space.planet,
@@ -27,7 +28,7 @@ User.create([{ first_name:'Administrator', last_name:'Man', username:'admin', ra
 #     course_id: course,
 #     instructor_id:2
 #   )
-#
+
 #   lesson = topic.lessons.create(
 #     title: Faker::Space.planet,
 #     description: Faker::Lorem.sentence(4),
@@ -37,7 +38,7 @@ User.create([{ first_name:'Administrator', last_name:'Man', username:'admin', ra
 #     topic_id: topic,
 #     instructor_id:2
 #   )
-#
+
 #   lesson.explanations.create(
 #     title: Faker::Space.planet,
 #     token: "26695d8c37e99ecfce9a4e3290883e04",
@@ -48,7 +49,7 @@ User.create([{ first_name:'Administrator', last_name:'Man', username:'admin', ra
 #     lesson_id: lesson,
 #     user_id:2
 #   )
-#
+
 #   lesson.prompts.create(
 #     title: Faker::Space.planet,
 #     token: "26695d8c37e99ecfce9a4e3290883e04",
@@ -59,7 +60,7 @@ User.create([{ first_name:'Administrator', last_name:'Man', username:'admin', ra
 #     lesson_id: lesson,
 #     user_id:2
 #   )
-#
+
 #   lesson.models.create(
 #     title: Faker::Space.planet,
 #     token: "26695d8c37e99ecfce9a4e3290883e04",
