@@ -174,10 +174,14 @@ header.header{
 		border-radius:5px 5px 0 0;
 		position:relative; bottom:0px;
 		transition: 0.5s;
+		
+		&:hover{ bottom:-5px; transition: 0.3s; }
 
 		&.fade{
 			position:relative; bottom:80px;
-			transition: 0.5s; opacity:0.2;
+			opacity:0.2; background-color:black; color:white;
+			transition: 0.5s;
+			&:hover{ opacity:0.5; transition: 0.5s; }
 		}
 	}
 	.search_box{

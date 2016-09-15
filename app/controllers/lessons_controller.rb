@@ -27,11 +27,11 @@ class LessonsController < ApplicationController
     @prior_model = @lesson.models.find_by(position_prior: '1')
     
 
-    if (@lesson.lesson_type == '0' || @lesson.lesson_type == nil) && @prior_expl && @prior_prompt && @prior_model
+    if (@lesson.lesson_type.to_i == 0 || @lesson.lesson_type == nil) && @prior_expl && @prior_prompt && @prior_model
       @lesson_ready = true, @all_prt = true 
-    elsif @lesson.lesson_type == '1' && @prior_expl && @prior_model 
+    elsif @lesson.lesson_type.to_i == 1 && @prior_expl && @prior_model 
       @lesson_ready = true, @mdl_prt = true  
-    elsif @lesson.lesson_type == '2' && @prior_expl && @prior_prompt
+    elsif @lesson.lesson_type.to_i == 2 && @prior_expl && @prior_prompt
       @lesson_ready = true, @prmt_prt = true  
     end
 
