@@ -1,5 +1,10 @@
 <% if @all_prt || @mdl_prt || @prmt_prt %>
 	<% @this_video_token = @prior_expl.video_token %>
-	<%= render './shared/ziggeoplayer' %>
-	<div class="lesson_script"><%= simple_format(@prior_expl.script) %></div>
+	<% @this_added_class = 'explanation' %>
+	
+	<div class="video_black_bg"><%= render './shared/ziggeoplayer' %></div>
+	<div class="lesson_script <%= @this_added_class %>_script">
+		<%= simple_format(@prior_expl.script) %>
+	</div>
+	<%= render 'scriptcontrol' %>
 <% end %>

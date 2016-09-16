@@ -63,12 +63,26 @@
 }
 .lesson_video_center{
 	text-align:center;
-	background-color:black;
 }
 
-
+	
 .lesson_vid{
 	display:none;
+	& .video_black_bg{
+		background-color:black;
+	}
+	& .script_control{
+		background-color:#eee;
+		border-radius:0 0 5px 5px; padding: 0 15px;
+		overflow: hidden;
+		& .text{
+			float: left;
+			padding:8px 10px 8px 0;
+		}
+		input[type=range]{
+			width: 100px;
+		}
+	}
 }
 
 
@@ -99,7 +113,7 @@
 	.lesson_video_left, .lesson_video_right, .lesson_half{
 		width: 49%; float:left; margin:0 1% 0 0;
 		& .vid_title{ font-size:30px; margin:10px 0 20px; background-color:none;}
-		textarea, & .lesson_script{ min-width: 100%; margin:10px 0 5px;}
+		textarea, & .lesson_script{ min-width: 100%; margin:10px 0 0;}
 		&.main_recorder{
 			width: 70%; max-width:600px; margin:10px; float:none;
 		}

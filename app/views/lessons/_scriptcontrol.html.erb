@@ -1,0 +1,10 @@
+<div class="script_control">
+	<div class="text">Script opacity</div>
+	<div class="<%= @this_added_class %>_switch switch">
+		<div class="knob <%= @this_added_class %>_knob"></div>
+	</div>
+	<input type="range" class="<%= @this_added_class %>_script_opacity" min="0" max="1" value="1" step="0.1">
+	<script type="text/javascript">
+		scriptOpacityToggle('<%= @this_added_class %>')
+	</script>
+</div>
