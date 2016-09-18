@@ -113,10 +113,6 @@ function lessonProgress(les_type, expl_arr, prompt_arr, model_arr){
 	if( lesson_type == 0 || !lesson_type ){
 		if(explanation_progress && prompt_progress && model_progress){ lessonReady = true; }
 	}else if( lesson_type == 1 ){
-		// console.log(lesson_type);
-		// console.log(explanation_progress);
-		// console.log(model_progress);
-
 		if(explanation_progress && model_progress){ lessonReady = true; }
 	}else if( lesson_type == 2 ){
 		if(explanation_progress && prompt_progress){ lessonReady = true; }
@@ -157,10 +153,10 @@ function scriptOpacityToggle(video_type){
 
 		if($(opacity_knob).hasClass('active')){
 			opacity_slider.hide();
-			$('.'+video_type+'_script').animate({ opacity: '0' });
+			$('.'+video_type+'_script').fadeOut(400);
 		}else{
 			opacity_slider.show();
-			$('.'+video_type+'_script').animate({ opacity: opacity_slider.val() });
+			$('.'+video_type+'_script').fadeIn(parseInt(opacity_slider.val()));
 		}
 	});
 
@@ -214,9 +210,18 @@ var pageReady = function(){
 		}
 	}
 
-	var model_video = document.getElementsByClassName('model_video')[0].innerHTML;
-	var prompt_video = document.getElementsByClassName('prompt_video')[0].innerHTML;
-	var rehearsal_video = document.getElementsByClassName('rehearsal_video')[0].innerHTML;
+	if($('.model_video').text()){
+		var model_video = document.getElementsByClassName('model_video')[0].innerHTML;
+		var prompt_video = document.getElementsByClassName('prompt_video')[0].innerHTML;
+		var rehearsal_video = document.getElementsByClassName('rehearsal_video')[0].innerHTML;
+	}
+
+	function scrollToBody(){
+		// console.log('BTN Pressed');
+		$('html, body').animate({
+	        scrollTop: $(".body").offset().top
+	    }, 1000);
+	};
 
 	$('.show_explanation').click(function(){
 		$('.lesson_vid').hide();
@@ -224,6 +229,7 @@ var pageReady = function(){
 			$(this).toggleClass('green_sft');
 			$('.lesson_video_center').show();
 			$('.explanation_video').show();
+			scrollToBody();
 	});
 	$('.show_demonstrastion').click(function(){
 		$('.lesson_vid').hide();
@@ -233,8 +239,7 @@ var pageReady = function(){
 			$('.lesson_video_left').html(prompt_video);
 			$('.lesson_video_right').show();
 			$('.lesson_video_right').html(model_video);
-
-
+			scrollToBody();
 	});
 	$('.show_practice').click(function(){
 		$('.lesson_vid').hide();
@@ -248,6 +253,7 @@ var pageReady = function(){
 				$('.lesson_video_left').html(model_video);
 			}
 			$('.lesson_video_right').html(rehearsal_video);
+			scrollToBody();
 	});
 
 

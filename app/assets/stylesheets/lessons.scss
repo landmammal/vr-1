@@ -56,9 +56,21 @@
 .lesson_video_left, .lesson_video_right, .lesson_video_center{
 	text-align:left;
 	textarea, & .lesson_script{
-		height:100px; padding:10px;
+		height:150px; padding:10px;
 		border:1px solid #AAAAAA;
 		background-color:white;
+		text-align: left;
+		overflow: scroll;
+
+		&::-webkit-scrollbar {
+		    -webkit-appearance: none;
+		    width: 10px;
+		    margin: 0;
+		}
+		&::-webkit-scrollbar-thumb {
+		    border-radius: 0;
+		    background-color: rgba(0,0,0,.5);
+		}
 	}
 }
 .lesson_video_center{
