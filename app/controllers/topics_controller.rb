@@ -12,7 +12,7 @@ class TopicsController < ApplicationController
   # GET /topics/1.json
   def show
     @rehearsal = Rehearsal.new
-    @lessons = @topic.lessons
+    @lessons = @topic.lessons.order('id ASC')
   end
 
   # GET /topics/new
