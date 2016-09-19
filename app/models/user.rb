@@ -35,13 +35,12 @@ class User < ActiveRecord::Base
     if !approved?
       :not_approved
     else
-      super # Use whatever other message
+      super # we are not using this mssg
     end
   end
 
   # sends admin and email for everyuser waiting for approval
   def send_admin_mail
-    # admin = User.first
    AdminMailer.new_user_waiting_for_approval.deliver_now!
   end
 
