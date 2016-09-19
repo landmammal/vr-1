@@ -44,7 +44,8 @@ class PromptsController < ApplicationController
   end
 
   def destroy
-    @prompt.lesson_prompt.delete_all
+    # this will be invalid if prompts can be sold to other users
+    @prompt.lesson_prompts.delete_all
     @prompt.destroy
     respond_to do |format|
       format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Prompt was successfully deleted.' }
