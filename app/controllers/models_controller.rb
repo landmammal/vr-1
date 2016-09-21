@@ -42,7 +42,8 @@ class ModelsController < ApplicationController
   end
 
   def destroy
-    @model.lesson_model.delete_all
+    # will become invalid if models are sold to other users
+    @model.lesson_models.delete_all
     @model.destroy
     respond_to do |format|
       format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Role Model was successfully deleted.' }
