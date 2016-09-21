@@ -243,6 +243,39 @@ input{
     font-size:12px;
     padding:5px; margin-top:10px;
   }
+  &[type='range']{
+    -webkit-appearance: none;
+    margin: 0 5px;
+    padding:8px 0;
+    background: transparent;
+    border:0;
+
+    &::-webkit-slider-runnable-track{
+        margin:6px 5px;
+        height: 5px;
+        background: #5AB6FF;
+        border: none;
+        border-radius: 3px;
+    }
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: none;
+        height: 16px; width: 16px;
+        border:1px #5AB6FF solid;
+        border-radius: 50%;
+        background: white;
+        margin-top: -5px;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &:focus::-webkit-slider-runnable-track {
+        background: #5AB6FF;
+    }
+  }
 }
 
 select{
@@ -261,6 +294,29 @@ button:focus,
 a:focus {
     outline: none;
     text-decoration:none;
+}
+
+
+.switch{
+  background-color:#5AB6FF;
+  height: 15px; width: 30px; float: left;
+  position:relative;
+  margin: 10px 5px;
+  border-radius:5px;
+  & .knob{
+    border-radius:3px;
+    height: 11px; width: 40%;
+    position:absolute;
+    margin: 2.4px;
+    background-color:white;
+    &.active{
+      right: 0;
+      background-color:white;
+    }
+  }
+  &.active{
+    background-color:red;
+  }
 }
 
 

@@ -113,10 +113,6 @@ function lessonProgress(les_type, expl_arr, prompt_arr, model_arr){
 	if( lesson_type == 0 || !lesson_type ){
 		if(explanation_progress && prompt_progress && model_progress){ lessonReady = true; }
 	}else if( lesson_type == 1 ){
-		// console.log(lesson_type);
-		// console.log(explanation_progress);
-		// console.log(model_progress);
-
 		if(explanation_progress && model_progress){ lessonReady = true; }
 	}else if( lesson_type == 2 ){
 		if(explanation_progress && prompt_progress){ lessonReady = true; }
@@ -136,7 +132,40 @@ function lessonProgress(les_type, expl_arr, prompt_arr, model_arr){
 	}
 }
 
+
+
+
+function scriptOpacityToggle(video_type){
+	// console.log(video_type);
+
+	var opacity_slider = $('.'+video_type+'_script_opacity');
+	var opacity_knob = $('.'+video_type+'_knob');
+	var opacity_switch = $('.'+video_type+'_switch');
+
+	opacity_slider.change(function(){
+		// console.log($(this).val());
+		$('.'+video_type+'_script').css('opacity', $(this).val());
+	});
+
+	opacity_switch.click(function(){
+		$(opacity_knob).toggleClass('active');
+		opacity_switch.toggleClass('active');
+
+		if($(opacity_knob).hasClass('active')){
+			opacity_slider.hide();
+			$('.'+video_type+'_script').fadeOut(400);
+		}else{
+			opacity_slider.show();
+			$('.'+video_type+'_script').fadeIn(parseInt(opacity_slider.val()));
+		}
+	});
+
+}
+
+
 var pageReady = function(){
+
+	var lesson_videos = ['explanation','prompt','model','rehearsal'];
 
 	var explanation =  '<button class="big_btn lesson_btn show_explanation">Explanation</button>';
 	var demonstration =  '<button class="green_sft big_btn lesson_btn show_demonstrastion">Demonstration</button>';
@@ -181,35 +210,59 @@ var pageReady = function(){
 		}
 	}
 
+	if($('.model_video').text() || $('.prompt_video').text()){
+		var model_video = document.getElementsByClassName('model_video')[0].innerHTML;
+		var prompt_video = document.getElementsByClassName('prompt_video')[0].innerHTML;
+		var rehearsal_video = document.getElementsByClassName('rehearsal_video')[0].innerHTML;
+	}
+
+	function scrollToBody(){
+		// console.log('BTN Pressed');
+		$('html, body').animate({
+	        scrollTop: $(".body").offset().top
+	    }, 1000);
+	};
+
 	$('.show_explanation').click(function(){
 		$('.lesson_vid').hide();
 		checkBtn();
-			$('.show_explanation').toggleClass('green_sft');
+			$(this).toggleClass('green_sft');
 			$('.lesson_video_center').show();
 			$('.explanation_video').show();
+			scrollToBody();
 	});
 	$('.show_demonstrastion').click(function(){
 		$('.lesson_vid').hide();
 		checkBtn();
-			$('.show_demonstrastion').toggleClass('green_sft');
+			$(this).toggleClass('green_sft');
 			$('.lesson_video_left').show();
+			$('.lesson_video_left').html(prompt_video);
 			$('.lesson_video_right').show();
-			$('.prompt_video').show();
-			$('.model_video_2').show();
+			$('.lesson_video_right').html(model_video);
+			scrollToBody();
 	});
 	$('.show_practice').click(function(){
 		$('.lesson_vid').hide();
 		checkBtn();
-			$('.show_practice').toggleClass('green_sft');
+			$(this).toggleClass('green_sft');
 			$('.lesson_video_left').show();
 			$('.lesson_video_right').show();
 			if( lesson_type == 2){
-				$('.prompt_video').show();
+				$('.lesson_video_left').html(prompt_video);
 			}else{
-				$('.model_video_1').show();
+				$('.lesson_video_left').html(model_video);
 			}
-			$('.rehearsal_video').show();
+			$('.lesson_video_right').html(rehearsal_video);
+			scrollToBody();
 	});
+
+
+	var deep_player_duration = $('ziggeoplayer.prompt_video div.ba-videoplayer-container div.ba-videoplayer-overlay ba-videoplayer-controlbar').prop('ba-duration');
+	var deep_player_position = $('ziggeoplayer.prompt_video div.ba-videoplayer-container div.ba-videoplayer-overlay ba-videoplayer-controlbar');
+
+	// var deep_player = $('ziggeoplayer.prompt_video').prop('class');
+	console.log($('ziggeoplayer.prompt_video'));
+
 
 	// var lessonShowWindows = ['explanation', 'prompt', 'model'];
 	// var toRemove = lessonShowWindows.map((item) => item);

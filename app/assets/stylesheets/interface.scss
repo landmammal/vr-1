@@ -43,12 +43,12 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 }
 
 .leftpanel{
-	width:$mn_pnl_s; min-height:$min_height; float:left;
+	width:$mn_pnl_s;
 	background-color:$panel_color; position:relative; z-index:5;
 	padding:0;
 	&.max{
 		width:$mx_pnl_s; min-height:$min_height;
-		text-align:left; font-size: 14px; padding:0;
+		text-align:left; font-size: 11px; padding:0;
 	}
 	& .panel_seperator{
 		border-bottom:1px dotted #aaa; padding:0; margin:0; overflow:hidden; z-index:1;
@@ -72,7 +72,7 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 			}
 
 			& .text_label{ 
-				display:none; float:left; font-size:15px; padding:1px 0 1px 10px;
+				display:none; float:left; font-size:12px; padding:1px 0 1px 10px;
 			}
 			
 			& .notif{
@@ -115,12 +115,12 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 }
 
 .inter_content{
-	width:calc(100% - 50px); min-height:$min_height; float:left;
+	width:calc(100%); min-height:$min_height; float:left;
 	background-color:rgba(255,255,255,0.9); 
 	padding:0; margin:0;
 
 	&.max{
-		width:calc(100% - 150px);
+		width:calc(100%);
 	}
 
 	a {
@@ -175,7 +175,7 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 footer{
 	background-color:#363636; color:white; min-height:200px;
 	& .footer_width{
-		max-width: 1100px; margin:10px auto 0; padding:5px; overflow: hidden;
+		max-width: 1100px; margin:0 auto; padding:5px; overflow: hidden;
 		text-align: center;
 		
 		& .footer_newsletter{
@@ -190,7 +190,7 @@ footer{
 			}
 		}
 
-		& .footer_l{ width: 410px; }
+		& .footer_l{ width: 455px; }
 		& .footer_m{ width: 26%; }
 		& .footer_r{ width: 21%; text-align:right; margin-bottom:20px; line-height:2em;}
 	}
