@@ -191,11 +191,11 @@ header.header{
 		position:absolute; bottom:-80px;
 		transition: 0.5s;
 		input.search_course_term{
-			max-width:400px; width:60%; border:0; border-radius:3px 0 0 3px; margin:-4px; padding:10px 15px;
-			background-color:#f1f1f1;
+			max-width:400px; width:60%; border:0; border-radius:3px 0 0 3px; margin:0 -4px 0 0; padding:10px 15px 9px;
+			background-color:#f1f1f1; position:relative; top:-1px;
 		}
 		select{
-			-webkit-appearance:none; padding:10px 15px;
+			-webkit-appearance:none; padding:11px 15px;
 			width:auto; border-radius: 0 3px 3px 0;  border:0;
 		}
 		button.search_course_btn{

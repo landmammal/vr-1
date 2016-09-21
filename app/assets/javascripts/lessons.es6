@@ -257,6 +257,11 @@ var pageReady = function(){
 	});
 
 
+	var deep_player_duration = $('ziggeoplayer.prompt_video div.ba-videoplayer-container div.ba-videoplayer-overlay ba-videoplayer-controlbar').prop('ba-duration');
+	var deep_player_position = $('ziggeoplayer.prompt_video div.ba-videoplayer-container div.ba-videoplayer-overlay ba-videoplayer-controlbar');
+
+	// var deep_player = $('ziggeoplayer.prompt_video').prop('class');
+	console.log($('ziggeoplayer.prompt_video'));
 
 
 	// var lessonShowWindows = ['explanation', 'prompt', 'model'];

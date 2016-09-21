@@ -10,10 +10,34 @@ class RehearsalsController < ApplicationController
   end
 
   def all
-    @rehearsals = Rehearsal.all
+
+    @user_courses = current_user.courses
+    @user_topics = current_user.topics
+    @user_lessons = current_user.lessons
+    @rehearsals = []
+
+    @user_lessons.each do |c|
+      @rehearsals << c.rehearsals
+    end
+
+    # @user_courses.each do |c| 
+    #   topics = c.topics
+    #   @user_topics << topics
+
+    #   topics.each do |t|
+    #     lessons = t.lessons
+    #     @user_lessons << lessons
+
+    #     lessons.each do |less|
+    #       @rehearsals << less.rehearsals.where(submission: true)
+    #     end
+    #   end
+    # end
+
   end
 
   def show
+    # @new_feedback = Feedback.new
   end
 
   def new
