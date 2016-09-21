@@ -4,7 +4,7 @@
   <br>
   <% @lesson.rehearsals.each do |rehearsal| %>
     <% if rehearsal.submission == true %>
-            <%= form_for [rehearsal, @feedback],html: {id: "emptyFeedbackForm"}, remote: true  do |f| %>
+            <%= form_for [rehearsal, @feedback],html: {id: "FeedbackForm"}, remote: true  do |f| %>
                 <% if @feedback.errors.any? %>
                     <div id="error_explanation">
                       <h2><%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:</h2>
@@ -64,16 +64,3 @@
 <% end %>
 <br>
 
-<script>
-
-  $("#feedbackRecorder").hide()
-  $("ul li ").on( "click", "i", function () {
-    console.log('here we are');
-    var form = $( document.getElementById("emptyFeedbackForm") )
-    form.submit
-
-    $("#feedbackRecorder").show()
-
-  });
-
-</script>

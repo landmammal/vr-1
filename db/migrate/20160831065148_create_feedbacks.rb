@@ -3,7 +3,7 @@ class CreateFeedbacks < ActiveRecord::Migration
     create_table :feedbacks do |t|
       t.belongs_to :user, index: true, foreign_key: true
       t.references :rehearsal
-      t.integer :review_status
+      t.integer :rehearsal_rating
       t.integer :concept_review
       t.text :notes
       t.string :token
