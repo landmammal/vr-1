@@ -216,6 +216,19 @@ footer{
 
 
 
+.user_bubble{
+	border-radius:30px; position:relative;
+	padding:0; overflow:hidden;
+	img{ float:left; }
+	& .info{
+		float: left;
+		position:absolute;
+		left:5px;
+		bottom:50%;
+	}
+}
+
+
 
 .section{
 	// background-color:white; 
