@@ -40,6 +40,8 @@ class RehearsalsController < ApplicationController
 
   def show
     # @new_feedback = Feedback.new
+    @feedback = Feedback.new
+    @performance_feedback = PerformanceFeedback.new
   end
 
   def new
