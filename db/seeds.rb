@@ -1,13 +1,11 @@
-# require 'faker'
+require 'faker'
 
-User.create([{ first_name:'Administrator', last_name:'Man', username:'admin', race:'White', email:'admin@gmail.com', password:'admin123', password_confirmation:'admin123', age:Time.now, role: 0, approved: true},
-			 { first_name:'Instructor', last_name:'Sir', username:'instructor', race:'Asian', email:'instructor@gmail.com', password:'instructor123', password_confirmation:'instructor123', age:Time.now, role: 1, approved: true},
-			 { first_name:'Coach', last_name:'Jane', username:'coach', race:'White', email:'coach@gmail.com', password:'coach123', password_confirmation:'coach123', age:Time.now, role: 2, approved: true},
-			 { first_name:'Student', last_name:'John', username:'trainee', race:'Black', email:'trainee@gmail.com', password:'trainee123', password_confirmation:'trainee123', age:Time.now, role: 3, approved: true}])
+# User.create([{ first_name:'Administrator', last_name:'Man', username:'admin', race:'White', email:'admin@gmail.com', password:'admin123', password_confirmation:'admin123', age:Time.now, role: 0, approved: true},
+# 			 { first_name:'Instructor', last_name:'Sir', username:'instructor', race:'Asian', email:'instructor@gmail.com', password:'instructor123', password_confirmation:'instructor123', age:Time.now, role: 1, approved: true},
+# 			 { first_name:'Coach', last_name:'Jane', username:'coach', race:'White', email:'coach@gmail.com', password:'coach123', password_confirmation:'coach123', age:Time.now, role: 2, approved: true},
+# 			 { first_name:'Student', last_name:'John', username:'trainee', race:'Black', email:'trainee@gmail.com', password:'trainee123', password_confirmation:'trainee123', age:Time.now, role: 3, approved: true}])
 
 
-#
-#
 # 10.times do
 #   course = Course.create(
 #     title: Faker::Space.planet,
@@ -72,3 +70,10 @@ User.create([{ first_name:'Administrator', last_name:'Man', username:'admin', ra
 #     user_id:2
 #   )
 # end
+
+# Rehearsal.create(trainee_id: 4, course_id: 5, topic_id: 5, lesson_id: 5, group_id: nil, video_type: 'ziggeo', token: '', video_token: '61a2afb4365a410b6c5f6ffc81e60f5d', script: 'This is script 1', submission: true)
+# Rehearsal.create(trainee_id: 4, course_id: 10, topic_id: 10, lesson_id: 10, group_id: nil, video_type: 'ziggeo', token: '', video_token: '61a2afb4365a410b6c5f6ffc81e60f5d', script: 'This is script 2', submission: true)
+# Rehearsal.create(trainee_id: 4, course_id: 2, topic_id: 2, lesson_id: 2, group_id: nil, video_type: 'ziggeo', token: '', video_token: '61a2afb4365a410b6c5f6ffc81e60f5d', script: 'This is script 3', submission: true)
+# LessonRehearsal.create(rehearsal_id: 1, lesson_id: 5)
+# LessonRehearsal.create(rehearsal_id: 2, lesson_id: 10)
+# LessonRehearsal.create(rehearsal_id: 3, lesson_id: 2)

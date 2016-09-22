@@ -1,40 +1,29 @@
 class RehearsalsController < ApplicationController
   before_action :set_rehearsal, only: [:show, :edit, :destroy, :update]
-  before_action :set_lesson, only: [:index, :create]
+  before_action :set_lesson, only: [:create]
 
   # before_action :set_topic, only: [:update]
   # before_action :set_course, only: [:update]
 
+  # def index
+  #   @rehearsals = Rehearsal.all
+  #   @feedback = Feedback.new
+  #   @performance_feedback = PerformanceFeedback.new
+  # end
+
   def index
-    @rehearsals = Rehearsal.all
+
     @feedback = Feedback.new
     @performance_feedback = PerformanceFeedback.new
-  end
 
-  def all
+    @course_rehearsals = []
+    current_user.courses.each { |course| course.rehearsals.each { |c| @course_rehearsals << c if c.submission == true } if course.rehearsals.size > 0 }
+    @topic_rehearsals = []
+    current_user.topics.each { |topic| topic.rehearsals.each { |t| @topic_rehearsals << t if t.submission == true } if topic.rehearsals.size > 0 }
+    @lesson_rehearsals = []
+    current_user.lessons.each { |lesson| lesson.rehearsals.each { |l| @lesson_rehearsals << l if l.submission == true } if lesson.rehearsals.size > 0 }
 
-    @user_courses = current_user.courses
-    @user_topics = current_user.topics
-    @user_lessons = current_user.lessons
-    @rehearsals = []
 
-    @user_lessons.each do |c|
-      @rehearsals << c.rehearsals
-    end
-
-    # @user_courses.each do |c| 
-    #   topics = c.topics
-    #   @user_topics << topics
-
-    #   topics.each do |t|
-    #     lessons = t.lessons
-    #     @user_lessons << lessons
-
-    #     lessons.each do |less|
-    #       @rehearsals << less.rehearsals.where(submission: true)
-    #     end
-    #   end
-    # end
 
   end
 

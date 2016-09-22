@@ -10,4 +10,6 @@ class Course < ActiveRecord::Base
   has_many :group_registrations
   has_many :groups, through: :group_registrations
 
+  has_many :rehearsals
+
 end
