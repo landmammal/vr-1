@@ -1,0 +1,2 @@
+class PerformanceFeedbacksController < ApplicationController
+end

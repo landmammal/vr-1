@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :performance_feedbacks
+  resources :feedbacks
   root 'welcome#index'
 
   menu_routes = ['about','markets','product','process','contact']
@@ -51,8 +53,11 @@ Rails.application.routes.draw do
     resources :prompts
     resources :models
     resources :concepts
-    resources :rehearsals
+    resources :rehearsals do
+      resources :feedbacks
+    end
   end
+
 
   resources :lessons do
     resources :practices, shallow: true do
