@@ -1,7 +1,7 @@
 <% @this_added_class = 'rehearsal' %>
 <%= render './shared/ziggeorecorder' %>
 
-<%= form_for [@lesson, @rehearsal],html: {id: "rehearsalsForm"}, remote: true  do |f| %>
+<%= form_for @rehearsal, html: {id: "rehearsalsForm"}, remote: true  do |f| %>
     <% if @rehearsal.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this rehearsal from being saved:</h2>

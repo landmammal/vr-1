@@ -1,6 +1,9 @@
 class RehearsalsController < ApplicationController
-  before_action :set_rehearsal, only: [:show, :edit, :destroy, :update]
+  before_action :set_rehearsal, only: [:edit, :destroy, :update]
   before_action :set_lesson, only: [:create]
+  before_action :set_lesson_rehearsal, only: [:show]
+
+  before_action :authenticate_user!
 
   # before_action :set_topic, only: [:update]
   # before_action :set_course, only: [:update]
@@ -23,7 +26,18 @@ class RehearsalsController < ApplicationController
     @lesson_rehearsals = []
     current_user.lessons.each { |lesson| lesson.rehearsals.each { |l| @lesson_rehearsals << l if l.submission == true } if lesson.rehearsals.size > 0 }
 
+    @user_feedback = current_user.feedbacks.select(:id)
+    
+    @rehearsals_without_feedback = []
+    @rehearsals_with_feedback = []
 
+    @course_rehearsals.each do |rehearsal| 
+      if rehearsal.feedbacks.size < 1 
+        @rehearsals_without_feedback << rehearsal
+      else
+        @rehearsals_with_feedback << rehearsal
+      end
+    end 
 
   end
 
@@ -98,5 +112,10 @@ class RehearsalsController < ApplicationController
 
   def set_lesson
     @lesson = Lesson.find(params[:lesson_id])
+  end
+
+  def set_lesson_rehearsal
+    @rehearsal = Rehearsal.find(params[:id])
+    @lesson = Lesson.find(@rehearsal.lesson_id)
   end
 end

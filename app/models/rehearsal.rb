@@ -2,6 +2,8 @@ class Rehearsal < ActiveRecord::Base
   belongs_to :trainee, class_name: 'User'
 
   belongs_to :course
+  belongs_to :topic
+  belongs_to :lesson
   belongs_to :group
 
   has_many :lesson_rehearsals

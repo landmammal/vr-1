@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20160901075943) do
     t.string   "token"
     t.string   "video_token"
     t.boolean  "approved"
+    t.boolean  "viewed_by_user"
     t.string   "video_type"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false

@@ -118,8 +118,8 @@ var pageReady = function(){
 
 	var zig_rec_w = $('.lesson_half').width() - 10;
 	var zig_play_w = $('.lesson_half').width() - 10;
-	var zig_rec_h = zig_rec_w  / 1.77;
-	var zig_play_h = zig_play_w  / 1.77;
+	var zig_rec_h = zig_rec_w  / 1.5;
+	var zig_play_h = zig_play_w  / 1.5;
 
 	function recSize(item){ $(item).width(zig_rec_w).height(zig_rec_h); }
 	function playSize(item){ $(item).width(zig_play_w).height(zig_play_h); }
@@ -183,8 +183,8 @@ var pageReady = function(){
 
 			zig_rec_w = $('.lesson_half').width() - 10;
 			zig_play_w = $('.lesson_half').width() - 10;
-			zig_rec_h = zig_rec_w  / 1.77;
-			zig_play_h = zig_play_w  / 1.77;
+			zig_rec_h = zig_rec_w  / 1.5;
+			zig_play_h = zig_play_w  / 1.5;
 
 			
 			// devicesHome();

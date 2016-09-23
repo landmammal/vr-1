@@ -9,6 +9,7 @@ class CreateFeedbacks < ActiveRecord::Migration
       t.string :token
       t.string :video_token
       t.boolean :approved
+      t.boolean :viewed_by_user
       t.string :video_type
 
       t.timestamps null: false

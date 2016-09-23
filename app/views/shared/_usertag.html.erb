@@ -1,7 +1,4 @@
-<% @this_user.profile_file_name.present? ? profile = @this_user.profile.url(:square) : profile = '/assets/default_user.png' %>
-<div class="">
-	<img src="<%= profile %>"  class="img-circle" width='60px'>
-	<div class="info">
-		
-	</div>
+<div class="user_bubble <%= @r %>">
+	<img src="<%= student_pic %>"  class="img-circle">
+	<div class="info"></div>
 </div>

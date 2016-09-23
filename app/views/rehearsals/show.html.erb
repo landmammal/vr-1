@@ -1,25 +1,113 @@
-<% if current_user.level_2 %>
-  <!-- get user id  -->
-  <% user = @rehearsal.trainee %>
+<% @this_user = @rehearsal.trainee %>
 
-  <div class="profile_pic">
-    <a href="/users/<%= user %>"><img src="<%= user.photo %>" class="img-circle"></a>
+<div class="top_info">
+  <div class="course_title">
+    Rehearsal submission for :: 
+    <a href="<%= course_path(@rehearsal.course) %>"><%= @rehearsal.course.title %></a> >> 
+    <a href="<%= course_topic_path(@rehearsal.course, @rehearsal.topic) %>"><%= @rehearsal.topic.title %></a> >> 
+    <a href="<%= course_topic_lesson_path(@rehearsal.course, @rehearsal.topic, @rehearsal.lesson) %>">
+      <%= @rehearsal.lesson.title %>
+    </a>
   </div>
-  <%=  user.first_name %>,<%= user.last_name %>
-  <br>
-  <br>
-  <!-- get all rehearsals from that user  display rehearsal lesson its coming from -->
-  <% user.rehearsals.each do |rehearsal| %>
-    <% if current_user == rehearsal.course.instructor && rehearsal.submission == true %>
-      <% topic = Topic.find(rehearsal.topic_id)%>
-      <% lesson = Lesson.find(rehearsal.lesson_id)%>
-      <%= rehearsal.course.title %> >> <%= topic.title %> >> <%= lesson.title %>
-      <% @this_video_token = rehearsal.video_token %>
-      <div class="lesson_half main_recorder">
-      	<%= render './shared/ziggeoplayer' %>
-      </div>
-    <% end %>
-  <% end %>
+</div>
 
-  <%= link_to 'Back', lesson_rehearsals_path(@rehearsal.lesson_id) %>
-<% end %>
+
+<div class="box_sep">
+  <div class="title">
+    <a href="/users/<%= @this_user.id %>"><img src="<%= student_pic %>" class="img-circle" width='40px'></a>
+     <%=  @this_user.first_name %>,<%= @this_user.last_name %>
+  </div>
+
+  <div class="lesson_half"></div>
+  
+  <div class="body">
+
+    <% if current_user.level_3 %>
+
+      <% @lesson.rehearsals.each do |rehearsal| %>
+        <% if rehearsal.submission == true %>
+                <%= form_for [rehearsal, @feedback],html: {id: "FeedbackForm"}, remote: true  do |f| %>
+                    <% if @feedback.errors.any? %>
+                        <div id="error_explanation">
+                          <h2><%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:</h2>
+
+                          <ul>
+                            <% @feedback.errors.full_messages.each do |messsage| %>
+                                <li><%= message %></li>
+                            <% end %>
+                          </ul>
+                        </div>
+                    <% end %>
+                    <%= f.text_field :rehearsal_id, type:"hidden", value:rehearsal.id  %><br>
+                    <%= f.text_field :user_id, type:"hidden", value:current_user.id %>
+                    <%= f.text_field :video_token, type:"hidden" %>
+                    <%= f.text_field :token, type:"hidden" %>
+                <% end %>
+
+                <div class="lesson_video_left lesson_vid" style="display:block;">
+                  <div class="rehearsal_video">
+                    <% @this_video_token = rehearsal.video_token %>
+                    <% @this_added_class = 'rehearsal' %>
+                    <div><%= render './shared/ziggeoplayer' %></div>
+                    <div class="lesson_script <%= @this_added_class %>_script">
+                      <%= simple_format(rehearsal.script) %>
+                    </div>
+                    <%= render './lessons/scriptcontrol' %>
+                  </div>
+                </div>
+
+                <div class="lesson_video_right lesson_vid" style="display:block;">
+                  <div class="rehearsal_video">
+                  
+                    <%= render './shared/ziggeorecorder' %>
+                  
+                    <br>
+
+                    <%= form_for [rehearsal, @feedback]  do |f| %>
+                        <% if @feedback.errors.any? %>
+                            <div id="error_feedback">
+                              <h2><%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:</h2>
+                              <ul>
+                                <% @feedback.errors.full_messages.each do |message| %>
+                                    <li><%= message %></li>
+                                <% end %>
+                              </ul>
+                            </div>
+                        <% end %>
+                        <%= f.text_area :notes, placeholder:'Write them a note here...' %><br>
+                        <%= f.check_box :approved %> <strong>Mark Lesson Completed  </strong><br>
+                        <%= f.submit 'Add Feedback', class:'blue' %>
+                    <% end %>
+
+                  </div>
+                </div>
+
+
+        <% end %>
+      <% end %>
+    <% end %>
+    
+    <%= link_to 'Back', rehearsals_path %>
+
+  </div>
+</div>
+
+<br><hr><br>
+
+<div class="box_sep">
+  <div class="title">
+    OTHER REHEARSALS FROM <%=  @this_user.first_name.capitalize %> <%= @this_user.last_name.capitalize %>
+  </div>
+
+  <div class="body">
+
+    <% @this_user.rehearsals.each do |rehearsal| %>
+      <% if current_user == rehearsal.course.instructor && rehearsal.submission == true %>
+        <% topic = Topic.find(rehearsal.topic_id)%>
+        <% lesson = Lesson.find(rehearsal.lesson_id)%>
+        <%= rehearsal.course.title %> >> <%= topic.title %> >> <%= lesson.title %><br>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>

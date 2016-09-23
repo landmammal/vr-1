@@ -9,7 +9,7 @@ class WelcomeController < ApplicationController
   end
 
   def contact
-    redirect_to '/'
+    redirect_to 'https://videorehearser.typeform.com/to/UJHxYm'
   end
 
   def theprocess
