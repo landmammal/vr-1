@@ -210,7 +210,7 @@ var pageReady = function(){
 		}
 	}
 
-	if($('.model_video').text() || $('.prompt_video').text()){
+	if($('.model_video').text() || $('.prompt_video').text() || $('.rehearsal_video').text()){
 		var model_video = document.getElementsByClassName('model_video')[0].innerHTML;
 		var prompt_video = document.getElementsByClassName('prompt_video')[0].innerHTML;
 		var rehearsal_video = document.getElementsByClassName('rehearsal_video')[0].innerHTML;
@@ -246,22 +246,16 @@ var pageReady = function(){
 		checkBtn();
 			$(this).toggleClass('green_sft');
 			$('.lesson_video_left').show();
-			$('.lesson_video_right').show();
+			$('.lesson_video_rehearsal').show();
+			$('.rehearsal_video').show();
 			if( lesson_type == 2){
 				$('.lesson_video_left').html(prompt_video);
 			}else{
 				$('.lesson_video_left').html(model_video);
 			}
-			$('.lesson_video_right').html(rehearsal_video);
 			scrollToBody();
 	});
 
-
-	var deep_player_duration = $('ziggeoplayer.prompt_video div.ba-videoplayer-container div.ba-videoplayer-overlay ba-videoplayer-controlbar').prop('ba-duration');
-	var deep_player_position = $('ziggeoplayer.prompt_video div.ba-videoplayer-container div.ba-videoplayer-overlay ba-videoplayer-controlbar');
-
-	// var deep_player = $('ziggeoplayer.prompt_video').prop('class');
-	console.log($('ziggeoplayer.prompt_video'));
 
 
 	// var lessonShowWindows = ['explanation', 'prompt', 'model'];

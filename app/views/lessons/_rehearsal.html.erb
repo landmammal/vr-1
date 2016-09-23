@@ -14,7 +14,8 @@
         </div>
     <% end %>
 
-    <%= f.text_area :script, class:@this_added_class+'_script', placeholder:'Write your script here...' %> <%= render 'scriptcontrol' %>
+    <%= f.text_area :script, class:'rehearsal_script', placeholder:'Write your script here...' %>
+    <%= render 'scriptcontrol' %>
     <%= f.text_field :course_id, type:"hidden", value:@course.id  %><br>
     <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
     <%= f.text_field :lesson_id, type:"hidden", value:@lesson.id %><br>
