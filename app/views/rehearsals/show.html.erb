@@ -1,21 +1,23 @@
 <% @this_user = @rehearsal.trainee %>
+<% @link_to_lesson = course_topic_lesson_path(@rehearsal.course, @rehearsal.topic, @rehearsal.lesson) %>
 
 <div class="top_info">
   <div class="course_title">
-    Rehearsal submission for :: 
-    <a href="<%= course_path(@rehearsal.course) %>"><%= @rehearsal.course.title %></a> >> 
-    <a href="<%= course_topic_path(@rehearsal.course, @rehearsal.topic) %>"><%= @rehearsal.topic.title %></a> >> 
-    <a href="<%= course_topic_lesson_path(@rehearsal.course, @rehearsal.topic, @rehearsal.lesson) %>">
-      <%= @rehearsal.lesson.title %>
-    </a>
+    Rehearsal submission for the lesson ::  
+    <%= link_to @rehearsal.lesson.title, @link_to_lesson %>
   </div>
 </div>
+
+
+  <%= link_to @rehearsal.course.title, course_path(@rehearsal.course) %> >> 
+  <%= link_to @rehearsal.topic.title, course_topic_path(@rehearsal.course, @rehearsal.topic) %> >>
+  <%= link_to @rehearsal.lesson.title, @link_to_lesson %>
 
 
 <div class="box_sep">
   <div class="title">
     <a href="/users/<%= @this_user.id %>"><img src="<%= student_pic %>" class="img-circle" width='40px'></a>
-     <%=  @this_user.first_name %>,<%= @this_user.last_name %>
+     <%=  @this_user.first_name %> <%= @this_user.last_name %>
   </div>
 
   <div class="lesson_half"></div>
@@ -87,7 +89,7 @@
       <% end %>
     <% end %>
     
-    <%= link_to 'Back', rehearsals_path %>
+    <%= link_to 'Back', rehearsals_all_path %>
 
   </div>
 </div>
@@ -96,16 +98,15 @@
 
 <div class="box_sep">
   <div class="title">
-    OTHER REHEARSALS FROM <%=  @this_user.first_name.capitalize %> <%= @this_user.last_name.capitalize %>
+    OTHER REHEARSALS FOR :: <%= link_to @rehearsal.lesson.title, @link_to_lesson %>
   </div>
 
   <div class="body">
 
-    <% @this_user.rehearsals.each do |rehearsal| %>
-      <% if current_user == rehearsal.course.instructor && rehearsal.submission == true %>
-        <% topic = Topic.find(rehearsal.topic_id)%>
-        <% lesson = Lesson.find(rehearsal.lesson_id)%>
-        <%= rehearsal.course.title %> >> <%= topic.title %> >> <%= lesson.title %><br>
+    <% @rehearsal.lesson.rehearsals.each_with_index do |rehearsal, index| %>
+      <% @course = rehearsal.course %>
+      <% if course_creator && rehearsal.submission == true %>
+        <%= link_to ('Rehearsal #'+(index + 1).to_s), course_topic_lesson_path(rehearsal.course, rehearsal.topic, rehearsal.lesson) %><br>
       <% end %>
     <% end %>
 

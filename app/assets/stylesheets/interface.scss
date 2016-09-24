@@ -79,21 +79,25 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 			}
 			
 			& .notif{
-				width:10px; height:10px;
+				width:12px; height:12px;
 				border-radius:50%; background-color:red;
 				position: relative; top:0px; right:-10px; z-index:3;
 				text-align: center;
 				& .notif_num{
-					font-size: 0;
+					font-size: 6px;
+					position: relative; top:-23px;
 					&.max{
 						position: relative; top:-2px; z-index:3;
-						font-size: 11px; font-weight:bold;
+						font-size: 8px; font-weight:bold;
 					}
 				}
 				&.max{
 					width:20px;  height:14px; display:inline-block;
 					border-radius:5px; background-color:red;
 					margin-top: 3px;
+				}
+				& .no_notif{
+					display: none;
 				}
 			}
 		}
@@ -150,7 +154,7 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 
 
 	& .top_info{
-		padding:0 5px; margin:0 0 10px; border-bottom:solid #ddd 2px; overflow:hidden;
+		padding:5px; margin:0 0 10px; border-bottom:solid #ddd 2px; overflow:hidden;
 		width:100%; background-color:#fff;
 		& .user_stat{ 
 			padding:0; margin:0 15px; float:left; text-align:center;

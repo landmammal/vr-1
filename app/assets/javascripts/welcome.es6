@@ -40,6 +40,10 @@ function startLoadingProg(){
 			if(lt < loadText.length){ changeLoadText(); }else{ lt=0; changeLoadText(); }
 		}, 5000);
 	}
+	setTimeout(function(){ 
+		$('.loading_reload').fadeIn(500) 
+	}, 12000);
+	$('.loading_reload').click(function(){ location.reload(); });
 }
 
 function endLoadingProg(){

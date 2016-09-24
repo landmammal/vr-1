@@ -1,6 +1,6 @@
 class RehearsalsController < ApplicationController
   before_action :set_rehearsal, only: [:edit, :destroy, :update]
-  before_action :set_lesson, only: [:create]
+  before_action :set_lesson, only: [:create, :index]
   before_action :set_lesson_rehearsal, only: [:show]
 
   before_action :authenticate_user!
@@ -8,16 +8,16 @@ class RehearsalsController < ApplicationController
   # before_action :set_topic, only: [:update]
   # before_action :set_course, only: [:update]
 
-  # def index
-  #   @rehearsals = Rehearsal.all
-  #   @feedback = Feedback.new
-  #   @performance_feedback = PerformanceFeedback.new
-  # end
-
   def index
-
+    @rehearsals = Rehearsal.all
     @feedback = Feedback.new
     @performance_feedback = PerformanceFeedback.new
+  end
+
+  def all
+
+    # @feedback = Feedback.new
+    # @performance_feedback = PerformanceFeedback.new
 
     @course_rehearsals = []
     current_user.courses.each { |course| course.rehearsals.each { |c| @course_rehearsals << c if c.submission == true } if course.rehearsals.size > 0 }
@@ -42,7 +42,6 @@ class RehearsalsController < ApplicationController
   end
 
   def show
-    # @new_feedback = Feedback.new
     @feedback = Feedback.new
     @performance_feedback = PerformanceFeedback.new
   end

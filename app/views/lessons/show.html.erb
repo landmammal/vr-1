@@ -8,9 +8,11 @@
   <div class="course_title">
     <%= @lesson.title %>
   </div>
-  <div class="lesson_ready" style="display: none;">
-    <span class="ion-checkmark-circled" title="Lesson is ready"></span> <button class=" green_sft js-trainee_view" title="Click to view trainee window"> Trainee view </button>
-  </div>
+  <% if lesson_creator %>
+    <div class="lesson_ready" style="display: none;">
+      <span class="ion-checkmark-circled" title="Lesson is ready"></span> <button class=" green_sft js-trainee_view" title="Click to view trainee window"> Trainee view </button>
+    </div>
+  <% end %>
 </div>
 
 
