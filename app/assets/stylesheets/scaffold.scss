@@ -303,19 +303,23 @@ a:focus {
   position:relative;
   margin: 10px 5px;
   border-radius:5px;
+  transition: 0.5s;
   & .knob{
     border-radius:3px;
     height: 11px; width: 40%;
     position:absolute;
     margin: 2.4px;
     background-color:white;
+    transition: 0.5s;
     &.active{
       right: 0;
       background-color:white;
+      transition: 0.5s;
     }
   }
   &.active{
     background-color:red;
+    transition: 0.5s;
   }
 }
 
