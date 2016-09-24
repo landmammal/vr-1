@@ -26,6 +26,9 @@
 	<script type="text/javascript">
 		panel_section('common_panel')
 	</script>
+	<span class="Feedback_notif" style="display:none;"><%= feedback_notif.to_s %></span>
+	<span class="Chat_notif" style="display:none;"><%= chat_notif.to_s %></span>
+	<span class="Tasks_notif" style="display:none;"><%= tasks_notif.to_s %></span>
 
 	<div class="sidepanel js-side_Tasks">TASKS</div>
 	<div class="sidepanel js-side_Chat">CHAT</div>
@@ -43,6 +46,8 @@
 		<script type="text/javascript">
 			panel_section('instructor_panel')
 		</script>
+
+		<span class="Rehearsals_notif" style="display:none;"><%= rehearsals_notif.to_s %></span>
 
 		<div class="sidepanel js-side_My_Tools">
 			Intructor Tools<br>

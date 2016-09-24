@@ -4,10 +4,10 @@ class ApiController < ApplicationController
 		render json: @courses
 	end
 
-  def rehearsals_single_api
-    @rehearsal = Rehearsal.find(params[:id])
-    render json: @rehearsal
-  end
+	def rehearsals_single_api
+		@rehearsal = Rehearsal.find(params[:id])
+	    render json: @rehearsal
+	end
 
 	def course_registrations_single
 		@course_registration = CourseRegistration.find(params[:id])
@@ -36,6 +36,14 @@ class ApiController < ApplicationController
 		render json: @tasks
 	end
 
+	def feedback_api
+		@all_rehearsals = current_user.rehearsals.select(:id, :course_id)
+		@feedback_notif = []
+		@all_rehearsals.each { |rehearsal| @feedback_notif << rehearsal if rehearsal.feedbacks.count > 0 }
+
+		render json: @feedback_notif
+	end
+
 	def chat_api
 		@demos = Demo.all
 		render json: @demos
@@ -46,23 +54,24 @@ class ApiController < ApplicationController
 
 
 	def site_panel_api
-		@site_panel = [{name:'Home', icon:'svg', iname:'home', link:user_path(current_user), link_target:'', notif:false},
-                       {name:'Settings', icon:'svg', iname:'settings', link:edit_user_registration_path, link_target:'', notif:false}]
+		@site_panel = [{name:'Home', icon:'ion', iname:'ion-home', link:user_path(current_user), link_target:'', notif:false},
+                       {name:'Settings', icon:'ion', iname:'ion-ios-gear', link:edit_user_registration_path, link_target:'', notif:false}]
         render json: @site_panel
         # edit_user_registration_path
 	end
 
 	def common_panel_api
-		@common_panel = [{name:'Chat', icon:'svg', iname:'chat', link:'#', link_target:'', notif:true},
-                         {name:'Courses', icon:'ion', iname:'ion-map', link:search_courses_path, link_target:'', notif:false},
-                         {name:'Tasks', icon:'ion', iname:'ion-android-checkbox-outline', link:'#', link_target:'', notif:true}]
+		@common_panel = [{name:'Courses', icon:'ion', iname:'ion-map', link:search_courses_path, link_target:'', notif:false},
+						 {name:'Feedback', icon:'ion', iname:'ion-archive', link:feedback_all_path, link_target:'', notif:true},
+                         {name:'Tasks', icon:'ion', iname:'ion-android-checkbox', link:'#', link_target:'', notif:true},
+                         {name:'Chat', icon:'ion', iname:'ion-android-chat', link:'#', link_target:'', notif:true}]
         render json: @common_panel
 	end
 
 	def instructor_panel_api
 		@instructor_panel = [{name:'My Courses', icon:'ion', iname:'ion-university', link:courses_path, link_target:'', notif:false},
                          {name:'My Tools', icon:'ion', iname:'ion-settings', link:'#', link_target:'', notif:false},
-                         {name:'Rehearsals', icon:'ion', iname:'ion-android-list', link:rehearsals_all_path, link_target:'', notif:false}]
+                         {name:'Rehearsals', icon:'ion', iname:'ion-android-list', link:rehearsals_all_path, link_target:'', notif:true}]
         render json: @instructor_panel
 	end
 

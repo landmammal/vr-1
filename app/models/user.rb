@@ -19,14 +19,12 @@ class User < ActiveRecord::Base
     medium: '300x300>'
   }
 
-  # Validate the attached image is image/jpg, image/png, etc
+  # validations
   validates_attachment_content_type :profile, :content_type => /\Aimage\/.*\Z/
   validates_attachment_content_type :banner, :content_type => /\Aimage\/.*\Z/
-
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :age, presence: true
-  # validates :username, presence: true
 
   # checking for approved in user field
   def active_for_authentication?
@@ -37,13 +35,12 @@ class User < ActiveRecord::Base
     if !approved?
       :not_approved
     else
-      super # Use whatever other message
+      super # we are not using this mssg
     end
   end
 
   # sends admin and email for everyuser waiting for approval
   def send_admin_mail
-    # admin = User.first
    AdminMailer.new_user_waiting_for_approval.deliver_now!
   end
 
@@ -88,6 +85,7 @@ class User < ActiveRecord::Base
     [@@r[0], @@r[1], @@r[2], @@r[3]].include? self.role
   end
 
+  # associations
   has_many :course_registrations
   has_many :registered_courses, through: :course_registrations, source: :course
 
@@ -103,6 +101,7 @@ class User < ActiveRecord::Base
   has_many :prompts
   has_many :models
   has_many :explanations
+  has_many :feedbacks
   has_many :concepts
   has_many :rehearsals, foreign_key: :trainee_id
 end

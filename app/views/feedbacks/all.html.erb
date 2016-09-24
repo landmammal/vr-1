@@ -1,0 +1,15 @@
+<div class="rehearsals_title">
+	You have <span class="num"><%= @rehearsals_with_new_feedback.size.to_s %></span> Rehearsals with feedback.
+</div>
+
+<hr>
+
+<div class="box_sep">
+	<div class="title">Rehearsal Feedback</div>
+	<div class="body">
+		<% @rehearsals_with_new_feedback.each do |rehearsal| %>
+			<%= link_to rehearsal.lesson.title, rehearsal_feedbacks_path(rehearsal) %>
+			<br>
+		<% end %>
+	</div>
+</div>

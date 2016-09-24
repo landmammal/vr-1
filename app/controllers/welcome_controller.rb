@@ -9,7 +9,7 @@ class WelcomeController < ApplicationController
   end
 
   def contact
-    redirect_to '/'
+    
   end
 
   def theprocess

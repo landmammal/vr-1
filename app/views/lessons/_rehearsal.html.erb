@@ -1,7 +1,7 @@
 <% @this_added_class = 'rehearsal' %>
 <%= render './shared/ziggeorecorder' %>
 
-<%= form_for [@lesson, @rehearsal],html: {id: "rehearsalsForm"}, remote: true  do |f| %>
+<%= form_for [@lesson, @rehearsal], html: {id: "rehearsalsForm"}, remote: true  do |f| %>
     <% if @rehearsal.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this rehearsal from being saved:</h2>
@@ -14,7 +14,8 @@
         </div>
     <% end %>
 
-    <%= f.text_area :script, class:@this_added_class+'_script', placeholder:'Write your script here...' %> <%= render 'scriptcontrol' %>
+    <%= f.text_area :script, class:'rehearsal_script', placeholder:'Write your script here...' %>
+    <div style="margin-top:-5px;"><%= render 'scriptcontrol' %></div>
     <%= f.text_field :course_id, type:"hidden", value:@course.id  %><br>
     <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
     <%= f.text_field :lesson_id, type:"hidden", value:@lesson.id %><br>

@@ -18,22 +18,27 @@ function panel_section(panel_name){
 	        		var icon = `<span class="icon `+item.iname+`"></span>`;
 	        	};
 
-	        	if(item.notif === true){
-	        		var notification = `<div class="notif"> <div class="notif_num"></div></div>`;
-	        		$.ajax({
-						url:'/'+item.name.toLowerCase()+'/api',
-						success:function(notifi){
-						}
-					});
-	        	}else{
-	        		var notification = ''; 
-	        	};
 
 	        	if(item.link === '#'){ 
 	        		var link_class = ` class="js-open_side_`+joinedName+`" `; 
 	        	}else{
 	        		var link_class = '';         	
 	        	};
+
+				var notification = '';
+
+				if(item.notif === true){
+
+					var n = $('.'+item.name+'_notif').text();
+					if(parseInt(n) > 0){
+						notification = `<div class="notif notif_`+item.name+`"> <div class="notif_num notif_num_`+item.name+`">`+n+`</div></div>`;
+					}else{
+						notification = ''; 
+					}
+
+				}else{ 
+					notification = ''; 
+				};
 
 
 	        	var each_item = `<a href="`+item.link+`"`+link_class+`title="`+item.name+`">`+
@@ -118,8 +123,8 @@ var pageReady = function(){
 
 	var zig_rec_w = $('.lesson_half').width() - 10;
 	var zig_play_w = $('.lesson_half').width() - 10;
-	var zig_rec_h = zig_rec_w  / 1.77;
-	var zig_play_h = zig_play_w  / 1.77;
+	var zig_rec_h = zig_rec_w  / 1.5;
+	var zig_play_h = zig_play_w  / 1.5;
 
 	function recSize(item){ $(item).width(zig_rec_w).height(zig_rec_h); }
 	function playSize(item){ $(item).width(zig_play_w).height(zig_play_h); }
@@ -183,8 +188,8 @@ var pageReady = function(){
 
 			zig_rec_w = $('.lesson_half').width() - 10;
 			zig_play_w = $('.lesson_half').width() - 10;
-			zig_rec_h = zig_rec_w  / 1.77;
-			zig_play_h = zig_play_w  / 1.77;
+			zig_rec_h = zig_rec_w  / 1.5;
+			zig_play_h = zig_play_w  / 1.5;
 
 			
 			// devicesHome();

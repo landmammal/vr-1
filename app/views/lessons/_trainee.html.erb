@@ -12,12 +12,15 @@
 
     <div class="prompt_video lesson_vid"><%= render 'prompt' %></div>
     <div class="model_video lesson_vid"><%= render 'rolemodel' %></div>
-    <div class="rehearsal_video lesson_vid"><%= render 'rehearsal' %></div>
 
     <div class="lesson_video_left lesson_vid">
     </div>
 
     <div class="lesson_video_right lesson_vid">
+    </div>
+
+    <div class="lesson_video_rehearsal lesson_vid ">
+        <div class="rehearsal_video lesson_vid"><%= render 'rehearsal' %></div>
     </div>
 
 
@@ -35,9 +38,3 @@
     <br>
     <br>
 </div>
-
-
-<!-- rendering rehearsals from reheasals view folder -->
-<ul>
-    <%= render './rehearsals/rehearsal' %>
-</ul>

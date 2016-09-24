@@ -1,43 +1,49 @@
 class RehearsalsController < ApplicationController
-  before_action :set_rehearsal, only: [:show, :edit, :destroy, :update]
-  before_action :set_lesson, only: [:index, :create]
+  before_action :set_rehearsal, only: [:edit, :destroy, :update]
+  before_action :set_lesson, only: [:create, :index]
+  before_action :set_lesson_rehearsal, only: [:show]
+
+  before_action :authenticate_user!
 
   # before_action :set_topic, only: [:update]
   # before_action :set_course, only: [:update]
 
   def index
     @rehearsals = Rehearsal.all
+    @feedback = Feedback.new
+    @performance_feedback = PerformanceFeedback.new
   end
 
   def all
 
-    @user_courses = current_user.courses
-    @user_topics = current_user.topics
-    @user_lessons = current_user.lessons
-    @rehearsals = []
+    # @feedback = Feedback.new
+    # @performance_feedback = PerformanceFeedback.new
 
-    @user_lessons.each do |c|
-      @rehearsals << c.rehearsals
-    end
+    @course_rehearsals = []
+    current_user.courses.each { |course| course.rehearsals.each { |c| @course_rehearsals << c if c.submission == true } if course.rehearsals.size > 0 }
+    @topic_rehearsals = []
+    current_user.topics.each { |topic| topic.rehearsals.each { |t| @topic_rehearsals << t if t.submission == true } if topic.rehearsals.size > 0 }
+    @lesson_rehearsals = []
+    current_user.lessons.each { |lesson| lesson.rehearsals.each { |l| @lesson_rehearsals << l if l.submission == true } if lesson.rehearsals.size > 0 }
 
-    # @user_courses.each do |c| 
-    #   topics = c.topics
-    #   @user_topics << topics
+    @user_feedback = current_user.feedbacks.select(:id)
+    
+    @rehearsals_without_feedback = []
+    @rehearsals_with_feedback = []
 
-    #   topics.each do |t|
-    #     lessons = t.lessons
-    #     @user_lessons << lessons
-
-    #     lessons.each do |less|
-    #       @rehearsals << less.rehearsals.where(submission: true)
-    #     end
-    #   end
-    # end
+    @course_rehearsals.each do |rehearsal| 
+      if rehearsal.feedbacks.size < 1 
+        @rehearsals_without_feedback << rehearsal
+      else
+        @rehearsals_with_feedback << rehearsal
+      end
+    end 
 
   end
 
   def show
-    # @new_feedback = Feedback.new
+    @feedback = Feedback.new
+    @performance_feedback = PerformanceFeedback.new
   end
 
   def new
@@ -61,7 +67,11 @@ class RehearsalsController < ApplicationController
   end
 
   def update
-    @rehearsal.submission = true
+    if @rehearsal.submission = nil
+      @rehearsal.submission = true
+    else
+      @rehearsal.submission = false
+    end
     respond_to do |format|
       if @rehearsal.save!
         format.html { redirect_to course_topic_path(@course, @topic), notice: 'Rehearsal was successfully updated.' }
@@ -101,5 +111,10 @@ class RehearsalsController < ApplicationController
 
   def set_lesson
     @lesson = Lesson.find(params[:lesson_id])
+  end
+
+  def set_lesson_rehearsal
+    @rehearsal = Rehearsal.find(params[:id])
+    @lesson = Lesson.find(@rehearsal.lesson_id)
   end
 end

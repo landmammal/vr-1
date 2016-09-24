@@ -1,8 +1,23 @@
+<div class="rehearsals_title">
+  You have <span class="num"><%= @rehearsals_without_feedback.count.to_s %></span> submissions without feedback.
+</div>
 
-<!-- NEW REHEARSALS -->
-<% if @rehearsals.feedbacks.size < 1 %>
-  <% @rehearsals.each do |rehearsal| %>
+<hr>
+
+<div class="box_sep">
+  <div class="title">Student Rehearsals</div>
+
+  <% @rehearsals_without_feedback.each do |rehearsal| %>
+      <% @this_user = User.find(rehearsal.trainee_id) %>
+      <% @r = 'rehearsal_bubble'+rehearsal.id.to_s %>
+      <% @date_sub = time_diff(Time.now, rehearsal.created_at) %>
+      
+      <a href="<%= rehearsal_path(rehearsal) %>">
+        <%= render './shared/usertag' %>
+      </a>
+      <script type="text/javascript">
+        $('.<%= @r %> div.info').html('<%= @this_user.first_name+' '+ @this_user.last_name %><br>'+
+          '<font size="0.2em">Submitted: <%= @date_sub %></font>')
+      </script>
   <% end %>
-<% end %>
-
-<!-- COMPLETED REHEARSALS WITH FEEDBACK-->
+</div>

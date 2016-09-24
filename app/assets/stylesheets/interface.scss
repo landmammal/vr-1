@@ -52,12 +52,15 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 	}
 	& .panel_seperator{
 		border-bottom:1px dotted #aaa; padding:0; margin:0; overflow:hidden; z-index:1;
+		text-align:left;
 		&.max{
 			// padding:0;
+			text-align:center;
 		}
 		& .panel_icon{
 			margin:0; padding:15px;
-			width:100%; color:#fff; overflow:hidden;  
+			width:100%; color:#fff; overflow:hidden;
+			text-align:center;  
 			
 			img{ width:20px; float:left; opacity: 0.5;
 				&:hover{
@@ -76,21 +79,25 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 			}
 			
 			& .notif{
-				width:10px; height:10px;
+				width:12px; height:12px;
 				border-radius:50%; background-color:red;
 				position: relative; top:0px; right:-10px; z-index:3;
 				text-align: center;
 				& .notif_num{
-					font-size: 0;
+					font-size: 6px;
+					position: relative; top:-23px;
 					&.max{
 						position: relative; top:-2px; z-index:3;
-						font-size: 11px; font-weight:bold;
+						font-size: 8px; font-weight:bold;
 					}
 				}
 				&.max{
 					width:20px;  height:14px; display:inline-block;
 					border-radius:5px; background-color:red;
 					margin-top: 3px;
+				}
+				& .no_notif{
+					display: none;
 				}
 			}
 		}
@@ -147,7 +154,7 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 
 
 	& .top_info{
-		padding:0 5px; margin:0 0 10px; border-bottom:solid #ddd 2px; overflow:hidden;
+		padding:5px; margin:0 0 10px; border-bottom:solid #ddd 2px; overflow:hidden;
 		width:100%; background-color:#fff;
 		& .user_stat{ 
 			padding:0; margin:0 15px; float:left; text-align:center;
@@ -175,7 +182,7 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 footer{
 	background-color:#363636; color:white; min-height:200px;
 	& .footer_width{
-		max-width: 1100px; margin:0 auto; padding:5px; overflow: hidden;
+		max-width: 100%; margin:0 auto; padding:5px; overflow: hidden;
 		text-align: center;
 		
 		& .footer_newsletter{
@@ -183,16 +190,16 @@ footer{
 		}
 
 		& .footer_l, & .footer_m, & .footer_r{
-			margin:1%; padding:1%; float:none; display:inline-block; text-align:left; overflow:hidden;
+			margin:1%; padding:1%; float:left; display:inline-block; text-align:left; overflow:hidden;
 			& .footer_sec{
 				float:left; margin: 0 40px 0 0;
 				line-height: 2em;
 			}
 		}
 
-		& .footer_l{ width: 455px; }
-		& .footer_m{ width: 26%; }
-		& .footer_r{ width: 21%; text-align:right; margin-bottom:20px; line-height:2em;}
+		& .footer_l{ width: 48%; }
+		& .footer_m{ width: 30%; }
+		& .footer_r{ width: 48%; text-align:right; margin-bottom:20px; line-height:2em;}
 	}
 	a{ color:white; }
 	& .title{ font-family:'webly_bld'; font-size:15px; margin-bottom:10px; }
@@ -218,17 +225,17 @@ footer{
 
 .user_bubble{
 	border-radius:30px; position:relative;
-	padding:0; overflow:hidden;
-	img{ float:left; }
+	padding:3px; overflow:hidden; background-color:#ddd;
+	display:inline-block; float:none;
+	width:200px; margin:5px;
+	img{ float:left;  width:40px;}
 	& .info{
 		float: left;
-		position:absolute;
-		left:5px;
-		bottom:50%;
+		margin: 3px 0 0 5px;
+		color: black;
+		line-height: 1em;
 	}
 }
-
-
 
 .section{
 	// background-color:white; 
