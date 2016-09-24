@@ -92,9 +92,7 @@ class RehearsalsController < ApplicationController
   private
 
   def set_topic
-
     @topic = Topic.find(params[:topic_id])
-
   end
 
   def set_course
