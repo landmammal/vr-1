@@ -14,9 +14,9 @@
     <%= f.text_area :description, placeholder:'Description' %><br>
     <%= f.text_field :tags, placeholder:'tags (comma separated)' %><br>
     <%= f.select :privacy, (@privacy) %>
-    <%= f.select :language, (@languages) %>
-    <%= button_tag 'Create Topic', type:'submit', class:"blue" %>
-    <button class="js-cancel_form red reg_btn" style="display: none;">cancel</button>
+    <%= f.select :language, (@languages) %><br><br>
+    <%= button_tag 'Save Topic', type:'submit', class:"blue" %>
+    <button class="red js-click_back">Cancel</button>
 
     <%= f.text_field :status, type:"hidden", value: 0 %><br>
     <%= f.text_field :course_id, type:"hidden", value:params[:id] %><br>

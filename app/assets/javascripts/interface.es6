@@ -96,8 +96,63 @@ function sidepanel( panel ){
 
 $('.liveninja-iframe-chat-min-wide').css('height','100px');
 
+
+
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+
+
+
 var pageReady = function(){
 	var doc_cookie = document.cookie;
+
+	$('.js-click_back').click(function(event){
+		event.preventDefault();
+		window.history.back();
+	});
+	$('.js-click_forward').click(function(event){
+		event.preventDefault();
+		window.history.forward();
+	});
+
+
+
+
+	if(getUrlParameter('content') === 'old' ){
+		$('.this_called_content').hide(); $('.show_all_content').show();
+		$('.new_content_tab').removeClass('selected')
+		$('.all_content_tab').addClass('selected')
+	}
+
+	$('.tab').click(function(){
+		$('.tab').removeClass('selected');
+		$(this).addClass('selected');
+
+		if($(this).hasClass('all_content_tab')){
+			var showAll = function(){$('.this_called_content').hide(); $('.show_all_content').show();}
+			window.history.pushState(showAll(), 'All Rehearsals', '?content=old');
+		}
+		if($(this).hasClass('new_content_tab')){
+			var showNew = function(){$('.this_called_content').hide(); $('.show_new_content').show();}
+			window.history.pushState(showNew(), 'New Rehearsals', 'all');
+		}
+
+	});
+
+
+
 
 	$('.js-max_min').click(function(event){
 		event.preventDefault();

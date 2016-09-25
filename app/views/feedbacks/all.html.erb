@@ -4,12 +4,28 @@
 
 <hr>
 
+<button class="tab new_content_tab selected">New Feedbacks</button>
+<button class="tab all_content_tab">All Feedbacks</button>
+
 <div class="box_sep">
-	<div class="title">Rehearsal Feedback</div>
-	<div class="body">
-		<% @rehearsals_with_new_feedback.each do |rehearsal| %>
-			<%= link_to rehearsal.lesson.title, rehearsal_feedbacks_path(rehearsal) %>
-			<br>
-		<% end %>
+	<div class="this_called_content show_new_content">
+		<div class="title">New Rehearsal Feedback</div>
+		<div class="body">
+			<% @rehearsals_with_new_feedback.each do |rehearsal| %>
+				<%= link_to rehearsal.lesson.title, rehearsal_feedbacks_path(rehearsal) %>
+				<br>
+			<% end %>
+		</div>
 	</div>
+
+	<div class="this_called_content show_all_content" style="display:none;">
+		<div class="title">All Rehearsal Feedback</div>
+		<div class="body">
+			<% @rehearsals_with_feedback.each do |rehearsal| %>
+				<%= link_to rehearsal.lesson.title, rehearsal_feedbacks_path(rehearsal) %>
+				<br>
+			<% end %>
+		</div>
+	</div>
+	<!-- <div class="body"><button class="small_btn blue js-click_back">Back</button></div> -->
 </div>

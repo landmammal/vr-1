@@ -222,6 +222,16 @@ footer{
 // ========================================================
 
 
+.tab{
+	background-color:#ddd;
+	padding:5px 10px;
+	margin:0 0 0 0;
+	float:left;
+	border-radius:5px 5px 0  0;
+	font-family:'gotham_book';
+	&.selected{ background-color:white; font-family:'gotham'; }
+}
+
 
 .user_bubble{
 	border-radius:30px; position:relative;

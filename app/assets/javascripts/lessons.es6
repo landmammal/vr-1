@@ -204,11 +204,10 @@ var pageReady = function(){
 	$('.lesson_video_center').show();
 	$('.explanation_video').show();
 
-	function checkBtn(){
-		if($('.lesson_btn').hasClass('green_sft')){
-			$('.lesson_btn').addClass('green_sft');
-		}
-	}
+	$('.lesson_btn').click(function(){
+		$('.lesson_btn').addClass('green_sft');
+		$(this).removeClass('green_sft');
+	});
 
 	if($('.model_video').text() || $('.prompt_video').text() || $('.rehearsal_video').text()){
 		var model_video = document.getElementsByClassName('model_video')[0].innerHTML;
@@ -225,16 +224,12 @@ var pageReady = function(){
 
 	$('.show_explanation').click(function(){
 		$('.lesson_vid').hide();
-		checkBtn();
-			$(this).toggleClass('green_sft');
 			$('.lesson_video_center').show();
 			$('.explanation_video').show();
 			scrollToBody();
 	});
 	$('.show_demonstrastion').click(function(){
 		$('.lesson_vid').hide();
-		checkBtn();
-			$(this).toggleClass('green_sft');
 			$('.lesson_video_left').show();
 			$('.lesson_video_left').html(prompt_video);
 			$('.lesson_video_right').show();
@@ -243,8 +238,6 @@ var pageReady = function(){
 	});
 	$('.show_practice').click(function(){
 		$('.lesson_vid').hide();
-		checkBtn();
-			$(this).toggleClass('green_sft');
 			$('.lesson_video_left').show();
 			$('.lesson_video_rehearsal').show();
 			$('.rehearsal_video').show();
@@ -255,34 +248,7 @@ var pageReady = function(){
 			}
 			scrollToBody();
 	});
-
-
-
-	// var lessonShowWindows = ['explanation', 'prompt', 'model'];
-	// var toRemove = lessonShowWindows.map((item) => item);
 	
-	// function showLessonItem(name){
-	// 	$('.js-show_'+name).click(function(){
-	// 		var index = toRemove.indexOf(name);
-	// 		toRemove.splice(index, 1);
-
-	// 		var i = 0;
-	// 		do{	
-	// 			$('.'+toRemove[i]+'_video').hide();
-	// 			$('.js-show_'+toRemove[i]).addClass('green_sft'); 
-	// 			i+=1; 
-	// 		}while(i < toRemove.length);
-	// 		$('.'+name+'_video').show();
-	// 		$('.js-show_'+name).removeClass('green_sft'); 
-			
-	// 		toRemove = lessonShowWindows.map((item) => item);
-
-	// 	});
-	// }
-
-	// var a = 0;
-	// do{	showLessonItem(lessonShowWindows[a]); a+=1; }while(a < lessonShowWindows.length);
-
 
 
 

@@ -19,13 +19,13 @@
     <%= f.text_field :approval_status, type:"hidden", class:'js-course_status', value: 0 %><br>
     <%= f.select :privacy, (@privacy) %>
     <%= f.select :language, (@languages) %><br>
-    <%= f.text_field :instructor_id, type:"hidden", class:'js-course_instructor', value:current_user.id %>
+    <%= f.text_field :instructor_id, type:"hidden", class:'js-course_instructor', value:current_user.id %><br>
 
 
 
 
-    <%= button_tag 'Create Course', type:'submit', class:"blue" %>
-    <button class="js-cancel_form red reg_btn" style="display: none;">cancel</button>
+    <%= button_tag 'Save Course', type:'submit', class:"blue" %>
+    <button class="red js-click_back">Cancel</button>
   <% end %>
 
 <!-- <a href="<%= new_course_path %>"> -->
