@@ -15,10 +15,10 @@
 							<% if course.title.length > 25 %>
 				               ...
 				            <% end %>
-			        		<% if course.privacy == '0' %>
+			        		<% if course.privacy == 0 %>
 			        			<span class="privacy ion-earth"></span>
-			        		<% elsif course.privacy == '2' || course.privacy == '3' %>
-			        			<span class="privacy ion-lock-combination"></span>
+			        		<% elsif course.privacy == 2 || course.privacy == 3 %>
+			        			<span class="privacy ion-android-unlock" style="font-size:15px;"></span>
 			        		<% else %>
 			        			<span class="privacy ion-locked"></span>
 			        		<% end %>
