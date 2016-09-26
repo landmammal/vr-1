@@ -22,7 +22,7 @@
 
 <h3>Lessons</h3>
 
-<%if topic_creator || course_trainee %>
+<%if topic_creator || course_trainee || course_puplic %>
   <% @lessons.each_with_index do |lesson, index| %>
     <div class="lesson_list <%= (index + 1).even? ? 'even' : 'odd' %>">
       <a href="<%= course_topic_lesson_path(@course, @topic, lesson) %>">
@@ -32,17 +32,36 @@
       </a>
       
       <% if course_trainee %>
-        <% if topic_lesson_completed %>
-          <div class="checked_lesson">
+
+        <% if topic_lesson_completion(lesson) == 0 %>
+          <div class="pending_lesson" title="Rehearsal waiting for approval">
+            <span class="ion-loop"></span>
+          </div>
+        <% elsif topic_lesson_completion(lesson) == 1 %>
+          <div class="checked_lesson" title="Lesson Completed" >
             <span class="ion-checkmark-circled"></span>
           </div>
-        <% else %>
-          <div class="unchecked_lesson"></div>
+        <% elsif topic_lesson_completion(lesson) == 2 %>
+          <div class="error_lesson" title="Lesson not mastered" >
+            <span class="ion-alert"></span>
+          </div>
+        <% elsif !topic_lesson_completion(lesson) %>
+          <div class="unchecked_lesson" title="Lesson not yet completed" ></div>
         <% end %>
+
       <% elsif topic_creator %>
+
+        <% if topic_lesson_status(lesson) %>
+          <div class="lesson_status ready"></div>
+        <% else %>
+          <div class="lesson_status notready"></div>
+        <% end %>
+
         <div class="edit_lesson">
-        <strong> | <%= link_to 'Edit', edit_course_topic_lesson_path(@course, @topic, lesson) %></strong>
+          <strong> | <%= link_to 'Edit', edit_course_topic_lesson_path(@course, @topic, lesson) %></strong>
         </div>
+
+
       <% end %>
 
     </div>
@@ -50,8 +69,9 @@
 <% end %>
 
 
+<br><br><br>
+
 <%if topic_creator %>
-<!-- refactor @course from @course.id -->
   <a href="<%= new_course_topic_lesson_path(@course, @topic) %>">
     <button class="reg_btn blue add_btn">+</button>
   </a>

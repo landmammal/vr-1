@@ -20,10 +20,26 @@
 	    font-size:20px; color:#00B1D8; margin:10px;
 	    border-radius:50%; border:4px solid;
 	}
+	& .checked_lesson, & .pending_lesson, & .error_lesson{
+		width:30px; height:30px; float: right; margin:4px;
+	    font-size:21px; color:white; border-radius:50%; text-align:center;
+	}
 	& .checked_lesson{
-		width:30px; height:30px; float: right; 
-	    color:#00D718; font-size:21px; padding:10px 0;
-	    border-radius:50%;
+	    color:#00D718; padding:10px 0;
+	}
+	& .pending_lesson{
+		margin:4px; padding:5px 8px;
+	    background-color:#FFBC00;
+	}
+	& .error_lesson{
+		margin:4px; padding:5px 8px;
+	    background-color:#FF756A;
+	}
+	& .lesson_status{
+		height:38px; padding:0 1px;
+		float: right;
+		&.ready{ background-color:#00D718;}
+		&.notready{ background-color:red;}
 	}
 	&.even, &.odd{
 		background-color:#f9f9f9;

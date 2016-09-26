@@ -22,7 +22,7 @@
 </div>
 
 <br>
-<% if course_creator || course_trainee || @course.privacy == 0 %>
+<% if course_creator || course_trainee || course_puplic %>
 
   <h4>Topics</h4>
   <hr>
@@ -43,6 +43,7 @@
             <div class="bottom_count">
                 <% topic.lessons.each do |i| %>
                   <div class="bar_count"></div>
+                  <!-- TRAINEE PROGRESS BAR -->
                   <% if course_trainee %>
                   <% end %>
                 <% end %>

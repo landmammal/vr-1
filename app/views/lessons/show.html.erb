@@ -21,7 +21,7 @@
 
 <div class="box_sep">
   <div class="lesson_half"></div>
-  <%if @lesson_ready && current_user.role == @r[3] %>
+  <%if @lesson_ready && course_trainee %>
 
     <div class="body">
       <%= render 'trainee' %>

@@ -3,11 +3,14 @@ module CoursesHelper
 	def course_trainee
 		if current_user.registered_courses.include? @course
 			access = true
-		elsif @course.privacy == 0
-			access = true
 		else
 			access = false
 		end
+		return access
+	end
+
+	def course_puplic
+		access = true if @course.privacy == 0
 		return access
 	end
 
