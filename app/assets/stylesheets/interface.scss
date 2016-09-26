@@ -154,12 +154,22 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 
 
 	& .top_info{
-		padding:5px; margin:0 0 10px; border-bottom:solid #ddd 2px; overflow:hidden;
+		padding:5px; margin:10px 0 10px; border-bottom:solid #ddd 2px; overflow:hidden;
 		width:100%; background-color:#fff;
 		& .user_stat{ 
 			padding:0; margin:0 15px; float:left; text-align:center;
-			& .number{ float:none; width:100%; margin:4px auto 0 auto; font-family:'webly_bld'; font-size:18px; font-weight:bold; color:#4482c3; }
-			& .stat{ float:none; width:100%; margin:0 auto; padding-top:-3px; font-size:9px; }
+			& .number{ 
+				float:none; width:100%; margin:4px auto 0 auto; 
+				font-family:'gotham_light'; font-size:12px; font-weight:bold; color:#4482c3;
+				& .completed{
+					font-family:'gotham_book'; color:black;
+				}
+				& .num{
+					font-size:10px; font-family:inherit;
+					border-radius: 50%;
+				}
+			}
+			& .stat{ float:none; width:100%; margin:0 auto; padding-top:-3px; font-size:10px; }
 		}
 	}
 	& .box_sep{
@@ -173,33 +183,34 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 	}
 }
 
-
 .main_title{
   font-weight:bold; font-size:20px; font-family:'webly_bld'; margin:10px auto 15px; 
 }
 
 
 footer{
-	background-color:#363636; color:white; min-height:200px;
+	background-color:#222; color:white; min-height:200px;
+	padding-bottom:50px;
 	& .footer_width{
-		max-width: 100%; margin:0 auto; padding:5px; overflow: hidden;
-		text-align: center;
-		
+		max-width: 1500px; margin:0 auto; padding:5px; overflow: hidden;
+		text-align: center; font-family:'gotham_thin';
 		& .footer_newsletter{
-			border-bottom:1px solid #454545; max-width:80%; margin:10px auto; padding-bottom:20px;
+			border-bottom:1px solid #454545; max-width:96%; margin:10px auto; padding-bottom:20px;
 		}
 
-		& .footer_l, & .footer_m, & .footer_r{
-			margin:1%; padding:1%; float:left; display:inline-block; text-align:left; overflow:hidden;
+		& .footer_menu, & .footer_contact, & .footer_social{
+			margin:5px; padding:5px 20px; display:inline-block; text-align:left; overflow:hidden;
 			& .footer_sec{
 				float:left; margin: 0 40px 0 0;
-				line-height: 2em;
+				line-height: 1.5em;
 			}
 		}
 
-		& .footer_l{ width: 48%; }
-		& .footer_m{ width: 30%; }
-		& .footer_r{ width: 48%; text-align:right; margin-bottom:20px; line-height:2em;}
+		& .footer_menu{ max-width: 480px; float:left; }
+		& .footer_contact{ 
+			width: calc(100% - 800px); min-width:250px; float:left; text-align:center; margin-bottom:20px; line-height:2em; 
+		}
+		& .footer_social{ max-width: 300px; float:right; text-align:center; }
 	}
 	a{ color:white; }
 	& .title{ font-family:'webly_bld'; font-size:15px; margin-bottom:10px; }
@@ -220,6 +231,26 @@ footer{
 
 
 // ========================================================
+
+span.num{
+	background-color: red; 
+	color: white; font-size:13px;
+	border:2px solid red; padding:0px 4px;
+	border-radius: 20px;
+	font-family:'gotham';
+}
+
+.interface_info_box{
+	width:48%; max-width:120px;
+	&.box_sep .title{
+		text-align: center;
+		padding:5px;
+	}
+	&.box_sep .body.number_of_notif{
+		padding:20px 5px;
+		text-align: center ; font-size: 40px;
+	}
+}
 
 
 .tab{
@@ -256,11 +287,29 @@ footer{
 
 /* Mobile Layout: 480px and below. */
 @media only screen and (max-width: 480px) {
-
+	footer{
+		& .footer_width{
+			.footer_menu, .footer_contact, .footer_social{
+				margin:5px; padding:5px; text-align:center;
+				& .footer_sec{
+					width: calc((100% / 3) - 25px);
+					float:left; margin: 0 25px 0 0;
+					font-size: 10px;
+				}
+			}
+			.footer_menu{ width:90%; float:none; }
+			.footer_contact{ 
+				margin: 50px 5px;
+				width: 90%; float:none;
+			}
+			.footer_social{ max-width: 300px; float:none; text-align:center; }
+		}
+	}
 }
 
 /* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
 @media only screen and (min-width: 481px) {
+
 }
 
 /* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */

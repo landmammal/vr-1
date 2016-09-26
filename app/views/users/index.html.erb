@@ -1,15 +1,18 @@
-<%= link_to "All Users", :action => "index" %> |
-<%= link_to "Users awaiting approval", :action => "index", :approved => "false" %>
-<div class= >
-  <div class= >
-    <table class= >
-      <tbody>
-        <% @users.each do |user| %>
-          <tr>
-            <%= render user %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+<div class="box_sep">
+  <div class="title">
+    <%= link_to "All Users", :action => "index" %> |
+    <%= link_to "Users awaiting approval", :action => "index", :approved => "false" %>
+  </div>
+  <div class="body">
+    <% @users.each do |user| %>
+      <%= link_to user.email, user %>
+      <%= form_for(user) do |f| %>
+        <%= f.select( :role, User.roles.keys.map {|role| [role.titleize,role]} ) %>
+        <%= f.select :approved, [['Active', true], ['Inactive', false]] %>
+        <%= f.submit 'Modify User', class:'small_btn green_sft' %>
+        <%= button_to('Delete user', user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'small_btn red') unless user === current_user %>
+      <% end %>
+      <br><br>
+    <% end %>
   </div>
 </div>

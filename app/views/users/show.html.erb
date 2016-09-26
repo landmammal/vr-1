@@ -1,17 +1,6 @@
-<div class="top_info">
-	<div class="user_stat">
-		<div class="number">0</div>
-		<div class="stat"> Courses completed</div>
-	</div>
-	<div class="user_stat">
-		<div class="number">0</div>
-		<div class="stat"> Pending Courses</div>
-	</div>
-</div>
-
-
 <div class="main_title"><%= current_user.role.capitalize %> interface</div>
 
+<%= render 'topinfo' %>
 
 <div class="box_sep">
 	<div class="title">
@@ -22,10 +11,10 @@
 		<span class="js-topic_name"></span>
 	</div>
 
-
 	<div class="body">
 		<%= render current_user.role %>
-		<%if [@r[0], @r[1], @r[3]].include? current_user.role %>
+
+		<%if current_user.level_3 %>
 
 			<div class="js-my_topics_list" style="display: none;">
 				<div class="js-topics_list"></div>

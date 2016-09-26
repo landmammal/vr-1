@@ -29,7 +29,7 @@
 	overflow:hidden;
 	& .card_item{
 		border-radius:1px; border:0;
-		min-width: 250px; width:24%; display:inline-block; overflow:hidden;
+		min-width: 250px; width:24%; max-width:350px; display:inline-block; overflow:hidden;
 		& .card_title_sec{
 			margin:0; background-color:white; overflow:hidden;
 			& .card_title{
@@ -47,7 +47,7 @@
 		& .card_desc, & .card_edit_sec{
 			background-color:rgba(white, 0.5);
 			height: 100px; overflow:hidden; position:relative;
-			padding:5px; border-top:1px dotted #CDCDCD;
+			padding:5px; border-top:1px dotted #CDCDCD; text-align:left;
 			&:hover{
 				background-color:white;
 			}
