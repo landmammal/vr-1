@@ -16,7 +16,7 @@ class RehearsalsController < ApplicationController
 
   def all
 
-    # @feedback = Feedback.new
+    @feedback = Feedback.new
     # @performance_feedback = PerformanceFeedback.new
 
     @course_rehearsals = []
