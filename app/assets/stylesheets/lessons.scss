@@ -105,6 +105,17 @@
 	background-color:black;
 }
 
+
+
+.rehearsal_thumbnail{
+	width:140px;
+	float:left; margin:5px;
+	text-align:left; line-height:2em;
+	overflow:hidden; font-size:15px;
+	font-family:'gotham_book';
+}
+
+
 /* Mobile Layout: 480px and below. */
 @media only screen and (max-width: 614px) {
 	.showIfLessonComplete{

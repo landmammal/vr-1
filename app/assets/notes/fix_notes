@@ -1,8 +1,3 @@
 fixes:
-last_anme: nil,
-** we need to add "author_id" to Courses and create a 1-n relationship
-** can't seem to be able to edit "topics"
-** need to upload profile and banner
-** how does a new sign_up know its a trainee, admin or author
-** we need to define what is going to be on each home page
 ** we need to identify when each user starts a course
+** change all the .where in database calls to ? method

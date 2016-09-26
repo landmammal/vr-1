@@ -37,4 +37,27 @@
     <script type="text/javascript"> allLessons('<%= @lesson.id %>','<%= @lessons_arr %>') </script>
     <br>
     <br>
+    
+    <div class="list_of_lesson_rehearsals">
+        <input type="hidden" name="">
+        <% rehearsals_for_this_lesson.each do |rehearsal| %>
+            <% @this_video_token = rehearsal.video_token %>
+            <% @this_added_class = 'rehearsal_'+rehearsal.id.to_s %>
+            <div class="rehearsal_thumbnail">
+                Rehearsal <%= (rehearsals_for_this_lesson.index(rehearsal)+1).to_s %><br>
+                <%= render './shared/ziggeothumbnail' %>
+            </div>
+        <% end %>
+    </div>
+    
+    <br>
+    <br>
+
+
 </div>
+
+
+<!-- rendering rehearsals from reheasals view folder -->
+<!-- <ul>
+ <%= render './rehearsals/rehearsal' %>
+</ul> -->

@@ -114,6 +114,12 @@ var getUrlParameter = function getUrlParameter(sParam) {
 };
 
 
+function videoImage(token){	
+	var video_image = ZiggeoApi.Videos.image(token);
+	return video_image;
+}
+
+
 
 var pageReady = function(){
 	var doc_cookie = document.cookie;

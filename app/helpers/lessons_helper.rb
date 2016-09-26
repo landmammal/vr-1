@@ -27,4 +27,10 @@ module LessonsHelper
 
 		return completed_lessons_count.to_s
 	end
+
+
+	def rehearsals_for_this_lesson
+		@rehearsals_for_this_lesson = @lesson.rehearsals.where(trainee_id: current_user.id).order("id ASC")
+		return @rehearsals_for_this_lesson
+	end
 end
