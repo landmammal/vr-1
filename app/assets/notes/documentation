@@ -1,15 +1,2 @@
-if current_user.role == "admin"
-if current_user.level_1
-
-
-
-if current_user.role == "admin" || current_user.role == "instructor"  
-if current_user.level_2
-
-
-if current_user.role == "admin" || current_user.role == "instructor" || current_user.role == "coach"  
-if current_user.level_3
-
-
-if current_user.role == "instructor"
-if current_user == @r[1]
+run in Production Mode:
+RAILS_ENV=production rails server
