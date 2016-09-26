@@ -10,24 +10,31 @@
 	</div>
 <% end %>
 
-<div class="top_info">
-	<% if total_lessons.to_i > 0 %>	
-		<div class="user_stat">
-			<div class="number">
-				<span class="completed"><%= lessons_completed %></span> of <%= total_lessons %>
+<% if total_lessons.to_i>0 || feedback_notif>0 || rehearsals_notif.to_i>0 %>
+	<div class="top_info">
+		<% if total_lessons.to_i > 0 %>	
+			<div class="user_stat">
+				<div class="number">
+					<span class="completed"><%= lessons_completed %></span> of <%= total_lessons %>
+				</div>
+				<div class="stat"> Lessons completed </div>
 			</div>
-			<div class="stat"> Lessons completed </div>
-		</div>
-	<% end %>
-	<% if feedback_notif > 0 %>
-		<div class="user_stat">
-			<div class="number">
-				<a href="<%= feedback_all_path %>"><span class="num"><%= feedback_notif.to_s %></span></a>
+		<% end %>
+		<% if feedback_notif > 0 %>
+			<div class="user_stat">
+				<div class="number">
+					<a href="<%= feedback_all_path %>"><span class="num"><%= feedback_notif.to_s %></span></a>
+				</div>
+				<div class="stat"> Feedback </div>
 			</div>
-			<div class="stat"> Feedback </div>
-		</div>
-	<% end %>
-</div>
-
-
-
+		<% end %>
+		<% if rehearsals_notif.to_i > 0 %>
+			<div class="user_stat">
+				<div class="number">
+					<a href="<%= rehearsals_all_path %>"><span class="num"><%= rehearsals_notif.to_s %></span></a>
+				</div>
+				<div class="stat"> Rehearsal Sumbissions </div>
+			</div>
+		<% end %>
+	</div>
+<% end %>
