@@ -163,6 +163,12 @@ function scriptOpacityToggle(video_type){
 }
 
 
+
+function chooseRehearsal(rehearsal_id){
+	
+}
+
+
 var pageReady = function(){
 
 	var lesson_videos = ['explanation','prompt','model','rehearsal'];

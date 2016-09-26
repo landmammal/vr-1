@@ -114,6 +114,10 @@
 	overflow:hidden; font-size:15px;
 	font-family:'gotham_book';
 }
+.rehearsal_btn{
+	padding:0; margin:0; background-color:transparent;
+	width:100%;
+}
 
 
 /* Mobile Layout: 480px and below. */
@@ -152,6 +156,7 @@
 		& .big_btn{ padding:10px 15px; font-size:15px; }
 	}
 	.lesson_video_left, .trainee_rehearsal, .lesson_video_rehearsal, .lesson_half{
+		width: 49%;
 		& .vid_title{ margin: 20px 0;}
 	}
 }

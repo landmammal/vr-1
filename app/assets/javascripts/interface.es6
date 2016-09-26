@@ -239,7 +239,6 @@ var pageReady = function(){
 
 	// RESIZE RUN ON WINDOW CHANGE ======= //
 		setInterval(function(){ 
-			runChangeSize(); 
 			youtubeSize();
 			searchBtn();
 			runChangeSize(); 

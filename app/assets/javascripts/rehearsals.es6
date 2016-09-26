@@ -20,10 +20,10 @@ ZiggeoApi.Events.on("system_ready", function() {
     // console.log(videoToken);
     // console.log(streamToken);
 
-
+    var nextRehearsal= $(".list_of_lesson_rehearsals > div").length + 1;
     var newrehearsal = `<div class="rehearsal_thumbnail">`+
-                `Rehearsal `+($(".list_of_lesson_rehearsals > div").length + 1)+`<br>`+
-                `<img src="`+videoImage(videoToken)+`" width="100%">`+
+                `Rehearsal `+nextRehearsal+`<br>`+
+                `<img src="`+videoImage(videoToken)+`" width="100%" class="rehearsal_img rehearsal_`+nextRehearsal+`">`+
                 `</div>`;
     $('.list_of_lesson_rehearsals').append(newrehearsal)
 

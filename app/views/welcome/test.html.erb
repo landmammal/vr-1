@@ -1,40 +1,29 @@
-<div class="site_wrapper" style="width: 1100px; display: none;">
-  <div class="lesson_explanation" style="display: none;">  
-    <ziggeo
-    ziggeo-width=450
-    ziggeo-height=390>
-    </ziggeo>
-  </div>
-
-  <div class="perfomance"> 
-    <h2>Performance</h2>
-    <ziggeo
-    ziggeo-width=625
-    ziggeo-height=400>
-    </ziggeo>
-  </div>
 
 
-  <div class="prompt_model">  
-    <h2>Prompt & Role Model</h2>
-    <div class="lesson_prompt">  
-      <ziggeo
-      ziggeo-width=400
-      ziggeo-height=195>
-      </ziggeo>
-    </div>
-    <div class="lesson_model">  
-      <ziggeo
-      ziggeo-width=400
-      ziggeo-height=195>
-      </ziggeo>
-    </div>
-  </div>
+<style type="text/css" media="screen">
 
+.test{
+  width:49.5%;
+  margin: 0.25%;
+  float: left;
+  background-color: black;
+}
+  
+</style>
+
+
+
+
+<div class="test">
+  <ziggeo ziggeo-theme="modern-blue" class='ziggeo_play_elem' ziggeo-video="4f8bca227273050849582c9ab3e710d4" ziggeo-width=100% ziggeo-height=50% ziggeo-responsive>
+  </ziggeo>
 </div>
 
-<div class="test_html"></div>
+<div class="test">
+  <ziggeorecorder class='ziggeo_play_elem' id="recorderElement" ziggeo-width=100% ziggeo-height=20% ziggeo-localplayback>
+  </ziggeorecorder>
+</div>
 
 <script type="text/javascript">
-  $('.test_html').html($('.prompt_model').html());
+  console.log($('ziggeoplayer').attr('ziggeo-width'));
 </script>
