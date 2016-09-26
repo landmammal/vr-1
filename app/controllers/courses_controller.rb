@@ -53,6 +53,10 @@ class CoursesController < ApplicationController
     # end
     # ===== WHEN USING RUBY
 
+    if params[:title] = ''
+      @course.title = 'New Course (rename)'
+    end
+
     respond_to do |format|
       if @course.save
         format.html { redirect_to @course, notice: 'Course was successfully created.' }

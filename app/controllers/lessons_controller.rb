@@ -59,6 +59,10 @@ class LessonsController < ApplicationController
     @topic = current_user.topics.find(params[:lesson][:topic_id])
     @topic.lessons.build(lesson_params)
 
+    if params[:title] = ''
+      @topic.lessons.last.title = 'New Lesson (rename)'
+    end
+
     respond_to do |format|
       if @topic.save
         @lesson = @topic.lessons.last

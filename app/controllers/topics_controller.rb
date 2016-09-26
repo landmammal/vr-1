@@ -30,6 +30,10 @@ class TopicsController < ApplicationController
     @course = current_user.courses.find(params[:course_id])
     @course.topics.build(topic_params)
 
+    if params[:title] = ''
+      @course.topics.last.title = 'New Topic (rename)'
+    end
+
     respond_to do |format|
       if @course.save
         @topic = @course.topics.last

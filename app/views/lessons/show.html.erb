@@ -21,16 +21,9 @@
 
 <div class="box_sep">
   <div class="lesson_half"></div>
-  <%if @lesson_ready && course_trainee %>
+  <%if lesson_creator %>
 
-    <div class="body">
-      <%= render 'trainee' %>
-      <button class="small_btn blue js-click_back">Back</button>
-    </div>
-
-  <% elsif lesson_creator %>
-
-
+    
     <div class="body">
 
       <!-- CREATION PROGRESS -->
@@ -226,10 +219,17 @@
 
     </div>
 
+  <% elsif (@lesson_ready && course_trainee) || course_puplic %>
+
+    <div class="body">
+      <%= render 'trainee' %>
+      <button class="small_btn blue js-click_back">Back</button>
+    </div>
+
   <%else%>
 
     <div class="body">
-      Lesson is not yet completed for viewing.
+      Lesson is not yet completed for viewing.<br>
       <button class="small_btn blue js-click_back">Back</button>
     </div>
 

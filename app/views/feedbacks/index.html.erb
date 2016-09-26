@@ -11,8 +11,9 @@
 			<% if !feedback.viewed_by_user %>
 				<span style="font-weight:bold; font-family:'gotham';">
 			<% end %>
-
-			<%= link_to (feedback.user.role.capitalize+' '+feedback.user.first_name+' '+feedback.user.last_name+' left you a feedback'), feedback_path(feedback) %>
+			<% if feedback.user_id != nil %>
+				<%= link_to (feedback.user.role.capitalize+' '+feedback.user.first_name+' '+feedback.user.last_name+' left you a feedback'), feedback_path(feedback) %>
+			<% end %>
 			
 			<% if !feedback.viewed_by_user %>
 				</span><div class="reddot"></div>

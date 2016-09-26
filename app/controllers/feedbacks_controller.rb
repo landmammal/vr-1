@@ -56,7 +56,7 @@ class FeedbacksController < ApplicationController
     feedback = rehearsal.feedbacks.build(feedback_params)
     respond_to do |format|
       if rehearsal.save
-        format.html { redirect_to feedback_path(feedback), notice: 'Begin feedback.' }
+        format.html { redirect_to rehearsal_feedbacks_path(rehearsal, feedback), notice: 'Feedback Sent' }
       else
         format.html { render :new }
         format.json { render json: @feeedback.errors, status: :unprocessable_entity }

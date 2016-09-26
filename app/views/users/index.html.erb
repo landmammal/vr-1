@@ -10,8 +10,8 @@
         <%= f.select( :role, User.roles.keys.map {|role| [role.titleize,role]} ) %>
         <%= f.select :approved, [['Active', true], ['Inactive', false]] %>
         <%= f.submit 'Modify User', class:'small_btn green_sft' %>
-        <%= button_to('Delete user', user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'small_btn red') unless user === current_user %>
       <% end %>
+        <%= button_to('Delete user', user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'small_btn red') unless user === current_user %>
       <br><br>
     <% end %>
   </div>
