@@ -10,6 +10,7 @@ ZiggeoApi.Events.on("system_ready", function() {
         $ziggeotoken.val(videoToken);
         $webtoken.val(streamToken)
         $form.submit();
+        console.log('form submited')
     };
 
     recorder.on('verified', function() {
@@ -17,8 +18,8 @@ ZiggeoApi.Events.on("system_ready", function() {
         // getting the string token and storing it in videoToken var to ship it to the outside world
         var streamToken = recorder.get('stream'); //to get the stream token
         var videoToken = recorder.get('video'); //to get the video token
-        // console.log(videoToken);
-        // console.log(streamToken);
+        console.log(videoToken);
+        console.log(streamToken);
 
         // here is where we call the postVideoToken function
         postVideoToken(videoToken, streamToken);

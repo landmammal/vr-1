@@ -51,11 +51,12 @@ class FeedbacksController < ApplicationController
   end
 
   def create
-    rehearsal = Rehearsal.find(feedback_params[:rehearsal_id])
+    # binding.pry
+    rehearsal = Rehearsal.find(params[:rehearsal_id])
     feedback = rehearsal.feedbacks.build(feedback_params)
     respond_to do |format|
       if rehearsal.save
-        format.html { redirect_to edit_feedback_path(feedback), notice: 'Begin feedback.' }
+        format.html { redirect_to feedback_path(feedback), notice: 'Begin feedback.' }
       else
         format.html { render :new }
         format.json { render json: @feeedback.errors, status: :unprocessable_entity }
