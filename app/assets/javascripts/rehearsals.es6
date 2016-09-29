@@ -31,3 +31,19 @@ ZiggeoApi.Events.on("system_ready", function() {
     postVideoToken(videoToken, streamToken);
   });
 });
+
+
+var pageReady = function(){
+    $('.user_bubble').click(function (event) {
+    event.preventDefault()
+   console.log($(this).data('rehearsal_id'));
+    console.log('clicked');
+});
+
+
+
+
+};
+
+$(document).ready(pageReady);
+$(document).on('page:load', pageReady);
