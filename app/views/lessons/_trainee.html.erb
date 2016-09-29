@@ -51,7 +51,7 @@
             <!-- Modal -->
             <div class="modal fade" id="<%= @this_added_class %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
-                <div class="modal-content">
+                <div class="modal-content rehearsal_modal">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h2 class="modal-title" id="myModalLabel">Rehearsal <%= (rehearsals_for_this_lesson.index(rehearsal)+1).to_s %></h2>
@@ -60,13 +60,39 @@
                     <%= render './shared/ziggeoplayer' %>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="blue" onClick="chooseRehearsal('<%= rehearsal.id %>');" data-dismiss="modal">Submit for Feedback</button>
+                    
+                    <%= form_tag "rehearsal_#{rehearsal.id.to_s}", html: {id: "rehearsal_#{rehearsal.id.to_s}"} do %>
+                        <%= text_field_tag :this_rehearsal_id, nil, type:"hidden", value:rehearsal.id.to_s %>
+                        <%= text_field_tag :submission, nil, type:"hidden", value:true %>
+                        <%= submit_tag 'Submit for Feedback', class:'blue' %>
+                    <% end %>
+
+                    <!-- <button type="button" class="blue submission_<%= rehearsal.id %>" data-dismiss="modal">Submit for Feedback</button> -->
+
                     <button type="button" class="green_sft" data-dismiss="modal">Edit</button>
                     <button type="button" class="red" data-dismiss="modal">Delete</button>
                   </div>
                 </div>
               </div>
             </div>
+
+            <script>
+                $("#rehearsal_<%= rehearsal.id %>").submit(function(event){
+                    event.preventDefault();
+                    
+                    // var rehearsal = new Object();
+                    // rehearsal.submission = true;
+
+                    $.ajax({
+                        type:'PUT',
+                        url:'/rehearsals/<%= rehearsal.id.to_s %>/api',
+                        // data:rehearsal,
+                        success: function(data){
+                          console.log(data);
+                        }
+                    });
+                });
+            </script>
         <% end %>
     </div>
 

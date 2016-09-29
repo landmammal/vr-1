@@ -316,7 +316,7 @@ header.header{
 
 
 .modal-body{
-	height:450px; overflow:scroll;
+	height:470px; overflow:scroll;
 }
 
 
@@ -543,7 +543,7 @@ header.header{
 
 /* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
 
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: 768px) {
 	.home_info_1{ font-size:60px; font-family:'gotham_light'; margin:0 auto 35px;}
 	.home_info_2{ font-size:20px; font-family:'webly_reg'; line-height:1.5em;}
 	.home_info_3{ font-size:18px; font-family:'webly_reg'; margin:10px auto; }
@@ -553,6 +553,10 @@ header.header{
 		}
 		&.thrd{ width:32%; min-width:200px; margin:0.15%;}
 		&.qtr{ width:24%; min-width:200px; margin:0.25%; }
+	}
+
+	.modal-dialog{
+		width:60%; min-width:250px;
 	}
 	.devices{
 		padding-top:50px;

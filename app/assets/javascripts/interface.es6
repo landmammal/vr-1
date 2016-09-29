@@ -175,6 +175,15 @@ var pageReady = function(){
 
 
 
+	// =========== SHADEBOX ============= //
+
+	$('.shadebox_btn').click(function(){
+		$('.shadebox').fadeIn(500);
+	});
+
+	$('.shade_close').click(function(){
+		$('.shadebox').fadeOut(500);
+	});
 
 
 

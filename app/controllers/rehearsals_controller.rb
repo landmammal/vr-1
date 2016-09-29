@@ -1,5 +1,6 @@
 class RehearsalsController < ApplicationController
-  before_action :set_rehearsal, only: [:edit, :destroy, :update]
+  before_action :set_rehearsal, only: [:edit, :destroy]
+  before_action :set_update_rehearsal, only: [:update]
   before_action :set_lesson, only: [:create, :index]
   before_action :set_lesson_rehearsal, only: [:show]
 
@@ -72,13 +73,14 @@ class RehearsalsController < ApplicationController
     else
       @rehearsal.submission = false
     end
-    respond_to do |format|
-      if @rehearsal.save!
-        format.html { redirect_to course_topic_path(@course, @topic), notice: 'Rehearsal was successfully updated.' }
+    # binding.pry
+    @rehearsal.update(rehearsal_params)
+    @rehearsal.save
+
+      if @rehearsal.save
       else
         binding.pry
       end
-    end
   end
 
   def destroy
@@ -100,6 +102,10 @@ class RehearsalsController < ApplicationController
   end
 
   def set_rehearsal
+    @rehearsal = Rehearsal.find(params[:id])
+  end
+
+  def set_update_rehearsal
     @rehearsal = Rehearsal.find(params[:id])
   end
 
