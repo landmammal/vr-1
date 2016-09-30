@@ -57,7 +57,7 @@ ZiggeoApi.Events.on("system_ready", function() {
 
 
 var pageReady = function(){
-  
+
   $('.record_another_rehearsal').click(function(){
     location.reload();
   });
@@ -113,14 +113,47 @@ var pageReady = function(){
     });
   });
 
-  $('.user_bubble').click(function (event) {
-    event.preventDefault()
-    console.log($(this).data('rehearsal_id'));
-    console.log('clicked');
+
+
+  $('.mark_as_completed').click(function(event) {
+    event.preventDefault();
+
+    var newfeedback = new Object();
+        newfeedback.rehearsal_id = $(this).data('rehearsalid');
+        newfeedback.user_id = $(this).data('userid');
+        newfeedback.approved = true;
+
+    $.ajax({
+      type:'POST',
+      url:'/feedbacks/create/api',
+      data:newfeedback,
+      success: function(data){
+        console.log(data);
+        $('.mark_as_completed').text('Rehearsal approved');
+      }
+    });
+
+  });
+
+  $('.user_bubble').click(function(event) {
+    event.preventDefault();
+    var rehearsalid = $(this).data('rehearsalid');
+    var lessonTitle = $(this).data('lessontitle');
+
+    $.ajax({
+      type:'GET',
+      url:'/rehearsals/'+rehearsalid+'/api',
+      success: function(data){
+        // console.log(data);
+        $('.put_title_here').html('Rehearsal for: <a href="/courses/'+data.course_id+'/topics/'+data.topic_id+'/lessons/'+data.lesson_id+'/"><b>'+lessonTitle+'</b></a>');
+        $('.put_video_here').html('<ziggeoplayer ziggeo-theme="modern" class="ziggeo_play_elem rehearsal_video" ziggeo-video="'+data.video_token+'" ziggeo-stretch> </ziggeoplayer>');
+        $('a.leave_feedback').prop('href','/rehearsals/'+rehearsalid);
+        $('button.submisison').data('rehearsalid', rehearsalid);
+      }
+    });
   });
 
 };
 
 $(document).ready(pageReady);
 $(document).on('page:load', pageReady);
->>>>>>> 700671e5d4822a36f0ab55fb07d05efed0649608

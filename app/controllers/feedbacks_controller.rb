@@ -34,12 +34,12 @@ class FeedbacksController < ApplicationController
     @feedback.save
 
     @rehearsal = Rehearsal.find(@feedback.rehearsal_id)
-    @rehearsal_feedbacks = []
+    # @rehearsal_feedbacks = []
 
-    @rehearsal.feedbacks.each do |rf|
-      @rehearsal_feedbacks << rf.id
-    end
-    @rehearsal_position = (@rehearsal_feedbacks.index(@rehearsal.id) + 1).to_s+( (@rehearsal_feedbacks.index(@rehearsal.id) + 1) > 1 ? 'th' : 'st')
+    # @rehearsal.feedbacks.each do |rf|
+    #   @rehearsal_feedbacks << rf.id
+    # end
+    # @rehearsal_position = (@rehearsal_feedbacks.index(@rehearsal.id) + 1).to_s+( (@rehearsal_feedbacks.index(@rehearsal.id) + 1) > 1 ? 'th' : 'st')
   end
 
   def edit
@@ -70,12 +70,13 @@ class FeedbacksController < ApplicationController
   end
 
   def create
-    binding.pry
+    # binding.pry
     rehearsal = Rehearsal.find(params[:rehearsal_id])
     feedback = rehearsal.feedbacks.build(feedback_params)
     respond_to do |format|
       if rehearsal.save
         format.html { redirect_to edit_feedback_path(feedback), notice: 'start your feedback' }
+        format.json { render json: feedback }
       else
         format.html { render :new }
         format.json { render json: @feeedback.errors, status: :unprocessable_entity }
@@ -94,6 +95,6 @@ class FeedbacksController < ApplicationController
   end
 
   def feedback_params
-    params.require(:feedback).permit(:user_id, :notes, :token, :video_token, :review_satatus, :concept_review, :video_type, :approved, :rehearsal_id)
+    params.require(:feedback).permit(:user_id, :notes, :token, :video_token, :review_status, :concept_review, :video_type, :approved, :rehearsal_id)
   end
 end

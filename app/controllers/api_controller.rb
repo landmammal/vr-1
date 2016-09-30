@@ -8,6 +8,15 @@ class ApiController < ApplicationController
 		@rehearsals = Rehearsal.all
 	    render json: @rehearsals
 	end
+
+	def feedback_create
+		rehearsal = Rehearsal.find(params[:rehearsal_id])
+    	feedback = rehearsal.feedbacks.build(feedback_params)
+    	rehearsal.save
+    	@feedback = rehearsal.feedback.last
+
+	    render json: @feedback
+	end
 	
 	def rehearsals_single_api
 		@rehearsal = Rehearsal.find(params[:id])
@@ -83,5 +92,11 @@ class ApiController < ApplicationController
 	def admin_panel_api
 		@admin_panel = [{name:'Demos', icon:'ion', iname:'ion-social-youtube', link:demos_path, link_target:'', notif:true}]
         render json: @admin_panel
+	end
+
+	private
+
+	def feedback_params
+	    params.require(:feedback).permit(:user_id, :notes, :token, :video_token, :review_satatus, :concept_review, :video_type, :approved, :rehearsal_id)
 	end
 end
