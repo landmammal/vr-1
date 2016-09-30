@@ -46,6 +46,7 @@ class RehearsalsController < ApplicationController
   def show
     @feedback = Feedback.new
     @performance_feedback = PerformanceFeedback.new
+    @otherrehearsals = @rehearsal.lesson.rehearsals.where(submission: true).order('id DESC')
   end
 
   def new

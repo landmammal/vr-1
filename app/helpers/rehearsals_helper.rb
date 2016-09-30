@@ -45,4 +45,9 @@ module RehearsalsHelper
 		return status
 	end
 
+	def genReherasalRef(id)
+		ranNum = ((id * 30) + 5 ) * 7
+		return 'r'+ranNum.to_s+'id'+id.to_s
+	end
+
 end

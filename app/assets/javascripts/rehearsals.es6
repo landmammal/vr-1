@@ -3,7 +3,6 @@ ZiggeoApi.Events.on("system_ready", function() {
   var recorder = ZiggeoApi.V2.Recorder.findByElement( document.getElementById('recorderElement') );
 
   function postVideoToken(videoToken, streamToken){
-
     $form = $('#rehearsalsForm');
     $ziggeotoken = $('#rehearsal_video_token');
     $webtoken = $('#rehearsal_token');
@@ -20,11 +19,12 @@ ZiggeoApi.Events.on("system_ready", function() {
     // console.log(videoToken);
     // console.log(streamToken);
 
-    var nextRehearsal= $(".list_of_lesson_rehearsals > div").length + 1;
-    var newrehearsal = `<div class="rehearsal_thumbnail">`+
-                `Rehearsal `+nextRehearsal+`<br>`+
-                `<img src="`+videoImage(videoToken)+`" width="100%" class="rehearsal_img rehearsal_`+nextRehearsal+`">`+
-                `</div>`;
+    $('.submit_rehearsal').click(function(){
+      var nextRehearsal= $(".list_of_lesson_rehearsals > div").length + 1;
+      var newrehearsal = `<div class="rehearsal_thumbnail">`+
+                  `Rehearsal `+nextRehearsal+`<br>`+
+                  `<img src="`+videoImage(videoToken)+`" width="100%" class="rehearsal_img rehearsal_`+nextRehearsal+`">`+
+                  `</div>`;
 
       $.ajax({
         type:'GET',
@@ -37,21 +37,30 @@ ZiggeoApi.Events.on("system_ready", function() {
                                 `<button class="shadebox_btn rehearsal_btn" data-rehearsal="`+thisRehearsalId+`" data-rehearsalnumber="`+nextRehearsal+`">`+
                                     `Rehearsal `+nextRehearsal+
                                     `<div id="rehearsal_`+thisRehearsalId+`_status" class="blankdot"></div><br>`+
-                                    `<img src="`+videoImage(videoToken)+`" width="100%" class="rehearsal_img">`+
+                                    `<img src="`+videoImage(videoToken)+`" width="100%" class="rehearsal_img"><br>`+
+                                    `ref#: r`+((thisRehearsalId*30)+5)*7+`id`+thisRehearsalId+
                                 `</button>`+
                               `</div>`;
           $('.list_of_lesson_rehearsals').append(newrehearsal);
-          pageReady();
+          // pageReady();
         }
       });
 
-    // here is where we call the postVideoToken function and pass it both token vars
-    postVideoToken(videoToken, streamToken);
+      // here is where we call the postVideoToken function and pass it both token vars
+      if(videoToken != ''){postVideoToken(videoToken, streamToken);}else{}
+      $('.submit_rehearsal').hide()
+      $('.record_another_rehearsal').show()
+    });
+
   });
 });
 
 
 var pageReady = function(){
+  $('.record_another_rehearsal').click(function(){
+    location.reload();
+  });
+
 
   var changeSubmitButton = function(submission, id){
     if(submission === false || !submission){

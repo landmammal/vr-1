@@ -45,7 +45,8 @@
             <div class="rehearsal_thumbnail">
                 <button class="shadebox_btn rehearsal_btn" data-rehearsal="<%= rehearsal.id.to_s %>" data-rehearsalnumber="<%= (rehearsals_for_this_lesson.index(rehearsal)+1).to_s %>">Rehearsal <%= (rehearsals_for_this_lesson.index(rehearsal)+1).to_s %>
                     <div id="rehearsal_<%= rehearsal.id.to_s %>_status" class="<%= rehearsal_approved(rehearsal.id) %>"></div><br>
-                    <%= render './shared/ziggeothumbnail' %>
+                    <%= render './shared/ziggeothumbnail' %><br>
+                    ref#: <%= genReherasalRef(rehearsal.id) %>
                 </button>
             </div>
         <% end %>

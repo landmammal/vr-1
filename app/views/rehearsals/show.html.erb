@@ -97,10 +97,22 @@
 
   <div class="body">
 
-    <% @rehearsal.lesson.rehearsals.each_with_index do |rehearsal, index| %>
+    <% @otherrehearsals.each_with_index do |rehearsal, index| %>
       <% @course = rehearsal.course %>
       <% if course_creator && rehearsal.submission == true %>
-        <%= link_to ('Rehearsal #'+(index + 1).to_s), course_topic_lesson_path(rehearsal.course, rehearsal.topic, rehearsal.lesson) %><br>
+        <% @this_video_token = rehearsal.video_token %>
+
+        <div class="rehearsal_thumbnail">
+          <a href="<%= rehearsal_path(rehearsal) %>">
+            <button class="shadebox_btn rehearsal_btn" data-rehearsal="<%= rehearsal.id.to_s %>" data-rehearsalnumber="Rehearsal #<%= (index + 1).to_s %>">
+                Rehearsal <%= (index + 1).to_s %>
+                <div class="<%= @rehearsal.id != rehearsal.id ? 'blankdot' : 'greendot' %>">
+                </div><br>
+                <%= render './shared/ziggeothumbnail' %><br>
+                ref#: <%= genReherasalRef(rehearsal.id) %>
+            </button>
+          </a>
+        </div>
       <% end %>
     <% end %>
 

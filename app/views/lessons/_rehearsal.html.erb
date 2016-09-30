@@ -16,11 +16,13 @@
 
     <%= f.text_area :script, class:'rehearsal_script', placeholder:'Write your script here...' %>
     <div style="margin-top:-5px;"><%= render 'scriptcontrol' %></div>
-    <%= f.text_field :course_id, type:"hidden", value:@course.id  %><br>
+    <div style="display:none;"><%= f.text_field :course_id, type:"hidden", value:@course.id  %><br>
     <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
     <%= f.text_field :lesson_id, type:"hidden", value:@lesson.id %><br>
     <%= f.text_field :topic_id, type:"hidden", value:@topic.id %><br>
     <%= f.text_field :video_token, type:"hidden" %>
-    <%= f.text_field :token, type:"hidden" %>
+    <%= f.text_field :token, type:"hidden" %></div>
 
 <% end %>
+<%= button_tag 'Submit Rehearsal', class:'submit_rehearsal green_sft' %>
+<%= button_tag 'Record Another Rehearsal', class:'record_another_rehearsal blue', style:'display:none;' %>
