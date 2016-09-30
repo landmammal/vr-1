@@ -176,9 +176,9 @@ var pageReady = function(){
 
 
 	// =========== SHADEBOX ============= //
-
 	$('.shadebox_bottom').prepend('<button class="shade_close red small_btn">x</button>');
 	$('.shadebox_title').prepend('<div class="shade_close">x</div>');
+	
 	$('.shadebox_btn').click(function(){
 		$('.shadebox').fadeIn(500);
 	});

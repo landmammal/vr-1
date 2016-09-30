@@ -20,6 +20,11 @@ var window_height = $(window).height();
 var document_width = $(document).width();
 var document_height = $(document).height();
 
+function SortObjectsById(a, b){
+	var aId = a.id;
+	var bId = b.id; 
+	return ((aId < bId) ? -1 : ((aId > bId) ? 1 : 0));
+}
 
 function railsToJson(json_string){
     var newjson = jQuery.parseJSON(json_string.replace(/&quot;/g, '"'));

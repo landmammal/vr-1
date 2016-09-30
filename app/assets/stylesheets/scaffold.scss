@@ -127,7 +127,7 @@ input[type="submit"], button{
 
   &.blue{
     // border:1px solid #517DAC;
-    background-color:#437cbf; color:#fff;
+    background-color:#00A6FF; color:#fff;
     &:hover{
       background-color:#517DAC;
     }
@@ -323,10 +323,13 @@ a:focus {
   }
 }
 
-
-.reddot, .greendot{
+.blankdot{ width:8px; height:8px; display:none; }
+.reddot, .greendot, .orangedot{
   width:8px; height:8px; display:inline-block;
   border-radius:50%; margin-bottom:0.5px;
+}
+.orangedot{
+  background-color:#FFA800;
 }
 .reddot{
   background-color:red;

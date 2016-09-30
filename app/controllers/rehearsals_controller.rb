@@ -8,9 +8,10 @@ class RehearsalsController < ApplicationController
 
   # before_action :set_topic, only: [:update]
   # before_action :set_course, only: [:update]
-
+  
   def index
     @rehearsals = Rehearsal.all
+    @rehearsals_api = Rehearsal.all
     @feedback = Feedback.new
     @performance_feedback = PerformanceFeedback.new
   end
@@ -21,13 +22,13 @@ class RehearsalsController < ApplicationController
     # @performance_feedback = PerformanceFeedback.new
 
     @course_rehearsals = []
-    current_user.courses.each { |course| course.rehearsals.each { |c| @course_rehearsals << c if c.submission == true } if course.rehearsals.size > 0 }
+    current_user.courses.order('updated_at DESC').each { |course| course.rehearsals.each { |c| @course_rehearsals << c if c.submission == true } if course.rehearsals.size > 0 }
     @topic_rehearsals = []
-    current_user.topics.each { |topic| topic.rehearsals.each { |t| @topic_rehearsals << t if t.submission == true } if topic.rehearsals.size > 0 }
+    current_user.topics.order('updated_at DESC').each { |topic| topic.rehearsals.each { |t| @topic_rehearsals << t if t.submission == true } if topic.rehearsals.size > 0 }
     @lesson_rehearsals = []
-    current_user.lessons.each { |lesson| lesson.rehearsals.each { |l| @lesson_rehearsals << l if l.submission == true } if lesson.rehearsals.size > 0 }
+    current_user.lessons.order('updated_at DESC').each { |lesson| lesson.rehearsals.each { |l| @lesson_rehearsals << l if l.submission == true } if lesson.rehearsals.size > 0 }
 
-    @user_feedback = current_user.feedbacks.select(:id)
+    @user_feedback = current_user.feedbacks.order('updated_at DESC').select(:id)
     
     @rehearsals_without_feedback = []
     @rehearsals_with_feedback = []
@@ -68,19 +69,13 @@ class RehearsalsController < ApplicationController
   end
 
   def update
-    if @rehearsal.submission = nil
+    if @rehearsal.submission == nil || @rehearsal.submission == false
       @rehearsal.submission = true
     else
       @rehearsal.submission = false
     end
-    # binding.pry
-    @rehearsal.update(rehearsal_params)
     @rehearsal.save
-
-      if @rehearsal.save
-      else
-        binding.pry
-      end
+    render json: @rehearsal
   end
 
   def destroy

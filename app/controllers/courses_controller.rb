@@ -6,6 +6,7 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @courses = current_user.courses
+    @courses_api = Course.all
 
     if current_user.level_2
       @course = Course.new

@@ -4,6 +4,11 @@ class ApiController < ApplicationController
 		render json: @courses
 	end
 
+	def rehearsals_api
+		@rehearsals = Rehearsal.all
+	    render json: @rehearsals
+	end
+	
 	def rehearsals_single_api
 		@rehearsal = Rehearsal.find(params[:id])
 	    render json: @rehearsal
