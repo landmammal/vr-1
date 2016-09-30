@@ -21,4 +21,11 @@ class AdminMailer < ActionMailer::Base
     @user = user
     mail( to: @user.email, subject: "Learn Anything Now")
   end
+
+  # sending notification to trainee that they have a new feedback available
+  def feedback_notice(user)
+    @url = 'https://videorehearser.herokuapp.com/users/sign_in'
+    @user = user
+    mail( to: @user.email, subject: "New feedback available")
+  end
 end

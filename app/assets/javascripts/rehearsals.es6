@@ -57,6 +57,7 @@ ZiggeoApi.Events.on("system_ready", function() {
 
 
 var pageReady = function(){
+  
   $('.record_another_rehearsal').click(function(){
     location.reload();
   });
@@ -111,7 +112,15 @@ var pageReady = function(){
       }
     });
   });
+
+  $('.user_bubble').click(function (event) {
+    event.preventDefault()
+    console.log($(this).data('rehearsal_id'));
+    console.log('clicked');
+  });
+
 };
 
 $(document).ready(pageReady);
 $(document).on('page:load', pageReady);
+>>>>>>> 700671e5d4822a36f0ab55fb07d05efed0649608

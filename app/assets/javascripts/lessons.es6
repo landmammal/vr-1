@@ -215,7 +215,7 @@ var pageReady = function(){
 		$(this).removeClass('green_sft');
 	});
 
-	if($('.model_video').text() || $('.prompt_video').text() || $('.rehearsal_video').text()){
+	if($('.model_video').text() || $('.prompt_video').text() ){
 		var model_video = document.getElementsByClassName('model_video')[0].innerHTML;
 		var prompt_video = document.getElementsByClassName('prompt_video')[0].innerHTML;
 		var rehearsal_video = document.getElementsByClassName('rehearsal_video')[0].innerHTML;

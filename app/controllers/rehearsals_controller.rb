@@ -17,9 +17,8 @@ class RehearsalsController < ApplicationController
   end
 
   def all
-
     @feedback = Feedback.new
-    # @performance_feedback = PerformanceFeedback.new
+    @performance_feedback = PerformanceFeedback.new
 
     @course_rehearsals = []
     current_user.courses.order('updated_at DESC').each { |course| course.rehearsals.each { |c| @course_rehearsals << c if c.submission == true } if course.rehearsals.size > 0 }
