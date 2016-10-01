@@ -1,3 +1,5 @@
 fixes:
 ** we need to identify when each user starts a course
 ** change all the .where in database calls to ? method
+** change 'Make Rehearsal Private' to something less confusing
+** make home slider navigate with keyboard arrows

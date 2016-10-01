@@ -63,16 +63,19 @@ var pageReady = function(){
   });
 
 
+
+
+  // REHEARSAL SUBMISSION
   var changeSubmitButton = function(submission, id){
     if(submission === false || !submission){
-      $('button.submisison').text('Submit for Feedback');
-      $('button.submisison').removeClass('red');
-      $('button.submisison').addClass('blue');
+      $('button.submission').text('Submit for Feedback');
+      $('button.submission').removeClass('red');
+      $('button.submission').addClass('blue');
       $('#rehearsal_'+id+'_status').prop('class', 'blankdot');
     }else{
-      $('button.submisison').text('Make Rehearsal Private');
-      $('button.submisison').removeClass('blue');
-      $('button.submisison').addClass('red');
+      $('button.submission').text('Make Rehearsal Private');
+      $('button.submission').removeClass('blue');
+      $('button.submission').addClass('red');
       $('#rehearsal_'+id+'_status').prop('class', 'orangedot');
     }
   }
@@ -91,14 +94,14 @@ var pageReady = function(){
         $('.put_title_here').html('Rehearsal #'+rehearsalNumber);
         $('.put_video_here').html('<ziggeoplayer ziggeo-theme="modern" class="ziggeo_play_elem rehearsal_video" ziggeo-video="'+data.video_token+'" ziggeo-stretch> </ziggeoplayer>');
 
-        $('button.submisison').data('rehearsalid', rehearsalid);
-        $('button.submisison').data('rehearsalsubmission', data.submission);
+        $('button.submission').data('rehearsalid', rehearsalid);
+        $('button.submission').data('rehearsalsubmission', data.submission);
         changeSubmitButton(data.submission, data.id);
       }
     });
   });
 
-  $(".submisison").click(function(){
+  $(".submission").click(function(){
     var submissionId = $(this).data('rehearsalid');
     var submissionBool = $(this).data('rehearsalsubmission');
 
@@ -115,26 +118,7 @@ var pageReady = function(){
 
 
 
-  $('.mark_as_completed').click(function(event) {
-    event.preventDefault();
-
-    var newfeedback = new Object();
-        newfeedback.rehearsal_id = $(this).data('rehearsalid');
-        newfeedback.user_id = $(this).data('userid');
-        newfeedback.approved = true;
-
-    $.ajax({
-      type:'POST',
-      url:'/feedbacks/create/api',
-      data:newfeedback,
-      success: function(data){
-        console.log(data);
-        $('.mark_as_completed').text('Rehearsal approved');
-      }
-    });
-
-  });
-
+  // FEEDBACK SUBMISSION
   $('.user_bubble').click(function(event) {
     event.preventDefault();
     var rehearsalid = $(this).data('rehearsalid');
@@ -147,10 +131,33 @@ var pageReady = function(){
         // console.log(data);
         $('.put_title_here').html('Rehearsal for: <a href="/courses/'+data.course_id+'/topics/'+data.topic_id+'/lessons/'+data.lesson_id+'/"><b>'+lessonTitle+'</b></a>');
         $('.put_video_here').html('<ziggeoplayer ziggeo-theme="modern" class="ziggeo_play_elem rehearsal_video" ziggeo-video="'+data.video_token+'" ziggeo-stretch> </ziggeoplayer>');
-        $('a.leave_feedback').prop('href','/rehearsals/'+rehearsalid);
-        $('button.submisison').data('rehearsalid', rehearsalid);
+        $('a.leave_feedback').prop('href','/rehearsals/'+data.id);
+
+        $('.mark_as_completed').data('rehearsalid', data.id);
+        $('.leave_feedback').data('rehearsalid', data.id);
       }
     });
+  });
+
+  $('.mark_as_completed').click(function(event) {
+    event.preventDefault();
+    var thisid = $(this).data('rehearsalid');
+
+    var newfeedback = new Object();
+        newfeedback.rehearsal_id = thisid;
+        newfeedback.user_id = $(this).data('userid');
+        newfeedback.approved = true;
+
+    $.ajax({
+      type:'POST',
+      url:'/feedback/create/'+thisid,
+      data:newfeedback,
+      success: function(data){
+        console.log(data);
+        $('.mark_as_completed').text('Rehearsal approved');
+      }
+    });
+
   });
 
 };

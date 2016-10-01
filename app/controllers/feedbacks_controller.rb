@@ -7,6 +7,7 @@ class FeedbacksController < ApplicationController
   end
 
   def all
+    @site_title = 'Feedbacks for '+current_user.first_name+' '+current_user.last_name
     @all_rehearsals = current_user.rehearsals
 
     @rehearsals_with_feedback = []
