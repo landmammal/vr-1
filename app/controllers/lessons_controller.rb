@@ -120,6 +120,7 @@ class LessonsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_lesson
       @lesson = Lesson.find(params[:id])
+      @site_title = 'Lesson:: '+@lesson.title
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

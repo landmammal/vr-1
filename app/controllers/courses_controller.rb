@@ -17,7 +17,7 @@ class CoursesController < ApplicationController
 
   def search
     @courses = Course.where.not(privacy:'1').order('id DESC')
-
+    @site_title = 'Search Courses'
     if current_user.level_2
       @course = Course.new
       @new_topic = Topic.new
@@ -98,6 +98,7 @@ class CoursesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_course
       @course = Course.find(params[:id])
+      @site_title = 'Course:: '+@course.title
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

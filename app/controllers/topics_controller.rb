@@ -78,6 +78,7 @@ class TopicsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_topic
       @topic = Topic.find(params[:id])
+      @site_title = 'Topic:: '+@topic.title
     end
 
     def topic_params

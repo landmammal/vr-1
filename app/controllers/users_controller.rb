@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     else
       @users = User.all
     end
+    @site_title = 'All Users'
     # you have to be and admin to access this page
     authorize User
   end
@@ -21,11 +22,14 @@ class UsersController < ApplicationController
       @topic = Topic.new
       @lesson = Lesson.new
     end
+    @site_title = current_user.first_name+' '+current_user.last_name
+
     authorize @user
   end
 
   def edit
     @user = User.find(params[:id])
+    @site_title = 'Edit Settings'
     authorize @user
   end
 

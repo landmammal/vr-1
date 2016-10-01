@@ -58,6 +58,7 @@ class ModelsController < ApplicationController
 
   def set_model
     @model = Model.find(params[:id])
+    @site_title = @model.title
   end
 
   def model_params

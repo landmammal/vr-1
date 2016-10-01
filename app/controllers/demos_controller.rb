@@ -2,6 +2,7 @@ class DemosController < ApplicationController
 
 	def index
 		@all_demos = Demo.all.order(id: :desc)
+		@site_title = 'Requested Demos'
 	end
 
 	def create
