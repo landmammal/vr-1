@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # resources :feedbacks
   root 'welcome#index'
 
-  menu_routes = ['about','markets','product','process','contact']
+  menu_routes = ['about','markets','mission','process','contact']
   menu_routes.push('theteam','termsandservices','FAQs','requirements','policies','press','teach','coach','learn','create','support')
   menu_routes.each do |menu|
     get "/#{menu}" => "welcome##{menu}"
