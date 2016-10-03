@@ -57,10 +57,8 @@ class FeedbacksController < ApplicationController
 
   def update
     @feedback.viewed_by_user = false
-    user =  User.find(@feedback.rehearsals.first.trainee_id)
     respond_to do |format|
       if @feedback.update(feedback_params)
-        AdminMailer.feedback_notice(user).deliver_now
         format.html { redirect_to rehearsals_all_path, notice: 'Lesson was updated created.' }
         format.json { render :show, status: :ok, location: @lesson }
       else
@@ -71,12 +69,13 @@ class FeedbacksController < ApplicationController
   end
 
   def create
-    # binding.pry
     rehearsal = Rehearsal.find(params[:rehearsal_id])
     feedback = rehearsal.feedbacks.build(feedback_params)
     respond_to do |format|
       if rehearsal.save
-        format.html { redirect_to edit_feedback_path(feedback), notice: 'start your feedback' }
+        user =  User.find(feedback.rehearsals.first.trainee_id)
+        AdminMailer.feedback_notice(user).deliver_now
+        format.html { redirect_to rehearsals_all_path, notice: 'start your feedback' }
         format.json { render json: feedback }
       else
         format.html { render :new }

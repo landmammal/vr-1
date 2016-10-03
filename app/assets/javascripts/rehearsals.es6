@@ -157,9 +157,7 @@ var pageReady = function(){
         $('.mark_as_completed').text('Rehearsal approved');
       }
     });
-
   });
-
 };
 
 $(document).ready(pageReady);

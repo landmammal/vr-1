@@ -33,7 +33,6 @@
                     <div class="lesson_script <%= @this_added_class %>_script">
                       <%= simple_format(@rehearsal.script) %>
                     </div>
-                    <%= render './lessons/scriptcontrol' %>
                   </div>
                 </div>
 
@@ -59,7 +58,6 @@
                         <%= f.text_field :video_token, type:"hidden" %>
                         <%= f.text_field :token, type:"hidden" %></div>
                         <%= f.text_area :notes, placeholder:'Write them a note here...' %><br>
-                        <%= f.check_box :approved %> <strong>Mark Lesson Completed  </strong><br>
 
                     <% end %>
                     
