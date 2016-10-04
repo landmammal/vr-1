@@ -43,6 +43,7 @@ class RehearsalsController < ApplicationController
     
     @rehearsals_without_feedback = []
     @rehearsals_with_feedback = []
+    @rehearsals_to_check = Rehearsal.where(approval_status: 0)
 
     @course_rehearsals.each do |rehearsal| 
       if rehearsal.feedbacks.size < 1 
