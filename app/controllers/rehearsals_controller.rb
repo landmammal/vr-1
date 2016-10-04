@@ -7,7 +7,20 @@ class RehearsalsController < ApplicationController
 
   # approving  a rehearsal
   def rehearsal_approved
-  binding.pry
+    @rehearsal = Rehearsal.find(params[:rehearsal_id])
+    binding.pry
+    @rehearsal.approval_status = 1
+    user = @rehearsal.trainee
+    respond_to do |format|
+      if @rehearsal.save!
+        binding.pry
+        AdminMailer.lesson_complete_notice(user).deliver_now
+        format.html { redirect_to rehearsals_all_path, notice: 'Rehearsal successfully marked as passed.' }
+      else
+        format.html { render :new }
+        format.json { render json: @rehearsal.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def index

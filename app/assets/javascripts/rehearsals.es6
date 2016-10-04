@@ -150,7 +150,7 @@ var pageReady = function(){
       url:'/rehearsal/'+thisid+'/rehearsal_approved',
       success: function(data){
         console.log(data);
-        $('.mark_as_completed').text('Rehearsal approved');
+        $('.mark_as_completed').text('Lesson approved');
       }
     });
   });
