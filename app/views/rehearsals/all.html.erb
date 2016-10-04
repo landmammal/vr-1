@@ -12,25 +12,18 @@
   <div class="this_called_content show_new_content">
     <div class="title">New Rehearsals</div>
     <% @rehearsals_without_feedback.each do |rehearsal| %>
+        <% if rehearsal.approval_status == 0 %>
+          <% lesson = rehearsal.lesson %>
+          <% @this_user = User.find(rehearsal.trainee_id) %>
+          <% @r = 'rehearsal_bubble_'+rehearsal.id.to_s %>
+          <% @date_sub = time_diff(Time.now, rehearsal.updated_at) %>
 
-        <% lesson = rehearsal.lesson %>
-        <% @this_user = User.find(rehearsal.trainee_id) %>
-        <% @r = 'rehearsal_bubble_'+rehearsal.id.to_s %>
-        <% @date_sub = time_diff(Time.now, rehearsal.updated_at) %>
-        
-        
-        <button class="user_bubble shadebox_btn rehearsal_activate <%= @r %>" data-rehearsalid='<%= rehearsal.id %>' data-lessontitle='<%= rehearsal.lesson.title %>' >
-          <img src="<%= student_pic %>"  class="img-circle">
-          <div class="info"><%= @this_user.first_name+' '+ @this_user.last_name %><br>
-            <font size="0.2em">Submitted: <%= @date_sub %></font></div>
-        </button>
 
-        <%= form_for rehearsal  do |f| %>
-            <%= f.text_field :approval_status, type:"hidden", value:false %>
-        <% end %>
-        <%= form_for [rehearsal, @feedback],html: {id: "feedbackForm"}  do |f| %>
-            <%= f.text_field :rehearsal_id, type:"hidden", value:rehearsal.id  %>
-            <%= f.text_field :user_id, type:"hidden", value:current_user.id %>
+          <button class="user_bubble shadebox_btn rehearsal_activate <%= @r %>" data-rehearsalid='<%= rehearsal.id %>' data-lessontitle='<%= rehearsal.lesson.title %>' >
+            <img src="<%= student_pic %>"  class="img-circle">
+            <div class="info"><%= @this_user.first_name+' '+ @this_user.last_name %><br>
+              <font size="0.2em">Submitted: <%= @date_sub %></font></div>
+          </button>
         <% end %>
     <% end %>
   </div>

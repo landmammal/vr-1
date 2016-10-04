@@ -81,11 +81,8 @@ class RehearsalsController < ApplicationController
   end
 
   def update
-    if @rehearsal.submission == nil || @rehearsal.submission == false
-      @rehearsal.submission = true
-    else
-      @rehearsal.submission = false
-    end
+    @rehearsal.submission = true
+    @rehearsal.approval_status = 0
     @rehearsal.save
     render json: @rehearsal
   end
