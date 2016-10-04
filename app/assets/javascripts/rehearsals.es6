@@ -11,7 +11,9 @@ ZiggeoApi.Events.on("system_ready", function() {
     $form.submit();
   };
 
+  $('.submit_rehearsal').hide();
   recorder.on('verified', function() {
+      $('.submit_rehearsal').show();
     // console.log(streamToken);
     // getting the streamtoken and storing it in streamToken var to ship it to the outside world
     var streamToken = recorder.get('stream'); //to get the stream token
@@ -143,15 +145,9 @@ var pageReady = function(){
     event.preventDefault();
     var thisid = $(this).data('rehearsalid');
 
-    var newfeedback = new Object();
-        newfeedback.rehearsal_id = thisid;
-        newfeedback.user_id = $(this).data('userid');
-        newfeedback.approved = true;
-
     $.ajax({
-      type:'POST',
-      url:'/feedback/create/'+thisid,
-      data:newfeedback,
+      type:'PUT',
+      url:'/rehearsal/'+thisid+'/rehearsal_approved',
       success: function(data){
         console.log(data);
         $('.mark_as_completed').text('Rehearsal approved');

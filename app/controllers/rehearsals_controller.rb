@@ -3,12 +3,13 @@ class RehearsalsController < ApplicationController
   before_action :set_update_rehearsal, only: [:update]
   before_action :set_lesson, only: [:create, :index]
   before_action :set_lesson_rehearsal, only: [:show]
-
   before_action :authenticate_user!
 
-  # before_action :set_topic, only: [:update]
-  # before_action :set_course, only: [:update]
-  
+  # approving  a rehearsal
+  def rehearsal_approved
+  binding.pry
+  end
+
   def index
     @rehearsals = Rehearsal.all
     @rehearsals_api = Rehearsal.all

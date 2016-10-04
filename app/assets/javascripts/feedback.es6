@@ -13,6 +13,7 @@ ZiggeoApi.Events.on("system_ready", function() {
         $form.submit();
         console.log('form submited')
     };
+
     $('.submit_feedback').hide()
     recorder.on('verified', function() {
         // console.log(streamToken);
@@ -29,4 +30,6 @@ ZiggeoApi.Events.on("system_ready", function() {
             window.history.back();
         });
     });
+
+    $()
 });
