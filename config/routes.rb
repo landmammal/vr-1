@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   end
 
 
-
+  get "/course_registrations/" => "course_registrations#index"
   get "/rehearsals/all" => "rehearsals#all"
   get "/feedback/all" => "feedbacks#all"
   
@@ -82,8 +82,8 @@ Rails.application.routes.draw do
   # resources :practices
 
   # resources :group_registrations
-  resources :course_registrations
-  # resources :user_groups
+  # resources :course_registrations
+  # resources :user_groups2
 
 
   # resources :course_topics
