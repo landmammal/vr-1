@@ -82,7 +82,7 @@ Rails.application.routes.draw do
   # resources :practices
 
   # resources :group_registrations
-  # resources :course_registrations
+  resources :course_registrations
   # resources :user_groups
 
 

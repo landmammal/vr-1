@@ -1,6 +1,10 @@
 class CourseRegistrationsController < ApplicationController
 	before_action :set_course, only: [:create]
 
+	def index
+		@course_registrations = CourseRegistration.all
+	end
+
 	def create
 		@course_registration = current_user.course_registrations.build(course_regis_params)
 		@course_registration.course_id = @course.id
