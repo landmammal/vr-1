@@ -10,25 +10,6 @@
 	background-color:#C9C9C9; 
 	position: relative;	overflow:hidden;
 	color: white;
-	& .user_info{
-		width:300px;  height:100%;
-		position: relative; top:0; z-index: 2;
-		overflow: hidden; padding:10px 0 5px;
-		backdrop-filter: blur(5px); background-color:rgba(0,0,0,0.7);
-
-		// & .user_info_top{
-		// 	border-bottom:1px rgba(255,255,255,0.1) solid; padding:5px 10px; margin-bottom:20px; font-size:17px; font-weight:bold;
-		// }
-		& .profile_pic{
-			float:left; width:100px; padding:10px; margin-left:20px;
-			img{
-				width:100%;
-			}
-		}
-		& .profile_info{
-			float:left; width:calc(100% - 120px); padding:10px 0 10px 10px;
-		}
-	}
 }
 
 $mn_pnl_s: 50px ;
@@ -45,14 +26,14 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 .leftpanel{
 	width:$mn_pnl_s;
 	background-color:$panel_color; position:relative; z-index:5;
-	padding:0;
+	padding:0; font-size: 11px;
 	&.max{
 		width:$mx_pnl_s; min-height:$min_height;
 		text-align:left; font-size: 11px; padding:0;
 	}
 	& .panel_seperator{
 		border-bottom:1px dotted #aaa; padding:0; margin:0; overflow:hidden; z-index:1;
-		text-align:left;
+		text-align:center;
 		&.max{
 			// padding:0;
 			text-align:center;
@@ -60,15 +41,21 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 		& .panel_icon{
 			margin:0; padding:15px;
 			width:100%; color:#fff; overflow:hidden;
-			text-align:center;  
+			text-align:center;
 			
-			img{ width:20px; float:left; opacity: 0.5;
+			img{ 
+				width:20px; float:left; opacity: 0.5;
 				&:hover{
 					opacity: 1;
 				}
 			}
 
-			& .icon{ font-size:20px; float:left; opacity: 0.5;
+			& .icon{ 
+				font-size:20px; float:none; opacity: 0.5;
+				padding-bottom:2px; transition:0.5s;
+				&.max{
+					float:left; transition:0.5s;
+				}
 				&:hover{
 					opacity: 1;
 				}

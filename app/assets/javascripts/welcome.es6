@@ -158,13 +158,13 @@ var pageReady = function(){
 		$('.notice').empty();
 		$('#notice').empty();
 
-		$('.notice').fadeOut(100);
-		$('#notice').fadeOut(100);
+		$('.notice').addClass('remove');
+		$('#notice').addClass('remove');
 	});
 	setTimeout(function(){
-		$('.notice').fadeOut(400);
-		$('#notice').fadeOut(400);
-	},4000);
+		$('.notice').addClass('remove');
+		$('#notice').addClass('remove');
+	},2300);
 
 
 

@@ -12,17 +12,15 @@ ZiggeoApi.Events.on("system_ready", function() {
   };
 
 
-  $('.submit_rehearsal').hide();
+  // $('.submit_rehearsal').hide();
   recorder.on('verified', function() {
-      $('.submit_rehearsal').show();
+    // $('.submit_rehearsal').show();
     // console.log(streamToken);
     // getting the streamtoken and storing it in streamToken var to ship it to the outside world
     var streamToken = recorder.get('stream'); //to get the stream token
     var videoToken = recorder.get('video'); //to get the video token
     // console.log(videoToken);
     // console.log(streamToken);
-
-    $('.submit_rehearsal').show();
 
     $('.submit_rehearsal').click(function(){
       var nextRehearsal= $(".list_of_lesson_rehearsals > div").length + 1;
@@ -47,7 +45,6 @@ ZiggeoApi.Events.on("system_ready", function() {
                                 `</button>`+
                               `</div>`;
           $('.list_of_lesson_rehearsals').html(newrehearsal);
-          // pageReady();
         }
       });
 
@@ -101,7 +98,7 @@ var pageReady = function(){
       success: function(data){
         // console.log(data);
         $('.put_title_here').html('Rehearsal #'+rehearsalNumber);
-        $('.put_video_here').html('<div class="ziggeo_wrapper" style="width:100%;"><ziggeoplayer ziggeo-theme="modern" class="ziggeo_play_elem rehearsal_video" ziggeo-video="'+data.video_token+'" ziggeo-stretch ziggeo-responsive> </ziggeoplayer></div>');
+        $('.put_video_here').html('<div class="ziggeo_wrapper" style="width:100%;"><ziggeoplayer ziggeo-theme="modern" class="ziggeo_play_elem" ziggeo-video="'+data.video_token+'" ziggeo-stretch ziggeo-responsive> </ziggeoplayer></div>');
 
         $('button.submission').data('rehearsalid', rehearsalid);
         $('button.submission').data('rehearsalsubmission', data.submission);
@@ -139,7 +136,7 @@ var pageReady = function(){
       success: function(data){
         // console.log(data);
         $('.put_title_here').html('Rehearsal for: <a href="/courses/'+data.course_id+'/topics/'+data.topic_id+'/lessons/'+data.lesson_id+'/"><b>'+lessonTitle+'</b></a>');
-        $('.put_video_here').html('<div class="ziggeo_wrapper" style="width:100%;"><ziggeoplayer ziggeo-theme="modern" class="ziggeo_play_elem rehearsal_video" ziggeo-video="'+data.video_token+'" ziggeo-stretch> </ziggeoplayer></div>');
+        $('.put_video_here').html('<div class="ziggeo_wrapper" style="width:100%;"><ziggeoplayer ziggeo-theme="modern" class="ziggeo_play_elem" ziggeo-video="'+data.video_token+'" ziggeo-stretch ziggeo-responsive> </ziggeoplayer></div>');
         $('a.leave_feedback').prop('href','/rehearsals/'+data.id);
 
         $('.mark_as_completed').data('rehearsalid', data.id);

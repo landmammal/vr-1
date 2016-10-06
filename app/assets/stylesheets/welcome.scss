@@ -15,7 +15,22 @@ header.header{
 	& .menu{
 		overflow:hidden; max-width:1100px; margin:0 auto; padding:0 10px; z-index: 3;
 		position:relative;
-		&.app{ width:100%; max-width:100%; }
+		&.app{ 
+			width:100%; max-width:100%;
+			& .user_info{
+				float:left; padding:0 10px 0 0;
+				& .user_info_text{
+					float:right; color:white;
+					text-align: right; padding:7px 10px 0 0;
+				}
+				& .profile_pic{
+					float:right; width:38px; padding:5px 0;
+					img{
+						width:100%;
+					}
+				}
+			}
+		}
 	}
 
 	& .logo{
@@ -435,11 +450,35 @@ header.header{
 	      float:none; width:100%; text-align:center;
 	      & .menu_item{
 	        padding:5px 7px; margin:5px 3px 0;
+	        float: none; display: inline-block;
 	      }
 	    }
 
 	    &.home{ position:relative; }
-		&.app{ padding:0 10px; }
+		&.app{
+			padding:0 10px;
+			& .menu_list{
+		    	float:none; 
+		    	margin:20px auto 0;
+		    	overflow: visible;
+			    & .menu_item{
+			    	margin:0;
+			    	float: right;
+			    }
+				& .user_info{
+					float: left;
+					position:relative; bottom:5px;
+					& .user_info_text{
+						position:relative;
+						left:50px; text-align:left;
+					}
+					& .profile_pic{
+						position:relative;
+						left:-90px;
+					}
+				}
+		  	}
+		}
 	}
 
 	.home_top_wrapper{

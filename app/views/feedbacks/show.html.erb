@@ -21,11 +21,11 @@
 
     <% if current_user.level_4 %>
 
-      <div class="lesson_video_left lesson_vid" style="display:block;">
-        <div class="rehearsal_video">
+      <div class="lesson_video_left">
+        <div class="ziggeo_wrapper">
           <% @this_video_token = @feedback.video_token %>
           <% @this_added_class = 'feedback' %>
-          <div><%= render './shared/ziggeoplayer' %></div>
+          <%= render './shared/ziggeoplayer' %>
           <div class="lesson_script <%= @this_added_class %>_script">
             <%= simple_format(@feedback.notes) %>
           </div>
@@ -34,8 +34,8 @@
       </div>
 
     <% end %>
-    
-    <%= link_to 'Back', feedback_all_path %>
+    <br>
+    <button class="small_btn blue js-click_back">Back</button>
 
   </div>
 </div>
