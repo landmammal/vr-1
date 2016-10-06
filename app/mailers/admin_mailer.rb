@@ -28,4 +28,12 @@ class AdminMailer < ActionMailer::Base
     @user = user
     mail( to: @user.email, subject: "New feedback available")
   end
+
+  # sending trainee and email notifying them of a lesson completed
+  def lesson_complete_notice(user)
+    @url = 'https://videorehearser.herokuapp.com/users/sign_in'
+    @user = user
+    mail( to:@user.email, subject: "Congratultions You complete it your lesson" )
+  end
 end
+

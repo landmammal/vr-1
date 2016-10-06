@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
 
-  post '/feedback/create/:rehearsal_id' => "api#feedback_create"
+  put '/rehearsal/:rehearsal_id/rehearsal_approved' => "rehearsals#rehearsal_approved"
 
   get "/test" => "welcome#test"
   get "/lessonexp/" => "lesson_explanations#index"
@@ -82,7 +82,7 @@ Rails.application.routes.draw do
   # resources :practices
 
   # resources :group_registrations
-  # resources :course_registrations
+  resources :course_registrations
   # resources :user_groups
 
 

@@ -10,6 +10,7 @@ class ApiController < ApplicationController
 	end
 
 	def feedback_create
+		binding.pry
 		rehearsal = Rehearsal.find(params[:rehearsal_id])
     	feedback = rehearsal.feedbacks.build(feedback_params)
     	rehearsal.save

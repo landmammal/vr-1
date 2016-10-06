@@ -1,5 +1,5 @@
 <div class="rehearsals_title">
-  You have <span class="num"><%= @rehearsals_without_feedback.count.to_s %></span> submissions without feedback.
+  You have <span class="num"><%= @rehearsals_to_check.count.to_s %></span> submissions without feedback.
 </div>
 
 <hr>
@@ -12,96 +12,19 @@
   <div class="this_called_content show_new_content">
     <div class="title">New Rehearsals</div>
     <% @rehearsals_without_feedback.each do |rehearsal| %>
-
-        <% lesson = rehearsal.lesson %>
-        <% @this_user = User.find(rehearsal.trainee_id) %>
-        <% @r = 'rehearsal_bubble_'+rehearsal.id.to_s %>
-        <% @date_sub = time_diff(Time.now, rehearsal.updated_at) %>
-        
-        
-        <button class="user_bubble shadebox_btn rehearsal_activate <%= @r %>" data-rehearsalid='<%= rehearsal.id %>' data-lessontitle='<%= rehearsal.lesson.title %>' >
-          <img src="<%= student_pic %>"  class="img-circle">
-          <div class="info"><%= @this_user.first_name+' '+ @this_user.last_name %><br>
-            <font size="0.2em">Submitted: <%= @date_sub %></font></div>
-        </button>
-
-        <!--rehearsal pop up-->
-        <!-- <div class="rehearsal_pop_up">
-          <% @this_user = rehearsal.trainee %>
-          <% @link_to_lesson = course_topic_lesson_path(rehearsal.course, rehearsal.topic, rehearsal.lesson) %>
-
-          <div class="top_info">
-            <div class="course_title">
-              Rehearsal submission for the lesson ::
-              <%= link_to rehearsal.lesson.title, @link_to_lesson %>
-            </div>
-          </div>
+        <% if rehearsal.approval_status == 0 %>
+          <% lesson = rehearsal.lesson %>
+          <% @this_user = User.find(rehearsal.trainee_id) %>
+          <% @r = 'rehearsal_bubble_'+rehearsal.id.to_s %>
+          <% @date_sub = time_diff(Time.now, rehearsal.updated_at) %>
 
 
-          <%= link_to rehearsal.course.title, course_path(rehearsal.course) %> >>
-          <%= link_to rehearsal.topic.title, course_topic_path(rehearsal.course, rehearsal.topic) %> >>
-          <%= link_to rehearsal.lesson.title, @link_to_lesson %>
-
-          <div class="box_sep">
-            <div class="lesson_half"></div>
-
-            <div class="body">
-
-              <% if current_user.level_3 %>
-                  <% if rehearsal.submission == true %>
-                      <div class="lesson_video_left lesson_vid" style="display:block;">
-                        <div class="rehearsal_video">
-                          <% @this_video_token = rehearsal.video_token %>
-                          <% @this_added_class = 'rehearsal' %>
-                          <div><%= render './shared/ziggeoplayer' %></div>
-                          <div class="lesson_script <%= @this_added_class %>_script">
-                            <%= simple_format(rehearsal.script) %>
-                          </div>
-                          <%= render './lessons/scriptcontrol' %>
-                        </div>
-                      </div>
-
-                      <div id="instructor_tools">
-                        <%= form_for rehearsal  do |f| %>
-                            <%= f.text_field :approval_status, type:"hidden", value:false %>
-                            <%= f.submit 'Lesson Pass', class:'blue' %>
-                        <% end %>
-                        <%= form_for [rehearsal, @feedback],html: {id: "feedbackForm"}  do |f| %>
-                            <%= f.text_field :rehearsal_id, type:"hidden", value:rehearsal.id  %>
-                            <%= f.text_field :user_id, type:"hidden", value:current_user.id %>
-                            <%= f.submit 'Add Feedback', class:'blue' %> <br>
-                        <% end %>
-
-                      </div>
-                  <% end %>
-              <% end %>
-
-              <%= link_to 'Back', rehearsals_all_path %>
-
-            </div>
-          </div>
-
-          <br><hr><br>
-
-          <div class="box_sep">
-            <div class="title">
-              OTHER REHEARSALS FOR :: <%= link_to rehearsal.lesson.title, @link_to_lesson %>
-            </div>
-
-            <div class="body">
-
-              <% rehearsal.lesson.rehearsals.each_with_index do |rehearsal, index| %>
-                  <% @course = rehearsal.course %>
-                  <% if course_creator && rehearsal.submission == true %>
-                      <%= link_to ('Rehearsal #'+(index + 1).to_s), course_topic_lesson_path(rehearsal.course, rehearsal.topic, rehearsal.lesson) %><br>
-                  <% end %>
-              <% end %>
-
-            </div>
-          </div>
-        </div> -->
-
-
+          <button class="user_bubble shadebox_btn rehearsal_activate <%= @r %>" data-rehearsalid='<%= rehearsal.id %>' data-lessontitle='<%= rehearsal.lesson.title %>' >
+            <img src="<%= student_pic %>"  class="img-circle">
+            <div class="info"><%= @this_user.first_name+' '+ @this_user.last_name %><br>
+              <font size="0.2em">Submitted: <%= @date_sub %></font></div>
+          </button>
+        <% end %>
     <% end %>
   </div>
 
@@ -124,7 +47,7 @@
 
   <div class="shadebox">
         <div class="shade box">
-            <div class="shadebox_title">
+             <div class="shadebox_title">
                 <div class="put_title_here"></div>
             </div>
             <div class="shadebox_content" style="text-align:center;">

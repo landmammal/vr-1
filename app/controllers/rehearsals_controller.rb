@@ -3,12 +3,24 @@ class RehearsalsController < ApplicationController
   before_action :set_update_rehearsal, only: [:update]
   before_action :set_lesson, only: [:create, :index]
   before_action :set_lesson_rehearsal, only: [:show]
-
   before_action :authenticate_user!
 
-  # before_action :set_topic, only: [:update]
-  # before_action :set_course, only: [:update]
-  
+  # approving  a rehearsal
+  def rehearsal_approved
+    @rehearsal = Rehearsal.find(params[:rehearsal_id])
+    @rehearsal.approval_status = 1
+    user = @rehearsal.trainee
+    respond_to do |format|
+      if @rehearsal.save!
+        AdminMailer.lesson_complete_notice(user).deliver_now
+        format.js { render :js => "window.location = '/rehearsals/all'" }
+      else
+        format.html { render :new }
+        format.json { render json: @rehearsal.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def index
     @rehearsals = Rehearsal.all
     @rehearsals_api = Rehearsal.all
@@ -31,6 +43,7 @@ class RehearsalsController < ApplicationController
     
     @rehearsals_without_feedback = []
     @rehearsals_with_feedback = []
+    @rehearsals_to_check = Rehearsal.where(approval_status: 0)
 
     @course_rehearsals.each do |rehearsal| 
       if rehearsal.feedbacks.size < 1 
@@ -69,11 +82,8 @@ class RehearsalsController < ApplicationController
   end
 
   def update
-    if @rehearsal.submission == nil || @rehearsal.submission == false
-      @rehearsal.submission = true
-    else
-      @rehearsal.submission = false
-    end
+    @rehearsal.submission = true
+    @rehearsal.approval_status = 0
     @rehearsal.save
     render json: @rehearsal
   end
