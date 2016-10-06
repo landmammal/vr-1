@@ -1,0 +1,7 @@
+$('.button_to').bind('ajax:success', function() {
+  $(this).closest('tr').fadeOut();
+});
+
+<% flash.each do |type, message| %>
+$("#hello").append("<%= j content_tag :p, message.html_safe, class: "flash text-center" %>").delay(3000).fadeOut("slow");
+<% end %>

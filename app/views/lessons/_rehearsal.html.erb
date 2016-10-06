@@ -22,5 +22,7 @@
     <%= f.text_field :topic_id, type:"hidden", value:@topic.id %><br>
     <%= f.text_field :video_token, type:"hidden" %>
     <%= f.text_field :token, type:"hidden" %></div>
-
+    <%= f.submit 'Submit Rehearsal', class:'submit_rehearsal green_sft'%>
 <% end %>
+
+<%= button_tag 'Record Another Rehearsal', class:'record_another_rehearsal blue', style:'display:none;' %>

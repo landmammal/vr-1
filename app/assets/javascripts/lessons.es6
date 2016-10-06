@@ -267,11 +267,16 @@ var pageReady = function(){
 	});
 	
 
-
+	if($('.js-play_ziggeo').text() && $('.js-play_ziggeo').data('token').length < 1){
+		$('.js-play_ziggeo').toggleClass('hide');
+		$('.js-re_record').toggleClass('hide');
+	}else{
+		$('.js-record_ziggeo').toggleClass('hide');
+	}
 
 	$('.js-re_record').click(function(){
-		$('.js-recorded_player').toggle();
-		$('.js-re_record_ziggeo').toggle();
+		$('.js-record_ziggeo').toggleClass('hide');
+		$('.js-play_ziggeo').toggleClass('hide');
 
 		if($('.js-re_record').text()==='Re-Record?'){
 			$('.js-re_record').text('Cancel Re-Record');

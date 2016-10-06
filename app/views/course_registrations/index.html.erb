@@ -1,4 +1,30 @@
-<h1>hello cr</h1>
-<% @course_registrations.each do |cr| %>
+<table>
+  <thead>
+  <tr>
+    <th>student</th>
+    <th>Course</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @courses_users_register_to.each do |cr| %>
+        <% @course = cr.course %>
+        <% @course_registrations = cr %>
+         <tr>
+            <td><%= cr.user.first_name %><%= cr.user.last_name %></td>
 
-<% end %>
+            <td><%= cr.course.title.capitalize %></td>
+
+            <%= form_for [@course, @course_registrations], remote: true, :html => {:class => "accept_registration"} do |f| %>
+                <%= f.text_field :approval_status, type:"hidden", value: true %>
+                <td><%= f.submit 'Accept Registration', class:'small_btn green_sft' %></td>
+            <% end %>
+
+            <td><%= button_to('Reject Registration', [@course, @course_registrations], remote: true, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'small_btn') %></td>
+         </tr>
+    <% end %>
+  </tbody>
+</table>
+<div id="hello">
+
+</div>

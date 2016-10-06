@@ -191,10 +191,15 @@ var pageReady = function(){
 
 	//=============== MANAGING WINDOW RESIZING ============ //
 
-	function aspect16_9(element){ $(element).height($(element).width() / 1.778); }
+	function aspect16_9(element){ 
+		// $(element).width('100%');
+		$(element).height($(element).width() / 1.778);
+	}
 	function runChangeSize(){
 		aspect16_9('.ziggeo_wrapper');
 		aspect16_9('.ba-videoplayer-theme-modern-video');
+		aspect16_9('.ba-videoplayer-theme-modern-container');
+		aspect16_9('.ba-videorecorder-theme-modern-container');
 		aspect16_9('.ziggeo_lesson_create');
 	}
 	

@@ -159,6 +159,17 @@
 }
 
 
+
+.ziggeo_create_lesson, .js-play_ziggeo{
+	opacity:1;
+	&.hide{
+		position:absolute;
+		top:-1500px;
+		opacity:0;
+	}
+}
+
+
 /* Mobile Layout: 480px and below. */
 @media only screen and (max-width: 614px) {
 	.showIfLessonComplete{
@@ -168,9 +179,9 @@
 		width: 98%; float:none; display:inline-block; margin:0 1%; text-align:center;
 		& .vid_title{ font-size:20px; margin:10px 0; background-color:none;}
 		textarea, & .lesson_script{ min-width: 100%; margin:0;}
-		&.main_recorder{
-			width: 90%; max-width:600px; margin:10px auto; float:none;
-		}
+		// &.main_recorder{
+		// 	width: 90%; max-width:600px; margin:10px auto; float:none;
+		// }
 	}
 	.ziggeo_wrapper{
 		&.center_video{
@@ -181,7 +192,7 @@
 	.prompt_video, .model_video, .rehearsal_video{
 		width:100%;
 	}
-	.ziggeo_lesson_create{ width:100%; }
+	.ziggeo_create_lesson, .js-play_ziggeo{ width:100%; }
 }
 
 /* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
@@ -190,14 +201,14 @@
 		& .big_btn{ padding:5px; font-size:13px; }
 	}
 	.lesson_video_left, .lesson_video_right, .lesson_video_rehearsal{
-		width: 49%; float:none; display:inline-block; margin:0;
+		width: 49%; float:left; margin:0 0.5%;
 		& .vid_title{ font-size:30px; margin:10px 0 20px; background-color:none;}
 		textarea, & .lesson_script{ min-width: 100%; margin:0;}
-		&.main_recorder{
-			width: 70%; max-width:600px; margin:10px; float:none;
-		}
+		// &.main_recorder{
+		// 	width: 70%; max-width:600px; margin:10px; float:none;
+		// }
 	}
-	.ziggeo_lesson_create{ width:80%; }
+	.ziggeo_create_lesson, .js-play_ziggeo{ max-width:600px; }
 }
 
 /* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
@@ -206,8 +217,6 @@
 		& .big_btn{ padding:10px 15px; font-size:15px; }
 	}
 	.lesson_video_left, .trainee_rehearsal, .lesson_video_rehearsal{
-		width: 49%;
 		& .vid_title{ margin: 20px 0;}
 	}
-	.ziggeo_lesson_create{ width:50%; }
 }
