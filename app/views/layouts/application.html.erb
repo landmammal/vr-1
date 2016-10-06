@@ -76,7 +76,7 @@
 <% end %>
 
 
-<%= render 'layouts/menu' unless request.original_fullpath == '/' && !current_user %>
+<%= render 'layouts/menu' unless menu_welcome %>
 
 
 <% if user_signed_in? %>

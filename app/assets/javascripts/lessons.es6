@@ -207,52 +207,63 @@ var pageReady = function(){
 
 	$('.lesson_desc').text(lesson_desc);
 
-	$('.lesson_video_center').show();
-	$('.explanation_video').show();
-
 	$('.lesson_btn').click(function(){
 		$('.lesson_btn').addClass('green_sft');
 		$(this).removeClass('green_sft');
 	});
 
-	if($('.model_video').text() || $('.prompt_video').text() ){
+	if($('.model_video').text() || $('.prompt_video').text()){
+		var explanation_video = document.getElementsByClassName('explanation_video')[0].innerHTML;
 		var model_video = document.getElementsByClassName('model_video')[0].innerHTML;
 		var prompt_video = document.getElementsByClassName('prompt_video')[0].innerHTML;
 		var rehearsal_video = document.getElementsByClassName('rehearsal_video')[0].innerHTML;
 	}
 
 	function scrollToBody(){
-		// console.log('BTN Pressed');
 		$('html, body').animate({
 	        scrollTop: $(".body").offset().top
 	    }, 1000);
 	};
 
+
+	$('.lesson_video_center').show();
+	$('.lesson_video_center').html(explanation_video);
+
 	$('.show_explanation').click(function(){
-		$('.lesson_vid').hide();
-			$('.lesson_video_center').show();
-			$('.explanation_video').show();
-			scrollToBody();
+		$('.lesson_video_left').hide();
+		$('.lesson_video_right').hide();
+		$('.lesson_video_rehearsal').hide();
+
+		$('.lesson_video_center').show();
+		$('.lesson_video_center').html(explanation_video);
+		scrollToBody();
 	});
+
 	$('.show_demonstrastion').click(function(){
-		$('.lesson_vid').hide();
-			$('.lesson_video_left').show();
-			$('.lesson_video_left').html(prompt_video);
-			$('.lesson_video_right').show();
-			$('.lesson_video_right').html(model_video);
-			scrollToBody();
+		$('.lesson_video_center').hide();
+		$('.lesson_video_rehearsal').hide();
+
+		$('.lesson_video_left').show();
+		$('.lesson_video_right').show();
+
+		$('.lesson_video_left').html(prompt_video);
+		$('.lesson_video_right').html(model_video);
+		scrollToBody();
 	});
+
 	$('.show_practice').click(function(){
-		$('.lesson_vid').hide();
-			$('.lesson_video_left').show();
-			$('.lesson_video_rehearsal').show();
-			$('.rehearsal_video').show();
-			if( lesson_type == 2){
-				$('.lesson_video_left').html(prompt_video);
-			}else{
-				$('.lesson_video_left').html(model_video);
-			}
-			scrollToBody();
+		$('.lesson_video_center').hide();
+		$('.lesson_video_right').hide();
+
+		$('.lesson_video_left').show();
+		$('.lesson_video_rehearsal').show();
+		if( lesson_type == 2){
+			$('.lesson_video_left').html(prompt_video);
+		}else{
+			$('.lesson_video_left').html(model_video);
+		}
+		$('.lesson_video_rehearsal').html(rehearsal_video);
+		scrollToBody();
 	});
 	
 

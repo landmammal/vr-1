@@ -367,7 +367,11 @@ header.header{
 
 
 
-
+.top_img{
+	background-position:top; background-size:cover;
+	background-repeat:no-repeat; background-attachment:fixed;
+	height:350px; width:100%;
+}
 
 
 

@@ -1,19 +1,27 @@
-<button class="shadebox_btn red" >click</button>
 
-<div class="shadebox">
-	<div class="shade box">
-		<div class="shadebox_title">
-			<div class="put_title_here">HELLO</div>		
-		</div>
-		<div class="shadebox_content">
-			CONTENT
-		</div>
-		<div class="shadebox_bottom">
-			<div class="put_footer_here"></div>
-		</div>
+<style type="text/css">
+
+.wrapper_1{
+	background-color: rgba(0,0,0, 0.5);
+	padding: 100px;
+	position: relative;
+  	z-index: 1;
+
+	-webkit-filter: blur(3px);
+	filter: url('/media/blur.svg#blur');
+	filter: blur(3px);
+}
+.wrapper_2{
+	position: absolute;
+	z-index: 10;
+	color: white;
+}
+	
+</style>
+
+
+<div class="wrapper_1">
+	<div class="wrapper_2">
+		sadasd
 	</div>
 </div>
-
-<br>
-interface.css<br>
-interface.es6<br>

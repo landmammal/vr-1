@@ -189,36 +189,13 @@ var pageReady = function(){
 
 
 
-
-
 	//=============== MANAGING WINDOW RESIZING ============ //
 
-	var zig_rec_w = $('.lesson_half').width() - 10;
-	var zig_play_w = $('.lesson_half').width() - 10;
-	var zig_rec_h = zig_rec_w  / 1.5;
-	var zig_play_h = zig_play_w  / 1.5;
-
-	function recSize(item){ $(item).width(zig_rec_w).height(zig_rec_h); }
-	function playSize(item){ $(item).width(zig_play_w).height(zig_play_h); }
-	function changePropSize(element){ $(element).prop('width', zig_play_w); $(element).prop('height', zig_play_h); }
+	function aspect16_9(element){ $(element).height($(element).width() / 1.778); }
 	function runChangeSize(){
-
-		changePropSize('embed'); changePropSize('object'); changePropSize('ba-ziggeoplayer');
-
-		playSize('.ziggeo_play_elem'); playSize('.video-player-inner'); playSize('.video-player-outer');
-		playSize('.ba-videoplayer-theme-modern-overlay');
-		playSize('.ba-videoplayer-theme-modern-stretch-height');
-
-		recSize('.ziggeo_rec_elem'); recSize('div[data-view-id=cid_3]'); recSize('.video-recorder-flash');
-		recSize('.ba-videorecorder-theme-modern-chooser-container');
-		recSize('.ba-videorecorder-theme-modern-size-normal');
-		recSize('.ba-videorecorder-theme-modern-size-medium');
-		recSize('.ba-videorecorder-theme-modern-blue');
-		recSize('.ba-videorecorder-noie8s');
-		recSize('.ba-videorecorder-theme-modern-container');
-		recSize('.ba-videorecorder-theme-modern-norecorder');
-		recSize('.ba-videorecorder-theme-modern-video');
-		recSize('.ba-videorecorder-theme-modern-overlay');
+		aspect16_9('.ziggeo_wrapper');
+		aspect16_9('.ba-videoplayer-theme-modern-video');
+		aspect16_9('.ziggeo_lesson_create');
 	}
 	
 	// function devicesHome(){
@@ -252,18 +229,11 @@ var pageReady = function(){
 		setInterval(function(){ 
 			youtubeSize();
 			searchBtn();
-			runChangeSize(); 
-		}, 1000);
+			runChangeSize();
+		}, 100);
 
 		$(window).resize(function(){
 
-			zig_rec_w = $('.lesson_half').width() - 10;
-			zig_play_w = $('.lesson_half').width() - 10;
-			zig_rec_h = zig_rec_w  / 1.5;
-			zig_play_h = zig_play_w  / 1.5;
-
-			
-			// devicesHome();
 			setInterval(function(){ 
 				youtubeSize();
 				searchBtn();

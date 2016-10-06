@@ -6,35 +6,37 @@
     <hr>
   
     <!-- VIDEO WINDOWS -->
-    <div class="lesson_video_center lesson_vid">
-      <div class="explanation_video lesson_vid"><%= render 'explanation' %></div>
+    <div class="explanation_video"><%= render 'explanation' %></div>
+    <div class="prompt_video"><%= render 'prompt' %></div>
+    <div class="model_video"><%= render 'rolemodel' %></div>
+    <div class="rehearsal_video"><%= render 'rehearsal' %></div>
+    
+
+    <div class="lesson_video_center">
     </div>
 
-    <div class="prompt_video lesson_vid"><%= render 'prompt' %></div>
-    <div class="model_video lesson_vid"><%= render 'rolemodel' %></div>
-
-    <div class="lesson_video_left lesson_vid">
+    <div class="lesson_video_left">
     </div>
 
-    <div class="lesson_video_right lesson_vid">
+    <div class="lesson_video_right">
     </div>
 
-    <div class="lesson_video_rehearsal lesson_vid ">
-        <div class="rehearsal_video lesson_vid"><%= render 'rehearsal' %></div>
+    <div class="lesson_video_rehearsal">
     </div>
-
-
 
 
     <!-- PREVIOUS && NEXT -->
     <a href="<%= course_topic_lesson_path(@course, @topic, @lesson.id-1)%>">
       <button class="blue lesson_previous">PREVIOUS LESSON</button>
     </a>
+
     <a href="<%= course_topic_lesson_path(@course, @topic, @lesson.id+1)%>">
       <button class="blue lesson_next" style="float: right;">NEXT LESSON</button>
     </a>
 
-    <script type="text/javascript"> allLessons('<%= @lesson.id %>','<%= @lessons_arr %>') </script>
+    <script type="text/javascript"> allLessons('<%= @lesson.id %>','<%= @lessons_arr %>') 
+    </script>
+
     <br>
     <br>
     

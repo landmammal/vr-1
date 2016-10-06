@@ -173,13 +173,13 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 		}
 	}
 	& .box_sep{
-		margin:5px 0; border-bottom:solid #ddd 2px; overflow:hidden;
+		margin:5px 0; border-bottom:solid #ddd 2px;  overflow:hidden;
 		width:100%; background-color:rgba(255,255,255,0.5);
 		& .title{ padding:10px; background-color:#fff; }
-		& .body{ padding:10px; }
+		& .body{ padding:10px; overflow:hidden;}
 	}
 	& .body{
-		height:calc(100% - 200px); padding:10px; overflow:hidden;
+		height:calc(100% - 200px); padding:10px;  overflow:hidden;
 	}
 }
 

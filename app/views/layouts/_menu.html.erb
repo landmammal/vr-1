@@ -1,5 +1,5 @@
 <% user_signed_in? ? in_app = true : in_app = false %>
-<% request.original_fullpath == '/' && !current_user ? home = true : home = false %>
+<% menu_welcome ? home = true : home = false %>
 
 <header class="header<%= home ? ' home' : ( in_app ? ' app' : '' ) %>">
 	<div class="menu<%= ' app' if in_app %>" >

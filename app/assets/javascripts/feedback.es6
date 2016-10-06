@@ -23,9 +23,13 @@ ZiggeoApi.Events.on("system_ready", function() {
 
         // here is where we call the postVideoToken function
         $('.submit_feedback').click(function(){
-            postVideoToken(videoToken, streamToken);
-            $('.submit_feedback').hide()
-            window.history.back();
+            if(videoToken != ''){
+                postVideoToken(videoToken, streamToken);
+                $('.submit_feedback').hide()
+                window.location.href = "/rehearsals/all";
+            }else{
+                
+            }
         });
     });
 });

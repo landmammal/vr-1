@@ -19,13 +19,12 @@
      <%=  @this_user.first_name %> <%= @this_user.last_name %>
   </div>
 
-  <div class="lesson_half"></div>
   
   <div class="body">
 
     <% if current_user.level_3 %>
         <% if @rehearsal.submission == true %>
-                <div class="lesson_video_left lesson_vid" style="display:block;">
+                <div class="lesson_video_left" style="display:block;">
                   <div class="rehearsal_video">
                     <% @this_video_token = @rehearsal.video_token %>
                     <% @this_added_class = 'rehearsal' %>
@@ -37,7 +36,7 @@
                   </div>
                 </div>
 
-                <div class="lesson_video_right lesson_vid" style="display:block;">
+                <div class="lesson_video_right" style="display:block;">
                   <div class="rehearsal_video">
                   
                     <%= render './shared/ziggeorecorder' %>
