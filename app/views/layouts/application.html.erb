@@ -67,13 +67,17 @@
 
 <script type="text/javascript">$('.loading_app').show(); startLoadingProg();</script>
 
-
-
-<% flash.each do |message_type, message| %>
-  <div id:"flash" class="notice flash_message flash-<%= message_type %>">
-    <%= message  %><div class="close_notice"> X </div>
-  </div>
+<% if notice %>
+    <div id="notice_wrapper">
+      <p class="notice"><%= notice %></p>
+    </div>
+<% elsif alert %>
+    <div id="notice_wrapper">
+      <p class="alert"><%= alert %></p>
+    </div>
 <% end %>
+
+
 
 
 <%= render 'layouts/menu' unless request.original_fullpath == '/' && !current_user %>

@@ -1,6 +1,6 @@
 class CourseRegistrationsController < ApplicationController
 	before_action :set_course, only: [:create]
-	before_action :set_course_registration, only: [:destroy]
+	before_action :set_course_registration, only: [:destroy, :update, :edit]
 
 	def index
 		@courses_users_register_to = []
@@ -17,18 +17,34 @@ class CourseRegistrationsController < ApplicationController
 		end
 	end
 
+	def edit
+
+	end
+
 	def update
-		
+		@course_registration.approval_status = true
+		respond_to do |format|
+			if @course_registration.save
+				format.js { flash.now[:notice] = "Student Accepted" }
+			else
+				format.html { render :edit }
+				format.json { render json: @course.errors, status: :unprocessable_entity }
+			end
+		end
 	end
 
 	def destroy
 		@course_registration.destroy
 		respond_to do |format|
-			format.js {  }
+			format.js { flash.now[:notice] = "Student Rejected" }
 		end
 	end
 
 	private
+	def registration_approved
+		params.require(:course_registration).permit(:approval_status)
+	end
+	
 	def set_course_registration
 		@course_registration = CourseRegistration.find(params[:id])
 	end

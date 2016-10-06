@@ -4,9 +4,8 @@
 <table>
   <thead>
   <tr>
+    <th>student</th>
     <th>Course</th>
-    <th>User</th>
-    <th>User role</th>
     <th colspan="3"></th>
   </tr>
   </thead>
@@ -15,19 +14,20 @@
         <% @course = cr.course %>
         <% @course_registrations = cr %>
          <tr>
-            <td><%= cr.user.first_name %> <%= cr.user.last_name %></td>
+            <td><%= cr.user.first_name %><%= cr.user.last_name %></td>
+
             <td><%= cr.course.title.capitalize %></td>
 
-            <%= form_for [@course, @course_registrations] do |f| %>
+            <%= form_for [@course, @course_registrations], remote: true, :html => {:class => "accept_registration"} do |f| %>
                 <%= f.text_field :approval_status, type:"hidden", value: true %>
                 <td><%= f.submit 'Accept Registration', class:'small_btn green_sft' %></td>
             <% end %>
 
-            <td><%= button_to('Reject Registration', [@course, @course_registrations], remote: true, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'small_btn delete_registration') %></td>
+            <td><%= button_to('Reject Registration', [@course, @course_registrations], remote: true, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'small_btn') %></td>
          </tr>
     <% end %>
   </tbody>
 </table>
-<script type="text/javascript" charset="utf-8">
-  $('')
-</script>
+<div id="hello">
+
+</div>

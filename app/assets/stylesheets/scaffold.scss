@@ -53,14 +53,31 @@ div {
   // transition: 0.5s;
 }
 
-#notice, .notice{
-  padding:10px 20px; margin:0;
-  background-color:#00B51A; font-size:12px; color: white;
-  & .close_notice{
-    float: right;
+#notice_wrapper{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  background: rgba(0, 255, 0, 0.85);
+  .alert, .notice{
+    padding:2.5rem 0;
+    text-align: center;
+    margin: 0;
+    font-size: 1.25 rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 1px;
   }
-  &.flash-alert{ background-color:red; }
 }
+
+//#notice, .notice{
+//  padding:10px 20px; margin:0;
+//  background-color:#00B51A; font-size:12px; color: white;
+//  & .close_notice{
+//    float: right;
+//  }
+//  &.flash-alert{ background-color:red; }
+//}
 
 
 span{
