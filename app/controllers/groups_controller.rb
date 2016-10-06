@@ -2,8 +2,12 @@ class GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_group, only: [:show, :destroy]
 
+  def all_groups
+    @groups = Groups.all
+  end
+
   def index
-    @groups = Group.all
+    @groups = current_user.groups.all
   end
 
   def show
