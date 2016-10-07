@@ -15,9 +15,9 @@ ZiggeoApi.Events.on("system_ready", function() {
   // ba-videoplayer-theme-modern-rerecord-frontbar
   // ^^^^ Use this div to add button to submit rehearsal
 
-  // $('.submit_rehearsal').hide();
+  $('.submit_rehearsal').hide();
   recorder.on('submitted', function() {
-    // $('.submit_rehearsal').toggle();
+    $('.submit_rehearsal').toggle();
 
     var streamToken = recorder.get('stream');
     var videoToken = recorder.get('video');
