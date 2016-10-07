@@ -131,7 +131,7 @@ var pageReady = function(){
       url:'/rehearsals/'+rehearsalid+'/api',
       success: function(data){
         // console.log(data);
-        $('.put_title_here').html('Rehearsal for: <a href="/courses/'+data.course_id+'/topics/'+data.topic_id+'/lessons/'+data.lesson_id+'/"><b>'+lessonTitle+'</b></a>');
+        $('.put_title_here').html( 'Rehearsal for: <a href="/courses/'+data.course_id+'/topics/'+data.topic_id+'/lessons/'+data.lesson_id+'/"><b>'+lessonTitle+'</b></a>' );
         $('.put_video_here').html('<ziggeoplayer ziggeo-theme="modern" class="ziggeo_play_elem rehearsal_video" ziggeo-video="'+data.video_token+'" ziggeo-stretch> </ziggeoplayer>');
         $('a.leave_feedback').prop('href','/rehearsals/'+data.id);
 

@@ -19,7 +19,7 @@
           <% @date_sub = time_diff(Time.now, rehearsal.updated_at) %>
 
 
-          <button class="user_bubble shadebox_btn rehearsal_activate <%= @r %>" data-rehearsalid='<%= rehearsal.id %>' data-lessontitle='<%= rehearsal.lesson.title %>' >
+          <button class="user_bubble shadebox_btn rehearsal_activate <%= r@ %>" data-rehearsalid='<%= rehearsal.id %>' data-lessontitle='<%= rehearsal.lesson.title %>' >
             <img src="<%= student_pic %>"  class="img-circle">
             <div class="info"><%= @this_user.first_name+' '+ @this_user.last_name %><br>
               <font size="0.2em">Submitted: <%= @date_sub %></font></div>

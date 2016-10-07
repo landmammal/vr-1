@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   api_routes = ['courses','topics','lessons','course_registrations','site_panel','common_panel','instructor_panel','admin_panel']
   api_routes.push('demos','tasks','chat')
-  api_routes.push('rehearsals', 'feedbacks')
+  api_routes.push('rehearsals', 'feedbacks', 'group')
   api_routes.each do |apir|
     get '/'+apir+'/api' => "api##{apir}_api"
     post '/'+apir+'/api' => "#{apir}#create"
@@ -53,6 +53,7 @@ Rails.application.routes.draw do
   get "/course_registrations/" => "course_registrations#index"
   get "/rehearsals/all" => "rehearsals#all"
   get "/feedback/all" => "feedbacks#all"
+  get "/groups/all_groups" => "groups#all_groups"
   
   resources :lessons, shallow: true do
     resources :explanations
