@@ -21,16 +21,16 @@
 
     <% if current_user.level_4 %>
 
-      <div class="lesson_video_left">
+      <div class="feedback_video">
         <div class="ziggeo_wrapper">
           <% @this_video_token = @feedback.video_token %>
           <% @this_added_class = 'feedback' %>
           <%= render './shared/ziggeoplayer' %>
-          <div class="lesson_script <%= @this_added_class %>_script">
-            <%= simple_format(@feedback.notes) %>
-          </div>
-          <%= render './lessons/scriptcontrol' %>
         </div>
+        <div class="lesson_script <%= @this_added_class %>_script">
+          <%= simple_format(@feedback.notes) %>
+        </div>
+        <%= render './lessons/scriptcontrol' %>
       </div>
 
     <% end %>

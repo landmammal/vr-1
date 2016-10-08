@@ -179,11 +179,11 @@ var pageReady = function(){
 	$('.shadebox_bottom').prepend('<button class="shade_close red small_btn">x</button>');
 	$('.shadebox_title').prepend('<div class="shade_close">x</div>');
 	
-	$('.shadebox_btn').click(function(){
+	$(document).on('click', '.shadebox_btn', function() {
 		$('.shadebox').fadeIn(500);
 	});
 
-	$('.shade_close').click(function(){
+	$(document).on('click', '.shade_close', function() {
 		$('.shadebox').fadeOut(500);
 	});
 
@@ -191,15 +191,27 @@ var pageReady = function(){
 
 	//=============== MANAGING WINDOW RESIZING ============ //
 
-	function aspect16_9(element){ 
-		// $(element).width('100%');
+	function aspect16_9(element){
 		$(element).height($(element).width() / 1.778);
 	}
+	function height100(element){
+		$(element).height('100%');
+	}
 	function runChangeSize(){
-		aspect16_9('.ziggeo_wrapper');
-		aspect16_9('.ba-videoplayer-theme-modern-video');
-		aspect16_9('.ba-videoplayer-theme-modern-container');
-		aspect16_9('.ba-videorecorder-theme-modern-container');
+		var ziggeo_wrapper = document.getElementsByClassName("ziggeo_wrapper");
+		for( var i = 0; i < ziggeo_wrapper.length; i++ ){
+			aspect16_9(ziggeo_wrapper[i]);
+		}
+		height100('video'); //NEED THIS FOR videoplayers in lesson_show
+		height100('.ba-videoplayer-theme-modern-container'); //NEED THIS FOR videoplayers in lesson_show
+		// height100('.ba-videorecorder-theme-modern-container'); 
+		height100('.ba-videoplayer-theme-modern-video'); //NEED THIS FOR videoplayers in lesson_show
+		// height100('.ziggeo_lesson_create');
+
+		// aspect16_9('video'); // DONT NEED 
+		// aspect16_9('.ba-videoplayer-theme-modern-container'); // DONT NEED
+		aspect16_9('.ba-videorecorder-theme-modern-container'); 
+		// aspect16_9('video.ba-videoplayer-theme-modern-video'); // DONT NEED
 		aspect16_9('.ziggeo_lesson_create');
 	}
 	

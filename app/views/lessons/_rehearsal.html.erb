@@ -2,7 +2,7 @@
 
 <div class="ziggeo_wrapper"><%= render './shared/ziggeorecorder' %></div>
 
-<%= form_for [@lesson, @rehearsal], html: {id: "rehearsalsForm"}, remote: true  do |f| %>
+<%= form_for [@lesson, @rehearsal], html: {class:"rehearsalForm", id:"ziggeoForm"}, remote: true  do |f| %>
     <% if @rehearsal.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this rehearsal from being saved:</h2>
@@ -16,7 +16,7 @@
     <% end %>
 
     <%= f.text_area :script, class:'rehearsal_script', placeholder:'Write your script here...' %>
-    <%= render 'scriptcontrol' %>
+    <div style="margin-top:-5px;"><%= render 'scriptcontrol' %></div>
     <div style="display:none;"><%= f.text_field :course_id, type:"hidden", value:@course.id  %><br>
     <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
     <%= f.text_field :lesson_id, type:"hidden", value:@lesson.id %><br>
@@ -25,5 +25,9 @@
     <%= f.text_field :token, type:"hidden" %></div>
 <% end %>
 
-<%= button_tag 'Submit Rehearsal', class:'submit_rehearsal green_sft', style:'float:right;' %>
-<%= button_tag 'Record Another Rehearsal', class:'record_another_rehearsal blue', style:'display:none;' %>
+<button class='submit_rehearsal submit_ziggeo green_sft' style='float:right;' data-formname="rehearsal">
+    Submit Rehearsal
+</button>
+<button class='record_another_rehearsal blue' style='float:right; display:none;'>
+    Record Another Rehearsal
+</button>

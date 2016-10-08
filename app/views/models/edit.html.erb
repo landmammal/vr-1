@@ -7,59 +7,62 @@
 <div class="box_sep">
   <div class="body">
     
-    <% @this_video_token = @model.video_token %>
+    <div class="prompt_video"> 
+      <% @this_video_token = @model.video_token %>
 
-    <div class="ziggeo_create_lesson js-record_ziggeo">
-      <%= render './shared/ziggeorecorder' %>
-    </div>
-    <div class="ziggeo_wrapper js-play_ziggeo" data-token="<%= @model.video_token %>">
-      <%= render './shared/ziggeoplayer' %>
-    </div>
-    
-    <br>
-    <button class="js-re_record red">Re-Record?</button>
+      <div class="ziggeo_create_lesson js-record_ziggeo">
+        <% @this_added_class = 'model' %>
+        <%= render './shared/ziggeorecorder' %>
+      </div>
+      <div class="ziggeo_wrapper js-play_ziggeo" data-token="<%= @model.video_token %>">
+        <%= render './shared/ziggeoplayer' %>
+      </div>
+      
+      <br>
+      <button class="js-re_record red">Re-Record?</button>
 
 
-    <%= form_for @model,html: {id: "modelsForm"}, remote: true  do |f| %>
-      <% if @model.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+      <%= form_for @model,html: {class:"modelForm", id:"ziggeoForm"}, remote: true  do |f| %>
+        <% if @model.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
 
-          <ul>
-          <% @model.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-          </ul>
-        </div>
+            <ul>
+            <% @model.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <%= f.text_field :video_token, type:"hidden" %>
+        <%= f.text_field :token, type:"hidden" %>
+      <% end %>
+      <br>
+      <%= form_for @model do |f| %>
+        <% if @model.errors.any? %>
+          <div id="error_model">
+            <h2><%= pluralize(@models.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+            <ul>
+            <% @models.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <%= f.text_field :title, placeholder: 'Title' %><br>
+        <%= f.text_area :script, placeholder: 'script' %><br>
+        <%= f.select :language, (@languages) %>
+        <%= f.select :privacy, (@privacy) %>
+        <%= f.check_box :position_prior %> Primary Role Model<br>
+
+        <%= f.submit 'Submit Role Model', class:'green_sft' %>
       <% end %>
 
-      <%= f.text_field :video_token, type:"hidden" %>
-      <%= f.text_field :token, type:"hidden" %>
+      <br>
+      <%= button_to "Delete Model", @model, class:'red', method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
 
-    <% end %> <br>
-
-    <%= form_for @model do |f| %>
-      <% if @model.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@models.errors.count, "error") %> prohibited this lesson from being saved:</h2>
-
-          <ul>
-          <% @models.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-          </ul>
-        </div>
-      <% end %>
-      <%= f.text_field :title, placeholder: 'Title' %><br>
-      <%= f.text_area :script, placeholder: 'script' %><br>
-      <%= f.select :language, (@languages) %>
-      <%= f.select :privacy, (@privacy) %>
-      <%= f.check_box :position_prior %> Primary Role Model<br>
-
-      <%= f.submit 'Submit Role Model', class:'green_sft' %>
-    <% end %>
-
-    <br>
-    <%= button_to "Delete Model", @model, class:'red', method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
 </div>

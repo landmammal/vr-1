@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ZiggeoApi.Events.on("system_ready", function() {
 
   var recorder = ZiggeoApi.V2.Recorder.findByElement( document.getElementById('recorderElement') );
@@ -58,14 +59,9 @@ ZiggeoApi.Events.on("system_ready", function() {
 });
 
 
+=======
+>>>>>>> a6d435d9ad2d50abfbb1dae10eb5c5052cb07e1c
 var pageReady = function(){
-
-  $('.record_another_rehearsal').click(function(){
-    location.reload();
-  });
-
-
-
 
   // REHEARSAL SUBMISSION
   var changeSubmitButton = function(submission, id){
@@ -82,11 +78,11 @@ var pageReady = function(){
     }
   }
   
-  $('.rehearsal_btn').click(function(){
+  $(document).on('click', 'button.rehearsal_btn', function() {
     var rehearsalid = $(this).data('rehearsal');
     var rehearsalNumber = $(this).data('rehearsalnumber');
     console.log(rehearsalNumber);
-    console.log(rehearsalid);
+    // console.log(rehearsalid);
 
     $.ajax({
       type:'GET',
@@ -94,7 +90,7 @@ var pageReady = function(){
       success: function(data){
         // console.log(data);
         $('.put_title_here').html('Rehearsal #'+rehearsalNumber);
-        $('.put_video_here').html('<div class="ziggeo_wrapper"><ziggeoplayer ziggeo-theme="modern" class="ziggeo_play_elem" ziggeo-video="'+data.video_token+'" ziggeo-stretch ziggeo-responsive> </ziggeoplayer></div>');
+        $('.put_video_here').html('<div class="ziggeo_wrapper"><ziggeoplayer ziggeo-theme="modern" class="" ziggeo-video="'+data.video_token+'" ziggeo-stretch ziggeo-responsive> </ziggeoplayer></div>');
 
         $('button.submission').data('rehearsalid', rehearsalid);
         $('button.submission').data('rehearsalsubmission', data.submission);
@@ -132,7 +128,7 @@ var pageReady = function(){
       success: function(data){
         // console.log(data);
         $('.put_title_here').html('Rehearsal for: <a href="/courses/'+data.course_id+'/topics/'+data.topic_id+'/lessons/'+data.lesson_id+'/"><b>'+lessonTitle+'</b></a>');
-        $('.put_video_here').html('<div class="ziggeo_wrapper"><ziggeoplayer ziggeo-theme="modern" class="ziggeo_play_elem" ziggeo-video="'+data.video_token+'" ziggeo-stretch ziggeo-responsive> </ziggeoplayer></div>');
+        $('.put_video_here').html('<div class="ziggeo_wrapper"><ziggeoplayer ziggeo-theme="modern" class="" ziggeo-video="'+data.video_token+'" ziggeo-stretch ziggeo-responsive> </ziggeoplayer></div>');
         $('a.leave_feedback').prop('href','/rehearsals/'+data.id);
 
         $('.mark_as_completed').data('rehearsalid', data.id);
