@@ -16,7 +16,7 @@ ZiggeoApi.Events.on("system_ready", function() {
   // ^^^^ Use this div to add button to submit rehearsal
 
   $('.submit_rehearsal').hide();
-  recorder.on('submitted', function() {
+  recorder.on('verified', function() {
     $('.submit_rehearsal').toggle();
 
     var streamToken = recorder.get('stream');
