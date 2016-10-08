@@ -23,49 +23,54 @@
   <div class="body">
 
     <% if current_user.level_3 %>
-        <% if @rehearsal.submission == true %>
-                <div class="lesson_video_left">
-                  <div class="ziggeo_wrapper">
-                    <% @this_video_token = @rehearsal.video_token %>
-                    <% @this_added_class = 'rehearsal' %>
-                    <%= render './shared/ziggeoplayer' %>
-                    <div class="lesson_script <%= @this_added_class %>_script">
-                      <%= simple_format(@rehearsal.script) %>
-                    </div>
-                  </div>
-                </div>
+      <% if @rehearsal.submission == true %>
+        <div class="rehearsal_video">
+          <div class="video_black_bg ziggeo_wrapper">
+            <% @this_video_token = @rehearsal.video_token %>
+            <% @this_added_class = 'rehearsal' %>
+            <%= render './shared/ziggeoplayer' %>
+          </div>
+          <div class="lesson_script <%= @this_added_class %>_script">
+            <%= simple_format(@rehearsal.script) %>
+          </div>
+        </div>
 
-                <div class="lesson_video_right">
-                  <div class="ziggeo_wrapper">
-                  
-                    <%= render './shared/ziggeorecorder' %>
-                    <%= form_for [@rehearsal, @feedback],html: {id: "feedbackForm"}, remote: true  do |f| %>
-                        <% if @feedback.errors.any? %>
-                            <div id="error_explanation">
-                              <h2><%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:</h2>
+        <div class="feedback_video">
+          <div class="ziggeo_wrapper">
+            <% @this_added_class = 'feedback' %>
+            <%= render './shared/ziggeorecorder' %>
+          </div>
 
-                              <ul>
-                                <% @feedback.errors.full_messages.each do |messsage| %>
-                                    <li><%= message %></li>
-                                <% end %>
-                              </ul>
-                            </div>
-                        <% end %>
-                        <div style="display:none;">
-                        <%= f.text_field :rehearsal_id, type:"hidden", value:@rehearsal.id  %><br>
-                        <%= f.text_field :user_id, type:"hidden", value:current_user.id %>
-                        <%= f.text_field :video_token, type:"hidden" %>
-                        <%= f.text_field :token, type:"hidden" %></div>
-                        <%= f.text_area :notes, placeholder:'Write them a note here...' %><br>
+          <%= form_for [@rehearsal, @feedback],html: {class:"feedbackForm", id:"ziggeoRecorder"}, remote: true  do |f| %>
+            <% if @feedback.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:</h2>
 
-                    <% end %>
-                    
-
-                  </div>
-                </div>
-                <br>
-                <%= button_tag 'Submit Feedback', class:'submit_feedback blue' %>
+                <ul>
+                  <% @feedback.errors.full_messages.each do |messsage| %>
+                      <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div style="display:none;">
+            <%= f.text_field :rehearsal_id, type:"hidden", value:@rehearsal.id  %><br>
+            <%= f.text_field :user_id, type:"hidden", value:current_user.id %>
+            <%= f.text_field :video_token, type:"hidden" %>
+            <%= f.text_field :token, type:"hidden" %></div>
+            <%= f.text_area :notes, placeholder:'Write them a note here...' %><br>
+          <% end %>
+            
+        </div>
+        <br>
+        <button class='submit_ziggeo submit_feedback blue' style='float:right;' data-formname="feedback">
+          Submit Feedback
+        </button>
+        <button class='record_another_rehearsal blue' style='float:right; display:none;'>
+            Record Another Feedback
+        </button>
       <% end %>
+
     <% end %>
     
     <br>
