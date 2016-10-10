@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
   def all_groups
     @groups = Group.all
     @my_groups = current_user.groups.all
-    @user_group - UserGroup.new
+    @user_group = UserGroup.new
   end
 
   def index

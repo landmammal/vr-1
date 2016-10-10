@@ -2,7 +2,9 @@ class UserGroupsController < ApplicationController
   before_action :set_group, only: [:create]
 
   def create
+    binding.pry
     @group.user_groups.build(register_params)
+    binding.pry
     respond_to do |format|
       if @group.save
         format.html { redirect_to user_groups_path(current_user), notice: 'You successfully register to this group' }
