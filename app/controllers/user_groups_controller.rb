@@ -5,7 +5,6 @@ class UserGroupsController < ApplicationController
     @group.user_groups.build(register_params)
     respond_to do |format|
       if @group.save
-        binding.pry
         format.html { redirect_to user_groups_path(current_user), notice: 'You successfully register to this group' }
         format.json { render :show, status: :created, location: @group }
       else

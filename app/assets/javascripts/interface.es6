@@ -187,6 +187,10 @@ var pageReady = function(){
 		$('.shadebox').fadeOut(500);
 	});
 
+    $('.group_shadebox_btn').click(function(){
+        $('.shadebox').slideDown(350);
+    });
+
 
 
 	//=============== MANAGING WINDOW RESIZING ============ //

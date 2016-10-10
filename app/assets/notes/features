@@ -4,7 +4,7 @@ features:
     -send email to instructor when a student asks for permission to register to there course
     -notify student that they have been accepted/rejected from registering to a course
 
-    * a more intuitive way to inform students that thay have to click on there rehearsal for them to submit it
+    * a more intuitive way to inform students that they have to click on there rehearsal for them to submit it
 
     features for feedback:
     -attach concepts to lesson to grade by concepts the rehearsals students submit

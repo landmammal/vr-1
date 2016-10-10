@@ -2,13 +2,25 @@ class GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_group, only: [:show, :destroy]
 
-  def index
+  def all_groups
     @groups = Group.all
+    @my_groups = current_user.groups.all
+    @user_group - UserGroup.new
+  end
+
+  def index
+    @groups = current_user.groups.all
   end
 
   def show
     @user_group = UserGroup.new
     @group_registration = GroupRegistration.new
+    @users_in_group = []
+    @group.user_groups.each { |ug| @users_in_group << ug.user }
+
+    respond_to do |format|
+        format.js {  }
+    end
   end
 
   def new

@@ -1,0 +1,52 @@
+<div class="shadebox">
+  <div class="shade box">
+    <div class="shadebox_title">
+      <%= @group.name %>
+    </div>
+    <div class="shadebox_content" style="text-align:center;">
+      <br>
+      <%= @group.description %>
+      <% @users_in_group.each_slice(5) do |slice| %>
+
+      <% end %>
+      <hr>
+    </div>
+    <div class="shadebox_bottom">
+      <%= form_for [current_user, @group, @user_group ] do |f| %>
+          <%= f.text_field :group_id, type:"hidden", value:c.id %>
+          <%= f.text_field :user_id, type:"hidden", value:c.id %>
+          <%= f.text_field :user_role, type:"hidden", value:c.id %>
+
+          <%= f.submit "Register"%><%= c.title %>
+      <% end %>
+      <button type="button" class=" green_sft" style="float:left;" data-rehearsalid="" data-userid="<%= current_user.id %>">Mark as completed</button>
+      <a href="" class="leave_feedback">
+        <button type="button" class="blue leave_feedback" style="float:left;" data-rehearsalid=" ">Leave Video Feedback</button>
+      </a>
+      <button class="shade_close red small_btn">x</button>
+    </div>
+  </div>
+</div>
+
+<script>
+//  $('.rehearsal_btn').click(function(){
+//    var rehearsalid = $(this).data('rehearsal');
+//    var rehearsalNumber = $(this).data('rehearsalnumber');
+//    console.log(rehearsalNumber);
+//    console.log(rehearsalid);
+//
+//    $.ajax({
+//      type:'GET',
+//      url:'/rehearsals/'+rehearsalid+'/api',
+//      success: function(data){
+//        // console.log(data);
+//        $('.put_title_here').html('Rehearsal #'+rehearsalNumber);
+//        $('.put_video_here').html('<ziggeoplayer ziggeo-theme="modern" class="ziggeo_play_elem rehearsal_video" ziggeo-video="'+data.video_token+'" ziggeo-stretch> </ziggeoplayer>');
+//
+//        $('button.submission').data('rehearsalid', rehearsalid);
+//        $('button.submission').data('rehearsalsubmission', data.submission);
+//        changeSubmitButton(data.submission, data.id);
+//      }
+//    });
+//  });
+</script>

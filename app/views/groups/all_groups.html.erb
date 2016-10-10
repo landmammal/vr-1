@@ -1,0 +1,38 @@
+<div id="group_body">
+  <div id="search_groups">
+    <%= link_to 'Browse Groups', '#', { :id => 'click_browse_groups', :class => 'hide_groups_interface' } %>
+    <div id="browse_groups">
+      <%= render 'groups' %>
+    </div>
+  </div>
+
+  <div id="browse_my_groups">
+    <%= link_to 'My Groups', '#', { :id => 'click_browse_my_groups', :class => 'hide_groups_interface' } %>
+    <div id="my_groups">
+
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $( document ).ready(function() {
+//    console.log( "ready!" );
+//    hiding groups
+    $('#browse_groups').hide();
+
+    $('#click_browse_groups').on('click', function () {
+      console.log('inside groups browse event');
+      $('#browse_groups').show();
+      $('.hide_groups_interface').hide();
+
+    });
+
+    $('#click_browse_my_groups').on('click', function () {
+      console.log('inside my groups event')
+      $('#my_groups').show();
+      $('.hide_groups_interface').hide();
+    });
+
+  });
+</script>
