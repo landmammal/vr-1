@@ -204,14 +204,9 @@ var pageReady = function(){
 		}
 		height100('video'); //NEED THIS FOR videoplayers in lesson_show
 		height100('.ba-videoplayer-theme-modern-container'); //NEED THIS FOR videoplayers in lesson_show
-		// height100('.ba-videorecorder-theme-modern-container'); 
 		height100('.ba-videoplayer-theme-modern-video'); //NEED THIS FOR videoplayers in lesson_show
-		// height100('.ziggeo_lesson_create');
 
-		// aspect16_9('video'); // DONT NEED 
-		// aspect16_9('.ba-videoplayer-theme-modern-container'); // DONT NEED
 		aspect16_9('.ba-videorecorder-theme-modern-container'); 
-		// aspect16_9('video.ba-videoplayer-theme-modern-video'); // DONT NEED
 		aspect16_9('.ziggeo_lesson_create');
 	}
 	

@@ -3,6 +3,13 @@ RAILS_ENV=production rails server
 
 
 
+fix  connections on Unix domain socket "/tmp/.s.PGSQL.5432":
+$ postgres -D /usr/local/var/postgres
+
+$ rm -rf /usr/local/var/postgres && initdb /usr/local/var/postgres -E utf8
+
+
+
 
 #notice, .notice{
   padding:10px 20px; margin:0;
