@@ -19,10 +19,6 @@
     </div>
     <div class="shadebox_bottom">
       <%= form_for [current_user, @group, @user_group ] do |f| %>
-          <%= f.text_field :group_id, type:"hidden", value:@group.id %>
-          <%= f.text_field :user_id, type:"hidden", value:current_user %>
-          <%= f.text_field :user_role, type:"hidden", value:current_user.role %>
-
           <%= f.submit "Register To Group", class:"green_sft" %>
       <% end %>
     </div>
