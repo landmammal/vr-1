@@ -45,8 +45,8 @@ var pageReady = function(){
       type:'PUT',
       url:'/rehearsals/'+submissionId+'/api',
       success: function(data){
-        // console.log(data);
-        // console.log(data.submission);
+        console.log(data);
+        console.log(data.submission);
         changeSubmitButton(data.submission, data.id);
       }
     });
