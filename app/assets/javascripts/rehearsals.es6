@@ -1,3 +1,66 @@
+<<<<<<< HEAD
+ZiggeoApi.Events.on("system_ready", function() {
+
+  var recorder = ZiggeoApi.V2.Recorder.findByElement( document.getElementById('recorderElement') );
+
+  function postVideoToken(videoToken, streamToken){
+    $form = $('#rehearsalsForm');
+    $ziggeotoken = $('#rehearsal_video_token');
+    $webtoken = $('#rehearsal_token');
+    $ziggeotoken.val(videoToken);
+    $webtoken.val(streamToken)
+    $form.submit();
+  };
+
+
+  // ba-videoplayer-theme-modern-rerecord-frontbar
+  // ^^^^ Use this div to add button to submit rehearsal
+
+  $('.submit_rehearsal').hide();
+  recorder.on('verified', function() {
+    $('.submit_rehearsal').toggle();
+
+    var streamToken = recorder.get('stream');
+    var videoToken = recorder.get('video');
+
+
+    $('.submit_rehearsal').click(function(){
+      var nextRehearsal= $(".list_of_lesson_rehearsals > div").length + 1;
+
+      $.ajax({
+        type:'GET',
+        url:'/rehearsals/api',
+        success: function(data){
+
+          var sorted = data.sort(SortObjectsById);
+          var thisRehearsalId = sorted[sorted.length - 1].id + 1;
+          var newrehearsal = `<div class="rehearsal_thumbnail">`+
+                                `<button class="shadebox_btn rehearsal_btn" data-rehearsal="`+thisRehearsalId+`" data-rehearsalnumber="`+nextRehearsal+`">`+
+                                    `Rehearsal `+nextRehearsal+
+                                    `<div id="rehearsal_`+thisRehearsalId+`_status" class="blankdot"></div><br>`+
+                                    `<img src="`+videoImage(videoToken)+`" width="100%" class="rehearsal_img"><br>`+
+                                    `ref#: r`+((thisRehearsalId*30)+5)*7+`id`+thisRehearsalId+
+                                `</button>`+
+                              `</div>`;
+          $('.list_of_lesson_rehearsals').html(newrehearsal);
+        }
+      });
+
+      if(videoToken != ''){
+        postVideoToken(videoToken, streamToken);
+        $('.submit_rehearsal').hide()
+        $('.record_another_rehearsal').show()
+      }else{
+
+      }
+    });
+
+  });
+});
+
+
+=======
+>>>>>>> a6d435d9ad2d50abfbb1dae10eb5c5052cb07e1c
 var pageReady = function(){
 
   // REHEARSAL SUBMISSION
