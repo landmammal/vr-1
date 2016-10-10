@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ZiggeoApi.Events.on("system_ready", function() {
 
   var recorder = ZiggeoApi.V2.Recorder.findByElement( document.getElementById('recorderElement') );
@@ -58,9 +57,6 @@ ZiggeoApi.Events.on("system_ready", function() {
   });
 });
 
-
-=======
->>>>>>> a6d435d9ad2d50abfbb1dae10eb5c5052cb07e1c
 var pageReady = function(){
 
   // REHEARSAL SUBMISSION
