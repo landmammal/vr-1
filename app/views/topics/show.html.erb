@@ -45,10 +45,6 @@
 
       <% elsif course_trainee || course_puplic %>
         
-        <script type="text/javascript">
-          console.log('<%= topic_lesson_completion(lesson) %>');
-        </script>
-
         <% if topic_lesson_completion(lesson) == 0 %>
           <div class="pending_lesson" title="Rehearsal waiting for approval">
             <span class="ion-loop"></span>

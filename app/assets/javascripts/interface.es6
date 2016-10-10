@@ -179,11 +179,11 @@ var pageReady = function(){
 	$('.shadebox_bottom').prepend('<button class="shade_close red small_btn">x</button>');
 	$('.shadebox_title').prepend('<div class="shade_close">x</div>');
 	
-	$('.shadebox_btn').click(function(){
+	$(document).on('click', '.shadebox_btn', function() {
 		$('.shadebox').fadeIn(500);
 	});
 
-	$('.shade_close').click(function(){
+	$(document).on('click', '.shade_close', function() {
 		$('.shadebox').fadeOut(500);
 	});
 
@@ -193,36 +193,30 @@ var pageReady = function(){
 
 
 
-
-
 	//=============== MANAGING WINDOW RESIZING ============ //
 
-	var zig_rec_w = $('.lesson_half').width() - 10;
-	var zig_play_w = $('.lesson_half').width() - 10;
-	var zig_rec_h = zig_rec_w  / 1.5;
-	var zig_play_h = zig_play_w  / 1.5;
-
-	function recSize(item){ $(item).width(zig_rec_w).height(zig_rec_h); }
-	function playSize(item){ $(item).width(zig_play_w).height(zig_play_h); }
-	function changePropSize(element){ $(element).prop('width', zig_play_w); $(element).prop('height', zig_play_h); }
+	function aspect16_9(element){
+		$(element).height($(element).width() / 1.778);
+	}
+	function height100(element){
+		$(element).height('100%');
+	}
 	function runChangeSize(){
+		var ziggeo_wrapper = document.getElementsByClassName("ziggeo_wrapper");
+		for( var i = 0; i < ziggeo_wrapper.length; i++ ){
+			aspect16_9(ziggeo_wrapper[i]);
+		}
+		height100('video'); //NEED THIS FOR videoplayers in lesson_show
+		height100('.ba-videoplayer-theme-modern-container'); //NEED THIS FOR videoplayers in lesson_show
+		// height100('.ba-videorecorder-theme-modern-container'); 
+		height100('.ba-videoplayer-theme-modern-video'); //NEED THIS FOR videoplayers in lesson_show
+		// height100('.ziggeo_lesson_create');
 
-		changePropSize('embed'); changePropSize('object'); changePropSize('ba-ziggeoplayer');
-
-		playSize('.ziggeo_play_elem'); playSize('.video-player-inner'); playSize('.video-player-outer');
-		playSize('.ba-videoplayer-theme-modern-overlay');
-		playSize('.ba-videoplayer-theme-modern-stretch-height');
-
-		recSize('.ziggeo_rec_elem'); recSize('div[data-view-id=cid_3]'); recSize('.video-recorder-flash');
-		recSize('.ba-videorecorder-theme-modern-chooser-container');
-		recSize('.ba-videorecorder-theme-modern-size-normal');
-		recSize('.ba-videorecorder-theme-modern-size-medium');
-		recSize('.ba-videorecorder-theme-modern-blue');
-		recSize('.ba-videorecorder-noie8s');
-		recSize('.ba-videorecorder-theme-modern-container');
-		recSize('.ba-videorecorder-theme-modern-norecorder');
-		recSize('.ba-videorecorder-theme-modern-video');
-		recSize('.ba-videorecorder-theme-modern-overlay');
+		// aspect16_9('video'); // DONT NEED 
+		// aspect16_9('.ba-videoplayer-theme-modern-container'); // DONT NEED
+		aspect16_9('.ba-videorecorder-theme-modern-container'); 
+		// aspect16_9('video.ba-videoplayer-theme-modern-video'); // DONT NEED
+		aspect16_9('.ziggeo_lesson_create');
 	}
 	
 	// function devicesHome(){
@@ -256,18 +250,11 @@ var pageReady = function(){
 		setInterval(function(){ 
 			youtubeSize();
 			searchBtn();
-			runChangeSize(); 
-		}, 1000);
+			runChangeSize();
+		}, 100);
 
 		$(window).resize(function(){
 
-			zig_rec_w = $('.lesson_half').width() - 10;
-			zig_play_w = $('.lesson_half').width() - 10;
-			zig_rec_h = zig_rec_w  / 1.5;
-			zig_play_h = zig_play_w  / 1.5;
-
-			
-			// devicesHome();
 			setInterval(function(){ 
 				youtubeSize();
 				searchBtn();

@@ -2,11 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-
-.lesson_explanation{
-}
-
 .perfomance{
 	width:630px; margin:5px; float:left;
 	ziggeo{
@@ -51,15 +46,29 @@
 }
 .lesson_err{font-weight:bold; color:red;}
 
+
+
+// Lesson Ziggeo Interface
 .showIfLessonComplete{
 	text-align:center;
 	& .big_btn{ width:32%; float:none; display:inline-block; }
+
 }
 
-.lesson_video_left, .lesson_video_right, .lesson_video_center, .lesson_video_rehearsal{
-	text-align:left;
+.explanation_video, .prompt_video, .model_video, .rehearsal_video, .feedback_video{
+	width:49%;
+	margin:0.5%;
+	float:left;
+	&.hide{
+		position:absolute;
+		top:-1500px;
+	}
+	&.full{
+		width:99%;	
+	}
 	textarea, & .lesson_script{
 		height:150px; padding:10px;
+		min-width: 10px;
 		border:1px solid #AAAAAA;
 		background-color:white;
 		text-align: left;
@@ -72,20 +81,10 @@
 		}
 		&::-webkit-scrollbar-thumb {
 		    border-radius: 0;
-		    background-color: rgba(0,0,0,.5);
+		    background-color: rgba(0,0,0,0.5);
 		}
 	}
-}
-.lesson_video_center{
-	text-align:center;
-}
 
-	
-.lesson_vid{
-	display:none;
-	& .video_black_bg{
-		background-color:black;
-	}
 	& .script_control{
 		background-color:#eee;
 		border-radius:0 0 5px 5px; padding: 0 15px;
@@ -99,13 +98,39 @@
 		}
 	}
 }
-
-
-.ba-videoplayer-theme-modern-container{
+.video_black_bg, .ba-videorecorder-theme-modern-video, .ba-videoplayer-theme-modern-container{
 	background-color:black;
+}
+.ba-videoplayer-theme-modern-container, video, video.ba-videoplayer-theme-modern-video{
+	width:100%;
+	// height:100%;
+}
+
+.ziggeo_wrapper{
+	width:100%;
+	&.center_video{
+		max-width: 50%;
+		margin: 0 auto;
+	}
 }
 
 
+.list_of_lesson_rehearsals{
+	max-height:300px; overflow:scroll;
+	border:1px solid #eee;	
+	background-color:#eee;
+	padding:10px;
+
+	&::-webkit-scrollbar {
+	    -webkit-appearance: none;
+	    width: 10px;
+	    margin: 0;
+	}
+	&::-webkit-scrollbar-thumb {
+	    border-radius: 0;
+	    background-color: rgba(0,0,0,0.5);
+	}
+}
 
 .rehearsal_thumbnail{
 	width:140px;
@@ -124,19 +149,31 @@
 }
 
 
+
+.ziggeo_create_lesson, .js-play_ziggeo{
+	opacity:1;
+	&.hide{
+		position:absolute;
+		top:-1500px;
+		opacity:0;
+	}
+}
+
+
 /* Mobile Layout: 480px and below. */
 @media only screen and (max-width: 614px) {
 	.showIfLessonComplete{
 		& .big_btn{ padding:10px 15px; font-size:13px; }
 	}
-	.lesson_video_left, .lesson_video_right, .lesson_video_rehearsal, .lesson_half{
-		width: 98%; float:none; margin:0 1%; text-align:center;
+	.explanation_video, .prompt_video, .model_video, .rehearsal_video, .feedback_video{
+		width:98%; float:none; display:inline-block; margin:0 1%; text-align:center;
 		& .vid_title{ font-size:20px; margin:10px 0; background-color:none;}
 		textarea, & .lesson_script{ min-width: 100%; margin:0;}
-		&.main_recorder{
-			width: 90%; max-width:600px; margin:10px auto; float:none;
-		}
 	}
+	.ziggeo_wrapper{
+		&.center_video{ width: 100%; margin: 0 auto; }
+	}
+	.ziggeo_create_lesson, .js-play_ziggeo{ width:100%; }
 }
 
 /* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
@@ -144,14 +181,15 @@
 	.showIfLessonComplete{
 		& .big_btn{ padding:5px; font-size:13px; }
 	}
-	.lesson_video_left, .lesson_video_right, .lesson_video_rehearsal, .lesson_half{
-		width: 49%; float:left; margin:0 1% 0 0;
+	.explanation_video, .prompt_video, .model_video, .rehearsal_video, .feedback_video{
+		width: 49%; float:left; margin:0 0.5%;
 		& .vid_title{ font-size:30px; margin:10px 0 20px; background-color:none;}
-		textarea, & .lesson_script{ min-width: 100%; margin:10px 0 0;}
-		&.main_recorder{
-			width: 70%; max-width:600px; margin:10px; float:none;
-		}
+		textarea, & .lesson_script{ width: 100%; margin:0;}
+		// &.main_recorder{
+		// 	width: 70%; max-width:600px; margin:10px; float:none;
+		// }
 	}
+	.ziggeo_create_lesson, .js-play_ziggeo{ width:100%; }
 }
 
 /* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
@@ -159,8 +197,7 @@
 	.showIfLessonComplete{
 		& .big_btn{ padding:10px 15px; font-size:15px; }
 	}
-	.lesson_video_left, .trainee_rehearsal, .lesson_video_rehearsal, .lesson_half{
-		width: 49%;
+	.explanation_video, .prompt_video, .model_video, .rehearsal_video, .feedback_video{
 		& .vid_title{ margin: 20px 0;}
 	}
 }

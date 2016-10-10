@@ -33,4 +33,8 @@ module LessonsHelper
 		@rehearsals_for_this_lesson = @lesson.rehearsals.where(trainee_id: current_user.id).order("id ASC")
 		return @rehearsals_for_this_lesson
 	end
+
+	def hasVideoToken(element)
+		return (element.video_token == '' || element.video_token.nil?)
+	end
 end

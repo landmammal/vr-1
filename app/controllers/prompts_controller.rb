@@ -60,7 +60,6 @@ class PromptsController < ApplicationController
 
   def set_prompt
     @prompt = Prompt.find(params[:id])
-    @title = @course.title
   end
 
   def prompt_params

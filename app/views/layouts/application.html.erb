@@ -67,20 +67,16 @@
 
 <script type="text/javascript">$('.loading_app').show(); startLoadingProg();</script>
 
-<% if notice %>
-    <div id="notice_wrapper">
-      <p class="notice"><%= notice %></p>
-    </div>
-<% elsif alert %>
-    <div id="notice_wrapper">
-      <p class="alert"><%= alert %></p>
-    </div>
+<% if notice || alert %>
+  <div id="notice_wrapper" class="<%= notice ? 'notice' : 'alert' %>">
+    <%= notice ? notice : alert %>
+    <div class="close_notice">x</div>
+  </div>
 <% end %>
 
 
 
-
-<%= render 'layouts/menu' unless request.original_fullpath == '/' && !current_user %>
+<%= render 'layouts/menu' unless menu_welcome %>
 
 
 <% if user_signed_in? %>

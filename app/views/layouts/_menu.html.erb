@@ -1,5 +1,5 @@
 <% user_signed_in? ? in_app = true : in_app = false %>
-<% request.original_fullpath == '/' && !current_user ? home = true : home = false %>
+<% menu_welcome ? home = true : home = false %>
 
 <header class="header<%= home ? ' home' : ( in_app ? ' app' : '' ) %>">
 	<div class="menu<%= ' app' if in_app %>" >
@@ -20,7 +20,20 @@
 			<% if in_app %>
 
 				<%= link_to "Log out", destroy_user_session_path, method: "delete", class:"menu_item" %>
-			
+
+				<div class="user_info">
+					<div class="profile_pic">
+						<a href="/users/<%= current_user.id %>"><img src="<%= current_user.photo %>" class="img-circle"></a>
+					</div>
+					<div class="user_info_text">
+						<span style=" font-size:13px; font-weight:bold;">
+							<%= current_user.first_name %> <%= current_user.last_name %>
+						</span>
+						<div class="js-user_role"><%= @user_role %></div>
+						<div class="js-user_id" style="display: none;"><%= current_user.id %></div>
+					</div>
+				</div>
+
 			<% else %>
 
 				<% @main_menu.each do |menu| %>

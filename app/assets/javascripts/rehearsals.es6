@@ -1,71 +1,4 @@
-ZiggeoApi.Events.on("system_ready", function() {
-  // we search for our embedding using the getElementById to find the element first and then to find the video object within the same
-  var recorder = ZiggeoApi.V2.Recorder.findByElement( document.getElementById('recorderElement') );
-
-  function postVideoToken(videoToken, streamToken){
-    $form = $('#rehearsalsForm');
-    $ziggeotoken = $('#rehearsal_video_token');
-    $webtoken = $('#rehearsal_token');
-    $ziggeotoken.val(videoToken);
-    $webtoken.val(streamToken)
-    $form.submit();
-  };
-
-  $('.submit_rehearsal').hide();
-  recorder.on('verified', function() {
-      $('.submit_rehearsal').show();
-    // console.log(streamToken);
-    // getting the streamtoken and storing it in streamToken var to ship it to the outside world
-    var streamToken = recorder.get('stream'); //to get the stream token
-    var videoToken = recorder.get('video'); //to get the video token
-    // console.log(videoToken);
-    // console.log(streamToken);
-
-    $('.submit_rehearsal').click(function(){
-      var nextRehearsal= $(".list_of_lesson_rehearsals > div").length + 1;
-      var newrehearsal = `<div class="rehearsal_thumbnail">`+
-                  `Rehearsal `+nextRehearsal+`<br>`+
-                  `<img src="`+videoImage(videoToken)+`" width="100%" class="rehearsal_img rehearsal_`+nextRehearsal+`">`+
-                  `</div>`;
-
-      $.ajax({
-        type:'GET',
-        url:'/rehearsals/api',
-        success: function(data){
-
-          var sorted = data.sort(SortObjectsById);
-          var thisRehearsalId = sorted[sorted.length - 1].id + 1;
-          var newrehearsal = `<div class="rehearsal_thumbnail">`+
-                                `<button class="shadebox_btn rehearsal_btn" data-rehearsal="`+thisRehearsalId+`" data-rehearsalnumber="`+nextRehearsal+`">`+
-                                    `Rehearsal `+nextRehearsal+
-                                    `<div id="rehearsal_`+thisRehearsalId+`_status" class="blankdot"></div><br>`+
-                                    `<img src="`+videoImage(videoToken)+`" width="100%" class="rehearsal_img"><br>`+
-                                    `ref#: r`+((thisRehearsalId*30)+5)*7+`id`+thisRehearsalId+
-                                `</button>`+
-                              `</div>`;
-          $('.list_of_lesson_rehearsals').append(newrehearsal);
-          // pageReady();
-        }
-      });
-
-      // here is where we call the postVideoToken function and pass it both token vars
-      if(videoToken != ''){postVideoToken(videoToken, streamToken);}else{}
-      $('.submit_rehearsal').hide()
-      $('.record_another_rehearsal').show()
-    });
-
-  });
-});
-
-
 var pageReady = function(){
-
-  $('.record_another_rehearsal').click(function(){
-    location.reload();
-  });
-
-
-
 
   // REHEARSAL SUBMISSION
   var changeSubmitButton = function(submission, id){
@@ -82,11 +15,11 @@ var pageReady = function(){
     }
   }
   
-  $('.rehearsal_btn').click(function(){
+  $(document).on('click', 'button.rehearsal_btn', function() {
     var rehearsalid = $(this).data('rehearsal');
     var rehearsalNumber = $(this).data('rehearsalnumber');
     console.log(rehearsalNumber);
-    console.log(rehearsalid);
+    // console.log(rehearsalid);
 
     $.ajax({
       type:'GET',
@@ -94,7 +27,7 @@ var pageReady = function(){
       success: function(data){
         // console.log(data);
         $('.put_title_here').html('Rehearsal #'+rehearsalNumber);
-        $('.put_video_here').html('<ziggeoplayer ziggeo-theme="modern" class="ziggeo_play_elem rehearsal_video" ziggeo-video="'+data.video_token+'" ziggeo-stretch> </ziggeoplayer>');
+        $('.put_video_here').html('<div class="ziggeo_wrapper"><ziggeoplayer ziggeo-theme="modern" class="" ziggeo-video="'+data.video_token+'" ziggeo-stretch ziggeo-responsive> </ziggeoplayer></div>');
 
         $('button.submission').data('rehearsalid', rehearsalid);
         $('button.submission').data('rehearsalsubmission', data.submission);
@@ -131,8 +64,8 @@ var pageReady = function(){
       url:'/rehearsals/'+rehearsalid+'/api',
       success: function(data){
         // console.log(data);
-        $('.put_title_here').html( 'Rehearsal for: <a href="/courses/'+data.course_id+'/topics/'+data.topic_id+'/lessons/'+data.lesson_id+'/"><b>'+lessonTitle+'</b></a>' );
-        $('.put_video_here').html('<ziggeoplayer ziggeo-theme="modern" class="ziggeo_play_elem rehearsal_video" ziggeo-video="'+data.video_token+'" ziggeo-stretch> </ziggeoplayer>');
+        $('.put_title_here').html('Rehearsal for: <a href="/courses/'+data.course_id+'/topics/'+data.topic_id+'/lessons/'+data.lesson_id+'/"><b>'+lessonTitle+'</b></a>');
+        $('.put_video_here').html('<div class="ziggeo_wrapper"><ziggeoplayer ziggeo-theme="modern" class="" ziggeo-video="'+data.video_token+'" ziggeo-stretch ziggeo-responsive> </ziggeoplayer></div>');
         $('a.leave_feedback').prop('href','/rehearsals/'+data.id);
 
         $('.mark_as_completed').data('rehearsalid', data.id);

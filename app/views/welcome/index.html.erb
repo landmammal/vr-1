@@ -1,6 +1,6 @@
 <div class="home_top_wrapper" style="background-image:url('/assets/frame_home.jpg');">
 	<div class="home_top">
-		<%= render 'layouts/menu' if request.original_fullpath == '/' && !current_user %>
+		<%= render 'layouts/menu' if menu_welcome %>
 
 	    	
 		<div class="home_top_text">

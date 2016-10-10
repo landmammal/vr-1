@@ -155,16 +155,12 @@ var pageReady = function(){
 
 	// NOTICES AND FLASHES FADEOUT
 	$('.close_notice').click(function(){
-		$('.notice').empty();
-		$('#notice').empty();
-
-		$('.notice').fadeOut(100);
-		$('#notice').fadeOut(100);
+		$('#notice_wrapper').empty();
+		$('#notice_wrapper').addClass('remove');
 	});
 	setTimeout(function(){
-		$('.notice').fadeOut(400);
-		$('#notice').fadeOut(400);
-	},4000);
+		$('#notice_wrapper').addClass('remove');
+	},2300);
 
 
 
