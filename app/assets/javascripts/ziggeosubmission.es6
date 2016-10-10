@@ -5,6 +5,7 @@ var pageReady = function(){
 
 	    var recorder = ZiggeoApi.V2.Recorder.findByElement($('ziggeorecorder#ziggeoRecorder'));
 	    var ziggeoClass = recorder._parentElement.className;
+	    // console.log(recorder);
 	    // console.log(ziggeoClass);
 
 	    function postTokenInForm(thisForm, videoToken, streamToken){
