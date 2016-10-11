@@ -24,7 +24,7 @@ var pageReady = function(){
 		          success: function(data){
 
 		            var sorted = data.sort(SortObjectsById);
-		            var thisRehearsalId = sorted[sorted.length - 1].id;
+		            var thisRehearsalId = sorted[sorted.length - 1].id + 1;
 		            var newrehearsal = `<div class="rehearsal_thumbnail">`+
 		                                  `<button class="shadebox_btn rehearsal_btn" data-rehearsal="`+thisRehearsalId+`" data-rehearsalnumber="`+nextRehearsal+`">`+
 		                                      `Rehearsal `+nextRehearsal+
