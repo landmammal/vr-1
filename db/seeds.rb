@@ -72,7 +72,7 @@ User.create([{ first_name:'Administrator', last_name:'Man', username:'admin', ra
 end
 
 # groups
-1000.times do
+3.times do
   Group.create(
       name: Faker::GameOfThrones.house,
       description: Faker::Lorem.paragraph(5),

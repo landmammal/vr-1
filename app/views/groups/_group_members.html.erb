@@ -12,14 +12,11 @@
         <div class="info"><%= @this_user.first_name+' '+ @this_user.last_name %><br>
       </button>
       <%= @group.description %>
-      <% @users_in_group.each_slice(5) do |slice| %>
-
-      <% end %>
       <hr>
     </div>
     <div class="shadebox_bottom">
-      <%= form_for [current_user, @group, @user_group ] do |f| %>
-          <%= f.submit "Register To Group", class:"green_sft" %>
+      <%= form_for [current_user, @group, @user_group ], remote: true do |f| %>
+          <%= f.submit "Register To Group", class:"green_sft shade_close" %>
       <% end %>
     </div>
   </div>

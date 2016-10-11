@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
 
   def all_groups
     @groups = Group.all
-    @my_groups = current_user.groups.all
+    @my_groups = current_user.user_groups.where(approval_status: true).order('id DESC')
     @user_group = UserGroup.new
   end
 
@@ -15,6 +15,7 @@ class GroupsController < ApplicationController
   def show
     @user_group = UserGroup.new
     @group_registration = GroupRegistration.new
+
     @users_in_group = []
     @group.user_groups.each { |ug| @users_in_group << ug.user }
 
@@ -32,7 +33,6 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
-        binding
         format.html { redirect_to user_groups_path(current_user), notice: 'group was successfully created.' }
         format.json { render :show, status: :created, location: @group }
       else
