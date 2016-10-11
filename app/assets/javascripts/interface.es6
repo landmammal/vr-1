@@ -206,6 +206,7 @@ var pageReady = function(){
 
 		aspect16_9('.ba-videorecorder-theme-modern-container'); 
 		aspect16_9('.ziggeo_lesson_create');
+		aspect16_9('embed');
 	}
 	
 	// function devicesHome(){
