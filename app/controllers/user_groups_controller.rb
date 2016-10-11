@@ -2,11 +2,14 @@ class UserGroupsController < ApplicationController
   before_action :set_group, only: [:create]
 
   def create
-    binding.pry
-    @group.user_groups.build(register_params)
+    @user_group = UserGroup.create(user_id: current_user.id,
+                                  group_id: @group,
+                                  user_role: current_user.role,
+                                  approval_status: false
+                                  )
     binding.pry
     respond_to do |format|
-      if @group.save
+      if @user_group.save
         format.html { redirect_to user_groups_path(current_user), notice: 'You successfully register to this group' }
         format.json { render :show, status: :created, location: @group }
       else
@@ -19,7 +22,7 @@ class UserGroupsController < ApplicationController
   private
 
   def set_group
-    @group = Group.find(params[:user_group][:group_id])
+    @group = params[:group_id]
   end
 
   def register_params
