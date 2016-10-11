@@ -87,7 +87,7 @@ class ApiController < ApplicationController
 										 {name:'Feedback', icon:'ion', iname:'ion-archive', link:feedback_all_path, link_target:'', notif:true},
 										 {name:'Tasks', icon:'ion', iname:'ion-android-checkbox', link:'#', link_target:'', notif:true},
 										 {name:'Chat', icon:'ion', iname:'ion-android-chat', link:'#', link_target:'', notif:true},
-										 {name:'Groups', icon:'#', iname:'#', link:groups_all_groups_path, link_target:'', notif:false}]
+										 {name:'Groups', icon:'ion', iname:'ion-ios-people', link:groups_all_groups_path, link_target:'', notif:false}]
         render json: @common_panel
 	end
 

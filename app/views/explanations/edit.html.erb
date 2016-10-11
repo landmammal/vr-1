@@ -8,13 +8,13 @@
   <div class="body">
   
     <div class="prompt_video">    
-      <% @this_video_token = @explanation.video_token %>
 
       <div class="ziggeo_create_lesson js-record_ziggeo">
         <% @this_added_class = 'explanation' %>
         <%= render './shared/ziggeorecorder' %>
       </div>
       <div class="ziggeo_wrapper js-play_ziggeo" data-token="<%= @explanation.video_token %>">
+        <% @this_video_token = @explanation.video_token if @explanation.video_token != "" %>
         <%= render './shared/ziggeoplayer' %>
       </div>
       

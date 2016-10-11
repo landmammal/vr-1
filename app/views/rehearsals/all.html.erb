@@ -12,7 +12,7 @@
   <div class="this_called_content show_new_content">
     <div class="title">New Rehearsals</div>
     <% @rehearsals_without_feedback.each do |rehearsal| %>
-        <% if rehearsal.approval_status == 0 %>
+        <% if rehearsal.approval_status == nil || rehearsal.approval_status == 0 %>
           <% lesson = rehearsal.lesson %>
           <% @this_user = User.find(rehearsal.trainee_id) %>
           <% @r = 'rehearsal_bubble_'+rehearsal.id.to_s %>

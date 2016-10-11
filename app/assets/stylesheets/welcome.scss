@@ -193,31 +193,44 @@ header.header{
 		&:hover{ bottom:-5px; transition: 0.3s; }
 
 		&.fade{
-			position:relative; bottom:80px;
-			opacity:0.2; background-color:black; color:white;
+			position:relative; bottom:53px;
+			opacity:0.5; background-color:black; color:white;
 			transition: 0.5s;
 			&:hover{ opacity:0.5; transition: 0.5s; }
 		}
 	}
 	.search_box{
 		background-color:rgba(black, 0.5);
-		padding:15px;
-		width:100%;
+		padding:0;
+		width:100%; overflow:hidden;
+		text-align:left;
 		position:absolute; bottom:-80px;
 		transition: 0.5s;
 		input.search_course_term{
-			max-width:400px; width:60%; border:0; border-radius:3px 0 0 3px; margin:0 -4px 0 0; padding:10px 15px 9px;
-			background-color:#f1f1f1; position:relative; top:-1px;
+			width:calc(100% - (80.35px + 65px)); border:0; border-radius:0;
+			margin:0 -4px 0 0; padding:15px 15px;
+			background-color:transparent; position:relative; top:-1px;
+			font-size:20px;	color:white;		
+			
+			::-webkit-input-placeholder {
+			    color:#fff;
+			    letter-spacing:0em;
+			}
 		}
 		select{
-			-webkit-appearance:none; padding:11px 15px;
-			width:auto; border-radius: 0 3px 3px 0;  border:0;
+			-webkit-appearance:none; padding:10px 15px;  margin:0px;
+			width:auto; border-radius:0; height:53px; border:0;
+			position:absolute; background-color:transparent; color:white;
 		}
 		button.search_course_btn{
-			 padding:11px 15px; font-size:15px;
+			padding:18px 17px 17px; font-size:15px; margin:0px;
+			position:absolute; right:0; border-radius:0; background-color:transparent;
+			&:hover{
+				background-color:#00A6FF;
+			}
 		}
 		&.popup{
-			position:absolute; bottom:0px;
+			position:absolute; bottom:-1px;
 			transition: 0.5s;
 		}
 	}

@@ -1,0 +1,16 @@
+LOG:  database system was shut down at 2016-10-09 17:45:14 EDT
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  database "video_rehearser_development" does not exist
+LOG:  autovacuum launcher shutting down
+LOG:  received smart shutdown request
+LOG:  shutting down
+LOG:  database system is shut down
+LOG:  database system was shut down at 2016-10-09 22:55:49 EDT
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+ERROR:  insert or update on table "user_groups" violates foreign key constraint "fk_rails_c298be7f8b"
+DETAIL:  Key (user_id)=(0) is not present in table "users".
+STATEMENT:  INSERT INTO "user_groups" ("group_id", "user_id", "user_role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"
