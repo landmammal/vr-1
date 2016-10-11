@@ -253,11 +253,11 @@ var pageReady = function(){
 		$('.rehearsal_video').removeClass('hide');
 
 		if( lesson_type == 2){
-			$('.prompt_video').addClass('hide');
-			$('.model_video').removeClass('hide');
-		}else{
 			$('.prompt_video').removeClass('hide');
 			$('.model_video').addClass('hide');
+		}else{
+			$('.prompt_video').addClass('hide');
+			$('.model_video').removeClass('hide');
 		}
 		scrollToBody();
 	});
