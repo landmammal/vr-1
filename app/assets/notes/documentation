@@ -11,6 +11,12 @@ $ rm -rf /usr/local/var/postgres && initdb /usr/local/var/postgres -E utf8
 pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
 
 
+FIX BAD PUSHES:
+git reset goodcommit# --hard
+git push -f origin master
+
+
+
 
 #notice, .notice{
   padding:10px 20px; margin:0;
