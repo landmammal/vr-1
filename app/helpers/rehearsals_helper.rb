@@ -1,7 +1,7 @@
 module RehearsalsHelper
 	
-	def student_pic
-		@this_user.profile_file_name.present? ? profile = @this_user.profile.url(:square) : profile = '/assets/default_user.png'
+	def student_pic(user)
+		user.profile_file_name.present? ? profile = user.profile.url(:square) : profile = '/assets/default_user.png'
 		return profile
 	end
 
