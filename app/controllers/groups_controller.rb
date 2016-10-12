@@ -3,13 +3,18 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :destroy]
 
   def all_groups
-    @groups = Group.all
-    @my_groups = current_user.user_groups.where(approval_status: true).order('id DESC')
     @user_group = UserGroup.new
+    @groups = Group.all
+    @groups_i_belong_to = current_user.user_groups.where(approval_status: true).order('id DESC')
+    @my_groups = current_user.groups
   end
 
   def index
     @groups = current_user.groups.all
+  end
+
+  def my_groups
+    ro
   end
 
   def show

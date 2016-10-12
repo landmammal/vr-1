@@ -1,3 +1,6 @@
+<div class="back_button groups_back">
+  <%= link_to 'Back', '#', id: 'back' %>
+</div>
 <div id="group_registration_notice"></div>
 <div id="group_body">
   <div id="search_groups">
@@ -8,13 +11,10 @@
   </div>
 
   <div id="browse_my_groups">
-    <%= link_to 'My Groups', '#', { :id => 'click_browse_my_groups', :class => 'hide_groups_interface' } %>
     <div id="my_groups">
       <%= render 'my_groups' %>
     </div>
   </div>
 </div>
 
-<div class="back_button groups_back">
-  <%= link_to 'Back', '#', id: 'back' %>
-</div>
+

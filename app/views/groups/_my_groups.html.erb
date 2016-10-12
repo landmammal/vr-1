@@ -1,4 +1,27 @@
-<% @my_groups.each do |group| %>
-  <%= group.name%>
-<% end %>
+<div id="groups_i_belong_to" class="top_info" >
+  <div id="groups_i_belong_to_title" class="group_title" >Groups You Belong To</div>
+  <% @groups_i_belong_to.each do |group| %>
+    <%= group.name %>
+  <% end %>
+</div>
+<div id="my_groups" >
+  <div class="top_info" >
+    <div id="my_groups_title" class="group_title" >My Groups</div>
+  </div>
+  <% @my_groups.each do |group| %>
+      <% @user = group.instructor_id %>
+        <div class="group_slice" >
+          <%= group.name %>
+          <% if group.user_groups.where(approval_status: false).length > 0 %>
+              <span class="group_registration_notice"><%= group.user_groups.where(approval_status: false).length %></span>
+              <%= button_to 'Registrations', user_group_path( @user, group ), { :method => :get, :class => 'small_btn blue', :id => 'group_registrations', remote: true } %>
+          <% end %>
+        </div>
+  <% end %>
+</div>
+<script>
+  $(function(){
+
+  }
+</script>
 
