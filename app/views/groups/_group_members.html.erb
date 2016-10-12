@@ -8,7 +8,7 @@
     <div class="shadebox_content" style="text-align:center;">
       <br>
       <button class="user_bubble">
-        <img src="<%= student_pic %>"  class="img-circle">
+        <img src="<%= student_pic(@this_user) %>"  class="img-circle">
         <div class="info"><%= @this_user.first_name+' '+ @this_user.last_name %><br>
       </button>
       <%= @group.description %>

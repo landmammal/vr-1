@@ -36,7 +36,7 @@ module RehearsalsHelper
 		(rehearsal.submission == false || !rehearsal.submission) ? status = 'blankdot' : status = 'orangedot'
 		
 		rehearsal.feedbacks.each do |feedback|
-			if feedback.approved == true
+			if feedback.approved == true || rehearsal.approval_status == 1
 				status = 'greendot'
 				break
 			end

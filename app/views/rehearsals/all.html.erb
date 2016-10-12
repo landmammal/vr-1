@@ -31,7 +31,7 @@
   <div class="this_called_content show_all_content" style="display:none;">
     <div class="title">All Course Rehearsals</div>
     <% @course_rehearsals.each do |rehearsal| %>
-      <% if (rehearsal.approval_status == nil || rehearsal.approval_status == 0) && User.exists?(rehearsal.trainee_id) %>
+      <% if User.exists?(rehearsal.trainee_id) %>
 
         <% @r = 'rehearsal_bubble_'+rehearsal.id.to_s %>
         <% @date_sub = time_diff(Time.now, rehearsal.created_at) %>
