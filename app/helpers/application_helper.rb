@@ -20,7 +20,7 @@ module ApplicationHelper
     @rehearsals_without_feedback = []
 
     @course_rehearsals.each do |rehearsal| 
-      if rehearsal.feedbacks.size < 1 && User.exists?(rehearsal.trainee_id)
+      if (rehearsal.feedbacks.size < 1 && rehearsal.approval_status == 0) || (rehearsal.feedbacks.size > 1 && rehearsal.approval_status == 1) && User.exists?(rehearsal.trainee_id) 
         @rehearsals_without_feedback << rehearsal
       end
     end 
