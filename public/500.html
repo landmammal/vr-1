@@ -3,19 +3,222 @@
 <head>
   <title>We're sorry, Error (500)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link href='errorcss/error.css' rel='stylesheet' type='text/css'>
+  <!-- <link href='errorcss/error.css' rel='stylesheet' type='text/css'> -->
 
   <script src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
   <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
   <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
-  <script src="errorcss/500.js"></script>
+  <!-- <script src="errorcss/500.js"></script> -->
 
 </head>
 
 <body>
+  
+  <style type="text/css">
+    body {
+      background-color: #fff;
+      /*font-family: 'gotham_light';*/
+      margin: 0; padding: 0;
+      font-size: 13px; line-height: 18px;
+      background-size: cover;
+      background-position:top center;
+    }
+
+    a, a:visited, a:hover, a:focus{ color:#31BAFF; text-decoration: none;}
+
+    html, body {
+      margin:0px auto;
+      height:100%;
+      transition: 0.5s;
+    }
+    html{overflow-y:scroll;}
+
+    body,td,th {
+      font-family: Arial, Helvetica, sans-serif;
+      color: white;
+      font-size: 12px; 
+    }
+
+    hr, br{
+      clear: both;
+    }
+    hr{
+      margin: 10px 0;
+      border-bottom:1px solid #ddd;
+    }
+
+    div{ transition:0.5s; }
+
+    .black_fade{
+      height: calc(100% - 38px);
+      width: 101%; overflow: hidden;
+      /*background-color: rgba(0,0,0,0.5);*/
+      background-color: rgba(255,255,255,0.7);
+      position: relative;
+    }
+
+    div.menu, div.footer{
+      width: 100%; padding: 0 10px;
+      color: white; text-align: center;
+      background-color: rgba(255, 255, 255, 0.7);
+      overflow: hidden;
+    }
+
+    div.footer{
+      position:absolute; bottom:0;
+    }
+
+    div.menu > a > div.item, div.footer > a > div.item{ 
+      color: #00AFFF; 
+      float: none; display: inline-block; 
+      padding: 10px 15px; margin: 0;
+    }
+
+    div.menu > a > img{ 
+      padding:0; width:25px;
+      position:relative; top:6px;
+      margin: 0 15px;
+    }
+
+    div.menu > a > div.item:hover{
+      background-color: white;
+      color: black;
+    }
+
+    div.error_box {
+      text-align: center;
+      width: 650px;  height:440px;
+      margin: 0 auto; padding:0; overflow: hidden;
+      position: absolute;
+      left: calc(50% - 325px); top: calc(50% - 250px);
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+    }
+    div.error_box > div.message{
+      max-width: 400px; float: right;
+    }
+    div.error_box > div.image{
+      width: 250px; float: left;
+      text-align:center; height: 100%;
+      padding-top: 15%;
+    }
+
+    div.error_box > div.err500{
+      background-color: #FF2865;
+    }
+
+    div.error_box > div.err404{
+      background-color: #4DA0FF;
+    }
+
+    div.error_box > div.image > img{
+      width: 95%;
+    }
+
+
+    div.error_box > div.image > div.message{ display:none; 
+      padding:10px 25px 5px; line-height:1.3em;
+      font-size: 13px; opacity:0.8;
+    }
+
+    span.error{
+      font-size: 11px;
+      font-weight: bolder;
+      opacity:0.5;
+    }
+
+    div.error_box > div.message > div.title {
+      padding: 7px 0;
+    }
+
+    h1 {
+      font-size: 30px;
+      color: white;
+      line-height: 1em;
+    }
+
+    div.error_box > div.message > p {
+      font-size: 14px; color: white; letter-spacing: 0.05em;
+      margin: 5px; padding:5px 15px;
+      text-align: left;
+    }
+
+
+    .fun_fact{
+      padding: 15px 30px; 
+      /*border: 2px solid; */
+      margin: 35px 20px 5px;
+      /*background-color:#04090F; background-image: url('board.jpg');*/
+      background-size: cover;
+      font-size: 18px;
+      display: none;
+    }
+    .fact_source{
+      position: absolute;
+      margin:5px 10px; bottom:0;
+      display: none;
+    }
+
+    .ion-refresh{
+      display: none;
+      font-size: 20px;
+      border-radius: 50%; padding: 4px 5px 2.5px 6px;
+      margin: 10px;
+      color: #10B900;
+      background-color: white;
+      position: absolute; bottom:0; right: 0;
+    }
+    .ion-refresh:focus{
+      outline: none;
+      text-decoration:none;
+    }
+    .ion-refresh:hover{
+      background-color: #10B900;
+      color: white;
+    }
+
+    div.error_box > div.message > form> input, div.error_box > div.message > form > textarea {
+      font-size: 12px; color: white;
+      margin: 5px; padding:5px 8px;
+      border-radius: 2px; border: 0;
+      width: calc(100% - 50px);
+      color: #333;
+    }
+
+    div.error_box > div.message > form > textarea{
+      min-height: 80px;
+    }
+
+    div.error_box > div.message > form > button.submit {
+      border-radius: 3px; border: 0;
+      margin: 0 0 15px; padding: 10px 15px;
+      font-size: 13px; background-color: #31BAFF;
+      color: white;
+    }
+
+    .send_report{margin: 20px auto ;}
+    .form{display:none;}
+
+    @font-face {
+        font-family:'gotham_light';
+        src: url("fonts/gotham_light.OTF") format("truetype");
+    }
+
+
+
+    @media only screen and (max-width: 650px) {
+      div.error_box{ width:250px; left: calc(50% - 125px); top: calc(50% - 250px); height:350px;}
+      div.error_box > div.message{ display:none; opacity:0;}
+      div.error_box > div.image{ padding-top: 1%; }
+      div.error_box > div.image > div.message{ display:block; }
+      span.error{ font-size: 16px; }
+
+    }
+  </style>
+
   <div class="menu">
-    <a href="/"><img src="errorcss/logo_blue.png"></a>
+    <a href="/"><img src="/errorcss/logo_blue.png"></a>
     <a href="/contact"><div class='item'> Contact </div></a>
     <a href="/about"><div class='item'> About us </div></a>
     <a href="/users/sign_in"><div class='item'> Login </div></a>
@@ -37,7 +240,7 @@
       <div class="message">
         <div class="title">
           <h1>Uh-Oh!</h1>
-          <a href="/"><img src="errorcss/logo_white.png" width="50px"></a>
+          <a href="/"><img src="/errorcss/logo_white.png" width="50px"></a>
         </div>
         <p>Seems like something went wrong. It's our fault. Please press the "Back" button.</p>
         <p>If you'd like to help us fix bugs, please contact <a href="mail_to:support@videorehearser.com">support@videorehearser.com</a> or click below.</p>
@@ -63,6 +266,26 @@
     <a href="/about"><div class='item'>Copyright <b>Video Rehearser 2016</b> </div></a>
     <a href="tel:305 912 4843"><div class='item'> 305 912 4843 </div></a>
   </div>
+
+  <script type="text/javascript">
+    var bgImages = ['1','2','3','4','5']
+    function randomFrom(arr){
+        var randomIndex = Math.floor(Math.random() * arr.length);
+        return arr[randomIndex];
+    }
+    var randomImg = randomFrom(bgImages);
+
+    console.log(randomImg)
+
+    $('body').css('background-image', 'url("errorcss/error_'+randomImg+'.jpg")');
+
+    $('.current_url').val(window.location.href)
+
+    $('.send_report').click(function(){
+      $('.send_report').hide();
+      $('form').show();
+    });
+  </script>
 
 </body>
 </html>

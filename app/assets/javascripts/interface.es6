@@ -186,6 +186,9 @@ var pageReady = function(){
 	$(document).on('click', '.shade_close', function() {
 		$('.shadebox').fadeOut(500);
 	});
+	$(function() {
+		$( ".shadebox" ).draggable();
+	});
 
 	//=============== MANAGING WINDOW RESIZING ============ //
 
