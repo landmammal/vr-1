@@ -1,15 +1,16 @@
 
 var pageReady = function(){
 
+  
   // REHEARSAL SUBMISSION
   var changeSubmitButton = function(submission, id){
     if(submission === false || !submission){
-      $('button.submission').text('Submit for Feedback');
+      $('button.submission').text('Send to Instructor');
       $('button.submission').removeClass('red');
       $('button.submission').addClass('blue');
       $('#rehearsal_'+id+'_status').prop('class', 'blankdot');
     }else{
-      $('button.submission').text('Make Rehearsal Private');
+      $('button.submission').text('Keep as private Rehearsal');
       $('button.submission').removeClass('blue');
       $('button.submission').addClass('red');
       $('#rehearsal_'+id+'_status').prop('class', 'orangedot');
