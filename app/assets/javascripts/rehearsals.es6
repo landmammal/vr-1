@@ -1,6 +1,7 @@
 
 var pageReady = function(){
 
+  
   // REHEARSAL SUBMISSION
   var changeSubmitButton = function(submission, id){
     if(submission === false || !submission){
