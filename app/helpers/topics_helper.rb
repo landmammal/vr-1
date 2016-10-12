@@ -7,7 +7,7 @@ module TopicsHelper
 		rehearsals.each do |rehearsal|
 			feedback_approved = 0
 
-			rehearsal.feedbacks.each { |feedback| feedback_approved += 1 if feedback.approved == true }
+			rehearsal.feedbacks.each { |feedback| feedback_approved += 1 if (feedback.approved == true || rehearsal.approval_status == 1) }
 
 			if rehearsal.feedbacks.size > 0
 				feedback_approved > (rehearsal.feedbacks.size * 0.75) ? @lesson_done = 1 : @lesson_done = 2
