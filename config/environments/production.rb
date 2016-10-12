@@ -22,6 +22,7 @@ Rails.application.configure do
       authentication:       'plain',
       enable_starttls_auto: true  }
   config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { :host => 'https://videorehearser.herokuapp.com' }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
