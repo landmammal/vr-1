@@ -83,6 +83,8 @@ var pageReady = function(){
 			var err = 'First name field not filled in.'; runErr(err);
 		}else if( $('.lastname').val().length === 0 ){
 			var err = 'Last name field not filled in.'; runErr(err);
+		}else if( $('.username').val().length === 0 ){
+			var err = 'Username field not filled in.'; runErr(err);
 		}else if( $('.email').val().length === 0 ){
 			var err = 'Email field not filled in.'; runErr(err);
 		}else if( $('.pass').val().length === 0 ){
@@ -155,6 +157,10 @@ var pageReady = function(){
 
 	// NOTICES AND FLASHES FADEOUT
 	$('.close_notice').click(function(){
+		$('#notice_wrapper').empty();
+		$('#notice_wrapper').addClass('remove');
+	});
+	$('#notice_wrapper').click(function(){
 		$('#notice_wrapper').empty();
 		$('#notice_wrapper').addClass('remove');
 	});
