@@ -16,7 +16,7 @@
 
 <div class="box_sep">
   <div class="title">
-    <a href="/users/<%= @this_user.id %>"><img src="<%= student_pic %>" class="img-circle" width='40px'></a>
+    <a href="/users/<%= @this_user.id %>"><img src="<%= student_pic(@this_user) %>" class="img-circle" width='40px'></a>
     <%=  @this_user.first_name %> <%= @this_user.last_name %>
   </div>
 

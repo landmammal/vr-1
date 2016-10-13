@@ -1,7 +1,7 @@
 module RehearsalsHelper
 	
-	def student_pic
-		@this_user.profile_file_name.present? ? profile = @this_user.profile.url(:square) : profile = '/assets/default_user.png'
+	def student_pic(user)
+		user.profile_file_name.present? ? profile = user.profile.url(:square) : profile = '/assets/default_user.png'
 		return profile
 	end
 
@@ -36,7 +36,7 @@ module RehearsalsHelper
 		(rehearsal.submission == false || !rehearsal.submission) ? status = 'blankdot' : status = 'orangedot'
 		
 		rehearsal.feedbacks.each do |feedback|
-			if feedback.approved == true
+			if feedback.approved == true || rehearsal.approval_status == 1
 				status = 'greendot'
 				break
 			end

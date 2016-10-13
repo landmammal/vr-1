@@ -34,6 +34,9 @@ var pageReady = function(){
 		                                  `</button>`+
 		                                `</div>`;
 		            $('.list_of_lesson_rehearsals').append(newrehearsal);
+		            location.reload();
+		            // window.location.href = "#send_to_instructor";
+		            // window.location.replace("#send_to_instructor");
 		          }
 		        });
 			}

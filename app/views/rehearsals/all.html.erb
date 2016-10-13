@@ -12,16 +12,15 @@
   <div class="this_called_content show_new_content">
     <div class="title">New Rehearsals</div>
     <% @rehearsals_without_feedback.each do |rehearsal| %>
-        <% if rehearsal.approval_status == nil || rehearsal.approval_status == 0 %>
+        <% if (rehearsal.approval_status == nil || rehearsal.approval_status == 0) && User.exists?(rehearsal.trainee_id) %>
           <% lesson = rehearsal.lesson %>
-          <% @this_user = User.find(rehearsal.trainee_id) %>
           <% @r = 'rehearsal_bubble_'+rehearsal.id.to_s %>
           <% @date_sub = time_diff(Time.now, rehearsal.updated_at) %>
 
 
           <button class="user_bubble shadebox_btn rehearsal_activate <%= @r %>" data-rehearsalid='<%= rehearsal.id %>' data-lessontitle='<%= rehearsal.lesson.title %>' >
-            <img src="<%= student_pic %>"  class="img-circle">
-            <div class="info"><%= @this_user.first_name+' '+ @this_user.last_name %><br>
+            <img src="<%= student_pic(rehearsal.trainee) %>"  class="img-circle">
+            <div class="info"><%= rehearsal.trainee.first_name+' '+ rehearsal.trainee.last_name %><br>
               <font size="0.2em">Submitted: <%= @date_sub %></font></div>
           </button>
         <% end %>
@@ -32,15 +31,17 @@
   <div class="this_called_content show_all_content" style="display:none;">
     <div class="title">All Course Rehearsals</div>
     <% @course_rehearsals.each do |rehearsal| %>
-        <% @this_user = User.find(rehearsal.trainee_id) %>
+      <% if User.exists?(rehearsal.trainee_id) %>
+
         <% @r = 'rehearsal_bubble_'+rehearsal.id.to_s %>
         <% @date_sub = time_diff(Time.now, rehearsal.created_at) %>
 
         <button class="user_bubble shadebox_btn rehearsal_activate <%= @r %>" data-rehearsalid='<%= rehearsal.id %>' data-lessontitle='<%= rehearsal.lesson.title %>' >
-          <img src="<%= student_pic %>"  class="img-circle">
-          <div class="info"><%= @this_user.first_name+' '+ @this_user.last_name %><br>
+          <img src="<%= student_pic(rehearsal.trainee) %>"  class="img-circle">
+          <div class="info"><%= rehearsal.trainee.first_name+' '+ rehearsal.trainee.last_name %><br>
             <font size="0.2em">Submitted: <%= @date_sub %></font></div>
         </button>
+      <% end %>
     <% end %>
   </div>
 

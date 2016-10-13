@@ -186,6 +186,9 @@ var pageReady = function(){
 	$(document).on('click', '.shade_close', function() {
 		$('.shadebox').fadeOut(500);
 	});
+	$(function() {
+		$( ".shadebox" ).draggable();
+	});
 
 	//=============== MANAGING WINDOW RESIZING ============ //
 
@@ -200,7 +203,9 @@ var pageReady = function(){
 		for( var i = 0; i < ziggeo_wrapper.length; i++ ){
 			aspect16_9(ziggeo_wrapper[i]);
 		}
-		height100('video'); //NEED THIS FOR videoplayers in lesson_show
+		aspect16_9('div.ba-videoplayer-theme-modern-container video'); //NEED THIS FOR videoplayers in lesson_show
+		height100('ziggeoplayer div video'); //NEED THIS FOR videoplayers in lesson_show
+		height100('ziggeorecorder div.ba-videorecorder-theme-modern-container video');
 		height100('.ba-videoplayer-theme-modern-container'); //NEED THIS FOR videoplayers in lesson_show
 		height100('.ba-videoplayer-theme-modern-video'); //NEED THIS FOR videoplayers in lesson_show
 
