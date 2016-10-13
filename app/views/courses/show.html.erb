@@ -22,7 +22,7 @@
 </div>
 
 <br>
-<% if course_creator || course_trainee || course_puplic %>
+<% if course_creator || course_trainee %>
 
   <h4>Topics</h4>
   <hr>
@@ -55,7 +55,10 @@
     <% end %>
   </div>
 <% else %>
+
   <center style="margin:50px auto 200px;">
+    <%=  'This is a "Free Course", click below to start.' if course_public %>
+    <%=  'This is a "Closed Course", click below to request Access.' if course_closed %><br><br>
     <%= render './course_registrations/course_registration_form' if !course_creator %>
   </center>
 

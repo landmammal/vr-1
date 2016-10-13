@@ -10,12 +10,16 @@
     <div class="prompt_video">    
 
       <div class="ziggeo_create_lesson js-record_ziggeo">
-        <% @this_added_class = 'explanation' %>
-        <%= render './shared/ziggeorecorder' %>
+        <div class="ziggeo">
+          <% @this_added_class = 'explanation' %>
+          <%= render './shared/ziggeorecorder' %>
+        </div>
       </div>
       <div class="ziggeo_wrapper js-play_ziggeo" data-token="<%= @explanation.video_token %>">
-        <% @this_video_token = @explanation.video_token if @explanation.video_token != "" %>
-        <%= render './shared/ziggeoplayer' %>
+        <div class="ziggeo">
+          <% @this_video_token = @explanation.video_token if @explanation.video_token != "" %>
+          <%= render './shared/ziggeoplayer' %>
+        </div>
       </div>
       
       <br>

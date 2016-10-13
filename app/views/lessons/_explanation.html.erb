@@ -2,9 +2,11 @@
 	<% @this_video_token = @prior_expl.video_token %>
 	<% @this_added_class = 'explanation' %>
 	
-    <div class="video_black_bg" style="padding:0 10%;">
+    <div class="video_black_bg full">
 		<div class="ziggeo_wrapper">
-			<%= render './shared/ziggeoplayer' %>
+			<div class="ziggeo">
+				<%= render './shared/ziggeoplayer' %>
+			</div>
 		</div>
 	</div>
 

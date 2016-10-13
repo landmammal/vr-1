@@ -219,7 +219,7 @@
 
     </div>
 
-  <% elsif (@lesson_ready && course_trainee) || course_puplic %>
+  <% elsif (@lesson_ready && course_trainee) %>
 
     <div class="body">
       <%= render 'trainee' %>
@@ -229,7 +229,7 @@
   <%else%>
 
     <div class="body">
-      Lesson is not yet completed for viewing.<br>
+      <center>Lesson is not yet completed for viewing.</center><br><br>
       <button class="small_btn blue js-click_back">Back</button>
     </div>
 

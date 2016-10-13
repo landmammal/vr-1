@@ -18,6 +18,13 @@ git push -f origin master
 
 
 
+re-record ziggeo
+
+div title="Re-Record"    <<    when recorder player is pressed
+ba-videoplayer-theme-modern-rerecord-button    <<    rerecord button
+ba-videorecorder-theme-modern-button-primary   <<    skip, stop and record
+
+
 #notice, .notice{
   padding:10px 20px; margin:0;
   position:absolute; top:0; left:0; right:0;

@@ -13,6 +13,7 @@ class TopicsController < ApplicationController
   def show
     @rehearsal = Rehearsal.new
     @lessons = @topic.lessons.order('id ASC')
+    @course_registration = CourseRegistration.new
   end
 
   # GET /topics/new

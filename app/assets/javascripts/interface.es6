@@ -186,33 +186,30 @@ var pageReady = function(){
 	$(document).on('click', '.shade_close', function() {
 		$('.shadebox').fadeOut(500);
 	});
-	$(function() {
-		$( ".shadebox" ).draggable();
-	});
 
 	//=============== MANAGING WINDOW RESIZING ============ //
 
-	function aspect16_9(element){
-		$(element).height($(element).width() / 1.778);
-	}
-	function height100(element){
-		$(element).height('100%');
-	}
-	function runChangeSize(){
-		var ziggeo_wrapper = document.getElementsByClassName("ziggeo_wrapper");
-		for( var i = 0; i < ziggeo_wrapper.length; i++ ){
-			aspect16_9(ziggeo_wrapper[i]);
-		}
-		aspect16_9('div.ba-videoplayer-theme-modern-container video'); //NEED THIS FOR videoplayers in lesson_show
-		height100('ziggeoplayer div video'); //NEED THIS FOR videoplayers in lesson_show
-		height100('ziggeorecorder div.ba-videorecorder-theme-modern-container video');
-		height100('.ba-videoplayer-theme-modern-container'); //NEED THIS FOR videoplayers in lesson_show
-		height100('.ba-videoplayer-theme-modern-video'); //NEED THIS FOR videoplayers in lesson_show
+	// function aspect16_9(element){
+	// 	$(element).height($(element).width() / 1.778);
+	// }
+	// function height100(element){
+	// 	$(element).height('100%');
+	// }
+	// function runChangeSize(){
+	// 	var ziggeo_wrapper = document.getElementsByClassName("ziggeo_wrapper");
+	// 	for( var i = 0; i < ziggeo_wrapper.length; i++ ){
+	// 		aspect16_9(ziggeo_wrapper[i]);
+	// 	}
+	// 	aspect16_9('div.ba-videoplayer-theme-modern-container video'); //NEED THIS FOR videoplayers in lesson_show
+	// 	height100('ziggeoplayer div video'); //NEED THIS FOR videoplayers in lesson_show
+	// 	height100('ziggeorecorder div.ba-videorecorder-theme-modern-container video');
+	// 	height100('.ba-videoplayer-theme-modern-container'); //NEED THIS FOR videoplayers in lesson_show
+	// 	height100('.ba-videoplayer-theme-modern-video'); //NEED THIS FOR videoplayers in lesson_show
 
-		aspect16_9('.ba-videorecorder-theme-modern-container'); 
-		aspect16_9('.ziggeo_lesson_create');
-		aspect16_9('embed');
-	}
+	// 	aspect16_9('.ba-videorecorder-theme-modern-container'); 
+	// 	aspect16_9('.ziggeo_lesson_create');
+	// 	aspect16_9('embed');
+	// }
 	
 	// function devicesHome(){
 	// 	var halfsec = $('.halfsec').width();
@@ -245,7 +242,7 @@ var pageReady = function(){
 		setInterval(function(){ 
 			youtubeSize();
 			searchBtn();
-			runChangeSize();
+			// runChangeSize();
 		}, 100);
 
 		$(window).resize(function(){
@@ -253,7 +250,7 @@ var pageReady = function(){
 			setInterval(function(){ 
 				youtubeSize();
 				searchBtn();
-				runChangeSize(); 
+				// runChangeSize(); 
 			}, 1000);
 		});
 

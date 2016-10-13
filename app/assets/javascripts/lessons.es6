@@ -173,9 +173,9 @@ var pageReady = function(){
 
 	var lesson_videos = ['explanation','prompt','model','rehearsal'];
 
-	var explanation =  '<button class="big_btn lesson_btn show_explanation">Explanation</button>';
-	var demonstration =  '<button class="green_sft big_btn lesson_btn show_demonstrastion">Demonstration</button>';
-	var practice =  '<button class="green_sft big_btn lesson_btn show_practice">Practice</button>';
+	var explanation =  '<button class="green_sft big_btn lesson_btn show_explanation">Explanation</button>';
+	var demonstration =  '<button class="big_btn lesson_btn show_demonstrastion">Demonstration</button>';
+	var practice =  '<button class="big_btn lesson_btn show_practice">Practice</button>';
 
 	var lesson_type = parseInt($('.lesson_type').text());
 	// console.log(lesson_type);
@@ -208,8 +208,8 @@ var pageReady = function(){
 	$('.lesson_desc').text(lesson_desc);
 
 	$('.lesson_btn').click(function(){
-		$('.lesson_btn').addClass('green_sft');
-		$(this).removeClass('green_sft');
+		$('.lesson_btn').removeClass('green_sft');
+		$(this).addClass('green_sft');
 	});
 
 	// if($('.model_video').text() || $('.prompt_video').text()){

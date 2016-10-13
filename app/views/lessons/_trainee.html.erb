@@ -28,7 +28,11 @@
 
     <br>
     <br>
-    <div id="send_to_instructor" style="font-size:15px; font-weight:800; text-align:left;">Choose a Rehearsal to send to the instructor:</div>
+    <div id="send_to_instructor" style="font-size:15px; font-weight:800; text-align:left;">
+        You have <span style="color:#2FA0FF;"><%= rehearsals_for_this_lesson.size.to_s %></span> Rehearsals for this lesson.
+        <br>
+        <span style="font-size:11px;">Click on the ones you want to send for feedback</span>
+    </div>
     <div class="list_of_lesson_rehearsals">
         <% rehearsals_for_this_lesson.each do |rehearsal| %>
             <% @this_video_token = rehearsal.video_token %>

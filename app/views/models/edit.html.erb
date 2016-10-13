@@ -12,10 +12,10 @@
 
       <div class="ziggeo_create_lesson js-record_ziggeo">
         <% @this_added_class = 'model' %>
-        <%= render './shared/ziggeorecorder' %>
+        <div class="ziggeo"><%= render './shared/ziggeorecorder' %></div>
       </div>
       <div class="ziggeo_wrapper js-play_ziggeo" data-token="<%= @model.video_token %>">
-        <%= render './shared/ziggeoplayer' %>
+        <div class="ziggeo"><%= render './shared/ziggeoplayer' %></div>
       </div>
       
       <br>
