@@ -1,0 +1,31 @@
+<div class="shadebox">
+  <div class="shade box">
+    <div class="shadebox_title">
+      <%= @group.name %>
+      <% @this_user = User.find(@group.instructor_id) %>
+      <button class="shade_close red small_btn">x</button>
+    </div>
+    <div class="shadebox_content" style="text-align:center;">
+      <br>
+      <ul id="all_users_applying">
+        <% @users_applying.each do |user| %>
+            <li class="user_applying" >
+              <i>
+                <% user_group =  UserGroup.where(user_id: user, group_id: @group).first %>
+
+                <%= user.first_name %> <%= user.last_name %>
+                <%= form_for [ user, @group, user_group ], remote: true, :html => {:class => "application_approved"} do |f| %>
+                    <%= f.text_field :approval_status, type:"hidden", value: true %>
+                    <%= f.submit "Approved", class:"green_sft" %>
+                <% end %>
+              </i>
+            </li>
+        <% end %>
+      </ul>
+      <hr>
+    </div>
+    <div class="shadebox_bottom">
+
+    </div>
+  </div>
+</div>

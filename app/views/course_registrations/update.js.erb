@@ -1,5 +1,7 @@
+location.reload(true);
 $('.accept_registration').bind('ajax:success', function() {
   $(this).closest('tr').fadeOut();
+
 });
 
 <% flash.each do |type, message| %>

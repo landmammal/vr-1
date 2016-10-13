@@ -1,5 +1,6 @@
 class UserGroupsController < ApplicationController
   before_action :set_group, only: [:create]
+  before_action :set_user_group, only: [:update ]
 
   def create
     @user_group = UserGroup.create(
@@ -18,7 +19,24 @@ class UserGroupsController < ApplicationController
     end
   end
 
+  def update
+    @user_group.approval_status = true
+    respond_to do |format|
+      if @user_group.save
+        format.js { flash.now[:notice] = "User approved" }
+      else
+        format.html { render :new }
+        format.json { render json: @group.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+
   private
+
+  def set_user_group
+    @user_group = UserGroup.find(params[:id])
+  end
 
   def set_group
     @group = params[:group_id]

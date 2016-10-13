@@ -9,12 +9,12 @@
     <div id="my_groups_title" class="group_title" >My Groups</div>
   </div>
   <% @my_groups.each do |group| %>
-      <% @user = group.instructor_id %>
+      <% user = group.instructor_id %>
         <div class="group_slice" >
           <%= group.name %>
           <% if group.user_groups.where(approval_status: false).length > 0 %>
               <span class="group_registration_notice"><%= group.user_groups.where(approval_status: false).length %></span>
-              <%= button_to 'Registrations', user_group_path( @user, group ), { :method => :get, :class => 'small_btn blue', :id => 'group_registrations', remote: true } %>
+              <%= button_to 'Registrations', '/groups/'"#{group.id}", { :method => :get, :class => 'small_btn blue group_shadebox_btn', :id => 'group_registrations', remote: true } %>
           <% end %>
         </div>
   <% end %>
@@ -24,4 +24,5 @@
 
   }
 </script>
+
 
