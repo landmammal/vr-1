@@ -14,17 +14,15 @@
           <%= group.name %>
           <% if group.user_groups.where(approval_status: false).length > 0 %>
               <span class="group_registration_notice"><%= group.user_groups.where(approval_status: false).length %></span>
-              <%= button_to 'Registrations', '/groups/'"#{group.id}", { :method => :get, :class => 'small_btn blue group_shadebox_btn', :id => 'group_registrations', remote: true } %>
+              <%= button_to 'Student Applications', '/groups/'"#{group.id}", { :method => :get, :class => 'small_btn blue group_shadebox_btn', :id => 'group_registrations', remote: true } %>
+              <%= button_to 'Register group', '/group_registrations/group/'"#{group.id}", { :method => :get, :class => 'small_btn blue group_shadebox_btn registering_group', :id => '', remote: true } %>
           <% end %>
         </div>
   <% end %>
 </div>
 <script>
   $(function(){
-    $('.button_to').on('ajax:success', function() {
-      console.log('here');
-      $(this).closest('div').fadeOut();
-    });
+
   }
 </script>
 

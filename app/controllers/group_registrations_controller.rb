@@ -1,6 +1,21 @@
 class GroupRegistrationsController < ApplicationController
-  before_action :set_group, only: [:create]
+  before_action :set_group, only: [:create, :new]
   before_action :set_group_registration, only: [:edit, :update]
+
+  # a shadow box for user to all the groups he can register to and register to them
+  def registrations
+    binding.pry
+    @courses = Course.all
+    @group = Group.find(params[:id])
+    instructor = @group.instructor
+    @my_courses = instructor.courses
+    respond_to do |format|
+      format.js {  }
+    end
+  end
+
+  def new
+  end
 
   def create
     @group.group_registrations.build(group_registration_params)
@@ -44,6 +59,8 @@ class GroupRegistrationsController < ApplicationController
   def set_group_registration
     @group_registration = GroupRegistration.find(params[:id])
   end
+
+
 
   def set_group
     @group = Group.find(params[:group_registration][:group_id])

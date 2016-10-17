@@ -55,6 +55,7 @@ Rails.application.routes.draw do
   get "/feedback/all" => "feedbacks#all"
   get "/groups/all_groups" => "groups#all_groups"
   get '/groups/:id' => 'groups#my_group'
+  get '/group_registrations/group/:id' => 'group_registrations#registrations'
   
   resources :lessons, shallow: true do
     resources :explanations
