@@ -1,12 +1,25 @@
 <div class="back_button groups_back">
   <%= link_to 'Back', '#', id: 'back' %>
 </div>
-<div id="group_registration_notice"></div>
+<div class="group_registration_flash"></div>
 <div id="group_body">
   <div id="search_groups">
     <%= link_to 'Browse Groups', '#', { :id => 'click_browse_groups', :class => 'hide_groups_interface' } %>
     <div id="browse_groups">
-      <%= render 'groups' %>
+      <ul class="group_box">
+        <% @groups.each_slice(10) do |slice| %>
+            <div class="group_slice">
+              <% slice.each do |group| %>
+                  <% @user = group.instructor_id %>
+                  <li class="group_module">
+                    <div class="group_title">
+                      <%= link_to group.name, user_group_path(@user, group), remote: true, :class => "group_shadebox_btn" %>
+                    </div>
+                  </li>
+              <% end %>
+            </div>
+        <% end %>
+      </ul>
     </div>
   </div>
 

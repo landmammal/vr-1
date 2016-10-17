@@ -21,7 +21,10 @@
 </div>
 <script>
   $(function(){
-
+    $('.button_to').on('ajax:success', function() {
+      console.log('here');
+      $(this).closest('div').fadeOut();
+    });
   }
 </script>
 

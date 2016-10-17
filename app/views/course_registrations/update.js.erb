@@ -1,5 +1,4 @@
-location.reload(true);
-$('.accept_registration').bind('ajax:success', function() {
+$('.accept_registration').on('ajax:success', function() {
   $(this).closest('tr').fadeOut();
 
 });

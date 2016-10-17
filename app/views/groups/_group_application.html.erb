@@ -18,6 +18,7 @@
                     <%= f.text_field :approval_status, type:"hidden", value: true %>
                     <%= f.submit "Approved", class:"green_sft" %>
                 <% end %>
+                <%= button_to('Reject Registration', [ user, @group, user_group], remote: true, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'small_btn') %>
               </i>
             </li>
         <% end %>

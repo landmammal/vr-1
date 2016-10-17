@@ -1,6 +1,9 @@
 //$('.accept_registration').bind('ajax:success', function() {
 //  $(this).closest('tr').fadeOut();
 //});
+$( document ).on('ajax:success', function() {
+  console.log('here');
+});
 
 <% flash.each do |type, message| %>
 $("#group_registration_notice").append("<%= j content_tag :p, message.html_safe, class: "flash text-center" %>").delay(3000).fadeOut("slow");

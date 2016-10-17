@@ -1,6 +1,6 @@
 class UserGroupsController < ApplicationController
   before_action :set_group, only: [:create]
-  before_action :set_user_group, only: [:update ]
+  before_action :set_user_group, only: [:update, :destroy ]
 
   def create
     @user_group = UserGroup.create(
@@ -30,6 +30,13 @@ class UserGroupsController < ApplicationController
       end
     end
 
+  end
+
+  def destroy
+    @user_group.destroy
+    respond_to do |format|
+      format.js { flash.now[:notice] = "Student Rejected" }
+    end
   end
 
   private

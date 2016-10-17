@@ -1,20 +1,7 @@
 
 
 <div ></div>
-<ul class="group_box">
-  <% @groups.each_slice(10) do |slice| %>
-      <div class="group_slice">
-        <% slice.each do |group| %>
-            <% @user = group.instructor_id %>
-              <li class="group_module">
-                <div class="group_title">
-                  <%= link_to group.name, user_group_path(@user, group), remote: true, :class => "group_shadebox_btn" %>
-                </div>
-              </li>
-        <% end %>
-      </div>
-  <% end %>
-</ul>
+
 
 
 
