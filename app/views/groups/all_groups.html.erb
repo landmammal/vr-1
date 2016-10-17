@@ -5,15 +5,21 @@
     <%= link_to 'Browse Groups', '#', { :id => 'click_browse_groups', :class => 'hide_groups_interface' } %>
     <div id="browse_groups">
       <ul class="group_box">
+        <spa>Join a group</spa>
         <% @groups.each_slice(10) do |slice| %>
             <div class="group_slice">
               <% slice.each do |group| %>
-                  <% @user = group.instructor_id %>
-                  <li class="group_module">
-                    <div class="group_title">
-                      <%= link_to group.name, user_group_path(@user, group), remote: true, :class => "group_shadebox_btn" %>
-                    </div>
-                  </li>
+
+                  <% if group.user_groups.where(approval_status: false).length > 0 || group.user_groups.where(approval_status: true).length > 0%>
+
+                  <% else %>
+                    <% @user = group.instructor_id %>
+                    <li class="group_module">
+                      <div class="group_title">
+                        <%= link_to group.name, user_group_path(@user, group), remote: true, :class => "group_shadebox_btn" %>
+                      </div>
+                    </li>
+                  <% end %>
               <% end %>
             </div>
         <% end %>
@@ -26,12 +32,11 @@
         <div id="groups_i_belong_to_title" class="group_title top_info" >
           Groups You Belong To
         </div>
-            <% @groups_i_belong_to.each do |group| %>
-              <div class="group_slice" >
-                <%= link_to group.name, '#' %>
-              </div>
-            <% end %>
-
+        <% @groups_i_belong_to.each do |group| %>
+            <div class="group_slice" >
+              <%= link_to group.name, '#' %>
+            </div>
+        <% end %>
       </div>
       <div id="my_groups" >
         <div class="top_info" >

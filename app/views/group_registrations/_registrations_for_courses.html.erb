@@ -7,7 +7,7 @@
     </div>
     <div class="shadebox_content" style="text-align:center;">
       <br>
-      <div class="register_group" >Register the group</div>
+      <div class="register_group" >Register your group for a course</div>
       <% @courses.each do |course| %>
           <% this_course = course.group_registrations.where(group_id: @group).length %>
           <% if this_course == 0 %>
