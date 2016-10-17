@@ -1,0 +1,22 @@
+$('#place_shadow_box_here').append("<%= escape_javascript (render partial: 'registrations_for_courses' ) %>");
+$(".registration_to_course").hide();
+$('.shadebox').fadeIn(500);
+
+$('.registering_group').on('ajax:success', function () {
+  $('.shadebox').fadeOut(500);
+  location.reload();
+});
+
+
+//$('.course_to_trigger_form').hover( function () {
+//  $(this).append('<form id="mySearch"></form>'); //append a new form element with id mySearch to <body>
+//  $('#mySearch')
+//      .attr("action","/group_registrations/group/<%= @group.id %>")//set the form attributes
+//      .attr("data-remote", "true")
+//      .attr("method","post")
+//  //add in all the needed input elements
+//      .append('<input type="hidden" name="/group_registrations/create[course_id]" id="_group_registrations_create_course_id" value="Search">')
+//      .append('<input type="submit" name="commit" id="txtField1" value="Register">')
+//}, function() {
+//  $( this ).find( "form:last" ).remove();
+//});

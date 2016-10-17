@@ -1,6 +1,8 @@
-$('#browse_groups').hide();
-$('.hide_groups_interface').show();
-$('.groups_back').toggle();
-<% flash.each do |type, message| %>
-$("#group_registration_notice").append("<%= j content_tag :p, message.html_safe, {class: "flash notice text-center", id: "notice_wrapper"} %>").delay(3000).fadeOut("slow");
-<% end %>
+$(".group_registration_form").on("ajax:success", function () {
+  console.log($('#group_registration_flash'));
+  <% flash.each do |type, message| %>
+    $(".group_registration_flash").append("<%= j content_tag :p, message.html_safe, {class: "flash notice text-center", id: "notice_wrapper"} %>").delay(3000).fadeOut("slow");
+  <% end %>
+  location.reload();
+});
+

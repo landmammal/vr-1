@@ -1,4 +1,5 @@
-$('#render_partial_form').html("<%= escape_javascript (render partial: 'group_members', group: @group ) %>");
-$('#render_partial_form').slideDown(350);
+$('#place_shadow_box_here').html("<%= escape_javascript (render partial: 'group_members', group: @group ) %>");
 $('.shadebox').fadeIn(500);
-
+$(".group_registration_form").on("ajax:success", function () {
+  console.log('inside show.js');
+});

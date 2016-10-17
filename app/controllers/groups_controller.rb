@@ -1,15 +1,25 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_group, only: [:show, :destroy]
+  before_action :set_group, only: [:show, :destroy, :my_group]
 
   def all_groups
-    @groups = Group.all
-    @my_groups = current_user.user_groups.where(approval_status: true).order('id DESC')
     @user_group = UserGroup.new
+    @groups = Group.all
+    @groups_i_belong_to = []
+    current_user.user_groups.where(approval_status: true).order('id DESC').each { |ug| @groups_i_belong_to << ug.group }
+    @my_groups = current_user.groups
   end
 
   def index
     @groups = current_user.groups.all
+  end
+
+  def my_group
+    @users_applying = []
+    @group.user_groups.where(approval_status: false).each { |ug| @users_applying << User.find(ug.user_id) }
+    respond_to do |format|
+      format.js {  }
+    end
   end
 
   def show

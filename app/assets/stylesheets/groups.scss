@@ -2,9 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.group_slice{
+.group_slice {
   background-color: #f9f9f9;
   overflow: hidden;
   margin: 2%;
 
+}
+
+.group_title {
+  font-weight: bold;
+  font-size: 15px;
+  margin: 5px;
+  display: inline-block;
+  letter-spacing: 1px;
+}
+
+span.group_registration_notice {
+  background-color: red;
+  color: white;
+  font-size: 8px;
+  border: 2px solid red;
+  padding: 0px 4.5px;
+  border-radius: 25px;
+  font-family: 'gotham';
+}
+
+#all_users_applying {
+  float: left;
 }

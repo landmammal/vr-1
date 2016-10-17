@@ -1,6 +1,5 @@
 $('.button_to').on('ajax:success', function() {
-  console.log('here');
-  $(this).closest('tr').fadeOut();
+  location.reload();
 });
 
 <% flash.each do |type, message| %>

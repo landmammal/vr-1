@@ -15,7 +15,7 @@
       <hr>
     </div>
     <div class="shadebox_bottom">
-      <%= form_for [current_user, @group, @user_group ], remote: true do |f| %>
+      <%= form_for [current_user, @group, @user_group ], remote: true, :html => { :class => "group_registration_form" } do |f| %>
           <%= f.submit "Register To Group", class:"green_sft shade_close" %>
       <% end %>
     </div>

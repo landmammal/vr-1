@@ -1,0 +1,3 @@
+<% flash.each do |type, message| %>
+$(".group_registration_flash").append("<%= j content_tag :p, message.html_safe, {class: "flash notice text-center", id: "notice_wrapper"} %>").delay(3000).fadeOut("slow");
+<% end %>
