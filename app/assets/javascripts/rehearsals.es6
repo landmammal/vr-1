@@ -11,7 +11,7 @@ var pageReady = function(){
       $('#rehearsal_'+id+'_status').prop('class', 'blankdot');
     }else{
       $('button.submission').text('Keep as private Rehearsal');
-      $('button.submission').removeClass('blue');
+      $('button.submission').removeClass('blue red');
       $('button.submission').addClass('red');
       $('#rehearsal_'+id+'_status').prop('class', 'orangedot');
     }
@@ -20,7 +20,7 @@ var pageReady = function(){
   $(document).on('click', 'button.rehearsal_btn', function() {
     var rehearsalid = $(this).data('rehearsal');
     var rehearsalNumber = $(this).data('rehearsalnumber');
-    console.log(rehearsalNumber);
+    // console.log(rehearsalNumber);
     // console.log(rehearsalid);
 
     $.ajax({
@@ -46,8 +46,8 @@ var pageReady = function(){
       type:'PUT',
       url:'/rehearsals/'+submissionId+'/api',
       success: function(data){
-        console.log(data);
-        console.log(data.submission);
+        // console.log(data);
+        // console.log(data.submission);
         changeSubmitButton(data.submission, data.id);
       }
     });

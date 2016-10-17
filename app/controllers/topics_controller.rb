@@ -31,9 +31,7 @@ class TopicsController < ApplicationController
     @course = current_user.courses.find(params[:course_id])
     @course.topics.build(topic_params)
 
-    if params[:title] = ''
-      @course.topics.last.title = 'New Topic (rename)'
-    end
+    @course.topics.last.title = 'New Topic (rename)' if params[:title] == ''
 
     respond_to do |format|
       if @course.save
@@ -50,10 +48,11 @@ class TopicsController < ApplicationController
   # PATCH/PUT /topics/1
   # PATCH/PUT /topics/1.json
   def update
-    @topic = @course.topics.find(params[:id])
+    # @topic.title = 'New Topic (rename)' if params[:title] = ''
+
     respond_to do |format|
       if @topic.update(topic_update)
-        format.html { redirect_to([@topic.post, @topic], notice: 'Topic was successfully updated.') }
+        format.html { redirect_to course_topic_path(@topic.course, @topic), notice: 'Topic was successfully updated.' }
         format.json { render :show, status: :ok, location: @topic }
       else
         format.html { render :edit }

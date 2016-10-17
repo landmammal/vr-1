@@ -11,10 +11,7 @@
 	        	<div class="card_title">
 			        <a href="<%= course_path(course) %>" class="js-c_<%= course.id %>" >
 			        	<div class="title_name">
-			        		<%= course.title[0...25] %>
-							<% if course.title.length > 25 %>
-				               ...
-				            <% end %>
+			        		<%= course.title[0...25] %><%= '...' if course.title.length > 25 %>
 			        		<% if course.privacy == 0 %>
 			        			<span class="privacy ion-earth"></span>
 			        		<% elsif course.privacy == 2 || course.privacy == 3 %>
@@ -36,10 +33,9 @@
 			        </a>
 			    </div>
 			    <div class="card_desc">
-					<%= course.description[0...130] %>
-					<% if course.description.length > 130 %>
-		               ... <span class="blue">more</span>
-		            <% end %>
+			    	<a href="<%= course_path(course) %>">
+						<%= course.description[0...130] %><%= '...' if course.description.length > 130 %>
+			        </a>
 
 					<div class="bottom_count">
 				        <% course.topics.each do |i| %>

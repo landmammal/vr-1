@@ -1,5 +1,6 @@
 class Topic < ActiveRecord::Base
   belongs_to :instructor, class_name: 'User'
+  belongs_to :course
 
   has_many :topic_lessons
   has_many :lessons, through: :topic_lessons

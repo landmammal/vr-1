@@ -58,24 +58,25 @@
 	}
 	
 	& .card, & .home_card{
-		margin:1% 1% 1% 0;
-		float:none; display:inline-block; 
-		border-radius: 5px ;
+		margin:0;
+		float:left; 
+		// border-radius: 5px ;
 		overflow: hidden; text-align:left;
 		transition:0.5s;
 		& .card_title{
 			padding:5px 8px; font-size:14px;
-			font-family:'webly_bld'; border-radius:5px 5px 0 0;
+			font-family:'webly_bld';
+			// border-radius:5px 5px 0 0;
 		}
 		& .card_desc{
-			height: 110px; overflow:hidden; position:relative;
+			height: 65px; overflow:hidden; position:relative;
 			padding:5px 8px; color:#333;
-			border:1px solid #ddd; border-radius:0 0 5px 5px ;
+			// border:1px solid #ddd; border-radius:0 0 5px 5px ;
 			border-top:0;
 		}
 		&:hover{
-			@include box_extrude(#ccc, 3);
-			position: relative; top:-2px;
+			// @include box_extrude(#ccc, 3);
+			// position: relative; top:-2px;
 			transition:0.5s;
 		}
 		& .bottom_count{
@@ -86,30 +87,33 @@
 		    width: 95%;
 
 			& .circle_count{
-				width:10px; height:10px; float: left; 
-			    color:#00BDFF; border-radius:50%; border:3px solid;
-			    margin: 2px 2px;
+				width:7px; height:7px; float: left; 
+			    color:#00BDFF; border-radius:50%; border:2px solid;
+			    margin: 1px;
+			    &.pending{ color:#FEA808; background-color:#FEA808; }
 			    &.done{ color:#28D024; background-color:#28D024; }
 			}
 			& .bar_count{
-				width:20px; float: left; 
-			    color:#00BDFF; border-radius:4px; border:3px solid;
+				width:12px; float: left; 
+			    color:#00BDFF; border-radius:2px; border:2px solid;
 			    margin: 2px 2px;
+			    &.pending{ color:#FEA808; }
 			    &.done{ color:#28D024; }
 			}
 		}
 	}
 
 	& .home_card{
-		width:300px; 
 		overflow:hidden;
+		margin:0 0.5% 4px 0;
 		& .card_title{
 			background-color: #FF7C86; color: white; overflow:hidden;
-			padding:0;
+			padding:0; height:30px;
 			& .title_name{ width:calc(100% - 60.92px); color: white; float:left;  padding:5px 10px;}
 		}
 		& .card_desc{
-			position:relative;
+			position:relative; background-color:#FFEBE7;
+			a{color:black;}
 		}
 		& .card_edit{
 			font-size:14px; font-family:'webly_bld'; float:right; text-align:center; 
@@ -145,3 +149,30 @@
 
 
 .user_course_title{font-size:15px; font-family:'webly_reg'; margin:5px auto;  }
+
+@media only screen and (max-width: 495px) {
+  	.card_list{
+  		& .home_card{
+			width:99.5%;
+		}	
+	}
+}
+
+/* Tablet Layout: 615px to 826px. Inherits styles from: Mobile Layout. */
+@media only screen and (min-width: 496px) {
+  	.card_list{
+  		& .home_card{
+			width:49.5%;
+			& .card_title{ line-height:1.5em;}
+		}	
+	}
+}
+
+/* Desktop Layout: 827px to max.  Inherits styles from: Mobile Layout and Tablet Layout. */
+@media only screen and (min-width: 827px) {
+  	.card_list{
+  		& .home_card{
+			width:32.83%;
+		}	
+	}
+}

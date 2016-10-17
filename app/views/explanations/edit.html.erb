@@ -9,64 +9,68 @@
   
     <div class="prompt_video">    
 
-      <div class="ziggeo_create_lesson js-record_ziggeo">
-        <div class="ziggeo">
+      <div class="ziggeo_wrapper">
+        <div class="ziggeo js-record_ziggeo">
           <% @this_added_class = 'explanation' %>
           <%= render './shared/ziggeorecorder' %>
         </div>
-      </div>
-      <div class="ziggeo_wrapper js-play_ziggeo" data-token="<%= @explanation.video_token %>">
-        <div class="ziggeo">
+
+        <div class="ziggeo js-play_ziggeo" data-token="<%= @explanation.video_token %>">
           <% @this_video_token = @explanation.video_token if @explanation.video_token != "" %>
           <%= render './shared/ziggeoplayer' %>
         </div>
+
+        <div class="image_for_lesson js-add_image">
+        </div>
       </div>
-      
-      <br>
       <button class="js-re_record red">Re-Record?</button>
+      
 
-
-      <%= form_for @explanation,html: {class:"explanationForm", id:"ziggeoForm"}, remote: true  do |f| %>
-        <% if @explanation.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
-
-            <ul>
-            <% @explanation.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-            </ul>
-          </div>
-        <% end %>
-
-        <%= f.text_field :video_token, type:"hidden" %>
-        <%= f.text_field :token, type:"hidden" %>
-      <% end %>
-      <br>
-      <%= form_for @explanation do |f| %>
-        <% if @explanation.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
-
-            <ul>
-            <% @explanation.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-            </ul>
-          </div>
-        <% end %>
-        <%= f.text_field :title, placeholder: 'Title' %><br>
-        <%= f.text_area :script, placeholder: 'Script' %><br>
-        <%= f.select :language, (@languages) %>
-        <%= f.select :privacy, (@privacy) %>
-        <%= f.check_box :position_prior %> Primary Explanation<br>
-
-        <%= f.submit 'Submit Explanation', class:'green_sft' %>
-      <% end %>
-
-      <br>
-      <%= button_to "Delete Explanation", @explanation, class:'red', method: :delete, data: { confirm: 'Are you sure?' } %>
     </div>
+
+    <br><br>
+
+    <%= form_for @explanation,html: {class:"explanationForm", id:"ziggeoForm"}, remote: true  do |f| %>
+      <% if @explanation.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+          <ul>
+          <% @explanation.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= f.text_field :video_token, type:"hidden" %>
+      <%= f.text_field :token, type:"hidden" %>
+    <% end %>
+    <br>
+    <%= form_for @explanation do |f| %>
+      <% if @explanation.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+          <ul>
+          <% @explanation.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      Media Type: <%= f.select :video_type, (@video_type), class:'js-video_type' %><br>
+      <%= f.text_field :title, placeholder: 'Title' %> | 
+      <%= f.check_box :position_prior %> Primary Explanation<br>
+      <%= f.text_area :script, placeholder: 'Script' %><br>
+      <%= f.select :language, (@languages) %>
+      <%= f.select :privacy, (@privacy) %>
+      <br>
+      <%= f.submit 'Save Explanation', class:'green_sft save_ziggeo' %>
+    <% end %>
+
+    <br><br><br>
+    <%= button_to "Delete Explanation", @explanation, class:'small_btn red', method: :delete, data: { confirm: 'Are you sure?' } %>
 
   </div>
 </div>

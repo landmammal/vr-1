@@ -32,25 +32,20 @@
       <div class="card">
         <a href="<%= course_topic_path(@course, topic) %>">
           <div class="card_title topic">
-            <%= topic.title %>
+            <%= topic.title[0...25] %><%= '...' if topic.title.length > 25 %>
           </div>
+        </a>
           <div class="card_desc topic">
-            <%= topic.description[0...130] %>
-            <% if topic.description.length > 130 %>
-               ... <span class="blue">more</span>
-            <% end %>
+            <%= topic.description[0...130] %><%= "..." if topic.description.length > 130 %>
             
             <div class="bottom_count">
-                <% topic.lessons.each do |i| %>
-                  <div class="bar_count"></div>
+                <% topic.lessons.each do |lesson| %>
+                  <div class="bar_count <%= topic_lesson_completion(lesson) == 0 ? 'pending' : ( topic_lesson_completion(lesson) == 1 ? 'done' : '' ) %> "></div>
                   <!-- TRAINEE PROGRESS BAR -->
-                  <% if course_trainee %>
-                  <% end %>
                 <% end %>
             </div>
 
           </div>
-        </a>
         </div>
     <% end %>
   </div>

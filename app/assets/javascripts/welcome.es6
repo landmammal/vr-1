@@ -4,7 +4,6 @@ function allCoursesjson(courses){
 	// console.log(coursejson);
 }
 
-
 //APP LOADING SPLASH PAGE
 function startLoadingProg(){
 	var load_val = 0;
@@ -59,6 +58,15 @@ function endLoadingProg(){
 
 
 var pageReady = function(){
+
+
+	// User Profile drop Menu
+	$('.drop_menu').click(function(event){
+		event.preventDefault();
+		$('.user_dropdown').toggleClass('drop');
+		$('#chevron').toggleClass('ion-chevron-up ion-chevron-down');
+	});
+
 
 	function formERR(err){
 		$('.form_err').fadeIn(500);
@@ -174,72 +182,114 @@ var pageReady = function(){
 
 
 	//HOME TITLE AND SLIDESHOW
-	var homeTitleChange = ['Interview Skills', 'Languages', 'Pronunciation', 'Customer Service', 'Anything'];
-	$('.js-learn_home').text(homeTitleChange[0]);
+	// var homeTitleChange = ['Interview Skills', 'Languages', 'Pronunciation', 'Customer Service', 'Anything'];
+	// $('.js-learn_home').text(homeTitleChange[0]);
 	
 	// console.log(homeTitleChange.length);
 
-	var i = 1;
-	
-	function homeChange(){
-		if(i < homeTitleChange.length){
-			setTimeout(function(){
-				$('.js-learn_home').text(homeTitleChange[i]);
-				// console.log(i);
-				i+=1;
-				runChange();
-			}, 2500);
-		}else{
-			setTimeout(function(){
-				$('.js-learn_home').fadeOut(1000);
-				$('.js-start').fadeOut(1000);
-			}, 1100);
-			setTimeout(function(){
-				$('.js-title').fadeIn(1000);
-			}, 2100);
 
-			setTimeout(function(){
-				i = 0;
-				$('.js-title').fadeOut(500);
-				$('.js-learn_home').text(homeTitleChange[i]);
-				setTimeout(function(){
-					$('.js-learn_home').fadeIn(1500);
-					$('.js-start').fadeIn(1500);
-				}, 500);
-				runChange();
-			}, 50000);
-		}
-	}
+	var homeSlide = [{image:'public_speacking', text_location:'center_right', text_animation:'slide_right', 
+					   text:''
+					 },
+					 { image:'job_interview', text_location:'bottom_left', text_animation:'slide_left', 
+					   text:''
+					 },
+					 {image:'language', text_location:'center_right', text_animation:'slide_right', 
+					   text:''
+					 },
+					 {image:'frame_home', text_location:'center_right', text_animation:'slide_right', 
+					   text:''
+					 },
+					 { image:'singer', text_location:'bottom_left', text_animation:'slide_left', 
+					   text:''
+					 },
+					 { image:'dancer', text_location:'bottom_left', text_animation:'slide_left', 
+					   text:''
+					 },
+					 { image:'better_you', text_location:'center_right', text_animation:'slide_right', 
+					   text:'<div class=""></div>'
+					 }];
 
-	function runChange(){
-		homeChange();
-	}
+	var hbg = 0;
 
-
-	homeChange();
-
-	var bgChange = ['language_1','language_2','bg1','anything','frame_home'];
-	var bg = 0;
 
 	setInterval(function(){
-		if( bg < bgChange.length ){
-			$('.home_top_wrapper').css("background-image", "url(/assets/"+bgChange[bg]+".jpg)"); 
-			bg+=1;
+		if( hbg < homeSlide.length ){
+			$('.home_top_wrapper').css("background-image", "url(/assets/"+homeSlide[hbg].image+".jpg)"); 
+			hbg+=1;
 		}else{
-			bg = 0;
-			$('.home_top_wrapper').css("background-image", "url(/assets/"+bgChange[bg]+".jpg)");
-			bg += 1;
+			hbg = 0;
+			$('.home_top_wrapper').css("background-image", "url(/assets/"+homeSlide[hbg].image+".jpg)");
+			hbg += 1;
 		}
 	}, 10000);
 
 
-	$('.submenu_item').click(function(event){
-		event.preventDefault();
 
-		$('html, body').animate({
-	        scrollTop: $(".home_submenu").offset().top
-	    }, 1000);
-	});
+
+
+
+
+
+	// var i = 1;
+	
+	// function homeChange(){
+	// 	if(i < homeTitleChange.length){
+	// 		setTimeout(function(){
+	// 			$('.js-learn_home').text(homeTitleChange[i]);
+	// 			// console.log(i);
+	// 			i+=1;
+	// 			runChange();
+	// 		}, 2500);
+	// 	}else{
+	// 		setTimeout(function(){
+	// 			$('.js-learn_home').fadeOut(1000);
+	// 			$('.js-start').fadeOut(1000);
+	// 		}, 1100);
+	// 		setTimeout(function(){
+	// 			$('.js-title').fadeIn(1000);
+	// 		}, 2100);
+
+	// 		setTimeout(function(){
+	// 			i = 0;
+	// 			$('.js-title').fadeOut(500);
+	// 			$('.js-learn_home').text(homeTitleChange[i]);
+	// 			setTimeout(function(){
+	// 				$('.js-learn_home').fadeIn(1500);
+	// 				$('.js-start').fadeIn(1500);
+	// 			}, 500);
+	// 			runChange();
+	// 		}, 50000);
+	// 	}
+	// }
+
+	// function runChange(){ homeChange(); }
+
+
+	// homeChange();
+
+	// var bgChange = ['language_1','language_2','bg1','anything','frame_home'];
+	// var bg = 0;
+
+	// setInterval(function(){
+	// 	if( bg < bgChange.length ){
+	// 		$('.home_top_wrapper').css("background-image", "url(/assets/"+bgChange[bg]+".jpg)"); 
+	// 		bg+=1;
+	// 	}else{
+	// 		bg = 0;
+	// 		$('.home_top_wrapper').css("background-image", "url(/assets/"+bgChange[bg]+".jpg)");
+	// 		bg += 1;
+	// 	}
+	// }, 10000);
+
+
+	// $('.submenu_item').click(function(event){
+	// 	event.preventDefault();
+
+	// 	$('html, body').animate({
+	//         scrollTop: $(".home_submenu").offset().top
+	//     }, 1000);
+	// });
 
 
 

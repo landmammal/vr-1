@@ -54,8 +54,12 @@ var pageReady = function(){
 	    // ^^^^ Use this div to add button to submit rehearsal
 
 	    $('.submit_ziggeo').hide();
+	    $('.ba-videorecorder-theme-modern-chooser-primary-button').click(function(){
+		    $('.save_ziggeo').hide();
+	    });
 
 	    recorder.on('verified', function() {
+	    	$('.save_ziggeo').show();
 	    	$('.submit_'+ziggeoClass).show();
 	    	$('.submit_2').hide();
 	    	// console.log('Ziggeo');
