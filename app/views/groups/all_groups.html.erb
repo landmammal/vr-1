@@ -1,6 +1,4 @@
-<div class="back_button groups_back">
-  <%= link_to 'Back', '#', id: 'back' %>
-</div>
+<div class="back_button groups_back"><%= link_to 'Back', '#', id: 'back' %></div>
 <div class="group_registration_flash"></div>
 <div id="group_body">
   <div id="search_groups">
@@ -22,17 +20,36 @@
       </ul>
     </div>
   </div>
-
   <div id="browse_my_groups">
     <div id="my_groups">
-      <%= render 'my_groups' %>
+      <div id="groups_i_belong_to">
+        <div id="groups_i_belong_to_title" class="group_title top_info" >
+          Groups You Belong To
+        </div>
+            <% @groups_i_belong_to.each do |group| %>
+              <div class="group_slice" >
+                <%= link_to group.name, '#' %>
+              </div>
+            <% end %>
+
+      </div>
+      <div id="my_groups" >
+        <div class="top_info" >
+          <div id="my_groups_title" class="group_title" >My Groups</div>
+        </div>
+        <% @my_groups.each do |group| %>
+            <% user = group.instructor_id %>
+            <div class="group_slice" >
+              <%= group.name %>
+              <% if group.user_groups.where(approval_status: false).length > 0 %>
+                  <span class="group_registration_notice"><%= group.user_groups.where(approval_status: false).length %></span>
+                  <%= button_to 'Student Applications', '/groups/'"#{group.id}", { :method => :get, :class => 'small_btn blue group_shadebox_btn', :id => 'group_registrations', remote: true } %>
+              <% end %>
+              <%= button_to 'Register group', '/group_registrations/group/'"#{group.id}", { :method => :get, :class => 'small_btn blue shadebox_btn', :id => '', remote: true } %>
+            </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
-
-
-
-<div id="render_partial_form">
-
-
-</div>
+<div id="place_shadow_box_here"></div>

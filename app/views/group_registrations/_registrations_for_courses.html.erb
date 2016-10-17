@@ -1,0 +1,31 @@
+<div class="shadebox">
+  <div class="shade box">
+    <div class="shadebox_title">
+      <%= @group.name %>
+      <% @this_user = User.find(@group.instructor_id) %>
+      <button class="shade_close red small_btn">x</button>
+    </div>
+    <div class="shadebox_content" style="text-align:center;">
+      <br>
+      <div class="register_group" >Register the group</div>
+      <% @courses.each do |course| %>
+          <% this_course = course.group_registrations.where(group_id: @group).length %>
+          <% if this_course == 0 %>
+              <div   class="course_to_trigger_form">
+                <%= course.title %>
+              </div>
+              <%= form_for '/group_registrations/group/'"#{@group.id}"'/course/'"#{course.id}", remote: true, :html => { :class  => "registering_group"} do |f| %>
+                  <%= f.text_field :course_id, type:"hidden", value: course.id %>
+                  <%= f.submit "Register" %>
+              <% end %>
+          <% else %>
+              <!--place holder for when a user has register to a course-->
+          <% end %>
+      <% end %>
+      <hr>
+    </div>
+    <div class="shadebox_bottom">
+
+    </div>
+  </div>
+</div>

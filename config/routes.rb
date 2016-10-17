@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   post '/topic/create' => "topics#create"
   post '/courses/:course_id/topics/:topic_id/lessons/new' => "lessons#create"
-
+  post '/group_registrations/group/:id' => 'group_registrations#create'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users do
@@ -48,7 +48,6 @@ Rails.application.routes.draw do
       resources :lessons
     end
   end
-
 
   get "/course_registrations/" => "course_registrations#index"
   get "/rehearsals/all" => "rehearsals#all"

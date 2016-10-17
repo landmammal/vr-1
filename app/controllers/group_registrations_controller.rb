@@ -1,10 +1,10 @@
 class GroupRegistrationsController < ApplicationController
-  before_action :set_group, only: [:create, :new]
+  before_action :set_group, only: [:new]
   before_action :set_group_registration, only: [:edit, :update]
 
   # a shadow box for user to all the groups he can register to and register to them
   def registrations
-    binding.pry
+    @group_registration = GroupRegistration.new
     @courses = Course.all
     @group = Group.find(params[:id])
     instructor = @group.instructor
@@ -18,15 +18,17 @@ class GroupRegistrationsController < ApplicationController
   end
 
   def create
-    @group.group_registrations.build(group_registration_params)
+    course = Course.find(params.values[1][:course_id])
+    group = Group.find(params[:id])
+    group_registration = GroupRegistration.create(
+                                              course_id: course.id,
+                                              group_id: group.id,
+                                              approval_status: false
 
+    )
     respond_to do |format|
-      if @group.save
-        @group_registration = GroupRegistration.find(@group.group_registrations.last)
-        binding.pry
-        format.html { redirect_to edit_user_group_group_registration_path(current_user, @group, @group_registration),
-                      notice: 'Choose the Course you want to register your group for.' }
-        format.json { render :show, status: :created, location: @group }
+      if group_registration.save!
+        format.js { flash.now[:notice] = "Your Registration has been sent" }
       else
         format.html { render :new }
         format.json { render json: @group.errors, status: :unprocessable_entity }
