@@ -12,10 +12,10 @@
 
       <div class="ziggeo_create_lesson js-record_ziggeo">
         <% @this_added_class = 'prompt' %>
-        <%= render './shared/ziggeorecorder' %>
+        <div class="ziggeo"><%= render './shared/ziggeorecorder' %></div>
       </div>
       <div class="ziggeo_wrapper js-play_ziggeo" data-token="<%= @prompt.video_token %>">
-        <%= render './shared/ziggeoplayer' %>
+        <div class="ziggeo"><%= render './shared/ziggeoplayer' %></div>
       </div>
       
       <br>
@@ -57,7 +57,7 @@
         <%= f.select :privacy, (@privacy) %>
         <%= f.check_box :position_prior %> Primary Prompt<br>
 
-        <%= f.submit 'Submit Prompt', class:'green_sft' %>
+        <%= f.submit 'Save Prompt', class:'green_sft save_ziggeo' %>
       <% end %>
 
       <br>

@@ -15,7 +15,7 @@
 $mn_pnl_s: 50px ;
 $mx_pnl_s: 150px ;
 $min_height: 1000px ;
-$panel_color: rgba(#4D4D4D,0.7) ; 
+$panel_color: rgba(#2F3132,1) ; 
 
 .inter_wrapper{ 
 	background-image:url('/assets/blur-bg_6.jpg');
@@ -32,7 +32,7 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 		text-align:left; font-size: 11px; padding:0;
 	}
 	& .panel_seperator{
-		border-bottom:1px dotted #aaa; padding:0; margin:0; overflow:hidden; z-index:1;
+		border-bottom:1px dotted #4E514F; padding:0; margin:0; overflow:hidden; z-index:1;
 		text-align:center;
 		&.max{
 			// padding:0;
@@ -153,7 +153,7 @@ $panel_color: rgba(#4D4D4D,0.7) ;
 				}
 				& .num{
 					font-size:10px; font-family:inherit;
-					border-radius: 50%;
+					border-radius: 5px;
 				}
 			}
 			& .stat{ float:none; width:100%; margin:0 auto; padding-top:-3px; font-size:10px; }
@@ -202,9 +202,9 @@ footer{
 	a{ color:white; }
 	& .title{ font-family:'webly_bld'; font-size:15px; margin-bottom:10px; }
 	& .contact_footer{
-      background-color:transparent; border:1px solid; border-radius:3px; color:white; font-weight:bold; width:100%;
+      background-color:white; border:1px solid; border-radius:3px; color:#343434; font-weight:bold; width:100%;
       margin-top: 25px;
-      &:hover{ background-color:#999; transition:0.5s;}
+      &:hover{ background-color:transparent; color:white; transition:0.5s;}
     }
     & .social_icon{
     	font-size: 20px; margin:5px 15px;
@@ -250,16 +250,15 @@ footer{
 		}
 		button.shade_close{
 			padding:5px 10px;
+			cursor:pointer;
 		}
 		.shade_close{
 			float: right;
 			padding:0 5px;
+			cursor:pointer;
 		}
 	}
 }
-
-
-
 
 
 // ========================================================
@@ -268,7 +267,7 @@ span.num{
 	background-color: red; 
 	color: white; font-size:13px;
 	border:2px solid red; padding:0px 4.5px;
-	border-radius: 25px;
+	border-radius: 5px;
 	font-family:'gotham';
 }
 
@@ -287,11 +286,11 @@ span.num{
 
 .tab{
 	background-color:#ddd;
-	padding:5px 10px;
-	margin:0 0 0 0;
+	padding:5px 10px; margin:0 2px 0 0;
 	float:left;
-	border-radius:5px 5px 0  0;
+	border-radius:0  0;
 	font-family:'gotham_book';
+	&:hover{ background-color:white; }
 	&.selected{ background-color:white; font-family:'gotham'; }
 }
 

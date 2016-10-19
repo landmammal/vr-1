@@ -6,31 +6,31 @@ var pageReady = function(){
 		$('.js-display_my_courses').show();
 	}
 
-	$('.js-back_to_courses').click(function(event){
-		event.preventDefault();
+	// $('.js-back_to_courses').click(function(event){
+	// 	event.preventDefault();
 
-		$('.js-my_courses_list').show();
-		$('.js-my_topics_list').hide();
-		$('.js-my_lessons_list').hide();
+	// 	$('.js-my_courses_list').show();
+	// 	$('.js-my_topics_list').hide();
+	// 	$('.js-my_lessons_list').hide();
 
-		$('.js-course_name').empty();
-		$('.js-cn').hide();
-		$('.js-topic_name').empty();
-		$('.js-tn').hide();
+	// 	$('.js-course_name').empty();
+	// 	$('.js-cn').hide();
+	// 	$('.js-topic_name').empty();
+	// 	$('.js-tn').hide();
 
-		$('.js-course_form_hide').show();
+	// 	$('.js-course_form_hide').show();
 
-	})
-	$('.js-back_to_topics').click(function(event){
-		event.preventDefault();
+	// })
+	// $('.js-back_to_topics').click(function(event){
+	// 	event.preventDefault();
 
-		$('.js-my_courses_list').hide();
-		$('.js-my_topics_list').show();
-		$('.js-my_lessons_list').hide();
+	// 	$('.js-my_courses_list').hide();
+	// 	$('.js-my_topics_list').show();
+	// 	$('.js-my_lessons_list').hide();
 
-		$('.js-topic_name').empty();
-		$('.js-tn').hide();
-	})
+	// 	$('.js-topic_name').empty();
+	// 	$('.js-tn').hide();
+	// })
 
 	// $.ajax({
 	// 	url:'/courses/api',

@@ -1,5 +1,5 @@
 <div class="rehearsals_title">
-	You have <span class="num"><%= @feedbacks.size.to_s %></span> Feedback<%= @feedbacks.size > 1 ? 's' : '' %> for rehearsal in Lesson :: <%= link_to @rehearsal.lesson.title, course_topic_lesson_path(@rehearsal.course, @rehearsal.topic, @rehearsal.lesson) %>
+	You have <span style="color:red; font-weight:bold; font-size:15px;"><%= @feedbacks.size.to_s %></span> Feedback<%= @feedbacks.size > 1 ? 's' : '' %> for rehearsal in Lesson :: <%= link_to @rehearsal.lesson.title, course_topic_lesson_path(@rehearsal.course, @rehearsal.topic, @rehearsal.lesson) %>
 </div>
 
 <hr>
@@ -12,7 +12,7 @@
 				<span style="font-weight:bold; font-family:'gotham';">
 			<% end %>
 			<% if feedback.user_id != nil %>
-				<%= link_to (feedback.user.role.capitalize+' '+feedback.user.first_name+' '+feedback.user.last_name+' left you a feedback'), feedback_path(feedback) %>
+				<%= link_to (feedback.user.role.capitalize+' '+feedback.user.first_name+' '+feedback.user.last_name+' left you a feedback'), feedback_path(feedback) %> :: <%= time_diff(Time.now, feedback.created_at) %>
 			<% end %>
 			
 			<% if !feedback.viewed_by_user %>

@@ -11,19 +11,18 @@
           <%= devise_error_messages! %>
 
           
-          <div class="register_label">User Information</div>
+          <!-- <div class="register_label">User Information</div> -->
           <%= f.text_field :first_name, class:'firstname name clearform', autofocus: true, placeholder:'First Name'%>
           <%= f.text_field :last_name, class:'lastname name clearform', placeholder:'Last Name'%>
-          <%= f.text_field :username, class:'lastname name clearform', placeholder:'User Name'%><br>
-         
+          <%= f.text_field :username, class:'username clearform', placeholder:'Create Username'%><br>
+          <%= f.email_field :email, class:'email clearform', autofocus: true, placeholder:'Email'%><br><br>
 
-          <div class="register_label">Email and password
+
+          <div class="register_label">Password
             <% if @minimum_password_length %>
               <span style="font-size:10px;">(<%= @minimum_password_length %> characters minimum)</span>
             <% end %>:
           </div>
-
-          <%= f.email_field :email, class:'email clearform', autofocus: true, placeholder:'email'%><br>
           <%= f.password_field :password, class:'pass clearform', autocomplete: "off", placeholder:'Password' %><br>
           <%= f.password_field :password_confirmation, class:'passComf clearform', autocomplete: "off", placeholder:'Confirm Password' %><br>
           
@@ -33,14 +32,15 @@
           <div class="register_label">Date of birth</div>
           <%= f.date_field :age, placeholder:'Age'%><br>
           <div class="register_label">Ethnicity</div>
-          <%= f.select :race, ([["Hispanic or Latino", "Hispanic or Latino"], ["American Indian or Alaska Native", "American Indian or Alaska Native"], ["Asian", "Asian"], ["Black or African American", "Black or African American"], ["Native Hawaiian or Pacific Islander", "Native Hawaiian or Pacific Islander"], ["White", "WhiteWhite"]]) %>
+          <%= f.select :race, ([["Hispanic or Latino", "Hispanic or Latino"], ["American Indian or Alaska Native", "American Indian or Alaska Native"], ["Asian", "Asian"], ["Black or African American", "Black or African American"], ["Native Hawaiian or Pacific Islander", "Native Hawaiian or Pacific Islander"], ["White", "White"], ["Other", "Other"]]) %>
           
           <br><br>
           <input type="checkbox" class="termsServices" id="termsServices" name="terms_services" style="width:20px; float:left;">
           
-          <font color="#fff" style="position:reltive; top:6px;">I have read the <a href="#" data-toggle="modal" data-target="#myModal" style="color:#73C8DF;">Terms & Services</a></font>
+          <font color="#fff" style="position:reltive; top:6px; font-size:14px;">I have read the <a href="#" data-toggle="modal" data-target="#myModal" style="color:#97282D;">Terms & Services</a></font>
           <br><br>
           
+          <%= f.text_field :terms_of_use, type:'hidden', value:'V1Aug192016'%><br>
           <%= f.submit "Sign up", class:'blue reg_btn register_btn' %>
           <br><br>
 
@@ -52,6 +52,8 @@
     </div>
   </div>
 </div>
+
+<div style="height:200px;"></div>
 
 
 <!-- Modal -->

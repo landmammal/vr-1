@@ -1,6 +1,10 @@
 <% @this_added_class = 'rehearsal' %>
 
-<div class="ziggeo_wrapper"><%= render './shared/ziggeorecorder' %></div>
+<div class="video_black_bg ziggeo_wrapper">
+        <div class="ziggeo">
+            <%= render './shared/ziggeorecorder' %>
+        </div>
+    </div>
 
 <%= form_for [@lesson, @rehearsal], html: {class:"rehearsalForm", id:"ziggeoForm"}, remote: true  do |f| %>
     <% if @rehearsal.errors.any? %>
@@ -25,9 +29,9 @@
     <%= f.text_field :token, type:"hidden" %></div>
 <% end %>
 
-<button class='submit_rehearsal submit_ziggeo green_sft' style='float:right;' data-formname="rehearsal">
-    Create Rehearsal
+<button class='submit_rehearsal submit_ziggeo submit_2 green_sft big_btn' style='float:right;' data-formname="rehearsal">
+    <span>Save Rehearsal</span>
 </button>
-<button class='record_another_rehearsal blue' style='float:right; display:none;'>
+<button class='record_another_rehearsal record_another_2 blue' style='float:right; display:none;'>
     Record Another Rehearsal
 </button>

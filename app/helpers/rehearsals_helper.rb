@@ -17,16 +17,16 @@ module RehearsalsHelper
 	  if seconds < 59
 	  	timediff = 'just now'
 	  elsif minutes < 60
-	  	timediff = minutes.to_s + ( minutes > 1 ? ' minutes ' : ' minute ' )
+	  	timediff = minutes.to_s + ( minutes > 1 ? ' minutes ' : ' minute ' ) + 'ago'
 	  elsif hours < 24
-	  	timediff = hours.to_s + ( hours > 1 ? ' hours ' : ' hour ' )
+	  	timediff = hours.to_s + ( hours > 1 ? ' hours ' : ' hour ' ) + 'ago'
 	  elsif days < 7
-	  	timediff = days.to_s + ( days > 1 ? ' days ' : ' day ' ) 	
+	  	timediff = days.to_s + ( days > 1 ? ' days ' : ' day ' ) + 'ago'
 	  else
-	  	timediff = weeks.to_s + ( weeks > 1 ? ' weeks ' : ' week ' )  	
+	  	timediff = weeks.to_s + ( weeks > 1 ? ' weeks ' : ' week ' ) + 'ago'
 	  end
 
-	  return timediff + 'ago'
+	  return timediff
 
 	end
 

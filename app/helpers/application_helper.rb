@@ -1,5 +1,13 @@
 module ApplicationHelper
 
+  def getDateTime(date)
+    return date.strftime("%m/%d/%Y at %I:%M%p")
+  end
+
+  def getDate(date)
+    return date.strftime("%m/%d/%Y")
+  end
+
   def feedback_notif
     @all_rehearsals = current_user.rehearsals
     @feedback_notif = 0

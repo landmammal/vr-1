@@ -59,9 +59,7 @@ class LessonsController < ApplicationController
     @topic = current_user.topics.find(params[:lesson][:topic_id])
     @topic.lessons.build(lesson_params)
 
-    if params[:title] = ''
-      @topic.lessons.last.title = 'New Lesson (rename)'
-    end
+    @topic.lessons.last.title = 'New Lesson (rename)' if params[:title] == ''
 
     respond_to do |format|
       if @topic.save
@@ -78,9 +76,10 @@ class LessonsController < ApplicationController
   # PATCH/PUT /lessons/1
   # PATCH/PUT /lessons/1.json
   def update
-    @topic = current_user.topics.find(params[:lesson][:topic_id])
-    @course = @topic.courses.first
+    # @topic = current_user.topics.find(params[:lesson][:topic_id])
+    # @course = @topic.courses.first
 
+    # @lesson.title = 'New Lesson (rename)' if params[:title] = ''
     respond_to do |format|
       if @lesson.update(lesson_update)
         format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Lesson was updated created.' }

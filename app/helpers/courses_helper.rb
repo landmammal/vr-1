@@ -9,9 +9,19 @@ module CoursesHelper
 		return access
 	end
 
-	def course_puplic
+	def course_public
 		access = true if @course.privacy == 0
 		return access
+	end
+
+	def course_paid
+		paid = true if @course.privacy == 2
+		return paid
+	end
+
+	def course_closed
+		closed = true if @course.privacy == 3
+		return closed
 	end
 
 	def rehearsals_done

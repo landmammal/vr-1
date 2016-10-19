@@ -1,6 +1,6 @@
 
 <div class="js-register_course">
-  <%=form_for [@course, @course_registration], remote: true do |f| %>
+  <%= form_for [@course, @course_registration], remote: true do |f| %>
       <% if @course_registration.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@course_registration.errors.count, "error") %> prohibited the registration to this course from being saved:</h2>
@@ -11,7 +11,7 @@
             </ul>
         </div>
       <% end %>
-      <%= button_tag "Register for #{@course.title} ", type:'submit', class:"big_btn blue js-course_register_btn" %>
+      <%= button_tag ( course_public ? "Start" : "Register for")+" Course", type:'submit', class:"big_btn blue js-course_register_btn" %>
   <% end %>
 </div>
 

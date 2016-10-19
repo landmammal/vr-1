@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
       @privacy = [['Public', 0],['Locked', 1],['Paid Members', 2],['Registered members', 3]]
 
       @lesson_type = [['Full Layout', 0],['Demonstration', 1],['Question/Answer', 2]]
+      @video_type = [['Local', 'ziggeo'],['Image', 'image'],['Youtube', 'youtube']]
 
       @ziggeo_priority = [["Not Primary", ],["Primary", true]]
       @theteam = [{ name:'Carlos Vazquez', role:'CEO/Co-Founder' },
@@ -29,8 +30,7 @@ class ApplicationController < ActionController::Base
         @r = User.roles.keys
         @user_role = current_user.role.capitalize
 
-        last_login = current_user.last_sign_in_at
-        @last_signin = last_login.strftime("%m/%d/%Y at %I:%M%p")
+        @last_signin = current_user.last_sign_in_at.strftime("%m/%d/%Y at %I:%M%p")
 
       end
     end
@@ -38,9 +38,9 @@ class ApplicationController < ActionController::Base
 	# def after_sign_up_path_for(resource)
 	# end
   #
-	# def after_sign_in_path_for(resource)
-	# 	request.env['omniauth.origin'] || stored_location_for(resource) || root_path
-	# end
+	def after_sign_in_path_for(resource)
+		request.env['omniauth.origin'] || stored_location_for(resource) || user_path(current_user)
+	end
 	# al
 
   	private

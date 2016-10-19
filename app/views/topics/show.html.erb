@@ -17,12 +17,12 @@
 
 <%= @topic.description %>
 
+<%if topic_creator || course_trainee %>
 
-<br><br><br>
+  <br><br><br>
 
-<h3>Lessons</h3>
+  <h3>Lessons</h3>
 
-<%if topic_creator || course_trainee || course_puplic %>
   <% @lessons.each_with_index do |lesson, index| %>
     <div class="lesson_list <%= (index + 1).even? ? 'even' : 'odd' %>">
       <a href="<%= course_topic_lesson_path(@course, @topic, lesson) %>">
@@ -43,7 +43,7 @@
           <strong> | <%= link_to 'Edit', edit_course_topic_lesson_path(@course, @topic, lesson) %></strong>
         </div>
 
-      <% elsif course_trainee || course_puplic %>
+      <% elsif course_trainee %>
         
         <% if topic_lesson_completion(lesson) == 0 %>
           <div class="pending_lesson" title="Rehearsal waiting for approval">
@@ -65,29 +65,38 @@
 
     </div>
   <% end %>
-<% end %>
 
 
-<br><br><br>
-
-<%if topic_creator %>
-  <a href="<%= new_course_topic_lesson_path(@course, @topic) %>">
-    <button class="reg_btn blue add_btn">+</button>
-  </a>
-  <!-- <button class="reg_btn green_sft">Add External Lesson</button> -->
   <br><br><br>
-<% end %>
+
+  <%if topic_creator %>
+    <a href="<%= new_course_topic_lesson_path(@course, @topic) %>">
+      <button class="reg_btn blue add_btn">+</button>
+    </a>
+    <!-- <button class="reg_btn green_sft">Add External Lesson</button> -->
+    <br><br><br>
+  <% end %>
 
 
-<br><br><br>
-<%if !@topic.tags.empty? %>
-  tags:
-  <% @topic.tags.split(', ').each do |tag| %>
-    <a href="#"><b><%= tag %></b></a>
+  <br><br><br>
+  <%if !@topic.tags.empty? %>
+    tags:
+    <% @topic.tags.split(', ').each do |tag| %>
+      <a href="#"><b><%= tag %></b></a>
+    <%end%>
   <%end%>
-<%end%>
-<br><br><br>
+  <br><br><br>
 
+<% else %>
+  
+  You are not registered to this course<br>
+  <center style="margin:50px auto 200px;">
+    <%=  "This is a Free Course, click below to start." if course_public %>
+    <%=  'This is a "Closed Course", click below to request Access.' if course_closed %><br><br>
+    <%= render './course_registrations/course_registration_form' if !course_creator %>
+  </center>
+
+<% end %>
 
 
 <br><br>
