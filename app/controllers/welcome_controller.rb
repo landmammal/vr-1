@@ -67,8 +67,7 @@ class WelcomeController < ApplicationController
     ip=Socket.ip_address_list.detect{|intf| intf.ipv4_private?}
     ip ? thisIp = ip.ip_address : thisIp = 'noIp'
 
-    current_user.terms_of_use = { user_ip:thisIp, date:Time.now, version:'V1Aug192016' }
-    current_user.save
+    current_user.update_attribute(:terms_of_use, { user_ip:thisIp, date:Time.now, version:'V1Aug192016' })
 
     render json: current_user.terms_of_use
   end
