@@ -106,4 +106,6 @@ class User < ActiveRecord::Base
   has_many :feedbacks
   has_many :concepts
   has_many :rehearsals, foreign_key: :trainee_id
+
+  serialize :terms_of_use
 end

@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
 
-  before_action :authenticate_user! , only: [:interface_test]
+  before_action :authenticate_user! , only: [:interface_test, :versions, :reviewtermandservices]
   before_action :check_login , only: [:index]
 
   #======================== MAIN MENU ========================#
@@ -23,6 +23,38 @@ class WelcomeController < ApplicationController
 
   def test
     @site_title = 'TESTBOX'
+    topics = Topic.all
+    lessons = Lesson.all
+    explanations = Explanation.all
+
+    @topics_to_fix = []
+    @lessons_to_fix = []
+    @explanations_to_fix = []
+
+    topics.each do |topic|
+      course_topic = CourseTopic.find(topic.id)
+      # topic.course_id = course_topic.course_id if course_topic.course_id != topic.course_id
+      # topic.save
+      @topics_to_fix << topic if course_topic.course_id != topic.course_id
+    end
+
+
+    lessons.each do |lesson|
+      topic_lesson = TopicLesson.find(lesson.id)
+      # lesson.topic_id = topic_lesson.topic_id if topic_lesson.topic_id != lesson.topic_id
+      # lesson.save
+      @lessons_to_fix << lesson if topic_lesson.topic_id != lesson.topic_id
+    end
+
+
+    explanations.each do |explanation|
+      lesson_explanation = LessonExplanation.find(explanation.id)
+      # explanation.lesson_id = lesson_explanation.lesson_id if lesson_explanation.lesson_id != explanation.lesson_id
+      # explanation.save
+      @explanations_to_fix << explanation if lesson_explanation.lesson_id != explanation.lesson_id
+    end
+
+
   end
 
   def interface_test
@@ -30,6 +62,16 @@ class WelcomeController < ApplicationController
   	render "interface"
   end
 
+  def accepttermandservices
+    require 'socket'
+    ip=Socket.ip_address_list.detect{|intf| intf.ipv4_private?}
+    ip ? thisIp = ip.ip_address : thisIp = 'noIp'
+
+    current_user.terms_of_use = { user_ip:thisIp, date:Time.now, version:'V1Aug192016' }
+    current_user.save
+
+    render json: current_user.terms_of_use
+  end
 
 
   #========================== FOOTER =========================#
@@ -85,6 +127,10 @@ class WelcomeController < ApplicationController
 
   def create
     @site_title = 'Create Visual Content'
+  end
+
+  def versions
+    @site_title = 'Version Documentation'
   end
 
 

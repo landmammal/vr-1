@@ -5,24 +5,34 @@
 <%= render 'topinfo' %>
 
 <% if current_user.level_4 %>
-	<button class="tab js-dashboard selected">Dashboard</button>
-<% end %> <% if current_user.level_2 %>
-	<button class="tab js-all_courses">All Courses</button>
+	<button class="tab selected" data-frame="dashboard" data-group='top'>Dashboard</button>
 <% end %> <% if current_user.level_3 %>
-	<button class="tab js-coaching_tools">Coaching Tools</button>
-<% end %>
+	<button class="tab" data-frame="coaching_tools" data-group='top'>Coaching Tools</button>
+<% end %> <% if current_user.level_2 %>
+	<button class="tab" data-frame="creator_space" data-group='top'>Creator Space</button>
+<% end %> <% if current_user.level_1 %>
+	<button class="tab" data-frame="admin_tools" data-group='top'>Admin Tools</button>
+<% end %> 
 
 <div class="box_sep">
-	<div class="title">
-		Dashboard
+	
+	<div class="all_content js-dashboard_content">
+		<%= render 'dashboard' if current_user.level_4 %>
 	</div>
 
-	<div class="body">
-		<div class="js-dashboard_content">
-			<%= render current_user.role %>
-		</div>
-		<div class="js-all_courses_content" style="display:none;">
-			<%= render 'admin' %>
-		</div>
+
+	<div class="all_content js-coaching_tools_content" style="display: none;">
+		<%= render 'coachingtools' if current_user.level_3 %>
 	</div>
+
+
+	<div class="all_content js-creator_space_content" style="display: none;">
+		<%= render 'creatorspace' if current_user.level_2 %>
+	</div>
+
+
+	<div class="all_content js-admin_tools_content" style="display: none;">
+		<%= render 'admintools' if current_user.level_1 %>
+	</div>
+
 </div>

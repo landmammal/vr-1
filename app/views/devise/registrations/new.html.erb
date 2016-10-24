@@ -39,8 +39,6 @@
           
           <font color="#fff" style="position:reltive; top:6px; font-size:14px;">I have read the <a href="#" data-toggle="modal" data-target="#myModal" style="color:#97282D;">Terms & Services</a></font>
           <br><br>
-          
-          <%= f.text_field :terms_of_use, type:'hidden', value:'V1Aug192016'%><br>
           <%= f.submit "Sign up", class:'blue reg_btn register_btn' %>
           <br><br>
 
@@ -65,7 +63,7 @@
         <h2 class="modal-title" id="myModalLabel">Terms of Use ("Terms")</h2>
       </div>
       <div class="modal-body">
-        <%= render 'termsandservicesV1Aug192016' %>
+        <%= render './termsandservices/termsandservices'+termsVersion %>
       </div>
       <div class="modal-footer">
         <button type="button" class="small_btn red disagreeTerms" data-dismiss="modal">I Disagree</button>

@@ -37,3 +37,78 @@ ba-videorecorder-theme-modern-button-primary   <<    skip, stop and record
   &.flash-alert{ background-color:red; transition: 0.5s;}
   &.remove{ position:absolute; top:-38px; transition: 0.5s;}
 }
+
+
+
+
+
+
+
+
+
+
+Improving and Simplifying @Nate's answer:
+
+jQuery.fn.extend({
+    toggleText: function (a, b){
+        var that = this;
+            if (that.text() != a && that.text() != b){
+                that.text(a);
+            }
+            else
+            if (that.text() == a){
+                that.text(b);
+            }
+            else
+            if (that.text() == b){
+                that.text(a);
+            }
+        return this;
+    }
+});
+Use as:
+
+$("#YourElementId").toggleText('After', 'Before');
+
+
+
+
+
+
+<div class="home_card">
+  <div class="card_title">
+        <a href="<%= course_path(course) %>" class="js-c_<%= course.id %>" >
+          <div class="title_name">
+            <%= course.title[0...25] %><%= '...' if course.title.length > 25 %>
+            <% if course.privacy == 0 %>
+              <span class="privacy ion-earth"></span>
+            <% elsif course.privacy == 2 || course.privacy == 3 %>
+              <span class="privacy ion-android-unlock" style="font-size:15px;"></span>
+            <% else %>
+              <span class="privacy ion-locked"></span>
+            <% end %>
+          </div>
+        </a>
+
+        <div class="card_delete js-delete_<%= course.id %>">
+          <%= link_to "X", course, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+        
+        <a href="<%= edit_course_path(course) %>" >
+            <div class="card_edit js-edit_<%= course.id %>">
+              <span class="ion-edit"></span>
+            </div>
+        </a>
+    </div>
+    <div class="card_desc">
+      <a href="<%= course_path(course) %>">
+      <%= course.description[0...130] %><%= '...' if course.description.length > 130 %>
+        </a>
+
+    <div class="bottom_count">
+          <% course.topics.each do |i| %>
+        <div class="circle_count"></div>
+        <% end %>
+    </div>
+    </div>
+</div>

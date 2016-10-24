@@ -59,7 +59,7 @@ class LessonsController < ApplicationController
     @topic = current_user.topics.find(params[:lesson][:topic_id])
     @topic.lessons.build(lesson_params)
 
-    @topic.lessons.last.title = 'New Lesson (rename)' if params[:title] == ''
+    @topic.lessons.last.title = 'New Lesson (rename)' if @topic.lessons.last.title == ''
 
     respond_to do |format|
       if @topic.save
@@ -82,7 +82,7 @@ class LessonsController < ApplicationController
     # @lesson.title = 'New Lesson (rename)' if params[:title] = ''
     respond_to do |format|
       if @lesson.update(lesson_update)
-        format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Lesson was updated created.' }
+        format.html { redirect_to course_topic_lesson_path(@lesson.topic.course, @lesson.topic, @lesson), notice: 'Lesson was updated created.' }
         format.json { render :show, status: :ok, location: @lesson }
       else
         format.html { render :edit }
@@ -128,6 +128,6 @@ class LessonsController < ApplicationController
     end
 
     def lesson_update
-      params.require(:lesson).permit(:topic_id, :title, :description, :lesson_type, :tags, :approval_status)
+      params.require(:lesson).permit(:title, :description, :lesson_type, :tags, :approval_status)
     end
 end

@@ -19,9 +19,24 @@
 
 <%if topic_creator || course_trainee %>
 
-  <br><br><br>
+  <br>
 
-  <h3>Lessons</h3>
+  <h3>
+    Lessons
+    <%if course_creator %>
+    <!-- <a href="<%= new_course_topic_lesson_path(@course, @topic) %>"> -->
+      <button class="js-add_form_btn blue add_btn small" data-form="lesson">+</button>
+    <!-- </a> -->
+    <%end%>
+  </h3>
+
+  <%if topic_creator %>
+    <div class="js-lesson_form" style="display:none;">
+      <%= render './lessons/form' %>
+    </div>
+    <!-- <button class="reg_btn green_sft">Add External Lesson</button> -->
+    <br><br><br>
+  <% end %>
 
   <% @lessons.each_with_index do |lesson, index| %>
     <div class="lesson_list <%= (index + 1).even? ? 'even' : 'odd' %>">
@@ -64,17 +79,6 @@
       <% end %>
 
     </div>
-  <% end %>
-
-
-  <br><br><br>
-
-  <%if topic_creator %>
-    <a href="<%= new_course_topic_lesson_path(@course, @topic) %>">
-      <button class="reg_btn blue add_btn">+</button>
-    </a>
-    <!-- <button class="reg_btn green_sft">Add External Lesson</button> -->
-    <br><br><br>
   <% end %>
 
 

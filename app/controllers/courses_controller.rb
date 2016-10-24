@@ -1,7 +1,6 @@
 class CoursesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authenticate_user! , except: [:index, :show, :all]
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user! , except: [:index, :show, :all, :display]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :display]
   # GET /courses
   # GET /courses.json
   def index
@@ -13,6 +12,7 @@ class CoursesController < ApplicationController
       @new_topic = Topic.new
       @new_lesson = Lesson.new
     end
+    render json: @courses
   end
 
   def search
@@ -34,6 +34,12 @@ class CoursesController < ApplicationController
     @course_registration = CourseRegistration.new
   end
 
+  def display
+    if current_user
+      redirect_to '/courses/'+params[:id].to_s
+    end
+  end
+
   # GET /courses/new
   def new
     @course = Course.new
@@ -46,20 +52,15 @@ class CoursesController < ApplicationController
   # POST /courses
   # POST /courses.json
   def create
-    @course = current_user.courses.build(course_params)
-
-    # ===== WHEN USING JS
-    # if @course.save
-    #   render json: @course
-    # end
-    # ===== WHEN USING RUBY
-
-    @course.title = 'New Course (rename)' if params[:title] == ''
-
+    @new_course = current_user.courses.build(course_params)
+    @new_course.title = 'New Course (rename)' if @new_course.title == ''
+    # @new_course.save
+    
     respond_to do |format|
-      if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
-        format.json { render :show, status: :created, location: @course }
+      if @new_course.save
+        # format.html { redirect_to @new_course, notice: 'Course was successfully created.' }
+        # format.json { render :show, status: :created, location: @course }
+        format.js { }
       else
         format.html { render :new }
         format.json { render json: @course.errors, status: :unprocessable_entity }
@@ -72,8 +73,8 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1.json
   def update
     @course.title = 'New Course (rename)' if params[:title] = ''
-    puts '==============='
-    puts params[:title]
+    # puts '==============='
+    # puts params[:title]
     
     respond_to do |format|
       if @course.update(course_update)
@@ -109,8 +110,5 @@ class CoursesController < ApplicationController
     end
     def course_update
       params.require(:course).permit(:title, :description, :tags, :approval_status, :privacy, :language)
-    end
-    def course_params_js
-      params.permit(:title, :description, :tags, :instructor_id, :approval_status, :privacy, :language)
     end
 end

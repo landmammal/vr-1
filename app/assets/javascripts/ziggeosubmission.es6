@@ -17,9 +17,9 @@ var pageReady = function(){
 
 	    	// console.log(thisForm+" in submission");
 
-	    	if(thisForm == 'rehearsal'){
+	    	if(thisForm === 'rehearsal'){
 	    		var nextRehearsal= $(".list_of_lesson_rehearsals > div").length + 1;
-	    		$('.ba-videoplayer-theme-modern-rerecord-button-container').append("<span class='choose_rehearsal'>Scroll down to send rehearsal to your instructor</span>")
+	    		$('.ba-videoplayer-theme-modern-rerecord-button-container').append("<span class='choose_rehearsal'>Scroll down to send to instructor</span>")
 			    $.ajax({
 		          type:'GET',
 		          url:'/rehearsals/api',
@@ -36,22 +36,19 @@ var pageReady = function(){
 		                                  `</button>`+
 		                                `</div>`;
 		            $('.list_of_lesson_rehearsals').append(newrehearsal);
+		            var newRehearseNum = parseInt($('.js-num_rehearsals').text()) + 1;
+		            $('.js-num_rehearsals').text(newRehearseNum);
 		            // location.reload();
 		            // window.location.href = "#send_to_instructor";
 		            // window.location.replace("#send_to_instructor");
 		          }
 		        });
 			}
-    		if(thisForm == 'feedback'){
+    		if(thisForm === 'feedback'){
 	    		$('.ba-videoplayer-theme-modern-rerecord-button-container').append("<span class='choose_rehearsal'>Your Feedback has been submitted. Reloading in 3 secs.</span>");
-	    		setTimeout(function(){
-	    			location.reload();
-		    	}, 3500);
+	    		setTimeout(function(){ location.reload(); }, 3500);
     		}
 	    };
-
-	    // ba-videoplayer-theme-modern-rerecord-frontbar
-	    // ^^^^ Use this div to add button to submit rehearsal
 
 	    $('.submit_ziggeo').hide();
 	    $('.ba-videorecorder-theme-modern-chooser-primary-button').click(function(){
@@ -72,7 +69,7 @@ var pageReady = function(){
 		    	$('.ba-videoplayer-theme-modern-rerecord-button').before("<button class='submit_rehearsal submit_ziggeo green_sft' style='float:right;' data-formname='rehearsal'><span>Save Rehearsal</span></button>");
 	    	}
 	    	if(thisForm == 'feedback'){
-		    	$('.ba-videoplayer-theme-modern-rerecord-button').before("<button class='submit_feedback submit_ziggeo blue' style='float:right;' data-formname='rehearsal'><span>Send Feedback</span></button>");
+		    	$('.ba-videoplayer-theme-modern-rerecord-button').before("<button class='submit_feedback submit_ziggeo blue' style='float:right;' data-formname='feedback'><span>Send Feedback</span></button>");
 	    	}
 
 	    	if($('.submit_'+ziggeoClass).length > 0){
@@ -85,22 +82,22 @@ var pageReady = function(){
 
 			    	if(videoToken != ''){
 			    		postTokenInForm(thisForm, videoToken, streamToken);
-				    	$('.submit_'+ziggeoClass).addClass('submitted_ziggeo');
+
+			    		$('.submit_'+ziggeoClass).addClass('submitted_ziggeo');
 				    	$('.submit_'+ziggeoClass+' span').fadeOut(100);
 				    	$('.submit_'+ziggeoClass+' span').empty();
 				    	$('.submit_'+ziggeoClass+' span').addClass('ion-checkmark-circled');
-				    	setTimeout(function(){
-					    	$('.submit_'+ziggeoClass+' span').fadeIn(500);
-				    	}, 700);
+				    	
+					    $('.submit_'+ziggeoClass+' span').delay(700).fadeIn(500);
+				    	
 				    	$('.ba-videoplayer-theme-modern-rerecord-button').fadeOut(500);
-				    	setTimeout(function(){
-			    			$('.submit_'+ziggeoClass).fadeOut(500);
-				    	}, 1500);
-				    	setTimeout(function(){
-				    		$('.ba-videoplayer-theme-modern-rerecord-button-container').append("<button class='record_another_rehearsal blue' style='float:right; display:none;'>Record Another Rehearsal</button>")
-					        $('.record_another_'+ziggeoClass).hide(500);
-					        $('.record_another_'+ziggeoClass).fadeIn(500);
-				    	}, 2000);
+				    	
+			    		$('.submit_'+ziggeoClass).delay(1500).fadeOut(500);
+				    	
+			    		$('.ba-videoplayer-theme-modern-rerecord-button-container').delay(2000).append("<button class='record_another_rehearsal blue' style='float:right; display:none;'>Record Another Rehearsal</button>")
+				        $('.record_another_'+ziggeoClass).delay(2000).hide(500);
+				        $('.record_another_'+ziggeoClass).delay(2000).fadeIn(500);
+				    	
 			    	}
 		    	});
 		    }else{
@@ -130,7 +127,6 @@ var pageReady = function(){
 			location.reload();
 		});
 	});
-
 
 };
 

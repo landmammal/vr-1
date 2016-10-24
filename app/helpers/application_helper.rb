@@ -1,5 +1,10 @@
 module ApplicationHelper
 
+  def termsVersion
+    termsVersion = 'V1Aug192016'
+    return termsVersion
+  end
+
   def getDateTime(date)
     return date.strftime("%m/%d/%Y at %I:%M%p")
   end
@@ -49,6 +54,29 @@ module ApplicationHelper
   def tasks_notif
     @tasks = Task.all.count.to_s
     return @tasks
+  end
+
+  def unapprovedUsers
+    newUsers = User.where.not(approved: true)
+    return newUsers.size
+  end
+
+  def check_terms(version)
+    if current_user && request.fullpath != new_termsandservices_path
+        letPass = false
+        termCheck = current_user.terms_of_use
+        
+        if termCheck == nil
+          letPass = false 
+        elsif termCheck[:version] == version
+          letPass = true
+        end
+    else
+      letPass = true
+    end
+
+    return letPass
+
   end
   
 end

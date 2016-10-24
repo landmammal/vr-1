@@ -1,3 +1,4 @@
+<h2> Add a new Lesson </h2>
 <%= form_for [@course, @topic, @lesson] do |f| %>
   <% if @lesson.errors.any? %>
     <div id="error_explanation">
@@ -21,7 +22,6 @@
   <%= f.text_field :topic_id, type:"hidden", value:params[:topic_id] %><br>
   <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %><br>
 
-  
-  <%= f.submit 'Save Lesson', class:'blue' %>
-  <button class="red js-click_back">Cancel</button>
+  <%= button_tag 'Save Lesson', type:'submit', class:"blue" %>
+  <button class="red js-cancel_form" data-form="lesson">Cancel</button>
 <% end %>

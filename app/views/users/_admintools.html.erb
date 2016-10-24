@@ -1,0 +1,25 @@
+<div class="title">
+	<a href="<%= users_path %>">
+	<button class="admin_btn">
+		User Index 
+		<div class="newUsers" style="display:<%= unapprovedUsers <= 0 ? 'none' : '' %>;">
+			<%= unapprovedUsers.to_s %> new
+		</div>
+	</button>
+	</a>
+</div>
+<div class="body">
+
+
+	<div class="js-my_courses_list">
+	<br><br>ALL COURSES EVER<br><br><br>
+		<div class="card_list">
+
+			<% Course.all.order('id DESC').each do |course| %>
+		        <% @course_item = course %>
+		        <%= render 'coursecards' %>
+		    <% end %>
+		</div>
+	</div>
+
+</div>	

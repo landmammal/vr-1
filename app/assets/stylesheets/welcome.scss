@@ -7,6 +7,11 @@
 	max-width:1100px; min-height:calc(100% - 245px); margin:0 auto; overflow:hidden; padding:5px 10px;
 }
 
+.wrapper{
+	max-width:1100px; min-height:50%;
+	margin:0 auto; overflow:hidden; padding:5px 10px;
+}
+
 header.header{
 	padding:0; position: relative; z-index:5; text-align:center;
 	background-color:rgba(255,255,255,0.8); overflow:hidden;
@@ -36,11 +41,21 @@ header.header{
 				}
 			}
 			& .user_dropdown{
-				width:200px; padding:10px; min-height: 190px;
+				width:200px; padding:0; min-height: 190px;
 				background-color:rgba(0,0,0,0.7);
 				transition: 0.1s; opacity:0;
 				position:absolute; top:-200px; right:0;
 				&.drop{position:absolute; top:48px; opacity:1; transition: 0.1s;}
+				& .drop_down_item{
+					padding:10px; margin:0;
+					background-color:rgba(0,0,0,0.3);
+					width:100%; border-radius:0;
+					color: white;
+					&:hover{
+						background-color:white;
+						color: black;
+					}
+				}
 			}
 		}
 	}
@@ -150,32 +165,45 @@ header.header{
 	}
 }
 
-.home_top_wrapper{
-	background-size:cover; background-position:0% 80%;
-	background-repeat:no-repeat; background-attachment:fixed;
-	height:100%; max-height:calc(100% - 100px); overflow:hidden;
-	transition:1s;
-	position:relative;
+
+.terms_not_aggreed{
+	min-height:100%; width:100%;
+	padding:0px 10px;
+	position:fixed; z-index:100;
+	top:0; bottom:0; right:0; left:0;
+	background-color:white;
+	overflow:scroll;
 }
+
+
+.home_top_wrapper{
+	background-repeat:no-repeat; background-attachment:fixed;
+	height:calc(100% - 100px); max-height:900px; overflow:hidden;
+	transition:1s; position:relative;
+}
+
+$edge_pos: 12% ;
+$center_pos: 45% ;
 
 .home_top{
 	height:100%; text-align:center; overflow:hidden;
 	background-color:rgba(black, 0.5);
 	transition:1s; position:relative;
-	& .home_top_text{
-		position:absolute;
-		top: 40%;
-		width: 100%;
-		transition: 1s;
-		& .home_info_1, & .home_info_2, & .home_info_3{ 
-			color:#eee;
-			@include text_extrude(black, 1);
-		}
-		&.demo_open{
-			top: 20%;
-			transition: 1s;
-		}
-	}
+
+	// & .home_top_text{
+	// 	position:absolute;
+	// 	top: 40%;
+	// 	width: 100%;
+	// 	transition: 1s;
+	// 	& .home_info_1, & .home_info_2, & .home_info_3{ 
+	// 		color:#eee;
+	// 		@include text_extrude(black, 1);
+	// 	}
+	// 	&.demo_open{
+	// 		top: 20%;
+	// 		transition: 1s;
+	// 	}
+	// }
 }
 
 .form_err{
@@ -449,6 +477,42 @@ header.header{
 
 
 
+// VERSIONS
+.version_box{
+	max-width:800px;
+	margin:10px auto;
+	& .title_sec{
+		overflow: hidden;
+		background-color: white;
+		padding:5px 10px;
+		& .title{
+			float: left;
+		}
+		& .date{
+			float: right;
+		}
+	}
+	& .content{
+		background-color:#eee;
+		padding:10px 10px;
+	}
+}
+
+
+
+.newUsers{
+	background-color:red;
+	position:relative; right:-6px; top:-2px;
+	float:right; padding: 0 5px;
+}
+.search_result{
+	a{ color:white; }
+	& .searchResultItem{
+		padding:5px 10px; float:none; display:inline-block;
+		background-color:#FF7C86; margin:3px;
+	}
+}
+
 
 
 
@@ -510,13 +574,26 @@ header.header{
 	}
 
 	.home_top_wrapper{
-		height:100%; max-height:calc(100% - 120px);
+		background-size:cover; background-position:40% 20%;
+		background-attachment: scroll;
+		height:calc(100% - 120px); max-height:700px;
 	}
 	.home_top{
-		& .home_top_text{
-			top: 35%;
+		& #home_top_text{
+			position:relative; color:white; font-weight:bold;
+			transition: 1s;
+			&.top_right, &.center_right, &.bottom_right, &.top_center, 
+			&.center_center, &.bottom_center, &.top_left, &.center_left, 
+			&.bottom_left{ 
+				top: 35%; text-align:center;
+			}
+
+			& .ht1{ font-weight:bold; font-family:'gotham'; font-size:40px; line-height:1em; }
+			& .ht2{ font-weight:bold; font-family:'gotham_thin'; font-size:20px; line-height:1em; }
+			& .ht3{ font-weight:bold; font-family:'gotham_light'; font-size:15px; line-height:1em; }
+			
 			&.demo_open{
-				top: 20%;
+				top: 7%;
 				transition: 1s;
 			}
 		}
@@ -589,6 +666,26 @@ header.header{
 	.home_info_1{ font-size:40px; font-family:'gotham_light'; margin:10px auto 15px;}
 	.home_info_2{ font-size:20px; font-family:'webly_reg'; }
 	.home_info_3{ font-size:18px; font-family:'webly_reg'; margin:10px auto;}
+	
+	.home_top_wrapper{
+		background-size:cover; background-position:20% 80%;
+		& #home_top_text{
+			position:absolute; color:white; font-weight:bold;
+			&.top_right{ top:$edge_pos; right:$edge_pos; text-align:right;}
+			&.center_right{top:$center_pos; right:$edge_pos; text-align:right;}
+			&.bottom_right{ bottom:$edge_pos; right:$edge_pos; text-align:right;}
+			&.top_center{ margin:30px auto; text-align:center;}	
+			&.center_center{ top:$center_pos; left:$center_pos; text-align:center;}	
+			&.bottom_center{ bottom:$edge_pos; left:$center_pos; text-align:center;}
+			&.top_left{ top:$edge_pos; left:$edge_pos; text-align:left;}
+			&.center_left{ top:$center_pos; left:$edge_pos; text-align:left;}
+			&.bottom_left{ bottom:$edge_pos; left:$edge_pos; text-align:left;}
+
+			& .ht1{ font-weight:bold; font-family:'gotham'; font-size:50px; line-height:1em; @include text_extrude(black, 0);}
+			& .ht2{ font-weight:bold; font-family:'gotham_thin'; font-size:30px; line-height:1em; @include text_extrude(black, 1);}
+			& .ht3{ font-weight:bold; font-family:'gotham_light'; font-size:20px; line-height:1em; @include text_extrude(black, 1);}
+		}
+	}
 
 	.devices{
 		padding:70px 10px 0;
@@ -632,6 +729,11 @@ header.header{
 	.modal-dialog{
 		width:60%; min-width:250px;
 	}
+
+	.home_top_wrapper{
+		background-size:cover; background-position:50% 100%;
+	}
+
 	.devices{
 		padding-top:50px;
 		height: 50%;

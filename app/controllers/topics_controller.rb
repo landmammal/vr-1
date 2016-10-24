@@ -14,6 +14,7 @@ class TopicsController < ApplicationController
     @rehearsal = Rehearsal.new
     @lessons = @topic.lessons.order('id ASC')
     @course_registration = CourseRegistration.new
+    @lesson = Lesson.new
   end
 
   # GET /topics/new
@@ -31,7 +32,7 @@ class TopicsController < ApplicationController
     @course = current_user.courses.find(params[:course_id])
     @course.topics.build(topic_params)
 
-    @course.topics.last.title = 'New Topic (rename)' if params[:title] == ''
+    @course.topics.last.title = 'New Topic (rename)' if @course.topics.last.title == ''
 
     respond_to do |format|
       if @course.save
@@ -48,7 +49,7 @@ class TopicsController < ApplicationController
   # PATCH/PUT /topics/1
   # PATCH/PUT /topics/1.json
   def update
-    # @topic.title = 'New Topic (rename)' if params[:title] = ''
+    @topic.title = 'New Topic (rename)'
 
     respond_to do |format|
       if @topic.update(topic_update)
@@ -85,6 +86,6 @@ class TopicsController < ApplicationController
       params.require(:topic).permit(:course_id, :title, :description, :tags, :approval_status, :instructor_id)
     end
     def topic_update
-      params.require(:topic).permit(:course_id, :title, :description, :tags, :approval_status)
+      params.require(:topic).permit(:title, :description, :tags, :approval_status)
     end
 end

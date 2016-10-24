@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def show
     @group = Group.new
     @user = User.find(params[:id])
-    @courses = current_user.registered_courses
+    @courses = current_user.registered_courses.order('id DESC')
 
     if current_user.level_2
       @course = Course.new

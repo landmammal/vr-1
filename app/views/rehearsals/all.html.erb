@@ -4,12 +4,12 @@
 
 <hr>
 
-<button class="tab new_content_tab selected">New Rehearsals</button>
-<button class="tab all_content_tab">All Rehearsals</button>
+<button class="tab selected" data-frame='new_rehearsals' data-group='top'>New Rehearsals</button>
+<button class="tab" data-frame='all_rehearsals' data-group='top'>All Rehearsals</button>
 
 <div class="box_sep">
   <div class="lesson_half"></div>
-  <div class="this_called_content show_new_content">
+  <div class="all_content js-new_rehearsals_content">
     <div class="title">New Rehearsals</div>
     <% @rehearsals_without_feedback.each do |rehearsal| %>
         <% if (rehearsal.approval_status == nil || rehearsal.approval_status == 0) && User.exists?(rehearsal.trainee_id) %>
@@ -28,7 +28,7 @@
   </div>
 
 
-  <div class="this_called_content show_all_content" style="display:none;">
+  <div class="all_content js-all_rehearsals_content" style="display:none;">
     <div class="title">All Course Rehearsals</div>
     <% @course_rehearsals.each do |rehearsal| %>
       <% if User.exists?(rehearsal.trainee_id) %>
