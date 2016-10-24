@@ -1,0 +1,80 @@
+<div class="top_info">
+  <div class="course_title">
+    <span class="grey"><%= link_to @thislesson.title, course_topic_lesson_path(@course, @topic, @lesson) %></span> :: Record <%= @this_component %>
+  </div>
+</div>
+
+<div class="box_sep">
+  <div class="body">
+  
+    <div class="prompt_video">    
+
+      <div class="media_wrapper" data-videotype="<%= @component.video_type %>" data-token="<%= @component.video_token %>">
+        <div class="ziggeo js-record_ziggeo hide">
+          <%= render './shared/ziggeorecorder' %>
+        </div>
+
+        <div class="ziggeo js-play_ziggeo hide">
+          <% @this_video_token = @component.video_token if @component.video_token != "" %>
+          <%= render './shared/ziggeoplayer' %>
+        </div>
+
+        <div class="image_holder js-add_image hide">
+          <img class="js-image_ready" href="<%= @component.video_token %>" width="100%">
+          <div class="js-image_upload">
+            Upload an image:
+            <input type="file">
+          </div>
+        </div>
+      </div>
+      <button class="js-re_create red hide"></button>
+      
+
+    </div>
+
+    <br><br>
+
+    <%= form_for @component,html: {class:@this_added_class+"Form", id:"ziggeoForm"}, remote: true  do |f| %>
+      <% if @component.errors.any? %>
+        <div id="<%= @this_error %>">
+          <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+          <ul>
+          <% @component.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= f.text_field :video_token, type:"hidden" %>
+      <%= f.text_field :token, type:"hidden" %>
+    <% end %>
+    <br>
+    <%= form_for @component,html: {class:"edit_component"} do |f| %>
+      <% if @component.errors.any? %>
+        <div id="<%= @this_error %>">
+          <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+          <ul>
+          <% @component.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <!-- Media Type: <%= f.select :video_type, (@video_type), class:'js-video_type' %><br> -->
+      <%= f.text_field :title, placeholder: 'Title' %> | 
+      <%= f.check_box :position_prior %> Primary <%= @this_component %><br>
+      <%= f.text_area :script, placeholder: 'Script' %><br>
+      <%= f.select :language, (@languages) %>
+      <%= f.select :privacy, (@privacy) %>
+      <br>
+      <%= f.submit 'Save '+@this_component, class:'green_sft save_ziggeo' %>
+    <% end %>
+
+    <br><br><br>
+    <%= button_to "Delete "+@this_component, @component, class:'small_btn red', method: :delete, data: { confirm: 'Are you sure?' } %>
+
+  </div>
+</div>

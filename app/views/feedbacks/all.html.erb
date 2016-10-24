@@ -4,11 +4,11 @@
 
 <hr>
 
-<button class="tab new_content_tab selected">New Feedbacks</button>
-<button class="tab all_content_tab">All Feedbacks</button>
+<button class="tab selected" data-frame='new_feedback' data-group='top'>New Feedbacks</button>
+<button class="tab" data-frame='all_feedback' data-group='top'>All Feedbacks</button>
 
 <div class="box_sep">
-	<div class="this_called_content show_new_content">
+	<div class="all_content js-new_feedback_content">
 		<div class="title">New Rehearsal Feedback</div>
 		<div class="body">
 			<% @rehearsals_with_new_feedback.each do |rehearsal| %>
@@ -18,7 +18,7 @@
 		</div>
 	</div>
 
-	<div class="this_called_content show_all_content" style="display:none;">
+	<div class="all_content js-all_feedback_content" style="display:none;">
 		<div class="title">All Rehearsal Feedback</div>
 		<div class="body">
 			<% @rehearsals_with_feedback.each do |rehearsal| %>

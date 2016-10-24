@@ -6,7 +6,7 @@
   // height:100%;
 }
 
-.ziggeo_wrapper, .ziggeo_create_lesson, .js-play_ziggeo{
+.media_wrapper, .ziggeo_create_lesson, .js-play_ziggeo{
   // width:100%;
   position: relative; overflow:hidden;
   &:after{
@@ -15,7 +15,7 @@
     display: block;
     content: '';
   }
-  & .ziggeo, ba-ziggeoplayer, .image_for_lesson{
+  & .ziggeo, ba-ziggeoplayer, .image_holder{
     position: absolute;
     top: 0;
     bottom: 0;
@@ -37,7 +37,7 @@
   font-weight: bolder;
   font-size:12px;
   &.submitted_ziggeo{
-    font-size:25px; 
+    font-size:23px; 
     transition: 0.5s;
   }
 }
@@ -51,15 +51,21 @@
   color:white;
 }
 
+
+.video_black_bg{
+    &.full{
+      width:100%;
+    }
+  }
+
 /* Tablet Layout: 614px. Inherits styles from: Mobile Layout. */
 @media only screen and (max-width: 614px) {
-  .ziggeo_wrapper{
+  .media_wrapper{
     &.center_video{ width: 100%; margin: 0 auto; }
   }
   .ziggeo_create_lesson, .js-play_ziggeo{ width:100%; }
   .video_black_bg{
     &.full{
-      width:100%;
       padding:0; 
     }
   }
@@ -71,7 +77,6 @@
 
   .video_black_bg{
     &.full{
-      width:99%;
       padding:0 15%;  
     }
   }
@@ -81,7 +86,6 @@
 @media only screen and (min-width: 827px) {
   .video_black_bg{
     &.full{
-      width:99%;
       padding:0 20%;  
     }
   }
@@ -110,4 +114,10 @@
   height:124.799999999999997%;
   left:-12.4%;
   
+}
+
+
+.ba-videorecorder-theme-modern-recording-indication {
+  width:16px;
+  height:16px; 
 }

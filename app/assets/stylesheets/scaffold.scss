@@ -167,6 +167,16 @@ input[type="submit"], button{
     }
   }
 
+  &.creator_btn, &.admin_btn, &.coaching_btn{
+    background-color:#4EBC52; color:#fff;
+    padding:2px 6px; float: none;
+    border-radius:0; margin:0;
+    &:hover{
+      background-color:#006A0A;
+      transition: 0.2s;
+    }
+  }
+
   &.reg_btn{
     width:inherit; float: none;
     border-radius:3px;
@@ -188,6 +198,9 @@ input[type="submit"], button{
     padding:15px 14px 13px; float: none; 
     font-size:30px; color:#fff;
     border-radius:50%; 
+    &.small{
+      padding:4px 6px 3px; font-size:16px; 
+    }
     &:hover{
       border-radius:25%;
     }

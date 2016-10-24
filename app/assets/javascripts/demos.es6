@@ -1,22 +1,18 @@
 var pageReady = function(){
 
 
-	$('.demo').click(function(event){
+	$('.demo').click(function(event) {
 		event.preventDefault();
 		$('.demo').fadeToggle(500);
-		$('.home_top_text').addClass('demo_open');
-		setTimeout(function(){
-			$('.demo_form').fadeToggle(500);
-		}, 600);
+		$('#home_top_text').addClass('demo_open');
+		$('.demo_form').delay(600).fadeToggle(500);
 	});
 
 	$('.js-cancel_sched').click(function(event){
 		event.preventDefault();
 		$('.demo_form').fadeToggle(500);
-		setTimeout(function(){
-			$('.demo').fadeToggle(500);
-			$('.home_top_text').removeClass('demo_open');
-		}, 600);
+		$('.demo').delay(600).fadeToggle(500);
+		$('.home_top_text').delay(600).removeClass('demo_open');
 	});
 
 	$('.js-schedule_demo').click(function(event){
@@ -44,8 +40,8 @@ var pageReady = function(){
 				url:'/demos',
 				data:new_demo,
 				success:function(data){
-					console.log(data);
-					console.log('Demo Posted');
+					// console.log(data);
+					// console.log('Demo Posted');
 
 					$('.demo_form').toggle();
 					$('.check_mark').show();
@@ -53,15 +49,11 @@ var pageReady = function(){
 					$('#notice').toggle();
 
 					$('.js-form').val('');
-
-					setTimeout(function(){
-						$('.check_mark').fadeOut(500);
-						$('#notice').fadeOut(500);					
-						setTimeout(function(){
-							$('.demo').fadeIn(500);
-							$('.home_top_text').removeClass('demo_open');
-						}, 600);
-					}, 2000);
+					
+					$('.check_mark').delay(2000).fadeOut(500);
+					$('#notice').delay(2000).fadeOut(500);
+					$('.demo').delay(2600).fadeIn(500);
+					$('.home_top_text').delay(2600).removeClass('demo_open');
 
 				}
 			});

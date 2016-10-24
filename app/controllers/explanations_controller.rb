@@ -61,11 +61,11 @@ class ExplanationsController < ApplicationController
   end
 
   def explanation_params
-      params.require(:explanation).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :position_prior)
+      params.require(:explanation).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :video_type, :token, :video_token, :position_prior)
   end
 
   def explanation_update
-      params.require(:explanation).permit(:lesson_id, :title, :script, :privacy, :language, :token, :video_token, :position_prior)
+      params.require(:explanation).permit(:title, :script, :privacy, :language, :video_type, :token, :video_token, :position_prior)
   end
 
   def set_lesson

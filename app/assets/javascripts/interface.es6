@@ -94,9 +94,6 @@ function sidepanel( panel ){
 	});
 }
 
-$('.liveninja-iframe-chat-min-wide').css('height','100px');
-
-
 
 var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -127,37 +124,47 @@ var pageReady = function(){
 	$('.js-click_back').click(function(event){
 		event.preventDefault();
 		window.history.back();
+		changeContent();
 	});
 	$('.js-click_forward').click(function(event){
 		event.preventDefault();
 		window.history.forward();
+		changeContent();
 	});
-
-
-
-
-	if(getUrlParameter('content') === 'old' ){
-		$('.this_called_content').hide(); $('.show_all_content').show();
-		$('.new_content_tab').removeClass('selected')
-		$('.all_content_tab').addClass('selected')
+	window.onpopstate = function() {
+	  changeContent();
 	}
 
+
+	function changeContent(){
+		if(getUrlParameter('view')){
+			var viewTag = getUrlParameter('view');
+
+			$('.tab').removeClass('selected');
+			$('.tab[data-frame="'+viewTag+'"]').addClass('selected');
+			$('.all_content').hide();
+			$('.js-'+viewTag +'_content').show();
+		}
+	}
+
+	changeContent();
+
 	$('.tab').click(function(){
-		$('.tab').removeClass('selected');
+		var thisGroup = $(this).data('group');
+		var thisFrame = $(this).data('frame');
+
+		$('.tab[data-group="'+thisGroup+'"]').removeClass('selected');
+		$('.tab[data-frame="'+thisFrame+'"]').addClass('selected');
 		$(this).addClass('selected');
-
-		if($(this).hasClass('all_content_tab')){
-			var showAll = function(){$('.this_called_content').hide(); $('.show_all_content').show();}
-			window.history.pushState(showAll(), 'All Rehearsals', '?content=old');
+		
+		var thisTab = $(this).data('frame');
+		var frame = '.js-'+thisTab+'_content';
+		function showFrame(){
+			$('.all_content').hide(); 
+			$(frame).show();
 		}
-		if($(this).hasClass('new_content_tab')){
-			var showNew = function(){$('.this_called_content').hide(); $('.show_new_content').show();}
-			window.history.pushState(showNew(), 'New Rehearsals', 'all');
-		}
-
+		window.history.pushState(showFrame(), thisTab, '?view='+thisTab );
 	});
-
-
 
 
 	$('.js-max_min').click(function(event){
@@ -196,9 +203,9 @@ var pageReady = function(){
 	// 	$(element).height('100%');
 	// }
 	// function runChangeSize(){
-	// 	var ziggeo_wrapper = document.getElementsByClassName("ziggeo_wrapper");
-	// 	for( var i = 0; i < ziggeo_wrapper.length; i++ ){
-	// 		aspect16_9(ziggeo_wrapper[i]);
+	// 	var media_wrapper = document.getElementsByClassName("media_wrapper");
+	// 	for( var i = 0; i < media_wrapper.length; i++ ){
+	// 		aspect16_9(media_wrapper[i]);
 	// 	}
 	// 	aspect16_9('div.ba-videoplayer-theme-modern-container video'); //NEED THIS FOR videoplayers in lesson_show
 	// 	height100('ziggeoplayer div video'); //NEED THIS FOR videoplayers in lesson_show

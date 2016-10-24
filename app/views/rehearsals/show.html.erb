@@ -9,14 +9,13 @@
 </div>
 
 
-  <%= link_to @rehearsal.course.title, course_path(@rehearsal.course) %> >> 
-  <%= link_to @rehearsal.topic.title, course_topic_path(@rehearsal.course, @rehearsal.topic) %> >>
-  <%= link_to @rehearsal.lesson.title, @link_to_lesson %>
+
 
 <div class="box_sep">
   <div class="title">
     <a href="/users/<%= @this_user.id %>"><img src="<%= student_pic(@this_user) %>" class="img-circle" width='40px'></a>
      <%=  @this_user.first_name %> <%= @this_user.last_name %>
+     <span style="float:right;"><%= feedbackSent %></span>
   </div>
 
   
@@ -25,7 +24,7 @@
     <% if current_user.level_3 %>
       <% if @rehearsal.submission == true %>
         <div class="rehearsal_video">
-          <div class="video_black_bg ziggeo_wrapper">
+          <div class="video_black_bg media_wrapper">
             <% @this_video_token = @rehearsal.video_token %>
             <% @this_added_class = 'rehearsal' %>
             <div class="ziggeo"><%= render './shared/ziggeoplayer' %></div>
@@ -36,7 +35,7 @@
         </div>
 
         <div class="feedback_video">
-          <div class="ziggeo_wrapper">
+          <div class="media_wrapper">
             <% @this_added_class = 'feedback' %>
             <div class="ziggeo"><%= render './shared/ziggeorecorder' %></div>
           </div>
@@ -63,7 +62,7 @@
             
         </div>
         <br>
-        <button class='submit_ziggeo submit_feedback blue' style='float:right;' data-formname="feedback">
+        <button class='submit_ziggeo submit_2 submit_feedback blue' style='float:right;' data-formname="feedback">
           Send Feedback
         </button>
         <button class='record_another_rehearsal blue' style='float:right; display:none;'>
@@ -83,7 +82,10 @@
 
 <div class="box_sep">
   <div class="title">
-    OTHER REHEARSALS FOR :: <%= link_to @rehearsal.lesson.title, @link_to_lesson %>
+    OTHER REHEARSALS FOR ::
+      <%= link_to @rehearsal.course.title, course_path(@rehearsal.course) %> >> 
+      <%= link_to @rehearsal.topic.title, course_topic_path(@rehearsal.course, @rehearsal.topic) %> >>
+      <%= link_to @rehearsal.lesson.title, @link_to_lesson %>
   </div>
 
   <div class="body">

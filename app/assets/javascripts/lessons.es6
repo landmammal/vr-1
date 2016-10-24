@@ -262,25 +262,90 @@ var pageReady = function(){
 		scrollToBody();
 	});
 	
+	// if($('.body').data('videotype') === "local"){
+	// 	if($('.body').data('token').length < 1){
 
-	if($('.js-play_ziggeo').text() && $('.js-play_ziggeo').data('token').length < 1){
-		$('.js-play_ziggeo').toggleClass('hide');
-		$('.js-re_record').toggleClass('hide');
-	}else{
-		$('.js-record_ziggeo').toggleClass('hide');
+	// 		if($('.js-play_ziggeo').text()){
+	// 			$('.js-play_ziggeo').toggleClass('hide');
+	// 			$('.js-re_create').toggleClass('hide');
+	// 		}else{
+	// 			$('.js-record_ziggeo').toggleClass('hide');
+	// 		}
+
+	// 	}
+	// }else if($('.body').data('videotype') === "image"){
+
+	// }else if($('.body').data('videotype') === "youtube"){
+
+	// }	
+
+	function changeuploadWindow(vidType){
+		
+		function recreatebuttontext(text1, text2, window1, window2){
+			$('.js-re_create').removeClass('hide');
+			$('.js-re_create').text(text1);
+
+			$('.js-re_create').click(function() {
+			  if($(".js-re_create").text() === text1){
+			  	$(window1).removeClass('hide');
+			  	$(window2).addClass('hide');
+			  	$(".js-re_create").text(text2);
+			  }else{
+			  	$(".js-re_create").text(text1);
+			  	$(window1).addClass('hide');
+			  	$(window2).removeClass('hide');
+			  }
+			});
+		}
+
+		switch(vidType){
+		    case 'local':
+		    	console.log('local');
+		    	$('.image_holder').addClass('hide');
+		    	if($('.media_wrapper').data('token').length < 1){
+					$('.js-record_ziggeo').removeClass('hide');
+				}else{
+					recreatebuttontext('Re-Record?', 'Cancel Record', '.js-record_ziggeo', '.js-play_ziggeo');
+					$('.js-play_ziggeo').removeClass('hide');
+				}
+		        break;
+
+		    case 'youtube':
+		    	console.log('youtube');
+		    	if($('.media_wrapper').data('token').length < 1){
+					
+				}else{
+
+				}
+		        break;
+
+		    case 'image':
+		    	console.log('image');
+		    	$('.ziggeo').addClass('hide');
+		    	$('.image_holder').removeClass('hide');
+		    	if($('.media_wrapper').data('token').length < 1){
+			    	$('.js-image_ready').hide();				
+			    	$('.js-image_upload').show();
+				}else{
+			    	$('.js-image_ready').show();				
+			    	$('.js-image_upload').hide();
+			    	recreatebuttontext('Re-upload?', 'Cancel upload', '.js-image_upload', '.js-image_ready');
+				}
+		        break;
+
+		    default:
+		    	console.log('default');
+		    	$('.js-record_ziggeo').toggleClass('hide');        
+		}
 	}
 
-	$('.js-re_record').click(function(){
-		$('.js-record_ziggeo').toggleClass('hide');
-		$('.js-play_ziggeo').toggleClass('hide');
+	var startVideoType = $('.media_wrapper').data('videotype');
+	changeuploadWindow(startVideoType);
 
-		if($('.js-re_record').text()==='Re-Record?'){
-			$('.js-re_record').text('Cancel Re-Record');
-		}else{
-			$('.js-re_record').text('Re-Record?');
-		}
+	$('.edit_component').on('input', function(){
+		var videoType = $('.edit_component select option:selected').val();
+		changeuploadWindow(videoType);
 	});
-
 
 };
 

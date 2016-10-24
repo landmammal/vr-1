@@ -66,6 +66,7 @@
 		& .card_title{
 			padding:5px 8px; font-size:14px;
 			font-family:'webly_bld';
+			transition:0.5s;
 			// border-radius:5px 5px 0 0;
 		}
 		& .card_desc{
@@ -73,6 +74,7 @@
 			padding:5px 8px; color:#333;
 			// border:1px solid #ddd; border-radius:0 0 5px 5px ;
 			border-top:0;
+			transition:0.5s;
 		}
 		&:hover{
 			// @include box_extrude(#ccc, 3);
@@ -99,6 +101,17 @@
 			    margin: 2px 2px;
 			    &.pending{ color:#FEA808; }
 			    &.done{ color:#28D024; }
+			}
+		}
+		&.newcard{
+			transition:0.5s;
+			& .card_title{
+				background-color:#1EA402;
+				transition:0.5s;
+			}
+			& .card_desc{
+				background-color:#C4FFC4;
+				transition:0.5s;
 			}
 		}
 	}
@@ -134,7 +147,7 @@
 	}
 
 	& .card{
-		width:250px;
+		margin:0 0.5% 4px 0;
 		& .card_title{
 			&.course{ background-color: #FF7C86; color: white; }
 			&.topic{ background-color: #00B1D8; color: white; }
@@ -152,8 +165,9 @@
 
 @media only screen and (max-width: 495px) {
   	.card_list{
-  		& .home_card{
+  		& .home_card, & .card{
 			width:99.5%;
+			& .card_title{ line-height:1.5em;}
 		}	
 	}
 }
@@ -161,7 +175,7 @@
 /* Tablet Layout: 615px to 826px. Inherits styles from: Mobile Layout. */
 @media only screen and (min-width: 496px) {
   	.card_list{
-  		& .home_card{
+  		& .home_card, & .card{
 			width:49.5%;
 			& .card_title{ line-height:1.5em;}
 		}	
@@ -171,8 +185,17 @@
 /* Desktop Layout: 827px to max.  Inherits styles from: Mobile Layout and Tablet Layout. */
 @media only screen and (min-width: 827px) {
   	.card_list{
-  		& .home_card{
+  		& .home_card, & .card{
 			width:32.83%;
+		}	
+	}
+}
+
+/* Desktop Layout: 1261px to max.  Inherits styles from: Mobile Layout and Tablet Layout. */
+@media only screen and (min-width: 1051px) {
+  	.card_list{
+  		& .home_card, & .card{
+			width:24.5%; max-width:350px;
 		}	
 	}
 }

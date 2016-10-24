@@ -1,2 +1,11 @@
-<ziggeorecorder ziggeo-theme="modern-blue" class="<%= @this_added_class %>" id="ziggeoRecorder" ziggeo-localplayback >
-</ziggeorecorder>
+<% @topics_to_fix.each do |fix| %>
+	<%= fix.id  %><br>
+<% end %>
+<br><br><br>---------------------------<br><br><br>
+<% @lessons_to_fix.each do |fix| %>
+	<%= fix.id  %>
+<% end %>
+<br><br><br>---------------------------<br><br><br>
+<% @explanations_to_fix.each do |fix| %>
+	<%= fix.id  %>
+<% end %>

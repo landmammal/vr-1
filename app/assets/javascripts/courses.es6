@@ -100,51 +100,25 @@ function edit_or_start_course(course){
 
 var pageReady = function(){
 
-	$('.js-show_form').click(function(event){
+	$('.js-add_form_btn').click(function(event){
 		event.preventDefault();
+		var thisForm = $(this).data('form');
+		$('.js-'+thisForm+'_form').fadeIn(500);
 
-		$('.js-open_form').fadeIn(500);
-		$('.js-show_form').hide();
-		$('.js-cancel_form').show();
+		$('html, body').animate({
+	        scrollTop: $(".body").offset().top
+	    }, 1000);
 	});
+
+	// $('.js-add_topic').click(function(){
+
+	// });
+
 
 	$('.js-cancel_form').click(function(event){
 		event.preventDefault();
-
-		$('.js-open_form').fadeOut(500);
-		
-		setTimeout(function(){
-			$('.js-show_form').show();
-			$('.js-courses_box_title').text('My courses');
-			$('.js-all_courses').show();
-		},600);
-	});
-
-	$('.js-create_course').click(function(event){
-		event.preventDefault();
-
-		var newc = new Object();
-			newc.title = $('.js-course_title').val();
-			newc.description = $('.js-course_description').val();
-			newc.tags = $('.js-course_tags').val();
-			newc.status = $('.js-course_status').val();
-			newc.instructor_id = $('.js-course_instructor').val();
-
-		$.ajax({
-			type:'POST',
-			url:'/courses/api',
-			data:newc,
-			success:function(new_course_data){
-				console.log(new_course_data)
-
-				$('.js-open_form').fadeOut(500);
-
-				setTimeout(function(){
-			        $('.js-all_courses').fadeIn(200);
-			        location.reload();
-				},500);
-			}
-		});
+		var thisForm = $(this).data('form');
+		$('.js-'+thisForm+'_form').fadeOut(500);
 	});
 
 
@@ -163,18 +137,6 @@ var pageReady = function(){
 	// 		}
 	// 	});
 	// });
-
-
-
-	function course_box_change(title){
-		$('.js-courses_box_title').text(title);
-	};
-
-	$('.js-course_form').click(function(){
-		course_box_change('Creating new course');
-		$('.js-all_courses').hide();
-	});
-
 
 };
 

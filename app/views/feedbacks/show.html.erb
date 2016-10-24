@@ -22,7 +22,7 @@
     <% if current_user.level_4 %>
 
       <div class="feedback_video">
-        <div class="ziggeo_wrapper">
+        <div class="media_wrapper">
           <% @this_video_token = @feedback.video_token %>
           <% @this_added_class = 'feedback' %>
           <div class="ziggeo"><%= render './shared/ziggeoplayer' %></div>

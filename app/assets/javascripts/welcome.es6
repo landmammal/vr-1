@@ -2,7 +2,43 @@ function allCoursesjson(courses){
 	var coursejson = railsToJson(courses);
 	
 	// console.log(coursejson);
+};
+
+function TermsandServices(data){
+	if(!data){$('.terms_not_aggreed').show()}else{$('.terms_not_aggreed').hide()}
 }
+
+function acceptTermsandServices(){
+	$('.accept_terms').click(function(event){
+		event.preventDefault();
+		// console.log('clicked');
+
+		if($('.js-i_read').prop('checked')){
+			var new_accept = new Object();
+
+			$.ajax({
+				type:'POST',
+				data:new_accept,
+				url:'/accepttermsandservices',
+				success:function(data){
+					// console.log('Terms Changed');
+					// console.log(data);
+					$('.terms_and_service_button').fadeOut(500);
+					$('.terms_and_service_button').delay(500).empty();
+					$('.terms_and_service_button').delay(500).html('<img src="/assets/checkmark.png" width="40px"> <br> Thank you for accepting the new Terms of Use.');
+					$('.terms_and_service_button').delay(600).fadeIn(500);
+					$('.terms_not_aggreed').delay(1500).fadeOut(500);
+				}
+			});
+
+		}else{
+			$('.js-accept_error').fadeIn(500);
+			$('.js-accept_error').delay(3500).fadeOut(500);
+		}
+	});
+};
+
+
 
 //APP LOADING SPLASH PAGE
 function startLoadingProg(){
@@ -39,16 +75,14 @@ function startLoadingProg(){
 			if(lt < loadText.length){ changeLoadText(); }else{ lt=0; changeLoadText(); }
 		}, 5000);
 	}
-	setTimeout(function(){ 
-		$('.loading_reload').fadeIn(500) 
-	}, 12000);
+	$('.loading_reload').delay(12000).fadeIn(500);
 	$('.loading_reload').click(function(){ location.reload(); });
 }
 
 function endLoadingProg(){
 	if($('.loading_prog').prop('value') >= 1){	
 		$('.loading_prog').prop('value', 100); 
-		setTimeout(function(){ $('.loading_app').hide(); }, 1000);
+		$('.loading_app').delay(1000).hide();
 	}else{
 		$('.loading_app').hide();
 	}
@@ -71,7 +105,7 @@ var pageReady = function(){
 	function formERR(err){
 		$('.form_err').fadeIn(500);
 		$('.form_err').text(err);
-		setTimeout(function(){ $('.form_err').fadeOut(500); }, 3000);
+		$('.form_err').delay(3000).fadeOut(500);
 	}
 
 
@@ -122,10 +156,10 @@ var pageReady = function(){
 
 			$('.form').fadeOut(500);
 			$('.registered_confirmation').html('Thank you for signing up with Video Rehearser.<br>  <br> <img src="/assets/checkmark_white.png" width="50px"><br> <br> You will recieve an email shortly.');
-			setTimeout(function(){
-				$('.form').empty();
-				$('.registered_confirmation').fadeIn(500);
-			}, 500);
+
+			$('.form').delay(500).empty();
+			$('.registered_confirmation').delay(500).fadeIn(500);
+
 		}
 
 	});
@@ -174,7 +208,8 @@ var pageReady = function(){
 	});
 	setTimeout(function(){
 		$('#notice_wrapper').addClass('remove');
-	},2300);
+	}, 3500);
+
 
 
 
@@ -189,40 +224,42 @@ var pageReady = function(){
 
 
 	var homeSlide = [{image:'public_speacking', text_location:'center_right', text_animation:'slide_right', 
-					   text:''
+					   text:'<span class="ht1">Control the room</span><br><span class="ht2">Become a more polished speaker</span>'
 					 },
 					 { image:'job_interview', text_location:'bottom_left', text_animation:'slide_left', 
-					   text:''
+					   text:'<span class="ht2">Crush your next interview</span><br><span class="ht1">Sharpen your interview skills</span>'
 					 },
-					 {image:'language', text_location:'center_right', text_animation:'slide_right', 
-					   text:''
+					 {image:'language', text_location:'center_left', text_animation:'slide_right', 
+					   text:'<span class="ht1">Expand your horizon</span><br><span class="ht2">By conquering a new language</span>'
 					 },
-					 {image:'frame_home', text_location:'center_right', text_animation:'slide_right', 
-					   text:''
+					 {image:'frame_home', text_location:'center_left', text_animation:'slide_right', 
+					   text:'<span class="ht3">Effective training at your fingertips</span><br><span class="ht1">Anytime, anywhere</span>'
 					 },
 					 { image:'singer', text_location:'bottom_left', text_animation:'slide_left', 
-					   text:''
+					   text:'<span class="ht2">Give the performance of a lifetime</span><br><span class="ht1">Rehearse to rock the world</span>'
 					 },
-					 { image:'dancer', text_location:'bottom_left', text_animation:'slide_left', 
-					   text:''
+					 { image:'dancer', text_location:'center_left', text_animation:'slide_left', 
+					   text:'<span class="ht2">Fine-tune your performance</span><br><span class="ht1">Reflect to perfect</span>'
 					 },
 					 { image:'better_you', text_location:'center_right', text_animation:'slide_right', 
-					   text:'<div class=""></div>'
+					   text:'<span class="ht3">Rehearse to become</span><br><span class="ht1">A BETTER YOU</span>'
 					 }];
 
 	var hbg = 0;
 
-
 	setInterval(function(){
-		if( hbg < homeSlide.length ){
+		if( hbg >= homeSlide.length ){ hbg = 0; }
+		$('#home_top_text').fadeOut(1000);
+		setTimeout(function(){
 			$('.home_top_wrapper').css("background-image", "url(/assets/"+homeSlide[hbg].image+".jpg)"); 
+			$('#home_top_text').prop('class', homeSlide[hbg].text_location);
+			$('#home_top_text .content').html(homeSlide[hbg].text);
+		}, 1000);
+		setTimeout(function(){
+			$('#home_top_text').fadeIn(1000);
 			hbg+=1;
-		}else{
-			hbg = 0;
-			$('.home_top_wrapper').css("background-image", "url(/assets/"+homeSlide[hbg].image+".jpg)");
-			hbg += 1;
-		}
-	}, 10000);
+		},1500);
+	}, 6500);
 
 
 
@@ -333,6 +370,33 @@ var pageReady = function(){
 				$('.search_results_home').addClass('show');
 			}
 			$('.result_search_terms').text("Searching for : '"+$('.search_course_term').val()+"'");
+			
+			var newSearch = new Object();
+				newSearch.search = $('.search_course_term').val();
+				newSearch.search_type = $('#search_course_type option:selected').val();
+
+			$.ajax({
+				type:'POST',
+				data:newSearch,
+				url:'/courses_search/api',
+				success:function(data){
+					$('.search_result').empty();
+					// console.log(data);
+					if(data.length !== 0){
+						for(var i in data){
+							var item = data[i];
+							// console.log(item);
+							var searchResults = '<a href="/display_course/'+item.id+'"><div class="searchResultItem" style="display:none;">'+item.title+'</div></a>';
+							$('.search_result').append(searchResults);
+							$('.searchResultItem').delay(300).slideDown(500);
+						}
+					}else{
+						$('.search_result').text("NO RESULTS FOUND");
+					}
+					
+				},
+			});
+			// $('.search_course_form').submit();
 		}
 		
 		if($('.search_course_term').val.length === 0 || $('.search_course_term').val() === ''){
@@ -344,8 +408,9 @@ var pageReady = function(){
 			}
 
 		}
-	});
 
+
+	});
 
 };
 

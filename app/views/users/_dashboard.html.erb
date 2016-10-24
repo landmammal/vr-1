@@ -1,0 +1,55 @@
+<div class="title">
+	Dashboard
+</div>
+
+<div class="body">
+
+	<div class="section js-display_my_courses">
+		My courses:<br>
+		<div class="js-my_courses_list card_list">
+
+			<% @courses.each_with_index do |course, index| %>
+
+				<a class="js-c_<%= course.id %>" href="<%= course_path(course) %>">	
+					<div class="card">
+						<div class="card_title course">
+							<%= course.title[0...30] %>
+							<% if course.title.length > 30 %>
+					            ...
+					        <% end %>
+					    </div>
+						<div class="card_desc course">
+							<%= course.description[0...110] %>
+							<% if course.description.length > 130 %>
+				               ... <span class="blue">more</span>
+				            <% end %>
+
+				            <div class="bottom_count">
+						        <% course.topics.each do |i| %>
+									<div class="circle_count"></div>
+							    <% end %>
+							</div>
+						</div>
+					</div>
+				</a>
+
+			<%end%>
+		</div>
+
+	</div>
+	
+	<% if current_user.level_2 && current_user.courses.size > 0 %>
+		<br><br><br>
+		Last 4 courses created:<br>
+		<div class="card_list">
+			<% current_user.courses.order('id DESC').limit(4).each do |course| %>
+				<% @course_item = course %>
+		        <%= render 'coursecards' %>
+		    <% end %>
+		</div>
+		<button class="tab" data-frame="creator_space" data-group='top'>
+			Creator Space
+		</button>
+    <% end %>
+
+</div>

@@ -1,0 +1,19 @@
+<div class="site_wrapper" style="padding:0;">
+	<% if current_user %>
+		<%= render 'layouts/menu' unless menu_welcome %>
+		<div style="width:100%; margin:30px auto;">
+			<h2>New Terms of Use ("Terms")</h2>
+			<%= render './termsandservices/termsandservices'+termsVersion%>
+
+			<center class='terms_and_service_button'>
+				<div class="js-accept_error" style="color:red; padding:10px 5px; border:1px solid red; margin:5px 0 15px; display:none;"> 
+					Please read and accept the Terms and Services above.
+				</div>
+
+				<input type="checkbox" class="js-i_read"> I've Read & Accept the Terms and Services<br>
+				<button type="submit" class="accept_terms big_btn blue">Accept Terms & Services</button>
+				<script type="text/javascript">acceptTermsandServices();</script>
+			</center>
+		</div>
+	<% end %>
+</div>

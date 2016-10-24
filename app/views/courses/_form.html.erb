@@ -1,6 +1,5 @@
-
-<!-- <h3> New Course </h3> -->
-  <%= form_for @course do |f| %>
+<h2> Create a New Course </h2>
+  <%= form_for @course, remote: true do |f| %>
     <% if @course.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
@@ -24,10 +23,7 @@
 
 
 
-    <%= button_tag 'Save Course', type:'submit', class:"blue" %>
-    <button class="red js-click_back">Cancel</button>
+    <%= button_tag 'Save Course', type:'submit', class:"blue js-create_course" %>
+    <button class="red js-cancel_form" data-form="course">Cancel</button>
   <% end %>
-
-<!-- <a href="<%= new_course_path %>"> -->
-
-<!-- </a> -->
+<br><br><br>

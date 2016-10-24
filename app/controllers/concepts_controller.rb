@@ -65,7 +65,7 @@ class ConceptsController < ApplicationController
     params.require(:concept).permit(:description, :lesson_id, :user_id)
   end
   def concept_update
-    params.require(:concept).permit(:description, :lesson_id)
+    params.require(:concept).permit(:description)
   end
 
   def set_lesson

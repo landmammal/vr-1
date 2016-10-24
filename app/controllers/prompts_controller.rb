@@ -66,7 +66,7 @@ class PromptsController < ApplicationController
     params.require(:prompt).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :position_prior)
   end
   def prompt_update
-    params.require(:prompt).permit(:lesson_id, :title, :script, :privacy, :language, :token, :video_token, :position_prior)
+    params.require(:prompt).permit(:title, :script, :privacy, :language, :token, :video_token, :position_prior)
   end
 
   def set_prompt_update

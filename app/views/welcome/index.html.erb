@@ -2,20 +2,19 @@
 	<div class="home_top">
 		<%= render 'layouts/menu' if menu_welcome %>
 
-	    	
-		<div class="home_top_text">
+	    
 
-	    	<div class="home_info_1">
-	    		<span class="js-start">Learn</span>
-	    		<span class="js-title" style="display:none;" >
-	    			Video Rehearser
-	    		</span>
-	    		<span class="js-learn_home"> Anything </span>
-	    	</div>
+		<div id="home_top_text" class="center_right">
+			<div class="content">
+				<span class="ht3">Rehearse to become</span><br>
+				<span class="ht1">A BETTER YOU</span><br>
+			</div>
+			<button class="demo">Schedule Demo</button>
+			<button class="learn_more">Learn more...</button>
+		</div>
 
-	    	<div class="home_info_3"> Virtual Video Training & Coaching Platform </div>
+		<div class="demo_box">
 			<div class="demo_separation"></div>
-			<a href="#"><div class="demo">Schedule Demo</div></a>
 			<div class="demo_form" style="display:none;">
 				<h2>Schedule a Demo</h2>
 				<%= form_tag  do %>
@@ -36,8 +35,20 @@
 			<div id="notice" style="float:none; width: 350px; padding: 5px; margin:5px auto; display: none;">
 				Thank you for scheduling a demo, we will contact you soon.
 			</div>
+		</div>
 
-	    </div>
+		<!-- <div class="home_top_text">
+
+	    	<div class="home_info_1">
+	    		<span class="js-start">Learn</span>
+	    		<span class="js-title" style="display:none;" >
+	    			Video Rehearser
+	    		</span>
+	    		<span class="js-learn_home"> Anything </span>
+	    		Virtual Video Training & Coaching Platform
+	    	</div>
+
+	    </div> -->
 
 
 
@@ -46,9 +57,9 @@
 			<a href="#"><div class="search_popup">Search Courses</div></a>
 			<div class="search_box">
 				<script type="text/javascript"> allCoursesjson('<%= @courses %>') </script>
-		    	<form class="search_course_form" method="get">
-			    	<input type="text" class="search_course_term" placeholder="Search Courses">
-			    	<select class="search_course_type" name="search_course_type">
+		    	<form action="/courses_search/api" class="search_course_form" method="post">
+			    	<input type="text" name="search" class="search_course_term" placeholder="Search Courses">
+			    	<select id="search_course_type" name="search_course_type">
 			    		<option value="all">All</option>
 			    		<option value="paid">Paid</option>
 			    		<option value="free">Free</option>
@@ -89,82 +100,13 @@
 
 
 
-<div class="site_wrapper" style="padding:0 10px 30px; margin-top:0; text-align: center; overflow:hidden;">
+<div class="wrapper" style="padding:0 10px 30px; margin-top:0; text-align: center; overflow:hidden;">
 
 	<div class="search_results_home">
 		<div class="result_search_terms"></div>
 		<hr>
 		<div class="search_result">NO RESULTS FOUND</div>
 		<div class="search_tags"></div>
-
-		<script type="text/javascript">
-			var coursejson = railsToJson('<%= @courses %>');
-
-			// console.log(coursejson);
-			$('.search_course_form').on('input', function(){
-				for(var i in coursejson){
-					var item = coursejson[i];
-					// console.log(item);
-
-					function listExactTitles(){
-						if(item.title === $('.search_course_term').val()){
-							if($('.search_result').text()==='NO RESULTS FOUND'){$('.search_result').empty();};
-							$('.search_result').append(item.title);
-							console.log(item.title);
-							// var foundPerfectMatches = true;
-						}else{
-							// $('.search_result').text('NO RESULTS FOUND');
-							// var foundPerfectMatches = false;
-						}
-						// return foundPerfectMatches;
-					}
-
-					function listCloseToTitles(){
-						var termSplit = $('.search_course_term').val().split(' ');
-						if(item.tags.length > 0 && item.tags !== ''){
-							var tagSplit = item.tags.split(',')
-							var hasTags = true;
-						}else{
-							var hasTags = false;
-						}
-
-						// console.log(tagSplit);
-						// console.log(termSplit);
-						
-						if(hasTags){
-							var ta = 0;
-							var te = 0;
-							var foundTags = 'na';
-
-							do{
-
-								if($.inArray(termSplit[te], tagSplit) !== -1){
-									$('.search_result').append(item.title);
-									foundTags = true;
-								}else{
-									ta+=1;
-									if( ta === tagSplit.length ){
-										foundTags = false;
-									}
-								}
-
-							}while(ta < tagSplit.length && foundTags === 'na');
-						}
-						// console.log(foundTags);
-						// return foundTags;
-
-					}
-
-					listExactTitles();
-					// listCloseToTitles();
-
-					// if(!listExactTitles() && !listCloseToTitles()){
-					// 	$('.search_result').text("NO RESULTS FOUND");
-					// }
-
-				};
-			});
-		</script>
 	</div>
 
 	<!-- <a href="/markets"><div class="info_box qtr">
@@ -231,7 +173,7 @@
 
 
 
-<div class="site_wrapper" style="padding:0 10px 30px; margin-top:0; text-align: center; overflow:hidden;">
+<div class="wrapper" style="padding:0 10px 30px; margin-top:0; text-align: center; overflow:hidden;">
 
 	<div class="half">
 		<div class="video_info_title">What is Video Rehearser?</div>

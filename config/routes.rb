@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # resources :feedbacks
   root 'welcome#index'
 
-  menu_routes = ['about','markets','mission','process','contact']
+  menu_routes = ['about','markets','mission','process','contact','versions']
   menu_routes.push('theteam','termsandservices','FAQs','requirements','policies','press','teach','coach','learn','create','support')
   menu_routes.each do |menu|
     get "/#{menu}" => "welcome##{menu}"
@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     get '/'+apir+'/:id/api' => "api##{apir}_single_api"
     put '/'+apir+'/:id/api' => "#{apir}#update"
   end
+  get "/display_course/:id" => "courses#display"
+  get "/new_termsandservices" => "welcome#reviewtermsandservices"
+  post "/accepttermsandservices" => "welcome#accepttermandservices"
+  post "/courses_search/api" => "api#courses_search_api"
 
 
   put '/rehearsal/:rehearsal_id/rehearsal_approved' => "rehearsals#rehearsal_approved"

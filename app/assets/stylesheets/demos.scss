@@ -4,13 +4,27 @@
 
 @import 'scaffold';
 
+.demo_box{
+  position:relative;
+  top:17%;
+}
+
+.learn_more{
+  display:inline-block; float:none; padding:10px 15px; margin:15px 5px 15px 10px;
+  background-color:transparent; border-radius:16px; color:white; font-size:15px; font-family:'gotham_light';
+  transition: 0.2s; border:1px white solid;
+  &:hover{
+    background-color: rgba(white, 0.2);
+  }
+}
 .demo{
   display:inline-block; float:none; padding:10px 15px; margin:15px  auto;
-  background-color:#FF3B3B; border-radius:0px; color:white; font-size:15px; font-family:'gotham_light';
-  transition: 0.5s;
+  background-color:#FF3B3B; border-radius:16px; color:white; font-size:15px; font-family:'gotham_light';
+  @include box_extrude(#880006, 2);
   &:hover{
     background-color:#DF010C;
-    @include box_extrude(#880006, 3);
+    position:relative; bottom:-2px; right:-2px;
+    @include box_extrude(transparent, 0);
   }
 }
 
@@ -18,7 +32,6 @@
 	max-width:500px; padding:10px 20px 30px; margin:auto;
 	color:white; background-color:rgba(black, 0.5);
 	border-radius:5px;
-  transition: 0.5s;
 }
 
 .demo_separation{ margin:60px 0; transition: 0.5s;}
@@ -32,6 +45,14 @@
     input[type='submit'], button{
       padding:7px 12px;
     }
+  }
+
+}
+
+@media only screen and (max-width: 480px) {
+  .demo_box{
+    position:absolute;
+    top:27%;
   }
 
 }

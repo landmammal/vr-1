@@ -11,6 +11,27 @@ class ApiController < ApplicationController
 		render json: @courses
 	end
 
+	def courses_search_api
+		# @courses = Course.all
+
+		# @search_list = []
+		# @courses.each do |course|
+		# 	title_array = course.title.downcase.split(' ')
+		# 	@search_list << course if title_array.include? params[:search].downcase
+		# end
+
+		# render json: @search_list
+
+		params[:search] != '' ? @courses = Course.where(["lower(title) LIKE ?", "%#{params[:search]}%"]) : @courses = []
+
+		render json: @courses
+
+
+		# respond_to do |format|
+	 #        format.js { }
+	 #    end
+	end
+
 	def rehearsals_api
 		@rehearsals = Rehearsal.all
 	    render json: @rehearsals
