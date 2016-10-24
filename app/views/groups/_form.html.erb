@@ -1,3 +1,4 @@
+<div>Create a Group</div>
 <%= form_for [current_user, @group] do |f| %>
   <% if @group.errors.any? %>
     <div id="error_explanation">
@@ -10,9 +11,10 @@
       </ul>
     </div>
   <% end %>
+  <%= f.text_field :name, placeholder: '..name your group' %><br>
+  <%= f.text_area :description, placeholder: '..give it a brief description' %><br>
 
-  <%= f.text_field :name %><br>
-  <%= f.text_area :description %><br>
-  <%= f.check_box :privacy, {}, true, false %><br>
+    <span>Want it private</span> <%= f.check_box :privacy, {}, 1, 0 %><br>
   <%= f.submit %>
 <% end %>
+
