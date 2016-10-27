@@ -1,6 +1,3 @@
-<li>
-  <button class="submission"><%= @rehearsal.id %></button>
-</li>
 <% @this_video_token = @rehearsal.video_token %>
 <% @rehearsalNum = @lesson.rehearsals.where(trainee_id: current_user.id).size.to_s %>
 <div class="rehearsal_thumbnail">
