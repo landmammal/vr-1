@@ -25,7 +25,6 @@ var pageReady = function(){
 		        $('.js-num_rehearsals').text(newRehearseNum);
 			}
     		if(thisForm === 'feedback'){
-    			$form.submit();
 	    		$('.ba-videoplayer-theme-modern-rerecord-button-container').append("<span class='choose_rehearsal'>Your Feedback has been submitted. Reloading in 3 secs.</span>");
 	    		setTimeout(function(){ location.reload(); }, 3500);
     		}
