@@ -72,8 +72,12 @@ class RehearsalsController < ApplicationController
     @rehearsal = @lesson.rehearsals.build(rehearsal_params)
     respond_to do |format|
       if @lesson.save
+        puts @rehearsal.id
+        puts "================================================================"
+        @rehearsal = @lesson.rehearsals.last
+        puts @rehearsal.id
         format.js {  }
-        format.html { redirect_to @rehearsal, notice: 'Rehearsal was successfully created.' }
+        # format.html { redirect_to @rehearsal, notice: 'Rehearsal was successfully created.' }
       else
         format.html { render :new }
         format.json { render json: @rehearsal.errors, status: :unprocessable_entity }

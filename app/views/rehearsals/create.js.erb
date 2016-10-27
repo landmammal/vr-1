@@ -1,1 +1,4 @@
-$('ul').append( "<%= j render partial: 'rehearsal', locals: {rehearsal: @rehearsal} %>" );
+// $('ul').append( "<%= j render partial: 'rehearsal', locals: {rehearsal: @rehearsal} %>" );
+
+var newRehearsal = "<%= escape_javascript (render partial: './rehearsals/create', rehearsal: @rehearsal ) %>";
+$('.list_of_lesson_rehearsals').append(newRehearsal);
