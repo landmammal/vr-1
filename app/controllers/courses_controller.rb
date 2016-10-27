@@ -12,7 +12,6 @@ class CoursesController < ApplicationController
       @new_topic = Topic.new
       @new_lesson = Lesson.new
     end
-    render json: @courses
   end
 
   def search

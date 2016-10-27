@@ -8,7 +8,7 @@
 		My courses:<br>
 		<div class="js-my_courses_list card_list">
 
-			<% @courses.each_with_index do |course, index| %>
+			<% @courses.order('id DESC').each_with_index do |course, index| %>
 
 				<a class="js-c_<%= course.id %>" href="<%= course_path(course) %>">	
 					<div class="card">

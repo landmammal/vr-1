@@ -19,30 +19,10 @@ var pageReady = function(){
 
 	    	if(thisForm === 'rehearsal'){
 	    		var nextRehearsal= $(".list_of_lesson_rehearsals > div").length + 1;
-	    		$('.ba-videoplayer-theme-modern-rerecord-button-container').append("<span class='choose_rehearsal'>Scroll down to send to instructor</span>")
-			    $.ajax({
-		          type:'GET',
-		          url:'/rehearsals/api',
-		          success: function(data){
+	    		$('.ba-videoplayer-theme-modern-rerecord-button-container').append("<span class='choose_rehearsal'>Scroll down to send to instructor</span>");
 
-		            var sorted = data.sort(SortObjectsById);
-		            var thisRehearsalId = sorted[sorted.length - 1].id;
-		            var newrehearsal = `<div class="rehearsal_thumbnail">`+
-		                                  `<button class="shadebox_btn rehearsal_btn" data-rehearsal="`+thisRehearsalId+`" data-rehearsalnumber="`+nextRehearsal+`">`+
-		                                      `Rehearsal `+nextRehearsal+
-		                                      `<div id="rehearsal_`+thisRehearsalId+`_status" class="blankdot"></div><br>`+
-		                                      `<img src="`+videoImage(videoToken)+`" width="100%" class="rehearsal_img"><br>`+
-		                                      `ref#: r`+((thisRehearsalId*30)+5)*7+`id`+thisRehearsalId+
-		                                  `</button>`+
-		                                `</div>`;
-		            $('.list_of_lesson_rehearsals').append(newrehearsal);
-		            var newRehearseNum = parseInt($('.js-num_rehearsals').text()) + 1;
-		            $('.js-num_rehearsals').text(newRehearseNum);
-		            // location.reload();
-		            // window.location.href = "#send_to_instructor";
-		            // window.location.replace("#send_to_instructor");
-		          }
-		        });
+		        var newRehearseNum = parseInt($('.js-num_rehearsals').text()) + 1;
+		        $('.js-num_rehearsals').text(newRehearseNum);
 			}
     		if(thisForm === 'feedback'){
 	    		$('.ba-videoplayer-theme-modern-rerecord-button-container').append("<span class='choose_rehearsal'>Your Feedback has been submitted. Reloading in 3 secs.</span>");
