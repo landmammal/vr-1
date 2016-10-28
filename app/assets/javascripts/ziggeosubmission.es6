@@ -45,10 +45,10 @@ var pageReady = function(){
 	    	var videoToken = recorder.get('video');
 	    	var thisForm = ziggeoClass.replace('Form','');
 	    	
-	    	if(thisForm == 'rehearsal'){
+	    	if(thisForm === 'rehearsal'){
 		    	$('.ba-videoplayer-theme-modern-rerecord-button').before("<button class='submit_rehearsal submit_ziggeo green_sft' style='float:right;' data-formname='rehearsal'><span>Save Rehearsal</span></button>");
 	    	}
-	    	if(thisForm == 'feedback'){
+	    	if(thisForm === 'feedback'){
 		    	$('.ba-videoplayer-theme-modern-rerecord-button').before("<button class='submit_feedback submit_ziggeo blue' style='float:right;' data-formname='feedback'><span>Send Feedback</span></button>");
 	    	}
 
