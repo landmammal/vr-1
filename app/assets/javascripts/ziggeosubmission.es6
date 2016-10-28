@@ -38,7 +38,7 @@ var pageReady = function(){
 	    recorder.on('verified', function() {
 	    	$('.save_ziggeo').show();
 	    	$('.submit_'+ziggeoClass).show();
-	    	$('.submit_2').hide();
+	    	// $('.submit_2').hide();
 	    	// console.log('Ziggeo');
 
 	    	var streamToken = recorder.get('stream');
