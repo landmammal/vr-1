@@ -5,8 +5,8 @@ var pageReady = function(){
 
 	    var recorder = ZiggeoApi.V2.Recorder.findByElement($('ziggeorecorder#ziggeoRecorder'));
 	    var ziggeoClass = recorder._parentElement.className;
-	    // console.log(recorder);
-	    // console.log(ziggeoClass);
+	    console.log(recorder);
+	    console.log(ziggeoClass);
 
 
 	    function postTokenInForm(thisForm, videoToken, streamToken){
@@ -15,7 +15,7 @@ var pageReady = function(){
 	    	$('#'+thisForm+'_token').val(streamToken);
 	    	$form.submit();
 
-	    	// console.log(thisForm+" in submission");
+	    	console.log(thisForm+" in submission");
 
 	    	if(thisForm === 'rehearsal'){
 	    		var nextRehearsal= $(".list_of_lesson_rehearsals > div").length + 1;
@@ -39,11 +39,12 @@ var pageReady = function(){
 	    	$('.save_ziggeo').show();
 	    	$('.submit_'+ziggeoClass).show();
 	    	// $('.submit_2').hide();
-	    	// console.log('Ziggeo');
+	    	console.log('Ziggeo');
 
 	    	var streamToken = recorder.get('stream');
 	    	var videoToken = recorder.get('video');
 	    	var thisForm = ziggeoClass.replace('Form','');
+	    	console.log(thisForm+" 01 ");
 	    	
 	    	if(thisForm === 'rehearsal'){
 		    	$('.ba-videoplayer-theme-modern-rerecord-button-container').prepend("<button class='submit_rehearsal submit_ziggeo green_sft' style='float:right;' data-formname='rehearsal'><span>Save Rehearsal</span></button>");
@@ -54,10 +55,10 @@ var pageReady = function(){
 
 	    	if($('.submit_'+ziggeoClass).length > 0){
 		    	$(document).on('click', '.submit_'+ziggeoClass, function() {
-		    		// console.log('clicked');
+		    		console.log('clicked');
 
 			    	thisForm = $(this).data('formname');
-			    	// console.log(thisForm);
+			    	console.log(thisForm+" 02 ");
 
 
 			    	if(videoToken != ''){
@@ -81,7 +82,7 @@ var pageReady = function(){
 			    	}
 		    	});
 		    }else{
-		    	// console.log(thisForm+" form sent");
+		    	console.log(thisForm+" form sent");
 	    		postTokenInForm(thisForm, videoToken, streamToken);
 		    }
 
