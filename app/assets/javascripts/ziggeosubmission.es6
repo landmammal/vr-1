@@ -47,6 +47,7 @@ var pageReady = function(){
 	    	console.log(thisForm+" 01 ");
 	    	
 	    	if(thisForm == 'rehearsal'){
+	    		console.log(" PUT BUTTON");
 		    	$('.ba-videoplayer-theme-modern-rerecord-button-container').prepend("<button class='submit_rehearsal submit_ziggeo green_sft' style='float:right;' data-formname='rehearsal'><span>Save Rehearsal</span></button>");
 	    	}
 	    	if(thisForm == 'feedback'){
