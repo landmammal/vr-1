@@ -46,10 +46,10 @@ var pageReady = function(){
 	    	var thisForm = ziggeoClass.replace('Form','');
 	    	console.log(thisForm+" 01 ");
 	    	
-	    	if(thisForm === 'rehearsal'){
+	    	if(thisForm == 'rehearsal'){
 		    	$('.ba-videoplayer-theme-modern-rerecord-button-container').prepend("<button class='submit_rehearsal submit_ziggeo green_sft' style='float:right;' data-formname='rehearsal'><span>Save Rehearsal</span></button>");
 	    	}
-	    	if(thisForm === 'feedback'){
+	    	if(thisForm == 'feedback'){
 		    	$('.ba-videoplayer-theme-modern-rerecord-button-container').prepend("<button class='submit_feedback submit_ziggeo blue' style='float:right;' data-formname='feedback'><span>Send Feedback</span></button>");
 	    	}
 
