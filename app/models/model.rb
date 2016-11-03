@@ -1,4 +1,4 @@
-class Model < ActiveRecord::Base
+class Model < ApplicationRecord
   belongs_to :user
   belongs_to :lesson
   

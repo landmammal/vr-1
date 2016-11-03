@@ -1,4 +1,4 @@
-class Course < ActiveRecord::Base
+class Course < ApplicationRecord
   belongs_to :instructor, class_name: 'User'
 
   has_many :course_registrations

@@ -1,4 +1,4 @@
-class Rehearsal < ActiveRecord::Base
+class Rehearsal < ApplicationRecord
   belongs_to :trainee, class_name: 'User'
 
   belongs_to :course

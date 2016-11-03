@@ -1,4 +1,4 @@
-class Lesson < ActiveRecord::Base
+class Lesson < ApplicationRecord
   belongs_to :instructor, class_name: 'User'
   belongs_to :topic
 

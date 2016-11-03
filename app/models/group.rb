@@ -1,4 +1,4 @@
-class Group < ActiveRecord::Base
+class Group < ApplicationRecord
   belongs_to :instructor, class_name: 'User'
 
   has_many :user_groups
