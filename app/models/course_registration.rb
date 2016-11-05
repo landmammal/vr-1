@@ -1,4 +1,4 @@
 class CourseRegistration < ApplicationRecorde
-  belongs_to :user
-  belongs_to :course
+  belongs_to :user, optional: true
+  belongs_to :course, optional: true
 end

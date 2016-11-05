@@ -1,6 +1,6 @@
 class Lesson < ApplicationRecord
-  belongs_to :instructor, class_name: 'User'
-  belongs_to :topic
+  belongs_to :instructor, optional: true, class_name: 'User'
+  belongs_to :topic, optional: true
 
   has_many :topic_lessons
   has_many :topics, through: :topic_lessons

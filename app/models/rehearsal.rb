@@ -1,10 +1,10 @@
 class Rehearsal < ApplicationRecord
-  belongs_to :trainee, class_name: 'User'
+  belongs_to :trainee, optional: true, class_name: 'User'
 
-  belongs_to :course
-  belongs_to :topic
-  belongs_to :lesson
-  belongs_to :group
+  belongs_to :course, optional: true
+  belongs_to :topic, optional: true
+  belongs_to :lesson, optional: true
+  belongs_to :group, optional: true
 
   has_many :lesson_rehearsals
   has_many :lessons, through: :lesson_rehearsals
