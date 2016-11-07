@@ -17,6 +17,12 @@ git push -f origin master
 
 
 
+NGROK
+sudo ngrok http 3000
+
+
+
+
 
 re-record ziggeo
 
