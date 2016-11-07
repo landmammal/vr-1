@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   after_create :send_admin_mail, :send_user_notice
   after_update :send_approved_email, :if => :approved_changed?
   # Include default devise modules. Others available are:

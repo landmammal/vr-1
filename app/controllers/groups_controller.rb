@@ -40,7 +40,6 @@ class GroupsController < ApplicationController
 
   def create
     @group = current_user.groups.build(group_params)
-
     respond_to do |format|
       if @group.save
         format.html { redirect_to user_groups_path(current_user), notice: 'group was successfully created.' }

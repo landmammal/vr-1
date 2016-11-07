@@ -1,17 +1,14 @@
-<li>
-  <button class="submission"><%= @rehearsal.id %></button>
-</li>
-<script>
-  $("ul li").on('click',".submission", function () {
-    // console.log('hi');
-    // var example= name {name: name};
-    $.ajax({
-    url: '/rehearsals/<%= @rehearsal.id %>/api',
-    type: "PUT",
-    // data: { @rehearsal = '<%= @rehearsal.id %>' },
-    success: function(data){
-      // console.log(data);
-    }});
+<% @this_video_token = @rehearsal.video_token %>
+<% @rehearsalNum = @lesson.rehearsals.where(trainee_id: current_user.id).size.to_s %>
+<div class="rehearsal_thumbnail">
+  <button class="shadebox_btn rehearsal_btn" data-rehearsal="<%= @rehearsal.id %>" data-rehearsalnumber="<%= @rehearsalNum %>">Rehearsal <%= @rehearsalNum %>
 
-  });
-</script>
+    <div id="rehearsal_<%= @rehearsal.id %>_status" class="blankdot"></div>
+
+    ref#: r<%= (((@rehearsal.id*30)+5)*7).to_s+"id"+@rehearsal.id.to_s %>
+  </button>
+  <script type="text/javascript">
+    $('#rehearsal_<%= @rehearsal.id %>_status').after('<br><img src="'+videoImage("<%= @this_video_token %>")+'" width="100%" class="rehearsal_img"><br>')
+  </script>
+</div>
+

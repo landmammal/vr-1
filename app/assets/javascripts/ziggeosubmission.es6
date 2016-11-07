@@ -5,8 +5,8 @@ var pageReady = function(){
 
 	    var recorder = ZiggeoApi.V2.Recorder.findByElement($('ziggeorecorder#ziggeoRecorder'));
 	    var ziggeoClass = recorder._parentElement.className;
-	    // console.log(recorder);
-	    // console.log(ziggeoClass);
+	    console.log(recorder);
+	    console.log(ziggeoClass);
 
 
 	    function postTokenInForm(thisForm, videoToken, streamToken){
@@ -15,34 +15,14 @@ var pageReady = function(){
 	    	$('#'+thisForm+'_token').val(streamToken);
 	    	$form.submit();
 
-	    	// console.log(thisForm+" in submission");
+	    	console.log(thisForm+" in submission");
 
 	    	if(thisForm === 'rehearsal'){
 	    		var nextRehearsal= $(".list_of_lesson_rehearsals > div").length + 1;
-	    		$('.ba-videoplayer-theme-modern-rerecord-button-container').append("<span class='choose_rehearsal'>Scroll down to send to instructor</span>")
-			    $.ajax({
-		          type:'GET',
-		          url:'/rehearsals/api',
-		          success: function(data){
+	    		$('.ba-videoplayer-theme-modern-rerecord-button-container').append("<span class='choose_rehearsal'>Scroll down to send to instructor</span>");
 
-		            var sorted = data.sort(SortObjectsById);
-		            var thisRehearsalId = sorted[sorted.length - 1].id;
-		            var newrehearsal = `<div class="rehearsal_thumbnail">`+
-		                                  `<button class="shadebox_btn rehearsal_btn" data-rehearsal="`+thisRehearsalId+`" data-rehearsalnumber="`+nextRehearsal+`">`+
-		                                      `Rehearsal `+nextRehearsal+
-		                                      `<div id="rehearsal_`+thisRehearsalId+`_status" class="blankdot"></div><br>`+
-		                                      `<img src="`+videoImage(videoToken)+`" width="100%" class="rehearsal_img"><br>`+
-		                                      `ref#: r`+((thisRehearsalId*30)+5)*7+`id`+thisRehearsalId+
-		                                  `</button>`+
-		                                `</div>`;
-		            $('.list_of_lesson_rehearsals').append(newrehearsal);
-		            var newRehearseNum = parseInt($('.js-num_rehearsals').text()) + 1;
-		            $('.js-num_rehearsals').text(newRehearseNum);
-		            // location.reload();
-		            // window.location.href = "#send_to_instructor";
-		            // window.location.replace("#send_to_instructor");
-		          }
-		        });
+		        var newRehearseNum = parseInt($('.js-num_rehearsals').text()) + 1;
+		        $('.js-num_rehearsals').text(newRehearseNum);
 			}
     		if(thisForm === 'feedback'){
 	    		$('.ba-videoplayer-theme-modern-rerecord-button-container').append("<span class='choose_rehearsal'>Your Feedback has been submitted. Reloading in 3 secs.</span>");
@@ -58,26 +38,30 @@ var pageReady = function(){
 	    recorder.on('verified', function() {
 	    	$('.save_ziggeo').show();
 	    	$('.submit_'+ziggeoClass).show();
-	    	$('.submit_2').hide();
-	    	// console.log('Ziggeo');
+	    	// $('.submit_2').hide();
+	    	console.log('Ziggeo');
 
 	    	var streamToken = recorder.get('stream');
 	    	var videoToken = recorder.get('video');
 	    	var thisForm = ziggeoClass.replace('Form','');
+	    	console.log(thisForm+" 01 ");
 	    	
-	    	if(thisForm == 'rehearsal'){
-		    	$('.ba-videoplayer-theme-modern-rerecord-button').before("<button class='submit_rehearsal submit_ziggeo green_sft' style='float:right;' data-formname='rehearsal'><span>Save Rehearsal</span></button>");
-	    	}
-	    	if(thisForm == 'feedback'){
-		    	$('.ba-videoplayer-theme-modern-rerecord-button').before("<button class='submit_feedback submit_ziggeo blue' style='float:right;' data-formname='feedback'><span>Send Feedback</span></button>");
-	    	}
+	    	setTimeout(function(){
+		    	if(thisForm == 'rehearsal'){
+		    		console.log(" PUT BUTTON");
+			    	$('.ba-videoplayer-theme-modern-rerecord-button-container').prepend("<button class='submit_rehearsal submit_ziggeo green_sft' style='float:right;' data-formname='rehearsal'><span>Save Rehearsal</span></button>");
+		    	}
+		    	if(thisForm == 'feedback'){
+			    	$('.ba-videoplayer-theme-modern-rerecord-button-container').prepend("<button class='submit_feedback submit_ziggeo blue' style='float:right;' data-formname='feedback'><span>Send Feedback</span></button>");
+		    	}
+	    	}, 600);
 
 	    	if($('.submit_'+ziggeoClass).length > 0){
 		    	$(document).on('click', '.submit_'+ziggeoClass, function() {
-		    		// console.log('clicked');
+		    		console.log('clicked');
 
 			    	thisForm = $(this).data('formname');
-			    	// console.log(thisForm);
+			    	console.log(thisForm+" 02 ");
 
 
 			    	if(videoToken != ''){
@@ -101,7 +85,7 @@ var pageReady = function(){
 			    	}
 		    	});
 		    }else{
-		    	// console.log(thisForm+" form sent");
+		    	console.log(thisForm+" form sent");
 	    		postTokenInForm(thisForm, videoToken, streamToken);
 		    }
 

@@ -1,4 +1,4 @@
-class AdminMailer < ActionMailer::Base
+class AdminMailer < ApplicationMailer
   add_template_helper(EmailHelper)
   default from: 'notification@videorehearser.com'
 

@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
-
-  resources :performance_feedbacks
-  # resources :feedbacks
+  # landing page
   root 'welcome#index'
+  resources :performance_feedbacks
 
+  # routes for menu
   menu_routes = ['about','markets','mission','process','contact','versions']
   menu_routes.push('theteam','termsandservices','FAQs','requirements','policies','press','teach','coach','learn','create','support')
   menu_routes.each do |menu|
     get "/#{menu}" => "welcome##{menu}"
   end
 
+  # api routes
   api_routes = ['courses','topics','lessons','course_registrations','site_panel','common_panel','instructor_panel','admin_panel']
   api_routes.push('demos','tasks','chat')
   api_routes.push('rehearsals', 'feedbacks', 'group')
@@ -59,7 +60,7 @@ Rails.application.routes.draw do
   get "/groups/all_groups" => "groups#all_groups"
   get '/groups/:id' => 'groups#my_group'
   get '/group_registrations/group/:id' => 'group_registrations#registrations'
-  
+
   resources :lessons, shallow: true do
     resources :explanations
     resources :prompts
@@ -81,20 +82,14 @@ Rails.application.routes.draw do
 
   resources :demos
   resources :tasks
-
-
   # resources :models
   # resources :explanations
   # resources :practices
-
   # resources :group_registrations
   # resources :course_registrations
   # resources :user_groups2
-
-
   # resources :course_topics
   # resources :topic_lessons
-
   # resources :lesson_concepts
   # resources :lesson_models
   # resources :lesson_prompts

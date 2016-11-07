@@ -56,7 +56,7 @@ class LessonsController < ApplicationController
   # POST /lessons
   # POST /lessons.json
   def create
-    @topic = current_user.topics.find(params[:lesson][:topic_id])
+    @topic = current_user.topics.find(params[:topic_id])
     @topic.lessons.build(lesson_params)
 
     @topic.lessons.last.title = 'New Lesson (rename)' if @topic.lessons.last.title == ''

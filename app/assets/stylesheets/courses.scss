@@ -70,7 +70,7 @@
 			// border-radius:5px 5px 0 0;
 		}
 		& .card_desc{
-			height: 65px; overflow:hidden; position:relative;
+			height: 80px; overflow:hidden; position:relative;
 			padding:5px 8px; color:#333;
 			// border:1px solid #ddd; border-radius:0 0 5px 5px ;
 			border-top:0;
@@ -87,6 +87,7 @@
 		    bottom: 5px;
 		    overflow: hidden;
 		    width: 95%;
+		    background-color:none;
 
 			& .circle_count{
 				width:7px; height:7px; float: left; 

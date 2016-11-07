@@ -1,4 +1,4 @@
-class GroupRegistration < ActiveRecord::Base
-  belongs_to :course
-  belongs_to :group
+class GroupRegistration < ApplicationRecord
+  belongs_to :course, optional: true
+  belongs_to :group, optional: true
 end

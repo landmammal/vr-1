@@ -1,5 +1,5 @@
-class TopicLesson < ActiveRecord::Base
-  belongs_to :topic
-  belongs_to :lesson
+class TopicLesson < ApplicationRecord
+  belongs_to :topic, optional: true
+  belongs_to :lesson, optional: true
   accepts_nested_attributes_for :lesson
 end

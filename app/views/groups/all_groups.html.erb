@@ -10,7 +10,7 @@
             <div class="group_slice">
               <% slice.each do |group| %>
 
-                  <% if group.user_groups.where(approval_status: false).length > 0 || group.user_groups.where(approval_status: true).length > 0%>
+                  <% if group.user_groups.where(approval_status: false).length > 0 || group.user_groups.where(approval_status: true).length > 0 || group.privacy == 1 %>
 
                   <% else %>
                     <% @user = group.instructor_id %>

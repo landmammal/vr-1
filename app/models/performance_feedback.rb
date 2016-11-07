@@ -1,4 +1,4 @@
-class PerformanceFeedback < ActiveRecord::Base
-  belongs_to :rehearsal
-  belongs_to :feedback
+class PerformanceFeedback < ApplicationRecord
+  belongs_to :rehearsal, optional: true
+  belongs_to :feedback, optional: true
 end
