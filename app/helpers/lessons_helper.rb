@@ -37,4 +37,22 @@ module LessonsHelper
 	def hasVideoToken(element)
 		return (element.video_token == '' || element.video_token.nil?)
 	end
+
+
+	def LessonNextPrevious(lesson)
+		topic = lesson.topic # CHANGE when interchanging lessons with other topics
+		lesson_list = []
+		next_previous = [0,1]
+
+		topic.lessons.order('id ASC').each { |lesson| lesson_list << lesson.id }
+		# Make difference between instructor and Trainnee
+		#CHANGE when able to reorder lessons 
+		
+		thisIdIndex = lesson_list.index(lesson.id)
+
+		lesson_list.last == lesson.id ? next_previous[1] = false : next_previous[1] = lesson_list[thisIdIndex+1]
+		thisIdIndex == 0 ? next_previous[0] = false : next_previous[0] = lesson_list[thisIdIndex-1]
+
+		return next_previous
+	end
 end

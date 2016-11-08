@@ -47,6 +47,23 @@
 .lesson_err{font-weight:bold; color:red;}
 
 
+.body.lesson_holder{
+	width:calc(100% - 110px);
+	float:left;
+}
+
+.lesson_nav_holder{
+	float:left; margin:5px;
+	width:45px; position:relative;
+	& .lesson_nav{
+		font-size:45px;
+		position:absolute;
+		top:200px; 
+		&.inactive{
+			color:#D6D7DA;
+		}
+	}
+}
 
 // Lesson Ziggeo Interface
 .showIfLessonComplete{

@@ -21,10 +21,21 @@
 
 <div class="box_sep">
   <div class="lesson_half"></div>
+  <% @next = LessonNextPrevious(@lesson)[1] %>
+  <% @previous = LessonNextPrevious(@lesson)[0] %>
+
+  <div class="lesson_nav_holder">
+    <% if @previous != false %>
+      <a href="<%= course_topic_path(@course, @topic) %>/lessons/<%= @previous %>" class="ion-android-arrow-dropleft-circle lesson_nav"></a>
+    <% else %>
+        <span class="ion-android-arrow-dropleft-circle lesson_nav inactive"></span>
+    <% end %>
+  </div>
+
+
   <%if lesson_creator %>
 
-    
-    <div class="body">
+    <div class="body lesson_holder">
 
       <!-- CREATION PROGRESS -->
 
@@ -221,7 +232,7 @@
 
   <% elsif (@lesson_ready && course_trainee) %>
 
-    <div class="body">
+    <div class="body lesson_holder">
       <%= render 'trainee' %>
       <button class="small_btn blue js-click_back">Back</button>
     </div>
@@ -234,6 +245,14 @@
     </div>
 
   <%end%>
+
+  <div class="lesson_nav_holder">
+      <% if @next != false %>
+        <a href="<%= course_topic_path(@course, @topic) %>/lessons/<%= @next %>" class="ion-android-arrow-dropright-circle lesson_nav"></a>
+      <% else %>
+          <span class="ion-android-arrow-dropright-circle lesson_nav inactive"></span>
+      <% end %>
+  </div>
 
 
 
