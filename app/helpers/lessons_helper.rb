@@ -55,4 +55,22 @@ module LessonsHelper
 
 		return next_previous
 	end
+
+
+	def TopicNextPrevious(topic)
+		course = topic.course # CHANGE when interchanging topics with other courses
+		topic_list = []
+		next_previous = [0,1]
+
+		course.topics.order('id ASC').each { |topic| topic_list << topic.id }
+		# Make difference between instructor and Trainnee
+		#CHANGE when able to reorder topics 
+		
+		thisIdIndex = topic_list.index(topic.id)
+
+		topic_list.last == topic.id ? next_previous[1] = false : next_previous[1] = topic_list[thisIdIndex+1]
+		thisIdIndex == 0 ? next_previous[0] = false : next_previous[0] = topic_list[thisIdIndex-1]
+
+		return next_previous
+	end
 end
