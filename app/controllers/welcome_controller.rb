@@ -17,7 +17,7 @@ class WelcomeController < ApplicationController
     @site_title = 'Markets'
   end
 
-  def mission
+  def overview
     @site_title = 'What we offer'
   end
 
