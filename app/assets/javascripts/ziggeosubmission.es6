@@ -27,6 +27,7 @@ var pageReady = function(recorder){
 	    		if(thisForm === 'feedback'){
 		    		$('.ba-videoplayer-theme-modern-rerecord-button-container').append("<span class='choose_rehearsal'>Your Feedback has been submitted. Reloading in 3 secs.</span>");
 		    		setTimeout(function(){ location.reload(); }, 3500);
+		    		// setTimeout(function(){ recorder.reset(); }, 3500);
 	    		}
 		    };
 
@@ -89,11 +90,6 @@ var pageReady = function(recorder){
 		    		postTokenInForm(thisForm, videoToken, streamToken);
 			    }
 
-			    function resetZiggeo(){
-			    	// break;
-			    	streamToken = "";
-		    		videoToken = "";
-			    }
 
 			    $('.ba-videoplayer-theme-modern-rerecord-button').click(function(){
 			    	resetZiggeo();
@@ -109,6 +105,15 @@ var pageReady = function(recorder){
 			
 			$(document).on('click', '.record_another_'+ziggeoClass.replace('Form',''), function() {
 				location.reload();
+				// recorder.reset();
+				// $('.rehearsal_script').text('');
+				// $(this).hide();
+				// $('.submit_'+ziggeoClass).removeClass('submitted_ziggeo');
+				// $('.submit_'+ziggeoClass).empty();
+				// $('.submit_'+ziggeoClass).text('Save Rehearsal');
+				// $('.record_another_'+ziggeoClass).hide();
+				// streamToken = '';
+		  //   	videoToken = '';
 			});
 		});
 	};
