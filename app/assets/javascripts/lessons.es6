@@ -403,7 +403,7 @@ var pageReady = function(){
 	    		// $('ziggeorecorder').attr('ziggeo-disable_first_screen', '');
 	    		// embed.activate();
 	    		// embed.record();
-	    		embed.reset();
+	    		// embed.reset();
 	    	}
 	    	return playhead;
 	    }
