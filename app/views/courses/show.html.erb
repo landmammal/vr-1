@@ -41,7 +41,7 @@
   <%end%>
 
   <div class="card_list">
-    <% @course.topics.each_with_index do |topic, index| %>
+    <% @course.topics.order('id ASC').each_with_index do |topic, index| %>
       <div class="card">
         <a href="<%= course_topic_path(@course, topic) %>">
           <div class="card_title topic">
