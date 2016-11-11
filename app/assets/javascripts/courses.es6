@@ -4,7 +4,7 @@ function edit_or_start_course(course){
 	$('.js-edit_'+course).click(function(event){
 		event.preventDefault();
 
-        console.log('clicked to edit')
+        // console.log('clicked to edit')
         $('.edit_'+course).toggle();
         $('.more_'+course).toggle();
         $('.edit_sec_'+course).toggle();
@@ -17,7 +17,7 @@ function edit_or_start_course(course){
         
         $('.js-start_'+course).click(function(event){
 			event.preventDefault();
-            console.log('clicked to start');
+            // console.log('clicked to start');
 
         });
 
@@ -25,11 +25,11 @@ function edit_or_start_course(course){
            
         $('.js-start_'+course).click(function(event){
 			event.preventDefault();
-	        console.log('clicked to register');
+	        // console.log('clicked to register');
 
-	        console.log($('.js-course_id_'+course).text());
-			console.log($('.js-user_id_'+course).text());
-			console.log($('.js-user_role_'+course).text());
+	        // console.log($('.js-course_id_'+course).text());
+			// console.log($('.js-user_id_'+course).text());
+			// console.log($('.js-user_role_'+course).text());
 
 			var coursereg = new Object();
 				coursereg.course_id = $('.js-course_id_'+course).text();
@@ -42,7 +42,7 @@ function edit_or_start_course(course){
 				data:coursereg,
 				success:function(data){
 
-			        console.log('registered')
+			        // console.log('registered')
 			        $('.check_'+course).toggle();
 			        $('.checked_'+course).toggle();
 

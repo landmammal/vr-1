@@ -173,9 +173,9 @@ var pageReady = function(){
 
 	var lesson_videos = ['explanation','prompt','model','rehearsal'];
 
-	var explanation =  '<button class="green_sft big_btn lesson_btn show_explanation">Explanation</button>';
-	var demonstration =  '<button class="big_btn lesson_btn show_demonstrastion">Demonstration</button>';
-	var practice =  '<button class="big_btn lesson_btn show_practice">Practice</button>';
+	var explanation =  '<button class="selected lesson_btn show_explanation" data-group="lesson" data-frame="explanation">Explanation</button>';
+	var demonstration =  '<button class="lesson_btn show_demonstrastion" data-group="lesson" data-frame="demonstration">Demonstration</button>';
+	var practice =  '<button class="lesson_btn show_practice" data-group="lesson" data-frame="practice">Practice</button>';
 
 	var lesson_type = parseInt($('.lesson_type').text());
 	// console.log(lesson_type);
@@ -189,12 +189,13 @@ var pageReady = function(){
 
 	if( lesson_type == 0  || !lesson_type ){
 		$('.js-lesson_buttons').html(explanation+demonstration+practice);
+		$('.model_video').addClass('practice');
 
 	}else if(lesson_type == 1 || lesson_type == 2){
 		$('.js-lesson_buttons').html(explanation+practice);
 		$('.lesson_btn').width('19%');
-		if( lesson_type == 1){ $('.prompt_check').hide(); $('.js-prompt').hide(); lesson_desc = 'This is a Demonstration lesson, you only need the Explanation and the Role Model.';}
-		if( lesson_type == 2){ $('.model_check').hide(); $('.js-model').hide(); lesson_desc = 'This is a Question/Answer lesson, you only need the Explanation and the Prompt.';}
+		if( lesson_type == 1){ $('.prompt_check').hide(); $('.model_video').addClass('practice'); $('.js-prompt').hide(); lesson_desc = 'This is a Demonstration lesson, you only need the Explanation and the Role Model.';}
+		if( lesson_type == 2){ $('.model_check').hide(); $('.prompt_video').addClass('practice'); $('.js-model').hide(); lesson_desc = 'This is a Question/Answer lesson, you only need the Explanation and the Prompt.';}
 
 	}else if(lesson_type == 3){
 		$('.js-lesson_buttons').html(demonstration+practice);
@@ -208,8 +209,11 @@ var pageReady = function(){
 	$('.lesson_desc').text(lesson_desc);
 
 	$('.lesson_btn').click(function(){
-		$('.lesson_btn').removeClass('green_sft');
-		$(this).addClass('green_sft');
+		$('.lesson_btn').removeClass('selected');
+		$(this).addClass('selected');
+
+	    var embedding = ZiggeoApi.V2.Player.findByElement('ziggeoplayer');
+	    embedding.stop();
 	});
 
 	// if($('.model_video').text() || $('.prompt_video').text()){
@@ -219,17 +223,21 @@ var pageReady = function(){
 	// 	var rehearsal_video = document.getElementsByClassName('rehearsal_video')[0].innerHTML;
 	// }
 
+
 	function scrollToBody(){
-		$('html, body').animate({
-	        scrollTop: $(".body").offset().top
-	    }, 1000);
+		var bodyHTML = $('html, body');
+		if(bodyHTML[1].scrollTop < 238){
+			bodyHTML.animate({
+		        scrollTop: $(".body").offset().top
+		    }, 1000);
+		}
 	};
 
 
 	$('.explanation_video').removeClass('hide');
 	$('.explanation_video').addClass('full');
 
-	$('.show_explanation').click(function(){
+	$(document).on('click','.show_explanation' , function(){
 
 		$('.explanation_video').removeClass('hide');
 		$('.prompt_video').addClass('hide');
@@ -238,7 +246,7 @@ var pageReady = function(){
 		scrollToBody();
 	});
 
-	$('.show_demonstrastion').click(function(){
+	$(document).on('click','.show_demonstrastion' , function(){
 
 		$('.explanation_video').addClass('hide');
 		$('.prompt_video').removeClass('hide');
@@ -247,7 +255,7 @@ var pageReady = function(){
 		scrollToBody();
 	});
 
-	$('.show_practice').click(function(){
+	$(document).on('click','.show_practice' , function(){
 
 		$('.explanation_video').addClass('hide');
 		$('.rehearsal_video').removeClass('hide');
@@ -262,7 +270,7 @@ var pageReady = function(){
 		scrollToBody();
 	});
 
-	console.log($('.media_wrapper'));
+	// console.log($('.media_wrapper'));
 	
 	// if($('.media_wrapper').data('videotype') === "ziggeo" || !$('.media_wrapper').data('videotype')){
 		if($('.media_wrapper').data('token') !== ''){
@@ -357,6 +365,67 @@ var pageReady = function(){
 	// 	var videoType = $('.edit_component select option:selected').val();
 	// 	changeuploadWindow(videoType);
 	// });
+
+
+
+
+
+
+
+	//PLAYHEAD and POSITION EVENTS
+	ZiggeoApi.Events.on("system_ready", function(){
+
+	    var displayPosition = function(thisPlayer){
+	    	var embed = ZiggeoApi.V2.Player.findByElement(thisPlayer);
+	    	var controlbar = $('#'+thisPlayer.prop('id')+' div div ba-videoplayer-controlbar');
+			var position = controlbar.attr('ba-position');
+			var duration = controlbar.attr('ba-duration');
+
+			var durDif = duration-position;
+	    	if(durDif>0.01){ 
+	    		// console.log(durDif);
+			    continuePlayer(thisPlayer);
+	    	}else{
+			    stoppedPlayer(thisPlayer, 0);
+	    	}
+	    }
+
+	    function stoppedPlayer(thisPlayer, playhead){
+	    	var playerID = thisPlayer.prop('id');
+	    	// console.log(playerID, playhead);
+	    	
+	    	if(playerID.replace('_video_player','')==='prompt' && playhead < 0.03){
+	    		var embed = ZiggeoApi.V2.Player.findByElement($('#model_video_player'));
+	    		setTimeout(function(){ embed.play();}, 1000);
+	    	}
+	    	if(playerID.replace('_video_player','')==='model'){
+	    		var embed = ZiggeoApi.V2.Recorder.findByElement($('.rehearsal'));
+	    		// $('ziggeorecorder').attr('ziggeo-disable_first_screen', '');
+	    		// embed.activate();
+	    		embed.record();
+	    	}
+	    	return playhead;
+	    }
+	    function continuePlayer(thisPlayer){
+	    	setTimeout(function(){
+		    	displayPosition(thisPlayer);
+		    }, 100);
+	    }
+
+	    $('.ba-videoplayer-theme-modern-playbutton-container').click(function(){
+	    	var thisID = $(this).closest('ziggeoplayer');
+	    	setTimeout(function(){ displayPosition(thisID); }, 200);
+	    });
+	    // 'i.ba-videoplayer-theme-modern-icon-play'
+	    // 'i.ba-videoplayer-theme-modern-icon-pause'
+
+	    $('.js-set_cue').click(function(){
+	    	var thisID = $(this).data('videotype')+'_video_player';
+	    	// console.log(thisID);
+	    	var currentPosition = $('ziggeoplayer#'+thisID+' div div ba-videoplayer-controlbar').attr('ba-position');
+		    console.log(currentPosition);
+	    });
+	});
 
 };
 
