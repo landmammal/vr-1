@@ -1,0 +1,8 @@
+<% @progressbox = [nil,'prompt'] %>
+<% @item = @newComponent %>
+<% @index = 1 %>
+
+var addComponent = "<%= escape_javascript (render partial: './lessons/componentcreate', locals: { prompts: @item, prompt: @progressbox } ) %>";
+
+$('.js_listOf<%= @progressbox[1] %>s').append(addComponent);
+$('form.<%= @progressbox[1] %>Form')[0].reset();

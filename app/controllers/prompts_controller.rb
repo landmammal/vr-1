@@ -5,7 +5,11 @@ class PromptsController < ApplicationController
   before_action :set_prompt_update, only: [:edit, :update, :destroy]
 
   def new
-    @prompt = Prompt.new
+    # @newComponent = Prompt.new
+    # @this_component = 'Prompt'
+    # @this_error = 'error_prompt'
+    # @this_added_class = 'prompt'
+    # respond_to { |format| format.js { }}
   end
 
   def edit
@@ -21,12 +25,13 @@ class PromptsController < ApplicationController
 
     respond_to do |format|
       if @lesson.save
-        @prompt = Prompt.find(@lesson.prompts.last)
-        format.html { redirect_to edit_prompt_path(@prompt) }
-        format.json { render :show, status: :created, location: @topic }
+        @newComponent = Prompt.find(@lesson.prompts.last)
+        # format.html { redirect_to edit_prompt_path(@prompt) }
+        # format.json { render :show, status: :created, location: @topic }
+        format.js { }        
       else
-        format.html { render :new }
-        format.json { render json: @topic.errors, status: :unprocessable_entity }
+        # format.html { render :new }
+        # format.json { render json: @topic.errors, status: :unprocessable_entity }
       end
     end
   end

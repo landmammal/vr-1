@@ -1,0 +1,10 @@
+<%= if @course.size>0 %>
+	$('.card_list_search').show();
+	$('.card_list_search').html('<div style="text-align:center;">NO RESULTS</div>');
+	$('.card_list_original').hide();
+<% else %>
+	$('.card_list_search').hide();
+	$('.card_list_original').show();
+<% end %>
+
+$('.card_list_search').append( "<%= j render partial: 'rehearsal', locals: {rehearsal: @rehearsal} %>" );

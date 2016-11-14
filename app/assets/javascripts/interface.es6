@@ -198,13 +198,52 @@ var pageReady = function(){
 	$('.shadebox_bottom').prepend('<button class="shade_close red small_btn">x</button>');
 	$('.shadebox_title').prepend('<div class="shade_close">x</div>');
 	
+	
+	$('.shadebox').click(function(e){
+		if(e.target != this) return;
+		$(this).fadeOut(500);
+	});
+
 	$(document).on('click', '.shadebox_btn', function() {
-		$('.shadebox').fadeIn(500);
+		var thisShadebox = $(this).data('shadebox');
+		$('.shadebox[data-name='+thisShadebox+']').fadeIn(500);
 	});
 
 	$(document).on('click', '.shade_close', function() {
 		$('.shadebox').fadeOut(500);
+		// $(this).closest('form')[0].delay(2000).reset();
 	});
+
+	$(document).on('click', '.empty_shadebox_content', function() {
+		$('.shadebox_content').delay(2500).empty();
+		$(this).removeClass('empty_shadebox_content');
+	});
+
+	//=============== RIGHT PANEL ============ //
+
+	$('.right_panel').prepend('<div class="close"> x </div>');
+
+	$(document).on('click', '.right_panel_btn', function() {
+		var thisPanel = $(this).data('rightpanel');
+		$('.right_panel[data-name='+thisPanel+']').addClass('pop');
+	});
+
+	$(document).on('click', '.right_panel .close', function() {
+		$('.right_panel').removeClass('pop');
+	});
+	
+	$('.right_panel').click(function(e){
+		if(e.target != this) return;
+		$(this).removeClass('pop');
+	});
+
+
+
+
+
+
+
+
 
 	//=============== MANAGING WINDOW RESIZING ============ //
 

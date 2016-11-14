@@ -7,11 +7,19 @@
   </div>
   <div class="course_title">
     <%= @lesson.title %>
+    <% if lesson_creator %>
+      <a href="<%= edit_course_topic_lesson_path(@course, @topic, @lesson) %>" title="edit <%= @lesson.title %>">
+        <span class="ion-edit edit" style="font-size:15px; margin:50px 10px;"></span>
+      </a>
+    <% end %>
   </div>
   <% if lesson_creator %>
-    <div class="lesson_ready" style="display: none;">
-      <span class="ion-checkmark-circled" title="Lesson is ready"></span> <button class=" green_sft js-trainee_view" title="Click to view trainee window"> Trainee view </button>
-    </div>
+    <% if topic_lesson_status(@lesson) %>
+      <div class="lesson_ready">
+        <span class="ion-checkmark-circled" title="Lesson is ready"></span>
+        <button class=" green_sft js-trainee_view" title="Click to view trainee window"> Trainee view </button>
+      </div>
+    <% end %>
   <% end %>
 </div>
 
@@ -20,7 +28,54 @@
 
 
 <div class="box_sep">
-  <div class="lesson_half"></div>
+  <div class="title" style="padding:0;">
+    <% if lesson_creator %>
+      <a href="<%= course_topic_path(@course, @topic) %>">
+        <button class="green_sft lesson_create_btn">
+          Add Lesson
+        </button>
+      </a>
+    <% end %>
+
+    <button class="green_sft lesson_create_btn right_panel_btn" style="float:right; position:absolute; right:-5px; padding-right:20px;" data-rightpanel='browse_course'>
+      >>
+    </button>
+  </div>
+
+
+
+
+
+
+
+
+  <div class="right_panel" data-name='browse_course'>
+    <div class="title"><%= @course.title %></div>
+    <div class="content">
+      <% @course.topics.each do |topic| %>
+        <span style="font-family:'gotham';"><%= topic.title %></span>
+        <div class="right_lesson_list">
+          <% topic.lessons.each do |lesson| %>
+            <a href="<%= course_topic_lesson_path(@course, topic, lesson) %>">
+              <div class="item <%= ((topic_lesson_status(@lesson)) ? 'ready' : 'not_ready') if lesson_creator %>">
+                <%= lesson.title %>
+                <% if lesson == @lesson %>
+                  <span class="ion-android-arrow-dropleft-circle"></span>
+                <% end %>
+              </div>
+            </a>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+
+
+
+
+  <!-- <div class="lesson_half"></div> -->
   <% @next = LessonNextPrevious(@lesson)[1] %>
   <% @previous = LessonNextPrevious(@lesson)[0] %>
 
@@ -45,195 +100,134 @@
     <div class="body lesson_holder">
 
       <!-- CREATION PROGRESS -->
-
-      <div class="show_trainee_view" style="display: none;">
-          <%if @lesson_ready %>
-            <%= render 'trainee' %>
-            <br>
-          <% end %>
-      </div>
       
-      <div class="lesson_progress_bar" >
-
-        <div class="progress_unit js-explanation">
-          <div class="progress_btn js-explanation_prog"></div>
-          Explanation
-          <div class="explanation_prog_err lesson_err" style="display: none;"></div>
-        </div>
-
-        <div class="progress_unit js-prompt">
-          <div class="progress_btn js-prompt_prog"></div>
-          Prompt
-          <div class="prompt_prog_err lesson_err" style="display: none;"></div>
-        </div>
-
-        <div class="progress_unit js-model">
-          <div class="progress_btn js-model_prog"></div>
-          Model
-          <div class="model_prog_err lesson_err" style="display: none;"></div>
-        </div>
-
+      <div class="show_trainee_view" style="display:none;">
+          <%=  render 'trainee' if topic_lesson_status(@lesson) %>
       </div>
+
+      <% progressItems = [[@explanations,'explanation',@explanation],[@prompts,'prompt',@prompt],[@models,'model',@model]]  %>
+      <% progressItems.each do |progressbox| %>
+          <div class="<%= progressbox[1] %>_check lesson_progress">
+            <div class="progress_btn js-<%= progressbox[1] %>_prog"></div>
+
+            <%= progressbox[1].capitalize %>
+
+            <div class="lesson_err_wrapper">
+              <div class="<%= progressbox[1] %>_prog_err lesson_err"></div>
+            </div>
+
+            
+            <%= button_tag "Add "+progressbox[1].capitalize, class:"blue shadebox_btn", :data => {:shadebox => progressbox[1]+'_box'}, style:'margin-bottom:15px;'  %>
+
+            <div class="js_listOf<%= progressbox[1] %>s">
+              <% progressbox[0].order('id ASC').each_with_index do |item, index| %>
+                <a href="<%= '/'+progressbox[1]+'s/'+item.id.to_s+'/edit' %>">
+                  <% @progressbox = progressbox %>
+                  <% @item = item %>
+                  <% @index = index %>
+                  <%= render './lessons/componentcreate' %>
+                </a>
+              <% end %>
+            </div>
+          </div>
+
+
+          
+          <div class="shadebox" data-name='<%= progressbox[1] %>_box'>
+            <div class="shade box" style="max-width:630px; margin-top:10px;">
+              <div class="shadebox_title">
+                <div class="put_title_here"></div>
+              </div>
+              <div class="shadebox_content">
+                <% @newForm = progressbox[2] %>
+                <% @this_added_class = progressbox[1] %>
+                <% @this_component = progressbox[1].capitalize %>
+                <% @this_error = 'error_'+progressbox[1] %>
+                <%= render 'componentnew' %>
+              </div>
+              <div class="shadebox_bottom">
+              </div>
+            </div>
+          </div>
+
+      <% end %>
+      
+      
 
       <br>
 
+      <center><div class="lesson_desc" style="margin:50px 0 70px;"></div></center>
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-      <center>
-      <!-- ADDING EXPLANATION -->
-      <div class="explanation_check thrd" style="text-align: center;">
-        <div class="js_listOfexplanations"></div>
-        <script type="text/javascript">
-          thisLessonsList('explanations', '<%= @explanations.to_json %>')
-        </script>
-
-        <%= form_for [@lesson, @explanation]  do |f| %>
-          <% if @explanation.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
-              <ul>
-              <% @explanation.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-              </ul>
-            </div>
+      <div class="concept_list">
+        <div class="concept_title">
+          Concepts
+          <% if lesson_creator %>
+            <button class="shadebox_btn blue add_btn small" data-shadebox='add_concept' style="padding:2px 6px;">
+              +
+            </button>
           <% end %>
-          <div style="display: none;">
-            <%= f.text_field :user_id, type:"hidden", value:current_user.id %>
-            <%= f.text_field :lesson_id, type:"hidden", value:params[:id] %>
-            <%= f.text_field :video_type, value:"ziggeo", type:'hidden' %>
-            <%= f.text_field :language, value:"en", type:'hidden' %>
-            <%= f.text_field :title, type:"hidden", value:'New Explanation (rename)' %>
-          </div>
-          <%= f.submit 'Add Explanation', class:'blue' %>
+        </div>
+        <hr>
+        <% @lesson.concepts.each do |concept| %>
+          <a href="<%= edit_concept_path(concept) %>"> 
+             <div class="concepts" data-conceptid='concept_<%= concept.id.to_s %>'>
+                <% @ConceptWeigth = LessonConcept.where(lesson_id:@lesson.id).where(concept_id:concept.id)[0] %>
+                <%= concept.description %>
+                <div class="concept_weigth"><%= @ConceptWeigth.weight %></div>
+              </div>
+          </a>
         <% end %>
       </div>
 
 
 
-      <!-- ADDING PROMT -->
-      <div class="prompt_check thrd" style="text-align: center;">
-
-
-      <div class="js_listOfprompts"></div>
-        <script type="text/javascript">
-          thisLessonsList('prompts', '<%= @prompts.to_json %>')
-        </script>
-
-
-        <%= form_for [@lesson, @prompt]  do |f| %>
-          <% if @prompt.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(@prompt.errors.count, "error") %> prohibited this lesson from being saved:</h2>
-
-              <ul>
-              <% @prompt.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-              </ul>
-            </div>
-          <% end %>
-
-          <div style="display: none;">
-            <%= f.text_field :user_id, type:"hidden", value:current_user.id %>
-            <%= f.text_field :lesson_id, type:"hidden", value:params[:id] %>
-            <%= f.text_field :video_type, value:"ziggeo", type:'hidden' %>
-            <%= f.text_field :language, value:"en", type:'hidden' %>
-            <%= f.text_field :title, type:"hidden", value:'New Prompt (rename)' %>
-          </div>
-          <%= f.submit 'Add Prompt', class:'blue' %>
-        <% end %>
-      </div>
-
-
-
-
-      <!-- ADDING MODEL -->
-      <div class="model_check thrd" style="text-align: center;">
-
-
-        <div class="js_listOfmodels"></div>
-        <script type="text/javascript">
-          thisLessonsList('models', '<%= @models.to_json %>')
-        </script>
-
-
-        <%= form_for [@lesson, @model]  do |f| %>
-          <% if @model.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
-
-              <ul>
-              <% @explanation.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-              </ul>
-            </div>
-          <% end %>
-
-          <div style="display: none;">
-            <%= f.text_field :user_id, type:"hidden", value:current_user.id %>
-            <%= f.text_field :lesson_id, type:"hidden", value:params[:id] %>
-            <%= f.text_field :video_type, value:"ziggeo", type:'hidden' %>
-            <%= f.text_field :language, value:"en", type:'hidden' %>
-            <%= f.text_field :title, type:"hidden", value:'New Model (rename)' %>
-          </div>
-          <%= f.submit 'Add Role Model', class:'blue' %>
-        <% end %>
-      </div>
-
-      
-      <div class="lesson_desc" style="margin:70px;"></div>
-
-
-      </center>
-
-
-
-
-
-      <a href="<%= course_topic_path(@course, @topic) %>">
-        <button class="green_sft "> Add lesson </button>
-      </a>
       
 
       <!-- CONCEPTS -->
-      <br><br><br><br><br><br>
-      <%= form_for [@lesson, @concept]  do |f| %>
-        <% if @concept.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@concept.errors.count, "error") %> prohibited this lesson from being saved:</h2>
-
-            <ul>
-            <% @concept.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-            </ul>
+      <div class="shadebox" data-name='add_concept'>
+        <div class="shade box" style="max-width:630px; top:20%;">
+          <div class="shadebox_title">
+            <div class="put_title_here">
+              <span style="font-family:'gotham';">Add Concept</span>
+            </div>
           </div>
-        <% end %>
+          <div class="shadebox_content">
+            Concept for: <%= @lesson.title %><br><br>
+            <%= form_for [@lesson, @concept], remote: true do |f| %>
+              <% if @concept.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@concept.errors.count, "error") %> prohibited this lesson from being saved:</h2>
 
-        <%= f.text_field :user_id, type:"hidden", value:current_user.id %><br>
-        <%= f.text_field :lesson_id, type:"hidden", value:params[:id] %><br>
-        <%= f.text_field :description, placeholder: 'add a lesson concept...', style:'width:300px;' %>
-        <%= f.select :privacy, (@privacy) %>
-        <%= f.select :language, (@languages) %>
-        <%= f.submit 'Add Concept', class:'blue' %>
-      <% end %>
+                  <ul>
+                  <% @concept.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <%= f.text_field :user_id, type:"hidden", value:current_user.id %>
+              <%= f.text_field :lesson_id, type:"hidden", value:@lesson.id %>
+              <%= f.text_field :description, placeholder: 'add a lesson concept...', style:'width:300px;' %>
+              <%= f.select :privacy, (@privacy) %>
+              <%= f.select :language, (@languages) %><br><br>
 
-      
-      <button class="small_btn blue js-click_back">Back</button>
+              <b>Concept weight:</b> <span class='js-concept_weight'></span>/10<br>
+              <input id="concept_weight" name="concept_weight" type="range" min="1" max="10" step="0.25" value="0" style="width:200px; float:left; position:relative; left:-10px;" />
+
+              
+              <%= f.submit 'Add Concept', class:'shade_close blue', style:'float:right;' %>
+            <% end %>
+          </div>
+          <div class="shadebox_bottom">
+          </div>
+        </div>
+      </div>
+
 
     </div>
 
@@ -266,10 +260,8 @@
   </div>
 
 
-
-
   <script type="text/javascript">
-        // lessonProgress('<%= @exp_prog %>', '<%= @prompt_prog %>', '<%= @model_prog %>');
+        pageReady(true);
         lessonProgress('<%= @lesson.lesson_type %>','<%= @explanations.to_json %>', '<%= @prompts.to_json %>', '<%= @models.to_json %>');
   </script>
 

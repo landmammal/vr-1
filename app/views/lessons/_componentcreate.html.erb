@@ -1,0 +1,8 @@
+<a href="<%= '/'+@progressbox[1]+'s/'+@item.id.to_s+'/edit' %>">
+  <div class="component_item <%= 'ready' if component(@item)[1] %>"> 
+    <%= (@index+1).to_s+' - '+@item.title %>
+    <% if component(@item)[0] %>
+      <div class="greendot" title='this <%= @progressbox[1] %> has a video'></div>
+    <% end %>
+  </div>
+</a>

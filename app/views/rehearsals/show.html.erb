@@ -38,6 +38,7 @@
           <div class="media_wrapper">
             <% @this_added_class = 'feedback' %>
             <div class="ziggeo"><%= render './shared/ziggeorecorder' %></div>
+            <script type="text/javascript"> pageReady(true); </script>
           </div>
 
           <%= form_for [@rehearsal, @feedback],html: {class:"feedbackForm", id:"ziggeoRecorder"}, remote: true  do |f| %>

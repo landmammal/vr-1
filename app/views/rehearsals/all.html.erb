@@ -18,7 +18,7 @@
           <% @date_sub = time_diff(Time.now, rehearsal.updated_at) %>
 
 
-          <button class="user_bubble shadebox_btn rehearsal_activate <%= @r %>" data-rehearsalid='<%= rehearsal.id %>' data-coursetitle='<%= rehearsal.lesson.topic.course.title %>' data-topictitle='<%= rehearsal.lesson.topic.title %>' data-lessontitle='<%= rehearsal.lesson.title %>' >
+          <button class="user_bubble shadebox_btn rehearsal_activate <%= @r %>" data-shadebox="rehearsal" data-rehearsalid='<%= rehearsal.id %>' data-coursetitle='<%= rehearsal.lesson.topic.course.title %>' data-topictitle='<%= rehearsal.lesson.topic.title %>' data-lessontitle='<%= rehearsal.lesson.title %>' >
             <img src="<%= student_pic(rehearsal.trainee) %>"  class="img-circle">
             <div class="info"><%= rehearsal.trainee.first_name+' '+ rehearsal.trainee.last_name %><br>
               <font size="0.2em">Submitted: <%= @date_sub %></font></div>
@@ -36,7 +36,7 @@
         <% @r = 'rehearsal_bubble_'+rehearsal.id.to_s %>
         <% @date_sub = time_diff(Time.now, rehearsal.created_at) %>
 
-        <button class="user_bubble shadebox_btn rehearsal_activate <%= @r %>" data-rehearsalid='<%= rehearsal.id %>' data-coursetitle='<%= rehearsal.lesson.topic.course.title %>' data-topictitle='<%= rehearsal.lesson.topic.title %>' data-lessontitle='<%= rehearsal.lesson.title %>' >
+        <button class="user_bubble shadebox_btn rehearsal_activate <%= @r %>" data-shadebox="rehearsal" data-rehearsalid='<%= rehearsal.id %>' data-coursetitle='<%= rehearsal.lesson.topic.course.title %>' data-topictitle='<%= rehearsal.lesson.topic.title %>' data-lessontitle='<%= rehearsal.lesson.title %>' >
           <img src="<%= student_pic(rehearsal.trainee) %>"  class="img-circle">
           <div class="info"><%= rehearsal.trainee.first_name+' '+ rehearsal.trainee.last_name %><br>
             <font size="0.2em">Submitted: <%= @date_sub %></font></div>
@@ -46,23 +46,23 @@
   </div>
 
 
-  <div class="shadebox">
-        <div class="shade box">
-             <div class="shadebox_title">
-                <div class="put_title_here"></div>
-            </div>
-            <div class="shadebox_content" style="text-align:center;">
-                <div class="put_video_here"></div>
-                <hr>
-            </div>
-            <div class="shadebox_bottom">
-                <button type="button" class="mark_as_completed green_sft" style="float:left;" data-rehearsalid="" data-userid="<%= current_user.id %>">Mark as completed</button>
-                <a href="" class="leave_feedback">
-                  <button type="button" class="blue leave_feedback" style="float:left;" data-rehearsalid=" ">Leave Video Feedback</button>
-                </a>
-            </div>
-        </div>
+  <div class="shadebox" data-name="rehearsal">
+    <div class="shade box">
+      <div class="shadebox_title">
+        <div class="put_title_here"></div>
+      </div>
+      <div class="shadebox_content" style="text-align:center;">
+        <div class="put_video_here"></div>
+        <hr>
+      </div>
+      <div class="shadebox_bottom">
+        <button type="button" class="mark_as_completed green_sft" style="float:left;" data-rehearsalid="" data-userid="<%= current_user.id %>">Mark as completed</button>
+        <a href="" class="leave_feedback">
+          <button type="button" class="blue leave_feedback" style="float:left;" data-rehearsalid=" ">Leave Video Feedback</button>
+        </a>
+      </div>
     </div>
+  </div>
 
 </div>
 

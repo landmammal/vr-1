@@ -34,14 +34,7 @@
 			margin:0; background-color:white; overflow:hidden;
 			& .card_title{
 				font-size:15px; font-family:'webly_bld'; float:left; text-align:left; 
-				width: 90%; padding:5px;
-			}
-			& .card_edit{
-				font-size:15px; font-family:'webly_bld'; float:left; text-align:center; 
-				width: 10%; padding:5px; color:#ccc;
-				&:hover{
-					background-color: #0095DD ; color:white;
-				}
+				width: 100%; padding:5px;
 			}
 		}
 		& .card_desc, & .card_edit_sec{
@@ -51,6 +44,21 @@
 			&:hover{
 				background-color:white;
 			}
+			& button.register_to_course, & .course_content, & button.start_course{
+				position:absolute; bottom:0; padding:1px 5px;
+				font-size:10px; font-weight:500; border-radius:0;
+			}
+			& .course_content{
+				width:calc(100% - 50px); left:0;
+				background-color:#eee;
+			}
+			& button.register_to_course, & button.start_course{
+				width:50px; right:0; margin:0;
+				background-color:#14A0D7; color:white;
+				text-align: center;
+				&:hover{ background-color:#333; }
+			}
+			& button.start_course{ background-color:#1CDC69; }
 		}
 		& .card_edit_sec{
 			padding:20px 5px; text-align:center;

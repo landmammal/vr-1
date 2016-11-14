@@ -13,17 +13,22 @@ class ConceptsController < ApplicationController
 
     respond_to do |format|
       if @lesson.save
-        @concept = Concept.find(@lesson.concepts.last.id)
-        @lesson = Lesson.find(@concept.lesson_id)
-        @topic = Topic.find(@lesson.topic_id)
-        @course = Course.find(@topic.course_id)
-        format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson) }
-        format.json { render :show, status: :created, location: @topic }
+
+        @concept = @lesson.concepts.last
+        @lessonConcept = LessonConcept.where(lesson_id:@lesson.id).where(concept_id:@concept.id)
+        @lessonConcept[0].weight = params[:concept_weight].to_d
+        @weight = @lessonConcept[0].weight
+        @lessonConcept[0].save
+
+        format.js { }
       else
-        format.html { render :new }
-        format.json { render json: @topic.errors, status: :unprocessable_entity }
+        # format.html { render :new }
+        # format.json { render json: @topic.errors, status: :unprocessable_entity }
       end
     end
+    # puts "====================================================="
+    # puts params[:concept_weight]
+    # puts "====================================================="
   end
 
   def edit
@@ -62,10 +67,10 @@ class ConceptsController < ApplicationController
   end
 
   def concept_params
-    params.require(:concept).permit(:description, :lesson_id, :user_id)
+    params.require(:concept).permit(:description, :lesson_id, :user_id, :privacy, :language)
   end
   def concept_update
-    params.require(:concept).permit(:description)
+    params.require(:concept).permit(:description, :privacy, :language)
   end
 
   def set_lesson

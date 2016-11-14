@@ -81,6 +81,7 @@ var pageReady = function(){
 
         $('.mark_as_completed').data('rehearsalid', data.id);
         $('.leave_feedback').data('rehearsalid', data.id);
+        $('.shade_close').delay(1000).addClass('stop_video');
       }
     });
   });
@@ -98,7 +99,7 @@ var pageReady = function(){
       }
     });
   });
-  $('.shade_close').click(function(){
+  $(document).on('click', '.stop_video', function() {
     var embedding = ZiggeoApi.V2.Player.findByElement('ziggeoplayer');
     embedding.stop();
   });

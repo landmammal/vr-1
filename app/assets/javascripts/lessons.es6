@@ -91,7 +91,7 @@ function lessonProgress(les_type, expl_arr, prompt_arr, model_arr){
 				}else{
 					isReady = true;
 					// console.log('READY');
-					progressErr('ready ion-checkmark', name+' is ready');
+					progressErr('ready ion-checkmark', '');
 					$('.js-'+name).addClass('ready');
 				}
 			}
@@ -105,31 +105,10 @@ function lessonProgress(les_type, expl_arr, prompt_arr, model_arr){
 		});
 		return isReady;
 	}
-
-	var lesson_type = parseInt(les_type);
-	var lessonReady = false;
-
 	
-	if( lesson_type == 0 || !lesson_type ){
-		if(explanation_progress && prompt_progress && model_progress){ lessonReady = true; }
-	}else if( lesson_type == 1 ){
-		if(explanation_progress && model_progress){ lessonReady = true; }
-	}else if( lesson_type == 2 ){
-		if(explanation_progress && prompt_progress){ lessonReady = true; }
-	}else if( lesson_type == 3 ){
-		if(prompt_progress && model_progress){ lessonReady = true; }
-	}
-
-
-	if(lessonReady){
-		$('.lesson_ready').show();
-		
-		$('.js-trainee_view').click(function(){
-			$('.show_trainee_view').fadeToggle(500);
-		});
-		
-		$('.showIfLessonComplete').show();
-	}
+	$('.js-trainee_view').click(function(){
+		$('.show_trainee_view').fadeToggle(500);
+	});
 }
 
 
@@ -183,7 +162,7 @@ var pageReady = function(){
 	var lesson_desc = '';
 
 	if(lesson_type == 1 || lesson_type == 2 || lesson_type == 3 ){
-		$('.thrd').width('48%');
+		$('.lesson_progress').width('49.5%');
 		$('.progress_unit').width('50%');
 	}
 

@@ -1,12 +1,5 @@
 module LessonsHelper
-	def total_lessons
-		@registered_courses = current_user.registered_courses
-		lessons_count = 0
-		@registered_courses.each do |course|
-			course.topics.each { |topic| lessons_count += topic.lessons.size }
-		end
-		return lessons_count.to_s
-	end
+	
 	def lessons_completed
 		registered_courses = current_user.registered_courses
 		user_rehearsals = current_user.rehearsals.where(submission: true)
@@ -28,12 +21,22 @@ module LessonsHelper
 		return completed_lessons_count.to_s
 	end
 
+	def component(item)
+		ready = [false,false]
+
+		ready[1]=true if (item.position_prior == 1 && item.video_token!=nil)
+		ready[0]=true if item.video_token!=''
+
+		return ready
+	end
+
 
 	def rehearsals_for_this_lesson
 		@rehearsals_for_this_lesson = @lesson.rehearsals.where(trainee_id: current_user.id).order("id ASC")
 		return @rehearsals_for_this_lesson
 	end
 
+	# CHECK WHERE THIS IS BEING USED
 	def hasVideoToken(element)
 		return (element.video_token == '' || element.video_token.nil?)
 	end
