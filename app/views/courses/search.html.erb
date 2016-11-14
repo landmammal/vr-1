@@ -1,69 +1,20 @@
 <!-- <p id="notice"><%= notice %></p> -->
 
 <!-- <h3>Search for Courses</h3>
-  <%= form_tag do %>
-    <%= text_field_tag :search, nil, style:"width:400px;", placeholder:"search courses" %>
-    <%= button_tag "Search", class:"reg_btn blue" %>
-  <%end%> -->
-<hr>
+<%= form_tag do %>
+	<%= text_field_tag :search, nil, style:"width:400px;", placeholder:"search courses" %>
+	<%= button_tag "Search", class:"reg_btn blue" %>
+<%end%>
+<hr> -->
 
-<div class="card_list">
 
-  <% @courses.each do |course| %>
+<div class="card_list card_list_search" style="display:none;">
+	
+</div>
 
-    <div class="card_item">
-
-        <div class="card_title_sec">
-          
-          <a href="<%= course_path(course) %>">
-            <div class="card_title">
-              <%= course.title[0...25] %>
-              <% if course.title.length > 25 %>
-                 ...
-              <% end %>
-            </div>
-          </a>
-
-            <%if current_user.courses.include? course %>
-              <div class="card_edit js-edit_<%= course.id %>">
-                <span class="ion-edit edit_<%= course.id %>"></span>
-                <span class="ion-more more_<%= course.id %>" style="display: none;"></span>
-              </div>
-            <%else%>
-              <div class="card_edit js-start_<%= course.id %>">
-                <%if current_user.registered_courses.include? course %>
-                  <span class="js-user_registered_<%= course.id %>" style="display: none;">registered</span>
-                  <span class="ion-play play_<%= course.id %>"></span>
-                <%else%>
-                  <span class="js_user_registered_<%= course.id %>" style="display: none;">not_registered</span>
-                  <span class="js-course_id_<%= course.id %>" style="display: none;"><%= course.id.to_s %></span>
-                  <span class="js-user_id_<%= course.id %>" style="display: none;"><%= current_user.id.to_s %></span>
-                  <span class="js-user_role_<%= course.id %>" style="display: none;"><%= current_user.role %></span>
-                  
-                  <span class="ion-checkmark-circled check_<%= course.id %>"></span>
-                  <span class="ion-checkmark-circled checked_<%= course.id %>" style="color: #00D932; display: none;"></span>
-                <%end%>
-              </div>
-            <%end%>
-
-        </div>
-
-        <div class="card_desc card_desc_<%= course.id %>">
-          <%= course.description %>
-        </div>
-
-        <div class="card_edit_sec edit_sec_<%= course.id %>" style="display: none;">
-            <button class="blue small_btn">quick edit</button>
-            <a href="<%= course_path(course) %>"><button class="green_sft small_btn">view course</button></a>
-            <%= button_to "delete", course, method: :delete, data: { confirm: 'Are you sure?' }, class:"red small_btn" %>
-        </div>
-
-        <script type="text/javascript">
-          edit_or_start_course('<%= course.id %>')
-        </script>
-
-      </div>
-
-  <% end %>
-
+<div class="card_list card_list_original">
+	<% @courses.each do |course| %>
+		<% @item = course %>
+	    <%= render 'searchcard' %>
+	<% end %>
 </div>

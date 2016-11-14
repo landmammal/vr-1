@@ -6,12 +6,13 @@
 
 <div class="box_sep">
   <div class="body">
-  
-    <div class="prompt_video">    
+  <div class="component_wrapper">
+    <div class="record_component">    
 
       <div class="media_wrapper" data-videotype="<%= @component.video_type %>" data-token="<%= @component.video_token %>">
         <div class="ziggeo js-record_ziggeo hide">
           <%= render './shared/ziggeorecorder' %>
+          <script type="text/javascript"> pageReady(true); </script>
         </div>
 
         <div class="ziggeo js-play_ziggeo hide">
@@ -28,8 +29,8 @@
         </div>
       </div>
       <button class="js-re_create red hide"></button>
+      <!-- <button class="js-set_cue blue" data-videotype='<%= @this_added_class %>'>Set Queue</button> -->
       
-
     </div>
 
     <br><br>
@@ -76,5 +77,6 @@
     <br><br><br>
     <%= button_to "Delete "+@this_component, @component, class:'small_btn red', method: :delete, data: { confirm: 'Are you sure?' } %>
 
+  </div>
   </div>
 </div>

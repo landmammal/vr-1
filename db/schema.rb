@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -98,9 +97,8 @@ ActiveRecord::Schema.define(version: 20160901075943) do
     t.string   "video_type"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.index ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
   end
-
-  add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
 
   create_table "group_registrations", force: :cascade do |t|
     t.integer  "course_id"
@@ -108,10 +106,9 @@ ActiveRecord::Schema.define(version: 20160901075943) do
     t.boolean  "approval_status"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.index ["course_id"], name: "index_group_registrations_on_course_id", using: :btree
+    t.index ["group_id"], name: "index_group_registrations_on_group_id", using: :btree
   end
-
-  add_index "group_registrations", ["course_id"], name: "index_group_registrations_on_course_id", using: :btree
-  add_index "group_registrations", ["group_id"], name: "index_group_registrations_on_group_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
@@ -163,10 +160,9 @@ ActiveRecord::Schema.define(version: 20160901075943) do
     t.integer  "lesson_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.index ["lesson_id"], name: "index_lesson_rehearsals_on_lesson_id", using: :btree
+    t.index ["rehearsal_id"], name: "index_lesson_rehearsals_on_rehearsal_id", using: :btree
   end
-
-  add_index "lesson_rehearsals", ["lesson_id"], name: "index_lesson_rehearsals_on_lesson_id", using: :btree
-  add_index "lesson_rehearsals", ["rehearsal_id"], name: "index_lesson_rehearsals_on_rehearsal_id", using: :btree
 
   create_table "lessons", force: :cascade do |t|
     t.string   "title"
@@ -206,10 +202,9 @@ ActiveRecord::Schema.define(version: 20160901075943) do
     t.integer  "feedback_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.index ["feedback_id"], name: "index_performance_feedbacks_on_feedback_id", using: :btree
+    t.index ["rehearsal_id"], name: "index_performance_feedbacks_on_rehearsal_id", using: :btree
   end
-
-  add_index "performance_feedbacks", ["feedback_id"], name: "index_performance_feedbacks_on_feedback_id", using: :btree
-  add_index "performance_feedbacks", ["rehearsal_id"], name: "index_performance_feedbacks_on_rehearsal_id", using: :btree
 
   create_table "prompts", force: :cascade do |t|
     t.integer  "user_id"
@@ -242,12 +237,11 @@ ActiveRecord::Schema.define(version: 20160901075943) do
     t.boolean  "submission"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.index ["course_id"], name: "index_rehearsals_on_course_id", using: :btree
+    t.index ["group_id"], name: "index_rehearsals_on_group_id", using: :btree
+    t.index ["lesson_id"], name: "index_rehearsals_on_lesson_id", using: :btree
+    t.index ["topic_id"], name: "index_rehearsals_on_topic_id", using: :btree
   end
-
-  add_index "rehearsals", ["course_id"], name: "index_rehearsals_on_course_id", using: :btree
-  add_index "rehearsals", ["group_id"], name: "index_rehearsals_on_group_id", using: :btree
-  add_index "rehearsals", ["lesson_id"], name: "index_rehearsals_on_lesson_id", using: :btree
-  add_index "rehearsals", ["topic_id"], name: "index_rehearsals_on_topic_id", using: :btree
 
   create_table "tasks", force: :cascade do |t|
     t.integer  "user_id"
@@ -290,10 +284,9 @@ ActiveRecord::Schema.define(version: 20160901075943) do
     t.boolean  "approval_status"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.index ["group_id"], name: "index_user_groups_on_group_id", using: :btree
+    t.index ["user_id"], name: "index_user_groups_on_user_id", using: :btree
   end
-
-  add_index "user_groups", ["group_id"], name: "index_user_groups_on_group_id", using: :btree
-  add_index "user_groups", ["user_id"], name: "index_user_groups_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -339,12 +332,11 @@ ActiveRecord::Schema.define(version: 20160901075943) do
     t.datetime "banner_updated_at"
     t.boolean  "approved",               default: false, null: false
     t.string   "terms_of_use"
+    t.index ["approved"], name: "index_users_on_approved", using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   end
-
-  add_index "users", ["approved"], name: "index_users_on_approved", using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   add_foreign_key "feedbacks", "users"
   add_foreign_key "group_registrations", "courses"

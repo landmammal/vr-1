@@ -1,5 +1,5 @@
-class Feedback < ActiveRecord::Base
-  belongs_to :user
+class Feedback < ApplicationRecord
+  belongs_to :user, optional: true
 
   serialize :concept_review
 

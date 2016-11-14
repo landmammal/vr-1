@@ -5,7 +5,11 @@ class ExplanationsController < ApplicationController
   before_action :set_explanation_update, only: [:edit, :update, :destroy]
 
   def new
-    @explanation = Explanation.new
+    # @newComponent = Explanation.new
+    # @this_component = 'Explanation'
+    # @this_error = 'error_explanation'
+    # @this_added_class = 'explanation'
+    # respond_to { |format| format.js { }}
   end
 
   def show
@@ -21,12 +25,13 @@ class ExplanationsController < ApplicationController
 
     respond_to do |format|
       if @lesson.save
-        @explanation = Explanation.find(@lesson.explanations.last)
-        format.html { redirect_to edit_explanation_path(@explanation), notice: 'Explanation has been saved' }
-        format.json { render :show, status: :created, location: @explanation }
+        @newComponent = Explanation.find(@lesson.explanations.last)
+        # format.html { redirect_to edit_explanation_path(@explanation), notice: 'Explanation has been saved' }
+        # format.json { render :show, status: :created, location: @explanation }
+        format.js { }
       else
-        format.html { render :new }
-        format.json { render json: @explanation.errors, status: :unprocessable_entity }
+        # format.html { render :new }
+        # format.json { render json: @explanation.errors, status: :unprocessable_entity }
       end
     end
   end

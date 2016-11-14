@@ -1,0 +1,37 @@
+<div class="component_wrapper">
+  <div class="media_wrapper">
+    <div class="ziggeo">
+      <%= render './shared/ziggeorecorder' %>
+    </div>
+  </div>
+
+  <%= form_for [@lesson, @newForm], html: {class:@this_added_class+"Form", id:"ziggeoForm"}, remote: true do |f| %>
+    <% if @newForm.errors.any? %>
+      <div id="<%= @this_error %>">
+        <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+        <ul>
+        <% @newForm.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= f.text_field :video_token, type:"hidden", class:'video_token' %>
+    <%= f.text_field :token, type:"hidden", class:'token' %>
+    <%= f.text_field :user_id, value:current_user.id, type:'hidden' %>
+    <%= f.text_field :lesson_id, value:@lesson.id, type:'hidden' %>
+    <%= f.text_field :title, value:'New '+@this_component+' (rename)', placeholder:'New '+@this_component+' (rename)' %>
+    <%= f.check_box :position_prior %> Primary <%= @this_component %><br>
+    <%= f.text_area :script, placeholder: 'Script' %><br>
+    <%= f.select :language, (@languages) %>
+    <%= f.select :privacy, (@privacy) %>
+    <%= f.submit 'Save '+@this_component, class:'shade_close blue save_'+@this_added_class %>
+
+  <% end %>
+</div>
+
+<!-- <button class='submit_<%= @this_added_class %> submit_ziggeo blue' style='float:right;' data-formname="<%= @this_added_class %>">
+    <span>Save <%= @this_component %></span>
+</button> -->

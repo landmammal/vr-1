@@ -19,24 +19,49 @@
 	}
 }
 
-.lesson_progress_bar{
-	height:80px; overflow:hidden;
-	margin-bottom:10px;
-	text-align:center;
-	& .progress_unit{
-		width: 33.33%;
-		float: left; position:relative;
-		text-align:center; padding-top:5px;
-		& .progress_btn{
-			width:30px; height:30px; margin:0 auto 5px; padding-top:2px;
-			border: grey 3px solid; border-radius:50%; background:white; 
-			font-size: 20px;
-			&.notready{ border: red 3px solid; background: #FF7B7B; color:red;}
-			&.caution1{ border: red 3px solid; background: #FF7B7B; color:red;}
-			&.caution2{ border: orange 3px solid; background: #FFD78C; color:orange;}
-			&.ready{ border: green 3px solid; background: #6EFF6E; color:green;}
+// .lesson_progress_bar{
+// 	height:80px; overflow:hidden;
+// 	margin-bottom:10px;
+// 	text-align:center;
+// 	& .progress_unit{
+// 		width: 33.33%;
+// 		float: left; position:relative;
+// 		text-align:center; padding-top:5px;
+// 		& .progress_btn{
+// 			width:30px; height:30px; margin:0 auto 5px; padding-top:2px;
+// 			border: grey 3px solid; border-radius:50%; background:white; 
+// 			font-size: 20px;
+// 			&.notready{ border: red 3px solid; background: #FF7B7B; color:red;}
+// 			&.caution1{ border: red 3px solid; background: #FF7B7B; color:red;}
+// 			&.caution2{ border: orange 3px solid; background: #FFD78C; color:orange;}
+// 			&.ready{ border: green 3px solid; background: #6EFF6E; color:green;}
+// 		}
+// 		&.ready{ background-color:rgba(#6DFF74, 0.5); height:60px; overflow:hidden;}
+// 	}
+// }
+
+
+
+.lesson_progress{
+	overflow:hidden; margin:10px 0.25% 10px;
+	width: 32.473%; border:0 solid #ccc; border-radius:5px;
+	text-align:center; float:left; display:inline-block;
+	background-color:#fefefe;
+	& .progress_btn{
+		width:100%; margin:0 auto 15px; padding:10px 5px;
+		border-radius:0; background:white; 
+		font-size: 20px;
+		&.notready{ border-bottom: 2px grey solid; background: #ddd; color:#7D1B21;}
+		&.caution1{ border-bottom: 2px red solid; background: #FF7B7B; color:red;}
+		&.caution2{ border-bottom: 2px orange solid; background: #FFD78C; color:orange;}
+		&.ready{ border-bottom: 2px green solid; background: #6EFF6E; color:green;}
+	}
+	&.ready{ background-color:rgba(#6DFF74, 0.5); height:60px; overflow:hidden;}
+	& .component_item{ width:100%; border-top:1px solid #eee; padding:10px 8px 10px; 
+		&:hover{background-color:#ddd;}
+		&.ready{ background-color:#C3FEAB;
+			&:hover{background-color:#333; color:white;}
 		}
-		&.ready{ background-color:rgba(#6DFF74, 0.5); height:60px; overflow:hidden;}
 	}
 }
 
@@ -44,15 +69,73 @@
 	margin:0 5px; float:right; width:134px; font-size:30px; font-weight:bold; color:#36CF40;
 	span{position:relative; top:7px; }
 }
-.lesson_err{font-weight:bold; color:red;}
+.lesson_err_wrapper{
+	height:20px;
+	& .lesson_err{font-weight:bold; font-size:10px; color:red; display:none;}
+}
 
+.right_lesson_list{
+	.item{ padding:5px 5px 5px 10px;
+		&:hover{background-color:#333; color:white;}
+		&.ready{ border-left:2px #23FF06 solid; }
+		&.not_ready{ border-left:2px red solid; }
+	}
+}
 
+.body.lesson_holder{
+	width:calc(100% - 110px);
+	float:left;
+}
+
+.lesson_nav_holder{
+	float:left; margin:5px;
+	width:45px; position:relative;
+	& .lesson_nav{
+		font-size:45px;
+		position:absolute;
+		top:200px;
+		&.inactive{ color:#D6D7DA; }
+		&.next_topic{ color:#2AC41E; }
+	}
+}
 
 // Lesson Ziggeo Interface
 .showIfLessonComplete{
 	text-align:center;
-	& .big_btn{ width:32%; float:none; display:inline-block; }
+	& .lesson_btn{
+		width:32%; float:none; display:inline-block;
+		float: none; border-radius:3px;
+	    &.selected{
+			background-color:#4EBC52; color:#fff;
+	    }
+	}
+}
 
+.concept_list{
+	overflow:hidden;
+	text-align:center;
+	& .concept_title{ font-family:'gotham'; font-size:15px; text-align:left; width:100%; }
+	& .concepts{
+		overflow:hidden; margin:0; background-color:#ddd;
+		color: #666; height:25px;
+		width:32.6%; float:none; display:inline-block; padding:5px 10px;
+		position:relative; border-radius:3px; text-align:left; transition:0.5s;
+		&.just_added{ background-color:#1DCE04; transition:0.5s; }
+		& .concept_weigth{
+			position:absolute; right:0; top:0; padding:5px 10px;
+			font-family:'gotham'; text-align:right;
+		}
+		&:hover{ background-color:#999; color: white; transition:0.5s; }
+	}
+}
+
+.lesson_create_btn{
+	border-radius:0; padding:4px 9px;
+	margin:0; font-size:10px;
+}
+
+.record_component{
+	min-width:250px; max-width:600px;
 }
 
 .explanation_video, .prompt_video, .model_video, .rehearsal_video, .feedback_video{
@@ -146,19 +229,28 @@
 /* Mobile Layout: 480px and below. */
 @media only screen and (max-width: 614px) {
 	.showIfLessonComplete{
-		& .big_btn{ padding:10px 15px; font-size:13px; }
+		& .lesson_btn{
+			padding:10px 15px; font-size:13px;
+		}
 	}
 	.explanation_video, .prompt_video, .model_video, .rehearsal_video, .feedback_video{
 		width:98%; float:none; display:inline-block; margin:0 1%; text-align:center;
 		& .vid_title{ font-size:20px; margin:10px 0; background-color:none;}
 		textarea, & .lesson_script{ min-width: 100%; margin:0;}
 	}
+	.concept_list{
+		& .concepts{
+			width:98%;
+		}
+	}
 }
 
 /* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
 @media only screen and (min-width: 615px) {
 	.showIfLessonComplete{
-		& .big_btn{ padding:5px; font-size:13px; }
+		& .lesson_btn{
+			padding:5px; font-size:13px;
+		}
 	}
 	.explanation_video, .prompt_video, .model_video, .rehearsal_video, .feedback_video{
 		width: 49%; float:left; margin:0 0.5%;
@@ -173,7 +265,9 @@
 /* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
 @media only screen and (min-width: 827px) {
 	.showIfLessonComplete{
-		& .big_btn{ padding:10px 15px; font-size:15px; }
+		& .lesson_btn{
+			padding:10px 15px; font-size:15px;
+		}
 	}
 	.explanation_video, .prompt_video, .model_video, .rehearsal_video, .feedback_video{
 		& .vid_title{ margin: 20px 0;}

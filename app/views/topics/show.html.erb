@@ -38,7 +38,7 @@
     <br><br><br>
   <% end %>
 
-  <% @lessons.each_with_index do |lesson, index| %>
+  <% @lessons.order('id ASC').each_with_index do |lesson, index| %>
     <div class="lesson_list <%= (index + 1).even? ? 'even' : 'odd' %>">
       <a href="<%= course_topic_lesson_path(@course, @topic, lesson) %>">
         <div class="title">

@@ -1,0 +1,11 @@
+<% @newConcept = [@concept, @weight] %>
+var addConcept = "<%= escape_javascript (render partial: './concepts/create', concept: @newConcept ) %>";
+$('.concept_list').append(addConcept);
+
+var thisNewConcept = $('.concepts[data-conceptid="concept_<%= @newConcept[0].id.to_s %>"]');
+
+thisNewConcept.addClass('just_added');
+
+setTimeout(function(){
+	thisNewConcept.removeClass('just_added');
+}, 1000);

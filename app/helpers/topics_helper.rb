@@ -23,29 +23,22 @@ module TopicsHelper
 	end
 
 	def topic_lesson_status(lesson)
-		explanations = lesson.explanations
-		explanation_check = 0
-		explanations.each do |explanation|
-			explanation_check += 1 if (explanation.position_prior == 1 && explanation.video_token != '')
+		lType = lesson.lesson_type
+		check = [[lesson.explanations, false],[lesson.prompts, false],[lesson.models, false]]
+
+		check.each do |item|
+			item[0].each do |itemcheck|
+				if itemcheck.position_prior == 1 && itemcheck.video_token!=nil
+					item[1] = true if itemcheck.video_token!=''
+				end
+			end
 		end
 
-		prompts = lesson.prompts
-		prompt_check = 0
-		prompts.each do |prompt|
-			prompt_check += 1 if (prompt.position_prior == 1 && prompt.video_token != '')
-		end
-
-		models = lesson.models
-		model_check = 0
-		models.each do |model|
-			model_check += 1 if (model.position_prior == 1 && model.video_token != '')
-		end
-
-		if (lesson.lesson_type.to_i == 0 || lesson.lesson_type == nil) && explanation_check > 0 && prompt_check > 0 && model_check > 0
+		if (lType.to_i == 0 || lType == nil) && check[0][1] && check[1][1] && check[2][1]
 			@lesson_check = true
-		elsif lesson.lesson_type.to_i == 1 && explanation_check > 0 && model_check > 0
+		elsif lType.to_i == 1 && check[0][1] && check[2][1]
 			@lesson_check = true
-		elsif lesson.lesson_type.to_i == 2 && explanation_check > 0 && prompt_check > 0
+		elsif lType.to_i == 2 && check[0][1] && check[1][1]
 			@lesson_check = true
 		else
 			@lesson_check = false

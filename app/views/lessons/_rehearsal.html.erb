@@ -1,10 +1,10 @@
 <% @this_added_class = 'rehearsal' %>
 
 <div class="video_black_bg media_wrapper">
-        <div class="ziggeo">
-            <%= render './shared/ziggeorecorder' %>
-        </div>
+    <div class="ziggeo">
+        <%= render './shared/ziggeorecorder' %>
     </div>
+</div>
 
 <%= form_for [@lesson, @rehearsal], html: {class:"rehearsalForm", id:"ziggeoForm"}, remote: true  do |f| %>
     <% if @rehearsal.errors.any? %>

@@ -108,6 +108,21 @@ $panel_color: rgba(#2F3132,1) ;
 	}
 }
 
+.right_panel{
+	position:fixed; 
+	top:0; right:-100%; bottom:0;
+	width:30%; min-width:350px; z-index:40;
+	background-color:rgba(black,0.9); transition:0.5s;
+	color:white;
+	& .title{ color:black; font-family:'gotham';}
+	& .close{
+		border:0; padding:10px 15px 12px; background-color:black; color:white; font-size:16px; 
+		position:relative; right:0; top:0;
+	}
+	&.pop{ right:0; transition:0.5s; }
+	& .content{ padding: 10px ;}
+}
+
 .inter_content{
 	width:calc(100%); min-height:$min_height; float:left;
 	background-color:rgba(255,255,255,0.9); 
@@ -229,7 +244,8 @@ footer{
 	display:none;
 	& .shade.box{
 		min-width:250px; max-width:60%;
-		position:relative;
+		height:auto; max-height:calc(100% - 10px);  overflow:scroll;
+		position:relative; z-index:120;
 		margin:60px auto 5px; overflow:hidden; border-radius:5px;
 		background-color: rgba(255,255,255,0.9);
 		& .shadebox_title{
@@ -248,7 +264,7 @@ footer{
 			overflow:hidden; padding:5px 10px;
 			text-align: right;
 		}
-		button.shade_close{
+		input[type='submit'].shade_close, button.shade_close{
 			padding:5px 10px;
 			cursor:pointer;
 		}

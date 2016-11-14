@@ -5,7 +5,7 @@ $( document ).ready(function() {
     $('.groups_back').hide();
 
     $('#click_browse_groups').on('click', function () {
-     console.log('inside groups browse event');
+     // console.log('inside groups browse event');
         $('.hide_groups_interface').hide();
         $('#browse_groups').show();
         $('#browse_my_groups').toggle();

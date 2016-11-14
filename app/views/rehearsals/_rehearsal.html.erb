@@ -1,7 +1,7 @@
 <% @this_video_token = @rehearsal.video_token %>
 <% @rehearsalNum = @lesson.rehearsals.where(trainee_id: current_user.id).size.to_s %>
 <div class="rehearsal_thumbnail">
-  <button class="shadebox_btn rehearsal_btn" data-rehearsal="<%= @rehearsal.id %>" data-rehearsalnumber="<%= @rehearsalNum %>">Rehearsal <%= @rehearsalNum %>
+  <button class="shadebox_btn rehearsal_btn" data-shadebox="rehearsal" data-rehearsal="<%= @rehearsal.id %>" data-rehearsalnumber="<%= @rehearsalNum %>">Rehearsal <%= @rehearsalNum %>
 
     <div id="rehearsal_<%= @rehearsal.id %>_status" class="blankdot"></div>
 

@@ -1,0 +1,6 @@
+<a href="<%= edit_concept_path(@newConcept) %>">
+	<div class="concepts" data-conceptid='concept_<%= @newConcept[0].id.to_s %>'>
+		<%= @newConcept[0].description %>
+		<div class="concept_weigth"><%= @newConcept[1].to_s %></div>
+	</div>
+</a>

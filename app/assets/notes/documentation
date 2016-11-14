@@ -17,33 +17,16 @@ git push -f origin master
 
 
 
+NGROK
+sudo ngrok http 3000
+
+
 
 re-record ziggeo
 
 div title="Re-Record"    <<    when recorder player is pressed
 ba-videoplayer-theme-modern-rerecord-button    <<    rerecord button
 ba-videorecorder-theme-modern-button-primary   <<    skip, stop and record
-
-
-#notice, .notice{
-  padding:10px 20px; margin:0;
-  position:absolute; top:0; left:0; right:0;
-  background-color:#00B51A; font-size:12px; color: white;
-  transition: 0.5s; z-index:102;
-  & .close_notice{
-    float: right;
-    transition: 0.5s;
-  }
-  &.flash-alert{ background-color:red; transition: 0.5s;}
-  &.remove{ position:absolute; top:-38px; transition: 0.5s;}
-}
-
-
-
-
-
-
-
 
 
 

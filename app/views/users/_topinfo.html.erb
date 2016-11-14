@@ -10,12 +10,12 @@
 	</div>
 <% end %>
 
-<% if total_lessons.to_i>0 || feedback_notif>0 || rehearsals_notif.to_i>0 %>
+<% if registered_lessons.to_i>0 || feedback_notif>0 || rehearsals_notif.to_i>0 %>
 	<div class="top_info">
-		<% if total_lessons.to_i > 0 %>	
+		<% if registered_lessons.to_i > 0 %>	
 			<div class="user_stat">
 				<div class="number">
-					<span class="completed"><%= lessons_completed %></span> of <%= total_lessons %>
+					<span class="completed"><%= lessons_completed %></span> of <%= registered_lessons %>
 				</div>
 				<div class="stat"> Lessons completed </div>
 			</div>

@@ -1,5 +1,5 @@
-class Course < ActiveRecord::Base
-  belongs_to :instructor, class_name: 'User'
+class Course < ApplicationRecord
+  belongs_to :instructor, optional: true, class_name: 'User'
 
   has_many :course_registrations
   has_many :users, through: :course_registrations

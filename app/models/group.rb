@@ -1,5 +1,5 @@
-class Group < ActiveRecord::Base
-  belongs_to :instructor, class_name: 'User'
+class Group < ApplicationRecord
+  belongs_to :instructor, optional: true, class_name: 'User'
 
   has_many :user_groups
   has_many :users, through: :user_groups

@@ -1,5 +1,5 @@
-class LessonConcept < ActiveRecord::Base
-  belongs_to :concept
-  belongs_to :lesson
+class LessonConcept < ApplicationRecord
+  belongs_to :concept, optional: true
+  belongs_to :lesson, optional: true
   accepts_nested_attributes_for :lesson
 end

@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.3.1'
+gem 'rails', '5.0.0.1'
 
 # user authentication and authorization by role
 gem 'devise'
@@ -20,8 +21,12 @@ gem 'dotenv'
 gem 'dotenv-rails'
 
 # pre install ready gems
+
 # ruby '2.3.1'
-gem 'rails', '4.2.6'
+# gem 'rails', '4.2.6'
+# gem 'rails', '5.0.0'
+gem 'rails', '5.0.0.1'
+
 gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'

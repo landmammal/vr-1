@@ -3,10 +3,10 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   protect_from_forgery with: :null_session
 
-	before_filter :main_links
+	before_action :main_links
 
 	def main_links
-		@main_menu = ['mission','contact']
+		@main_menu = ['overview','contact']
     @languages = [['English','en'],['Spanish', 'sp']]
     @privacy = [['Public', 0],['Locked', 1],['Paid Members', 2],['Registered members', 3]]
 

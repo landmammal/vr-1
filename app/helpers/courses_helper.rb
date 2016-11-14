@@ -1,12 +1,27 @@
 module CoursesHelper
 
-	def course_trainee
-		if current_user.registered_courses.include? @course
-			access = true
-		else
-			access = false
+	def content(course)
+		thisCourse = {topics: 0, lessons: 0, content:[]}
+		thisCourse[course.title] = {}
+		topics = course.topics
+		# lessons = 0
+		lessons = []
+
+		topics.each do |topic|
+			# thisCourse[topic.title] = []
+			# thisCourse[topic.title] << topic
+
+			lessons << topic.lessons
+			thisCourse[:content] << topic
+
+			# lessons += topic.lessons.size
+			# lessons = topic.lessons
 		end
-		return access
+
+		thisCourse[:topics] = topics.size
+		thisCourse[:lessons] = lessons.size
+
+		return thisCourse
 	end
 
 	def course_public
