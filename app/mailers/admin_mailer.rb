@@ -40,7 +40,7 @@ class AdminMailer < ApplicationMailer
   def lead_notice(user)
     @url = 'https://videorehearser.herokuapp.com/users/sign_in'
     @user = user
-    mail( to:'roger@videorehearser.com', subject: "we have a new lead!" )
+    mail( to:'carlos@videorehearser.com', subject: "we have a new lead!" )
   end
 
 end
