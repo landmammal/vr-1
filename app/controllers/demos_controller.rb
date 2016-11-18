@@ -7,10 +7,9 @@ class DemosController < ApplicationController
 
 	def create
 		new_demo = Demo.new(demo_params)
-
 		new_demo.contacted = 'no'
 		new_demo.completed = 'no'
-		
+		AdminMailer.lead_notice(new_demo).deliver_now!
 		new_demo.save
 
 		render json: new_demo	

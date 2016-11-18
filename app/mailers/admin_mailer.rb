@@ -35,5 +35,13 @@ class AdminMailer < ApplicationMailer
     @user = user
     mail( to:@user.email, subject: "Congratulations, You completed your lesson!" )
   end
+
+  # sending mail to team with information on a new lead up
+  def lead_notice(user)
+    @url = 'https://videorehearser.herokuapp.com/users/sign_in'
+    @user = user
+    mail( to:'roger@videorehearser.com', subject: "we have a new lead!" )
+  end
+
 end
 
