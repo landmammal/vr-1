@@ -52,7 +52,6 @@
 <body>
 <div class="wrapper">
   <div class="header">
-    <%= email_image_tag("logo_text_white.png")%>
   </div>
   <div class="content">
     <p>
@@ -61,17 +60,14 @@
 
     <p>
       We have a new lead here is some info about our prospect. <br>
-      name <%= @user.first_name %> <%= @user.last_name %> <br>
-      email <%= @user.email %> <br>
-      number <%= @user.phone_number %>
+      name: <%= @user.first_name %> <%= @user.last_name %> <br>
+      email: <%= @user.email %> <br>
+      number: <%= @user.phone_number %>
+      born: <%= @user.date %>
+
     </p>
 
 
-
-    <div>
-      To request support Contact us at support@videorehearser.com, We appreciate any feedback
-      feel free to tell us what you think.
-    </div>
     <br>
     <div class="small">
       - Video Rehearser Team
