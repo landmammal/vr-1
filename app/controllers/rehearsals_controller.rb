@@ -64,7 +64,7 @@ class RehearsalsController < ApplicationController
             @courses[course][rehearsal.topic][rehearsal.lesson] = []
             @courses[course][rehearsal.topic][rehearsal.lesson] << rehearsal        
         else
-          if ((rehearsal.approval_status==0 || rehearsal.approval_status==nil ) && rehearsal.feedbacks.size<0)
+          if ((rehearsal.approval_status==0 || rehearsal.approval_status==nil ) && rehearsal.feedbacks.size<1)
             @courses[course] = {}
             @courses[course][rehearsal.topic] = {}
             @courses[course][rehearsal.topic][rehearsal.lesson] = []
