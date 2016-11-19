@@ -106,7 +106,9 @@
       </div>
 
       <% progressItems = [[@explanations,'explanation',@explanation],[@prompts,'prompt',@prompt],[@models,'model',@model]]  %>
+      
       <% progressItems.each do |progressbox| %>
+
           <div class="<%= progressbox[1] %>_check lesson_progress">
             <div class="progress_btn js-<%= progressbox[1] %>_prog"></div>
 
@@ -136,7 +138,7 @@
           <div class="shadebox" data-name='<%= progressbox[1] %>_box'>
             <div class="shade box" style="max-width:630px; margin-top:10px;">
               <div class="shadebox_title">
-                <div class="put_title_here"></div>
+                New <%= progressbox[1].capitalize %>
               </div>
               <div class="shadebox_content">
                 <% @newForm = progressbox[2] %>
@@ -262,7 +264,12 @@
 
   <script type="text/javascript">
         pageReady(true);
-        lessonProgress('<%= @lesson.lesson_type %>','<%= @explanations.to_json %>', '<%= @prompts.to_json %>', '<%= @models.to_json %>');
+        var checkLesson = lessonProgress('<%= @lesson.lesson_type %>','<%= @explanations.to_json %>', '<%= @prompts.to_json %>', '<%= @models.to_json %>');
+        
+        checkLesson;
+        $('.shade_close').click(function(){
+          checkLesson;
+        });
   </script>
 
 </div>

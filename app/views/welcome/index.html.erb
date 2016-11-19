@@ -74,40 +74,27 @@
 
 
 
-	<div class="home_submenu">
-		<div class="menu"> 
-			<a href="#">
-				<div class="submenu_item"><span class="text">OVERVIEW</span></div>
-			</a>
-					
-			<a href="#">
-				<div class="submenu_item"><span class="text">INSTRUCTORS</span></div>
-			</a>
-					
-			<a href="#">
-				<div class="submenu_item"><span class="text">LEARNERS</span></div>
-			</a>
-					
-			<a href="#">
-				<div class="submenu_item"><span class="text">MANAGERS</span></div>
-			</a>
-					
-			<a href="#">
-				<div class="submenu_item"><span class="text">CREATIVES</span></div>
-			</a>
-		</div>
-	</div>
-
-
-
-<div class="wrapper" style="padding:0 10px 30px; margin-top:0; text-align: center; overflow:hidden;">
-
+<div class="home_submenu">
 	<div class="search_results_home">
 		<div class="result_search_terms"></div>
 		<hr>
 		<div class="search_result">NO RESULTS FOUND</div>
 		<div class="search_tags"></div>
 	</div>
+	<div class="menu"> 
+		<% submenu = ['Overview', 'Teach', 'Learn', 'Create', 'Managers'] %>
+
+		<% submenu.each do |sub| %>
+			<div class="submenu_item" data-topinfo='<%= sub.downcase %>'>
+				<span class="text"><%= sub.upcase %></span>
+			</div>
+		<% end %>
+	</div>
+</div>
+
+
+<div class="home_top_info overview" data-topinfo='overview'>
+
 
 	<!-- <a href="/markets"><div class="info_box qtr">
 		<div class="image" style="background-image: url('/assets/home/interview_training.jpg');"></div>
@@ -128,10 +115,12 @@
 
 	
 
-	<hr style="margin:100px 0 50px; border: #fff;">
+	<hr style="margin:50px 0; border: #fff;">
 	<div class="home_sec">
-		<img src="/assets/transform.svg"><br>
-		ENGINEERED TO TRANSFORM
+		<a href="/overview" style="color:#666;">
+			<img src="/assets/transform.svg" width="100px"><br>
+			ENGINEERED TO TRANSFORM
+		</a>
 	</div>
 	<hr style="margin:50px 0; border: #fff;">
 
@@ -153,10 +142,126 @@
 		<div class="title">Transform Your Career</div>
 		<div class="desc">With authentic & long lasting growth, become who you’re destined to be.</div>
 	</div>
+	<br><br><br><br>
+	<a href="/register">
+		<button class="blue big_btn"> Request Access </button>
+	</a>
 
 </div>
 
+<div class="home_top_info" data-topinfo='teach' style="background-image:url('assets/home/teach.jpg');">
+	<div class="info_left">
+		<div class="content">
+			<div class="title">
+				Become an independent expert.
+			</div>
+			<div class="body">
+				Make an impact by taking advantage of our Natural Learning Process.
+			</div><br>
+			<a href="/teach"><button class="blue big_btn"> Become an Instructor </button></a>
+		</div>
+	</div>
+</div>
 
+<div class="home_top_info" data-topinfo='learn' style="background-image:url('assets/home/learn.jpg');">
+	<div class="info_right">
+		<div class="content">
+			<div class="title">
+				Learn new skills from field experts
+			</div>
+			<div class="body">
+				Stay on top of you game by taking advantage of the experts and tools that video Rehearser provides.<br>
+				Our process doesnt just inform, it transforms. Rehearse to an improved you.
+			</div><br>
+			<a href="/learn"><button class="blue big_btn"> Explore </button></a>
+		</div>
+	</div>
+</div>
+
+<div class="home_top_info" data-topinfo='create'  style="background-image:url('assets/home/create.jpg');">
+	<div class="info_left">
+		<div class="content">
+			<div class="title">
+				Create beautiful video components
+			</div>
+			<div class="body">
+				Bring your creative skills to the education industry.<br>
+				Great visual content impacts the learning process. Become an asset to experienced instructors, or use your skills to teach others.
+			</div><br>
+			<a href="/create"><button class="blue big_btn"> Become a creator </button></a>
+		</div>
+	</div>
+</div>
+
+<div class="home_top_info" data-topinfo='managers' style="background-image:url('assets/home/managers.jpg');">
+	<div class="info_right">
+		<div class="content">
+			<div class="title">
+				Impactful employee training
+			</div>
+			<div class="body">
+				Use Video Rehearser to turn your training budget into an income producing asset. Create teachable moments that last forever.<br>
+				Managers and trainees will use less effort, to learn more, in less time.
+			</div><br>
+			<a href="/companies"><button class="blue big_btn"> Start training </button></a>
+		</div>
+	</div>
+</div>
+
+<div class="wrapper" style="padding:100px 10px 20px; margin-top:0; text-align: center; overflow:hidden;">
+	
+	<div class="home_course small" style="background-image:url('assets/home/interview.jpeg');">
+		<div class="content">
+			<div class="title">
+				Interview Skills
+			</div>
+		</div>
+	</div>
+
+	<div class="home_course small" style="background-image:url('assets/home/sales_training.jpeg');">
+		<div class="content">
+			<div class="title">
+				Sales Training
+			</div>
+		</div>
+	</div>
+	<div class="home_course small" style="background-image:url('assets/home/customer_service.jpeg');">
+		<div class="content">
+			<div class="title">
+				Customer Service
+			</div>
+		</div>
+	</div>
+
+	<div class="home_course small" style="background-image:url('assets/home/presentation.jpeg');">
+		<div class="content">
+			<div class="title">
+				Presentation Skills
+			</div>
+		</div>
+	</div>
+	<div class="home_course small" style="background-image:url('assets/home/pronunciation.jpeg');">
+		<div class="content">
+			<div class="title">
+				English Pronunciation
+			</div>
+		</div>
+	</div>
+	<div class="home_course small" style="background-image:url('assets/home/hospitality.jpeg');">
+		<div class="content">
+			<div class="title">
+				Hospitality
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="wrapper" style="padding:50px 10px 50px; margin-top:0;overflow:hidden;">
+
+	<img src="assets/support/monitor.png" style="float:right;" width="300px">
+
+</div>
 
 <div class="devices" style="background-image:url('/assets/home/device_bg.jpg');">
 	<div class="halfsec">
@@ -173,16 +278,7 @@
 
 
 
-<div class="wrapper" style="padding:0 10px 30px; margin-top:0; text-align: center; overflow:hidden;">
 
-	<div class="half">
-		<div class="video_info_title">What is Video Rehearser?</div>
-		<div class="video_info_desc">Video Rehearser is the Virtual Training & Coaching Platform engineered to transform individuals and increase the training ROI for professionals and enterprises. </div>
-	</div>
-	<div class="half">
-		<iframe class="youtube_home" width="520" height="315" src="https://www.youtube.com/embed/gH_YNd8CCrI?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-	</div>
-</div>
 
 
 <script>

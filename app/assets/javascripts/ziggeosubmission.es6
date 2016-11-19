@@ -16,8 +16,9 @@ var pageReady = function(checkrecorder){
 
 			    $(document).on('click', '.shade_close', function() {
 					recorder.reset();
-					$(this).closest($('.shade.box')).find($('.save_'+recorderClass)).show();
-					console.log('clicked')
+					$(this).closest('.shade.box').find('.save_'+recorderClass).show();
+					$(this).closest('.shadebox').find('form')[0].reset();
+					// console.log('clicked')
 				});
 
 			    function postTokenInForm(thisForm, videoToken, streamToken){
@@ -42,17 +43,13 @@ var pageReady = function(checkrecorder){
 		    		}
 			    };
 
+
 			    $('.submit_ziggeo').hide();
 			    // $('.save_'+recorderClass).hide();
 			    $('.ba-videorecorder-theme-modern-button-primary').click(function() {
 				    $('.save_ziggeo').hide();
 				    $(this).closest($('.component_wrapper')).find($('.save_'+recorderClass)).hide();
 				    // console.log('clicked');
-			    });
-			    $('ziggeorecorder.'+recorderClass).closest($('.shadebox')).find($('.shade_close')).click(function(){
-			    	var thisrecorder = ZiggeoApi.V2.Recorder.findByElement($(this).closest($('.shadebox')).find($('ziggeorecorder.'+recorderClass)));
-			    	// recorder.stopRecord();
-			    	// console.log(thisrecorder);
 			    });
 
 
@@ -118,7 +115,7 @@ var pageReady = function(checkrecorder){
 					    		$('.shadebox').fadeOut(500);
 					    		recorder.reset();
 					    	}
-				    		$('form.'+recorderClass+'Form')[0].reset();
+				    		// $('form.'+recorderClass+'Form')[0].reset();
 				    	});
 				    }
 

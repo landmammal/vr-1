@@ -5,7 +5,7 @@
 
     <div id="rehearsal_<%= @rehearsal.id %>_status" class="blankdot"></div>
 
-    ref#: r<%= (((@rehearsal.id*30)+5)*7).to_s+"id"+@rehearsal.id.to_s %>
+    ref#: <%= genReherasalRef(@rehearsal.id) %>
   </button>
   <script type="text/javascript">
     $('#rehearsal_<%= @rehearsal.id %>_status').after('<br><img src="'+videoImage("<%= @this_video_token %>")+'" width="100%" class="rehearsal_img"><br>')

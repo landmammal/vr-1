@@ -27,7 +27,7 @@
     <%= f.text_area :script, placeholder: 'Script' %><br>
     <%= f.select :language, (@languages) %>
     <%= f.select :privacy, (@privacy) %>
-    <%= f.submit 'Save '+@this_component, class:'shade_close blue save_'+@this_added_class %>
+    <%= f.submit 'Save '+@this_component, class:'shade_close reset_form blue save_'+@this_added_class %>
 
   <% end %>
 </div>

@@ -320,13 +320,24 @@ var pageReady = function(){
 	// }, 10000);
 
 
-	// $('.submenu_item').click(function(event){
-	// 	event.preventDefault();
+	$('.submenu_item').click(function(event){
+		event.preventDefault();
+	    var bodyHTML = $('html, body');
+	    // console.log(bodyHTML[1].scrollTop);
 
-	// 	$('html, body').animate({
-	//         scrollTop: $(".home_submenu").offset().top
-	//     }, 1000);
-	// });
+		if(bodyHTML[1].scrollTop < 628){
+			bodyHTML.animate({
+		        scrollTop: $(".submenu_item").offset().top
+		    }, 1000);
+		}
+		$('.home_top_info').fadeOut(500);
+
+		var topinfo = $(this).data('topinfo');
+
+		setTimeout(function(){
+			$('.home_top_info[data-topinfo="'+topinfo+'"]').fadeIn(1000);
+		},500);
+	});
 
 
 

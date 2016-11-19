@@ -29,29 +29,52 @@ class RehearsalsController < ApplicationController
   end
 
   def all
-    @feedback = Feedback.new
-    @performance_feedback = PerformanceFeedback.new
+    # @feedback = Feedback.new
+    # @performance_feedback = PerformanceFeedback.new
 
-    @course_rehearsals = []
-    current_user.courses.order('updated_at DESC').each { |course| course.rehearsals.each { |c| @course_rehearsals << c if c.submission == true } if course.rehearsals.size > 0 }
-    @topic_rehearsals = []
-    current_user.topics.order('updated_at DESC').each { |topic| topic.rehearsals.each { |t| @topic_rehearsals << t if t.submission == true } if topic.rehearsals.size > 0 }
-    @lesson_rehearsals = []
-    current_user.lessons.order('updated_at DESC').each { |lesson| lesson.rehearsals.each { |l| @lesson_rehearsals << l if l.submission == true } if lesson.rehearsals.size > 0 }
+    # @course_rehearsals = []
+    # current_user.courses.order('updated_at DESC').each { |course| course.rehearsals.each { |c| @course_rehearsals << c if c.submission == true } if course.rehearsals.size > 0 }
+    # @topic_rehearsals = []
+    # current_user.topics.order('updated_at DESC').each { |topic| topic.rehearsals.each { |t| @topic_rehearsals << t if t.submission == true } if topic.rehearsals.size > 0 }
+    # @lesson_rehearsals = []
+    # current_user.lessons.order('updated_at DESC').each { |lesson| lesson.rehearsals.each { |l| @lesson_rehearsals << l if l.submission == true } if lesson.rehearsals.size > 0 }
 
-    @user_feedback = current_user.feedbacks.order('updated_at DESC').select(:id)
+    # @user_feedback = current_user.feedbacks.order('updated_at DESC').select(:id)
     
-    @rehearsals_without_feedback = []
-    @rehearsals_with_feedback = []
-    @rehearsals_to_check = Rehearsal.where(approval_status: 0)
+    # @rehearsals_without_feedback = []
+    # @rehearsals_with_feedback = []
+    # @rehearsals_to_check = Rehearsal.where(approval_status: 0)
 
-    @course_rehearsals.each do |rehearsal| 
-      if rehearsal.feedbacks.size < 1
-        @rehearsals_without_feedback << rehearsal
-      else
-        @rehearsals_with_feedback << rehearsal
+    # @course_rehearsals.each do |rehearsal| 
+    #   if rehearsal.feedbacks.size < 1
+    #     @rehearsals_without_feedback << rehearsal
+    #   else
+    #     @rehearsals_with_feedback << rehearsal
+    #   end
+    # end 
+
+    @courses = {};
+
+    current_user.courses.each do |course|
+      course.rehearsals.where(submission: true).each do |rehearsal|
+
+        if params[:list] == "all"
+            @courses[course] = {}
+            @courses[course][rehearsal.topic] = {}
+            @courses[course][rehearsal.topic][rehearsal.lesson] = []
+            @courses[course][rehearsal.topic][rehearsal.lesson] << rehearsal        
+        else
+          if ((rehearsal.approval_status==0 || rehearsal.approval_status==nil ) && rehearsal.feedbacks.size<0)
+            @courses[course] = {}
+            @courses[course][rehearsal.topic] = {}
+            @courses[course][rehearsal.topic][rehearsal.lesson] = []
+            @courses[course][rehearsal.topic][rehearsal.lesson] << rehearsal
+          end
+        end
+        
       end
-    end 
+    end
+
 
   end
 

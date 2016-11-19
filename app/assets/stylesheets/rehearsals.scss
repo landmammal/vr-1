@@ -6,3 +6,39 @@
 	font-family:'gotham_book';
 	font-size:15px;
 }
+
+
+.rehearsal_courses{
+	float: left;
+	width:250px;
+	min-height:300px;
+	border-right:1px dotted #ccc;
+	margin:0 5px 10px 0;
+	padding:5px 10px;
+	& .rsl_course{
+		margin-top:10px; cursor: pointer;
+	}
+	& .toggle_topic{
+		display:none;
+	}
+	& .rsl_topic{
+		display:none;
+		padding:0 0 0 5px;
+		border-left:3px solid;
+		cursor: pointer;
+	}
+	& .rsl_lesson{
+		display:none;
+		padding:3px 5px 3px 10px;
+		margin-left:8px; border-left:3px solid #999;
+		background-color:#ddd; margin-bottom:3px;
+		&:hover{ background-color:#333; color:white; }
+		cursor: pointer;
+	}
+}
+.rehearsal_list{
+	float: left;
+	width:calc(100% - 260px);
+	height:100%;
+	margin:10px 5px 10px 0;
+}

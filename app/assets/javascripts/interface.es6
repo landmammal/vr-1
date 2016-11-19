@@ -211,7 +211,9 @@ var pageReady = function(){
 
 	$(document).on('click', '.shade_close', function() {
 		$('.shadebox').fadeOut(500);
-		// $(this).closest('form')[0].delay(2000).reset();
+	});
+	$(document).on('click', '.reset_form', function() {
+		$(this).closest('form')[0].reset();
 	});
 
 	$(document).on('click', '.empty_shadebox_content', function() {

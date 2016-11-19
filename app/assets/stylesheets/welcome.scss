@@ -178,7 +178,7 @@ header.header{
 
 .home_top_wrapper{
 	background-repeat:no-repeat; background-attachment:fixed;
-	height:calc(100% - 100px); max-height:900px; overflow:hidden;
+	height:calc(70% - 100px); max-height:900px; overflow:hidden;
 	transition:1s; position:relative;
 }
 
@@ -280,8 +280,8 @@ $center_pos: 45% ;
 }
 .search_results_home{
 	padding:0px; background-color:#f8f8f8; border-radius:0 0 5px 5px;
-	position:relative; top:-40px; z-index:0;
-	transition: 0.5s;
+	position:absolute; top:-40px; z-index:0;
+	transition: 0.5s; text-align:center;
 	&.show{
 		padding:10px; position:relative; top:0px;
 		transition: 0.5s; margin:0 auto 20px;
@@ -292,15 +292,16 @@ $center_pos: 45% ;
 
 
 .home_submenu{
-	height:100px;  width:100%; background-color:white;
+	min-height:70px;  width:100%; background-color:white;
 	position:relative;  z-index:3;  overflow:hidden;
 	text-align: center;
-	a .submenu_item{ color:#999; }
 	& .submenu_item{
+		color:#999;
+		cursor:pointer;
 		position:relative;
-		height: 100px; width: 16%; display:inline-block; margin:0 0.5%;
+		height: 70px; width: 16%; display:inline-block; margin:0 0.5%;
 		float: none;
-		padding:40px 0;
+		padding:25px 0;
 		&:hover{
 			background-color:#eee;
 		}
@@ -308,6 +309,81 @@ $center_pos: 45% ;
 			font-family:'gotham_book';
 			font-size: 13px;
 		}
+	}
+}
+
+
+
+.home_top_info{
+	display:block; 
+	height:calc(100% - 200px);
+	// height:700px;
+	margin:0; display:none;
+	background-size:cover;
+	background-position:center center;
+	& .info_left, & .info_right{
+		width:100%; height:100%;
+		padding:0 50px;
+		position:relative;
+		& .content{
+			position:absolute;
+			top:40%; width:50%;
+			& .title{
+				font-family: 'gotham';
+				font-size:30px; margin-bottom:10px;
+				line-height: 0.8em;
+			}
+			& .body{
+				font-size:16px;
+			}
+		}
+	}
+	& .info_left{
+		background: linear-gradient(120deg, white 40%, transparent 100%);
+		text-align:left;
+	}
+	& .info_right{
+		background: linear-gradient(-70deg, white 40%, transparent 100%);
+		text-align: right;
+		& .content{
+			right:30px;
+		}
+	}
+	&.overview{ height:auto; text-align: center; display:block; overflow:hidden;}
+}
+
+
+.home_course{
+	float:left; width:32%;
+	margin:0 0.7%;
+	background-position:center;
+	background-size:cover;
+	border-radius:5px;
+	transition:0.5s; overflow:hidden;
+	cursor: pointer;
+	& .content{
+		position:relative;
+		width:100%; padding-top:100%;
+		top:0; bottom:0;
+		background-color:rgba(black, 0.7);
+		transition:0.5s;
+		&:hover{
+			background-color:rgba(#4B92C3, 0.7);
+			transition:0.5s;
+		}
+		& .title{
+			position:absolute;
+			color:white;
+			width: 100%;
+			font-family:'gotham_thin'; text-align:center;
+			font-size: 20px;
+		}
+	}
+	&.small{
+		width:32.3%;
+		margin:0 0.5% 1%;
+		& .content{ padding-top:35%; }
+		& .title{ top: 50%; }
 	}
 }
 
@@ -322,6 +398,36 @@ $center_pos: 45% ;
 	background-repeat:no-repeat; background-attachment:fixed;
 }
 
+
+
+.faq_title{
+	font-family:'gotham';
+	margin-bottom:10px;
+	font-size:18px;
+}
+.faq_content{
+	font-family:'gotham_thin';
+	margin-bottom:30px;
+}
+
+
+.press_bg{
+	height:400px;
+	background-position:center center;
+	background-size:cover;
+	& .press_packet{
+		position:relative;
+		height:100%; padding-left:10%;
+		button.press_packet_btn{
+			position:absolute;
+			top:45%; background-color:transparent;
+			border:2px white solid; color:white;
+			padding:15px 20px; font-size:15px;
+			font-family:'gotham';
+			&:hover{ background-color:white; color:#999; }
+		}
+	}
+}
 
 
 .newsletter{
@@ -409,10 +515,10 @@ $center_pos: 45% ;
 }
 
 .home_sec{ 
-	font-size:30px; font-family:'webly_reg'; color:#858585;
+	font-size:23px; font-family:'webly_reg'; color:#858585;
 	line-height:1em;
 	margin:50px auto; text-align:center; 
-	img{ width:50%; max-width:120px; margin-bottom:50px; }
+	img{ width:50%; max-width:80px; margin-bottom:20px; }
 }
 .video_info_title{ font-size:25px; font-weight:bold; font-family:'webly_reg'; margin:100px 10px 5px; text-align:right;}
 .video_info_desc{ max-width:300px; float:right; margin-right:10px; line-height: 1.5em; font-size:15px; font-family:'webly_reg'; text-align:right;}
@@ -452,7 +558,7 @@ $center_pos: 45% ;
 .devices{
 	background-position:center; background-size:cover;
 	background-repeat:no-repeat; background-attachment:fixed;
-	margin:150px 0 200px;
+	margin:0px 0 200px;
 	& .halfsec{
 		width:100%;
 		position:relative;
@@ -611,12 +717,19 @@ $center_pos: 45% ;
 			}
 		}
 	}
-
+	.home_top_info{
+		& .info_left, & .info_right{
+			& .content{
+				position:absolute;
+				top:15%; width:60%;
+			}
+		}
+	}
 	.search_section{
 		.search_box{
 			position:absolute; bottom:-80px;
 			input.search_course_term{
-				max-width:200px; width:60%;
+				max-width:260px; width:70%;
 			}
 		}
 	}
@@ -627,6 +740,21 @@ $center_pos: 45% ;
 	.video_info_title{ width:100%; float:none; text-align:center;  margin:5px auto 30px;}
 	.video_info_desc{  width:100%; float:none; text-align:center; margin:5px auto;}
 
+	.home_course{
+		width: 48%;
+		& .content{
+			padding-top:98%; 
+			& .title{
+				font-family:'gotham';
+				top:50%;
+				font-size: 12px;
+			}
+		}
+		&.small{
+			width: 48%;
+			& .title{ top:40%; }
+		}
+	}
 
 	.devices{
 		padding-top:10px;
@@ -710,6 +838,15 @@ $center_pos: 45% ;
 			}
 		}
 	}
+
+	.home_course{
+		& .content{
+			& .title{
+				top:40%;
+				font-size: 13px;
+			}
+		}
+	}
 }
 
 /* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
@@ -751,6 +888,14 @@ $center_pos: 45% ;
 				& .from_anywhere{
 					font-size:40px;
 				}
+			}
+		}
+	}
+	.home_course{
+		& .content{
+			& .title{
+				top: 50%; 
+				font-size: 20px;
 			}
 		}
 	}

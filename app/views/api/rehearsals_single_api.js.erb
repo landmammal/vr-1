@@ -1,0 +1,10 @@
+var openRehearsal = "<%= escape_javascript (render partial: './rehearsals/rehearsal_shadebox', locals: {rehearsal: @rehearsal}) %>";
+$('.open_rehearsal').html(openRehearsal);
+
+console.log('clicked');
+
+setTimeout(function(){
+  var embedding = ZiggeoApi.V2.Player.findByElement($('#rehearsal_<%= @rehearsal.id %>'));
+  // console.log(embedding);
+  embedding.play();
+}, 700);

@@ -10,8 +10,7 @@ module CoursesHelper
 		topics.each do |topic|
 			# thisCourse[topic.title] = []
 			# thisCourse[topic.title] << topic
-
-			lessons << topic.lessons
+			topic.lessons.each { |lesson| lessons << lesson }
 			thisCourse[:content] << topic
 
 			# lessons += topic.lessons.size

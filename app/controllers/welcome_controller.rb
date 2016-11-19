@@ -104,6 +104,14 @@ class WelcomeController < ApplicationController
 
   def FAQs
     @site_title = 'Frequently Asksed Questions'
+
+    @faqs = [
+      ['What is Video Rehearser (vR)?','Created by CDG Innovations LLC, Video Rehearser (vR) is a virtual training platform engineered by educations to expedite social, academic, and workplace learning. vR is uniquely positioned to empower the community in an unprecedented way because it fosters authentic changes through natural learning principles and processes.'],
+      ['Who uses vR?','I think we should do invitation only right now - so we can say ‘sign up for our mailing list to get more information'],
+      ['Why was it created?','In 2015, blended learning techniques increased to 32% of instructional hours.Traditional e-Learning systems have been over promising, but underperforming. We believe in evolutionizing the current blended learning format and introducing engineered training that works.'],
+      ['What do I need to use Video Rehearser?','A computer, tablet or mobile device equipped with a webcam.'],
+      ['Who do I contact for more information?','If you are interested in learning more or setting up a demo, contact demo@videorehearser.com'],
+    ]
   end
 
 
@@ -126,6 +134,10 @@ class WelcomeController < ApplicationController
 
   def create
     @site_title = 'Create Visual Content'
+  end
+
+  def companies
+    @site_title = 'Companies'
   end
 
   def versions

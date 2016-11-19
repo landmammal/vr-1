@@ -312,13 +312,19 @@ span.num{
 
 
 .user_bubble{
-	border-radius:30px; position:relative;
+	border-radius:5px; position:relative;
 	padding:3px; overflow:hidden; background-color:#ddd;
 	display:inline-block; float:none;
 	width:200px; margin:5px;
-	img{ float:left;  width:40px;}
+	& .pic{
+		overflow: hidden; float:left; width:40px;
+		border-radius:3px;
+		img{ float:left;  width:100%;}
+	}
 	& .info{
+		font-family:'gotham';
 		float: left;
+		text-align: left;
 		margin: 3px 0 0 5px;
 		color: black;
 		line-height: 1em;

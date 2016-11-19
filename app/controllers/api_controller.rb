@@ -34,7 +34,11 @@ class ApiController < ApplicationController
 	
 	def rehearsals_single_api
 		@rehearsal = Rehearsal.find(params[:id])
-	    render json: @rehearsal
+	    # render json: @rehearsal
+
+	    respond_to do |format| 
+	    	format.js {  }
+	   	end
 	end
 
 	def course_registrations_single

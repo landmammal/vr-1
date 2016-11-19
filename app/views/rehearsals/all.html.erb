@@ -4,49 +4,79 @@
 
 <hr>
 
-<button class="tab selected" data-frame='new_rehearsals' data-group='top'>New Rehearsals</button>
-<button class="tab" data-frame='all_rehearsals' data-group='top'>All Rehearsals</button>
-
 <div class="box_sep">
   <div class="lesson_half"></div>
-  <div class="all_content js-new_rehearsals_content">
-    <div class="title">New Rehearsals</div>
-    <% @rehearsals_without_feedback.each do |rehearsal| %>
-        <% if (rehearsal.approval_status == nil || rehearsal.approval_status == 0) && User.exists?(rehearsal.trainee_id) %>
-          <% lesson = rehearsal.lesson %>
-          <% @r = 'rehearsal_bubble_'+rehearsal.id.to_s %>
-          <% @date_sub = time_diff(Time.now, rehearsal.updated_at) %>
 
+  <div class="title">Rehearsals</div>
 
-          <button class="user_bubble shadebox_btn rehearsal_activate <%= @r %>" data-shadebox="rehearsal" data-rehearsalid='<%= rehearsal.id %>' data-coursetitle='<%= rehearsal.lesson.topic.course.title %>' data-topictitle='<%= rehearsal.lesson.topic.title %>' data-lessontitle='<%= rehearsal.lesson.title %>' >
-            <img src="<%= student_pic(rehearsal.trainee) %>"  class="img-circle">
-            <div class="info"><%= rehearsal.trainee.first_name+' '+ rehearsal.trainee.last_name %><br>
-              <font size="0.2em">Submitted: <%= @date_sub %></font></div>
-          </button>
-        <% end %>
-    <% end %>
-  </div>
+  <div class="rehearsal_courses">
+    <% @courses.each do |course, courses| %>
+      <div class="rsl_course" data-c='c_<%= course.id %>'>
+        <span style="font-family:'gotham';"><%= course.title[0...20] %>
+        <% num_re = 0; %>
+        <%= "..." if course.title.length > 20 %></span>
+        (<span class="c_<%= course.id %>"></span>)<br>
+      </div>
 
+      <div class="toggle_topic" data-c='c_<%= course.id %>'>
+      <% courses.each do |topic, topics| %>
 
-  <div class="all_content js-all_rehearsals_content" style="display:none;">
-    <div class="title">All Course Rehearsals</div>
-    <% @course_rehearsals.each do |rehearsal| %>
-      <% if User.exists?(rehearsal.trainee_id) %>
+          <div class="rsl_topic" data-c='c_<%= course.id %>' data-t='t_<%= topic.id %>'>
+            <%= topic.title[0...30] %>
+            <%= "..." if topic.title.length > 30 %><br>
+          </div>
 
-        <% @r = 'rehearsal_bubble_'+rehearsal.id.to_s %>
-        <% @date_sub = time_diff(Time.now, rehearsal.created_at) %>
+          <% topics.each do |lesson, rehearsals| %>
+            <div class="rsl_lesson" data-t='t_<%= topic.id %>' data-l='t_<%= lesson.id %>'>
 
-        <button class="user_bubble shadebox_btn rehearsal_activate <%= @r %>" data-shadebox="rehearsal" data-rehearsalid='<%= rehearsal.id %>' data-coursetitle='<%= rehearsal.lesson.topic.course.title %>' data-topictitle='<%= rehearsal.lesson.topic.title %>' data-lessontitle='<%= rehearsal.lesson.title %>' >
-          <img src="<%= student_pic(rehearsal.trainee) %>"  class="img-circle">
-          <div class="info"><%= rehearsal.trainee.first_name+' '+ rehearsal.trainee.last_name %><br>
-            <font size="0.2em">Submitted: <%= @date_sub %></font></div>
-        </button>
+              <%= lesson.title[0...25] %>
+              <%= "..." if lesson.title.length > 25 %><br>
+              <div class="all_rehearsals" style="display:none;" data-l='t_<%= lesson.id %>'>
+                <% rehearsals.each do |rehearsal| %>
+                  <% if User.exists?(rehearsal.trainee_id) %>
+
+                    <% @r = 'rehearsal_bubble_'+rehearsal.id.to_s %>
+                    <% @date_sub = time_diff(Time.now, rehearsal.created_at) %>
+                    <%= '' %>
+
+                    <%= form_tag ("/rehearsals/"+rehearsal.id.to_s+"/api"), method: :get, remote: true do %>
+                    <button type="submit" class="user_bubble">
+                      <div class="pic">
+                        <img src="<%= student_pic(rehearsal.trainee) %>">
+                      </div>
+                      <div class="info">
+                        <%= rehearsal.trainee.first_name+' '+ rehearsal.trainee.last_name %><br>
+                        <font size="0.1em" style="font-family:'gotham_book';">Submitted: <%= @date_sub %></font>
+                      </div>
+                    </button>
+                    <% end %>
+
+                  <% end %>
+                  <% num_re+=1 %>
+                <% end %>
+              </div>
+              <script type="text/javascript">
+                $('.c_<%= course.id %>').text('<%= num_re %>');
+              </script>
+            </div>
+          <% end %>
+
       <% end %>
+      </div>
+
     <% end %>
   </div>
 
+  <div class="rehearsal_list">
 
-  <div class="shadebox" data-name="rehearsal">
+  </div>
+
+  <div class="open_rehearsal">
+
+  </div>
+
+
+  <!-- <div class="shadebox" data-name="rehearsal">
     <div class="shade box">
       <div class="shadebox_title">
         <div class="put_title_here"></div>
@@ -62,7 +92,7 @@
         </a>
       </div>
     </div>
-  </div>
+  </div> -->
 
 </div>
 

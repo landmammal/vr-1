@@ -27,7 +27,6 @@ module RehearsalsHelper
 	  end
 
 	  return timediff
-
 	end
 
 	def rehearsal_approved(id)
@@ -49,5 +48,23 @@ module RehearsalsHelper
 		ranNum = ((id * 30) + 5 ) * 7
 		return 'r'+ranNum.to_s+'id'+id.to_s
 	end
+
+	# def rehearsals_c
+	# 	courses = {};
+
+	# 	current_user.courses.each do |course|
+	# 		course.rehearsals.where(submission: true).each do |rehearsal|
+	# 			courses[course] = {}
+	# 			courses[course][rehearsal.topic] = {}
+
+	# 			if (rehearsal.approval_status==1 || rehearsal.feedbacks.size>0)
+	# 				courses[course][rehearsal.topic][rehearsal.lesson] = []
+	# 				courses[course][rehearsal.topic][rehearsal.lesson] << rehearsal
+	# 			end
+	# 		end
+	# 	end
+
+	# 	return courses
+	# end
 
 end
