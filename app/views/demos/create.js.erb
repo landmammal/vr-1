@@ -1,0 +1,46 @@
+if( window.location.pathname === '/contact'){
+	console.log('contact page');
+	if('<%= @checksent_demo %>' === 'sent'){
+		console.log('contact page');
+
+		$('form#new_demo').fadeOut(500);
+		$('.thank_you_contact').prepend('<img src="/assets/checkmark.gif" width="50px">');
+
+
+		setTimeout(function(){
+			$('form#new_demo')[0].reset();
+			$('.thank_you_contact').fadeIn(500);
+		}, 500);
+	}else{
+		$('.err_contact').text('<%= @err %>');
+		$('.err_contact').toggle();
+		setTimeout(function(){
+			$('.err_contact').fadeOut(500);
+		}, 2000);
+	}
+}else{
+	console.log('homepage');
+	if('<%= @checksent_demo %>' === 'sent'){
+		$('.demo_form').toggle();
+		$('.check_mark').show();
+		$('.check_mark').html('<img src="/assets/checkmark_white.gif" width="50px">');
+		$('#notice_demo').toggle();
+
+		$('form#new_demo')[0].reset();
+
+		setTimeout(function(){
+			$('.check_mark').fadeOut(500);
+			$('#notice_demo').fadeOut(500);
+		}, 2000);
+		setTimeout(function(){
+			$('.demo').fadeIn(500);
+			$('.home_top_text').removeClass('demo_open');
+		}, 2600);
+	}else{
+		$('#notice_demo_err').text('<%= @err %>');
+		$('#notice_demo_err').toggle();
+		setTimeout(function(){
+			$('#notice_demo_err').fadeOut(500);
+		}, 2000);
+	}
+}

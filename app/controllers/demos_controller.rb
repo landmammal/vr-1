@@ -6,14 +6,40 @@ class DemosController < ApplicationController
 	end
 
 	def create
-		new_demo = Demo.new(demo_params)
+		@new_demo = Demo.new(demo_params)
+		@new_demo.contacted = 'no'
+		@new_demo.completed = 'no'
+		# @new_demo.save
+		# render json: @new_demo
 
-		new_demo.contacted = 'no'
-		new_demo.completed = 'no'
-		
-		new_demo.save
+		formFilled = true
 
-		render json: new_demo	
+		if params[:first_name] == ''
+			formFilled = false
+			err_message = 'first name'
+		end
+		if params[:last_name] == ''
+			formFilled = false
+			err_message = 'last name'
+		end
+		if params[:email] == ''
+			formFilled = false
+			err_message = 'email'
+		end
+
+		respond_to do |format|
+	      if formFilled
+	      	if @new_demo.save
+		    	@checksent_demo = 'sent'
+				AdminMailer.lead_notice(@new_demo).deliver_now!
+		        format.js { }
+		    end
+	      else
+	      	@checksent_demo = 'not_sent'
+	      	@err = 'The '+ err_message +' field has not been filled in.'
+	        format.js { }
+	      end
+	    end
 	end
 
 
@@ -21,6 +47,6 @@ class DemosController < ApplicationController
 	private
 
 	def demo_params
-		params.permit(:first_name, :last_name, :phone_number, :email, :date)
+		params.require(:demo).permit(:first_name, :last_name, :phone_number, :email, :date, :messagecontent)
 	end
 end

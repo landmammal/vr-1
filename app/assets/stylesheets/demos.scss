@@ -36,6 +36,36 @@
 
 .demo_separation{ margin:60px 0; transition: 0.5s;}
 
+#notice_demo, #notice_demo_err{
+  background-color:white;
+  float:none; border-radius:10px;
+  width: 350px; 
+  padding:10px 5px; margin:5px auto; 
+  display: none;
+}
+#notice_demo{
+  color:#1DDD16;
+}
+#notice_demo_err{
+  color:red;
+}
+
+.thank_you_contact, .err_contact{
+  display: none;
+  text-align: center;
+}
+.thank_you_contact{
+  padding:100px 0;
+  font-size: 20px;
+  font-family: 'gotham';
+}
+.err_contact{
+  padding:20px 0;
+  font-size: 15px;
+  font-family: 'gotham_light';
+  color: red;
+}
+
 
 @media only screen and (max-width: 400px) {
   .demo_separation{ margin:10px 0; transition: 0.5s;}

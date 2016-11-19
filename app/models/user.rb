@@ -41,7 +41,7 @@ class User < ApplicationRecord
     end
   end
 
-  # sends admin and email for everyuser waiting for approval
+  # sends admin and email of new users waiting for approval
   def send_admin_mail
    AdminMailer.new_user_waiting_for_approval.deliver_now!
   end

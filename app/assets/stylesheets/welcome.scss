@@ -363,7 +363,7 @@ $center_pos: 45% ;
 	cursor: pointer;
 	& .content{
 		position:relative;
-		width:100%; padding-top:100%;
+		width:100%; padding-top:70%;
 		top:0; bottom:0;
 		background-color:rgba(black, 0.7);
 		transition:0.5s;
@@ -375,7 +375,7 @@ $center_pos: 45% ;
 			position:absolute;
 			color:white;
 			width: 100%;
-			font-family:'gotham_thin'; text-align:center;
+			font-family:'gotham_book'; text-align:center;
 			font-size: 20px;
 		}
 	}

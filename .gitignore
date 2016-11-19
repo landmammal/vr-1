@@ -15,5 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
+.idea/VideoRehearser.iml
 .idea
 .env

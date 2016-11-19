@@ -7,10 +7,12 @@ class WelcomeController < ApplicationController
 
   def index
     @courses = Course.all.select(:id, :title, :tags).to_json
+    @demo = Demo.new
   end
 
   def contact
     @site_title = 'Contact us'
+    @demo = Demo.new
   end
 
   def markets

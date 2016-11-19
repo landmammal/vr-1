@@ -1,0 +1,13 @@
+
+  Hi Team VR
+
+  We have a new lead here is some info about our prospect.
+  Name: <%= @user.first_name %> <%= @user.last_name %>
+  email: <%= @user.email %>
+  Phone number: <%= @user.phone_number %>
+  Schedule date: <%= @user.date %>
+  <% if @user.messagecontent != '' %>
+  Message: <%= @user.messagecontent %>
+  <% end %>
+
+  - Video Rehearser Team
