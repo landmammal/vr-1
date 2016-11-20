@@ -61,13 +61,19 @@ class RehearsalsController < ApplicationController
         if params[:list] == "all"
             @courses[course] = {}
             @courses[course][rehearsal.topic] = {}
-            @courses[course][rehearsal.topic][rehearsal.lesson] = []
-            @courses[course][rehearsal.topic][rehearsal.lesson] << rehearsal        
+            @courses[course][rehearsal.topic][rehearsal.lesson] = []      
         else
           if ((rehearsal.approval_status==0 || rehearsal.approval_status==nil ) && rehearsal.feedbacks.size<1)
             @courses[course] = {}
             @courses[course][rehearsal.topic] = {}
             @courses[course][rehearsal.topic][rehearsal.lesson] = []
+          end
+        end
+
+        if params[:list] == "all"
+            @courses[course][rehearsal.topic][rehearsal.lesson] << rehearsal        
+        else
+          if ((rehearsal.approval_status==0 || rehearsal.approval_status==nil ) && rehearsal.feedbacks.size<1)
             @courses[course][rehearsal.topic][rehearsal.lesson] << rehearsal
           end
         end
@@ -95,10 +101,10 @@ class RehearsalsController < ApplicationController
     @rehearsal = @lesson.rehearsals.build(rehearsal_params)
     respond_to do |format|
       if @lesson.save
-        puts @rehearsal.id
-        puts "================================================================"
+        # puts @rehearsal.id
+        # puts "================================================================"
         @rehearsal = @lesson.rehearsals.last
-        puts @rehearsal.id
+        # puts @rehearsal.id
         format.js {  }
         # format.html { redirect_to @rehearsal, notice: 'Rehearsal was successfully created.' }
       else

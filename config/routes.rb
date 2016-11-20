@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # api routes
   api_routes = ['courses','topics','lessons','course_registrations','site_panel','common_panel','instructor_panel','admin_panel']
   api_routes.push('demos','tasks','chat')
-  api_routes.push('rehearsals', 'feedbacks', 'group')
+  api_routes.push('rehearsals', 'feedbacks', 'group', 'reviewrehearsal')
   api_routes.each do |apir|
     get '/'+apir+'/api' => "api##{apir}_api"
     post '/'+apir+'/api' => "#{apir}#create"

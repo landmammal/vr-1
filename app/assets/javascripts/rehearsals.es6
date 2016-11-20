@@ -25,15 +25,20 @@ var pageReady = function(){
 
     $.ajax({
       type:'GET',
-      url:'/rehearsals/'+rehearsalid+'/api',
+      url:'/reviewrehearsal/'+rehearsalid+'/api',
       success: function(data){
         // console.log(data);
         $('.put_title_here').html('Rehearsal #'+rehearsalNumber);
-        $('.put_video_here').html('<div class="media_wrapper"><div class="ziggeo"><ziggeoplayer ziggeo-theme="modern" class="" ziggeo-video="'+data.video_token+'" ziggeo-stretch ziggeo-responsive> </ziggeoplayer></div></div>');
+        $('.put_video_here').html('<div class="media_wrapper"><div class="ziggeo"><ziggeoplayer ziggeo-theme="modern" class="re_'+rehearsalid+'" ziggeo-video="'+data.video_token+'" ziggeo-stretch ziggeo-responsive> </ziggeoplayer></div></div>');
 
         $('button.submission').data('rehearsalid', rehearsalid);
         $('button.submission').data('rehearsalsubmission', data.submission);
         changeSubmitButton(data.submission, data.id);
+        setTimeout(function(){
+          var embedding = ZiggeoApi.V2.Player.findByElement($('ziggeoplayer.re_'+rehearsalid));
+          embedding.play();
+          $('.shade_close').addClass('stop_video');
+        }, 500);
       }
     });
   });
@@ -103,7 +108,9 @@ var pageReady = function(){
   });
   
   $(document).on('click', '.stop_video', function() {
-    var embedding = ZiggeoApi.V2.Player.findByElement('ziggeoplayer');
+    var thisplayer = $(this).closest('.shadebox').find('ziggeoplayer')[0];
+    console.log(thisplayer.className);
+    var embedding = ZiggeoApi.V2.Player.findByElement(thisplayer);
     embedding.stop();
   });
 
