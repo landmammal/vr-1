@@ -8,7 +8,7 @@
   <div class="lesson_half"></div>
 
   <div class="title">
-    Rehearsals
+    <%= @re_title %>
     <div style="float:right;">
       <a href="/rehearsals/all">New rehearsals</a> | 
       <a href="?list=all">All rehearsals</a>
@@ -20,7 +20,7 @@
       <div class="rsl_course" data-c='c_<%= course.id %>'>
         <span style="font-family:'gotham';"><%= course.title[0...20] %>
         <%= "..." if course.title.length > 20 %></span>
-        (<span class="c_<%= course.id %>"></span>)<br>
+        (<%= rehearsals_count(course) %>)<br>
       </div>
 
       <div class="toggle_topic" data-c='c_<%= course.id %>'>
@@ -36,6 +36,7 @@
 
               <%= lesson.title[0...25] %>
               <%= "..." if lesson.title.length > 25 %><br>
+
               <div class="all_rehearsals" style="display:none;" data-l='t_<%= lesson.id %>'>
                 <% if lesson.rehearsals.size > 0 %>
                   <% lesson.rehearsals.each do |rehearsal| %>
@@ -44,16 +45,16 @@
                       <% @r = 'rehearsal_bubble_'+rehearsal.id.to_s %>
                       <% @date_sub = time_diff(Time.now, rehearsal.created_at) %>
 
-                      <%= form_tag ("/rehearsals/"+rehearsal.id.to_s+"/api"), method: :get, remote: true do %>
-                      <button type="submit" class="user_bubble <%= new_rehearsal(rehearsal) %>">
-                        <div class="pic">
-                          <img src="<%= student_pic(rehearsal.trainee) %>">
-                        </div>
-                        <div class="info">
-                          <%= rehearsal.trainee.first_name+' '+ rehearsal.trainee.last_name %><br>
-                          <font size="0.1em" style="font-family:'gotham_book';">Submitted: <%= @date_sub %></font>
-                        </div>
-                      </button>
+                      <%= form_tag ("/rehearsals/"+rehearsal.id.to_s+"/api"), class:'rehearsal_button', method: :get, remote: true do %>
+                        <button type="submit" class="user_bubble <%= new_rehearsal(rehearsal) %>">
+                          <div class="pic">
+                            <img src="<%= student_pic(rehearsal.trainee) %>">
+                          </div>
+                          <div class="info">
+                            <%= rehearsal.trainee.first_name+' '+ rehearsal.trainee.last_name %><br>
+                            <font size="0.1em" style="font-family:'gotham_book';">Submitted: <%= @date_sub %></font>
+                          </div>
+                        </button>
                       <% end %>
 
                     <% end %>
@@ -70,7 +71,9 @@
   </div>
 
   <div class="rehearsal_list">
-
+    <span style="font-size:20px;">
+      <%= 'You currently have no new rehearsal submissions' if @courses.size<1 %>
+    </span>
   </div>
 
   <div class="open_rehearsal">

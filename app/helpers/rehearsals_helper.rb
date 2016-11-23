@@ -49,9 +49,39 @@ module RehearsalsHelper
 		return 'r'+ranNum.to_s+'id'+id.to_s
 	end
 
+
+
+
+
+
+
 	def new_rehearsal(rehearsal)
 		if (rehearsal.feedbacks.size < 1 && rehearsal.approval_status == 0) || (rehearsal.feedbacks.size > 1 && rehearsal.approval_status == 1) && User.exists?(rehearsal.trainee_id) 
 			return 'new_rehearsal'
+		end
+	end
+
+	def rehearsals_count(course)
+		count = 0
+		course.rehearsals.where(submission: true).each do |rehearsal|
+			if params[:list] == "all"
+				count += 1
+			else
+				if (rehearsal.feedbacks.size < 1 && rehearsal.approval_status == 0) || (rehearsal.feedbacks.size > 1 && rehearsal.approval_status == 1) && User.exists?(rehearsal.trainee_id) 
+					count += 1
+				end
+			end
+		end
+		return count.to_s
+	end
+
+	def method_name(course)
+		if params[:list] == "all"
+			return @courses
+		else
+			if (rehearsal.feedbacks.size < 1 && rehearsal.approval_status == 0) || (rehearsal.feedbacks.size > 1 && rehearsal.approval_status == 1) && User.exists?(rehearsal.trainee_id) 
+				count += 1
+			end
 		end
 	end
 
