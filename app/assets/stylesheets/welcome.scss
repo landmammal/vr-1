@@ -88,7 +88,7 @@ header.header{
 
 
 	&.home{ 
-		background-color:rgba(0,0,0,0.5); 
+		background-color:rgba(0,0,0,0.7); 
 		// position:fixed; width:100%;
 		a{ color:white; }
 		& .menu_list{
@@ -544,12 +544,18 @@ $center_pos: 45% ;
 
 
 
-.top_img{
+.top_img, .full_top_img{
 	background-position:center 20%; background-size:cover;
 	background-repeat:no-repeat; background-attachment:fixed;
-	height:350px; width:100%;
+	width:100%;
 }
-
+.top_img{
+	height:350px;
+}
+.full_top_img{
+	background-position:center;
+	height:85%;
+}
 
 
 
@@ -619,6 +625,40 @@ $center_pos: 45% ;
 	}
 }
 
+
+
+.overview_header{
+	background-color:rgba(black, 0.7);
+	min-height:calc(100% - 48px); color:white;
+	& .content{
+		max-width:1100px;
+		margin:0 auto;
+		padding:20px 10px; 
+	}
+}
+.overview_menu{
+	float:left;
+	width:150px;
+	padding-top:60px;
+	button.tab{
+		width: 100%;
+		text-align: left;
+		padding:5px 10px;
+		background-color:#efefef;
+		&:hover, &.selected{
+			background-color: white;
+		}
+	}
+}
+.overview_content{
+	float:left;
+	width:calc(100% - 180px);
+	margin-left:30px;
+	& .all_content{
+		display:none;
+		&.js-main_content{ display:block;}
+	}
+}
 
 
 
@@ -787,6 +827,7 @@ $center_pos: 45% ;
 	.top_img{
 		background-position:60% 20%;
 	}
+
 }
 /* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
 

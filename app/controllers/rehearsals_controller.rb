@@ -58,17 +58,17 @@ class RehearsalsController < ApplicationController
     current_user.courses.each do |course|
       course.rehearsals.where(submission: true).each do |rehearsal|
 
-        if params[:list] == "all"
             @courses[course] = {}
             @courses[course][rehearsal.topic] = {}
             @courses[course][rehearsal.topic][rehearsal.lesson] = []      
-        else
-          if ((rehearsal.approval_status==0 || rehearsal.approval_status==nil ) && rehearsal.feedbacks.size<1)
-            @courses[course] = {}
-            @courses[course][rehearsal.topic] = {}
-            @courses[course][rehearsal.topic][rehearsal.lesson] = []
-          end
-        end
+        # if params[:list] == "all"
+        # else
+        #   if ((rehearsal.approval_status==0 || rehearsal.approval_status==nil ) && rehearsal.feedbacks.size<1)
+        #     @courses[course] = {}
+        #     @courses[course][rehearsal.topic] = {}
+        #     @courses[course][rehearsal.topic][rehearsal.lesson] = []
+        #   end
+        # end
 
         if params[:list] == "all"
             @courses[course][rehearsal.topic][rehearsal.lesson] << rehearsal        

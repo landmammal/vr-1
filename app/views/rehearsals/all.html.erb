@@ -38,27 +38,29 @@
               <%= lesson.title[0...25] %>
               <%= "..." if lesson.title.length > 25 %><br>
               <div class="all_rehearsals" style="display:none;" data-l='t_<%= lesson.id %>'>
-                <% rehearsals.each do |rehearsal| %>
-                  <% if User.exists?(rehearsal.trainee_id) %>
+                <% if rehearsals.size > 0 %>
+                  <% rehearsals.each do |rehearsal| %>
+                    <% if User.exists?(rehearsal.trainee_id) %>
 
-                    <% @r = 'rehearsal_bubble_'+rehearsal.id.to_s %>
-                    <% @date_sub = time_diff(Time.now, rehearsal.created_at) %>
-                    <%= '' %>
+                      <% @r = 'rehearsal_bubble_'+rehearsal.id.to_s %>
+                      <% @date_sub = time_diff(Time.now, rehearsal.created_at) %>
+                      <%= '' %>
 
-                    <%= form_tag ("/rehearsals/"+rehearsal.id.to_s+"/api"), method: :get, remote: true do %>
-                    <button type="submit" class="user_bubble">
-                      <div class="pic">
-                        <img src="<%= student_pic(rehearsal.trainee) %>">
-                      </div>
-                      <div class="info">
-                        <%= rehearsal.trainee.first_name+' '+ rehearsal.trainee.last_name %><br>
-                        <font size="0.1em" style="font-family:'gotham_book';">Submitted: <%= @date_sub %></font>
-                      </div>
-                    </button>
+                      <%= form_tag ("/rehearsals/"+rehearsal.id.to_s+"/api"), method: :get, remote: true do %>
+                      <button type="submit" class="user_bubble">
+                        <div class="pic">
+                          <img src="<%= student_pic(rehearsal.trainee) %>">
+                        </div>
+                        <div class="info">
+                          <%= rehearsal.trainee.first_name+' '+ rehearsal.trainee.last_name %><br>
+                          <font size="0.1em" style="font-family:'gotham_book';">Submitted: <%= @date_sub %></font>
+                        </div>
+                      </button>
+                      <% end %>
+
                     <% end %>
-
+                    <% num_re+=1 %>
                   <% end %>
-                  <% num_re+=1 %>
                 <% end %>
               </div>
               <script type="text/javascript">

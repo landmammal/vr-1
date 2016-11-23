@@ -12,16 +12,15 @@ module WelcomeHelper
 #   end
 
   def menu_welcome
-    case request.original_fullpath
+    url = request.original_fullpath
+    case url
       when '/'
-        a=true
-      when '/mission'
         a=true
       else
         a=false
     end
-
-    puts a
+    
+    a=true if url[0,9]=='/overview'
 
     a && !current_user ? b=true : b=false
 
