@@ -53,33 +53,40 @@ class RehearsalsController < ApplicationController
     #   end
     # end 
 
-    @courses = {};
+    @courses = current_user.courses;
+    # @courses = {};
 
-    current_user.courses.each do |course|
-      course.rehearsals.where(submission: true).each do |rehearsal|
-
-            @courses[course] = {}
-            @courses[course][rehearsal.topic] = {}
-            @courses[course][rehearsal.topic][rehearsal.lesson] = []      
-        # if params[:list] == "all"
-        # else
-        #   if ((rehearsal.approval_status==0 || rehearsal.approval_status==nil ) && rehearsal.feedbacks.size<1)
-        #     @courses[course] = {}
-        #     @courses[course][rehearsal.topic] = {}
-        #     @courses[course][rehearsal.topic][rehearsal.lesson] = []
-        #   end
-        # end
-
-        if params[:list] == "all"
-            @courses[course][rehearsal.topic][rehearsal.lesson] << rehearsal        
-        else
-          if ((rehearsal.approval_status==0 || rehearsal.approval_status==nil ) && rehearsal.feedbacks.size<1)
-            @courses[course][rehearsal.topic][rehearsal.lesson] << rehearsal
-          end
-        end
+    current_user.courses do |course|
+      course.rehearsals.each do |rehearsal|
         
       end
     end
+
+    # current_user.courses.each do |course|
+    #   course.rehearsals.where(submission: true).each do |rehearsal|
+
+    #         @courses[course] = {}
+    #         @courses[course][rehearsal.topic] = {}
+    #         @courses[course][rehearsal.topic][rehearsal.lesson] = []      
+    #     # if params[:list] == "all"
+    #     # else
+    #     #   if ((rehearsal.approval_status==0 || rehearsal.approval_status==nil ) && rehearsal.feedbacks.size<1)
+    #     #     @courses[course] = {}
+    #     #     @courses[course][rehearsal.topic] = {}
+    #     #     @courses[course][rehearsal.topic][rehearsal.lesson] = []
+    #     #   end
+    #     # end
+
+    #     if params[:list] == "all"
+    #         @courses[course][rehearsal.topic][rehearsal.lesson] << rehearsal        
+    #     else
+    #       if ((rehearsal.approval_status==0 || rehearsal.approval_status==nil ) && rehearsal.feedbacks.size<1)
+    #         @courses[course][rehearsal.topic][rehearsal.lesson] << rehearsal
+    #       end
+    #     end
+        
+    #   end
+    # end
 
 
   end

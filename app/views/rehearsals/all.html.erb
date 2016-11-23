@@ -16,38 +16,36 @@
   </div>
 
   <div class="rehearsal_courses">
-    <% @courses.each do |course, courses| %>
+    <% @courses.each do |course| %>
       <div class="rsl_course" data-c='c_<%= course.id %>'>
         <span style="font-family:'gotham';"><%= course.title[0...20] %>
-        <% num_re = 0; %>
         <%= "..." if course.title.length > 20 %></span>
         (<span class="c_<%= course.id %>"></span>)<br>
       </div>
 
       <div class="toggle_topic" data-c='c_<%= course.id %>'>
-      <% courses.each do |topic, topics| %>
+      <% course.topics.each do |topic| %>
 
           <div class="rsl_topic" data-c='c_<%= course.id %>' data-t='t_<%= topic.id %>'>
             <%= topic.title[0...30] %>
             <%= "..." if topic.title.length > 30 %><br>
           </div>
 
-          <% topics.each do |lesson, rehearsals| %>
+          <% topic.lessons.each do |lesson| %>
             <div class="rsl_lesson" data-t='t_<%= topic.id %>' data-l='t_<%= lesson.id %>'>
 
               <%= lesson.title[0...25] %>
               <%= "..." if lesson.title.length > 25 %><br>
               <div class="all_rehearsals" style="display:none;" data-l='t_<%= lesson.id %>'>
-                <% if rehearsals.size > 0 %>
-                  <% rehearsals.each do |rehearsal| %>
-                    <% if User.exists?(rehearsal.trainee_id) %>
+                <% if lesson.rehearsals.size > 0 %>
+                  <% lesson.rehearsals.each do |rehearsal| %>
+                    <% if User.exists?(rehearsal.trainee_id) && rehearsal.submission == true %>
 
                       <% @r = 'rehearsal_bubble_'+rehearsal.id.to_s %>
                       <% @date_sub = time_diff(Time.now, rehearsal.created_at) %>
-                      <%= '' %>
 
                       <%= form_tag ("/rehearsals/"+rehearsal.id.to_s+"/api"), method: :get, remote: true do %>
-                      <button type="submit" class="user_bubble">
+                      <button type="submit" class="user_bubble <%= new_rehearsal(rehearsal) %>">
                         <div class="pic">
                           <img src="<%= student_pic(rehearsal.trainee) %>">
                         </div>
@@ -59,13 +57,9 @@
                       <% end %>
 
                     <% end %>
-                    <% num_re+=1 %>
                   <% end %>
                 <% end %>
               </div>
-              <script type="text/javascript">
-                $('.c_<%= course.id %>').text('<%= num_re %>');
-              </script>
             </div>
           <% end %>
 

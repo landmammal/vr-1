@@ -118,6 +118,9 @@ var pageReady = function(){
 
 
   $('.rsl_course').click(function(){
+    $('.toggle_topic').hide();
+    $('.rsl_topic').hide();
+
     $('.rsl_topic[data-c='+$(this).data('c')+']').toggle();
     $('.toggle_topic[data-c='+$(this).data('c')+']').toggle();
   });
