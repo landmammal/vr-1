@@ -178,7 +178,7 @@ header.header{
 
 .home_top_wrapper{
 	background-repeat:no-repeat; background-attachment:fixed;
-	height:calc(70% - 100px); max-height:900px; overflow:hidden;
+	height:calc(80% - 100px); max-height:900px; overflow:hidden;
 	transition:1s; position:relative;
 }
 
@@ -439,59 +439,6 @@ $center_pos: 45% ;
 
 
 
-
-// REGISTER FORM
-.register_top{
-	margin:150px 0 50px; padding: 5px;
-	background-position:left 85%;
-	background-size:cover;
-	background-repeat:no-repeat;
-	height:550px;
-}
-
-.register_form{
-	overflow:hidden;
-	max-width:1100px; margin:0 auto;
-	position:relative; top:-80px; z-index:20;
-	& .title{
-		font-family:'webly_reg'; font-size:40px;
-		float: left;
-		position:relative; top:10px;
-	}
-}
-
-.register{
-	padding:5px 30px 20px; margin:0; width:400px; float:right;
-	background-color:rgba(white, 0.8); 
-	background: linear-gradient(rgba(white,1) 15%, rgba(#B5B8B8,0.7) 100%);
-	color:#999;
-	border-top:5px solid #999;
-
-	form{
-		color:#333; font-size:12px;
-	}
-
-	form input, form select{
-	  width:100%; margin:5px auto; float:none; display:inline-block;
-	  &.name{
-	  	width:49.4%; margin-bottom:25px;
-	  }
-	}
-	form input.button{
-	  width:inherit;
-	}
-
-	form .register_label{
-	 	text-align:left;  color:#333; font-size:12px; margin:0 0 5px;
-	}
-}
-
-
-
-
-
-
-
 .modal-body{
 	height:470px; overflow:scroll;
 }
@@ -627,13 +574,14 @@ $center_pos: 45% ;
 
 
 
-.overview_header{
+.overview_header, .register_header{
 	background-color:rgba(black, 0.7);
 	min-height:calc(100% - 48px); color:white;
 	& .content{
 		max-width:1100px;
 		margin:0 auto;
 		padding:20px 10px; 
+		position:relative;
 	}
 }
 .overview_menu{
@@ -641,7 +589,8 @@ $center_pos: 45% ;
 	width:150px;
 	padding-top:60px;
 	button.tab{
-		width: 100%;
+		width: 100%; border:0;
+		border-radius:0;
 		text-align: left;
 		padding:5px 10px;
 		background-color:#efefef;
@@ -660,6 +609,37 @@ $center_pos: 45% ;
 	}
 }
 
+
+
+// REGISTER FORM
+
+.register{
+	padding:5px 30px 20px; width:400px;
+	background: white;
+	position:absolute; top:50px; right:0;
+	color:#666;
+	border-top:5px solid #999;
+
+	a{ color:#1AA8FF; }
+
+	form{
+		color:#333; font-size:12px;
+	}
+
+	form input, form select{
+	  width:100%; margin:5px auto; float:none; display:inline-block;
+	  &.name{
+	  	width:49.4%; margin-bottom:25px;
+	  }
+	}
+	form input.button{
+	  width:inherit;
+	}
+
+	form .register_label{
+	 	text-align:left;  color:#333; font-size:12px; margin:0 0 5px;
+	}
+}
 
 
 /* Mobile Layout: 480px and below. */

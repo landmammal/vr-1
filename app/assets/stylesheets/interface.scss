@@ -301,19 +301,22 @@ span.num{
 
 
 .tab{
-	background-color:#ddd;
+	background-color:transparent;
 	padding:5px 10px; margin:0 2px 0 0;
 	float:left;
-	border-radius:0  0;
+	border-radius:0;
+	border:1px solid transparent;
 	font-family:'gotham_book';
-	&:hover{ background-color:white; }
-	&.selected{ background-color:white; font-family:'gotham'; }
+	transition:0s;
+	margin-bottom:-1px;
+	&:hover, &.selected{ background-color:white; font-family:'gotham'; border:1px solid #ddd; border-bottom:0; border-radius:5px 5px 0 0; }
 }
 
 
 .user_bubble{
 	border-radius:5px; position:relative;
-	padding:3px; overflow:hidden; background-color:#ddd;
+	padding:2px; border:1px solid #ddd;
+	overflow:hidden; background-color:#ddd;
 	display:inline-block; float:none;
 	width:200px; margin:5px;
 	& .pic{
@@ -330,7 +333,8 @@ span.num{
 		line-height: 1em;
 	}
 	&.new_rehearsal{
-		background-color:#19C9D7;
+		border:1px solid #FEB9BB;
+		padding:2px;
 	}
 }
 

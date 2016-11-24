@@ -1,53 +1,60 @@
-<div class="register_top" style="background-image:url('/assets/frame_home_1.jpg');">
-  <div class="register_form">
-    <div class="title"> Review . Rehearse . Transform </div>
-    <div class="register">
-      <h2>Register</h2>
-      
-      <hr style="border-top:0.5px dotted #999; opacity:0.3; margin:20px 0; max-width:400px; min-width:50%;">
-      <div class='form_err'></div>
-      <div class="form">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), multipart: true, remote: true) do |f| %>
-          <%= devise_error_messages! %>
-
-          
-          <!-- <div class="register_label">User Information</div> -->
-          <%= f.text_field :first_name, class:'firstname name clearform', autofocus: true, placeholder:'First Name'%>
-          <%= f.text_field :last_name, class:'lastname name clearform', placeholder:'Last Name'%>
-          <%= f.text_field :username, class:'username clearform', placeholder:'Create Username'%><br>
-          <%= f.email_field :email, class:'email clearform', autofocus: true, placeholder:'Email'%><br><br>
-
-
-          <div class="register_label">Password
-            <% if @minimum_password_length %>
-              <span style="font-size:10px;">(<%= @minimum_password_length %> characters minimum)</span>
-            <% end %>:
-          </div>
-          <%= f.password_field :password, class:'pass clearform', autocomplete: "off", placeholder:'Password' %><br>
-          <%= f.password_field :password_confirmation, class:'passComf clearform', autocomplete: "off", placeholder:'Confirm Password' %><br>
-          
-
-
-            <!--this line is broken therefore is not in production-->
-          <div class="register_label">Date of birth</div>
-          <%= f.date_field :age, placeholder:'Age'%><br>
-          <div class="register_label">Ethnicity</div>
-          <%= f.select :race, ([["Hispanic or Latino", "Hispanic or Latino"], ["American Indian or Alaska Native", "American Indian or Alaska Native"], ["Asian", "Asian"], ["Black or African American", "Black or African American"], ["Native Hawaiian or Pacific Islander", "Native Hawaiian or Pacific Islander"], ["White", "White"], ["Multiple races or ethnicities", "Multiple races or ethnicities"], ["Prefer not to answer", "Prefer not to answer"], ["Other", "Other"]]) %>
-          
-          <br><br>
-          <input type="checkbox" class="termsServices" id="termsServices" name="terms_services" style="width:20px; float:left;">
-          
-          <font color="#fff" style="position:reltive; top:6px; font-size:14px;">I have read the <a href="#" data-toggle="modal" data-target="#myModal" style="color:#97282D;">Terms & Services</a></font>
-          <br><br>
-          <%= f.submit "Sign up", class:'blue reg_btn register_btn' %>
-          <br><br>
-
-        <% end %>
-        <%= render "devise/shared/links" %>
+<div class="full_top_img" style="background-image:url('/assets/frame_home_1.jpg');">
+  <%= render 'layouts/menu' if menu_welcome %>
+  <div class="register_header">
+    <div class="content">
+      <div style="font-family:'gotham';margin:10% 0 20px; font-size:40px; line-height:1em;">
+        Review . Rehearse . Transform
       </div>
-      <div class="registered_confirmation" style="padding:100px 20px; text-align:center; color:white; font-family:'webly_bld'; font-size:17px; display:none;">
+      <div class="register">
+        <h2>Register</h2>
+        
+        <hr style="border-top:0.5px dotted #999; opacity:0.3; margin:20px 0; max-width:400px; min-width:50%;">
+        <div class='form_err'></div>
+        <div class="form">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), multipart: true, remote: true) do |f| %>
+            <%= devise_error_messages! %>
+
+            <!-- <div class="register_label">User Information</div> -->
+            <%= f.text_field :first_name, class:'firstname name clearform', autofocus: true, placeholder:'First Name'%>
+            <%= f.text_field :last_name, class:'lastname name clearform', placeholder:'Last Name'%>
+            <%= f.text_field :username, class:'username clearform', placeholder:'Create Username'%><br>
+            <%= f.email_field :email, class:'email clearform', autofocus: true, placeholder:'Email'%><br><br>
+
+
+            <!-- <div class="register_label">Password -->
+              <!-- <% if @minimum_password_length %> -->
+                <!-- <span style="font-size:10px;">(<%= @minimum_password_length %> characters minimum)</span> -->
+              <!-- <% end %>: -->
+            <!-- </div> -->
+            <%= f.password_field :password, class:'pass clearform', autocomplete: "off", placeholder:'Password (6 characters or more)' %><br>
+            <%= f.password_field :password_confirmation, class:'passComf clearform', autocomplete: "off", placeholder:'Confirm Password' %><br><br>
+            
+
+
+            <!-- <div class="register_label">Ethnicity</div> -->
+            <%= f.select :race, ([["Hispanic or Latino", "Hispanic or Latino"], ["American Indian or Alaska Native", "American Indian or Alaska Native"], ["Asian", "Asian"], ["Black or African American", "Black or African American"], ["Native Hawaiian or Pacific Islander", "Native Hawaiian or Pacific Islander"], ["White", "White"], ["Multiple races or ethnicities", "Multiple races or ethnicities"], ["Prefer not to answer", "Prefer not to answer"], ["Other", "Other"]]) %>
+            <br><br>
+              <!--this line is broken therefore is not in production-->
+            <div class="register_label">Date of birth</div>
+            <%= f.date_field :age, placeholder:'Age'%><br><br>
+            
+           
+            <input type="checkbox" class="termsServices" id="termsServices" name="terms_services" style="width:20px; float:left;">
+            
+            <font color="#333" style="position:reltive; top:6px; font-size:14px;">I have read the <a href="#" data-toggle="modal" data-target="#myModal" style="color:#97282D;">Terms & Services</a></font>
+            <br><br>
+            <%= f.submit "Sign up", class:'blue reg_btn register_btn' %>
+            <br><br>
+
+          <% end %>
+          <%= render "devise/shared/links" %>
+        </div>
+        <div class="registered_confirmation" style="padding:100px 20px; text-align:center; color:#333; font-family:'webly_bld'; font-size:17px; display:none;">
+        </div>
       </div>
     </div>
+
+
   </div>
 </div>
 

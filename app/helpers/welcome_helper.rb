@@ -16,6 +16,8 @@ module WelcomeHelper
     case url
       when '/'
         a=true
+      when '/users/sign_up'
+        a=true
       else
         a=false
     end

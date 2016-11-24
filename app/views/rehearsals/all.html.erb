@@ -42,20 +42,8 @@
                   <% lesson.rehearsals.each do |rehearsal| %>
                     <% if User.exists?(rehearsal.trainee_id) && rehearsal.submission == true %>
 
-                      <% @r = 'rehearsal_bubble_'+rehearsal.id.to_s %>
-                      <% @date_sub = time_diff(Time.now, rehearsal.created_at) %>
-
-                      <%= form_tag ("/rehearsals/"+rehearsal.id.to_s+"/api"), class:'rehearsal_button', method: :get, remote: true do %>
-                        <button type="submit" class="user_bubble <%= new_rehearsal(rehearsal) %>">
-                          <div class="pic">
-                            <img src="<%= student_pic(rehearsal.trainee) %>">
-                          </div>
-                          <div class="info">
-                            <%= rehearsal.trainee.first_name+' '+ rehearsal.trainee.last_name %><br>
-                            <font size="0.1em" style="font-family:'gotham_book';">Submitted: <%= @date_sub %></font>
-                          </div>
-                        </button>
-                      <% end %>
+                      <% @rehearsal = rehearsal %>
+                      <%= render 'rehearsalbtn' %>
 
                     <% end %>
                   <% end %>
@@ -72,7 +60,22 @@
 
   <div class="rehearsal_list">
     <span style="font-size:20px;">
-      <%= 'You currently have no new rehearsal submissions' if @courses.size<1 %>
+      <% if @courses.size<1 %>
+        You currently have no new rehearsal submissions
+      <% else %>
+        
+        <% @courses.each do |course| %>
+          <% course.rehearsals.order('created_at ASC')[0 .. 21].each do |rehearsal| %>
+            <% if User.exists?(rehearsal.trainee_id) && rehearsal.submission == true %>
+
+              <% @rehearsal = rehearsal %>
+              <%= render 'rehearsalbtn' %>
+
+            <% end %>
+          <% end %>
+        <% end %>
+
+      <% end %>
     </span>
   </div>
 
