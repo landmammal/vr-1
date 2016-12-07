@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   put '/rehearsal/:rehearsal_id/rehearsal_approved' => "rehearsals#rehearsal_approved"
 
   get "/test" => "welcome#test"
+  get "/reset" => "welcome#reset"
   get "/lessonexp/" => "lesson_explanations#index"
 
   post '/topic/create' => "topics#create"

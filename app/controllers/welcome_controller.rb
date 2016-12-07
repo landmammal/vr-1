@@ -59,6 +59,22 @@ class WelcomeController < ApplicationController
 
   end
 
+
+
+
+
+
+  def reset
+    @users = User.all.select(:id, :first_name, :last_name, :username, :role, :age, :race, :gender, :email, :approved, :terms_of_use)
+    # render json: @users.to_json
+  end
+
+
+
+
+
+
+
   def interface_test
     @site_title = 'TESTBOX :: Interface'
   	render "interface"
