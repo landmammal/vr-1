@@ -24,7 +24,7 @@ Rails.application.configure do
       enable_starttls_auto: true  }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { 
-    :host => 'https://videorehearser.herokuapp.com'
+    :host => 'https://videorehearser.com'
   }
 
   # Code is not reloaded between requests.
