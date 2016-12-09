@@ -1,5 +1,22 @@
 class ApplicationController < ActionController::Base
   include Pundit
+
+
+  def self.force_ssl(options = {})
+    host = options.delete(:host)
+    before_filter(options) do
+      if !request.ssl? && !Rails.env.development? && !(respond_to?(:allow_http?) && allow_http?)
+        redirect_options = {:protocol => 'https://', :status => :moved_permanently}
+        redirect_options.merge!(:host => host) if host
+        redirect_options.merge!(:params => request.query_parameters)
+        redirect_to redirect_options
+      end
+    end
+  end
+
+  force_ssl
+
+
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   protect_from_forgery with: :null_session
 
