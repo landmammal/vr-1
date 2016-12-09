@@ -375,7 +375,7 @@ var pageReady = function(){
 	    	
 	    	if(playerID.replace('_video_player','')==='prompt' && playhead < 0.03){
 	    		var embed = ZiggeoApi.V2.Player.findByElement($('#model_video_player'));
-	    		setTimeout(function(){ embed.play();}, 400);
+	    		// setTimeout(function(){ embed.play();}, 400);
 	    	}
 	    	if(playerID.replace('_video_player','')==='model'){
 	    		var embed = ZiggeoApi.V2.Recorder.findByElement($('.rehearsal'));
