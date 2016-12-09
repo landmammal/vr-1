@@ -12,4 +12,8 @@ class Course < ApplicationRecord
 
   has_many :rehearsals
 
+  def privacy!
+  	[[:Public, 0],[:Unpublished, 1],[:Paid, 2],[:Private, 3]]
+  end
+
 end

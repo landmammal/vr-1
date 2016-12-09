@@ -16,7 +16,7 @@
     <%= f.text_area :description, placeholder:'Description', class:'js-course_description' %><br>
     <%= f.text_field :tags, placeholder:'tags (comma separated)', class:'js-course_tags course_create' %><br>
     <%= f.text_field :approval_status, type:"hidden", class:'js-course_status', value: 0 %><br>
-    <%= f.select :privacy, (@privacy) %>
+    <%= f.select :privacy, @course.privacy! %>
     <%= f.select :language, (@languages) %><br>
     <%= f.text_field :instructor_id, type:"hidden", class:'js-course_instructor', value:current_user.id %><br>
 
