@@ -10,7 +10,11 @@ Rails.application.routes.draw do
     get "/#{menu}" => "welcome##{menu}"
   end
 
-  # get '/letter_opener' => "tmp/letter_opener"
+  
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+  
 
   # api routes
   api_routes = ['courses','topics','lessons','course_registrations','site_panel','common_panel','instructor_panel','admin_panel']

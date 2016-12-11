@@ -6,3 +6,5 @@ var addComponent = "<%= escape_javascript (render partial: './lessons/componentc
 
 $('.js_listOf<%= @progressbox[1] %>s').append(addComponent);
 $('form.<%= @progressbox[1] %>Form')[0].reset();
+
+lessonProgress('<%= @item.lesson.lesson_type %>','<%= @item.lesson.explanations.to_json %>', '<%= @item.lesson.prompts.to_json %>', '<%= @item.lesson.models.to_json %>');

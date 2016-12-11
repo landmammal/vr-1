@@ -1,3 +1,19 @@
+GIT
+  remote: https://github.com/fgrehm/letter_opener_web
+  revision: a3ef0811014c207e825ae71b5255de114204211d
+  specs:
+    letter_opener_web (1.3.0)
+      actionmailer (>= 3.2)
+      letter_opener (~> 1.0)
+      railties (>= 3.2)
+
+GIT
+  remote: https://github.com/ryanb/letter_opener
+  revision: 301b678055fe43af5fe45112fe667125a451d991
+  specs:
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -131,8 +147,6 @@ GEM
     json (1.8.3)
     launchy (2.4.3)
       addressable (~> 2.3)
-    letter_opener (1.4.1)
-      launchy (~> 2.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -297,7 +311,8 @@ DEPENDENCIES
   hirb
   jbuilder (~> 2.0)
   jquery-rails
-  letter_opener
+  letter_opener!
+  letter_opener_web!
   paperclip
   pg
   pry-byebug
