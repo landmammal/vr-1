@@ -55,6 +55,7 @@ group :development, :test do
   gem 'rspec-rails' # Test Helper
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'letter_opener'
   gem 'selenium-webdriver'
   gem 'pry-byebug' # Break in console
   gem 'pry-rails'

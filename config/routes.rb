@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     get "/#{menu}" => "welcome##{menu}"
   end
 
+  # get '/letter_opener' => "tmp/letter_opener"
+
   # api routes
   api_routes = ['courses','topics','lessons','course_registrations','site_panel','common_panel','instructor_panel','admin_panel']
   api_routes.push('demos','tasks','chat')

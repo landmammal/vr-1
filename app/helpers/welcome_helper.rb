@@ -16,13 +16,14 @@ module WelcomeHelper
     case url
       when '/'
         a=true
-      when '/users/sign_up'
+      when '/?secure=true'
         a=true
       else
         a=false
     end
     
     a=true if url[0,9]=='/overview'
+    a=true if url[0,14]=='/users/sign_up'
 
     a && !current_user ? b=true : b=false
 
