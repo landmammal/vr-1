@@ -5,7 +5,7 @@ class AdminMailer < ApplicationMailer
   # sending admin mail when a new user registers
   def new_user_waiting_for_approval
     @url  = 'https://videorehearser.com/users/sign_in'
-    mail(to: 'aldelcy2000@gmail.com', subject: "New User Signup")
+    mail(to: 'carlos@videorehearser.com', subject: "New User Signup")
   end
 
   # sending user welcoming email
