@@ -1,0 +1,16 @@
+<% @users.each do |user| %>
+	User.create(<%= JSON.parse(user.to_json) %>)<br>
+	
+	<% if user.course_registrations.size>0 %>
+		<% user.course_registrations.select(:user_id, :course_id, :user_role).each do |cr| %>
+			CourseRegistration.create(<%= JSON.parse(cr.to_json) %>)<br>
+		<% end %><br>
+	<% end %><br>
+
+	<% if user.courses.size>0 %>
+		<% user.courses.select(:title, ).each do |course| %>
+			Course.create(<%= JSON.parse(course.to_json) %>)<br>
+		<% end %><br>
+	<% end %><br>
+
+<% end %>

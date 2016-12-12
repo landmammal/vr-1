@@ -10,6 +10,12 @@ Rails.application.routes.draw do
     get "/#{menu}" => "welcome##{menu}"
   end
 
+  
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+  
+
   # api routes
   api_routes = ['courses','topics','lessons','course_registrations','site_panel','common_panel','instructor_panel','admin_panel']
   api_routes.push('demos','tasks','chat')
@@ -29,6 +35,7 @@ Rails.application.routes.draw do
   put '/rehearsal/:rehearsal_id/rehearsal_approved' => "rehearsals#rehearsal_approved"
 
   get "/test" => "welcome#test"
+  get "/reset" => "welcome#reset"
   get "/lessonexp/" => "lesson_explanations#index"
 
   post '/topic/create' => "topics#create"

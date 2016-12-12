@@ -94,5 +94,6 @@ PerformanceFeedback.create(rehearsal_id: 1, feedback_id: 1)
 PerformanceFeedback.create(rehearsal_id: 2, feedback_id: 2)
 # PerformanceFeedback.create(rehearsal_id: 3, feedback_id: 3)
 
+User.create(id=3, first_name="Coach", last_name="Jane", username="coach", role="coach", age=1480451392, race="White", gender=nil, email="coach@gmail.com", approved=true, terms_of_use=nil)
 
 

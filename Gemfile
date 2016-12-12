@@ -55,6 +55,8 @@ group :development, :test do
   gem 'rspec-rails' # Test Helper
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'letter_opener', :git => 'https://github.com/ryanb/letter_opener' # preview email without actually sending it
+  gem 'letter_opener_web', :git => 'https://github.com/fgrehm/letter_opener_web' # lets us preview the emails in our web browser
   gem 'selenium-webdriver'
   gem 'pry-byebug' # Break in console
   gem 'pry-rails'

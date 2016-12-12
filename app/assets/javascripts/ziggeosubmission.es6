@@ -31,7 +31,7 @@ var pageReady = function(checkrecorder){
 
 			    	if(thisForm === 'rehearsal'){
 			    		var nextRehearsal= $(".list_of_lesson_rehearsals > div").length + 1;
-			    		// $('.ba-videoplayer-theme-modern-rerecord-button-container').append("<span class='choose_rehearsal'>Scroll down to send to instructor</span>");
+			    		$('.ba-videoplayer-theme-modern-rerecord-button-container').append("<span class='choose_rehearsal'>Scroll down to send to instructor</span>");
 
 				        var newRehearseNum = parseInt($('.js-num_rehearsals').text()) + 1;
 				        $('.js-num_rehearsals').text(newRehearseNum);
