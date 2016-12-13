@@ -72,15 +72,19 @@ class RehearsalsController < ApplicationController
     # @courses = current_user.courses;
     @courses = [];
 
+    @rehearsals = []
+    
     current_user.courses.each do |course|
       course.rehearsals.where(submission: true).each do |rehearsal|
         if params[:list] == "all"
+            @rehearsals << rehearsal
             @courses<<rehearsal.course if !@courses.include? rehearsal.course
             @re_title = "All Rehearsals"
         else
           if (rehearsal.feedbacks.size < 1 && rehearsal.approval_status == 0) || (rehearsal.feedbacks.size > 1 && rehearsal.approval_status == 1) && User.exists?(rehearsal.trainee_id) 
             @courses<<rehearsal.course if !@courses.include? rehearsal.course
             @re_title = "Rehearsals"
+            @rehearsals << rehearsal
           end
         end
       end

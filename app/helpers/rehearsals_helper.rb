@@ -32,16 +32,16 @@ module RehearsalsHelper
 	def rehearsal_approved(id)
 		rehearsal = Rehearsal.find(id)
 		
-		(rehearsal.submission == false || !rehearsal.submission) ? status = 'blankdot' : ((rehearsal.approval_status == 1 ) ? status = 'greendot' : status = 'orangedot')
+		(rehearsal.submission == false || !rehearsal.submission) ? status = 'blankdot' : ((rehearsal.approval_status == 1 ) ? status = 'greendot' : ((rehearsal.approval_status == 2 ) ? status = 'reddot' : status = 'orangedot'))
 		
 		rehearsal.feedbacks.each do |feedback|
 			if feedback.approved == true || rehearsal.approval_status == 1
 				status = 'greendot'
-				break
+				# break
 			end
 			if feedback.approved == true || rehearsal.approval_status == 2
 				status = 'reddot'
-				break
+				# break
 			end
 				
 		end
