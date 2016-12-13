@@ -32,13 +32,18 @@ module RehearsalsHelper
 	def rehearsal_approved(id)
 		rehearsal = Rehearsal.find(id)
 		
-		(rehearsal.submission == false || !rehearsal.submission) ? status = 'blankdot' : status = 'orangedot'
+		(rehearsal.submission == false || !rehearsal.submission) ? status = 'blankdot' : ((rehearsal.approval_status == 1 ) ? status = 'greendot' : status = 'orangedot')
 		
 		rehearsal.feedbacks.each do |feedback|
 			if feedback.approved == true || rehearsal.approval_status == 1
 				status = 'greendot'
 				break
 			end
+			if feedback.approved == true || rehearsal.approval_status == 2
+				status = 'reddot'
+				break
+			end
+				
 		end
 
 		return status

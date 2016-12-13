@@ -20,6 +20,11 @@
     </div>
     <div class="shadebox_bottom">
       <!-- <button type="button" class="mark_as_completed green_sft" style="float:left;" data-rehearsalid="<%= @rehearsal.id %>" data-userid="<%= current_user.id %>">Mark as completed</button> -->
+
+      <%= (@rehearsal.approval_status==1 ? (button_tag 'Approved', class:'green_sft pass', style:'float:left;'):(button_tag 'Approve', class:'mark_rehearsal_status pass', style:'float:left;', data:{approvalstatus:1, rehearsalid:@rehearsal.id})) %>
+
+      <%= (@rehearsal.approval_status==2 ? (button_tag 'Redo', class:'red fail', style:'float:left;'):(button_tag 'Redo', class:'mark_rehearsal_status fail', style:'float:left;', data:{approvalstatus:2, rehearsalid:@rehearsal.id})) %>
+
       <a href="/rehearsals/<%= @rehearsal.id %>" class="leave_feedback">
         <button type="button" class="blue leave_feedback" style="float:left;" data-rehearsalid="<%= @rehearsal.id %> ">Leave Video Feedback</button>
       </a>
