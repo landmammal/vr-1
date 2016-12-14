@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include Pundit
 
-
+  
   def self.force_ssl(options = {})
     host = options.delete(:host)
     before_filter(options) do
@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 
   def default_url_options(options={})
     { :secure => true }
-  end 
+  end
 
 	def main_links
 		@main_menu = ['overview','contact']
