@@ -110,7 +110,7 @@ var pageReady = function(){
   $(document).on('click', '.stop_video', function() {
     var thisplayer = $(this).closest('.shadebox').find('ziggeoplayer')[0];
     console.log(thisplayer.className);
-    var embedding = ZiggeoApi.V2.Player.findByElement(thisplayer);
+    var embedding = ZiggeoApi.V2.Player.findByElement('ziggeoplayer');
     embedding.stop();
   });
 
@@ -132,6 +132,25 @@ var pageReady = function(){
   $('.rsl_lesson').click(function(){
     var rehearsals_list = $('.all_rehearsals[data-l='+$(this).data('l')+']')[0].innerHTML;
     $('.rehearsal_list').html(rehearsals_list);
+  });
+
+
+  $(document).on('click', '.mark_rehearsal_status', function() {
+    var rehearsalStatus = $(this).data('approvalstatus');
+    var rehearsalId = $(this).data('rehearsalid');
+    console.log(rehearsalStatus)
+
+    var rehearsal = new Object();
+        rehearsal.approval_status = rehearsalStatus;
+
+    $.ajax({
+        type:'POST',
+        data:rehearsal,
+        url:'/rehearsal/'+rehearsalId+'/approved',
+        success:function(data){
+          // console.log('success')
+        },
+    });
   });
 
 

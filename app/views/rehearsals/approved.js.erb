@@ -1,0 +1,7 @@
+<% if @rehearsal.approval_status==1 %>
+	$('.pass').addClass('green_sft');
+	$('.fail').removeClass('red');
+<% elsif @rehearsal.approval_status==2 %>
+	$('.fail').addClass('red');
+	$('.pass').removeClass('green_sft');
+<% end %>

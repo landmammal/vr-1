@@ -20,7 +20,7 @@
       <div class="rsl_course" data-c='c_<%= course.id %>'>
         <span style="font-family:'gotham';"><%= course.title[0...20] %>
         <%= "..." if course.title.length > 20 %></span>
-        (<%= rehearsals_count(course) %>)<br>
+        <!-- (<%= rehearsals_count(course) %>)<br> -->
       </div>
 
       <div class="toggle_topic" data-c='c_<%= course.id %>'>
@@ -64,15 +64,13 @@
         You currently have no new rehearsal submissions
       <% else %>
         
-        <% @courses.each do |course| %>
-          <% course.rehearsals.order('created_at ASC')[0 .. 21].each do |rehearsal| %>
+        <% @rehearsals[0 .. 21].each do |rehearsal| %>
             <% if User.exists?(rehearsal.trainee_id) && rehearsal.submission == true %>
 
               <% @rehearsal = rehearsal %>
               <%= render 'rehearsalbtn' %>
 
             <% end %>
-          <% end %>
         <% end %>
 
       <% end %>

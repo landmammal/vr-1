@@ -6,14 +6,30 @@ class RehearsalsController < ApplicationController
   before_action :authenticate_user!
 
   # approving  a rehearsal
-  def rehearsal_approved
+  # def rehearsal_approved
+  #   @rehearsal = Rehearsal.find(params[:rehearsal_id])
+  #   @rehearsal.approval_status = 1
+  #   user = @rehearsal.trainee
+  #   respond_to do |format|
+  #     if @rehearsal.save!
+  #       AdminMailer.lesson_complete_notice(user).deliver_now
+  #       format.js { render :js => "window.location = '/rehearsals/all'" }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @rehearsal.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+
+  def approved
     @rehearsal = Rehearsal.find(params[:rehearsal_id])
-    @rehearsal.approval_status = 1
+    # puts "===================LOADED================="
+    @rehearsal.approval_status = params[:approval_status]
     user = @rehearsal.trainee
     respond_to do |format|
       if @rehearsal.save!
         AdminMailer.lesson_complete_notice(user).deliver_now
-        format.js { render :js => "window.location = '/rehearsals/all'" }
+        format.js { }
       else
         format.html { render :new }
         format.json { render json: @rehearsal.errors, status: :unprocessable_entity }
@@ -56,15 +72,19 @@ class RehearsalsController < ApplicationController
     # @courses = current_user.courses;
     @courses = [];
 
+    @rehearsals = []
+    
     current_user.courses.each do |course|
       course.rehearsals.where(submission: true).each do |rehearsal|
         if params[:list] == "all"
+            @rehearsals << rehearsal
             @courses<<rehearsal.course if !@courses.include? rehearsal.course
             @re_title = "All Rehearsals"
         else
           if (rehearsal.feedbacks.size < 1 && rehearsal.approval_status == 0) || (rehearsal.feedbacks.size > 1 && rehearsal.approval_status == 1) && User.exists?(rehearsal.trainee_id) 
             @courses<<rehearsal.course if !@courses.include? rehearsal.course
             @re_title = "Rehearsals"
+            @rehearsals << rehearsal
           end
         end
       end

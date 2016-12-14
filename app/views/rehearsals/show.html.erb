@@ -61,6 +61,9 @@
             <%= f.text_area :notes, placeholder:'Write them a note here...' %><br>
           <% end %>
             
+          <!-- <%= (@rehearsal.approval_status==1 ? (button_tag 'Approved', class:'mark_rehearsal_status green_sft pass', style:'float:left;', data:{approvalstatus:1, rehearsalid:@rehearsal.id}):(button_tag 'Approve', class:'mark_rehearsal_status pass', style:'float:left;', data:{approvalstatus:1, rehearsalid:@rehearsal.id})) %> -->
+
+          <!-- <%= (@rehearsal.approval_status==2 ? (button_tag 'Redo', class:'mark_rehearsal_status red fail', style:'float:left;', data:{approvalstatus:2, rehearsalid:@rehearsal.id}):(button_tag 'Redo', class:'mark_rehearsal_status fail', style:'float:left;', data:{approvalstatus:2, rehearsalid:@rehearsal.id})) %> -->
         </div>
         <br>
         <button class='submit_ziggeo submit_2 submit_feedback blue' style='float:right;' data-formname="feedback">
@@ -72,6 +75,7 @@
       <% end %>
 
     <% end %>
+
     
     <br>
     <button class="small_btn blue js-click_back">Back</button>

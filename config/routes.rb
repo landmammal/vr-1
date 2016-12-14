@@ -32,7 +32,9 @@ Rails.application.routes.draw do
   post "/courses_search/api" => "api#courses_search_api"
 
 
-  put '/rehearsal/:rehearsal_id/rehearsal_approved' => "rehearsals#rehearsal_approved"
+  # put '/rehearsal/:rehearsal_id/rehearsal_approved' => "rehearsals#rehearsal_approved"
+  post '/rehearsal/:rehearsal_id/approved' => "rehearsals#approved"
+
 
   get "/test" => "welcome#test"
   get "/reset" => "welcome#reset"
