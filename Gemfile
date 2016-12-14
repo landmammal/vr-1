@@ -8,6 +8,9 @@ gem 'rails', '5.0.0.1'
 gem 'devise'
 gem 'pundit'
 
+# user payment information
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 # for user profile and banner
 gem 'paperclip'
 gem 'aws-sdk'
