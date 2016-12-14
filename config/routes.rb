@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  resources :purchases
+
   # landing page
   root 'welcome#index'
   resources :performance_feedbacks
+
+  # routes for purchases
+  resources :charges
+  resources :purchases, only: [:show]
 
   # routes for menu
   menu_routes = ['about','markets','overview','process','contact','versions']
