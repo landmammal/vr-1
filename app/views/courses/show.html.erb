@@ -65,12 +65,48 @@
   </div>
 <% else %>
 
-  <center style="margin:50px auto 200px;">
-    <%=  'This is a "Free Course", click below to start.' if course_public %>
-    <%=  'This is a "Closed Course", click below to request Access.' if course_closed %><br><br>
-    <%= render './course_registrations/course_registration_form' if !course_creator %>
-  </center>
+    <% if @course.privacy != 2 %>
+        <center style="margin:50px auto 200px;">
+          <%=  'This is a "Free Course", click below to start.' if course_public %>
+          <%=  'This is a "Closed Course", click below to request Access.' if course_closed %><br><br>
+          <%= render './course_registrations/course_registration_form' if !instructor(@course) %>
+        </center>
+    <% end %>
 
+    <% if @course.privacy == 2 %>
+        <%= form_tag charges_path, id:'chargeForm' do %>
+
+            <% if flash[:error].present? %>
+                <div id="error_explanation">
+                  <p><%= flash[:error] %></p>
+                </div>
+            <% end %>
+
+            <script src="https://checkout.stripe.com/checkout.js"></script>
+            <%= hidden_field_tag 'stripeToken' %>
+            <%= hidden_field_tag 'amount', 499 %>
+            <%= hidden_field_tag 'stripeEmail' %>
+            <button id="btn-buy", type="button", class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-ok"></span> BUY THIS</button>
+            <script>
+              var handler = StripeCheckout.configure({
+                key: '<%= Rails.configuration.stripe[:publishable_key] %>',
+                token: function(token, arg) {
+                  document.getElementById("stripeToken").value = token.id;
+                  document.getElementById("stripeEmail").value = token.email;
+                  document.getElementById("chargeForm").submit();
+                }
+              });
+              document.getElementById('btn-buy').addEventListener('click', function(e) {
+                handler.open({
+                  name: 'name here',
+                  description: 'price here',
+                  amount: parseFloat(document.getElementById("amount").value)
+                });
+                e.preventDefault();
+              })
+            </script>
+        <% end %>
+    <% end %>
 <% end %>
 
 
