@@ -28,7 +28,8 @@ class RehearsalsController < ApplicationController
     user = @rehearsal.trainee
     respond_to do |format|
       if @rehearsal.save!
-        AdminMailer.lesson_complete_notice(user).deliver_now
+        # admin mailer must be put on hold until we find a better way to do a redo
+        # AdminMailer.lesson_complete_notice(user).later
         format.js { }
       else
         format.html { render :new }
