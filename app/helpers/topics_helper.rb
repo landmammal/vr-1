@@ -2,23 +2,18 @@ module TopicsHelper
 
 	def topic_lesson_completion(lesson)
 		rehearsals = current_user.rehearsals.where(lesson_id: lesson.id, submission: true)
-		rehearsals.size > 0 ? @lesson_done = 0 : @lesson_done = false
 		
-		rehearsals.each do |rehearsal|
-			feedback_approved = 0
-
-			rehearsal.feedbacks.each { |feedback| feedback_approved += 1 if (feedback.approved == true || rehearsal.approval_status == 1) }
-
-			if rehearsal.feedbacks.size > 0
-				(feedback_approved > (rehearsal.feedbacks.size * 0.75) || rehearsal.approval_status == 1) ? @lesson_done = 1 : @lesson_done = 2
-			else
-				@lesson_done = 0
-			end
-
-		end
-
-		# binding.pry
-
+		rehearsals.each { |rehearsal|
+      if rehearsal.approval_status == 0
+        @lesson_done = 0
+      elsif rehearsal.approval_status == 1
+        @lesson_done = 1
+      elsif rehearsal.approval_status == 2
+        @lesson_done = 2
+      else
+        @lesson_done = false
+      end
+    }
 		return @lesson_done
 	end
 
