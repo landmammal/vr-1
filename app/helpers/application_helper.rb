@@ -19,7 +19,7 @@ module ApplicationHelper
 
   def feedback_notif
     @all_rehearsals = current_user.rehearsals
-    @feedback_notif = 0
+    @feedback_notif=0
 
     @all_rehearsals.each do |rehearsal|
       rehearsal.feedbacks.each do |rhf|
