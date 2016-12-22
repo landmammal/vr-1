@@ -46,7 +46,7 @@
           <div class="card">
 
             <div class="card_title topic">
-              <a href="<%= course_topic_path(@course, topic) %> class="hola">
+              <a href="<%= course_topic_path(@course, topic) %>" style="color: white;">
                 <%= topic.title[0...25] %><%= '...' if topic.title.length > 25 %>
               </a>
               <%= link_to "X", [@course, topic], method: :delete, data: {confirm: "Are you sure?"}, id: 'topic_card_delete' %>
