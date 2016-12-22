@@ -2,9 +2,9 @@
   <div class="course_title">
     <%= @course.title %>
     <% if course_creator %>
-      <a href="<%= edit_course_path(@course) %>" title="edit <%= @course.title %>">
-        <span class="ion-edit edit" style="font-size:15px; margin:50px 10px;"></span>
-      </a>
+        <a href="<%= edit_course_path(@course) %>" title="edit <%= @course.title %>">
+          <span class="ion-edit edit" style="font-size:15px; margin:50px 10px;"></span>
+        </a>
     <% end %>
   </div>
 </div>
@@ -25,56 +25,59 @@
 <br>
 <% if course_creator || course_trainee %>
 
-  <h4>
-    Topics
-    <%if course_creator %>
-      <button class="js-add_form_btn green_sft add_btn small" data-form="topic">+</button>
-    <%end%>
-  </h4> 
-  <hr>
+    <h4>
+      Topics
+      <% if course_creator %>
+          <button class="js-add_form_btn green_sft add_btn small" data-form="topic">+</button>
+      <% end %>
+    </h4>
+    <hr>
 
-  <%if course_creator %>
-    <div class="js-topic_form" style="display:none;">
-      <%= render './topics/form' %>
-    </div>
-    <!-- <button class="js-show_external_form reg_btn green_sft">Add External Topic</button> -->
-    <br>
-  <%end%>
+    <% if course_creator %>
+        <div class="js-topic_form" style="display:none;">
+          <%= render './topics/form' %>
+        </div>
+        <!-- <button class="js-show_external_form reg_btn green_sft">Add External Topic</button> -->
+        <br>
+    <% end %>
 
-  <div class="card_list">
-    <% @course.topics.order('id ASC').each_with_index do |topic, index| %>
-      <div class="card">
-        <a href="<%= course_topic_path(@course, topic) %>">
-          <div class="card_title topic">
-            <%= topic.title[0...25] %><%= '...' if topic.title.length > 25 %>
-          </div>
-        </a>
-          <div class="card_desc topic">
-            <%= topic.description[0...130] %><%= "..." if topic.description.length > 130 %>
-            
-            <div class="bottom_count">
-                <% topic.lessons.each do |lesson| %>
-                  <div class="bar_count <%= topic_lesson_completion(lesson) == 0 ? 'pending' : ( topic_lesson_completion(lesson) == 1 ? 'done' : '' ) %> "></div>
-                  <!-- TRAINEE PROGRESS BAR -->
-                <% end %>
+    <div class="card_list">
+      <% @course.topics.order('id ASC').each_with_index do |topic, index| %>
+          <div class="card">
+
+            <div class="card_title topic">
+              <a href="<%= course_topic_path(@course, topic) %> class="hola">
+                <%= topic.title[0...25] %><%= '...' if topic.title.length > 25 %>
+              </a>
+              <%= link_to "X", [@course, topic], method: :delete, data: {confirm: "Are you sure?"}, id: 'topic_card_delete' %>
             </div>
 
+
+            <div class="card_desc topic">
+              <%= topic.description[0...130] %><%= "..." if topic.description.length > 130 %>
+
+              <div class="bottom_count">
+                <% topic.lessons.each do |lesson| %>
+                    <div class="bar_count <%= topic_lesson_completion(lesson) == 0 ? 'pending' : (topic_lesson_completion(lesson) == 1 ? 'done' : '') %> "></div>
+                    <!-- TRAINEE PROGRESS BAR -->
+                <% end %>
+              </div>
+            </div>
           </div>
-        </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
 <% else %>
 
     <% if @course.privacy != 2 %>
         <center style="margin:50px auto 200px;">
-          <%=  'This is a "Free Course", click below to start.' if course_public %>
-          <%=  'This is a "Closed Course", click below to request Access.' if course_closed %><br><br>
+          <%= 'This is a "Free Course", click below to start.' if course_public %>
+          <%= 'This is a "Closed Course", click below to request Access.' if course_closed %><br><br>
           <%= render './course_registrations/course_registration_form' if !course_creator %>
         </center>
     <% end %>
 
     <% if @course.privacy == 2 %>
-        <%= form_tag charges_path, id:'chargeForm' do %>
+        <%= form_tag charges_path, id: 'chargeForm' do %>
 
             <% if flash[:error].present? %>
                 <div id="error_explanation">
@@ -86,17 +89,19 @@
             <%= hidden_field_tag 'stripeToken' %>
             <%= hidden_field_tag 'amount', 499 %>
             <%= hidden_field_tag 'stripeEmail' %>
-            <button id="btn-buy", type="button", class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-ok"></span> BUY THIS</button>
+            <button id="btn-buy" , type="button" , class="btn btn-success btn-lg btn-block">
+              <span class="glyphicon glyphicon-ok"></span> BUY THIS
+            </button>
             <script>
               var handler = StripeCheckout.configure({
                 key: '<%= Rails.configuration.stripe[:publishable_key] %>',
-                token: function(token, arg) {
+                token: function (token, arg) {
                   document.getElementById("stripeToken").value = token.id;
                   document.getElementById("stripeEmail").value = token.email;
                   document.getElementById("chargeForm").submit();
                 }
               });
-              document.getElementById('btn-buy').addEventListener('click', function(e) {
+              document.getElementById('btn-buy').addEventListener('click', function (e) {
                 handler.open({
                   name: 'name here',
                   description: 'price here',
@@ -114,12 +119,12 @@
 
 
 <br>
-<%if !@course.tags.empty? %>
-  <span style="font-family:'webly_bld';">tags:</span>
-  <% @course.tags.split(', ').each do |tag| %>
-    <a href="#"><b><%= tag %></b></a>
-  <%end%>
-<%end%>
+<% if !@course.tags.empty? %>
+    <span style="font-family:'webly_bld';">tags:</span>
+    <% @course.tags.split(', ').each do |tag| %>
+        <a href="#"><b><%= tag %></b></a>
+    <% end %>
+<% end %>
 
 <br><br>
 <button class="small_btn blue js-click_back">Back</button>
