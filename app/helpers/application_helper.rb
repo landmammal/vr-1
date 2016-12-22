@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def image
+    Rails.env.development? ? 'https://s3.amazonaws.com/facential/images' : '/assets/as3'
+  end
+
   def termsVersion
     termsVersion = 'V1Aug192016'
     return termsVersion

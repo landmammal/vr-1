@@ -7,6 +7,11 @@ gem 'rails', '5.0.0.1'
 # user authentication and authorization by role
 gem 'devise'
 gem 'pundit'
+gem 'unirest'
+gem 'http-cookie', '~> 1.0', '>= 1.0.3'
+gem 'netrc', '~> 0.11.0'
+gem 'mime-types', '~> 3.1'
+gem 'rest-client'
 
 # user payment information
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
