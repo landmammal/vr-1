@@ -8,7 +8,7 @@
 		
 	<% @theteam.each_with_index do |member, index|  %>
 		<div class="teammember">
-			<img src="/assets/teammembers/<%= member[:name].split(' ').join.downcase %>.jpg">
+			<img src="<%=image%>/teammembers/<%= member[:name].split(' ').join.downcase %>.jpg">
 			<div class="name"><%= member[:name] %></div>
 			<%= member[:role] %>
 		</div>
