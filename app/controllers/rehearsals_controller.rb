@@ -5,6 +5,8 @@ class RehearsalsController < ApplicationController
   before_action :set_lesson_rehearsal, only: [:show]
   before_action :authenticate_user!
 
+  require 'rest-client'
+
   # approving  a rehearsal
   # def rehearsal_approved
   #   @rehearsal = Rehearsal.find(params[:rehearsal_id])
@@ -110,6 +112,18 @@ class RehearsalsController < ApplicationController
     respond_to do |format|
       if @lesson.save
         @rehearsal = @lesson.rehearsals.last
+
+        # headers = {content_type: :json, accept: :json, app_id: '4985f625', app_key: '4423301b832793e217d04bc44eb041d3'}
+
+        # kairos = RestClient.post("https://api.kairos.com/v2/media?source=https://embed-cdn.ziggeo.com/v1/applications/5b2dedd0371b8806b7f81390a7555653/videos/26cda86833d2458025e46b2df33cf55d/video.mp4" , headers={content_type: :json, accept: :json, app_id: '4985f625', app_key: '4423301b832793e217d04bc44eb041d3'})
+        # sleep 6
+
+        # puts "==================================="
+        # puts kairos
+        # puts "==================================="
+
+        # binding.pry
+
         format.js {  }
       else
         format.html { render :new }
