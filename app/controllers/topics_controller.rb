@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
-  before_action :set_course, only: [:index, :show, :new, :edit]
+  before_action :set_course, only: [:index, :show, :new, :edit, :destroy]
   # GET /topics
   # GET /topics.json
   def index
@@ -67,7 +67,7 @@ class TopicsController < ApplicationController
   def destroy
     @topic.destroy
     respond_to do |format|
-      format.html { redirect_to topics_url, notice: 'Topic was successfully destroyed.' }
+      format.html { redirect_to course_path(@course), notice: 'Topic was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
