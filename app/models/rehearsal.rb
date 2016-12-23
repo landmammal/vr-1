@@ -9,6 +9,6 @@ class Rehearsal < ApplicationRecord
   has_many :lesson_rehearsals, dependent: :destroy
   has_many :lessons, through: :lesson_rehearsals
 
-  has_many :performance_feedbacks
+  has_many :performance_feedbacks, dependent: :destroy
   has_many :feedbacks, through: :performance_feedbacks
 end
