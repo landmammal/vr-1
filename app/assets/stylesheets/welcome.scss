@@ -457,8 +457,11 @@ $center_pos: 45% ;
 		width: 100%; border-radius:5%;
 	}
 	& .name{
-		font-family:'webly_bld'; font-size:17px; margin:3px auto 5px;
+		font-family:'webly_bld'; font-size:17px; margin:3px auto 5px; color: black;
 	}
+    & .team-role{
+      color: black;
+    }
 }
 
 .home_sec{ 
