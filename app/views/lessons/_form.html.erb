@@ -22,6 +22,5 @@
   <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %><br>
 
   <%= button_tag 'Save Lesson', type:'submit', class:"blue" %>
-  <%= link_to "Delete", [@course, @topic, @lesson], method: :delete, data: {confirm: "Are you sure?"} %>
   <button class="red js-cancel_form" data-form="lesson">Cancel</button>
 <% end %>

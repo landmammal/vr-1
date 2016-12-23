@@ -3,5 +3,5 @@
 <%= render 'form' %>
 
 <br><br>
-<%= link_to 'Enter Lesson', course_topic_lesson_path(@course, @topic, @lesson) %> <br>
+<%= button_to "Delete Lesson", [@course, @topic, @lesson], method: :delete, data: {confirm: "Are you sure?"}, :class => 'red' %>
 <button class="small_btn blue js-click_back">Back</button>
