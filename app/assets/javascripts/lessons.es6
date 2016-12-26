@@ -109,7 +109,9 @@ function lessonProgress(les_type, expl_arr, prompt_arr, model_arr){
 	$('.js-trainee_view').click(function(){
 		$('.show_trainee_view').fadeToggle(500);
 	});
+
 }
+
 
 
 
@@ -407,6 +409,19 @@ var pageReady = function(){
 	    });
 	});
 
+    $('.lesson_btn').click(function(){
+        console.log('helo');
+        $('.lesson_btn').removeClass('selected');
+        $(this).addClass('selected');
+
+        var model_embedding = ZiggeoApi.V2.Player.findByElement( document.getElementById('model_video_player') );
+        var explanation_embedding = ZiggeoApi.V2.Player.findByElement( document.getElementById('explanation_video_player') );
+        var prompt_embedding = ZiggeoApi.V2.Player.findByElement( document.getElementById('prompt_video_player') );
+        model_embedding.stop();
+        explanation_embedding.stop();
+        prompt_embedding.stop();
+
+    });
 };
 
 $(document).ready(pageReady);
