@@ -410,7 +410,6 @@ var pageReady = function(){
 	});
 
     $('.lesson_btn').click(function(){
-        console.log('helo');
         $('.lesson_btn').removeClass('selected');
         $(this).addClass('selected');
 
@@ -420,7 +419,6 @@ var pageReady = function(){
         model_embedding.stop();
         explanation_embedding.stop();
         prompt_embedding.stop();
-
     });
 };
 
