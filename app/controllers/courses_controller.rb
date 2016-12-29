@@ -89,6 +89,7 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
+    @course.delete_associations
     @course.destroy
     respond_to do |format|
       format.html { redirect_to user_path(current_user), notice: 'Course was successfully destroyed.' }

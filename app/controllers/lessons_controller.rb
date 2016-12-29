@@ -1,7 +1,7 @@
 class LessonsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_course, only: [:show, :new, :create]
-  before_action :set_topic, only: [:show, :new]
+  before_action :set_course, only: [:show, :new, :create, :edit, :destroy]
+  before_action :set_topic, only: [:show, :new, :edit, :destroy]
   before_action :set_lesson, only: [ :show, :edit, :update, :destroy]
 
 
@@ -94,13 +94,13 @@ class LessonsController < ApplicationController
   # DELETE /lessons/1
   # DELETE /lessons/1.json
   def destroy
-    # this is madness and a quick fix for deleting a topic
-    # when this topic gets delete it all rehearsals associated with the topic are delete it.
-    # this is madness .. this is sparta
-      @topic = @lesson.topics.first
-      @course = @topic.courses.first
-      @lesson.rehearsals.delete_all
-      @lesson.destroy
+
+    rehearsals = Rehearsal.where(lesson_id: @lesson)
+    rehearsals.each { |r| LessonRehearsal.where(rehearsal_id: r).delete_all } if rehearsals.any?
+    rehearsals.each { |r| PerformanceFeedback.where(rehearsal_id: r).delete_all } if rehearsals.any?
+    Rehearsal.where(lesson_id: @lesson).delete_all
+
+    @lesson.destroy
       respond_to do |format|
         format.html { redirect_to course_topic_path(@course, @topic), notice: 'Lesson was successfully destroyed.' }
         format.json { head :no_content }
