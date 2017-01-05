@@ -36,6 +36,43 @@ function allLessons( current_lesson, arr){
 }
 
 
+function checkComponent(){
+	var elements = document.getElementsByClassName('progress_btn');
+
+	console.log(elements);
+	var i = 0;
+	var checkClass = [];
+	do{
+		var classes = elements[i].className.split(' ');
+		console.log(classes);
+
+		if(classes.includes('ready')){ checkClass.push(true); }else{ checkClass.push(false);}
+		console.log(checkClass);
+
+		i++
+	}while(i<elements.length);
+
+
+	if(checkClass.includes(false)){
+		return false;
+	}else{
+		return true;	
+	}
+}
+
+
+function reloadIfTrue(){
+	var reload = true;
+	if($('.js-trainee_view').is(':visible')) {
+		reload = false;
+	}
+
+	if(reload){ 
+		if(checkComponent()){ location.reload(); }
+	}
+}
+
+
 function lessonProgress(les_type, expl_arr, prompt_arr, model_arr){
 	// console.log(expl, prompt, model)
 
@@ -72,15 +109,25 @@ function lessonProgress(les_type, expl_arr, prompt_arr, model_arr){
 		// console.log(count_prior);
 
 		function progressErr(errclass, err){
+
+			$('.js-'+name+'_prog').removeClass('caution2');
+			$('.js-'+name+'_prog').removeClass('caution1');
+			$('.js-'+name+'_prog').removeClass('ion-close');
+			$('.js-'+name+'_prog').removeClass('ion-alert');
+			$('.js-'+name+'_prog').removeClass('ion-checkmark');
+			$('.js-'+name+'_prog').removeClass('notready');
+			$('.js-'+name+'_prog').removeClass('ready');
+
 			$('.js-'+name+'_prog').addClass(errclass);
 			$('.'+name+'_prog_err').text(err);
+
 		}
 
 		if(count_item > 0){
+
 			if( count_prior > 1 ){ 
 				isReady = false;
 				progressErr('caution2 ion-alert', 'More than one has been set as Primary, please only choose one.');
-				
 			}else if( count_prior < 1 ){
 				isReady = false;
 				progressErr('caution2 ion-alert', 'At least one needs to be set as Primary');
@@ -95,6 +142,7 @@ function lessonProgress(les_type, expl_arr, prompt_arr, model_arr){
 					$('.js-'+name).addClass('ready');
 				}
 			}
+
 		}else{
 			isReady = false;
 			progressErr('notready ion-close', 'You havent created one yet');
@@ -198,7 +246,7 @@ var pageReady = function(){
 	});
 
 	// if($('.model_video').text() || $('.prompt_video').text()){
-	// 	var explanation_video = document.getElementsByClassName('explanation_video')[0].innerHTML;
+	// 	var explanation_video = document.document.getElementsByClassName('explanation_video')[0].innerHTML;
 	// 	var model_video = document.getElementsByClassName('model_video')[0].innerHTML;
 	// 	var prompt_video = document.getElementsByClassName('prompt_video')[0].innerHTML;
 	// 	var rehearsal_video = document.getElementsByClassName('rehearsal_video')[0].innerHTML;
