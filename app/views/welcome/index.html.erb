@@ -1,5 +1,12 @@
-<div class="home_top_wrapper" style="background-image:url('/assets/better_you.jpg');">
+
+<video poster="/assets/better_you.jpg" id="bgvid" playsinline autoplay muted loop>
+	<source src="<%=image%>/homepage.mp4" type="video/mp4">
+</video>
+<!-- <div class="home_top_wrapper" style="background-image:url('/assets/better_you.jpg');"> -->
+<div class="home_top_wrapper">
 	<div class="home_top">
+
+
 		<%= render 'layouts/menu' if menu_welcome %>
 
 
@@ -75,6 +82,7 @@
 
 
 
+
 <div class="home_submenu">
 	<div class="search_results_home">
 		<div class="result_search_terms"></div>
@@ -94,7 +102,7 @@
 </div>
 
 
-<div class="home_top_info overview" data-topinfo='overview'>
+<div class="home_top_info overview" data-topinfo='overview' style="background-color:#fff;">
 
 
 	<!-- <a href="/markets"><div class="info_box qtr">
@@ -150,65 +158,64 @@
 
 </div>
 
-<div class="home_top_info" data-topinfo='teach' style="background-image:url('assets/home/teach.jpg');">
+<div class="home_top_info" data-topinfo='teach' style="background-color:#fff; background-image:url('<%=image%>/home/teach.jpg');">
 	<div class="info_left">
 		<div class="content">
 			<div class="title">
 				Share your expertise.
 			</div>
 			<div class="body">
-				Make an impact by taking advantage of our Natural Learning Process
+				Use our platform to create interactive and engaging lessons.
 			</div><br>
 			<a href="/users/sign_up"><button class="blue big_btn"> Become an Instructor </button></a>
 		</div>
 	</div>
 </div>
 
-<div class="home_top_info" data-topinfo='learn' style="background-image:url('assets/home/learn.jpg');">
+<div class="home_top_info" data-topinfo='learn' style="background-color:#fff; background-image:url('<%=image%>/home/learn.jpg');">
 	<div class="info_right">
 		<div class="content">
 			<div class="title">
 				Learn new skills from experts
 			</div>
 			<div class="body">
-				Stay on top of you game by taking advantage of the experts and tools that video Rehearser provides.<br>
-				Our process doesnt just inform, it transforms. Rehearse to an improved you.
+				Explore interactive lessons that allow you to rehearse to become a better version of you!
 			</div><br>
 			<a href="/users/sign_up"><button class="blue big_btn"> Explore </button></a>
 		</div>
 	</div>
 </div>
 
-<div class="home_top_info" data-topinfo='create'  style="background-image:url('assets/home/create.jpg');">
+<div class="home_top_info" data-topinfo='create'  style="background-color:#fff; background-image:url('<%=image%>/home/create.jpg');">
 	<div class="info_left">
 		<div class="content">
 			<div class="title">
 				Create beautiful video content
 			</div>
 			<div class="body">
-				Bring your creative skills to the education industry.<br>
-				Great visual content impacts the learning process. Become an asset to experienced instructors, or use your skills to teach others.
+				Work with subject-matter experts to transform traditional content into interactive and engaging videos.
 			</div><br>
 			<a href="/users/sign_up"><button class="blue big_btn"> Become a creator </button></a>
 		</div>
 	</div>
 </div>
 
-<div class="home_top_info" data-topinfo='managers' style="background-image:url('assets/home/managers.jpg');">
+<div class="home_top_info" data-topinfo='managers' style="background-color:#fff; background-image:url('<%=image%>/home/managers.jpg');">
 	<div class="info_right">
 		<div class="content">
 			<div class="title">
 				Impactful employee training
 			</div>
 			<div class="body">
-				Use Video Rehearser to turn your training budget into an income producing asset.<br>
 				Create teachable moments that last forever.<br>
-				Managers and trainees will use less effort, to learn more, in less time.
+				Contact us for a free consultation with a member of our instructional design team.
 			</div><br>
 			<a href="/users/sign_up"><button class="blue big_btn"> Start training </button></a>
 		</div>
 	</div>
 </div>
+
+<div style="background-color:#fff; width:100%; overflow:hidden;">
 
 <div class="wrapper" style="padding:100px 10px 20px; margin-top:0; text-align: center; overflow:hidden;">
 
@@ -265,6 +272,8 @@
 
 </div>
 
+</div>
+
 <div class="devices" style="background-image:url('<%=image%>/home/device_bg.jpg');">
 	<div class="halfsec">
 	<div class="devicetext">
@@ -278,6 +287,9 @@
 	</div>
 </div>
 
+
+<div style="width:100%; padding:100px 0 0; background-color:#fff;">
+</div>
 
 
 
