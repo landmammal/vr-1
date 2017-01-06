@@ -223,43 +223,43 @@ var pageReady = function(){
 	// console.log(homeTitleChange.length);
 
 
-	var homeSlide = [{image:'public_speacking', text_location:'center_right', text_animation:'slide_right', 
-					   text:'<span class="ht1">Control the room</span><br><span class="ht2">Become a more polished speaker</span>'
-					 },
-					 { image:'job_interview', text_location:'bottom_left', text_animation:'slide_left', 
-					   text:'<span class="ht2">Crush your next interview</span><br><span class="ht1">Sharpen your interview skills</span>'
-					 },
-					 {image:'language', text_location:'center_left', text_animation:'slide_right', 
-					   text:'<span class="ht1">Expand your horizon</span><br><span class="ht2">By conquering a new language</span>'
-					 },
-					 {image:'frame_home', text_location:'center_left', text_animation:'slide_right', 
-					   text:'<span class="ht3">Effective training at your fingertips</span><br><span class="ht1">Anytime, anywhere</span>'
-					 },
-					 { image:'singer', text_location:'bottom_left', text_animation:'slide_left', 
-					   text:'<span class="ht2">Give the performance of a lifetime</span><br><span class="ht1">Rehearse to rock the world</span>'
-					 },
-					 { image:'dancer', text_location:'center_left', text_animation:'slide_left', 
-					   text:'<span class="ht2">Fine-tune your performance</span><br><span class="ht1">Reflect to perfect</span>'
-					 },
-					 { image:'better_you', text_location:'center_right', text_animation:'slide_right', 
-					   text:'<span class="ht3">Rehearse to become</span><br><span class="ht1">A BETTER YOU</span>'
-					 }];
+	// var homeSlide = [{image:'public_speacking', text_location:'center_right', text_animation:'slide_right', 
+	// 				   text:'<span class="ht1">Control the room</span><br><span class="ht2">Become a more polished speaker</span>'
+	// 				 },
+	// 				 { image:'job_interview', text_location:'bottom_left', text_animation:'slide_left', 
+	// 				   text:'<span class="ht2">Crush your next interview</span><br><span class="ht1">Sharpen your interview skills</span>'
+	// 				 },
+	// 				 {image:'language', text_location:'center_left', text_animation:'slide_right', 
+	// 				   text:'<span class="ht1">Expand your horizon</span><br><span class="ht2">By conquering a new language</span>'
+	// 				 },
+	// 				 {image:'frame_home', text_location:'center_left', text_animation:'slide_right', 
+	// 				   text:'<span class="ht3">Effective training at your fingertips</span><br><span class="ht1">Anytime, anywhere</span>'
+	// 				 },
+	// 				 { image:'singer', text_location:'bottom_left', text_animation:'slide_left', 
+	// 				   text:'<span class="ht2">Give the performance of a lifetime</span><br><span class="ht1">Rehearse to rock the world</span>'
+	// 				 },
+	// 				 { image:'dancer', text_location:'center_left', text_animation:'slide_left', 
+	// 				   text:'<span class="ht2">Fine-tune your performance</span><br><span class="ht1">Reflect to perfect</span>'
+	// 				 },
+	// 				 { image:'better_you', text_location:'center_right', text_animation:'slide_right', 
+	// 				   text:'<span class="ht3">Rehearse to become</span><br><span class="ht1">A BETTER YOU</span>'
+	// 				 }];
 
-	var hbg = 0;
+	// var hbg = 0;
 
-	setInterval(function(){
-		if( hbg >= homeSlide.length ){ hbg = 0; }
-		$('#home_top_text').fadeOut(1000);
-		setTimeout(function(){
-			$('.home_top_wrapper').css("background-image", "url(/assets/"+homeSlide[hbg].image+".jpg)"); 
-			$('#home_top_text').prop('class', homeSlide[hbg].text_location);
-			$('#home_top_text .content').html(homeSlide[hbg].text);
-		}, 1000);
-		setTimeout(function(){
-			$('#home_top_text').fadeIn(1000);
-			hbg+=1;
-		},1500);
-	}, 6500);
+	// setInterval(function(){
+	// 	if( hbg >= homeSlide.length ){ hbg = 0; }
+	// 	$('#home_top_text').fadeOut(1000);
+	// 	setTimeout(function(){
+	// 		$('.home_top_wrapper').css("background-image", "url(/assets/"+homeSlide[hbg].image+".jpg)"); 
+	// 		$('#home_top_text').prop('class', homeSlide[hbg].text_location);
+	// 		$('#home_top_text .content').html(homeSlide[hbg].text);
+	// 	}, 1000);
+	// 	setTimeout(function(){
+	// 		$('#home_top_text').fadeIn(1000);
+	// 		hbg+=1;
+	// 	},1500);
+	// }, 6500);
 
 
 
