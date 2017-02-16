@@ -27,7 +27,6 @@ gem 'carrierwave'
 
 # for my secrets
 gem 'dotenv'
-gem 'dotenv-rails'
 
 # pre install ready gems
 
@@ -54,6 +53,7 @@ group :production do
 end
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'sqlite3'
   gem 'rspec-rails' # Test Helper
   gem 'factory_girl_rails'
