@@ -4,11 +4,9 @@
   <button class="shadebox_btn rehearsal_btn" data-shadebox="rehearsal" data-rehearsal="<%= @rehearsal.id %>" data-rehearsalnumber="<%= @rehearsalNum %>">Rehearsal <%= @rehearsalNum %>
 
     <div id="rehearsal_<%= @rehearsal.id %>_status" class="blankdot"></div>
-
+    <img src='https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= @this_video_token %>/image' width="100%" class="rehearsal_img"><br>
     ref#: <%= genReherasalRef(@rehearsal.id) %>
   </button>
-  <script type="text/javascript">
-    $('#rehearsal_<%= @rehearsal.id %>_status').after('<br><img src="'+videoImage("<%= @this_video_token %>")+'" width="100%" class="rehearsal_img"><br>')
-  </script>
+
 </div>
 

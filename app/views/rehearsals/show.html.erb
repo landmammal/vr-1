@@ -106,7 +106,7 @@
                 Rehearsal <%= (index + 1).to_s %>
                 <div class="<%= @rehearsal.id != rehearsal.id ? 'blankdot' : 'greendot' %>">
                 </div><br>
-                <%= render './shared/ziggeothumbnail' %><br>
+              <img src='https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= @this_video_token %>/image' width="100%" class="rehearsal_img"><br>
                 ref#: <%= genReherasalRef(rehearsal.id) %>
             </button>
           </a>
