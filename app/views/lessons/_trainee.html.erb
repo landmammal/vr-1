@@ -52,7 +52,7 @@
                 <div class="rehearsal_thumbnail">
                     <button class="shadebox_btn rehearsal_btn" data-shadebox="rehearsal" data-rehearsal="<%= rehearsal.id.to_s %>" data-rehearsalnumber="<%= (index+1).to_s %>">Rehearsal <%= (index+1).to_s %>
                         <div id="rehearsal_<%= rehearsal.id.to_s %>_status" class="<%= rehearsal_approved(rehearsal.id) %>"></div><br>
-                        <%= render './shared/ziggeothumbnail' %><br>
+                      <img src='https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= @this_video_token %>/image' width="100%" class="rehearsal_img"><br>
                         ref#: <%= genReherasalRef(rehearsal.id) %>
                     </button>
                 </div>
