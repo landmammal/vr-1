@@ -202,9 +202,9 @@ var pageReady = function(){
 
 	var lesson_videos = ['explanation','prompt','model','rehearsal'];
 
-	var explanation =  '<button class="selected lesson_btn show_explanation" data-group="lesson" data-frame="explanation">Explanation</button>';
-	var demonstration =  '<button class="lesson_btn show_demonstrastion" data-group="lesson" data-frame="demonstration">Demonstration</button>';
-	var practice =  '<button class="lesson_btn show_practice" data-group="lesson" data-frame="practice">Practice</button>';
+	var explanation =  '<button class="selected lesson_btn show_explanation" data-group="lesson" data-frame="explanation">Step 1: Explanation</button>';
+	var demonstration =  '<button class="lesson_btn show_demonstrastion" data-group="lesson" data-frame="demonstration">Step 2: Demonstration</button>';
+	var practice =  '<button class="lesson_btn show_practice" data-group="lesson" data-frame="practice">Step 3: Practice</button>';
 
 	var lesson_type = parseInt($('.lesson_type').text());
 	// console.log(lesson_type);
