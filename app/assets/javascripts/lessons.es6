@@ -204,7 +204,7 @@ var pageReady = function(){
 
 	var explanation =  '<button class="selected lesson_btn show_explanation" data-group="lesson" data-frame="explanation">Step 1: Explanation</button>';
 	var demonstration =  '<button class="lesson_btn show_demonstrastion" data-group="lesson" data-frame="demonstration">Step 2: Demonstration</button>';
-	var practice =  '<button class="lesson_btn show_practice" data-group="lesson" data-frame="practice">Step 3: Practice</button>';
+	var practice =  '<button class="lesson_btn show_practice" data-group="lesson" data-frame="practice">Step 3: Rehearse</button>';
 
 	var lesson_type = parseInt($('.lesson_type').text());
 	// console.log(lesson_type);
