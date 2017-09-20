@@ -73,7 +73,7 @@ var pageReady = function(checkrecorder){
 
 			    	if($('.submit_'+recorderClass).length > 0){
 			    		$('.submit_'+recorderClass).show();
-				    	$('.submit_2').hide();
+				    	// $('.submit_2').hide();
 
 				    	$(document).on('click', '.submit_'+recorderClass, function() {
 				    		// console.log('clicked');
