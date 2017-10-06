@@ -869,7 +869,7 @@ $center_pos: 45% ;
 			&.bottom_left{ bottom:$edge_pos; left:$edge_pos; text-align:left;}
 
 			& .ht1{ font-weight:bold; font-family:'gotham'; font-size:50px; line-height:1em; @include text_extrude(black, 0);}
-			& .ht2{ font-weight:bold; font-family:'gotham_thin'; font-size:30px; line-height:1em; @include text_extrude(black, 1);}
+			& .ht2{ font-weight:bold; font-family:'gotham'; font-size:30px; line-height:1em; @include text_extrude(black, 1);}
 			& .ht3{ font-weight:bold; font-family:'gotham_light'; font-size:20px; line-height:1em; @include text_extrude(black, 1);}
 		}
 	}
