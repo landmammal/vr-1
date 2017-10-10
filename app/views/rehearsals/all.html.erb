@@ -10,50 +10,48 @@
   <div class="title">
     <%= @re_title %>
     <div style="float:right;">
-      <a href="/rehearsals/all">New rehearsals</a> | 
+      <a href="/rehearsals/all">New rehearsals</a> |
       <a href="?list=all">All rehearsals</a>
     </div>
   </div>
 
   <div class="rehearsal_courses">
     <% @courses.each do |course| %>
-      <div class="rsl_course" data-c='c_<%= course.id %>'>
+        <div class="rsl_course" data-c='c_<%= course.id %>'>
         <span style="font-family:'gotham';"><%= course.title[0...20] %>
-        <%= "..." if course.title.length > 20 %></span>
-        <!-- (<%= rehearsals_count(course) %>)<br> -->
-      </div>
+          <%= "..." if course.title.length > 20 %></span>
+          (<%= rehearsals_count(course) %>)<br>
+        </div>
 
-      <div class="toggle_topic" data-c='c_<%= course.id %>'>
-      <% course.topics.each do |topic| %>
+        <div class="toggle_topic" data-c='c_<%= course.id %>'>
+          <% course.topics.each do |topic| %>
 
-          <div class="rsl_topic" data-c='c_<%= course.id %>' data-t='t_<%= topic.id %>'>
-            <%= topic.title[0...30] %>
-            <%= "..." if topic.title.length > 30 %><br>
-          </div>
-
-          <% topic.lessons.each do |lesson| %>
-            <div class="rsl_lesson" data-t='t_<%= topic.id %>' data-l='t_<%= lesson.id %>'>
-
-              <%= lesson.title[0...25] %>
-              <%= "..." if lesson.title.length > 25 %><br>
-
-              <div class="all_rehearsals" style="display:none;" data-l='t_<%= lesson.id %>'>
-                <% if lesson.rehearsals.size > 0 %>
-                  <% lesson.rehearsals.each do |rehearsal| %>
-                    <% if User.exists?(rehearsal.trainee_id) && rehearsal.submission == true %>
-
-                      <% @rehearsal = rehearsal %>
-                      <%= render 'rehearsalbtn' %>
-
-                    <% end %>
-                  <% end %>
-                <% end %>
+              <div class="rsl_topic" data-c='c_<%= course.id %>' data-t='t_<%= topic.id %>'>
+                <%= topic.title[0...30] %>
+                <%= "..." if topic.title.length > 30 %><br>
               </div>
-            </div>
-          <% end %>
 
-      <% end %>
-      </div>
+              <% topic.lessons.each do |lesson| %>
+                  <div class="rsl_lesson" data-t='t_<%= topic.id %>' data-l='t_<%= lesson.id %>'>
+
+                    <%= lesson.title[0...25] %>
+                    <%= "..." if lesson.title.length > 25 %><br>
+
+                    <div class="all_rehearsals" style="display:none;" data-l='t_<%= lesson.id %>'>
+                      <% if lesson.rehearsals.size > 0 %>
+
+                          <% @students.each do |key, value| %>
+                              <% if value.size > 0 %>
+                                  <%= render 'rehearsalbtn', user: key, lesson_id: value.first.lesson_id, rehearsals_count: value.size %>
+                              <% end %>
+                          <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+              <% end %>
+
+          <% end %>
+        </div>
 
     <% end %>
   </div>
@@ -63,15 +61,12 @@
       <% if @courses.size<1 %>
         You currently have no new rehearsal submissions
       <% else %>
-        
-        <% @rehearsals[0 .. 21].each do |rehearsal| %>
-            <% if User.exists?(rehearsal.trainee_id) && rehearsal.submission == true %>
 
-              <% @rehearsal = rehearsal %>
-              <%= render 'rehearsalbtn' %>
-
-            <% end %>
-        <% end %>
+        <% @students.each do |key, value| %>
+                    <% if value.size > 0 %>
+                      <%= render 'rehearsalbtn', user: key, lesson_id: value.first.lesson_id, rehearsals_count: value.size %>
+                    <% end %>
+          <% end %>
 
       <% end %>
     </span>
@@ -101,4 +96,5 @@
   </div> -->
 
 </div>
+
 

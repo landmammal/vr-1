@@ -32,7 +32,7 @@ class RehearsalsController < ApplicationController
       if @rehearsal.save!
         # admin mailer must be put on hold until we find a better way to do a redo
         # AdminMailer.lesson_complete_notice(user).later
-        format.js { }
+        format.js {}
       else
         format.html { render :new }
         format.json { render json: @rehearsal.errors, status: :unprocessable_entity }
@@ -48,51 +48,40 @@ class RehearsalsController < ApplicationController
   end
 
   def all
-    # @feedback = Feedback.new
-    # @performance_feedback = PerformanceFeedback.new
-
-    # @course_rehearsals = []
-    # current_user.courses.order('updated_at DESC').each { |course| course.rehearsals.each { |c| @course_rehearsals << c if c.submission == true } if course.rehearsals.size > 0 }
-    # @topic_rehearsals = []
-    # current_user.topics.order('updated_at DESC').each { |topic| topic.rehearsals.each { |t| @topic_rehearsals << t if t.submission == true } if topic.rehearsals.size > 0 }
-    # @lesson_rehearsals = []
-    # current_user.lessons.order('updated_at DESC').each { |lesson| lesson.rehearsals.each { |l| @lesson_rehearsals << l if l.submission == true } if lesson.rehearsals.size > 0 }
-
-    # @user_feedback = current_user.feedbacks.order('updated_at DESC').select(:id)
-    
-    # @rehearsals_without_feedback = []
-    # @rehearsals_with_feedback = []
-    # @rehearsals_to_check = Rehearsal.where(approval_status: 0)
-
-    # @course_rehearsals.each do |rehearsal| 
-    #   if rehearsal.feedbacks.size < 1
-    #     @rehearsals_without_feedback << rehearsal
-    #   else
-    #     @rehearsals_with_feedback << rehearsal
-    #   end
-    # end 
-
-    # @courses = current_user.courses;
-    @courses = [];
+    @courses = []
 
     @rehearsals = []
-    
+    @students = {}
+
     current_user.courses.each do |course|
       course.rehearsals.where(submission: true).each do |rehearsal|
+        @students[rehearsal.trainee]=[]
+      end
+      course.rehearsals.where(submission: true).each do |rehearsal|
         if params[:list] == "all"
-            @rehearsals << rehearsal
-            @courses<<rehearsal.course if !@courses.include? rehearsal.course
-            @re_title = "All Rehearsals"
-        else
-          if (rehearsal.feedbacks.size < 1 && rehearsal.approval_status == 0) || (rehearsal.feedbacks.size > 1 && rehearsal.approval_status == 1) && User.exists?(rehearsal.trainee_id) 
-            @courses<<rehearsal.course if !@courses.include? rehearsal.course
-            @re_title = "Rehearsals"
+          @rehearsals << rehearsal
+          @re_title = "All Rehearsals"
+          @students[rehearsal.trainee] << rehearsal
+        elsif !params[:student].blank?
+          if rehearsal.trainee_id = params[:student].to_i
             @rehearsals << rehearsal
           end
+        else
+          if (rehearsal.feedbacks.size < 1 && rehearsal.approval_status == 0) || (rehearsal.feedbacks.size > 1 && rehearsal.approval_status == 1) && User.exists?(rehearsal.trainee_id)
+            @re_title = "Rehearsals"
+            @rehearsals << rehearsal
+            @students[rehearsal.trainee] << rehearsal
+          end
         end
+        @courses<<rehearsal.course if !@courses.include? rehearsal.course
       end
     end
+  end
 
+  def student
+    @student = User.find(params[:student])
+    @lesson = Lesson.find(params[:lesson])
+    @rehearsals = @lesson.rehearsals.where(trainee_id: params[:student], submission: true)
   end
 
   def show
@@ -125,7 +114,7 @@ class RehearsalsController < ApplicationController
 
         # binding.pry
 
-        format.js {  }
+        format.js {}
       else
         format.html { render :new }
         format.json { render json: @rehearsal.errors, status: :unprocessable_entity }

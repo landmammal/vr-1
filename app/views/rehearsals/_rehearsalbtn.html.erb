@@ -1,14 +1,14 @@
-<% @r = 'rehearsal_bubble_'+@rehearsal.id.to_s %>
-<% @date_sub = time_diff(Time.now, @rehearsal.created_at) %>
-
-<%= form_tag ("/rehearsals/"+@rehearsal.id.to_s+"/api"), class:'rehearsal_button', method: :get, remote: true do %>
-  <button type="submit" class="user_bubble <%= new_rehearsal(@rehearsal) %>">
+<a href="/rehearsals/student/?student=<%= user.id %>&lesson=<%= lesson_id %>">
+  <button type="submit" class="user_bubble">
     <div class="pic">
-      <img src="<%= student_pic(@rehearsal.trainee) %>">
+      <img src="<%= student_pic(user) %>">
     </div>
     <div class="info">
-      <%= @rehearsal.trainee.first_name+' '+ @rehearsal.trainee.last_name %><br>
-      <font size="0.1em" style="font-family:'gotham_book';">Submitted: <%= @date_sub %></font>
+      <%= user.first_name+' '+ user.last_name %><br>
+      <div class="other_info">
+        Lesson: <%= Lesson.find(lesson_id).title %><br>
+        Rehearsals: <%= rehearsals_count %>
+      </div>
     </div>
   </button>
-<% end %>
+</a>
