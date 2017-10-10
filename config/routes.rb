@@ -68,6 +68,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get "/rehearsals/student" => "rehearsals#student"
   get "/course_registrations/" => "course_registrations#index"
   get "/rehearsals/all" => "rehearsals#all"
   get "/feedback/all" => "feedbacks#all"
