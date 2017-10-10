@@ -15,7 +15,7 @@ class CoursesController < ApplicationController
   end
 
   def search
-    @courses = Course.where.not(privacy:'1').order('id DESC')
+    @courses = Course.where.not(privacy:'1', privacy:'3').order('id DESC')
     @site_title = 'Search Courses'
     if current_user.level_2
       @course = Course.new
