@@ -74,15 +74,23 @@ class User < ApplicationRecord
   end
 
   @@r = roles.keys
+
+  # admin
   def level_1
     self.role == @@r[0]
   end
+
+  # instructor & admin
   def level_2
     [@@r[0], @@r[1]].include? self.role
   end
+
+  # coach & instructor & admin
   def level_3
     [@@r[0], @@r[1], @@r[2]].include? self.role
   end
+
+  # trainee & coach & instructor & admin
   def level_4
     [@@r[0], @@r[1], @@r[2], @@r[3]].include? self.role
   end
