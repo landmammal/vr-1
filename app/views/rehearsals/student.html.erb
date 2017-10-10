@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2><%= @student.first_name + " " + @student.last_name %></h2>
+      These are all the rehearsals recorded for this lessons:
+      <h4><%= @lesson.title %></h4>
+    </div>
+    <hr>
+    <!-- <div class="col-sm-9" style="padding:0; margin:0;">
+    </div> -->
+    <div class="col-sm-3" style="padding:0; margin:0; float:right; text-align: right;">
+      <a href="/rehearsals/approve_all?student=<%= @student.id %>&lesson=<%= @lesson.id %>"><button class="green_sft" style="font-family:'gotham_light';">Mark all as reviewed</button></a>
+    </div>
+    <hr>
+    <div class="col-sm-12">
+      <% @rehearsals.each_with_index do |rehearsal, index| %>
+
+          <% @r = 'rehearsal_bubble_'+ rehearsal.id.to_s %>
+          <% @date_sub = time_diff(Time.now, rehearsal.created_at) %>
+
+          <%= form_tag ("/rehearsals/"+rehearsal.id.to_s+"/api"), class: 'rehearsal_button', method: :get, remote: true do %>
+              <button type="submit" class="user_bubble <%= new_rehearsal(rehearsal) %>">
+                <div class="pic">
+                  <img src="https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= rehearsal.video_token %>/image">
+                </div>
+                <div class="info">
+                  Submission - <%= index+1 %>
+                  <div class="other_info">
+                    <font size="0.1em">time: <%= @date_sub %></font>
+                  </div>
+                </div>
+              </button>
+          <% end %>
+
+      <% end %>
+
+      <div class="open_rehearsal"></div>
+    </div>
+  </div>
+</div>
