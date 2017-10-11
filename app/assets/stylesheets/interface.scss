@@ -191,8 +191,8 @@ $panel_color: rgba(#2F3132,1) ;
 
 
 footer{
-	background-color:#222; color:white; min-height:200px;
-	padding-bottom:50px;
+	background-color:#222; color:white; min-height:100px;
+	padding:50px 0 ;
 	& .footer_width{
 		max-width: 1500px; margin:0 auto; padding:5px; overflow: hidden;
 		text-align: center; font-family:'gotham_thin';
