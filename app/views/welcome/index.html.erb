@@ -5,18 +5,18 @@
 			<%= render 'layouts/menu' if menu_welcome %>
 	
 	
-			<div id="home_top_text" class="center_right">
+			<!-- <div id="home_top_text" class="center_right">
 				<div class="content">
 					<span class="ht3">A video Training Platform</span><br>
 					<span class="ht2">ENGINEERED TO TRANSFORM</span><br>
 				</div>
 				<button class="demo">Schedule Demo</button>
 				<button class="learn_more">Learn more...</button>
-			</div>
+			</div> -->
 
 
 
-			<div class="demo_box">
+			<!-- <div class="demo_box">
 				<div class="demo_separation"></div>
 				<div class="demo_form" style="display:none;">
 					<h2>Schedule a Demo</h2>
@@ -39,6 +39,48 @@
 					Thank you for scheduling a demo, we will contact you soon.
 				</div>
 				<div id="notice_demo_err"></div>
+			</div> -->
+
+
+			<div class="container" style="padding-top:8%;">
+				<div class="row">
+					<div class="col-sm-1"></div>
+					<div class="col-sm-6 left_text" style="color:white;">
+						<h1 class="bold white" >
+							Train your staff 
+							<br>
+							to perform better.
+						</h1>
+						<br>
+						<h4 class="white" >
+							We help HR departments in companies scale their 
+							<br>
+							training through video. Our platform is engineered to 
+							<br>
+							improve on-the-job performance.
+						</h4>
+						<br>
+					</div>
+					<div class="col-sm-4">
+						<div class="demo_form">
+							<h2>Schedule a Demo</h2>
+							<%= form_for @demo, remote: true do |d| %>
+								<%= d.text_field :first_name, placeholder:'First name *', class:'js-first_name js-form half' %>
+								<%= d.text_field :last_name, placeholder:'Last name *', class:'js-last_name js-form half' %>
+								<%= d.text_field :email, placeholder:'Email *', class:'js-email js-form full' %>
+								<!-- <%= d.text_field :phone_number, placeholder:'Phone number', class:'js-phone_number js-form full' %> -->
+								<!-- <div class="half" style=" width: calc(100% - 155.39); font-size: 18px; padding: 10px 0; float: left; text-align: left;">
+									Set a date:
+								</div>
+								<%= d.date_field :date, class:'js-date half'%><br> -->
+								<%= d.submit "schedule demo", class:'js-schedule_demo green_sft' %>
+								<button class="js-cancel_sched red">cancel</button>
+								<div id="notice_demo_err">  </div>
+							<%end%>
+						</div>
+					</div>
+					<div class="col-sm-1"></div>
+				</div>
 			</div>
 	
 		</div>
