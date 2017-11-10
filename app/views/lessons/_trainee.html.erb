@@ -1,87 +1,131 @@
 <% if topic_lesson_status(@lesson) %>
-    <div class="showIfLessonComplete" data-lesson="<%= params[:id] %>">
-        <div class="js-lesson_buttons"></div>
+<section class="timeline">
+   <figure class="timeline--inner">
+      <% @topic_lessons.each do |key, value| %>
+      <i class="timeline--inner-pin is-featured <%= value %>" data-title="<%= Lesson.find(key).title %>">
+      <a href="<%= course_topic_lesson_path(@course, @topic, key)%>"></a>
+      </i>
+      <% end %>
+   </figure>
+</section>
+<div class="showIfLessonComplete" data-lesson="<%= params[:id] %>">
+ <div class=""><button class="blue lesson_next pull-left"  data-toggle="modal" data-target="#explanation_video"><span class="glyphicon glyphicon-question-sign"></span> Explanation</button></div>
+   
+   <hr>
 
-        <br>
-        <hr>
-      
-        <!-- VIDEO WINDOWS -->
-        <div class="js-player explanation explanation_video hide">
-            Explanation:<br><br>
-            <%= render 'explanation' %>
-        </div>
-        <div class="js-player demonstration prompt_video hide">
+   <!-- VIDEO WINDOWS -->
+
+   <div id="explanation_video" class="modal fade" role="dialog">
+   <div class="modal-dialog">
+ 
+     <!-- Modal content-->
+     <div class="modal-content">
+       <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal">&times;</button>
+         <h4 class="modal-title">Explanation Video</h4>
+       </div>
+       <div class="modal-body">
+       <div class="js-player explanation explanation_video">
+       Explanation:<br><br>
+       <%= render 'explanation' %>
+    </div>
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       </div>
+     </div>
+ 
+   </div>
+ </div>
+
+  
+
+  
+
+
+   <div class="js-custom-player-container">
+      <div id="send_to_instructor" class="hide" style="font-size:15px; font-weight:800; text-align:left;">
+         You have <span class="js-num_rehearsals" style="color:#2FA0FF;"><%= rehearsals_for_this_lesson.size.to_s %></span> Rehearsals for this lesson.
+         <br>
+         <span style="font-size:11px;">Click on the ones you want to send for feedback</span>
+      </div>
+
+     
+
+<div class="js-player-videos-left">
+        <div class="js-player demonstration prompt_video">
             Prompt:<br><br>
             <%= render 'prompt' %>
         </div>
-        <div class="js-player demonstration model_video hide">
-            Role Model:<br><br>
-            <%= render 'rolemodel' %>
-        </div>
-        <div class="js-player practice rehearsal_video hide">
-            Rehearsal:<br><br>
-            <%= render 'rehearsal' %>
-        </div>
 
-        <br>
+        <div class="js-player demonstration model_video">
+        Role Model:<br><br>
+        <%= render 'rolemodel' %>
+  </div>
+      <div class="js-player practice rehearsal_video">
+         Rehearsal:<br><br>
+         <%= render 'rehearsal' %>
+      </div>
 
-
-        <!-- PREVIOUS && NEXT -->
-        <a href="<%= course_topic_lesson_path(@course, @topic, @lesson.id-1)%>">
-          <button class="blue lesson_previous">PREVIOUS LESSON</button>
-        </a>
-
-        <a href="<%= course_topic_lesson_path(@course, @topic, @lesson.id+1)%>">
-          <button class="blue lesson_next" style="float: right;">NEXT LESSON</button>
-        </a>
-
-        <script type="text/javascript"> allLessons('<%= @lesson.id %>','<%= @lessons_arr %>') 
-        </script>
-
-        <br>
-        <br>
-        <div id="send_to_instructor" style="font-size:15px; font-weight:800; text-align:left;">
-            You have <span class="js-num_rehearsals" style="color:#2FA0FF;"><%= rehearsals_for_this_lesson.size.to_s %></span> Rehearsals for this lesson.
-            <br>
-            <span style="font-size:11px;">Click on the ones you want to send for feedback</span>
-        </div>
-        <div class="list_of_lesson_rehearsals">
-            <% rehearsals_for_this_lesson.each_with_index do |rehearsal, index| %>
-                <% @this_video_token = rehearsal.video_token %>
-                <% @this_added_class = 'rehearsal_'+rehearsal.id.to_s %>
-                <div class="rehearsal_thumbnail">
-                    <button class="shadebox_btn rehearsal_btn" data-shadebox="rehearsal" data-rehearsal="<%= rehearsal.id.to_s %>" data-rehearsalnumber="<%= (index+1).to_s %>">Rehearsal <%= (index+1).to_s %>
-                        <div id="rehearsal_<%= rehearsal.id.to_s %>_status" class="<%= rehearsal_approved(rehearsal.id) %>"></div><br>
-                      <img src='https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= @this_video_token %>/image' width="100%" class="rehearsal_img"><br>
-                        ref#: <%= genReherasalRef(rehearsal.id) %>
-                    </button>
-                </div>
-            <% end %>
-        </div>
+      </div>
 
 
-        <br>
-        <br>
-
-        <!-- SHADEBOX FOR REHEARSAL -->
-        <div class="shadebox" data-name="rehearsal">
-            <div class="shade box">
-                <div class="shadebox_title">
-                    <div class="put_title_here"></div>
-                </div>
-                <div class="shadebox_content" style="text-align:center;">
-                    <div class="put_video_here"></div>
-                    <hr>
-                </div>
-                <div class="shadebox_bottom">
-                    <button type="button" class="blue submission" data-rehearsalsubmission="" data-rehearsalid="" style="float:left;"></button>
-                    <button type="button" class="green_sft" style="float:left;">Self-Evaluate</button>
-                    <button type="button" class="green_sft"><span class="ion-edit"></span></button>
-                    <button type="button" class="red">Delete Rehearsal</button>
-                </div>
+      <div class="rehearsal_video-thumbnail">
+         <label class="title-head">Rehearsals List</label>
+         <div class="contenido">
+            <div class="list_of_lesson_rehearsals">
+               <% rehearsals_for_this_lesson.each_with_index do |rehearsal, index| %>
+               <% @this_video_token = rehearsal.video_token %>
+               <% @this_added_class = 'rehearsal_'+rehearsal.id.to_s %>
+               <div class="rehearsal_thumbnail">
+                  <button class="shadebox_btn rehearsal_btn" data-shadebox="rehearsal" data-rehearsal="<%= rehearsal.id.to_s %>" data-rehearsalnumber="<%= (index+1).to_s %>">
+                     Rehearsal <%= (index+1).to_s %>
+                     <div id="rehearsal_<%= rehearsal.id.to_s %>_status" class="<%= rehearsal_approved(rehearsal.id) %>"></div>
+                     <div class="rehearsal-thumb-round">
+                        <img src='https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= @this_video_token %>/image' width="100%" class="rehearsal_img">
+                     </div>
+                     ref#: <%= genReherasalRef(rehearsal.id) %>
+                  </button>
+               </div>
+               <% end %>
             </div>
-        </div>
+         </div>
+      </div>
 
+     
+
+
+   </div>
+
+
+
+   <br>
+   <br>
+<div style="text-align:right">
+   <button class="blue lesson_next training-path-1"> Training Path 1</button>
+   <button class="blue lesson_next training-path-2"> Training Path 2</button>
+</div>
 
     </div>
+    <div class="clearfix"></div>
+
+  <!-- SHADEBOX FOR REHEARSAL -->
+  <div class="shadebox" data-name="rehearsal">
+    <div class="shade box">
+        <div class="shadebox_title">
+            <div class="put_title_here"></div>
+        </div>
+        <div class="shadebox_content" style="text-align:center;">
+            <div class="put_video_here"></div>
+            <hr>
+        </div>
+        <div class="shadebox_bottom">
+            <button type="button" class="blue submission" data-rehearsalsubmission="" data-rehearsalid="" style="float:left;"></button>
+            <button type="button" class="green_sft" style="float:left;">Self-Evaluate</button>
+            <button type="button" class="green_sft"><span class="ion-edit"></span></button>
+            <button type="button" class="red">Delete Rehearsal</button>
+        </div>
+    </div>
+  </div>
+
 <% end %>
