@@ -10,7 +10,7 @@
         <% @topic_lessons.each do |key, value| %>
 
           
-           <i class="timeline--inner-pin is-featured <%= value %>" data-title="<%= key %>">
+           <i class="timeline--inner-pin is-featured <%= value %>" data-title="<%= Lesson.find(key).title %>">
            <a href="<%= course_topic_lesson_path(@course, @topic, key)%>"></a>
            </i>
            
