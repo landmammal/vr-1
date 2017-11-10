@@ -323,10 +323,10 @@ var pageReady = function(){
 		});
 
 
-		$(".training-path-1").click(function(){
+		$(".training-path-2").click(function(){
 			$(".js-custom-player-container .model_video").addClass("path-changed");
 		});
-		$(".training-path-2").click(function(){
+		$(".training-path-1").click(function(){
 			$(".js-custom-player-container .model_video").removeClass("path-changed");
 		});
 
