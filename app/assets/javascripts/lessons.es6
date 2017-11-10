@@ -263,8 +263,8 @@ var pageReady = function(){
 	};
 
 
-	$('.explanation_video').removeClass('hide');
-	$('.explanation_video').addClass('full');
+	// $('.explanation_video').removeClass('hide');
+	// $('.explanation_video').addClass('full');
 
 	$(document).on('click','.show_explanation' , function(){
 
@@ -321,6 +321,15 @@ var pageReady = function(){
 			  	$('.js-play_ziggeo').removeClass('hide');
 			  }
 		});
+
+
+		$(".training-path-1").click(function(){
+			$(".js-custom-player-container .model_video").addClass("path-changed");
+		});
+		$(".training-path-2").click(function(){
+			$(".js-custom-player-container .model_video").removeClass("path-changed");
+		});
+
 	// }else if($('.media_wrapper').data('videotype') === "image"){
 
 	// }else if($('.media_wrapper').data('videotype') === "youtube"){

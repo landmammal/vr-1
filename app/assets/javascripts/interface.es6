@@ -114,62 +114,62 @@ var getUrlParameter = function getUrlParameter(sParam) {
 var pageReady = function(){
 	var doc_cookie = document.cookie;
 
-	$('.js-click_back').click(function(event){
-		event.preventDefault();
-		window.history.back();
-		setTimeout(function(){ changeContent();}, 20);
-	});
-	$('.js-click_forward').click(function(event){
-		event.preventDefault();
-		window.history.forward();
-		setTimeout(function(){ changeContent();}, 20);
-	});
-	window.onpopstate = function() {
-	  setTimeout(function(){ changeContent();}, 20);
-	}
+	// $('.js-click_back').click(function(event){
+	// 	event.preventDefault();
+	// 	window.history.back();
+	// 	setTimeout(function(){ changeContent();}, 20);
+	// });
+	// $('.js-click_forward').click(function(event){
+	// 	event.preventDefault();
+	// 	window.history.forward();
+	// 	setTimeout(function(){ changeContent();}, 20);
+	// });
+	// window.onpopstate = function() {
+	//   setTimeout(function(){ changeContent();}, 20);
+	// }
 
 
-	function changeContent(){
-		if(getUrlParameter('view')){
-			var viewTag = getUrlParameter('view');
-			var viewGroup = getUrlParameter('group');
+	// function changeContent(){
+	// 	if(getUrlParameter('view')){
+	// 		var viewTag = getUrlParameter('view');
+	// 		var viewGroup = getUrlParameter('group');
 
-			$('button[data-group="'+viewGroup+'"]').removeClass('selected');
-			$('button[data-frame="'+viewTag+'"]').addClass('selected');
-			$('.all_content').hide();
-			$('.js-player').addClass('hide');
-			$('.js-'+viewTag+'_content').show();
-			$('.'+viewTag).removeClass('hide');
-		}
-	}
+	// 		$('button[data-group="'+viewGroup+'"]').removeClass('selected');
+	// 		$('button[data-frame="'+viewTag+'"]').addClass('selected');
+	// 		$('.all_content').hide();
+	// 		$('.js-player').addClass('hide');
+	// 		$('.js-'+viewTag+'_content').show();
+	// 		$('.'+viewTag).removeClass('hide');
+	// 	}
+	// }
 
-	setTimeout(function(){ changeContent();}, 20);
+	// setTimeout(function(){ changeContent();}, 20);
 
-	function tabURLChange(data){
-		var thisGroup = $(data).data('group');
-		var thisFrame = $(data).data('frame');
+	// function tabURLChange(data){
+	// 	var thisGroup = $(data).data('group');
+	// 	var thisFrame = $(data).data('frame');
 
-		// console.log(thisGroup+' '+thisFrame)
+	// 	// console.log(thisGroup+' '+thisFrame)
 
-		$('button[data-group="'+thisGroup+'"]').removeClass('selected');
-		$('button[data-frame="'+thisFrame+'"]').addClass('selected');
-		$(data).addClass('selected');
+	// 	$('button[data-group="'+thisGroup+'"]').removeClass('selected');
+	// 	$('button[data-frame="'+thisFrame+'"]').addClass('selected');
+	// 	$(data).addClass('selected');
 		
-		var thisTab = $(data).data('frame');
-		var frame = '.js-'+thisTab+'_content';
-		function showFrame(){
-			$('.all_content').hide(); 
-			$(frame).show();
-		}
-		window.history.pushState(showFrame(), thisTab, '?view='+thisTab+'&group='+thisGroup );
-	}
+	// 	var thisTab = $(data).data('frame');
+	// 	var frame = '.js-'+thisTab+'_content';
+	// 	function showFrame(){
+	// 		$('.all_content').hide(); 
+	// 		$(frame).show();
+	// 	}
+	// 	window.history.pushState(showFrame(), thisTab, '?view='+thisTab+'&group='+thisGroup );
+	// }
 
-	$(document).on('click', '.tab', function(){
-		tabURLChange(this);
-	});
-	$(document).on('click', '.lesson_btn', function(){
-		tabURLChange(this);
-	});
+	// $(document).on('click', '.tab', function(){
+	// 	tabURLChange(this);
+	// });
+	// $(document).on('click', '.lesson_btn', function(){
+	// 	tabURLChange(this);
+	// });
 
 
 	$('.js-max_min').click(function(event){

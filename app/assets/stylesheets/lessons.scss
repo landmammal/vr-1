@@ -287,7 +287,7 @@
 	vertical-align: top;
 	color: #fff;
 	float: left;
-	border: 1px solid #e0e0e0;
+	border: 0px solid #e0e0e0;
 	box-shadow: none;
 	border-radius: 5px;
   }
@@ -307,7 +307,9 @@
   }
   
   .js-custom-player-container .js-player {
-	width: 43%;
+		width: 33.333%;
+    padding: 4px;
+    margin: 0;
   }
   
   .rehearsal_video-thumbnail .title-head {
@@ -527,4 +529,17 @@
 	overflow: unset;
   }
   
-  .lesson_nav_holder{ display: none;}
+	.lesson_nav_holder{ display: none;}
+	
+
+	.js-custom-player-container div.path-changed{
+		float: right;
+	}
+
+	.js-custom-player-container div.rehearsal_video-thumbnail{
+		float: right;
+	}
+	.js-player-videos-left{ float: left;   width: 88%;}
+
+	 
+	.js-player.explanation.explanation_video{ width: 100%; margin: 0px;}
