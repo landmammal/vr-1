@@ -1,4 +1,25 @@
 <% if topic_lesson_status(@lesson) %>
+
+
+    
+ 
+
+
+<section class="timeline">
+    <figure class="timeline--inner">
+        <% @topic_lessons.each do |key, value| %>
+
+          
+           <i class="timeline--inner-pin is-featured <%= value %>" data-title="<%= key %>">
+           <a href="<%= course_topic_lesson_path(@course, @topic, key)%>"></a>
+           </i>
+           
+        <% end %>
+    </figure>
+</section>
+
+
+
     <div class="showIfLessonComplete" data-lesson="<%= params[:id] %>">
         <div class="js-lesson_buttons"></div>
 
@@ -14,15 +35,48 @@
             Prompt:<br><br>
             <%= render 'prompt' %>
         </div>
+
+<div class="js-custom-player-container">
+<div id="send_to_instructor" style="font-size:15px; font-weight:800; text-align:left;">
+You have <span class="js-num_rehearsals" style="color:#2FA0FF;"><%= rehearsals_for_this_lesson.size.to_s %></span> Rehearsals for this lesson.
+<br>
+<span style="font-size:11px;">Click on the ones you want to send for feedback</span>
+</div>
+
         <div class="js-player demonstration model_video hide">
             Role Model:<br><br>
             <%= render 'rolemodel' %>
         </div>
+
+
+    
         <div class="js-player practice rehearsal_video hide">
             Rehearsal:<br><br>
             <%= render 'rehearsal' %>
         </div>
 
+        <div class="rehearsal_video-thumbnail">
+        <label class="title-head">Rehearsals List</label>
+                <div class="contenido">
+                <div class="list_of_lesson_rehearsals">
+                <% rehearsals_for_this_lesson.each_with_index do |rehearsal, index| %>
+                    <% @this_video_token = rehearsal.video_token %>
+                    <% @this_added_class = 'rehearsal_'+rehearsal.id.to_s %>
+                    <div class="rehearsal_thumbnail">
+                        <button class="shadebox_btn rehearsal_btn" data-shadebox="rehearsal" data-rehearsal="<%= rehearsal.id.to_s %>" data-rehearsalnumber="<%= (index+1).to_s %>">Rehearsal <%= (index+1).to_s %>
+                            <div id="rehearsal_<%= rehearsal.id.to_s %>_status" class="<%= rehearsal_approved(rehearsal.id) %>"></div> 
+                          <div class="rehearsal-thumb-round">
+                            <img src='https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= @this_video_token %>/image' width="100%" class="rehearsal_img">
+                            </div>
+                         
+                            ref#: <%= genReherasalRef(rehearsal.id) %>
+                        </button>
+                    </div>
+                <% end %>
+            </div>
+                </div>
+            </div>
+</div>
         <br>
 
 
@@ -37,31 +91,7 @@
 
         <script type="text/javascript"> allLessons('<%= @lesson.id %>','<%= @lessons_arr %>') 
         </script>
-
-        <br>
-        <br>
-        <div id="send_to_instructor" style="font-size:15px; font-weight:800; text-align:left;">
-            You have <span class="js-num_rehearsals" style="color:#2FA0FF;"><%= rehearsals_for_this_lesson.size.to_s %></span> Rehearsals for this lesson.
-            <br>
-            <span style="font-size:11px;">Click on the ones you want to send for feedback</span>
-        </div>
-        <div class="list_of_lesson_rehearsals">
-            <% rehearsals_for_this_lesson.each_with_index do |rehearsal, index| %>
-                <% @this_video_token = rehearsal.video_token %>
-                <% @this_added_class = 'rehearsal_'+rehearsal.id.to_s %>
-                <div class="rehearsal_thumbnail">
-                    <button class="shadebox_btn rehearsal_btn" data-shadebox="rehearsal" data-rehearsal="<%= rehearsal.id.to_s %>" data-rehearsalnumber="<%= (index+1).to_s %>">Rehearsal <%= (index+1).to_s %>
-                        <div id="rehearsal_<%= rehearsal.id.to_s %>_status" class="<%= rehearsal_approved(rehearsal.id) %>"></div><br>
-                      <img src='https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= @this_video_token %>/image' width="100%" class="rehearsal_img"><br>
-                        ref#: <%= genReherasalRef(rehearsal.id) %>
-                    </button>
-                </div>
-            <% end %>
-        </div>
-
-
-        <br>
-        <br>
+ 
 
         <!-- SHADEBOX FOR REHEARSAL -->
         <div class="shadebox" data-name="rehearsal">
@@ -84,4 +114,5 @@
 
 
     </div>
+    <div class="clearfix"></div>
 <% end %>

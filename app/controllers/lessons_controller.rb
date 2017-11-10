@@ -25,6 +25,28 @@ class LessonsController < ApplicationController
     @model = Model.new
     @models = @lesson.models.select(:id, :title, :position_prior, :privacy, :video_token).order('id ASC')
     @prior_model = @lesson.models.find_by(position_prior: '1')
+
+
+    @topic_lessons = {}
+    @lesson.topic.lessons.each do |lesson|
+      @topic_lessons[lesson.id] = "new"
+      @topic_lessons[lesson.id] = "has_rehearsal" if lesson.rehearsals.size > 0
+      lesson.rehearsals.each do |rehearsal|
+        (rehearsal.submission == false || !rehearsal.submission) ? status = 'has_rehearsal' : ((rehearsal.approval_status == 1 ) ? status = 'approved' : ((rehearsal.approval_status == 2 ) ? status = 'rejected' : status = 'submitted'))
+        rehearsal.feedbacks.each do |feedback|
+          if feedback.approved == true || rehearsal.approval_status == 1
+            status = 'approved'
+            # break
+          end
+          if feedback.approved == true || rehearsal.approval_status == 2
+            status = 'rejected'
+            # break
+          end
+        end
+        @topic_lessons[lesson.id] = status
+      end
+    end
+
     
 
     if (@lesson.lesson_type.to_i == 0 || @lesson.lesson_type == nil) && @prior_expl && @prior_prompt && @prior_model
