@@ -1,4 +1,7 @@
 <% if @all_prt || @prmt_prt %>
+<div class="column">
+<div class="js-player demonstration prompt_video">
+Prompt:<br><br>
 	<% @this_video_token = @prior_prompt.video_token %>
 	<% @this_added_class = 'prompt' %>
 	
@@ -11,4 +14,6 @@
 		<%= simple_format(@prior_prompt.script) %>
 	</div>
 	<%= render 'scriptcontrol' %>
+	</div>
+	</div>
 <% end %>

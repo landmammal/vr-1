@@ -324,10 +324,15 @@ var pageReady = function(){
 
 
 		$(".training-path-1").click(function(){
-			$(".js-custom-player-container .model_video").addClass("path-changed");
+			 var tmp_shift =$(".js-Video-container");
+			 tmp_shift.clone().insertAfter(".rehearsal_Container");
+			 tmp_shift.remove();
 		});
 		$(".training-path-2").click(function(){
-			$(".js-custom-player-container .model_video").removeClass("path-changed");
+		  
+			var tmp_shift =$(".js-Video-container");
+			tmp_shift.clone().insertBefore(".rehearsal_Container");
+			tmp_shift.remove();
 		});
 
 	// }else if($('.media_wrapper').data('videotype') === "image"){

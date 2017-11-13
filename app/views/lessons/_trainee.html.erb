@@ -50,47 +50,72 @@
          <span style="font-size:11px;">Click on the ones you want to send for feedback</span>
       </div>
 
+      <div class="columns">
+      <div class="column">
+     <div class="columns">
+     
+     
+     <%= render 'prompt' %>
+    
+    
+     <%= render 'rolemodel' %> 
+      
+     <%= render 'rehearsal' %>
+     
+     
+     
+     </div>
+     </div>
+     
+     <div class="column is-one-quarter">
+     
+     <div class="">
+     <label class="title-head">Rehearsals List</label>
+     <div class="contenido">
+        <div class="list_of_lesson_rehearsals">
+           <% rehearsals_for_this_lesson.each_with_index do |rehearsal, index| %>
+           <% @this_video_token = rehearsal.video_token %>
+           <% @this_added_class = 'rehearsal_'+rehearsal.id.to_s %>
+           <div class="rehearsal_thumbnail">
+              <button class="shadebox_btn rehearsal_btn" data-shadebox="rehearsal" data-rehearsal="<%= rehearsal.id.to_s %>" data-rehearsalnumber="<%= (index+1).to_s %>">
+                 Rehearsal <%= (index+1).to_s %>
+                 <div id="rehearsal_<%= rehearsal.id.to_s %>_status" class="<%= rehearsal_approved(rehearsal.id) %>"></div>
+                 <div class="rehearsal-thumb-round">
+                    <img src='https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= @this_video_token %>/image' width="100%" class="rehearsal_img">
+                 </div>
+                 ref#: <%= genReherasalRef(rehearsal.id) %>
+              </button>
+           </div>
+           <% end %>
+        </div>
+     </div>
+  </div>
+
+     </div>
+     
+     
+     </div>
+     
      
 
-<div class="js-player-videos-left">
-        <div class="js-player demonstration prompt_video">
-            Prompt:<br><br>
-            <%= render 'prompt' %>
-        </div>
 
-        <div class="js-player demonstration model_video">
-        Role Model:<br><br>
-        <%= render 'rolemodel' %>
-  </div>
-      <div class="js-player practice rehearsal_video">
-         Rehearsal:<br><br>
-         <%= render 'rehearsal' %>
-      </div>
+     
 
-      </div>
+ 
+      
+            
+        
+
+       
+       
+
+      
+      
+
+      
 
 
-      <div class="rehearsal_video-thumbnail">
-         <label class="title-head">Rehearsals List</label>
-         <div class="contenido">
-            <div class="list_of_lesson_rehearsals">
-               <% rehearsals_for_this_lesson.each_with_index do |rehearsal, index| %>
-               <% @this_video_token = rehearsal.video_token %>
-               <% @this_added_class = 'rehearsal_'+rehearsal.id.to_s %>
-               <div class="rehearsal_thumbnail">
-                  <button class="shadebox_btn rehearsal_btn" data-shadebox="rehearsal" data-rehearsal="<%= rehearsal.id.to_s %>" data-rehearsalnumber="<%= (index+1).to_s %>">
-                     Rehearsal <%= (index+1).to_s %>
-                     <div id="rehearsal_<%= rehearsal.id.to_s %>_status" class="<%= rehearsal_approved(rehearsal.id) %>"></div>
-                     <div class="rehearsal-thumb-round">
-                        <img src='https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= @this_video_token %>/image' width="100%" class="rehearsal_img">
-                     </div>
-                     ref#: <%= genReherasalRef(rehearsal.id) %>
-                  </button>
-               </div>
-               <% end %>
-            </div>
-         </div>
-      </div>
+     
 
      
 

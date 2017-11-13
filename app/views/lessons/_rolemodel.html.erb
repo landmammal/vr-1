@@ -1,4 +1,7 @@
 <% if @all_prt || @mdl_prt %>
+<div class="column js-Video-container">
+<div class="js-player demonstration model_video">
+Role Model:<br><br>
 	<% @this_video_token = @prior_model.video_token %>
 	<% @this_added_class = 'model' %>
 	
@@ -11,4 +14,7 @@
 		<%= simple_format(@prior_model.script) %>
 	</div>
 	<%= render 'scriptcontrol' %>
+
+</div>
+</div>
 <% end %>
