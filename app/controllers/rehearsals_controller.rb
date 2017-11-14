@@ -55,7 +55,9 @@ class RehearsalsController < ApplicationController
 
     current_user.courses.each do |course|
       course.rehearsals.where(submission: true).each do |rehearsal|
-        @students[rehearsal.trainee]=[]
+        if User.all.include? rehearsal.trainee 
+          @students[rehearsal.trainee]=[]
+        end
       end
       course.rehearsals.where(submission: true).each do |rehearsal|
         if params[:list] == "all"

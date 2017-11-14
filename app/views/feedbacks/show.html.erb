@@ -32,6 +32,13 @@
         </div>
         <%= render './lessons/scriptcontrol' %>
       </div>
+      <center>
+        <a href="<%= course_topic_lesson_path(@rehearsal.course, @rehearsal.topic, @rehearsal.lesson) %>">
+          <button class="big_btn blue"  style="margin:10% auto 0px;">
+            Record another rehearsal
+          </button>
+        </a>
+      </center>
 
     <% end %>
     <br>

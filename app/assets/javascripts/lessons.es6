@@ -323,13 +323,16 @@ var pageReady = function(){
 		});
 
 
-		$(".training-path-1").click(function(){
+		$(".training-path-2").click(function(){
+			 $('.lesson_next').removeClass('blue');
+			 $(this).addClass('blue');
 			 var tmp_shift =$(".js-Video-container");
 			 tmp_shift.clone().insertAfter(".rehearsal_Container");
 			 tmp_shift.remove();
 		});
-		$(".training-path-2").click(function(){
-		  
+		$(".training-path-1").click(function(){		  
+			$('.lesson_next').removeClass('blue');
+			$(this).addClass('blue');
 			var tmp_shift =$(".js-Video-container");
 			tmp_shift.clone().insertBefore(".rehearsal_Container");
 			tmp_shift.remove();
