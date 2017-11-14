@@ -28,7 +28,7 @@ class LessonsController < ApplicationController
 
 
     @topic_lessons = {}
-    @lesson.topic.lessons.each do |lesson|
+    @lesson.topic.lessons.order("id ASC").each do |lesson|
       @topic_lessons[lesson.id] = "new"
       @topic_lessons[lesson.id] = "has_rehearsal" if lesson.rehearsals.size > 0
       lesson.rehearsals.each do |rehearsal|
