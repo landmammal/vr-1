@@ -65,6 +65,10 @@ class User < ApplicationRecord
       banner_file_name.present? ? banner.url(:medium) : '/assets/banner.jpg'
   end
 
+  def full_name
+    first_name + " " + last_name
+  end
+
   # user roles
   enum role: [:admin, :instructor, :coach, :trainee]
   after_initialize :set_default_role, :if => :new_record?

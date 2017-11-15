@@ -15,22 +15,21 @@
 	border-right:1px dotted #ccc;
 	margin:0 5px 10px 0;
 	padding:5px 10px;
-	& .rsl_course{
+	& .rhs_course{
 		margin-top:10px; cursor: pointer;
 	}
-	& .toggle_topic{
+	& .rhs_topics, .rhs_lessons{
 		display:none;
 	}
-	& .rsl_topic{
-		display:none;
+	& .rhs_topic{
 		padding:0 0 0 5px;
 		border-left:3px solid #24D4FF;
 		cursor: pointer;
+		margin-left: 8px;
 	}
-	& .rsl_lesson{
-		display:none;
+	& .rhs_lesson{
 		padding:3px 5px 3px 10px;
-		margin-left:8px; border-left:3px solid #999;
+		margin-left:15px; border-left:3px solid #999;
 		background-color:#ddd; margin-bottom:3px;
 		&:hover{ background-color:#333; color:white; }
 		cursor: pointer;

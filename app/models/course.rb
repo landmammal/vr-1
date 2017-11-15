@@ -19,8 +19,21 @@ class Course < ApplicationRecord
   end
 
   def delete_associations
-  @lessons = []
-  # grab all lessons inside this course and delee them
-  self.topics.each { |t| @lessons << Lesson.where(instructor_id: self.instructor, topic_id: t) }
+    @lessons = []
+    # grab all lessons inside this course and delee them
+    self.topics.each { |t| @lessons << Lesson.where(instructor_id: self.instructor, topic_id: t) }
   end
+
+
+  def has_rehearsals?
+    self.rehearsals.size > 0
+  end
+
+  def submitted_rehearsals
+    self.rehearsals.where(submission: true)
+  end
+  def has_submitted_rehearsals?
+    self.submitted_rehearsals.size > 0
+  end
+
 end

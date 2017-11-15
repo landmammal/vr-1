@@ -117,22 +117,64 @@ var pageReady = function(){
 
 
 
-  $('.rsl_course').click(function(){
-    $('.toggle_topic').hide();
-    $('.rsl_topic').hide();
+  // $('.rsl_course').click(function(){
+  //   $('.toggle_topic').hide();
+  //   $('.rsl_topic').hide();
 
-    $('.rsl_topic[data-c='+$(this).data('c')+']').toggle();
-    $('.toggle_topic[data-c='+$(this).data('c')+']').toggle();
+  //   $('.rsl_topic[data-c='+$(this).data('c')+']').toggle();
+  //   $('.toggle_topic[data-c='+$(this).data('c')+']').toggle();
+  // });
+
+  // $('.rsl_topic').click(function(){
+  //   $('.rsl_lesson[data-t='+$(this).data('t')+']').toggle();
+  // });
+
+  // $('.rsl_lesson').click(function(){
+  //   var rehearsals_list = $('.all_rehearsals[data-l='+$(this).data('l')+']')[0].innerHTML;
+  //   $('.rehearsal_list').html(rehearsals_list);
+  // });
+
+
+
+
+  $('.rhs_course').click(function(){
+    $(this).next( '.rhs_topics' ).toggle();    
   });
 
-  $('.rsl_topic').click(function(){
-    $('.rsl_lesson[data-t='+$(this).data('t')+']').toggle();
+  $('.rhs_topic').click(function(){
+    $(this).next( '.rhs_lessons' ).toggle();    
   });
 
-  $('.rsl_lesson').click(function(){
-    var rehearsals_list = $('.all_rehearsals[data-l='+$(this).data('l')+']')[0].innerHTML;
-    $('.rehearsal_list').html(rehearsals_list);
+  $('.rhs_lesson').click(function(){
+    let rehearsals = $(this).data( 'rehearsals' );
+    $('.rehearsals').empty();
+    for( let x in rehearsals ){
+      console.log(x);
+      let data = rehearsals[x];
+      console.log(data);
+      $('.rehearsals').append(`
+        <a href="/rehearsals/student/?student=${data['student_id']}&lesson=${data["lesson_info"][1]}">
+          <button type="submit" class="user_bubble">
+            <div class="pic">
+              <img src="${data['image']}">
+            </div>
+            <div class="info">
+              ${x}<br>
+              <div class="other_info">
+                Lesson: ${data["lesson_info"][0]}<br>
+                Rehearsals: ${data["rhs_count"]}
+              </div>
+            </div>
+          </button>
+        </a>
+      `)
+    };
   });
+
+
+
+
+
 
 
   $(document).on('click', '.mark_rehearsal_status', function() {

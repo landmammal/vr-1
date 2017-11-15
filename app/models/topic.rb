@@ -9,4 +9,17 @@ class Topic < ApplicationRecord
   has_many :courses, through: :course_topics
 
   has_many :rehearsals, dependent: :destroy
+
+  def has_rehearsals?
+    self.rehearsals.size > 0
+  end
+
+  
+  def submitted_rehearsals
+    self.rehearsals.where(submission: true)
+  end
+  def has_submitted_rehearsals?
+    self.submitted_rehearsals.size > 0
+  end
+
 end

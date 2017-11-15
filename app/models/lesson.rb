@@ -19,4 +19,40 @@ class Lesson < ApplicationRecord
 
   has_many :lesson_rehearsals
   has_many :rehearsals, through: :lesson_rehearsals
+
+  def completed(user)
+    status = false
+    self.rehearsals.where(trainee_id: user.id).each do |rehearsal|
+      if rehearsal.approved?
+        # binding.pry
+        return true
+      end
+    end
+    # binding.pry
+    status
+  end
+
+  def has_rehearsals?
+    self.rehearsals.size > 0
+  end
+
+  def submitted_rehearsals
+    self.rehearsals.where(submission: true)
+  end
+  def has_submitted_rehearsals?
+    self.submitted_rehearsals.size > 0
+  end
+
+  def has_rehearsals_from_user(user)
+    self.rehearsals.where(trainee_id: user.id).size > 0
+  end
+
+  
+  def submitted_rehearsals_from_user(user)
+    self.rehearsals.where(trainee_id: user.id).where(submission: true)
+  end
+  def has_submitted_rehearsals_from_user(user)
+    self.submitted_rehearsals_from_user(user).size > 0
+  end
+
 end
