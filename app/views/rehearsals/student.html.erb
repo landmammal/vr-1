@@ -20,9 +20,10 @@
 
           <%= form_tag ("/rehearsals/"+rehearsal.id.to_s+"/api"), class: 'rehearsal_button', method: :get, remote: true do %>
               <button type="submit" class="user_bubble <%= new_rehearsal(rehearsal) %>">
-                <div class="pic">
+                <div class="pic" style="width:100% !important;">
                   <img src="https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= rehearsal.video_token %>/image">
                 </div>
+                <br>
                 <div class="info">
                   Submission - <%= index+1 %>
                   <div class="other_info">
