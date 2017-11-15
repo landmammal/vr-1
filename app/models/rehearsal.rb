@@ -11,4 +11,24 @@ class Rehearsal < ApplicationRecord
 
   has_many :performance_feedbacks, dependent: :destroy
   has_many :feedbacks, through: :performance_feedbacks
+
+  def submitted?
+    self.submission != nil || self.submission
+  end
+
+  def approved?
+    self.approval_status == 1
+  end
+
+  def rejected?
+    self.approval_status == 2
+  end
+
+  def has_feedback?
+    self.feedbacks.size > 0
+  end
+
+  def new?
+    self.submitted? && ( !self.approved? && !self.rejected? && !self.has_feedback? )
+  end
 end

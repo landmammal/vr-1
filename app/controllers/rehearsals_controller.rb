@@ -1,4 +1,5 @@
 class RehearsalsController < ApplicationController
+  include RehearsalsHelper
   before_action :set_rehearsal, only: [:edit, :destroy]
   before_action :set_update_rehearsal, only: [:update]
   before_action :set_lesson, only: [:create, :index]
@@ -47,38 +48,75 @@ class RehearsalsController < ApplicationController
     @performance_feedback = PerformanceFeedback.new
   end
 
+  # def all
+  #   @courses = []
+
+  #   @rehearsals = []
+  #   @students = {}
+
+  #   current_user.courses.each do |course|
+  #     course.rehearsals.where(submission: true).each do |rehearsal|
+  #       if User.all.include? rehearsal.trainee 
+  #         @students[rehearsal.trainee]=[]
+  #       end
+  #     end
+  #     course.rehearsals.where(submission: true).each do |rehearsal|
+  #       if params[:list] == "all"
+  #         @rehearsals << rehearsal
+  #         @re_title = "All Rehearsals"
+  #         @students[rehearsal.trainee] << rehearsal
+  #       elsif !params[:student].blank?
+  #         if rehearsal.trainee_id = params[:student].to_i
+  #           @rehearsals << rehearsal
+  #         end
+  #       else
+  #         if (rehearsal.feedbacks.size < 1 && rehearsal.approval_status == 0) || (rehearsal.feedbacks.size > 1 && rehearsal.approval_status == 1) && User.exists?(rehearsal.trainee_id)
+  #           @re_title = "Rehearsals"
+  #           @rehearsals << rehearsal
+  #           @students[rehearsal.trainee] << rehearsal
+  #         end
+  #       end
+  #       @courses<<rehearsal.course if !@courses.include? rehearsal.course
+  #     end
+  #   end
+  # end
+
+
   def all
-    @courses = []
 
-    @rehearsals = []
-    @students = {}
-
+    @courses = {}
     current_user.courses.each do |course|
-      course.rehearsals.where(submission: true).each do |rehearsal|
-        if User.all.include? rehearsal.trainee 
-          @students[rehearsal.trainee]=[]
-        end
-      end
-      course.rehearsals.where(submission: true).each do |rehearsal|
-        if params[:list] == "all"
-          @rehearsals << rehearsal
-          @re_title = "All Rehearsals"
-          @students[rehearsal.trainee] << rehearsal
-        elsif !params[:student].blank?
-          if rehearsal.trainee_id = params[:student].to_i
-            @rehearsals << rehearsal
+      @courses[course.title] = {}
+      @courses[course.title]["course"] = course
+      @courses[course.title]["topics"] = {}
+
+      course.topics.each do |topic|
+        @courses[course.title]["topics"][topic.title] = {}
+        @courses[course.title]["topics"][topic.title]["topic"] = topic
+        @courses[course.title]["topics"][topic.title]["lessons"] = {}
+
+        topic.lessons.each do |lesson|
+          @courses[course.title]["topics"][topic.title]["lessons"][lesson.title] = {}
+          @courses[course.title]["topics"][topic.title]["lessons"][lesson.title]["lesson"] = lesson
+          @courses[course.title]["topics"][topic.title]["lessons"][lesson.title]["rehearsals"] = {}
+
+          lesson.rehearsals.each do |x|
+            @courses[course.title]["topics"][topic.title]["lessons"][lesson.title]["rehearsals"][x.trainee.full_name] = {
+              "student_id" => x.trainee_id,
+              "image" => student_pic(x.trainee),
+              "lesson_info" => [ lesson.title, lesson.id ],
+              "rhs_count" => x.trainee.rehearsals.where( lesson_id: lesson.id).where( submission: true ).size,
+              "new_count" => x.trainee.rehearsals.map{ |x| x if (  x.lesson_id == lesson.id && x.new? )   }.size
+            }
           end
-        else
-          if (rehearsal.feedbacks.size < 1 && rehearsal.approval_status == 0) || (rehearsal.feedbacks.size > 1 && rehearsal.approval_status == 1) && User.exists?(rehearsal.trainee_id)
-            @re_title = "Rehearsals"
-            @rehearsals << rehearsal
-            @students[rehearsal.trainee] << rehearsal
-          end
+
         end
-        @courses<<rehearsal.course if !@courses.include? rehearsal.course
+
       end
     end
+
   end
+
 
   def student
     @student = User.find(params[:student])

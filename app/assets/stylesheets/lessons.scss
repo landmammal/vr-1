@@ -498,7 +498,7 @@
 	background-color: #FFFFFA;
 	box-shadow: 0 0 0 4px #4ebd52, 0 0px 14px rgba(0, 0, 0, 0.35);
   }
-  .timeline--inner-pin.submitted {
+  .timeline--inner-pin.submitted, .timeline--inner-pin.has_feedback  {
 	background-color: #ff9d23;
 	box-shadow: 0 0 0 4px #ffffff;
   }

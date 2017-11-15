@@ -1,4 +1,7 @@
 <% if topic_lesson_status(@lesson) %>
+
+<!-- <pre><%= @topic_lessons %></pre> -->
+
 <section class="timeline">
    <figure class="timeline--inner">
       <% @topic_lessons.each do |key, value| %>
@@ -9,7 +12,7 @@
    </figure>
 </section>
 <div class="showIfLessonComplete" data-lesson="<%= params[:id] %>">
- <div class=""><button class="blue lesson_next pull-left"  data-toggle="modal" data-target="#explanation_video"><span class="glyphicon glyphicon-question-sign"></span> Explanation</button></div>
+ <div class=""><button class="lesson_next pull-left"  data-toggle="modal" data-target="#explanation_video"><span class="glyphicon glyphicon-question-sign"></span> Explanation</button></div>
    
    <hr>
 

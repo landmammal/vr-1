@@ -1,4 +1,5 @@
 class LessonsController < ApplicationController
+  include TopicsHelper
   before_action :authenticate_user!
   before_action :set_course, only: [:show, :new, :create, :edit, :destroy]
   before_action :set_topic, only: [:show, :new, :edit, :destroy]
@@ -26,26 +27,42 @@ class LessonsController < ApplicationController
     @models = @lesson.models.select(:id, :title, :position_prior, :privacy, :video_token).order('id ASC')
     @prior_model = @lesson.models.find_by(position_prior: '1')
 
-
     @topic_lessons = {}
+    
     @lesson.topic.lessons.order("id ASC").each do |lesson|
-      @topic_lessons[lesson.id] = "new"
-      @topic_lessons[lesson.id] = "has_rehearsal" if lesson.rehearsals.size > 0
-      lesson.rehearsals.each do |rehearsal|
-        (rehearsal.submission == false || !rehearsal.submission) ? status = 'has_rehearsal' : ((rehearsal.approval_status == 1 ) ? status = 'approved' : ((rehearsal.approval_status == 2 ) ? status = 'rejected' : status = 'submitted'))
-        rehearsal.feedbacks.each do |feedback|
-          if feedback.approved == true || rehearsal.approval_status == 1
-            status = 'approved'
-            # break
+      if topic_lesson_status(lesson)
+        
+        if lesson.has_rehearsals_from_user(current_user)
+          
+          if lesson.completed( current_user )
+            status = "approved"
+          elsif lesson.has_submitted_rehearsals_from_user(current_user)
+            
+            last_rehearsal = lesson.submitted_rehearsals_from_user(current_user).last
+            
+            if last_rehearsal && last_rehearsal.rejected?
+              status = "rejected"
+            elsif last_rehearsal && last_rehearsal.has_feedback?
+              status = "has_feedback"
+            else
+              status = "submitted"
+            end
+          
+          else
+            status = "has_rehearsal"
           end
-          if feedback.approved == true || rehearsal.approval_status == 2
-            status = 'rejected'
-            # break
-          end
+
+        else
+          status = "new"
         end
+      
         @topic_lessons[lesson.id] = status
+        
+      elsif lesson.instructor == current_user
+        @topic_lessons[lesson.id] = "new"
       end
     end
+
 
     
 

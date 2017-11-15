@@ -13,87 +13,54 @@
       <a href="/rehearsals/all">New rehearsals</a> |
       <a href="?list=all">All rehearsals</a>
     </div>
+    <br>
   </div>
 
-  <div class="rehearsal_courses">
-    <% @courses.each do |course| %>
-        <div class="rsl_course" data-c='c_<%= course.id %>'>
-        <span style="font-family:'gotham';"><%= course.title[0...20] %>
-          <%= "..." if course.title.length > 20 %></span>
-          (<%= rehearsals_count(course) %>)<br>
-        </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="rehearsal_courses">
 
-        <div class="toggle_topic" data-c='c_<%= course.id %>'>
-          <% course.topics.each do |topic| %>
+        <% @courses.each do |c_key, c_val| %>
+          
+          <div class="rhs_course"><%= c_key +"  ("+c_val['course'].submitted_rehearsals.size.to_s+")" %></div>
 
-              <div class="rsl_topic" data-c='c_<%= course.id %>' data-t='t_<%= topic.id %>'>
-                <%= topic.title[0...30] %>
-                <%= "..." if topic.title.length > 30 %><br>
+          <div class="rhs_topics">
+            <% c_val['topics'].each do |t_key, t_val| %>
+              
+              <div class="rhs_topic"><%= t_key +"  ("+t_val['topic'].submitted_rehearsals.size.to_s+")" %></div>
+
+              <div class="rhs_lessons">
+
+                <% t_val['lessons'].each do |l_key, l_val| %>
+                  <div class="rhs_lesson" data-rehearsals="<%= l_val['rehearsals'].to_json %>">
+                    <%= l_key +"  ("+l_val['lesson'].submitted_rehearsals.size.to_s+")" %>
+                  </div>
+                <% end %>
+
               </div>
 
-              <% topic.lessons.each do |lesson| %>
-                  <div class="rsl_lesson" data-t='t_<%= topic.id %>' data-l='t_<%= lesson.id %>'>
+            <% end %>
+          </div>
 
-                    <%= lesson.title[0...25] %>
-                    <%= "..." if lesson.title.length > 25 %><br>
+        <% end %>
 
-                    <div class="all_rehearsals" style="display:none;" data-l='t_<%= lesson.id %>'>
-                      <% if lesson.rehearsals.size > 0 %>
 
-                          <% @students.each do |key, value| %>
-                              <% if value.size > 0 %>
-                                  <%= render 'rehearsalbtn', user: key, lesson_id: value.first.lesson_id, rehearsals_count: value.size %>
-                              <% end %>
-                          <% end %>
-                      <% end %>
-                    </div>
-                  </div>
+      </div>
+      <div class="rehearsals">
+
+        <% @courses.each do |ckey, cvalue| %>
+          <% cvalue['topics'].each do |tkey, tvalue| %>
+            <% tvalue['lessons'].each do |lkey, lvalue| %>
+              <% lvalue['rehearsals'].each do |rkey, rvalue| %>
+                <%= render 'rehearsalbtn', user: User.find(rvalue['student_id']), lesson_id: lvalue['lesson'].id, rehearsals_count: rvalue['rhs_count'] %>
               <% end %>
-
+            <% end %>
           <% end %>
-        </div>
+        <% end %>
 
-    <% end %>
-  </div>
-
-  <div class="rehearsal_list">
-    <span style="font-size:20px;">
-      <% if @courses.size<1 %>
-        You currently have no new rehearsal submissions
-      <% else %>
-
-        <% @students.each do |key, value| %>
-                    <% if value.size > 0 %>
-                      <%= render 'rehearsalbtn', user: key, lesson_id: value.first.lesson_id, rehearsals_count: value.size %>
-                    <% end %>
-          <% end %>
-
-      <% end %>
-    </span>
-  </div>
-
-  <div class="open_rehearsal">
-
-  </div>
-
-
-  <!-- <div class="shadebox" data-name="rehearsal">
-    <div class="shade box">
-      <div class="shadebox_title">
-        <div class="put_title_here"></div>
-      </div>
-      <div class="shadebox_content" style="text-align:center;">
-        <div class="put_video_here"></div>
-        <hr>
-      </div>
-      <div class="shadebox_bottom">
-        <button type="button" class="mark_as_completed green_sft" style="float:left;" data-rehearsalid="" data-userid="<%= current_user.id %>">Mark as completed</button>
-        <a href="" class="leave_feedback">
-          <button type="button" class="blue leave_feedback" style="float:left;" data-rehearsalid=" ">Leave Video Feedback</button>
-        </a>
       </div>
     </div>
-  </div> -->
+  </div>
 
 </div>
 
