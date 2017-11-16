@@ -2,6 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+.floating-action-button {
+	position: relative;
+	top: 100px;
+	margin-left: 50px;
+}
+ul.dropdown-menu {
+	box-shadow: none;
+	border: 0;
+	min-width:0;
+	background:transparent
+}
+
 .rehearsals_title{
 	font-family:'gotham_book';
 	font-size:15px;
