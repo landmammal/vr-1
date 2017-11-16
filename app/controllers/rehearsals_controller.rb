@@ -107,7 +107,7 @@ class RehearsalsController < ApplicationController
                 "image" => student_pic(x.trainee),
                 "lesson_info" => [ lesson.title, lesson.id ],
                 "rhs_count" => x.trainee.rehearsals.where( lesson_id: lesson.id).where( submission: true ).size,
-                "new_count" => x.trainee.rehearsals.map{ |x| x if (  x.lesson_id == lesson.id && x.new? )   }.size
+                "new_count" => x.trainee.rehearsals.map{ |x| x if (  x.lesson_id == lesson.id && x.new? )   }.compact.size
               }
             end
           end
@@ -167,7 +167,7 @@ class RehearsalsController < ApplicationController
   def update
     (!@rehearsal.submission || @rehearsal.submission == nil) ? @rehearsal.submission = true : @rehearsal.submission = false
 
-    @rehearsal.approval_status = 0
+    @rehearsal.approval_status = 0 if @rehearsal.approval_status == nil
     @rehearsal.save
     render json: @rehearsal
   end

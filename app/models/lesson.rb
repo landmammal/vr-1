@@ -47,6 +47,10 @@ class Lesson < ApplicationRecord
     self.rehearsals.where(trainee_id: user.id).size > 0
   end
 
+  def has_new_rehearsals_from_user(user)
+    self.rehearsals.map{ |x| x if ( x.trainee == user && x.new? ) }.compact.size > 0
+  end
+
   
   def submitted_rehearsals_from_user(user)
     self.rehearsals.where(trainee_id: user.id).where(submission: true)
