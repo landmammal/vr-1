@@ -60,7 +60,7 @@
 
       <% elsif course_trainee %>
         
-        <% if topic_lesson_completion(lesson) == 0 %>
+        <!-- <% if topic_lesson_completion(lesson) == 0 %>
           <div class="pending_lesson" title="Rehearsal waiting for approval">
             <span class="ion-loop"></span>
           </div>
@@ -74,7 +74,14 @@
           </div>
         <% elsif !topic_lesson_completion(lesson) %>
           <div class="unchecked_lesson" title="Lesson not yet completed" ></div>
-        <% end %>
+        <% end %> -->
+
+
+
+        <div class="lesson_completion_status <%= lesson.completion_status(current_user)[0] %>" title="<%= lesson.completion_status(current_user)[1] %>">
+
+        </div>
+
 
       <% end %>
 

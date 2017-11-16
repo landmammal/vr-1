@@ -1,16 +1,5 @@
 <% if topic_lesson_status(@lesson) %>
 
-<!-- <pre><%= @topic_lessons %></pre> -->
-
-<section class="timeline">
-   <figure class="timeline--inner">
-      <% @topic_lessons.each do |key, value| %>
-      <i class="timeline--inner-pin is-featured <%= value %>" data-title="<%= Lesson.find(key).title %>">
-      <a href="<%= course_topic_lesson_path(@course, @topic, key)%>"></a>
-      </i>
-      <% end %>
-   </figure>
-</section>
 <div class="showIfLessonComplete" data-lesson="<%= params[:id] %>">
  <div class=""><button class="lesson_next pull-left"  data-toggle="modal" data-target="#explanation_video"><span class="glyphicon glyphicon-question-sign"></span> Explanation</button></div>
    

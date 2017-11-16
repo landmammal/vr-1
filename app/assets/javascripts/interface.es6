@@ -220,7 +220,7 @@ var pageReady = function(){
 
 	$(document).on('click', '.right_panel_btn', function() {
 		var thisPanel = $(this).data('rightpanel');
-		$('.right_panel[data-name='+thisPanel+']').addClass('pop');
+		$('.right_panel[data-name='+thisPanel+']').toggleClass('pop');
 	});
 
 	$(document).on('click', '.right_panel .close', function() {

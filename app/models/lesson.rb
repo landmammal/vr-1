@@ -55,4 +55,41 @@ class Lesson < ApplicationRecord
     self.submitted_rehearsals_from_user(user).size > 0
   end
 
+  def completion_status(user)
+
+    if self.has_rehearsals_from_user(user)
+      
+      if self.completed( user )
+        status = "approved"
+        message = "Lesson passed"
+      elsif self.has_submitted_rehearsals_from_user(user)
+        
+        last_rehearsal = self.submitted_rehearsals_from_user(user).last
+        
+        if last_rehearsal && last_rehearsal.rejected?
+          status = "rejected"
+          message = "Please review your rehearsal"
+        elsif last_rehearsal && last_rehearsal.has_feedback?
+          status = "has_feedback"
+          message = "You've got feedback"
+        else
+          status = "submitted"
+          message = "Rehearsal Pending review by instructor"
+        end
+      
+      else
+        status = "has_rehearsal"
+        message = "Rehearsals Recorded but not submitted"
+      end
+
+    else
+      status = "new"
+      message = "No rehearsals"
+    end
+
+    res = [status, message]
+    res
+
+  end
+
 end

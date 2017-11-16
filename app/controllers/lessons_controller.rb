@@ -31,35 +31,11 @@ class LessonsController < ApplicationController
     
     @lesson.topic.lessons.order("id ASC").each do |lesson|
       if topic_lesson_status(lesson)
-        
-        if lesson.has_rehearsals_from_user(current_user)
-          
-          if lesson.completed( current_user )
-            status = "approved"
-          elsif lesson.has_submitted_rehearsals_from_user(current_user)
-            
-            last_rehearsal = lesson.submitted_rehearsals_from_user(current_user).last
-            
-            if last_rehearsal && last_rehearsal.rejected?
-              status = "rejected"
-            elsif last_rehearsal && last_rehearsal.has_feedback?
-              status = "has_feedback"
-            else
-              status = "submitted"
-            end
-          
-          else
-            status = "has_rehearsal"
-          end
 
-        else
-          status = "new"
-        end
-      
-        @topic_lessons[lesson.id] = status
+        @topic_lessons[lesson.id] = lesson.completion_status(current_user)
         
       elsif lesson.instructor == current_user
-        @topic_lessons[lesson.id] = "new"
+        @topic_lessons[lesson.id] = ["new", "Incomplete lesson"]
       end
     end
 
