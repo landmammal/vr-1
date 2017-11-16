@@ -84,8 +84,6 @@ class RehearsalsController < ApplicationController
 
   def all
 
-    
-
     @courses = {}
     current_user.courses.each do |course|
       @courses[course.title] = {}
@@ -103,13 +101,15 @@ class RehearsalsController < ApplicationController
           @courses[course.title]["topics"][topic.title]["lessons"][lesson.title]["rehearsals"] = {}
 
           lesson.rehearsals.each do |x|
-            @courses[course.title]["topics"][topic.title]["lessons"][lesson.title]["rehearsals"][x.trainee.full_name] = {
-              "student_id" => x.trainee_id,
-              "image" => student_pic(x.trainee),
-              "lesson_info" => [ lesson.title, lesson.id ],
-              "rhs_count" => x.trainee.rehearsals.where( lesson_id: lesson.id).where( submission: true ).size,
-              "new_count" => x.trainee.rehearsals.map{ |x| x if (  x.lesson_id == lesson.id && x.new? )   }.size
-            }
+            if User.all.include? x.trainee
+              @courses[course.title]["topics"][topic.title]["lessons"][lesson.title]["rehearsals"][x.trainee.full_name] = {
+                "student_id" => x.trainee_id,
+                "image" => student_pic(x.trainee),
+                "lesson_info" => [ lesson.title, lesson.id ],
+                "rhs_count" => x.trainee.rehearsals.where( lesson_id: lesson.id).where( submission: true ).size,
+                "new_count" => x.trainee.rehearsals.map{ |x| x if (  x.lesson_id == lesson.id && x.new? )   }.size
+              }
+            end
           end
 
         end
