@@ -18,6 +18,7 @@ class Topic < ApplicationRecord
   def submitted_rehearsals
     self.rehearsals.where(submission: true)
   end
+  
   def has_submitted_rehearsals?
     self.submitted_rehearsals.size > 0
   end
