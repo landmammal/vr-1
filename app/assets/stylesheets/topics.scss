@@ -30,6 +30,10 @@
 		}
 		&.approved{
 			background-color:#51cf40;
+			background-image: url(/assets/checkmark_white.png);
+			background-size: 150%;
+			background-repeat: no-repeat;
+			background-position: center;
 		}
 		&.submitted{
 			background-color:#ff9d23;

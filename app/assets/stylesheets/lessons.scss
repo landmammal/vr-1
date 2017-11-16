@@ -382,7 +382,7 @@
 	margin: 0;
 	margin-top: -3px;
 	border: 0;
-	background: #4ebd52;
+	background: #999;
 	border-radius: 1em;
 	z-index: 1;
   }
@@ -504,7 +504,7 @@
   }
   
   .timeline--inner-pin.selected{
-		box-shadow: 0 0 0 4px #999;
+		box-shadow: 0 0 0 3px #999;
 	}
 
   .timeline--inner-pin.has_rehearsal{
