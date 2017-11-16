@@ -31,4 +31,19 @@ class Rehearsal < ApplicationRecord
   def new?
     self.submitted? && ( !self.approved? && !self.rejected? && !self.has_feedback? )
   end
+
+  def check_status
+    
+    if self.new?
+      status="new_rehearsal"
+    elsif self.approved?
+      status="approved_rehearsal"
+    elsif self.rejected?
+      status="rejected_rehearsal"
+    elsif self.has_feedback?
+      status="rehearsal_with_feedback"
+    end
+
+    status
+  end
 end

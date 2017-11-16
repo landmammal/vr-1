@@ -84,6 +84,8 @@ class RehearsalsController < ApplicationController
 
   def all
 
+    
+
     @courses = {}
     current_user.courses.each do |course|
       @courses[course.title] = {}

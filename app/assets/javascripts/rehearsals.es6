@@ -115,26 +115,11 @@ var pageReady = function(){
   });
 
 
-
-
-  // $('.rsl_course').click(function(){
-  //   $('.toggle_topic').hide();
-  //   $('.rsl_topic').hide();
-
-  //   $('.rsl_topic[data-c='+$(this).data('c')+']').toggle();
-  //   $('.toggle_topic[data-c='+$(this).data('c')+']').toggle();
-  // });
-
-  // $('.rsl_topic').click(function(){
-  //   $('.rsl_lesson[data-t='+$(this).data('t')+']').toggle();
-  // });
-
-  // $('.rsl_lesson').click(function(){
-  //   var rehearsals_list = $('.all_rehearsals[data-l='+$(this).data('l')+']')[0].innerHTML;
-  //   $('.rehearsal_list').html(rehearsals_list);
-  // });
-
-
+  $('.show_all_rehearsals').click(function(e){
+    e.preventDefault();
+    $('.filtered_rehearsals_list').fadeOut();
+    $('.all_rehearsals_list').delay(500).fadeIn();
+  });
 
 
   $('.rhs_course').click(function(){
@@ -147,12 +132,17 @@ var pageReady = function(){
 
   $('.rhs_lesson').click(function(){
     let rehearsals = $(this).data( 'rehearsals' );
-    $('.rehearsals').empty();
+    $('.all_rehearsals_list').fadeOut();
+    $('.filtered_rehearsals_list').empty();
+    $('.filtered_rehearsals_list').append(`<div id="filtered_rehearsals_title"></div>`);
+    let i=0;
+
     for( let x in rehearsals ){
-      console.log(x);
+      // console.log(x);
       let data = rehearsals[x];
-      console.log(data);
-      $('.rehearsals').append(`
+      // console.log(data);
+      $('#filtered_rehearsals_title').html(`<h4>${data["lesson_info"][0]}</h4><hr>`);
+      $('.filtered_rehearsals_list').append(`
         <a href="/rehearsals/student/?student=${data['student_id']}&lesson=${data["lesson_info"][1]}">
           <button type="submit" class="user_bubble">
             <div class="pic">
@@ -167,13 +157,26 @@ var pageReady = function(){
             </div>
           </button>
         </a>
-      `)
+      `);
+      i++;
     };
+
+    if(i===0){
+      $('.filtered_rehearsals_list').html(`<center> <h3>No Rehearsals for this lesson</h3> </center>`);
+    };
+    $('.filtered_rehearsals_list').delay(500).fadeIn();
   });
 
 
 
-
+  $('input[name=filter_rhrs]').click(function(){
+    if(this.id == "all_rehearsals"){
+      $('.rehearsal_bubble').fadeIn();
+    }else{
+      $('.rehearsal_bubble').fadeOut();
+      $('.rehearsal_bubble.'+this.id).fadeIn();
+    }
+  })
 
 
 
