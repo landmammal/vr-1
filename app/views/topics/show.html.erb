@@ -39,7 +39,7 @@
   <% end %>
 
   <% @lessons.order('id ASC').each_with_index do |lesson, index| %>
-    <div class="lesson_list <%= (index + 1).even? ? 'even' : 'odd' %>">
+    <div class="lesson_list <%= (index + 1).even? ? 'even' : 'odd' %>" style="display:<%= (course_trainee && !topic_lesson_status(lesson)) ? 'none' : 'block' %>;">
       <a href="<%= course_topic_lesson_path(@course, @topic, lesson) %>">
         <div class="title">
           <%= lesson.title %>
@@ -59,30 +59,7 @@
         </div>
 
       <% elsif course_trainee %>
-        
-        <!-- <% if topic_lesson_completion(lesson) == 0 %>
-          <div class="pending_lesson" title="Rehearsal waiting for approval">
-            <span class="ion-loop"></span>
-          </div>
-        <% elsif topic_lesson_completion(lesson) == 1 %>
-          <div class="checked_lesson" title="Lesson Completed" >
-            <span class="ion-checkmark-circled"></span>
-          </div>
-        <% elsif topic_lesson_completion(lesson) == 2 %>
-          <div class="error_lesson" title="Lesson not mastered" >
-            <span class="ion-alert"></span>
-          </div>
-        <% elsif !topic_lesson_completion(lesson) %>
-          <div class="unchecked_lesson" title="Lesson not yet completed" ></div>
-        <% end %> -->
-
-
-
-        <div class="lesson_completion_status <%= lesson.completion_status(current_user)[0] %>" title="<%= lesson.completion_status(current_user)[1] %>">
-
-        </div>
-
-
+        <div class="lesson_completion_status <%= lesson.completion_status(current_user)[0] %>" title="<%= lesson.completion_status(current_user)[1] %>"></div>
       <% end %>
 
     </div>
