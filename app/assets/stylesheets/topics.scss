@@ -20,21 +20,30 @@
 	    font-size:20px; color:#00B1D8; margin:10px;
 	    border-radius:50%; border:4px solid;
 	}
-	& .checked_lesson, & .pending_lesson, & .error_lesson{
+	
+	& .lesson_completion_status{
 		width:30px; height:30px; float: right; margin:4px;
 	    font-size:21px; color:white; border-radius:50%; text-align:center;
+		
+		&.new{
+			background-color:#ccc;
+		}
+		&.approved{
+			background-color:#51cf40;
+		}
+		&.submitted{
+			background-color:#ff9d23;
+		}
+		&.rejected{
+			background-color:#fc0f0f;
+		}
+		&.has_rehearsal{
+			background-color:#05a5e4;
+		}
 	}
-	& .checked_lesson{
-	    color:#00D718; padding:10px 0;
-	}
-	& .pending_lesson{
-		margin:4px; padding:5px 8px;
-	    background-color:#FFBC00;
-	}
-	& .error_lesson{
-		margin:4px; padding:5px 8px;
-	    background-color:#FF756A;
-	}
+	
+	
+	
 	& .lesson_status{
 		height:38px; padding:0 1px;
 		float: right;

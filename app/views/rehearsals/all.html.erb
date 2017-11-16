@@ -33,7 +33,7 @@
 
                 <% t_val['lessons'].each do |l_key, l_val| %>
                   <div class="rhs_lesson" data-rehearsals="<%= l_val['rehearsals'].to_json %>">
-                    <%= l_key +"  ("+l_val['lesson'].submitted_rehearsals.size.to_s+")" %>
+                    <%= l_key[0...20] +"  ("+l_val['lesson'].submitted_rehearsals.size.to_s+")" %>
                   </div>
                 <% end %>
 

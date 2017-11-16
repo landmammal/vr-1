@@ -11,6 +11,11 @@
         <a href="<%= edit_course_topic_lesson_path(@course, @topic, @lesson) %>" title="edit <%= @lesson.title %>">
           <span class="ion-edit edit" style="font-size:15px; margin:50px 10px;"></span>
         </a>
+        <a href="<%= course_topic_path(@course, @topic) %>">
+          <button class="green_sft lesson_create_btn">
+            + add lesson
+          </button>
+        </a>
     <% end %>
   </div>
   <% if lesson_creator %>
@@ -21,6 +26,9 @@
           </div>
       <% end %>
   <% end %>
+  <button class="green_sft lesson_create_btn right_panel_btn" data-rightpanel='browse_course'>
+    <img src="/assets/as3/icons/expand.svg" width="10px">
+  </button>
 </div>
 
 
@@ -29,17 +37,18 @@
 
 <div class="box_sep">
   <div class="title" style="padding:0;">
-    <% if lesson_creator %>
-        <a href="<%= course_topic_path(@course, @topic) %>">
-          <button class="green_sft lesson_create_btn">
-            Add Lesson
-          </button>
-        </a>
-    <% end %>
+    <!-- <pre><%= @topic_lessons %></pre> -->
 
-    <button class="green_sft lesson_create_btn right_panel_btn" style="float:right; position:absolute; right:-5px; padding-right:20px;" data-rightpanel='browse_course'>
-      >>
-    </button>
+    <section class="timeline">
+      <figure class="timeline--inner">
+        <% @topic_lessons.each do |key, value| %>
+        <i class='timeline--inner-pin is-featured <%= value[0] %> <%= "selected" if key.to_s == params[:id] %>' title="<%= Lesson.find(key).title %> :: <%= value[1] %>">
+        <a href="<%= course_topic_lesson_path(@course, @topic, key)%>"></a>
+        </i>
+        <% end %>
+      </figure>
+    </section>
+
   </div>
 
 
