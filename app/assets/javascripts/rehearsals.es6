@@ -169,12 +169,15 @@ var pageReady = function(){
 
 
 
-  $('input[name=filter_rhrs]').click(function(){
+  $('.rehearsal_filter').click(function(){
+    $('.rehearsal_filter').removeClass('selected');
+    $(this).addClass('selected');
+    
     if(this.id == "all_rehearsals"){
       $('.rehearsal_bubble').fadeIn();
     }else{
       $('.rehearsal_bubble').fadeOut();
-      $('.rehearsal_bubble.'+this.id).fadeIn();
+      $('.rehearsal_bubble[data-status='+this.id+']').fadeIn();
     }
   })
 
@@ -183,7 +186,13 @@ var pageReady = function(){
   $(document).on('click', '.mark_rehearsal_status', function() {
     var rehearsalStatus = $(this).data('approvalstatus');
     var rehearsalId = $(this).data('rehearsalid');
-    console.log(rehearsalStatus)
+    // console.log(rehearsalStatus)
+
+    if(rehearsalStatus == "2"){
+      $("#rhs_"+rehearsalId).attr("data-status", "rejected_rehearsal");
+    }else if(rehearsalStatus == "1"){
+      $("#rhs_"+rehearsalId).attr("data-status", "approved_rehearsal");
+    }
 
     var rehearsal = new Object();
         rehearsal.approval_status = rehearsalStatus;

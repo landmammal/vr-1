@@ -312,19 +312,31 @@ span.num{
 	&:hover, &.selected{ background-color:white; font-family:'gotham'; border:1px solid #ddd; border-bottom:0; border-radius:5px 5px 0 0; }
 }
 
+.rehearsal_filter{
+	padding:5px 8px;
+	background-color: #ccc ; 
+	display: inline-block;
+	cursor: pointer;
+	&.selected, &:hover{
+		color:white;
+		background-color: rgb(4, 110, 172) ; 
+	}
+}
+
 
 .user_bubble, .rehearsal_bubble{
 	border-radius:5px; position:relative;
 	padding:2px; border:4px solid #ddd;
 	overflow:hidden; background-color:#ddd;
 	display:inline-block; float:none;
-	width:200px; margin:5px;
+	width:250px; margin:5px;
 	& .pic{
 		overflow: hidden; float:left; width:40px;
 		border-radius:3px;
 		img{ float:left;  width:100%;}
 	}
 	& .info{
+		width: calc( 100% - 45px );
 		font-family:'gotham';
 		float: left;
 		text-align: left;
@@ -332,16 +344,21 @@ span.num{
 		color: black;
 		line-height: 1em;
 	}
-	&.approved_rehearsal{
-		border:4px solid rgb(113, 255, 177);
+}
+
+.rehearsal_bubble{
+	width: 200px;
+	padding-bottom: 10px !important;
+	&[data-status="approved_rehearsal"]{
+		border-bottom:4px solid rgb(0, 173, 78);
 		padding:2px;
 	}
-	&.rejected_rehearsal{
-		border:4px solid rgb(255, 126, 126);
+	&[data-status="rejected_rehearsal"]{
+		border-bottom:4px solid rgb(255, 126, 126);
 		padding:2px;
 	}
-	&.new_rehearsal{
-		border:4px solid rgb(255, 209, 110);
+	&[data-status="new_rehearsal"]{
+		border-bottom:4px solid rgb(255, 209, 110);
 		padding:2px;
 	}
 }

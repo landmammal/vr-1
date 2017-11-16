@@ -1,17 +1,19 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-12" style="padding:0; margin:0;">
       <h2><%= @student.first_name + " " + @student.last_name %></h2>
       These are all the rehearsals recorded for this lessons:
-      <h4><%= @lesson.title %></h4>
+      <h4><%= link_to @lesson.title, course_topic_lesson_path(@lesson.topic.course, @lesson.topic, @lesson) %></h4>
     </div>
     <hr>
-    <div class="col-sm-9" style="padding:0; margin:0;">
-      All Rehearsals: <input type="radio" name="filter_rhrs" id="all_rehearsals" checked="checked"> |
-      New: <input type="radio" name="filter_rhrs" id="new_rehearsal"> |
-      Approved: <input type="radio" name="filter_rhrs" id="approved_rehearsal"> |
-      Rejected: <input type="radio" name="filter_rhrs" id="rejected_rehearsal"> |
-      With Feedback: <input type="radio" name="filter_rhrs" id="rehearsal_with_feedback">
+    <div class="col-sm-9" style="padding:0; margin:0 0 10px 0;">
+      Filter rehearsals by: 
+      <div class="rehearsal_filter selected" id="all_rehearsals" >All</div>
+      <div class="rehearsal_filter" id="new_rehearsal" >New</div>
+      <div class="rehearsal_filter" id="approved_rehearsal" >Approved</div>
+      <div class="rehearsal_filter" id="rejected_rehearsal" >Rejected</div>
+      <div class="rehearsal_filter" id="rehearsal_with_feedback" >With Feedback</div>
+      <br>
     </div>
     <div class="col-sm-3" style="padding:0; margin:0; float:right; text-align: right;">
 
@@ -25,7 +27,7 @@
           <% @date_sub = time_diff(Time.now, rehearsal.created_at) %>
 
           <%= form_tag ("/rehearsals/"+rehearsal.id.to_s+"/api"), class: 'rehearsal_button', method: :get, remote: true do %>
-              <button type="submit" class="rehearsal_bubble <%= rehearsal.check_status %>">
+              <button type="submit" id="rhs_<%= rehearsal.id %>" class="rehearsal_bubble" data-status="<%= rehearsal.check_status %>">
                 <div class="pic" style="width:100% !important;">
                   <img src="https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= rehearsal.video_token %>/image">
                 </div>
@@ -33,7 +35,7 @@
                 <div class="info">
                   Submission - <%= index+1 %>
                   <div class="other_info">
-                    <font size="0.1em">time: <%= @date_sub %></font>
+                    <font size="0.1em">submitted <%= @date_sub %></font>
                   </div>
                 </div>
               </button>
