@@ -85,7 +85,7 @@ var pageReady = function(checkrecorder){
 					    	if(videoToken != ''){
 					    		postTokenInForm(thisForm, videoToken, streamToken);
 
-					    		$('.submit_'+recorderClass).addClass('submitted_ziggeo');
+					    		// $('.submit_'+recorderClass).addClass('submitted_ziggeo');
 						    	$('.submit_'+recorderClass+' span').fadeOut(100);
 						    	$('.submit_'+recorderClass+' span').empty();
 						    	$('.submit_'+recorderClass+' span').addClass('ion-checkmark-circled');
@@ -97,8 +97,8 @@ var pageReady = function(checkrecorder){
 					    		$('.submit_'+recorderClass).delay(1500).fadeOut(500);
 						    	
 					    		$('.ba-videoplayer-theme-modern-rerecord-button-container').delay(2000).append("<button class='record_another_rehearsal blue' style='float:right; display:none;'>Record Another Rehearsal</button>")
-						        $('.record_another_'+recorderClass).delay(2000).hide(500);
-						        $('.record_another_'+recorderClass).delay(2000).fadeIn(500);
+						        $('.record_another_'+recorderClass).delay(2000).hide(100);
+						        $('.record_another_'+recorderClass).delay(2000).fadeIn(100);
 						    	
 					    	}
 				    	});
