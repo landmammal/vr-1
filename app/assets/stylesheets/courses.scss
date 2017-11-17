@@ -113,8 +113,11 @@
 				width:12px; float: left; 
 			    color:#00BDFF; border-radius:2px; border:2px solid;
 			    margin: 2px 2px;
-			    &.pending{ color:#FEA808; }
-			    &.done{ color:#28D024; }
+			    &.submitted, &.has_feedback{ color:#FEA808; }
+			    &.imcomplete, &.rejected{ color:red; }
+			    &.done, &.approved{ color:#28D024; }
+			    &.has_rehearsal{ color:rgb(36, 131, 208); }
+			    &.new{ color:rgb(126, 126, 126); }
 			}
 		}
 		&.newcard{

@@ -29,8 +29,12 @@
     </a>
 
     <div class="bottom_count">
-      <% @course_item.topics.each do |i| %>
+      <% @course_item.topics.each do |topic| %>
+        <% if course_creator %>
           <div class="circle_count"></div>
+        <% elsif course_trainee %>
+          <div class="circle_count <%= "done" if topic.is_completed(current_user) %>"></div>
+        <% end %>
       <% end %>
     </div>
   </div>
