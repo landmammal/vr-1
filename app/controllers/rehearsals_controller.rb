@@ -33,7 +33,7 @@ class RehearsalsController < ApplicationController
       if @rehearsal.save!
         # admin mailer must be put on hold until we find a better way to do a redo
         @rehearsal.approval_status == 1 ? message = "Congrats. You've completed your lesson!" : message = "You need to tweak a few things."
-        AdminMailer.lesson_complete_notice(user, @rehearsal.approval_status, message, @rehearsal.lesson).later
+        AdminMailer.lesson_complete_notice(user, @rehearsal.approval_status, message, @rehearsal.lesson).deliver_later
         format.js {}
       else
         format.html { render :new }
