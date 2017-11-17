@@ -26,8 +26,10 @@
 								<% end %>
 
 								<div class="bottom_count">
-									<% course.topics.each do |i| %>
-										<div class="circle_count"></div>
+									<% course.topics.each do |topic| %>
+										<% if current_user.role == "trainee" %>
+											<div class="circle_count <%= "done" if topic.is_completed(current_user) %>"></div>
+										<% end %>
 									<% end %>
 								</div>
 							</div>

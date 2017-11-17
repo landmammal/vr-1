@@ -712,6 +712,68 @@ body {
   @media only screen and (min-width: 496px) {
 	.card_list .home_card, .card_list .card {
 	  width: 49.5%;
+	
+	& .card, & .home_card{
+		margin:0;
+		float:left; 
+		// border-radius: 5px ;
+		overflow: hidden; text-align:left;
+		transition:0.5s;
+		& .card_title{
+			padding:5px 8px; font-size:14px;
+			font-family:'webly_bld';
+			transition:0.5s;
+			// border-radius:5px 5px 0 0;
+		}
+		& .card_desc{
+			height: 80px; overflow:hidden; position:relative;
+			padding:5px 8px; color:#333;
+			// border:1px solid #ddd; border-radius:0 0 5px 5px ;
+			border-top:0;
+			transition:0.5s;
+		}
+		&:hover{
+			// @include box_extrude(#ccc, 3);
+			// position: relative; top:-2px;
+			transition:0.5s;
+		}
+		& .bottom_count{
+			position: absolute;
+		    left: 5px;
+		    bottom: 5px;
+		    overflow: hidden;
+		    width: 95%;
+		    background-color:none;
+
+			& .circle_count{
+				width:7px; height:7px; float: left; 
+			    color:#00BDFF; border-radius:50%; border:2px solid;
+			    margin: 1px;
+			    &.pending{ color:#FEA808; background-color:#FEA808; }
+			    &.done{ color:#28D024; background-color:#28D024; }
+			}
+			& .bar_count{
+				width:12px; float: left; 
+			    color:#00BDFF; border-radius:2px; border:2px solid;
+			    margin: 2px 2px;
+			    &.submitted, &.has_feedback{ color:#FEA808; }
+			    &.imcomplete, &.rejected{ color:red; }
+			    &.done, &.approved{ color:#28D024; }
+			    &.has_rehearsal{ color:rgb(36, 131, 208); }
+			    &.new{ color:rgb(126, 126, 126); }
+			}
+		}
+		&.newcard{
+			transition:0.5s;
+			& .card_title{
+				background-color:#1EA402;
+				transition:0.5s;
+			}
+			& .card_desc{
+				background-color:#C4FFC4;
+				transition:0.5s;
+			}
+		}
 	}
 	.card_list .home_card .card_title, .card_list .card .card_title {
 	  line-height: 1.5em;

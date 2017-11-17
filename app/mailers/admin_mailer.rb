@@ -30,10 +30,13 @@ class AdminMailer < ApplicationMailer
   end
 
   # sending trainee and email notifying them of a lesson completed
-  def lesson_complete_notice(user)
-    @url = 'https://videorehearser.herokuapp.com/users/sign_in'
+  def lesson_complete_notice(user, status, message, lesson)
+    @url = 'https://videorehearser.herokuapp.com/courses/'+lesson.topic.course.id.to_s+'/topics/'+lesson.topic.id.to_s+'/lessons/'+lesson.id.to_s
     @user = user
-    mail( to:@user.email, subject: "Congratulations, You completed your lesson!" )
+    @lesson = lesson
+    @status = status
+    @message = message
+    mail( to:@user.email, subject: message )
   end
 
   # sending mail to team with information on a new lead up

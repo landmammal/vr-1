@@ -8,6 +8,7 @@ Rails.application.configure do
   # action mailer settings
   # config.action_mailer.delivery_method = :letter_opener_web
   config.action_mailer.delivery_method = ENV['USER'] == 'vagrant' ? :letter_opener_web : :letter_opener
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.smtp_settings = {
              address:              'smtp.gmail.com',
              port:                 587,
@@ -18,11 +19,10 @@ Rails.application.configure do
              enable_starttls_auto: true
   }
   # set to false for developement
-  config.action_mailer.perform_deliveries = false
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
   config.cache_classes = false
   
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }  
   
   config.action_mailer.perform_caching = false
 
