@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       @lesson = Lesson.new
     end
     @site_title = current_user.first_name+' '+current_user.last_name
-
+    
     authorize @user
   end
 

@@ -1,74 +1,717 @@
-// Place all the styles related to the Courses controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-@import 'scaffold';
-
-.course_title{
-	font-weight:bold; font-size:15px; margin:5px; display:inline-block;
-	& .grey{
-		color:#D1D1D1;
+body {
+	background-color: #fff;
+	margin: 0px auto;
+	color: #333;
+	font-size: 13px;
+	line-height: 18px;
+	font-family: 'gotham_light';
+  }
+  
+  html, body {
+	margin: 0px auto;
+	height: 100%;
+	transition: 0.5s;
+  }
+  html {
+	overflow-y: scroll;
+  }
+  hr, br {
+	clear: both;
+  }
+  hr {
+	margin: 10px 0;
+	border: 0;
+	border-bottom: 1px solid #ddd;
+  }
+  p, ol, ul, td {
+	font-family: 'gotham_light';
+  }
+  pre {
+	background-color: #eee;
+	padding: 10px;
+	font-size: 11px;
+  }
+  a {
+	color: #fff;
+  }
+  
+  a:visited, a:hover, a:focus {
+	color: #fff;
+	text-decoration: none;
+  }
+  
+  div.field, div.actions {
+	margin-bottom: 10px;
+  }
+  #notice_wrapper {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 999;
+	padding: 15px;
+	margin: 0;
+	text-align: center;
+	color: #ffffff;
+	font-size: 1.25 rem;
+	font-weight: 800;
+	letter-spacing: 1px;
+	transition: 0.5s;
+	border-radius: 0;
+  }
+  #notice_wrapper.notice {
+	background: rgba(0, 255, 0, 0.85);
+  }
+  
+   
+  #notice_wrapper.alert {
+	background: rgba(255, 0, 0, 0.85);
+  }
+  
+   
+  #notice_wrapper .close_notice {
+	float: right;
+	padding: 0 15px;
+	transition: 0.5s;
+  }
+  
+  
+  #notice_wrapper.remove {
+	position: absolute;
+	top: -50px;
+	transition: 0.5s;
+  }
+  
+  
+  span {
+	transition: 0.5s;
+  }
+ 
+  span.blue {
+	color: #00B1D8;
+  }
+   
+  .field_with_errors {
+	padding: 2px;
+	background-color: red;
+	display: table;
+  }
+  
+  #error_explanation {
+	width: 450px;
+	border: 2px solid red;
+	padding: 7px;
+	padding-bottom: 0;
+	margin-bottom: 20px;
+	background-color: #f0f0f0;
+  }
+  #error_explanation h2 {
+	text-align: left;
+	font-weight: bold;
+	padding: 5px 5px 5px 15px;
+	font-size: 12px;
+	margin: -7px;
+	margin-bottom: 0px;
+	background-color: #c00;
+	color: #fff;
+  }
+  #error_explanation ul li {
+	font-size: 12px;
+	list-style: square;
+  }
+  input[type="submit"], button {
+	font-size: 11px;
+	font-weight: bold;
+	border-radius: 3px;
+	border: 0;
+	display: inline-block;
+	padding: 6px 15px 4px 15px;
+	margin: 5px 1% 5px 0;
+	color: #666;
+	transition: 0.5s;
+  }
+  
+  input[type="submit"]:hover, button:hover {
+	background-color: #ccc;
+  }
+  input[type="submit"].red, button.red {
+	background-color: #FF0000;
+	color: #fff;
+  }
+  input[type="submit"].red:hover, button.red:hover {
+	background-color: #7D0009;
+  }
+  input[type="submit"].blue, button.blue {
+	background-color: #00A6FF;
+	color: #fff;
+  }
+  input[type="submit"].blue:hover, button.blue:hover {
+	background-color: #517DAC;
+  }
+  input[type="submit"].green_sft, button.green_sft {
+	background-color: #4EBC52;
+	color: #fff;
+  }
+  
+  input[type="submit"].green_sft:hover, button.green_sft:hover {
+	background-color: #006A0A;
+  }
+  input[type="submit"].creator_btn, input[type="submit"].admin_btn, input[type="submit"].coaching_btn, button.creator_btn, button.admin_btn, button.coaching_btn {
+	background-color: #4EBC52;
+	color: #fff;
+	padding: 2px 6px;
+	float: none;
+	border-radius: 0;
+	margin: 0;
+  }
+  input[type="submit"].creator_btn:hover, input[type="submit"].admin_btn:hover, input[type="submit"].coaching_btn:hover, button.creator_btn:hover, button.admin_btn:hover, button.coaching_btn:hover {
+	background-color: #006A0A;
+	transition: 0.2s;
+  }
+  input[type="submit"].reg_btn, button.reg_btn {
+	width: inherit;
+	float: none;
+	border-radius: 3px;
+  }
+  input[type="submit"].small_btn, button.small_btn {
+	padding: 2px 6px;
+	float: none;
+	border-radius: 3px;
+  }
+  input[type="submit"].big_btn, button.big_btn {
+	padding: 10px 15px;
+	float: none;
+	border-radius: 3px;
+	font-size: 15px;
+  }
+  
+  input[type="submit"].huge_btn, button.huge_btn {
+	padding: 20px 25px;
+	float: none;
+	border-radius: 3px;
+	font-size: 20px;
+	font-family: 'webly_reg';
+  }
+  
+  input[type="submit"].add_btn, button.add_btn {
+	padding: 15px 14px 13px;
+	float: none;
+	font-size: 30px;
+	color: #fff;
+	border-radius: 50%;
+  }
+  
+  input[type="submit"].add_btn.small, button.add_btn.small {
+	padding: 4px 6px 3px;
+	font-size: 16px;
+  }
+  input[type="submit"].add_btn:hover, button.add_btn:hover {
+	border-radius: 25%;
+  }
+  input[type="submit"] .btn_selected, button .btn_selected {
+	background-color: #5B5B5B;
+	color: #fff;
+  }
+  input[type="submit"].circle, button.circle {
+	border-radius: 50%;
+  }
+  
+  textarea, input, select {
+	border-radius: 1.5px;
+	border: 0;
+	border-bottom: 2px solid #ccc;
+	background-color: white;
+	font-size: 13px;
+	color: #333;
+	transition: 0.5s;
+  }
+  textarea.half, input.half, select.half {
+	padding: 5px 8px;
+	margin: 5px 0.5%;
+	width: 49%;
+	display: inline-block;
+	float: left;
+  }
+  textarea.full, input.full, select.full {
+	padding: 5px 8px;
+	margin: 5px 0.5%;
+	width: 99%;
+	display: inline-block;
+	float: none;
+  }
+  textarea.course_create, input.course_create, select.course_create {
+	padding: 5px 8px;
+	width: 50%;
+	max-width: 300px;
+	display: inline-block;
+	float: left;
+  }
+  
+  textarea:focus, input:focus, select:focus {
+	border-bottom: 2px solid #437cbf;
+	transition: 0.5s;
+  }
+  textarea {
+	min-height: 100px;
+	min-width: 400px;
+	padding: 5px 8px;
+	margin: 5px 5px 5px 0;
+  }
+  input {
+	padding: 8px 15px;
+	margin: 5px 5px 5px 0;
+	color: #333;
+	transition: 0.5s;
+  }
+  
+  input.login {
+	border-radius: 0px;
+	border: 0;
+	border-bottom: 1px solid #999;
+	background-color: transparent;
+	float: none;
+	width: 250px;
+  }
+  input.login:focus {
+	border-bottom: 1px solid #437cbf;
+	transition: 0.5s;
+  }
+  input.login_submit {
+	float: none;
+	width: 250px;
+	padding: 10px 0;
+	background-color: #437cbf;
+	border: 0px;
+	font-family: 'gotham_light';
+	color: #fff;
+	font-weight: bold;
+	font-size: 15px;
+  }
+  input.login_submit:hover {
+	background-color: #52A4FF;
+  }
+  
+  input.space-5 {
+	letter-spacing: 0.5em;
+  }
+  
+  input.space-1 {
+	letter-spacing: 0.1em;
+  }
+  input ::-webkit-input-placeholder {
+	color: #999;
+	letter-spacing: 0em;
+  }
+  
+  input[type='color'] {
+	height: 40px;
+  }
+  
+  input[type='checkbox'] {
+	border: 0px;
+	background-color: #DDDDDD;
+  }
+  input[type='file'] {
+	font-size: 12px;
+	padding: 5px;
+	margin-top: 10px;
+  }
+  input[type='range'] {
+	-webkit-appearance: none;
+	margin: 0 5px;
+	padding: 8px 0;
+	background: transparent;
+	border: 0;
+  }
+  
+  input[type='range']::-webkit-slider-runnable-track {
+	margin: 6px 5px;
+	height: 5px;
+	background: #5AB6FF;
+	border: none;
+	border-radius: 3px;
+  }
+  
+  input[type='range']::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	border: none;
+	height: 16px;
+	width: 16px;
+	border: 1px #5AB6FF solid;
+	border-radius: 50%;
+	background: white;
+	margin-top: -5px;
+  }
+  input[type='range']:focus {
+	outline: none;
+  }
+  input[type='range']:focus::-webkit-slider-runnable-track {
+	background: #5AB6FF;
+  }
+  select {
+	-webkit-appearance: none;
+	padding: 5px 25px 5px 8px;
+	margin: 5px 1% 5px 0;
+	background-image: url("/assets/select-bottom.png;");
+	background-repeat: no-repeat;
+	background-size: 20px;
+	background-position: right 50%;
+  }
+  input:focus,
+  select:focus,
+  textarea:focus,
+  button:focus,
+  a:focus {
+	outline: none;
+	text-decoration: none;
+  }
+  
+  .switch {
+	background-color: #5AB6FF;
+	height: 15px;
+	width: 30px;
+	float: left;
+	position: relative;
+	margin: 10px 5px;
+	border-radius: 5px;
+	transition: 0.5s;
+  }
+  .switch .knob {
+	border-radius: 3px;
+	height: 11px;
+	width: 40%;
+	position: absolute;
+	margin: 2px;
+	background-color: white;
+	transition: 0.5s;
+  }
+  
+  .switch .knob.active {
+	right: 0;
+	background-color: white;
+	transition: 0.5s;
+  }
+  .switch.active {
+	background-color: red;
+	transition: 0.5s;
+  }
+  
+  .blankdot {
+	width: 8px;
+	height: 8px;
+	display: none;
+  }
+  
+  .reddot, .greendot, .orangedot {
+	width: 8px;
+	height: 8px;
+	display: inline-block;
+	border-radius: 50%;
+	margin-bottom: 0.5px;
+  }
+  
+  .orangedot {
+	background-color: #FFA800;
+  }
+  .reddot {
+	background-color: red;
+  }
+  
+  .greendot {
+	background-color: #0FDF0F;
+  }
+  .course_title {
+	font-weight: 300;
+	font-size: 15px;
+	margin: 7px 5px;
+	display: inline-block;
+  }
+  .course_title .grey {
+	color: #D1D1D1;
+  }
+  .about_course {
+	width: 70%;
+	max-width: 600px;
+	float: left;
+	margin-bottom: 30px;
+	font-size: 16px;
+  }
+  
+  .about_course .title {
+	font-family: 'webly_bld';
+  }
+  .course_instructor {
+	width: 200px;
+	margin: 0 0 0 5px;
+	float: right;
+	text-align: left;
+  }
+  .course_instructor .title {
+	font-family: 'webly_bld';
+  }
+  .privacy {
+	font-size: 12px;
+	margin: 0 5px;
+  }
+  #topic_card_delete {
+	float: right;
+	color: white;
+  }
+  .card_list {
+	overflow: hidden;
+  }
+  .card_list .card_item {
+	border-radius: 1px;
+	border: 0;
+	min-width: 250px;
+	width: 24%;
+	max-width: 350px;
+	display: inline-block;
+	overflow: hidden;
+  }
+  .card_list .card_item .card_title_sec {
+	margin: 0;
+	background-color: white;
+	overflow: hidden;
+  }
+  
+  .card_list .card_item .card_title_sec .card_title {
+	font-size: 15px;
+	font-family: 'webly_bld';
+	float: left;
+	text-align: left;
+	width: 100%;
+	padding: 5px;
+  }
+  .card_list .card_item .card_desc, .card_list .card_item .card_edit_sec {
+	background-color: rgba(255, 255, 255, 0.5);
+	height: 100px;
+	overflow: hidden;
+	position: relative;
+	padding: 5px;
+	border-top: 1px dotted #CDCDCD;
+	text-align: left;
+  }
+  
+  .card_list .card_item .card_desc:hover, .card_list .card_item .card_edit_sec:hover {
+	background-color: white;
+  }
+  .card_list .card_item .card_desc button.register_to_course, .card_list .card_item .card_desc .course_content, .card_list .card_item .card_desc button.start_course, .card_list .card_item .card_edit_sec button.register_to_course, .card_list .card_item .card_edit_sec .course_content, .card_list .card_item .card_edit_sec button.start_course {
+	position: absolute;
+	bottom: 0;
+	padding: 1px 5px;
+	font-size: 10px;
+	font-weight: 500;
+	border-radius: 0;
+  }
+  .card_list .card_item .card_desc .course_content, .card_list .card_item .card_edit_sec .course_content {
+	width: calc(100% - 50px);
+	left: 0;
+	background-color: #eee;
+  }
+  .card_list .card_item .card_desc button.register_to_course, .card_list .card_item .card_desc button.start_course, .card_list .card_item .card_edit_sec button.register_to_course, .card_list .card_item .card_edit_sec button.start_course {
+	width: 50px;
+	right: 0;
+	margin: 0;
+	background-color: #14A0D7;
+	color: white;
+	text-align: center;
+  }
+  
+  .card_list .card_item .card_desc button.register_to_course:hover, .card_list .card_item .card_desc button.start_course:hover, .card_list .card_item .card_edit_sec button.register_to_course:hover, .card_list .card_item .card_edit_sec button.start_course:hover {
+	background-color: #333;
+  }
+  .card_list .card_item .card_desc button.start_course, .card_list .card_item .card_edit_sec button.start_course {
+	background-color: #1CDC69;
+  }
+  .card_list .card_item .card_edit_sec {
+	padding: 20px 5px;
+	text-align: center;
+  }
+  .card_list .card, .card_list .home_card {
+	margin: 0;
+	float: left;
+	overflow: hidden;
+	text-align: left;
+	transition: 0.5s;
+  }
+  
+  .card_list .card .card_title, .card_list .home_card .card_title {
+	padding: 5px 8px;
+	font-size: 14px;
+	font-family: 'webly_bld';
+	transition: 0.5s;
+  }
+  
+  .card_list .card .card_desc, .card_list .home_card .card_desc {
+	height: 80px;
+	overflow: hidden;
+	position: relative;
+	padding: 5px 8px;
+	color: #333;
+	border-top: 0;
+	transition: 0.5s;
+  }
+  
+  .card_list .card:hover, .card_list .home_card:hover {
+	transition: 0.5s;
+  }
+  
+  .card_list .card .bottom_count, .card_list .home_card .bottom_count {
+	position: absolute;
+	left: 5px;
+	bottom: 5px;
+	overflow: hidden;
+	width: 95%;
+	background-color: none;
+  }
+  
+  .card_list .card .bottom_count .circle_count, .card_list .home_card .bottom_count .circle_count {
+	width: 7px;
+	height: 7px;
+	float: left;
+	color: #00BDFF;
+	border-radius: 50%;
+	border: 2px solid;
+	margin: 1px;
+  }
+  
+  .card_list .card .bottom_count .circle_count.pending, .card_list .home_card .bottom_count .circle_count.pending {
+	color: #FEA808;
+	background-color: #FEA808;
+  }
+  
+  .card_list .card .bottom_count .circle_count.done, .card_list .home_card .bottom_count .circle_count.done {
+	color: #28D024;
+	background-color: #28D024;
+  }
+  
+  .card_list .card .bottom_count .bar_count, .card_list .home_card .bottom_count .bar_count {
+	width: 12px;
+	float: left;
+	color: #00BDFF;
+	border-radius: 2px;
+	border: 2px solid;
+	margin: 2px 2px;
+  }
+  
+  .card_list .card .bottom_count .bar_count.pending, .card_list .home_card .bottom_count .bar_count.pending {
+	color: #FEA808;
+  }
+  
+  .card_list .card .bottom_count .bar_count.done, .card_list .home_card .bottom_count .bar_count.done {
+	color: #28D024;
+  }
+  
+  .card_list .card.newcard, .card_list .home_card.newcard {
+	transition: 0.5s;
+  }
+  
+  .card_list .card.newcard .card_title, .card_list .home_card.newcard .card_title {
+	background-color: #1EA402;
+	transition: 0.5s;
+  }
+  
+  .card_list .card.newcard .card_desc, .card_list .home_card.newcard .card_desc {
+	background-color: #C4FFC4;
+	transition: 0.5s;
+  }
+  
+  .card_list .home_card {
+	overflow: hidden;
+	margin: 0 0.5% 4px 0;
+  }
+  
+  .card_list .home_card .card_title {
+	background-color: #FF7C86;
+	color: white;
+	overflow: hidden;
+	padding: 0;
+	height: 30px;
+  }
+  
+  .card_list .home_card .card_title .title_name {
+	width: calc(100% - 60.92px);
+	color: white;
+	float: left;
+	padding: 5px 10px;
+  }
+  
+  .card_list .home_card .card_desc {
+	position: relative;
+	background-color: #FFEBE7;
+  }
+  .card_list .home_card .card_desc a {
+	color: black;
+  }
+  .card_list .home_card .card_edit {
+	font-size: 14px;
+	font-family: 'webly_bld';
+	float: right;
+	text-align: center;
+	padding: 5px 10px;
+	color: #fff;
+  }
+  
+  .card_list .home_card .card_edit:hover {
+	background-color: #0095DD;
+	color: white;
+  }
+  
+  .card_list .home_card .card_delete {
+	font-size: 14px;
+	font-family: 'webly_bld';
+	float: right;
+	text-align: center;
+	padding: 5px 10px;
+  }
+  
+  .card_list .home_card .card_delete:hover {
+	background-color: #FF0000;
+	color: white;
+  }
+  
+  .card_list .home_card .card_delete:hover a {
+	color: white;
+  }
+  
+  .card_list .home_card .card_delete a {
+	color: red;
+  }
+  .card_list .card {
+	margin: 0 0.5% 4px 0;
+  }
+  .card_list .card .card_title.course {
+	background-color: #FF7C86;
+	color: white;
+  }
+  .card_list .card .card_title.topic {
+	background-color: #00B1D8;
+	color: white;
+  }
+  .card_list .card .card_desc.course {
+	background-color: rgba(255, 255, 255, 0.5);
+  }
+  .card_list .card .card_desc.topic {
+	background-color: #fff;
+  }
+  .user_course_title {
+	font-size: 15px;
+	font-family: 'webly_reg';
+	margin: 5px auto;
+  }
+  
+  @media only screen and (max-width: 495px) {
+	.card_list .home_card, .card_list .card {
+	  width: 99.5%;
 	}
-}
-
-.about_course{
-	width:70%; max-width:600px; float:left; margin-bottom:30px;
-	font-size:16px;
-	& .title{ font-family:'webly_bld'; }
-}
-.course_instructor{
-	width:200px; margin:0 0 0 5px; float:right; text-align:left;
-	& .title{ font-family:'webly_bld'; }
-}
-
-.privacy{
-	font-size:12px;
-	margin:0 5px;
-}
-
-#topic_card_delete{
-  float: right;
-  color: white;
-}
-
-.card_list{
-	overflow:hidden;
-	& .card_item{
-		border-radius:1px; border:0;
-		min-width: 250px; width:24%; max-width:350px; display:inline-block; overflow:hidden;
-		& .card_title_sec{
-			margin:0; background-color:white; overflow:hidden;
-			& .card_title{
-				font-size:15px; font-family:'webly_bld'; float:left; text-align:left; 
-				width: 100%; padding:5px;
-			}
-		}
-		& .card_desc, & .card_edit_sec{
-			background-color:rgba(white, 0.5);
-			height: 100px; overflow:hidden; position:relative;
-			padding:5px; border-top:1px dotted #CDCDCD; text-align:left;
-			&:hover{
-				background-color:white;
-			}
-			& button.register_to_course, & .course_content, & button.start_course{
-				position:absolute; bottom:0; padding:1px 5px;
-				font-size:10px; font-weight:500; border-radius:0;
-			}
-			& .course_content{
-				width:calc(100% - 50px); left:0;
-				background-color:#eee;
-			}
-			& button.register_to_course, & button.start_course{
-				width:50px; right:0; margin:0;
-				background-color:#14A0D7; color:white;
-				text-align: center;
-				&:hover{ background-color:#333; }
-			}
-			& button.start_course{ background-color:#1CDC69; }
-		}
-		& .card_edit_sec{
-			padding:20px 5px; text-align:center;
-		}
+	.card_list .home_card .card_title, .card_list .card .card_title {
+	  line-height: 1.5em;
 	}
+  }
+  /* Tablet Layout: 615px to 826px. Inherits styles from: Mobile Layout. */
+  @media only screen and (min-width: 496px) {
+	.card_list .home_card, .card_list .card {
+	  width: 49.5%;
 	
 	& .card, & .home_card{
 		margin:0;
@@ -132,87 +775,58 @@
 			}
 		}
 	}
-
-	& .home_card{
-		overflow:hidden;
-		margin:0 0.5% 4px 0;
-		& .card_title{
-			background-color: #FF7C86; color: white; overflow:hidden;
-			padding:0; height:30px;
-			& .title_name{ width:calc(100% - 60.92px); color: white; float:left;  padding:5px 10px;}
-		}
-		& .card_desc{
-			position:relative; background-color:#FFEBE7;
-			a{color:black;}
-		}
-		& .card_edit{
-			font-size:14px; font-family:'webly_bld'; float:right; text-align:center; 
-			padding:5px 10px; color:#fff;
-			&:hover{
-				background-color: #0095DD ; color:white;
-			}
-		}
-		& .card_delete{
-			font-size:14px; font-family:'webly_bld'; float:right; text-align:center; 
-			padding:5px 10px;
-			&:hover{
-				background-color: #FF0000 ; color:white;
-				a{ color:white; }
-			}
-			a{ color:red; }
-		}
+	.card_list .home_card .card_title, .card_list .card .card_title {
+	  line-height: 1.5em;
 	}
-
-	& .card{
-		margin:0 0.5% 4px 0;
-		& .card_title{
-			&.course{ background-color: #FF7C86; color: white; }
-			&.topic{ background-color: #00B1D8; color: white; }
-		}
-		& .card_desc{
-			&.course{ background-color:rgba(#fff, 0.5); }
-			&.topic{ background-color:#fff; }
-		}
+  }
+  /* Desktop Layout: 827px to max.  Inherits styles from: Mobile Layout and Tablet Layout. */
+  @media only screen and (min-width: 827px) {
+	.card_list .home_card, .card_list .card {
+	  width: 32.83%;
 	}
-
-}
-
-
-.user_course_title{font-size:15px; font-family:'webly_reg'; margin:5px auto;  }
-
-@media only screen and (max-width: 495px) {
-  	.card_list{
-  		& .home_card, & .card{
-			width:99.5%;
-			& .card_title{ line-height:1.5em;}
-		}	
+  }
+  /* Desktop Layout: 1261px to max.  Inherits styles from: Mobile Layout and Tablet Layout. */
+  @media only screen and (min-width: 1051px) {
+	.card_list .home_card, .card_list .card {
+	  width: 24.5%;
+	  max-width: 350px;
 	}
-}
-
-/* Tablet Layout: 615px to 826px. Inherits styles from: Mobile Layout. */
-@media only screen and (min-width: 496px) {
-  	.card_list{
-  		& .home_card, & .card{
-			width:49.5%;
-			& .card_title{ line-height:1.5em;}
-		}	
-	}
-}
-
-/* Desktop Layout: 827px to max.  Inherits styles from: Mobile Layout and Tablet Layout. */
-@media only screen and (min-width: 827px) {
-  	.card_list{
-  		& .home_card, & .card{
-			width:32.83%;
-		}	
-	}
-}
-
-/* Desktop Layout: 1261px to max.  Inherits styles from: Mobile Layout and Tablet Layout. */
-@media only screen and (min-width: 1051px) {
-  	.card_list{
-  		& .home_card, & .card{
-			width:24.5%; max-width:350px;
-		}	
-	}
-}
+  }
+  .course-bredcum {
+	background: #f7f8fd;
+	padding: 0px 0px;
+	float: left;
+	width: 100%;
+	position: relative;
+  }
+  
+  .main-content {
+	padding: 0px 0px 50px 0px;
+	background: #f7f8fd;
+	float: left;
+	width: 100%;
+  }
+  
+  .side-menu {
+	padding: 0px 0px 0px 0px;
+	float: left;
+	width: 58px;
+	-webkit-transition: all 250ms cubic-bezier(0.765, -0.42, 0.65, 1.345);
+	-moz-transition: all 250ms cubic-bezier(0.765, -0.42, 0.65, 1.345);
+	-o-transition: all 250ms cubic-bezier(0.765, -0.42, 0.65, 1.345);
+	transition: all 250ms cubic-bezier(0.765, -0.42, 0.65, 1.345);
+	overflow: hidden;
+  }
+  
+  .content-container {
+	padding: 0px;
+	float: left;
+	background: #fff;
+	width: calc(100% - 58px);
+	padding-top: 0px;
+	-webkit-transition: all 250ms cubic-bezier(0.765, -0.42, 0.65, 1.345);
+	-moz-transition: all 250ms cubic-bezier(0.765, -0.42, 0.65, 1.345);
+	-o-transition: all 250ms cubic-bezier(0.765, -0.42, 0.65, 1.345);
+	transition: all 250ms cubic-bezier(0.765, -0.42, 0.65, 1.345);
+  }
+  

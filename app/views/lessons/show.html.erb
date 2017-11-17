@@ -1,3 +1,5 @@
+<div class="course-bredcum">
+
 <div class="top_info">
   <div class="course_title">
     <span class="grey"><%= link_to @course.title, course_path(@course) %> ::</span>
@@ -7,30 +9,21 @@
   </div>
   <div class="course_title">
     <%= @lesson.title %>
-    <% if lesson_creator %>
-        <a href="<%= edit_course_topic_lesson_path(@course, @topic, @lesson) %>" title="edit <%= @lesson.title %>">
-          <span class="ion-edit edit" style="font-size:15px; margin:50px 10px;"></span>
-        </a>
-        <a href="<%= course_topic_path(@course, @topic) %>">
-          <button class="green_sft lesson_create_btn">
-            + add lesson
-          </button>
-        </a>
-    <% end %>
+    
   </div>
+  
   <% if lesson_creator %>
       <% if topic_lesson_status(@lesson) %>
           <div class="lesson_ready">
             <span class="ion-checkmark-circled" title="Lesson is ready"></span>
-            <button class=" green_sft js-trainee_view" title="Click to view trainee window"> Trainee view</button>
+            <button class="btn-trainee green_sft js-trainee_view" title="Click to view trainee window"> Trainee view</button>
           </div>
       <% end %>
   <% end %>
-  <button class="green_sft lesson_create_btn right_panel_btn" data-rightpanel='browse_course'>
-    <img src="/assets/as3/icons/expand.svg" width="10px">
-  </button>
+  
 </div>
-
+    
+</div>
 
 <div class="lesson_type" style="display:none;"><%= @lesson.lesson_type %></div>
 
@@ -39,16 +32,42 @@
   <div class="title" style="padding:0;">
     <!-- <pre><%= @topic_lessons %></pre> -->
 
-    <section class="timeline">
-      <figure class="timeline--inner">
-        <% @topic_lessons.each do |key, value| %>
-        <i class='timeline--inner-pin is-featured <%= value[0] %> <%= "selected" if key.to_s == params[:id] %>' title="<%= Lesson.find(key).title %> :: <%= value[1] %>">
-        <a href="<%= course_topic_lesson_path(@course, @topic, key)%>"></a>
-        </i>
-        <% end %>
-      </figure>
-    </section>
 
+       
+   
+
+    <div class="lesson-row">
+        
+          <div class="lesson_add">
+              <% if lesson_creator %>
+              <a href="<%= edit_course_topic_lesson_path(@course, @topic, @lesson) %>" title="edit <%= @lesson.title %>">
+                <span class="green_sft lesson_create_btn">Edit Lesson</span>
+              </a>
+              <a href="<%= course_topic_path(@course, @topic) %>">
+                <button class="green_sft lesson_create_btn">
+                  Add Lesson
+                </button>
+              </a>
+          <% end %>
+          </div>
+          <button class="btn-view lesson_create_btn right_panel_btn" data-rightpanel='browse_course'>
+              <img src="/assets/icon-lesson.png">
+            </button>
+    </div>
+<div class="timeline">
+    <ul>
+        <% @topic_lessons.each do |key, value| %>
+        <li class="<%= value[0] %> <%= "selected" if key.to_s == params[:id] %>">
+            <span class="tooltip-custom" data-tooltip="<%= Lesson.find(key).title %> :: <%= value[1] %>">
+              <a href="<%= course_topic_lesson_path(@course, @topic, key)%>"></a>
+            </span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+
+    
   </div>
 
 

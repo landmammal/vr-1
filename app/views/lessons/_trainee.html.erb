@@ -1,10 +1,9 @@
 <% if topic_lesson_status(@lesson) %>
 
 <div class="showIfLessonComplete" data-lesson="<%= params[:id] %>">
- <div class=""><button class="lesson_next pull-left"  data-toggle="modal" data-target="#explanation_video"><span class="glyphicon glyphicon-question-sign"></span> Explanation</button></div>
+ <div class="explanation-row"><button class="lesson_next pull-left"  data-toggle="modal" data-target="#explanation_video"><span class="glyphicon glyphicon-question-sign"></span> Explanation</button></div>
    
-   <hr>
-
+    
    <!-- VIDEO WINDOWS -->
 
    <div id="explanation_video" class="modal fade" role="dialog">
