@@ -1,10 +1,16 @@
-Congratulations <%= @user.first_name.capitalize %>!!!,
+Hi <%= @user.first_name.capitalize %>,
 
-You have a new lesson completed, check it out here: <%= @url %>
+<% if @status == 1 %>
+Nice work! 
+Congrats, your rehearsal has been approved. You've completed your lesson!
+<%elsif @status == 2 %>
+Hmmmm! 
+Let's try again, your rehearsal needs a little improvement.
+<%end%>
+You can check it out here: <%= link_to "View the lesson", @url %>
 
-for support request. contact us support@videorehearser.com or if you just wanna say hi!
-tell us what you think.
+For any support requests, please contact us by emailing support@videorehearser.com
 
+We can't wait to hear what you think about vR! 
 
-
--The VR Team
+-The vR Team

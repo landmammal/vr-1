@@ -56,11 +56,21 @@
   </div>
   <div class="content">
     <p>
-      Congratulations <%= @user.first_name.capitalize %>,
+      Hi <%= @user.first_name.capitalize %>,
     </p>
 
     <p>
-      You have a new lesson completed! Nice work! You can check it out here: <%= link_to "Go to videoRehearser", @url %>
+      <% if @status == 1 %>
+        Nice work! 
+        <br>
+        Congrats, your rehearsal has been approved. You've completed your lesson!
+      <%elsif @status == 2 %>
+        Hmmmm! 
+        <br>
+        Let's try again, your rehearsal needs a little improvement.
+      <%end%>
+      <br>
+      You can check it out here: <%= link_to "View the lesson", @url %>
     </p>
 
     <div>
