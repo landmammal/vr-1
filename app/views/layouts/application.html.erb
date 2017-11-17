@@ -80,24 +80,18 @@
 
 <% if user_signed_in? %>
 
-  <div class="inter_wrapper">
-    <table style="height: 100%;" width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tbody>
-        <tr>
-          <td class="leftpanel" valign="top">
-            <%= render 'layouts/leftpanel' %>
-          </td>
-          <td class="inter_content" valign="top">
-              <!-- <%= render 'layouts/banner' %> -->
-              <div class="body">
-                <%= yield %>
-                <input type="hidden" name="thisPath" value="<%= request.original_fullpath %>">
-              </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<div class="main-content">
+<div class="side-menu">
+    <%= render 'layouts/leftpanel' %>
+</div>
+<div class="content-container">
+    <%= yield %>
+    <input type="hidden" name="thisPath" value="<%= request.original_fullpath %>">
+</div>
+
+
+</div>
+ 
 
 <% else %>
 
