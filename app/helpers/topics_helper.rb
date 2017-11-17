@@ -1,22 +1,5 @@
 module TopicsHelper
 
-	def topic_lesson_completion(lesson)
-		rehearsals = current_user.rehearsals.where(lesson_id: lesson.id, submission: true)
-		
-		rehearsals.each { |rehearsal|
-      if rehearsal.approval_status == 0
-        @lesson_done = 0
-      elsif rehearsal.approval_status == 1
-        @lesson_done = 1
-      elsif rehearsal.approval_status == 2
-        @lesson_done = 2
-      else
-        @lesson_done = false
-      end
-    }
-		return @lesson_done
-	end
-
 	def topic_lesson_status(lesson)
 		lType = lesson.lesson_type
 		check = [[lesson.explanations, false],[lesson.prompts, false],[lesson.models, false]]
