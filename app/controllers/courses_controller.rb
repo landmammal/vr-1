@@ -15,7 +15,7 @@ class CoursesController < ApplicationController
   end
 
   def search
-    @courses = Course.where.not(privacy: [1,3])
+    @courses = Course.all.map{ |x| x if ( x.privacy != 3 && cstatus == 1 ) }.compact
     @site_title = 'Search Courses'
     if current_user.level_2
       @course = Course.new
@@ -31,6 +31,16 @@ class CoursesController < ApplicationController
     @orig_topics = Topic.where(course_id: @course.id)
     @topic = Topic.new
     @course_registration = CourseRegistration.new
+  end
+
+  def generate_code
+    new_code = "CA-"+SecureRandom.hex(n=3)
+    # while Course.all.map{ |x| x.access_code }.include? ( new_code )
+    #   new_code = "CA-"+SecureRandom.hex(n=3)
+    # end
+
+    puts new_code
+    render json: { "new code" => new_code }.to_json
   end
 
   def display
@@ -106,9 +116,9 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:title, :description, :tags, :instructor_id, :approval_status, :privacy, :language)
+      params.require(:course).permit(:title, :description, :tags, :cstatus, :access_code, :instructor_id, :approval_status, :privacy, :language)
     end
     def course_update
-      params.require(:course).permit(:title, :description, :tags, :approval_status, :privacy, :language)
+      params.require(:course).permit(:title, :description, :tags, :cstatus, :access_code, :approval_status, :privacy, :language)
     end
 end

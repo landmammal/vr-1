@@ -28,6 +28,32 @@
       Topics
       <% if course_creator %>
           <button class="js-add_form_btn green_sft add_btn small" data-form="topic">+</button>
+          <% if @course.privacy == 0 %>
+            <button id="invite_student" class="blue small_btn"> Send Course Link </button>
+          <% else %>
+            <button id="invite_student" class="blue small_btn"> Invite Student </button>
+            <div id="explanation_video" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+            
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Explanation Video</h4>
+                  </div>
+                  <div class="modal-body">
+                  <div class="js-player explanation explanation_video">
+                  Explanation:<br><br>
+               </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+            
+              </div>
+            </div>
+          <% end %>
       <% end %>
     </h4>
     <hr>
