@@ -15,16 +15,6 @@ class AdminMailer < ApplicationMailer
     mail( to: @user.email, subject: "Thanks for signing up!")
   end
 
-
-  def invite_to_course(user, course)
-    @user = user
-    @course = course
-    @instructor = course.instructor.first_name + " " + course.instructor.last_name
-    invite = user.course_registrations.where( course_id: course.id )
-    @url = 'https://videorehearser.herokuapp.com/courses/'+course+'/accept_invitation'
-    mail( to: @user.email, subject: "Thanks for signing up!")
-  end
-
   # sending approval update to user
   def user_approved_notice(user)
     @url = 'https://videorehearser.herokuapp.com/users/sign_in'
