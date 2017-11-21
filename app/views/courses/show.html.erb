@@ -55,6 +55,7 @@
           <div data-action="invite_student">
             <%= form_tag "/invite_student", remote: true do %>
               <%= text_field_tag :user_email, nil, class:"full", placeholder:"Enter Student's email" %>
+              <%= text_field_tag :course_id, nil, type:'hidden', class:"full", value:@course.id %>
               <br>
               Select role: <%= select_tag :user_role, options_for_select(["trainee", "coach"]) %>
               <br>

@@ -25,8 +25,15 @@ class CoursesController < ApplicationController
   end
 
   def send_invite
-    if params[:auto_add]
+    user = User.find_by_email( params[:user_email] )
+    course = Course.find(params[:course_id])
+    if user
+      if params[:auto_add]
       
+      end
+      AdminMailer.invite_to_course( user, course )
+    else
+      AdminMailer.invite_to_website( params[:user_email] )
     end
   end
 
