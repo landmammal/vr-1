@@ -24,6 +24,12 @@ class CoursesController < ApplicationController
     end
   end
 
+  def send_invite
+    if params[:auto_add]
+      
+    end
+  end
+
   # GET /courses/1
   # GET /courses/1.json
   def show

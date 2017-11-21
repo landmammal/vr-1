@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   post "/courses_search/api" => "api#courses_search_api"
 
   get "/generate_course_code/" => "courses#generate_code"
+  get "/invite_student/" => "courses#send_invite"
 
   # put '/rehearsal/:rehearsal_id/rehearsal_approved' => "rehearsals#rehearsal_approved"
   post '/rehearsal/:rehearsal_id/approved' => "rehearsals#approved"
