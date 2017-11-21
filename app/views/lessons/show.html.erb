@@ -75,7 +75,7 @@
     <div class="title"><%= @course.title %></div>
     <div class="content">
       <% @course.topics.each do |topic| %>
-          <span style="font-family:'gotham';"><%= topic.title %></span>
+          <span><%= topic.title %></span>
           <div class="right_lesson_list">
             <% topic.lessons.each do |lesson| %>
                 <a href="<%= course_topic_lesson_path(@course, topic, lesson) %>">

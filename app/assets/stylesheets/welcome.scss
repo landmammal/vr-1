@@ -1986,3 +1986,73 @@ header.header.app .menu_list .menu_item:hover {
         font-family: "Ionicons";
     }
     .rhs_topic{ position: relative;}
+    .content-container h2{ font-weight: 300;}
+    .field{
+      & input[type="text"], input[type="password"], input[type="email"] {
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        width: 99%;
+      }
+      & label{
+        font-weight: 300;
+      }
+    }
+    .form_field{
+      & input[type="text"], input[type="password"], input[type="email"] {
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        width: 99%;
+      }
+      & label{
+        font-weight: 400;
+      }
+      & input[type='file']{
+        border: 0px;
+        margin: 0px;
+        padding: 11px 5px;
+        position: absolute;
+        z-index: 2;
+        opacity: 0;
+      }
+      & input[type='file'] + span {
+        background: #f7f8fd;
+        padding: 10px;
+        display: block;
+        max-width: 95%;
+        border-radius: 3px;
+        color: #6894bf;
+        font-weight: 500;
+        border: 1px solid #e1e4f5;
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
+      }
+    }
+    .EditUser-container{
+      width: 538px;
+      margin: 30px auto;
+      max-width: 95%;
+      box-shadow: 0px 1px 31px 1px rgba(0, 0, 0, 0.3);
+      padding: 0px;
+
+      & h2{
+        margin-bottom: 20px;
+        margin-top: 0px;
+        padding: 15px 20px;
+        background: #448fe4;
+        color: #fff;
+        font-size: 21px;
+        font-weight: 400;
+      }
+      & .field, .form_field{
+        margin: 5px 20px;
+
+      }
+
+    }
+    .cancel-field{
+      padding: 20px;
+      background: #f7f8fd;
+      margin-top: 20px;
+       }
+       .cancel-field h3{ margin: 0px; font-weight: 300;}
