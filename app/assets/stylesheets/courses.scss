@@ -422,7 +422,7 @@ body {
   .course_title {
 	font-weight: 300;
 	font-size: 15px;
-	margin: 7px 5px;
+	margin: 7px 0px;
 	display: inline-block;
   }
   .course_title .grey {
@@ -437,50 +437,61 @@ body {
   }
   
   .about_course .title {
-	font-family: 'webly_bld';
+		font-weight: 400;
+    margin-bottom: -10px;
+    display: block;
+    margin-top: 10px;
   }
   .course_instructor {
-	width: 200px;
-	margin: 0 0 0 5px;
-	float: right;
-	text-align: left;
+		width: 200px;
+    margin: 0 0 0 5px;
+    float: right;
+    text-align: left;
+    font-size: 13px;
   }
   .course_instructor .title {
-	font-family: 'webly_bld';
+		font-weight: 400;
+    font-size: 17px;	font-family: 'webly_bld';
   }
   .privacy {
 	font-size: 12px;
 	margin: 0 5px;
   }
   #topic_card_delete {
-	float: right;
-	color: white;
+		float: right;
+    color: white;
+    background: #6daaef;
+    padding: 10px 16px;
+    font-family: sans-serif;
   }
   .card_list {
-	overflow: hidden;
+	overflow: hidden; padding-top: 10px;
   }
   .card_list .card_item {
-	border-radius: 1px;
-	border: 0;
-	min-width: 250px;
-	width: 24%;
-	max-width: 350px;
-	display: inline-block;
-	overflow: hidden;
+		border-radius: 1px;
+    border: 0;
+    min-width: 250px;
+    width: 24%;
+    max-width: 350px;
+    display: inline-block;
+    overflow: hidden;
+		background: #f7f8fd;
+		margin: 0% 0.2% 0.4% 0.2%;
   }
   .card_list .card_item .card_title_sec {
-	margin: 0;
-	background-color: white;
-	overflow: hidden;
+		margin: 0;
+    background-color: #448fe4;
+    overflow: hidden;
   }
   
   .card_list .card_item .card_title_sec .card_title {
-	font-size: 15px;
-	font-family: 'webly_bld';
-	float: left;
-	text-align: left;
-	width: 100%;
-	padding: 5px;
+		font-size: 14px;
+    float: left;
+    text-align: left;
+    width: 100%;
+    color: #fff;
+    font-weight: 400;
+    padding: 10px 10px;
   }
   .card_list .card_item .card_desc, .card_list .card_item .card_edit_sec {
 	background-color: rgba(255, 255, 255, 0.5);
@@ -504,17 +515,22 @@ body {
 	border-radius: 0;
   }
   .card_list .card_item .card_desc .course_content, .card_list .card_item .card_edit_sec .course_content {
-	width: calc(100% - 50px);
-	left: 0;
-	background-color: #eee;
+		width: calc(100% - 50px);
+    left: 0;
+    background-color: #e5e9f7;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 7px 10px;
   }
   .card_list .card_item .card_desc button.register_to_course, .card_list .card_item .card_desc button.start_course, .card_list .card_item .card_edit_sec button.register_to_course, .card_list .card_item .card_edit_sec button.start_course {
-	width: 50px;
-	right: 0;
-	margin: 0;
-	background-color: #14A0D7;
-	color: white;
-	text-align: center;
+		right: 0;
+    margin: 0;
+    background-color: #448fe4;
+    color: white;
+    text-align: center;
+    font-size: 13px;
+    display: inline-block;
+    padding: 7px;
   }
   
   .card_list .card_item .card_desc button.register_to_course:hover, .card_list .card_item .card_desc button.start_course:hover, .card_list .card_item .card_edit_sec button.register_to_course:hover, .card_list .card_item .card_edit_sec button.start_course:hover {
@@ -546,7 +562,7 @@ body {
 	height: 80px;
 	overflow: hidden;
 	position: relative;
-	padding: 5px 8px;
+	padding: 10px 10px;
 	color: #333;
 	border-top: 0;
 	transition: 0.5s;
@@ -558,8 +574,8 @@ body {
   
   .card_list .card .bottom_count, .card_list .home_card .bottom_count {
 	position: absolute;
-	left: 5px;
-	bottom: 5px;
+	left: 10px;
+	bottom: 10px;
 	overflow: hidden;
 	width: 95%;
 	background-color: none;
@@ -586,11 +602,12 @@ body {
   }
   
   .card_list .card .bottom_count .bar_count, .card_list .home_card .bottom_count .bar_count {
-	width: 12px;
+	width: 10px;
+	height: 10px;
 	float: left;
 	color: #00BDFF;
-	border-radius: 2px;
-	border: 2px solid;
+	border-radius:12px;
+	border: 5px solid;
 	margin: 2px 2px;
   }
   
@@ -622,34 +639,33 @@ body {
   }
   
   .card_list .home_card .card_title {
-	background-color: #FF7C86;
-	color: white;
-	overflow: hidden;
-	padding: 0;
-	height: 30px;
+		background-color: #448fe4;
+    color: white;
+    overflow: hidden;
+    padding: 0;
   }
   
   .card_list .home_card .card_title .title_name {
-	width: calc(100% - 60.92px);
-	color: white;
-	float: left;
-	padding: 5px 10px;
-  }
+		color: #ffffff;
+    padding: 10px;
+    display: inline-block;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
   
   .card_list .home_card .card_desc {
 	position: relative;
-	background-color: #FFEBE7;
+	background-color: #f7f8fd;
   }
   .card_list .home_card .card_desc a {
 	color: black;
   }
   .card_list .home_card .card_edit {
-	font-size: 14px;
-	font-family: 'webly_bld';
-	float: right;
-	text-align: center;
-	padding: 5px 10px;
-	color: #fff;
+		font-size: 14px;
+    float: right;
+    text-align: center;
+    padding: 10px 10px;
+    color: #fff;
   }
   
   .card_list .home_card .card_edit:hover {
@@ -658,11 +674,13 @@ body {
   }
   
   .card_list .home_card .card_delete {
-	font-size: 14px;
-	font-family: 'webly_bld';
-	float: right;
-	text-align: center;
-	padding: 5px 10px;
+		font-size: 14px;
+    float: right;
+    text-align: center;
+    color: white;
+    background: #6daaef;
+    padding: 11px 16px;
+    font-family: sans-serif;
   }
   
   .card_list .home_card .card_delete:hover {
@@ -675,7 +693,7 @@ body {
   }
   
   .card_list .home_card .card_delete a {
-	color: red;
+	color: #ffffff;
   }
   .card_list .card {
 	margin: 0 0.5% 4px 0;
@@ -685,18 +703,29 @@ body {
 	color: white;
   }
   .card_list .card .card_title.topic {
-	background-color: #00B1D8;
-	color: white;
-  }
+		background-color: #448fe4;
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 0px 0px;
+	}
+	.card_list .card .card_title.topic a{
+		color: #ffffff;
+    padding: 10px;
+    display: inline-block;
+    font-weight: 400;
+    letter-spacing: 1px;
+	}
   .card_list .card .card_desc.course {
 	background-color: rgba(255, 255, 255, 0.5);
   }
   .card_list .card .card_desc.topic {
-	background-color: #fff;
+		background-color: #f7f8fd;
+    padding: 10px 10px;
   }
   .user_course_title {
 	font-size: 15px;
-	font-family: 'webly_reg';
+ 
 	margin: 5px auto;
   }
   
@@ -708,8 +737,8 @@ body {
 	  line-height: 1.5em;
 	}
   }
-  /* Tablet Layout: 615px to 826px. Inherits styles from: Mobile Layout. */
-  @media only screen and (min-width: 496px) {
+
+@media only screen and (min-width: 496px) {
 	.card_list .home_card, .card_list .card {
 	  width: 49.5%;
 	
@@ -775,30 +804,28 @@ body {
 			}
 		}
 	}
+}
 	.card_list .home_card .card_title, .card_list .card .card_title {
 	  line-height: 1.5em;
 	}
-  }
+}
+	
+
   /* Desktop Layout: 827px to max.  Inherits styles from: Mobile Layout and Tablet Layout. */
-  @media only screen and (min-width: 827px) {
+@media only screen and (min-width: 827px) {
 	.card_list .home_card, .card_list .card {
 	  width: 32.83%;
 	}
-  }
+}
+	
   /* Desktop Layout: 1261px to max.  Inherits styles from: Mobile Layout and Tablet Layout. */
-  @media only screen and (min-width: 1051px) {
+@media only screen and (min-width: 1051px) {
 	.card_list .home_card, .card_list .card {
 	  width: 24.5%;
 	  max-width: 350px;
 	}
-  }
-  .course-bredcum {
-	background: #f7f8fd;
-	padding: 0px 0px;
-	float: left;
-	width: 100%;
-	position: relative;
-  }
+}
+ 
   
   .main-content {
 	padding: 0px 0px 50px 0px;
@@ -819,7 +846,7 @@ body {
   }
   
   .content-container {
-	padding: 0px;
+	padding: 0px 10px;
 	float: left;
 	background: #fff;
 	width: calc(100% - 58px);
@@ -828,5 +855,9 @@ body {
 	-moz-transition: all 250ms cubic-bezier(0.765, -0.42, 0.65, 1.345);
 	-o-transition: all 250ms cubic-bezier(0.765, -0.42, 0.65, 1.345);
 	transition: all 250ms cubic-bezier(0.765, -0.42, 0.65, 1.345);
+  }
+	
+	.box_sep .title{
+		padding: 10px;
+    font-size: 18px;
 	}
-}

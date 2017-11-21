@@ -3,7 +3,8 @@ body {
   background-color: #fff;
   margin: 0px auto;
   color: #333;
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 300;
   line-height: 18px;
   font-family: 'Roboto', sans-serif;
 }
@@ -153,7 +154,7 @@ input[type="submit"].red:hover, button.red:hover {
 }
 
 input[type="submit"].blue, button.blue {
-  background-color: #00A6FF;
+  background-color: #448fe4;
   color: #fff;
 }
 
@@ -173,9 +174,9 @@ input[type="submit"].green_sft:hover, button.green_sft:hover {
 input[type="submit"].creator_btn, input[type="submit"].admin_btn, input[type="submit"].coaching_btn, button.creator_btn, button.admin_btn, button.coaching_btn {
   background-color: #4EBC52;
   color: #fff;
-  padding: 2px 6px;
+  padding: 10px 16px;
   float: none;
-  border-radius: 0;
+  border-radius: 20px;
   margin: 0;
 }
 
@@ -199,7 +200,7 @@ input[type="submit"].small_btn, button.small_btn {
 input[type="submit"].big_btn, button.big_btn {
   padding: 10px 15px;
   float: none;
-  border-radius: 3px;
+  border-radius: 23px;
   font-size: 15px;
 }
 
@@ -1896,6 +1897,11 @@ header.header.app .menu_list .menu_item:hover {
 
 .top_info {
   padding-left: 10px;
+  background: #f7f8fd;
+  float: left;
+  width: 100%;
+  position: relative;
+  margin-bottom: 10px;
 }
 
 .box_sep {
@@ -1928,3 +1934,55 @@ header.header.app .menu_list .menu_item:hover {
   font-weight: 800;
   top: 4px;
 }
+.tags-text{ display: inline-block;}
+.tags-text a{ 
+  color: #448fe4;
+  border-radius: 20px;
+  border: 1px solid #09c;
+  font-size: 13px;
+  padding: 0px 14px;
+  display: inline-block;
+}
+.user_stat{    padding: 10px 0px;}
+.number{
+  display: inline-block;}
+  .stat{
+    display: inline-block;
+  }
+ 
+  .rhs_course:before {
+    content: "\f218";
+    font-family: "Ionicons";
+    background: #448fe4;
+    color: #fff;
+    font-size: 9px;
+    padding: 2px 3px;
+    border-radius: 3px;
+    margin-right: 7px;
+    position: relative;
+    top: -1px;
+}
+    .rhs_course.topic-selected:before {
+      content: "\f209";
+      font-family: "Ionicons";
+  }
+    .rhs_course{
+  position: relative;
+    }
+    .rhs_topic:before {
+      content: "\f218";
+      font-family: "Ionicons";
+      background: #98bbde;
+      color: #fff;
+      font-size: 9px;
+      padding: 2px 3px;
+      border-radius: 3px;
+      margin-right: 7px;
+      position: relative;
+      top: -1px;
+  }
+      .rhs_topic.topic-selected:before {
+        content: "\f209";
+        font-family: "Ionicons";
+    }
+    .rhs_topic{ position: relative;}

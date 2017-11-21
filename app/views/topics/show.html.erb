@@ -35,7 +35,6 @@
       <%= render './lessons/form' %>
     </div>
     <!-- <button class="reg_btn green_sft">Add External Lesson</button> -->
-    <br><br><br>
   <% end %>
 
   <% @lessons.order('id ASC').each_with_index do |lesson, index| %>
@@ -55,7 +54,7 @@
         <% end %>
 
         <div class="edit_lesson">
-          <strong> | <%= link_to 'Edit', edit_course_topic_lesson_path(@course, @topic, lesson) %></strong>
+        <%= link_to 'Edit', edit_course_topic_lesson_path(@course, @topic, lesson) %>
         </div>
 
       <% elsif course_trainee %>
@@ -66,14 +65,15 @@
   <% end %>
 
 
-  <br><br><br>
+  <br><br>
   <%if !@topic.tags.empty? %>
     tags:
-    <% @topic.tags.split(', ').each do |tag| %>
-      <a href="#"><b><%= tag %></b></a>
+    <div class="tags-text"><% @topic.tags.split(', ').each do |tag| %>
+      <a href="#"><%= tag %></a>
     <%end%>
+  </div>
   <%end%>
-  <br><br><br>
+  <br><br>
 
 <% else %>
   
@@ -85,7 +85,7 @@
   </center>
 
 <% end %>
-
+ 
+<button class="small_btn blue js-click_back">Back</button>
 
 <br><br>
-<button class="small_btn blue js-click_back">Back</button>
