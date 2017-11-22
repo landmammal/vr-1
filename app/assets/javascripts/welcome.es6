@@ -89,6 +89,14 @@ function endLoadingProg(){
 }
 
 
+function reload_to(url, time){
+
+	setTimeout(function(){
+		window.location.href = url;
+	}, time);
+
+}
+
 
 
 var pageReady = function(){

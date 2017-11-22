@@ -15,12 +15,38 @@ class CoursesController < ApplicationController
   end
 
   def search
-    @courses = Course.where.not(privacy: [1,3])
+    @courses = Course.all.map{ |x| x if ( x.privacy != 3 && cstatus == 1 ) }.compact
     @site_title = 'Search Courses'
     if current_user.level_2
       @course = Course.new
       @new_topic = Topic.new
       @new_lesson = Lesson.new
+    end
+  end
+
+  def send_invite
+    user = User.find_by_email( params[:user_email] )
+    @course = Course.find(params[:course_id])
+    if user
+      if params[:auto_add]
+        registration = @course.course_registration.build( user_id: user.id, user_role: params[:user_role], approval_status: false )
+        @course.save
+        url = '/courses/'+@course.id.to_s+'/accept_invitation/'+user.id
+      else
+        url = '/courses/'+@course.id.to_s+'/accept_invitation/'
+      end
+      AdminMailer.invite_to_course( user, @course, url).deliver_now
+    else
+      AdminMailer.invite_to_website( params[:user_email], @course ).deliver_now
+    end
+
+    render json: { "message" => "sent" }.to_json
+  end
+
+  def accept_invitation
+    @access = false
+    if params[ :user_id ] && current_user
+      @access = true
     end
   end
 
@@ -31,6 +57,16 @@ class CoursesController < ApplicationController
     @orig_topics = Topic.where(course_id: @course.id)
     @topic = Topic.new
     @course_registration = CourseRegistration.new
+  end
+
+  def generate_code
+    new_code = "CA-"+SecureRandom.hex(n=3)
+    # while Course.all.map{ |x| x.access_code }.include? ( new_code )
+    #   new_code = "CA-"+SecureRandom.hex(n=3)
+    # end
+
+    puts new_code
+    render json: { "new code" => new_code }.to_json
   end
 
   def display
@@ -106,9 +142,9 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:title, :description, :tags, :instructor_id, :approval_status, :privacy, :language)
+      params.require(:course).permit(:title, :description, :tags, :cstatus, :access_code, :instructor_id, :approval_status, :privacy, :language)
     end
     def course_update
-      params.require(:course).permit(:title, :description, :tags, :approval_status, :privacy, :language)
+      params.require(:course).permit(:title, :description, :tags, :cstatus, :access_code, :approval_status, :privacy, :language)
     end
 end
