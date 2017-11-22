@@ -738,7 +738,7 @@ body {
 	}
   }
 
-  @media only screen and (min-width: 496px) {
+@media only screen and (min-width: 496px) {
 	.card_list .home_card, .card_list .card {
 	  width: 49.5%;
 	
@@ -808,23 +808,23 @@ body {
 	.card_list .home_card .card_title, .card_list .card .card_title {
 	  line-height: 1.5em;
 	}
-	}
+}
 	
 
   /* Desktop Layout: 827px to max.  Inherits styles from: Mobile Layout and Tablet Layout. */
-  @media only screen and (min-width: 827px) {
+@media only screen and (min-width: 827px) {
 	.card_list .home_card, .card_list .card {
 	  width: 32.83%;
 	}
-	}
+}
 	
   /* Desktop Layout: 1261px to max.  Inherits styles from: Mobile Layout and Tablet Layout. */
-  @media only screen and (min-width: 1051px) {
+@media only screen and (min-width: 1051px) {
 	.card_list .home_card, .card_list .card {
 	  width: 24.5%;
 	  max-width: 350px;
 	}
-	}
+}
  
   
   .main-content {

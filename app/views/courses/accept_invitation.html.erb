@@ -1,7 +1,24 @@
 <% if @access %>
+        
+    <% if @needs_access_code %>
+
+        <%= form_tag "/register_with_access_code", remote: true do |f| %>
+            <%= text_field_tag :access_code, nil, placeholder:"Enter course access code" %>
+            <%= text_field_tag :course_id, nil, type:'hidden', class:"full", value:params[:course_id] %>
+            <br>
+            <%= submit_tag "Submit access code", class:'blue' %>
+        <% end %>
+
+    <% else %>
+
+        <center style="margin-top:100px;">
+            <h2>  Welcome to the course. </h2>
+        </center>
+        <script>
+            reload_to( "/courses/<%= params[:course_id] %>" , 5000 );
+        </script>
     
-    <script>
-        reload_to( "<%= course_path( @course ) %>" , 5 );
-    </script>
+    <% end %>
+
 
 <%end%>

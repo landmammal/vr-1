@@ -15,7 +15,7 @@ class CoursesController < ApplicationController
   end
 
   def search
-    @courses = Course.all.map{ |x| x if ( x.privacy != 3 && cstatus == 1 ) }.compact
+    @courses = Course.all.map{ |x| x if ( x.privacy != 3 && x.cstatus == 1 ) }.compact
     @site_title = 'Search Courses'
     if current_user.level_2
       @course = Course.new
@@ -44,10 +44,28 @@ class CoursesController < ApplicationController
   end
 
   def accept_invitation
-    @access = false
+    # @access = false
+    @access = true
     if params[ :user_id ] && current_user
       @access = true
+      course_regist = current_user.course_registrations.find_by( course_id: params[:course_id] )
+      if course_regist
+        @needs_access_code = false
+      else
+        @needs_access_code = true
+        course_regist.approval_status = true
+        course_regist.save
+      end
     end
+  end
+
+  def register_with_access_code
+    course = Course.find(params[:course_id])
+    if params[:access_code] == course.access_code
+      registration = @course.course_registration.build( user_id: user.id, user_role: params[:user_role], approval_status: true )
+    end
+
+    redirect_to course_path( course )
   end
 
   # GET /courses/1
