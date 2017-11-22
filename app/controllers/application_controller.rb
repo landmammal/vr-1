@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Pundit
+  before_action :set_fix
 
   
   # def self.force_ssl(options = {})
@@ -68,6 +69,15 @@ class ApplicationController < ActionController::Base
     flash[:alert] = "Access denied."
     redirect_to (request.referrer || root_path)
   end
+
+
+  def set_fix
+    Course.all.each do |c|
+      c.access_code = "CA-"+SecureRandom.hex(n=3) if c.access_code == nil
+      c.save
+    end
+  end
+
 
   # al--->
 	# protected
