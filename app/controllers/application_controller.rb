@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
 	def main_links
-		@main_menu = ['overview','contact']
+		@main_menu = ['overview','contact', 'jobs']
     @languages = [['English','en'],['Spanish', 'sp']]
     @privacy = [['Public', 0],['Locked', 1],['Paid Members', 2],['Registered members', 3]]
 

@@ -5,7 +5,7 @@
       These are all the rehearsals recorded for this lessons:
       <h4><%= link_to @lesson.title, course_topic_lesson_path(@lesson.topic.course, @lesson.topic, @lesson) %></h4>
     </div>
-    <hr>
+   
     <div class="col-sm-9" style="padding:0; margin:0 0 10px 0;">
       Filter rehearsals by: 
       <div class="rehearsal_filter selected" id="all_rehearsals" >All</div>
@@ -19,7 +19,7 @@
 
       <!-- <a href="/rehearsals/approve_all?student=<%= @student.id %>&lesson=<%= @lesson.id %>"><button class="green_sft" style="font-family:'gotham_light';">Mark all as reviewed</button></a> -->
     </div>
-    <hr>
+    
     <div class="col-sm-12">
       <% @rehearsals.each_with_index do |rehearsal, index| %>
 
