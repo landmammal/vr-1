@@ -10,7 +10,7 @@ var pageReady = function(){
 
 	console.log(randomImg)
 
-	$('body').css('background-image', 'url("errorcss/error_'+randomImg+'.jpg")');
+	$('body').css('background-image', 'url("/errorcss/error_'+randomImg+'.jpg")');
 
 	$('.current_url').val(window.location.href)
 
