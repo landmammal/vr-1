@@ -47,7 +47,9 @@
 				<% @main_menu.each do |menu| %>
 					<div class="menu_item"><a href="/<%= menu %>"><%= menu.capitalize %></a></div>
 				<%end%>
-				
+				<div class="menu_item">
+		    		<%= link_to "Jobs" %>
+		    	</div>
 		    	<div class="menu_item">
 		    		<%= link_to "Log In", new_user_session_path %>
 		    	</div>

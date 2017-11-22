@@ -509,7 +509,6 @@ header.header .menu {
   padding: 0 10px;
   z-index: 3;
   position: relative;
-  text-align: left;
 }
 
 header.header .menu.app {
@@ -619,6 +618,7 @@ header.header .menu_list .menu_item {
   float: none;
   padding: 15px 20px;
   margin: 0 10px;
+  font-family: 'gotham_book';
   font-size: 13px;
   letter-spacing: 0.05em;
   color: #437cbf;
@@ -641,10 +641,8 @@ header.header .menu_list .register_item:hover {
   transition: 0.5s;
 }
 header.header a {
-  color: #000000;
-  font-weight: 300;
-  font-size: 16px;
-  line-height: 23px;
+  color: #4482c3;
+  font-weight: bold;
 }
 header.header.home {
   background-color: rgba(11, 98, 180, 0.5);
@@ -708,6 +706,7 @@ header.header.app .menu_list .menu_item:hover {
 .loading_app .loading_wrapper .load_text {
   color: #0883C3;
   font-size: 20px;
+  font-family: 'gotham_book';
   margin: 5px auto;
 }
 .loading_app .loading_wrapper .loading_prog {
@@ -914,6 +913,7 @@ header.header.app .menu_list .menu_item:hover {
   background-color: #eee;
 }
 .home_submenu .submenu_item .text {
+  font-family: 'gotham_book';
   font-size: 13px;
 }
 .home_top_info {
@@ -1022,6 +1022,7 @@ header.header.app .menu_list .menu_item:hover {
 }
 
 .faq_content {
+  font-family: 'gotham_book';
   margin-bottom: 30px;
 }
 .press_bg {
@@ -1477,6 +1478,7 @@ header.header.app .menu_list .menu_item:hover {
   }
 
   .home_submenu .submenu_item .text {
+    font-family: 'gotham_book';
     font-size: 13px;
   }
 
@@ -1498,6 +1500,7 @@ header.header.app .menu_list .menu_item:hover {
 
   .home_info_1 {
     font-size: 30px;
+    font-family: 'gotham_book';
     margin: 5px auto;
     line-height: 50px;
   }
@@ -1983,409 +1986,3 @@ header.header.app .menu_list .menu_item:hover {
         font-family: "Ionicons";
     }
     .rhs_topic{ position: relative;}
-    .content-container h2{ font-weight: 300;}
-    .field{
-      & input[type="text"], input[type="password"], input[type="email"] {
-        border: 1px solid #ccc;
-        border-radius: 20px;
-        width: 99%;
-      }
-      & label{
-        font-weight: 300;
-      }
-    }
-    .form_field{
-      & input[type="text"], input[type="password"], input[type="email"] {
-        border: 1px solid #ccc;
-        border-radius: 20px;
-        width: 99%;
-      }
-      & label{
-        font-weight: 400;
-      }
-      & input[type='file']{
-        border: 0px;
-        margin: 0px;
-        padding: 11px 5px;
-        position: absolute;
-        z-index: 2;
-        opacity: 0;
-      }
-      & input[type='file'] + span {
-        background: #f7f8fd;
-        padding: 10px;
-        display: block;
-        max-width: 95%;
-        border-radius: 3px;
-        color: #6894bf;
-        font-weight: 500;
-        border: 1px solid #e1e4f5;
-        cursor: pointer;
-        position: relative;
-        z-index: 1;
-      }
-    }
-    .EditUser-container{
-      width: 538px;
-      margin: 30px auto;
-      max-width: 95%;
-      box-shadow: 0px 1px 31px 1px rgba(0, 0, 0, 0.3);
-      padding: 0px;
-
-      & h2{
-        margin-bottom: 20px;
-        margin-top: 0px;
-        padding: 15px 20px;
-        background: #448fe4;
-        color: #fff;
-        font-size: 21px;
-        font-weight: 400;
-      }
-      & .field, .form_field{
-        margin: 5px 20px;
-
-      }
-
-    }
-    .cancel-field{
-      padding: 20px;
-      background: #f7f8fd;
-      margin-top: 20px;
-       }
-       .cancel-field h3{ margin: 0px; font-weight: 300;}
-
-
-
-
-.PageSignup h3 span {
-  font-weight: 100;
-  color: #000;
-}
-
-.MainBanner-Container .container {
-  width: 1082px;
-  margin: auto;
-  max-width: 95%;
-  position: relative;
-}
-
-.tile:not(.is-child) {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.MainBanner-Container .BannerContent_Left h1 span {
-  letter-spacing: 1px;
-  position: relative;
-  color: #000;
-  font-size: 40px;
-  font-weight: 400;
-}
-
-.MainBanner-Container {
-  min-height: 520px;
-  position: relative;
-  background: url(../assets/Hintergrund.jpg) bottom center;
-  color: #fff;
-  padding: 0px 0px;
-  background-size: cover;
-}
-
-.BannerOverlay {
-  background: -moz-linear-gradient(left, black 0%, rgba(125, 185, 232, 0) 100%);
-  background: -webkit-linear-gradient(left, black 0%, rgba(125, 185, 232, 0) 100%);
-  background: linear-gradient(to right, black 0%, rgba(125, 185, 232, 0) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#007db9e8',GradientType=1 );
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0px;
-  left: 0px;
-  opacity: 0;
-}
-
-.tile.is-ancestor {
-  margin-left: -0.75rem;
-  margin-right: -0.75rem;
-}
-
-.tile {
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: block;
-  -ms-flex-preferred-size: 0;
-  flex-basis: 0;
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  -ms-flex-negative: 1;
-  flex-shrink: 1;
-  min-height: -webkit-min-content;
-  min-height: -moz-min-content;
-  min-height: min-content;
-}
-
-.tile.is-6 {
-  -webkit-box-flex: 0;
-  -ms-flex: none;
-  flex: none;
-  width: 50%;
-}
-
-.tile.is-vertical {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.MainBanner-Container .BannerContent_Left h1 {
-  color: #000;
-  font-size: 52px;
-  line-height: 58px;
-  font-weight: 100;
-  margin-bottom: 0px;
-}
-
-.MainBanner-Container .BannerContent_Left h2 {
-  color: #000;
-  font-size: 18px;
-  font-weight: 300;
-  letter-spacing: 1px;
-  margin: 10px 0px;
-  line-height: 24px;
-}
-
-.MainBanner-Container .BannerContent_Left p {
-  color: #000;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 1px;
-  padding: 10px 0px 20px 0px;
-}
-
-.BtnDark {
-  color: #fff !important;
-  font-size: 12px;
-  padding: 10px 20px;
-  display: inline-block;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  border-radius: 3px;
-  background: #448fe4;
-  text-align: center;
-  font-weight: 400;
-}
-
-.PageSignup {
-  padding: 20px;
-  background: #fff;
-  border-radius: 10px;
-  width: 400px;
-  margin: 35px auto;
-  box-shadow: 0px 0px 51px -5px rgba(0, 0, 0, 0.2);
-  max-width: 100%;
-}
-
-.PageSignup h1 {
-  font-size: 28px;
-  letter-spacing: 0px;
-  margin-bottom: 10px;
-  color: #000;
-  font-weight: 300;
-}
-
-.PageSignup p {
-  font-size: 14px;
-  letter-spacing: 1px;
-  color: #000;
-  margin-bottom: 10px;
-}
-
-.PageSignup p span {
-  background: #eee;
-  color: #000;
-  padding: 2px 13px;
-  font-size: 12px;
-  letter-spacing: 1px;
-  font-weight: 400;
-  border-radius: 20px;
-  display: inline-block;
-  position: relative;
-  top: -1px;
-}
-
-.PageSignup h2 {
-  font-size: 17px;
-  letter-spacing: 0px;
-  margin-bottom: 10px;
-  line-height: 38px;
-  margin: 6px 0px;
-  max-width: 100%;
-  color: #000;
-  font-weight: 400;
-}
-
-.PageSignup h3 {
-  color: #000000;
-  text-align: left;
-  font-size: 25px;
-  letter-spacing: 0px;
-  margin-bottom: 20px;
-  margin-top: 10px;
-  font-weight: 100;
-}
-.HowToEarn a {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  position: relative;
-  background: #448fe4;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 3px;
-  font-weight: 400;
-  display: block;
-  text-align: center;
-}
-.HowGetPaid {
-  padding: 30px 0px;
-  text-align: center;
-}
-.HowGetPaid h1 {
-  font-size: 29px;
-  font-weight: 300;
-  color: #2b2b2b;
-  padding-bottom: 10px;
-  margin-top: 30px;
-}
-.HowGetPaid p{
-  font-size: 15px;
-  font-weight: 300;
-  color: #333;
-  margin:0px auto 10px auto;
-  letter-spacing: 1px;
-  line-height: 23px;
-}
-.HowGetPaid h2 {
-  font-size: 15px;
-  font-weight: 300;
-  color: #333;
-  margin: auto;
-  width: 650px;
-  letter-spacing: 1px;
-  max-width: 100%;
-  line-height: 23px;
-}
-.ServicesColumn {
-  width: 730px;
-  margin: auto;
-  max-width: 100%;
-}
-.whatWeDo_Heading {
-  background: url(../assets/People-Connected.png) top left fixed;
-  padding: 60px 0px 100px 0px;
-  text-align: center;
-}
-.whatWeDo_Heading h1 {
-  font-weight: 300;
-  color: #ffffff;
-  font-size: 39px;
-}
-.WhatWeDo_Content {
-  width: 1100px;
-  margin: auto;
-  background: #fff;
-  box-shadow: 0px 0px 121px 1px rgba(0,0,0,0.1);
-  padding: 40px;
-  margin-top: -60px;
-  margin-bottom: 30px;
-  border-radius: 10px;
-  max-width: 95%;
-}
-.content h1 {
-  font-size: 24px;
-  margin-bottom: 0.5em;
-  font-weight: 300;
-  line-height: 35px;
-}
-.content p{
-  margin-right: 20px;
-  font-size: 14px;
-  letter-spacing: 1px;
-  line-height: 23px;
-}
-.content h2 {
-  font-size: 24px;
-  margin-bottom: 0.5714em; font-weight: 300;
-}
-.content li + li {
-  margin-top: 0.25em;font-size: 14px;
-  letter-spacing: 1px;
-  line-height: 23px;
-}
-button.accordion {
-  color: #000;
-  cursor: pointer;
-  padding: 19px 28px 19px 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 16px;
-  transition: 0.4s;
-  background: #fff;
-  margin-top: 1px;
-  position: relative;
-  border-radius: 0px;
-}
-.PayDay_Container {
-  background: #f7f7f7;
-  padding: 30px 0px;
-}
-button.accordion.active {
-  background-color: #448fe4;
-  color: #fff;
-}
-.panel p {
-  padding-top: 15px !important;
-  padding-bottom: 0px !important;
-  font-size: 14px;
-  letter-spacing: 1px;
-  line-height: 23px;
-}
-div.panel {
-  padding: 0 18px;
-  background-color: #fbfbfb;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-  margin: 0px !important;
-  font-size: 14px;
-}
-.PayDay_Container h1{  
-  font-size: 36px;
-  text-align: center;
-  font-weight: 300;
-  color: #2b2b2b;
-  padding-bottom: 20px;
-}
-  button.accordion:after {
-    content: '\002B';
-    color: #000;
-    float: right;
-    margin-left: 5px;
-    font-weight: 100;
-    font-size: 28px;
-    line-height: 12px;
-    position: absolute;
-    right: 8px;
-    top: 35%;
-}
-button.accordion.active:after {
-  content: "\2212";
-  font-size: 23px;
-  color: #fff;
-}
