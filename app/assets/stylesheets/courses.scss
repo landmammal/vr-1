@@ -1,12 +1,4 @@
-body {
-	background-color: #fff;
-	margin: 0px auto;
-	color: #333;
-	font-size: 13px;
-	line-height: 18px;
-	font-family: 'gotham_light';
-  }
-  
+ 
   html, body {
 	margin: 0px auto;
 	height: 100%;
@@ -450,9 +442,10 @@ body {
     font-size: 13px;
   }
   .course_instructor .title {
-		font-weight: 400;
-    font-size: 17px;	font-family: 'webly_bld';
-  }
+		font-weight: 300;
+    font-size: 16px;     display: inline-block;
+	}
+	.course_instructor .title label{ font-size: 13px;}
   .privacy {
 	font-size: 12px;
 	margin: 0 5px;
@@ -559,8 +552,7 @@ body {
   }
   
   .card_list .card .card_desc, .card_list .home_card .card_desc {
-	height: 80px;
-	overflow: hidden;
+	min-height: 80px;
 	position: relative;
 	padding: 10px 10px;
 	color: #333;
@@ -721,7 +713,7 @@ body {
   }
   .card_list .card .card_desc.topic {
 		background-color: #f7f8fd;
-    padding: 10px 10px;
+    padding: 10px 10px 30px 10px;
   }
   .user_course_title {
 	font-size: 15px;
@@ -861,5 +853,7 @@ body {
 	
 .box_sep .title{
 	padding: 10px;
-  font-size: 18px;
+	font-size: 18px;
 }
+.user-image-show{display: inline-block; float: left; margin-right: 10px;} 
+.user-image-show img{ max-width: 45px;}
