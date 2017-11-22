@@ -504,17 +504,19 @@ header.header {
 
 header.header .menu {
   overflow: visible;
-  max-width: 1100px;
+  width: 1170px;
   margin: 0 auto;
   padding: 0 10px;
   z-index: 3;
   position: relative;
   text-align: left;
+  max-width: 100%;
 }
 
 header.header .menu.app {
   width: 100%;
   max-width: 100%;
+  padding: 0px 0px 0px 64px;
 }
 
 header.header .menu.app .user_info {
@@ -2388,4 +2390,10 @@ button.accordion.active:after {
   content: "\2212";
   font-size: 23px;
   color: #fff;
+}
+.scallingText{font-weight: 300; font-size: 28px;}
+.scallingText .typewrite{
+  font-weight: 500;
+  position: relative;
+  top: -10px;
 }
