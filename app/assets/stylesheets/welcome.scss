@@ -585,9 +585,9 @@ header.header .menu.app .user_dropdown .drop_down_item:hover {
 }
 
 header.header .logo {
-  float: left;
+  float: left !important;
   /* width: auto; */
-  /* padding-top: 15px; */
+  padding-top: 15px;
   font-size: 20px;
   color: white;
   font-family: 'gotham_thin';
@@ -1355,7 +1355,7 @@ header.header.app .menu_list .menu_item:hover {
   }
 
   header.header .logo {
-    float: none;
+    float: left;
     padding: 10px 0;
     width: 100%;
     position: relative;
