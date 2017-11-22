@@ -8,13 +8,22 @@ class CourseRegistrationsController < ApplicationController
 	end
 
 	def create
+		if @course.privacy == 0
+			render json: create_it(@course)
+		elsif @course.privacy == 1
+			if params[ :access_code ] == @course.access_code
+				render json: create_it(@course)
+			end
+		end	
+	end
+
+	def create_it(course)
 		@course_registration = current_user.course_registrations.build(course_regis_params)
-		@course_registration.course_id = @course.id
+		@course_registration.course_id = course.id
 		@course_registration.user_role = User.roles[current_user.role]
 		@course_registration.approval_status = false
-		if @course_registration.save
-      		render json: @course_registration
-		end
+		@course_registration.save
+		@course_registration
 	end
 
 	def edit

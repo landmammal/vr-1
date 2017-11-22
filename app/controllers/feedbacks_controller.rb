@@ -74,7 +74,7 @@ class FeedbacksController < ApplicationController
     respond_to do |format|
       if rehearsal.save
         user =  User.find(feedback.rehearsals.first.trainee_id)
-        AdminMailer.feedback_notice(user).deliver_now
+        AdminMailer.feedback_notice(user).deliver_later
         format.html { redirect_to rehearsals_all_path, notice: 'start your feedback' }
         format.json { render json: feedback }
       else

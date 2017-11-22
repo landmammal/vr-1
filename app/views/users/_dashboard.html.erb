@@ -1,11 +1,6 @@
-<div class="title">
-	Dashboard
-</div>
-
 <div class="body">
 
 	<div class="section js-display_my_courses">
-		My courses:<br>
 		<div class="js-my_courses_list card_list">
 			
 			<% if @courses.size > 0 %>
@@ -14,14 +9,14 @@
 					<a class="js-c_<%= course.id %>" href="<%= course_path(course) %>">	
 						<div class="card">
 							<div class="card_title course">
-								<%= course.title[0...30] %>
-								<% if course.title.length > 30 %>
+								<%= course.title[0...25] %>
+								<% if course.title.length > 25 %>
 									...
 								<% end %>
 							</div>
 							<div class="card_desc course">
 								<%= course.description[0...110] %>
-								<% if course.description.length > 130 %>
+								<% if course.description.length > 110 %>
 								... <span class="blue">more</span>
 								<% end %>
 
@@ -43,7 +38,14 @@
 					<hr>
 					<a href="/courses/search">
 						<button class="big_btn blue" > Browse Courses </button>
-					</a>	
+					</a>
+					<br>
+					<br>
+					<% if current_user.level_2 %>
+						<a href="/users/<%= current_user.id.to_s %>?view=creator_space&group=top">
+							<button class="big_btn green_sft" > Create a course </button>
+						</a>	
+					<% end %>
 				</center>
 			<%end%>
 
@@ -52,17 +54,13 @@
 	</div>
 	
 	<% if current_user.level_2 && current_user.courses.size > 0 %>
-		<br><br><br>
-		Last 4 courses created:<br>
+		Courses you created ( last 4 ): <br>
 		<div class="card_list">
 			<% current_user.courses.order('id DESC').limit(4).each do |course| %>
 				<% @course_item = course %>
 		        <%= render 'coursecards' %>
 		    <% end %>
 		</div>
-		<button class="tab" data-frame="creator_space" data-group='top'>
-			Creator Space
-		</button>
     <% end %>
 
 </div>

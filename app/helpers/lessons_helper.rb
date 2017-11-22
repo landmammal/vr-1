@@ -2,23 +2,16 @@ module LessonsHelper
 	
 	def lessons_completed
 		registered_courses = current_user.registered_courses
-		user_rehearsals = current_user.rehearsals.where(submission: true)
-
-		completed_lessons = {}
-		completed_lessons_count = 0
-
-		user_rehearsals.each do |rehearsal|
-			if registered_courses.include? rehearsal.course
-				completed_lessons[rehearsal.lesson.id.to_s+' - '+rehearsal.lesson.title] = 0
-				rehearsal.feedbacks.each do |feedback|
-					completed_lessons[rehearsal.lesson.id.to_s+' - '+rehearsal.lesson.title] = 1 if feedback.approved
+		finished = []
+		registered_courses.each do |course|
+			course.topics.each do |topic|
+				topic.lessons.each do |lesson|
+					finished << lesson if lesson.completion_status(current_user)[0] == "approved"
 				end
 			end
 		end
 
-		completed_lessons.each { |key, item| completed_lessons_count += item }
-
-		return completed_lessons_count.to_s
+		return finished.size.to_s
 	end
 
 	def component(item)

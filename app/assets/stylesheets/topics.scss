@@ -11,7 +11,7 @@
 	margin: 0.5% 1% 0.5% 0%;
 	position: relative;
 	& .title{
-		width: 100%;
+		width: calc(100% - 50px);
 		padding: 10px;
 		float: left;
 		text-align: left;
@@ -21,7 +21,7 @@
 	& .edit_lesson{
 		padding: 10px;
 		float: left;
-		width: 100%;
+		width: 50px;
 		text-align: center;
 		background: #448fe4;
 
@@ -67,7 +67,7 @@
 		padding: 0 1px;
 		float: right;
 		position: absolute;
-		right: 10px;
+		right: 60px;
 		width: 10px;
 		border-radius: 10px;
 		top: 15px;
