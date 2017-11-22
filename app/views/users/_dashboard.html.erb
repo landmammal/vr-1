@@ -9,14 +9,14 @@
 					<a class="js-c_<%= course.id %>" href="<%= course_path(course) %>">	
 						<div class="card">
 							<div class="card_title course">
-								<%= course.title[0...30] %>
-								<% if course.title.length > 30 %>
+								<%= course.title[0...25] %>
+								<% if course.title.length > 25 %>
 									...
 								<% end %>
 							</div>
 							<div class="card_desc course">
 								<%= course.description[0...110] %>
-								<% if course.description.length > 130 %>
+								<% if course.description.length > 110 %>
 								... <span class="blue">more</span>
 								<% end %>
 
@@ -47,17 +47,13 @@
 	</div>
 	
 	<% if current_user.level_2 && current_user.courses.size > 0 %>
-		<br><br><br>
-		Last 4 courses created:<br>
+		Courses you created ( last 4 ): <br>
 		<div class="card_list">
 			<% current_user.courses.order('id DESC').limit(4).each do |course| %>
 				<% @course_item = course %>
 		        <%= render 'coursecards' %>
 		    <% end %>
 		</div>
-		<button class="tab" data-frame="creator_space" data-group='top'>
-			Creator Space
-		</button>
     <% end %>
 
 </div>

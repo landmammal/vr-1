@@ -2,7 +2,7 @@
   <div class="card_title">
     <a href="<%= course_path(@course_item) %>" class="js-c_<%= @course_item.id %>">
       <div class="title_name">
-        <%= @course_item.title[0...25] %><%= "..." if @course_item.title.length > 25 %>
+        <%= @course_item.title[0...23] %><%= "..." if @course_item.title.length > 23 %>
         <% if @course_item.privacy == 0 %>
             <span class="privacy ion-earth"></span>
         <% elsif @course_item.privacy == 2 || @course_item.privacy == 3 %>
