@@ -26,14 +26,27 @@ class CoursesController < ApplicationController
 
   def send_invite
     user = User.find_by_email( params[:user_email] )
-    course = Course.find(params[:course_id])
+    @course = Course.find(params[:course_id])
     if user
       if params[:auto_add]
-      
+        registration = @course.course_registration.build( user_id: user.id, user_role: params[:user_role], approval_status: false )
+        @course.save
+        url = '/courses/'+@course.id.to_s+'/accept_invitation/'+user.id
+      else
+        url = '/courses/'+@course.id.to_s+'/accept_invitation/'
       end
-      AdminMailer.invite_to_course( user, course )
+      AdminMailer.invite_to_course( user, @course, url).deliver_now
     else
-      AdminMailer.invite_to_website( params[:user_email] )
+      AdminMailer.invite_to_website( params[:user_email], @course ).deliver_now
+    end
+
+    render json: { "message" => "sent" }.to_json
+  end
+
+  def accept_invitation
+    @access = false
+    if params[ :user_id ] && current_user
+      @access = true
     end
   end
 
