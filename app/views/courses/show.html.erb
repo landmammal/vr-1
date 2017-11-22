@@ -182,7 +182,9 @@
 <% if !@course.tags.empty? %>
   <span style="font-family:'webly_bld';">tags:</span>
   <% @course.tags.split(', ').each do |tag| %>
-    <a href="#"><b><%= tag %></b></a>
+    <div class="tags-text">
+      <a href="#"><b><%= tag %></b></a>
+    </div>
   <% end %>
 <% end %>
 
