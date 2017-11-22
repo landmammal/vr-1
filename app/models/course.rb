@@ -14,8 +14,19 @@ class Course < ApplicationRecord
 
   has_many :rehearsals, dependent: :destroy
 
+  after_initialize :set_defaults, :if => :new_record?
+
+  validates :access_code, uniqueness: true
+  
+  def set_defaults
+    self.access_code ||= "CA-"+SecureRandom.hex(n=3)
+  end
+
   def privacy!
-  [[:Public, 0],[:Unpublished, 1],[:Paid, 2],[:Private, 3]]
+  [["Public", 0], ["Public (with access code)", 1],["Paid", 2],["Private (invite only)", 3]]
+  end
+  def cstatus!
+    [[:Draft, 0],[:Published, 1]]
   end
 
   def delete_associations

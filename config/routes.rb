@@ -36,6 +36,10 @@ Rails.application.routes.draw do
   post "/accepttermsandservices" => "welcome#accepttermandservices"
   post "/courses_search/api" => "api#courses_search_api"
 
+  get "/generate_course_code/" => "courses#generate_code"
+  post "/invite_student/" => "courses#send_invite"
+  get "/courses/:course_id/accept_invitation/" => "courses#accept_invitation"
+  get "/courses/:course_id/accept_invitation/:user_id" => "courses#accept_invitation"
 
   # put '/rehearsal/:rehearsal_id/rehearsal_approved' => "rehearsals#rehearsal_approved"
   post '/rehearsal/:rehearsal_id/approved' => "rehearsals#approved"
