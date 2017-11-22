@@ -7,13 +7,12 @@
 		<div class="logo">
 				
 			<a href="/">
-				<% if home || in_app %>
-				
-					<img src="/assets/logo-text.png">
-					 
+				<% if home %>
+					<br>
+					<div class="logo_white">video Rehearser</div>
 				<% else %>
-					<!-- <img src="/assets/logo.png"> -->
-					<img src="/assets/logo-text.png">
+					<br>
+					<div class="logo_blue">video Rehearser</div>
 				<% end %>
 			</a>
 		</div>
@@ -21,11 +20,11 @@
 		<div class="menu_list">
 
 			<% if in_app %>
+			
 				<div class="user_dropdown">
 					<%= button_to "Log out", destroy_user_session_path, method: "delete", class:"drop_down_item" %>
 				</div>
 				
-
 				<div class="user_info">
 					<div class="drop_menu">
 						<span id="chevron" class="ion-chevron-down"></span>
@@ -54,7 +53,8 @@
 
 		    	<a href="<%= new_user_registration_path %>">
 		    		<div class="register_item menu_item">Register</div>
-		    	</a>
+				</a>
+				
 			<% end %>
 
 	    </div>
