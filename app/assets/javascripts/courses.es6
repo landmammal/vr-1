@@ -83,6 +83,22 @@ var pageReady = function(){
 	});
 
 
+	$("#generate_new_access_code").click(function(e){
+		e.preventDefault();
+
+		$.ajax({
+			type:"GET",
+			url:'/generate_course_code/',
+			success: function(data){
+			  $('.access_code').val(data["new code"]); 
+			},
+			error: function(e){
+				console.log("ERROR: "+e);
+			}
+		});
+	});	
+
+
 	// $('#new_course').submit(function(event){
 	// 	event.preventDefault();
 	// 	$.ajax({
