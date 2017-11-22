@@ -74,6 +74,7 @@ class ApplicationController < ActionController::Base
   def set_fix
     Course.all.each do |c|
       c.access_code = "CA-"+SecureRandom.hex(n=3) if c.access_code == nil
+      c.privacy == 1 ? c.cstatus = 0 : c.cstatus = 1
       c.save
     end
   end
