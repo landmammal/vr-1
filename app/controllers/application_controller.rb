@@ -72,23 +72,11 @@ class ApplicationController < ActionController::Base
 
 
   def set_fix
-    Course.all.each do |c|
-      c.access_code = "CA-"+SecureRandom.hex(n=3) if c.access_code == nil
-      c.privacy == 1 ? c.cstatus = 0 : c.cstatus = 1
-      c.save
-    end
+    # Course.all.each do |c|
+    #   c.access_code = "CA-"+SecureRandom.hex(n=3) if c.access_code == nil
+    #   c.privacy == 1 ? c.cstatus = 0 : c.cstatus = 1
+    #   c.save
+    # end
   end
 
-
-  # al--->
-	# protected
-
-	# def authenticate_user!
-	# 	if user_signed_in?
-	# 	  super
-	# 	else
-	# 	  redirect_to root_path
-	# 	end
-	# end
-	# al
 end
