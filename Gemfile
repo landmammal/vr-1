@@ -18,7 +18,7 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 # for user profile and banner
 gem 'paperclip'
-gem 'aws-sdk'
+gem 'aws-sdk', '<3'
 
 # Al Delcy GEMS
 gem 'font-awesome-sass'
@@ -48,7 +48,7 @@ gem 'hirb'
 # gem 'capistrano-rails', group: :development
 group :production do
   gem 'puma'
-  gem 'pg'
+  gem 'pg', '0.20'
   gem 'rails_12factor'
 end
 

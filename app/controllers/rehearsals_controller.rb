@@ -15,7 +15,7 @@ class RehearsalsController < ApplicationController
   #   user = @rehearsal.trainee
   #   respond_to do |format|
   #     if @rehearsal.save!
-  #       AdminMailer.lesson_complete_notice(user).deliver_now
+  #       AdminMailer.lesson_complete_notice(user).deliver_later
   #       format.js { render :js => "window.location = '/rehearsals/all'" }
   #     else
   #       format.html { render :new }

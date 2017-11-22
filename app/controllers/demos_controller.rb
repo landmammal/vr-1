@@ -31,7 +31,7 @@ class DemosController < ApplicationController
 	      if formFilled
 	      	if @new_demo.save
 		    	@checksent_demo = 'sent'
-				AdminMailer.lead_notice(@new_demo).deliver_now!
+				AdminMailer.lead_notice(@new_demo).deliver_later!
 		        format.js { }
 		    end
 	      else
