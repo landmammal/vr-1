@@ -3,7 +3,7 @@
 	<div class="section js-display_my_courses">
 		My courses:<br>
 		<div class="js-my_courses_list card_list">
-
+			
 			<% if @courses.size > 0 %>
 				<% @courses.order('id DESC').each_with_index do |course, index| %>
 

@@ -123,10 +123,12 @@ var pageReady = function(){
 
 
   $('.rhs_course').click(function(){
+    $(this).toggleClass('topic-selected');   
     $(this).next( '.rhs_topics' ).toggle();    
   });
 
   $('.rhs_topic').click(function(){
+    $(this).toggleClass('topic-selected');
     $(this).next( '.rhs_lessons' ).toggle();    
   });
 

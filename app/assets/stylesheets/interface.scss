@@ -109,12 +109,18 @@ $panel_color: rgba(#2F3132,1) ;
 }
 
 .right_panel{
-	position:fixed; 
-	top:0; right:-100%; bottom:0;
-	width:30%; min-width:350px; z-index:40;
-	background-color:rgba(black,0.9); transition:0.5s;
-	color:white;
-	& .title{ color:black; font-family:'gotham';}
+	position: fixed;
+    top: 0;
+    right: -100%;
+    bottom: 0;
+    width: 30%;
+    min-width: 350px;
+    z-index: 40;
+    background-color: rgb(255, 255, 255);
+    transition: 0.5s;
+    color: #448fe4;
+    box-shadow: 1px 0px 31px 1px rgba(0,0,0,0.2);
+	& .title{ color:black;}
 	& .close{
 		border:0; padding:10px 15px 12px; background-color:black; color:white; font-size:16px; 
 		position:relative; right:0; top:0;
@@ -301,35 +307,57 @@ span.num{
 
 
 .tab{
-	background-color:transparent;
-	padding:5px 10px; margin:0 2px 0 0;
-	float:left;
-	border-radius:0;
-	border:1px solid transparent;
-	font-family:'gotham_book';
-	transition:0s;
-	margin-bottom:-1px;
-	&:hover, &.selected{ background-color:white; font-family:'gotham'; border:1px solid #ddd; border-bottom:0; border-radius:5px 5px 0 0; }
-}
-
-.rehearsal_filter{
-	padding:5px 8px;
-	background-color: #ccc ; 
-	display: inline-block;
-	cursor: pointer;
-	&.selected, &:hover{
-		color:white;
-		background-color: rgb(4, 110, 172) ; 
+	background-color: transparent;
+    padding: 10px 10px;
+    margin: 0 2px 0 0;
+    float: left;
+    border-radius: 0;
+    border-right: 0px solid #eee;
+    transition: 0s;
+    margin-bottom: -1px;
+    color: #333;
+    font-size: 15px;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-bottom: 10px;
+	&:hover, &.selected{ 
+		background-color: white;
+		border-bottom: 0;
+		border-radius: 5px 5px 0 0;
+		font-weight: 400;
+		box-shadow: 0px 2px 0px 0px #98bbde;
 	}
 }
 
+.rehearsal_filter{
+	padding: 5px 18px;
+    background-color: #f7f8fd;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 400;
+	&.selected, &:hover{
+ 
+		background-color: rgb(4, 110, 172) ; color: white;
+		background-color: #448fe4;
+	}
+}
 
+.user_bubble:hover{
+	background-color: #eceffd;
+}
 .user_bubble, .rehearsal_bubble{
-	border-radius:5px; position:relative;
-	padding:2px; border:4px solid #ddd;
-	overflow:hidden; background-color:#ddd;
-	display:inline-block; float:none;
-	width:250px; margin:5px;
+	border-radius: 5px;
+    position: relative;
+    padding: 10px;
+    border: 0px solid #ddd;
+    overflow: hidden;
+    background-color: #f7f8fd;
+    display: inline-block;
+    float: none;
+    width: 300px;
+    margin: 5px;
 	& .pic{
 		overflow: hidden; float:left; width:40px;
 		border-radius:3px;
@@ -337,12 +365,17 @@ span.num{
 	}
 	& .info{
 		width: calc( 100% - 45px );
-		font-family:'gotham';
 		float: left;
 		text-align: left;
 		margin: 3px 0 0 5px;
 		color: black;
-		line-height: 1em;
+		font-weight: 400;
+		font-size: 13px;
+	}
+	& .other_info{
+		line-height: 25px;
+		font-weight: 300;
+		font-size: 14px;
 	}
 }
 
@@ -364,8 +397,7 @@ span.num{
 }
 
 .section{
-	// background-color:white; 
-	padding:5px;
+	padding:10px;
 	border-radius:1px;
 	overflow:hidden;
 }
@@ -403,3 +435,9 @@ span.num{
 /* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
 @media only screen and (min-width: 769px) {
 }
+.all_rehearsals_list a{
+	display: inline-block;
+
+}
+.all_rehearsals_list h4{ font-weight: 300;}
+.rehearsal_courses h4{ font-weight: 300;}

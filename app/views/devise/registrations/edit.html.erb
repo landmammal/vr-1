@@ -1,3 +1,6 @@
+
+<div class="EditUser-container">
+
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -9,17 +12,25 @@
   </div>
 
   <div class="form_field">
-      <p>
-        <%= f.label :avatar %><br />
-        <%= f.file_field :profile %>
-      </p>
-  </div>
-
-  <div class="form_field">
-      <p>
-        <%= f.label :banner %><br />
-        <%= f.file_field :banner %>
-      </p>
+    <div class="columns">
+      <div class="column">
+          <p>
+              <%= f.label :avatar %><br />
+              <%= f.file_field :profile %>
+              <span>Choose File</span>
+            </p>
+      </div>
+      <div class="column">
+          <p>
+              <%= f.label :banner %><br />
+              <%= f.file_field :banner %>
+              <span>Choose File</span>
+            </p>
+      </div>
+    </div>
+     
+ 
+     
   </div>
 
 
@@ -45,13 +56,15 @@
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
-  <div class="actions">
+  <div class="field actions">
     <%= f.submit "Update" %>
   </div>
 <% end %>
-
+<div class="cancel-field">
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+</div>
+</div>

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :purchases, only: [:show]
 
   # routes for menu
-  menu_routes = ['about','markets','overview','process','contact','versions']
+  menu_routes = ['about','markets','overview','process','contact','versions','jobs']
   menu_routes.push('theteam','termsandservices','FAQs','requirements','policies','press','teach','coach','learn','create','companies','support')
   menu_routes.each do |menu|
     get "/#{menu}" => "welcome##{menu}"

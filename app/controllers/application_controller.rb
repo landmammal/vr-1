@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   def self.force_ssl(options = {})
     host = options.delete(:host)
     before_filter(options) do
+      
       if !request.ssl? && !Rails.env.development? && !(respond_to?(:allow_http?) && allow_http?)
         redirect_options = {:protocol => 'https://', :status => :moved_permanently}
         redirect_options.merge!(:host => host) if host
@@ -27,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
 	def main_links
-		@main_menu = ['overview','contact']
+		@main_menu = ['overview','contact', 'jobs']
     @languages = [['English','en'],['Spanish', 'sp']]
     @privacy = [['Public', 0],['Locked', 1],['Paid Members', 2],['Registered members', 3]]
 
