@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :authenticate_user! , except: [:index, :show, :all, :display]
+  before_action :authenticate_user! , except: [:index, :show, :all, :display, :register_with_access_code, :accept_invitation, :leave_course]
   before_action :set_course, only: [:show, :edit, :update, :destroy, :display]
   # GET /courses
   # GET /courses.json
@@ -45,7 +45,16 @@ class CoursesController < ApplicationController
 
   def accept_invitation
     # @access = false
+    @course = Course.find(params[:course_id])
     @access = true
+    @needs_access_code = true
+
+    cr = @course.course_registrations.find_by( user_id: current_user.id )
+    
+    if cr
+      redirect_to course_path( @course )
+    end
+
     if params[ :user_id ] && current_user
       @access = true
       course_regist = current_user.course_registrations.find_by( course_id: params[:course_id] )
@@ -61,11 +70,27 @@ class CoursesController < ApplicationController
 
   def register_with_access_code
     course = Course.find(params[:course_id])
-    if params[:access_code] == course.access_code
-      registration = @course.course_registration.build( user_id: user.id, user_role: params[:user_role], approval_status: true )
+    cr = course.course_registrations.find_by( user_id: current_user.id )
+
+    if cr
+      redirect_to course_path( course )
     end
 
-    redirect_to course_path( course )
+    if params[:access_code] == course.access_code
+      course.course_registrations.build( user_id: current_user.id, user_role: params[:user_role], approval_status: true ) if !cr
+      if course.save
+        redirect_to course_path( course )
+      end
+    end
+
+  end
+
+  def leave_course
+    course = Course.find( params[:course_id] )
+    cr = course.course_registrations.find_by( user_id: params[:user_id] )
+    if cr.destroy
+      redirect_to user_path( params[:user_id] )
+    end
   end
 
   # GET /courses/1

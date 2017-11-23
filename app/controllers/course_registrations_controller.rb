@@ -8,12 +8,17 @@ class CourseRegistrationsController < ApplicationController
 	end
 
 	def create
-		if @course.privacy == 0
-			render json: create_it(@course)
-		elsif @course.privacy == 1
-			if params[ :access_code ] == @course.access_code
+		cr = @course.course_registrations.find_by( user_id: current_user.id )
+		binding.pry
+		if !cr
+			if @course.privacy == 0
+				
 				render json: create_it(@course)
-			end
+			elsif @course.privacy == 1
+				if params[ :access_code ] == @course.access_code
+					render json: create_it(@course)
+				end
+			end	
 		end	
 	end
 
