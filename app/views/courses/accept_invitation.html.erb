@@ -1,24 +1,39 @@
-<% if @access %>
-        
-    <% if @needs_access_code %>
+<% if @course.privacy == 0 %>
 
-        <%= form_tag "/register_with_access_code", remote: true do |f| %>
-            <%= text_field_tag :access_code, nil, placeholder:"Enter course access code" %>
-            <%= text_field_tag :course_id, nil, type:'hidden', class:"full", value:params[:course_id] %>
-            <br>
-            <%= submit_tag "Submit access code", class:'blue' %>
+    <script>
+        reload_to( "/courses/<%= params[:course_id] %>" , 0 );
+    </script>
+
+<% else %>
+    
+    <% if @access %>
+            
+        <% if @needs_access_code %>
+            
+            <center style="margin-top:100px;">
+
+                <%= form_tag "/register_with_access_code", remote: true do |f| %>
+                    <%= text_field_tag :access_code, nil, placeholder:"Enter course access code", style:"width:200px;" %>
+                    <%= text_field_tag :course_id, nil, type:'hidden', class:"full", value:params[:course_id] %>
+                    <%= text_field_tag :user_role, nil, type:'hidden', class:"full", value:'trainee' %>
+                    <br>
+                    <%= submit_tag "Submit access code", class:'blue' %>
+                <% end %>
+
+            </center>
+
+        <% else %>
+
+            <center style="margin-top:100px;">
+                <h2>  Welcome to the course. </h2>
+            </center>
+            <script>
+                reload_to( "/courses/<%= params[:course_id] %>" , 5000 );
+            </script>
+        
         <% end %>
 
-    <% else %>
 
-        <center style="margin-top:100px;">
-            <h2>  Welcome to the course. </h2>
-        </center>
-        <script>
-            reload_to( "/courses/<%= params[:course_id] %>" , 5000 );
-        </script>
-    
-    <% end %>
-
+    <%end%>
 
 <%end%>

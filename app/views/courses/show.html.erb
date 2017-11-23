@@ -193,3 +193,8 @@
   
 <br><br>
 <button class="small_btn blue js-click_back">Back</button>
+<form action="/leave_course/" method="Post">
+  <input type="hidden" name="course_id" value="<%= @course.id %>" >
+  <input type="hidden" name="user_id" value="<%= current_user.id %>" >
+  <button class="small_btn red" style="float:right;">Leave Course</button>
+</form>
