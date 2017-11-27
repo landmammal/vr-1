@@ -718,9 +718,16 @@
 .timeline ul {
   position: relative;
   display: table;
-  width: 100%;
+  margin: 0px auto -25px auto;
   margin-bottom: -25px;
   padding: 0px;
+  width: 100%;
+}
+.timeline ul.timeline-small{
+  width: auto;
+}
+.timeline-small li{
+ min-width: 50px;
 }
 .timeline ul li {
   display: table-cell;
