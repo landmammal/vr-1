@@ -195,7 +195,7 @@
   
 <br><br>
 <button class="small_btn blue js-click_back">Back</button>
-<% if course_creator %>
+<% if !course_creator %>
   <form action="/leave_course/" method="Post">
     <input type="hidden" name="course_id" value="<%= @course.id %>" >
     <input type="hidden" name="user_id" value="<%= current_user.id %>" >
