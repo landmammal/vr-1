@@ -2,10 +2,10 @@
 
 <div class="top_info">
   <div class="course_title">
-    <span class="grey"><%= link_to @course.title, course_path(@course) %> :: </span>
+    <span class="grey"><%= link_to @course.title, course_path(@course) if !course_closed %> :: </span>
   </div>
   <div class="course_title">
-    <%= @topic.title %>
+    <%= @topic.title if !course_closed %>
     <% if topic_creator %>
       <a href="<%= edit_course_topic_path(@course, @topic) %>" title="edit <%= @topic.title %>">
         <span class="ion-edit edit" style="font-size:15px; margin:50px 10px;"></span>
@@ -15,7 +15,7 @@
 </div>
 
 
-<%= @topic.description %>
+<%= @topic.description if !course_closed %>
 
 <%if topic_creator || course_trainee %>
 
@@ -77,10 +77,11 @@
 
 <% else %>
   
-  You are not registered to this course<br>
-  <center style="margin:50px auto 200px;">
+<center style="margin:50px auto 200px;">
+    <br><br><br>
+    You are not registered to this course<br>
     <%=  "This is a Free Course, click below to start." if course_public %>
-    <%=  'This is a "Closed Course", click below to request Access.' if course_closed %><br><br>
+    <%=  'This is a "Closed Course". You need an invitation from the course instructor.' if course_closed %><br><br>
     <%= render './course_registrations/course_registration_form' if !course_creator %>
   </center>
 
