@@ -82,7 +82,7 @@ var pageReady = function(){
 		$('.js-'+thisForm+'_form').fadeOut(500);
 	});
 
-
+	
 	$("#generate_new_access_code").click(function(e){
 		e.preventDefault();
 

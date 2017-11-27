@@ -35,12 +35,18 @@ class CoursesController < ApplicationController
       else
         url = '/courses/'+@course.id.to_s+'/accept_invitation/'
       end
+      @emails = params[:user_email]
+      @notif = "invite"
       AdminMailer.invite_to_course( user, @course, url).deliver_later
     else
+      @emails = params[:user_email]
+      @notif = "new"
       AdminMailer.invite_to_website( params[:user_email], @course ).deliver_later
     end
 
-    render json: { "message" => "sent" }.to_json
+    respond_to do |format|
+      format.js { }
+    end
   end
 
   def accept_invitation

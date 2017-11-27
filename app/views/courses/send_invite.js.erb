@@ -1,0 +1,8 @@
+$('.confirmation_div').fadeIn(500);
+<% if @notif == "new" %>
+    $('.confirmation_div').html("This user does not exist, an email has been sent to <%= @emails %>, to invite them to the site and to the course.");
+<% elsif @notif == "invite" %>
+    $('.confirmation_div').html("An email has been successfuly sent to <%= @emails %>, to invite them to the site and to the course.");
+<% end %>
+$('.confirmation_div').delay(5000).fadeOut(500);
+$('form.invite_student_form')[0].reset();

@@ -720,15 +720,27 @@
  
 	margin: 5px auto;
   }
-  
-  @media only screen and (max-width: 495px) {
+
+
+.confirmation_div{
+	display: none;
+	border-radius:5px;
+	border: 1px solid #1EA402;
+	background: rgba(#1CDC69, 0.5);
+	padding: 10px 15px;
+	margin: 40px auto;
+}
+
+
+
+@media only screen and (max-width: 495px) {
 	.card_list .home_card, .card_list .card {
 	  width: 99.5%;
 	}
 	.card_list .home_card .card_title, .card_list .card .card_title {
 	  line-height: 1.5em;
 	}
-  }
+}
 
 @media only screen and (min-width: 496px) {
 	.card_list .home_card, .card_list .card {
