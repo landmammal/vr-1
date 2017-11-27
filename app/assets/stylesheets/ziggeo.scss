@@ -31,12 +31,17 @@
 video{height:100%;}
 
 .submit_ziggeo{
-  float: right; display: inline-block;
+  float: right;
+  display: inline-block;
   width: auto;
-  padding:8px 15px; margin: 7px;
+  padding: 8px 15px;
+  margin: 7px;
   letter-spacing: 0.05em;
   font-weight: bolder;
-  font-size:12px;
+  font-size: 12px;
+  margin-top: -30px;
+  top: 18px;
+  position: relative;
   &.submitted_ziggeo{
     font-size:23px; 
     transition: 0.5s;

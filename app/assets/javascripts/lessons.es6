@@ -348,6 +348,26 @@ var pageReady = function(){
 			tmp_shift.remove();
 		});
 
+
+		 
+
+
+
+
+
+
+
+// Get all parts of the progress bar.
+var bars = $('.timeline ul li');
+var count = jQuery('.timeline ul li').size();
+// With each one, calculate the percentage and apply the width.
+if(count < 5){
+	$('.timeline ul').addClass("timeline-small");
+ }
+bars.each(function()
+{
+    $(this).css('width', (100 / bars.length) + '%');
+});
 		
 		
 	// }else if($('.media_wrapper').data('videotype') === "image"){
