@@ -66,7 +66,7 @@
      
      <div class="rehearsals-list">
              
-     <label class="title-head tooltip-custom" data-tooltip="Choose a rehearsal to submit to your instructor">Rehearsals List</label>
+     <label class="title-head">Rehearsals List <span class="tooltip-custom" data-tooltip="Choose the rehearsal from this list that you would like to send to the instructor for approval or feedback."> <img src="/assets/Antu_help_hover.png" width="22px"></span></label>
      <div class="contenido">
         <div class="list_of_lesson_rehearsals">
            <% rehearsals_for_this_lesson.each_with_index do |rehearsal, index| %>
@@ -100,8 +100,9 @@
    <br>
    <br>
 <div style="text-align:right" class="first_contact_intro" data-intro="Use these buttons to rearrange your recording area to best fit your learning style.">
-   <button class="blue lesson_next training-path-1"> Training Path 1</button>
-   <button class="lesson_next training-path-2"> Training Path 2</button>
+    <span class="tooltip-custom" data-tooltip="Choose the view that you feel most comfortable with as you rehearse."> <img src="/assets/Antu_help_hover.png" width="22px"></span>
+   <button class="blue lesson_next training-path-1"> View 1</button>
+   <button class="lesson_next training-path-2"> View 2</button>
 </div>
 
     </div>

@@ -608,7 +608,6 @@ header.header .menu_list .menu_item {
   float: none;
   padding: 15px 20px;
   margin: 0 10px;
-  font-family: 'gotham_book';
   font-size: 13px;
   letter-spacing: 0.05em;
   color: #437cbf;
@@ -635,7 +634,8 @@ header.header .menu_list .register_item:hover {
 
 header.header a {
   color: #4482c3;
-  font-weight: bold;
+  font-weight: 400;
+  font-size: 16px;
 }
 
 header.header.home {
@@ -710,7 +710,6 @@ header.header.app .menu_list .menu_item:hover {
 .loading_app .loading_wrapper .load_text {
   color: #0883C3;
   font-size: 20px;
-  font-family: 'gotham_book';
   margin: 5px auto;
 }
 
@@ -943,7 +942,6 @@ header.header.app .menu_list .menu_item:hover {
 }
 
 .home_submenu .submenu_item .text {
-  font-family: 'gotham_book';
   font-size: 13px;
 }
 
@@ -1068,7 +1066,6 @@ header.header.app .menu_list .menu_item:hover {
 }
 
 .faq_content {
-  font-family: 'gotham_book';
   margin-bottom: 30px;
 }
 
@@ -1545,7 +1542,6 @@ header.header.app .menu_list .menu_item:hover {
   }
 
   .home_submenu .submenu_item .text {
-    font-family: 'gotham_book';
     font-size: 13px;
   }
 
@@ -1567,7 +1563,6 @@ header.header.app .menu_list .menu_item:hover {
 
   .home_info_1 {
     font-size: 30px;
-    font-family: 'gotham_book';
     margin: 5px auto;
     line-height: 50px;
   }
@@ -2525,10 +2520,11 @@ button.accordion.active:after {
 .job_banner {
   background-image: url(../assets/job-banner.jpg);
   width: 100%;
-  min-height: 446px;
+  min-height: 350px;
   background-position: center center;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
+  position: relative;
 }
 
 
@@ -2546,13 +2542,14 @@ button.accordion.active:after {
     width: 800px;
     margin: auto;
     max-width: 95%;
-    font-size: 49px;
+    font-size: 59px;
+    font-weight: 100;
+    margin-top: 5%;
 
     & span {
       position: relative;
-      font-weight: 300;
-      display: block;
-      font-size: 29px;
+      font-weight: 400;
+      text-transform: capitalize;
     }
   }
   & p {
@@ -2575,19 +2572,35 @@ button.accordion.active:after {
 }
   
 .about-job{
-  background-image: url(../assets/bg.png);
   width: 100%;
   background-position: center center;
   background-repeat: no-repeat;
   position: relative;
   -webkit-background-size: cover;
   padding: 50px 0px;
-  text-align: center;
+  text-align: left;
 
   & h3{
     color: #437cbf;
     font-size: 30px;
-    margin: 0;
+    width: 800px;
+    margin: auto;
+    max-width: 95%;
+  }
+
+  & ul{
+  width: 800px;
+  margin: auto;
+  max-width: 95%;
+
+  & li{
+    font-size: 17px;
+    float: none;
+    padding-top: 10px;
+    line-height: 26px;
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
   }
 
   & p{
@@ -2603,16 +2616,7 @@ button.accordion.active:after {
     font-weight: 400;
   }
 }
-
-.job_banner {
-  background-image: url(../assets/header-jobs.png);
-  width: 100%;
-  min-height: 446px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  position: relative;
-  -webkit-background-size: cover;
-}  
+ 
 .job-responsibility{ 
   text-align: left;
   padding: 50px 0px;
@@ -2620,7 +2624,7 @@ button.accordion.active:after {
 
   & h3{
     color: #437cbf;
-    font-size: 30px;
+    font-size: 34px;
     position: relative;
     width: 800px;
     margin: auto;
@@ -2630,6 +2634,7 @@ button.accordion.active:after {
     line-height: 26px;
     letter-spacing: 1px;
     margin-bottom: 10px;
+    font-weight: 300;
   }
 
   & ul{
@@ -2642,7 +2647,6 @@ button.accordion.active:after {
     float: none;
     padding-top: 10px;
     line-height: 26px;
-    letter-spacing: 1px;
     font-weight: 400;
   }
   & ul li{
@@ -2732,3 +2736,153 @@ button.accordion.active:after {
       padding: 0px 20px;
     }
 }  
+
+.jobs-heading{
+  font-size: 21px;
+  width: 800px;
+  margin: auto;
+  max-width: 95%;
+  font-weight: 300;
+  line-height: 50px;
+  background: #4888d2;
+  padding: 5px 20px 5px 78px;
+  margin-top: 20px;
+  display: block;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  
+  &.job-selected{
+    &:before{
+      content: "\f209";
+      font-family: "Ionicons";
+      color: #fff;
+      font-size: 18px;
+      padding: 2px 3px;
+      margin-right: 7px;
+      position: absolute;
+      top: 1px;
+      background: #fff;
+      color: #4887d2;
+      width: 58px;
+      text-align: center;
+      height: 58px;
+      line-height: 57px;
+      left: 1px;
+
+    }
+  }
+ & span{
+   font-weight: 300;
+ }
+ &:before{
+  content: "\f218";
+  font-family: "Ionicons";
+  color: #fff;
+  font-size: 18px;
+  padding: 2px 3px;
+  margin-right: 7px;
+  position: absolute;
+  top: 1px;
+  background: #fff;
+  color: #4887d2;
+  width: 58px;
+  text-align: center;
+  height: 58px;
+  line-height: 57px;
+  left: 1px;
+ }
+
+}
+.job-content{
+  font-weight: 300;
+  width: 800px;
+  margin: auto;
+  max-width: 95%;
+  background: #fff;
+  padding: 20px;
+  display: none;
+  & h4{
+    font-weight: 500;
+    color: #437cbf;
+    font-size: 24px;
+  }
+  & h5{
+    font-size: 23px;
+    font-weight: 500;
+  }
+  & p{
+    font-size: 17px;
+    float: none;
+    padding-top: 5px;
+    line-height: 26px;
+    font-weight: 400;
+  }
+
+}
+
+
+
+
+.jobs-form{
+  width: 800px;
+  max-width: 95%;
+  margin: auto; 
+  padding: 10px 0px;
+  
+  & input[type="text"], input[type="email"], input[type="password"], textarea{
+    border: 1px solid #ccc;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 20px;
+    padding: 7px 10px;
+    resize: none;
+    font-weight: 400;
+    height: inherit;
+  }
+  & textarea{
+    border: 1px solid #ccc;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 5px;
+    padding: 7px 10px;
+    resize: none;
+    font-weight: 400;
+    height: inherit;
+  }
+  & .form-group{
+    & label{
+      display: block;
+      font-weight: 300;
+      color: #333;
+      font-size: 14px;
+      letter-spacing: 1px;
+      position: relative;
+      margin: 0;
+  }
+  }
+}
+
+
+.jobs-form input[type='file'] {
+  border: 0px;
+  margin: 0px;
+  padding: 11px 5px;
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+}
+.jobs-form input[type='file'] + span {
+  background: #ffffff;
+  padding: 8px 20px;
+  display: block;
+  max-width: 100%;
+  color: #4a4a4a;
+  font-weight: 300;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  border-radius: 20px;
+  position: relative;
+  z-index: 1;
+  top: 4px;
+}
