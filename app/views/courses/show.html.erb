@@ -56,8 +56,8 @@
   
           <div class="modal-body">
   
-            <div data-action="invite_student">
-              <%= form_tag "/invite_student", remote: true do %>
+            <div class="invite_student_div" data-action="invite_student">
+              <%= form_tag "/invite_student", class:'invite_student_form', remote: true do %>
                 <%= text_field_tag :user_email, nil, class:"full", placeholder:"Enter Student's email" %>
                 <%= text_field_tag :course_id, nil, type:'hidden', class:"full", value:@course.id %>
                 <br>
@@ -69,6 +69,8 @@
                 <%= submit_tag "Send Invitation", class:'blue' %>
               <% end %>
             </div>
+
+            <div class="confirmation_div"></div>
             
             <!-- <div data-action="send_course_link">
               <%= form_tag "/send_course_link", remote: true do |f| %>
