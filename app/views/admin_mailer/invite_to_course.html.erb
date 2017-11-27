@@ -74,7 +74,7 @@
                 
                 You’ve been invited to join <%= @course.title %> on videoRehearser.
                 <div class="main-body">
-                  Your instructor, <%= @isntructor %>, is excited to have you. videoRehearser is engineered to train and will lead you to performance mastery! <%= link_to "Click here to begin link", @url %>.
+                  Your instructor, <%= @instructor.full_name %>, is excited to have you. videoRehearser is engineered to train and will lead you to performance mastery! <%= link_to "Click here to begin", @url %>.
                   <br>
                   <br>
                   <b>Course details:</b>
@@ -88,8 +88,9 @@
                 <br>
                 <hr>
                 <br>
-                Questions? 
-                Contact Us (LINK TO EMAIL hello@videorehearser.com)           
+                Questions?
+                <br> 
+                Contact us at: <%= link_to "help@videorehearser.com", "mailto:help@videorehearser.com" %>.
                 <br>
                 <br>
                 <br>

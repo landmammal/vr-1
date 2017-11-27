@@ -31,6 +31,8 @@ class AdminMailer < ApplicationMailer
   def invite_to_website(email, course)
     @email = email
     @course = course
+    @url = @base
+    @course_url = @base+"/courses/"+course.id.to_s
     mail( to: email, subject: "Welcome to the vR Community #{email}!")
   end
 
