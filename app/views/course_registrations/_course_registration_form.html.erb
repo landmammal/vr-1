@@ -11,7 +11,15 @@
             </ul>
         </div>
       <% end %>
-      <%= button_tag ( course_public ? "Start" : "Register for")+" Course", type:'submit', class:"big_btn blue js-course_register_btn" %>
+      <% if course_public %>
+        <%= button_tag "Start Course", type:'submit', class:"big_btn blue js-course_register_btn" %>
+      <% else %> 
+        <%if course_public_code %>
+          <%= text_field_tag :access_code, nil, placeholder:"Enter course access code", style:" width:200px; " %>
+          <br>
+        <% end %>
+        <%= button_tag "Register for Course", type:'submit', class:"big_btn blue js-course_register_btn" %>
+      <% end %>
   <% end %>
 </div>
 

@@ -80,17 +80,19 @@
 
 <% if user_signed_in? %>
 
-<div class="main-content">
-<div class="side-menu">
-    <%= render 'layouts/leftpanel' %>
-</div>
-<div class="content-container">
-    <%= yield %>
-    <input type="hidden" name="thisPath" value="<%= request.original_fullpath %>">
-</div>
+  <div class="main-content">
 
+    <div class="side-menu">
+        <%= render 'layouts/leftpanel' %>
+    </div>
+    <div class="content-container">
+        <%= yield %>
+        <input type="hidden" name="thisPath" value="<%= request.original_fullpath %>">
+    </div>
 
-</div>
+  </div>
+  <br>
+
  
 
 <% else %>

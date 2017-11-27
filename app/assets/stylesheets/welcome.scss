@@ -154,12 +154,12 @@ input[type="submit"].blue:hover, button.blue:hover {
 }
 
 input[type="submit"].green_sft, button.green_sft {
-  background-color: #118fe4;
+  background-color: #4EBC52;
   color: #fff;
 }
 
 input[type="submit"].green_sft:hover, button.green_sft:hover {
-  background-color: #2767af;
+  background-color: #4EBC52;
 }
 
 input[type="submit"].creator_btn, input[type="submit"].admin_btn, input[type="submit"].coaching_btn, button.creator_btn, button.admin_btn, button.coaching_btn {
@@ -572,12 +572,13 @@ header.header .menu.app .user_dropdown .drop_down_item:hover {
 }
 
 header.header .logo {
-  
+  float: left;
+  padding-top: 15px;
   font-size: 20px;
   color: white;
   font-family: 'gotham_thin';
   letter-spacing: 0.05em;
-  display: inline-block;
+  
 }
 
 header.header .logo img {
@@ -607,6 +608,7 @@ header.header .menu_list .menu_item {
   float: none;
   padding: 15px 20px;
   margin: 0 10px;
+  font-family: 'gotham_book';
   font-size: 13px;
   letter-spacing: 0.05em;
   color: #437cbf;
@@ -632,10 +634,8 @@ header.header .menu_list .register_item:hover {
 }
 
 header.header a {
-  color: #000000;
-  font-weight: 300;
-  font-size: 16px;
-  line-height: 23px;
+  color: #4482c3;
+  font-weight: bold;
 }
 
 header.header.home {
@@ -710,6 +710,7 @@ header.header.app .menu_list .menu_item:hover {
 .loading_app .loading_wrapper .load_text {
   color: #0883C3;
   font-size: 20px;
+  font-family: 'gotham_book';
   margin: 5px auto;
 }
 
@@ -942,6 +943,7 @@ header.header.app .menu_list .menu_item:hover {
 }
 
 .home_submenu .submenu_item .text {
+  font-family: 'gotham_book';
   font-size: 13px;
 }
 
@@ -1066,6 +1068,7 @@ header.header.app .menu_list .menu_item:hover {
 }
 
 .faq_content {
+  font-family: 'gotham_book';
   margin-bottom: 30px;
 }
 
@@ -1416,7 +1419,7 @@ header.header.app .menu_list .menu_item:hover {
   }
 
   header.header .logo {
-    float: none;
+    float: left;
     padding: 10px 0;
     width: 100%;
     position: relative;
@@ -1542,6 +1545,7 @@ header.header.app .menu_list .menu_item:hover {
   }
 
   .home_submenu .submenu_item .text {
+    font-family: 'gotham_book';
     font-size: 13px;
   }
 
@@ -1563,6 +1567,7 @@ header.header.app .menu_list .menu_item:hover {
 
   .home_info_1 {
     font-size: 30px;
+    font-family: 'gotham_book';
     margin: 5px auto;
     line-height: 50px;
   }

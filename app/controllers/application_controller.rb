@@ -1,21 +1,22 @@
 class ApplicationController < ActionController::Base
   include Pundit
+  before_action :set_fix
 
   
-  def self.force_ssl(options = {})
-    host = options.delete(:host)
-    before_filter(options) do
+  # def self.force_ssl(options = {})
+  #   host = options.delete(:host)
+  #   before_filter(options) do
       
-      if !request.ssl? && !Rails.env.development? && !(respond_to?(:allow_http?) && allow_http?)
-        redirect_options = {:protocol => 'https://', :status => :moved_permanently}
-        redirect_options.merge!(:host => host) if host
-        redirect_options.merge!(:params => request.query_parameters)
-        redirect_to redirect_options
-      end
-    end
-  end
+  #     if !request.ssl? && !Rails.env.development? && !(respond_to?(:allow_http?) && allow_http?)
+  #       redirect_options = {:protocol => 'https://', :status => :moved_permanently}
+  #       redirect_options.merge!(:host => host) if host
+  #       redirect_options.merge!(:params => request.query_parameters)
+  #       redirect_to redirect_options
+  #     end
+  #   end
+  # end
 
-  force_ssl
+  # force_ssl
 
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -28,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
 	def main_links
-		@main_menu = ['overview','contact', 'jobs']
+		@main_menu = ['overview','contact']
     @languages = [['English','en'],['Spanish', 'sp']]
     @privacy = [['Public', 0],['Locked', 1],['Paid Members', 2],['Registered members', 3]]
 
@@ -69,15 +70,13 @@ class ApplicationController < ActionController::Base
     redirect_to (request.referrer || root_path)
   end
 
-  # al--->
-	# protected
 
-	# def authenticate_user!
-	# 	if user_signed_in?
-	# 	  super
-	# 	else
-	# 	  redirect_to root_path
-	# 	end
-	# end
-	# al
+  def set_fix
+    # Course.all.each do |c|
+    #   c.access_code = "CA-"+SecureRandom.hex(n=3) if c.access_code == nil
+    #   c.privacy == 1 ? c.cstatus = 0 : c.cstatus = 1
+    #   c.save
+    # end
+  end
+
 end

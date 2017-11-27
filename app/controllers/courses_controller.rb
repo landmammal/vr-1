@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :authenticate_user! , except: [:index, :show, :all, :display]
+  before_action :authenticate_user! , except: [:index, :show, :all, :display, :register_with_access_code, :accept_invitation, :leave_course]
   before_action :set_course, only: [:show, :edit, :update, :destroy, :display]
   # GET /courses
   # GET /courses.json
@@ -15,7 +15,7 @@ class CoursesController < ApplicationController
   end
 
   def search
-    @courses = Course.all.map{ |x| x if ( x.privacy != 3 && cstatus == 1 ) }.compact
+    @courses = Course.all.map{ |x| x if ( x.privacy != 3 && x.cstatus == 1 ) }.compact
     @site_title = 'Search Courses'
     if current_user.level_2
       @course = Course.new
@@ -35,18 +35,61 @@ class CoursesController < ApplicationController
       else
         url = '/courses/'+@course.id.to_s+'/accept_invitation/'
       end
-      AdminMailer.invite_to_course( user, @course, url).deliver_now
+      AdminMailer.invite_to_course( user, @course, url).deliver_later
     else
-      AdminMailer.invite_to_website( params[:user_email], @course ).deliver_now
+      AdminMailer.invite_to_website( params[:user_email], @course ).deliver_later
     end
 
     render json: { "message" => "sent" }.to_json
   end
 
   def accept_invitation
-    @access = false
+    # @access = false
+    @course = Course.find(params[:course_id])
+    @access = true
+    @needs_access_code = true
+
+    cr = @course.course_registrations.find_by( user_id: current_user.id )
+    
+    if cr
+      redirect_to course_path( @course )
+    end
+
     if params[ :user_id ] && current_user
       @access = true
+      course_regist = current_user.course_registrations.find_by( course_id: params[:course_id] )
+      if course_regist
+        @needs_access_code = false
+      else
+        @needs_access_code = true
+        course_regist.approval_status = true
+        course_regist.save
+      end
+    end
+  end
+
+  def register_with_access_code
+    course = Course.find(params[:course_id])
+    cr = course.course_registrations.find_by( user_id: current_user.id )
+
+    if cr
+      redirect_to course_path( course )
+    end
+
+    if params[:access_code] == course.access_code
+      course.course_registrations.build( user_id: current_user.id, user_role: params[:user_role], approval_status: true ) if !cr
+      if course.save
+        redirect_to course_path( course )
+      end
+    end
+
+  end
+
+  def leave_course
+    course = Course.find( params[:course_id] )
+    cr = course.course_registrations.find_by( user_id: params[:user_id] )
+    if cr.destroy
+      redirect_to user_path( params[:user_id] )
     end
   end
 
