@@ -127,6 +127,12 @@ var pageReady = function(){
     $(this).next( '.rhs_topics' ).toggle();    
   });
 
+
+  $('.jobs-heading').click(function(){
+    $(this).toggleClass('job-selected');   
+    $(this).next( '.job-content' ).toggle();    
+  });
+
   $('.rhs_topic').click(function(){
     $(this).toggleClass('topic-selected');
     $(this).next( '.rhs_lessons' ).toggle();    

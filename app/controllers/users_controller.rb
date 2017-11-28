@@ -16,7 +16,12 @@ class UsersController < ApplicationController
     @group = Group.new
     @user = User.find(params[:id])
     @courses = current_user.registered_courses.order('id DESC')
+    Rails.env.development? ? starter_course = Course.find(11) : starter_course = Course.find(201) 
 
+    if !current_user.level_1 && !@courses.include?(starter_course)
+      current_user.course_registrations.build(course_id: starter_course.id).save
+    end
+    
     if current_user.level_2
       @course = Course.new
       @topic = Topic.new
@@ -25,6 +30,18 @@ class UsersController < ApplicationController
     @site_title = current_user.first_name+' '+current_user.last_name
     
     authorize @user
+    if  !current_user.level_1 && current_user.first_contact
+      Rails.env.development? ? re_pa = Lesson.find(11).path : re_pa = Lesson.find(485).path
+      redirect_to re_pa
+    end
+  end
+
+  def change_first_contact
+    user = User.find(current_user.id)
+    user.first_contact = false
+    user.save
+    
+    render json: {message: "saved"}.to_json
   end
 
   def edit

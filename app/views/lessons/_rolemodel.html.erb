@@ -1,7 +1,7 @@
 <% if @all_prt || @mdl_prt %>
 <div class="column js-Video-container">
-<div class="js-player demonstration model_video">
-Role Model:<br><br>
+<div class="js-player demonstration model_video first_contact_intro" data-intro="In this screen, you’ll see the best practice response to the Prompt.">
+Role Model <span class="tooltip-custom" data-tooltip="This is the best practice response to the prompt that you need to emulate."> <img src="/assets/Antu_help_hover.png" width="22px"></span><br><br>
 	<% @this_video_token = @prior_model.video_token %>
 	<% @this_added_class = 'model' %>
 	

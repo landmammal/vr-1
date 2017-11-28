@@ -9,10 +9,8 @@ class CourseRegistrationsController < ApplicationController
 
 	def create
 		cr = @course.course_registrations.find_by( user_id: current_user.id )
-		binding.pry
 		if !cr
 			if @course.privacy == 0
-				
 				render json: create_it(@course)
 			elsif @course.privacy == 1
 				if params[ :access_code ] == @course.access_code

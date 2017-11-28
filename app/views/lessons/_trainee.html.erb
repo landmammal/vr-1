@@ -1,7 +1,12 @@
 <% if topic_lesson_status(@lesson) %>
 
 <div class="showIfLessonComplete" data-lesson="<%= params[:id] %>">
- <div class="explanation-row"><button class="lesson_next pull-left"  data-toggle="modal" data-target="#explanation_video"><span class="glyphicon glyphicon-question-sign"></span> Explanation</button></div>
+  <div class="explanation-row">
+    <button class="lesson_next pull-left first_contact_intro"  data-toggle="modal" data-target="#explanation_video" data-intro="This video tells you what the lesson is about and why it’s important for you to master the performance">
+      <span class="glyphicon glyphicon-question-sign"></span> 
+      Explanation
+    </button>
+  </div>
    
     
    <!-- VIDEO WINDOWS -->
@@ -48,7 +53,6 @@
      
      <%= render 'prompt' %>
     
-    
      <%= render 'rolemodel' %> 
       
      <%= render 'rehearsal' %>
@@ -58,11 +62,11 @@
      </div>
      </div>
      
-     <div class="column is-one-quarter">
+     <div class="column is-one-quarter first_contact_intro" data-intro="This is where all your rehearsals for that lesson will be saved. From this list you will be able to choose the rehearsal you want to send to the course instructor for feedback.">
      
      <div class="rehearsals-list">
              
-     <label class="title-head tooltip-custom" data-tooltip="Choose a rehearsal to submit to your instructor">Rehearsals List</label>
+     <label class="title-head">Rehearsals List <span class="tooltip-custom" data-tooltip="Choose the rehearsal from this list that you would like to send to the instructor for approval or feedback."> <img src="/assets/Antu_help_hover.png" width="22px"></span></label>
      <div class="contenido">
         <div class="list_of_lesson_rehearsals">
            <% rehearsals_for_this_lesson.each_with_index do |rehearsal, index| %>
@@ -95,9 +99,10 @@
 
    <br>
    <br>
-<div style="text-align:right">
-   <button class="blue lesson_next training-path-1"> Training Path 1</button>
-   <button class="lesson_next training-path-2"> Training Path 2</button>
+<div style="text-align:right" class="first_contact_intro" data-intro="Use these buttons to rearrange your recording area to best fit your learning style.">
+    <span class="tooltip-custom" data-tooltip="Choose the view that you feel most comfortable with as you rehearse."> <img src="/assets/Antu_help_hover.png" width="22px"></span>
+   <button class="blue lesson_next training-path-1"> View 1</button>
+   <button class="lesson_next training-path-2"> View 2</button>
 </div>
 
     </div>

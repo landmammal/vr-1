@@ -82,6 +82,9 @@ Rails.application.routes.draw do
   get '/groups/:id' => 'groups#my_group'
   get '/group_registrations/group/:id' => 'group_registrations#registrations'
 
+  get "/change_first_contact" => "users#change_first_contact"
+
+
   resources :lessons, shallow: true do
     resources :explanations
     resources :prompts

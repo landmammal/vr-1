@@ -102,6 +102,19 @@ function reload_to(url, time){
 var pageReady = function(){
 
 
+	$(document).on("click", '.introjs-donebutton', function(){
+		$.ajax({
+			url:"/change_first_contact",
+			type: "GET",
+			success: function(data){
+				console.log(data);
+			}
+		});
+	});
+
+
+
+
 	// User Profile drop Menu
 	$('.drop_menu').click(function(event){
 		event.preventDefault();

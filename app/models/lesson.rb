@@ -20,6 +20,11 @@ class Lesson < ApplicationRecord
   has_many :lesson_rehearsals
   has_many :rehearsals, through: :lesson_rehearsals
 
+
+  def path
+    "/courses/"+self.topic.course.id.to_s+"/topics/"+self.topic.id.to_s+"/lessons/"+self.id.to_s
+  end
+
   def completed(user)
     status = false
     self.rehearsals.where(trainee_id: user.id).each do |rehearsal|
