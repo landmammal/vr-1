@@ -553,7 +553,6 @@
   
   .card_list .card .card_desc, .card_list .home_card .card_desc {
 	min-height: 80px;
-	position: relative;
 	padding: 10px 10px;
 	color: #333;
 	border-top: 0;
@@ -647,11 +646,14 @@
 }
   
   .card_list .home_card .card_desc {
-	position: relative;
 	background-color: #f7f8fd;
   }
   .card_list .home_card .card_desc a {
 	color: black;
+	color: #2b2b2b;
+	font-weight: 400;
+	font-size: 14px;
+	letter-spacing: 1px;
   }
   .card_list .home_card .card_edit {
 		font-size: 14px;
@@ -724,6 +726,8 @@
   
   @media only screen and (max-width: 495px) {
 	.card_list .home_card, .card_list .card {
+		position: relative;
+		background: #f7f8fd;
 	  width: 99.5%;
 	}
 	.card_list .home_card .card_title, .card_list .card .card_title {
@@ -733,7 +737,9 @@
 
 @media only screen and (min-width: 496px) {
 	.card_list .home_card, .card_list .card {
-	  width: 49.5%;
+		background: #f7f8fd;
+		width: 49.5%;
+		position: relative;
 	
 		& .card, & .home_card{
 			margin:0;
@@ -807,6 +813,8 @@
   /* Desktop Layout: 827px to max.  Inherits styles from: Mobile Layout and Tablet Layout. */
 @media only screen and (min-width: 827px) {
 	.card_list .home_card, .card_list .card {
+		position: relative;
+		background: #f7f8fd;
 	  width: 32.83%;
 	}
 }
@@ -814,6 +822,8 @@
   /* Desktop Layout: 1261px to max.  Inherits styles from: Mobile Layout and Tablet Layout. */
 @media only screen and (min-width: 1051px) {
 	.card_list .home_card, .card_list .card {
+		position: relative;
+		background: #f7f8fd;
 	  width: 24.5%;
 	  max-width: 350px;
 	}

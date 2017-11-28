@@ -2886,3 +2886,29 @@ button.accordion.active:after {
   z-index: 1;
   top: 4px;
 }
+.prompt_video{
+&:hover .tooltip-custom{
+  display: inline-block;
+}
+}
+.model_video{
+  &:hover .tooltip-custom{
+    display: inline-block;
+  }
+  }
+  .rehearsal_video{
+    &:hover .tooltip-custom{
+      display: inline-block;
+    }
+    }
+    .rehearsals-list{
+      &:hover .tooltip-custom{
+        display: inline-block;
+      }
+      }
+    
+    .js-custom-player-container .tooltip-custom{
+      display: none;
+      height: 0px;
+      margin-top: -1px;
+    }
