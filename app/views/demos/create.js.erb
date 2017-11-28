@@ -31,11 +31,11 @@ if( window.location.pathname === '/contact'){
 		setTimeout(function(){
 			$('.check_mark').fadeOut(500);
 			$('#notice_demo').fadeOut(500);
-		}, 2000);
+		}, 3000);
 		setTimeout(function(){
-			$('.demo').fadeIn(500);
+			$('.demo_form').fadeIn(500);
 			$('.home_top_text').removeClass('demo_open');
-		}, 2600);
+		}, 3600);
 	}else{
 		$('#notice_demo_err').text('<%= @err %>');
 		$('#notice_demo_err').toggle();
