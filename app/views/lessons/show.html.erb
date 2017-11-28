@@ -298,7 +298,7 @@
     </script>
 
 
-    <% if current_user.first_contact %>
+    <% if current_user.first_contact && !course_creator %>
       <!-- INTROJS  -->
       <script> introJs().start(); </script>
     <% end %>
