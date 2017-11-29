@@ -28,6 +28,9 @@ function acceptTermsandServices(){
 					$('.terms_and_service_button').delay(500).html('<img src="/assets/checkmark.png" width="40px"> <br> Thank you for accepting the new Terms of Use.');
 					$('.terms_and_service_button').delay(600).fadeIn(500);
 					$('.terms_not_aggreed').delay(1500).fadeOut(500);
+					setTimeout(function(){
+						introJs().start();
+					},1500);
 				}
 			});
 
@@ -101,6 +104,16 @@ function reload_to(url, time){
 
 var pageReady = function(){
 
+	$('button.submit_job_application').click(function(){
+		$('form.application_form').submit();
+	});
+	$('.apply_job').click(function(){
+		$('form.application_form')[0].reset();
+		$('.success').fadeOut(500);
+		$('.jobs-form').delay(500).fadeIn();
+		$('.submit_job_application').fadeIn();
+	});
+
 
 	$(document).on("click", '.introjs-donebutton', function(){
 		$.ajax({
@@ -108,6 +121,9 @@ var pageReady = function(){
 			type: "GET",
 			success: function(data){
 				console.log(data);
+			},
+			error: function(e){
+				console.log("ERROR");
 			}
 		});
 	});

@@ -31,6 +31,7 @@ function railsToJson(json_string){
     return newjson;
 }
 
+
 // window.getCount = function(parent, getChildrensChildren){
 //     var relevantChildren = 0;
 //     var children = parent.childNodes.length;

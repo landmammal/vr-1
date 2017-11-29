@@ -1,0 +1,15 @@
+'use strict';
+
+<% if @error %>
+
+    $('.error').fadeIn(500);
+    $('.error').text("<%= @error_text %>");
+    $('.error').delay(5000).fadeOut(500);
+
+<%else%>
+
+    $('.jobs-form').fadeOut(500);
+    $('.submit_job_application').fadeOut()
+    $('.success').delay(700).fadeIn(500);
+    
+<%end%>

@@ -348,13 +348,20 @@ var pageReady = function(){
 			tmp_shift.remove();
 		});
 
-
-		 
-
-
-
-
-
+		$('.home_card').each(function() {
+			var $divs = $(this).add($(this).prev('.home_card'));
+			var tallestHeight = $divs.map(function(i, el) {
+				return $(el).height();
+			}).get();
+			$divs.height(Math.max.apply(this, tallestHeight));
+		});
+		$('.lesson_list').each(function() {
+			var $lessondivs = $(this).add($(this).prev('.lesson_list'));
+			var tallestHeight = $lessondivs.map(function(i, el) {
+				return $(el).height();
+			}).get();
+			$lessondivs.height(Math.max.apply(this, tallestHeight));
+		});
 
 
 // Get all parts of the progress bar.

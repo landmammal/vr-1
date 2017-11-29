@@ -220,7 +220,7 @@ footer{
 		}
 		& .footer_social{ max-width: 300px; float:right; text-align:center; }
 	}
-	a{ color:white; }
+	a, a:visited, a:hover, a:focus { color:white; }
 	& .title{ font-family:'webly_bld'; font-size:15px; margin-bottom:10px; }
 	& .contact_footer{
       background-color:white; border:1px solid; border-radius:3px; color:#343434; font-weight:bold; width:100%;

@@ -299,8 +299,10 @@
 
 
     <% if current_user.first_contact && !course_creator %>
-      <!-- INTROJS  -->
-      <script> introJs().start(); </script>
+      <% if check_terms(termsVersion) %>
+        <!-- INTROJS  -->
+        <script> introJs().start(); </script>
+      <% end %>
     <% end %>
 
   </div>

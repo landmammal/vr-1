@@ -71,7 +71,42 @@ class WelcomeController < ApplicationController
 
 
 
+  def job_application
+    app = {
+      "first_name" => params[:first_name],
+      "last_name" => params[:last_name],
+      "email" => params[:email],
+      "phone" => params[:phone],
+      "job" => params[:job],
+      "resume" => params[:resume],
+      "website" => params[:website],
+      "about" => params[:about],
+      "references" => params[:references]
+    }
+    @error = false
 
+    if app['resume'].empty?
+      @error = true
+      @error_text = "We need a link to your resume or portfolio."
+    end 
+
+    if app['email'].empty? || app['phone'].empty?
+      @error = true
+      @error_text = "Email and Phone # need to be filled out"
+    end
+
+    if app['first_name'].empty? || app['last_name'].empty?
+      @error = true
+      @error_text = "First name and last name need to be filled out"
+    end
+
+    AdminMailer.send_job_application( app ).deliver_now if !@error
+
+    respond_to do |format|
+      format.js { }
+    end
+
+  end
 
 
 
