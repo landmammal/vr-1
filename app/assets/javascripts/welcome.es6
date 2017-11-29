@@ -104,8 +104,6 @@ function reload_to(url, time){
 
 var pageReady = function(){
 
-	document.querySelector(".home_course").classList.toggle("flip");
-
 	$('button.submit_job_application').click(function(){
 		$('form.application_form').submit();
 	});
@@ -123,6 +121,9 @@ var pageReady = function(){
 			type: "GET",
 			success: function(data){
 				console.log(data);
+			},
+			error: function(e){
+				console.log("ERROR");
 			}
 		});
 	});
