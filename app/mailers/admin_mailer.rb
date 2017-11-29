@@ -22,7 +22,7 @@ class AdminMailer < ApplicationMailer
     @lessons = 0
     course.topics.each { |t| @lessons += t.lessons.size }
     
-    @instructor = course.instructor.first_name + " " + course.instructor.last_name
+    @instructor = course.instructor
     invite = user.course_registrations.where( course_id: course.id )
     @url = @base+url
     mail( to: @user.email, subject: "#{user.full_name}, welcome to #{course.title} on videoRehearser")
