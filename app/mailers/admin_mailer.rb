@@ -36,6 +36,15 @@ class AdminMailer < ApplicationMailer
     mail( to: email, subject: "Welcome to the vR Community #{email}!")
   end
 
+
+
+  def send_job_application( app )
+    @app = app
+    mail( to: "carlos@videorehearser.com", subject: "vR Job Application from #{ app['first_name'] } #{ app['last_name'] }!")
+  end
+
+
+
   # sending approval update to user
   def user_approved_notice(user)
     @url = @base+'/users/sign_in'

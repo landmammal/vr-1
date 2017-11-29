@@ -83,6 +83,8 @@ Rails.application.routes.draw do
   get '/group_registrations/group/:id' => 'group_registrations#registrations'
 
   get "/change_first_contact" => "users#change_first_contact"
+  post "job_application" => "welcome#job_application"
+
 
 
   resources :lessons, shallow: true do
