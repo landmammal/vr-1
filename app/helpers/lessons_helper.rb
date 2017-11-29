@@ -15,7 +15,11 @@ module LessonsHelper
 	end
 
 	def first_lesson_path( course )
-		"/courses/#{course.id}/topics/#{course.topics.first.id}/lessons/#{course.topics.first.lessons.first.id}"
+		if course.topics.size > 0 && course.topics.first.lessons.size > 0
+			"/courses/#{course.id}/topics/#{course.topics.first.id}/lessons/#{course.topics.first.lessons.first.id}"
+		else
+			"/courses/#{course.id}"
+		end
 	end
 
 	def component(item)
