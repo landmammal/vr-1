@@ -6,21 +6,19 @@
 	<%= button_tag "Search", class:"reg_btn blue" %>
 <%end%>
 <hr> -->
-
-<div class="title">
-	<button class="js-add_form_btn creator_btn" data-form="course">
-		Create New Course
-	</button>
-</div>
-<div class="body">
-	<!-- <div class="js-display_my_courses" style="display: none;"></div> -->
-
-	<div class="js-course_form" style="display:none;">
-		<%= render './courses/form' %>
+<% if current_user.level_2 %>
+	<div class="title">
+		<button class="js-add_form_btn creator_btn" data-form="course">
+			Create New Course
+		</button>
 	</div>
-
-	 
-</div>
+	<div class="body">
+		<!-- <div class="js-display_my_courses" style="display: none;"></div> -->
+		<div class="js-course_form" style="display:none;">
+			<%= render './courses/form' %>
+		</div>
+	</div>
+<%end%>
 
 <div class="card_list card_list_search" style="display:none;">
 	
