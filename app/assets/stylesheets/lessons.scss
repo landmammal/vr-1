@@ -726,12 +726,13 @@
 .timeline ul.timeline-small{
   width: auto;
 }
-.timeline-small li{
+.timeline ul.timeline-small li{
  min-width: 50px;
 }
 .timeline ul li {
   display: table-cell;
   text-align: center;
+  width: auto !important;
 }
 .timeline ul li span {
   width: 18px;
@@ -748,13 +749,27 @@
   position: absolute;
   background: #cde4fc;
   height: 5px;
-  width: 83%;
+  width: 99%;
   border-radius: 10px;
-  left: 9%;
+  left: 0px;
   top: 0px;
-  right: 8%;
 }
-
+.timeline ul li:first-child{
+  text-align: left;
+  width: 10% !important;
+}
+.timeline ul li:last-child{
+  text-align: right;
+  width: 10% !important;
+}
+.timeline ul.timeline-small li:first-child{
+  text-align: left;
+  width: auto !important;
+}
+.timeline ul.timeline-small li:last-child{
+  text-align: right;
+  width: auto !important;
+}
 .timeline ul li.blank span {
   background-color: #FFFFFA;
 }

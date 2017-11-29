@@ -2912,3 +2912,13 @@ button.accordion.active:after {
       height: 0px;
       margin-top: -1px;
     }
+    .footer_width{
+      color: #fff;
+      
+      font-family: 'Roboto', sans-serif;
+      & a{
+        color: #fff;
+        font-weight: 700;
+        font-family: 'Roboto', sans-serif;
+      }
+    }
