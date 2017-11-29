@@ -14,6 +14,10 @@ module LessonsHelper
 		return finished.size.to_s
 	end
 
+	def first_lesson_path( course )
+		"/courses/#{course.id}/topics/#{course.topics.first.id}/lessons/#{course.topics.first.lessons.first.id}"
+	end
+
 	def component(item)
 		ready = [false,false]
 

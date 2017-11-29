@@ -10,16 +10,15 @@
     </div>
     <div class="course_title">
       <%= @lesson.title %>
-      
     </div>
     
     <% if lesson_creator %>
-        <% if topic_lesson_status(@lesson) %>
-            <div class="lesson_ready">
-              <span class="ion-checkmark-circled" title="Lesson is ready"></span>
-              <button class="btn-trainee green_sft js-trainee_view" title="Click to view trainee window"> Trainee view</button>
-            </div>
-        <% end %>
+      <% if topic_lesson_status(@lesson) %>
+        <div class="lesson_ready">
+          <span class="ion-checkmark-circled" title="Lesson is ready"></span>
+          <button class="btn-trainee green_sft js-trainee_view" title="Click to view trainee window"> Trainee view</button>
+        </div>
+      <% end %>
     <% end %>
     
   </div>
@@ -51,21 +50,21 @@
                 </a>
             <% end %>
             </div>
-            <button class="btn-view lesson_create_btn right_panel_btn" data-rightpanel='browse_course'>
-                <img src="/assets/icon-lesson.png">
-              </button>
+            <button class="btn-view lesson_create_btn right_panel_btn" data-rightpanel='browse_course' data-intro="This button will open a panel with a list of all the topics and lessons in this course. Click, if you need to navigate the course.">
+              <img src="/assets/icon-lesson.png">
+            </button>
       </div>
-  <div class="timeline">
-      <ul>
-          <% @topic_lessons.each do |key, value| %>
-          <li class="<%= value[0] %> <%= "selected" if key.to_s == params[:id] %>">
-              <span class="tooltip-custom" data-tooltip="<%= Lesson.find(key).title %> :: <%= value[1] %>">
-                <a href="<%= course_topic_lesson_path(@course, @topic, key)%>"></a>
-              </span>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+  <div class="timeline" data-intro="Clickin on these progress bubbles will help you navigate through the lessons of the course, this is also a visual representation of your current progress on each lesson.">
+    <ul>
+      <% @topic_lessons.each do |key, value| %>
+        <li class="<%= value[0] %> <%= "selected" if key.to_s == params[:id] %>">
+          <span class="tooltip-custom" data-tooltip="<%= Lesson.find(key).title %> :: <%= value[1] %>">
+            <a href="<%= course_topic_lesson_path(@course, @topic, key)%>"></a>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
 
       
