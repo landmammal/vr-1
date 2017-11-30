@@ -349,21 +349,29 @@ var pageReady = function(){
 		});
 
 		$('.home_card').each(function() {
-			var $divs = $(this).add($(this).prev('.home_card'));
-			var tallestHeight = $divs.map(function(i, el) {
+			var $divs = $('.home_card');
+			var tallestHeight_home = $divs.map(function(i, el) {
 				return $(el).height();
 			}).get();
-			$divs.height(Math.max.apply(this, tallestHeight));
+			$divs.height(Math.max.apply(this, tallestHeight_home));
 		});
 		$('.lesson_list').each(function() {
-			var $lessondivs = $(this).add($(this).prev('.lesson_list'));
-			var tallestHeight = $lessondivs.map(function(i, el) {
+			var $lessondivs = $('.lesson_list');
+			var tallestHeight_lesson = $lessondivs.map(function(i, el) {
 				return $(el).height();
 			}).get();
-			$lessondivs.height(Math.max.apply(this, tallestHeight));
+			$lessondivs.height(Math.max.apply(this, tallestHeight_lesson));
 		});
 
+		$('.card_item').each(function() {
+			var $carddivs = $('.card_item');
+			var tallestHeight_card = $carddivs.map(function(i, el) {
+				return $(el).height();
+			}).get();
+			$carddivs.height(Math.max.apply(this, tallestHeight_card));
+		});
 
+		 
 // Get all parts of the progress bar.
 var bars = $('.timeline ul li');
 var count = jQuery('.timeline ul li').size();
