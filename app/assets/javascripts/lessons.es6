@@ -376,7 +376,7 @@ var pageReady = function(){
 var bars = $('.timeline ul li');
 var count = jQuery('.timeline ul li').size();
 // With each one, calculate the percentage and apply the width.
-if(count < 2){
+if(count < 5){
 	$('.timeline ul').addClass("timeline-small");
  }
 bars.each(function()
