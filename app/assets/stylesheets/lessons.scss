@@ -760,13 +760,9 @@
   text-align: right;
   width: auto !important;
 }
-.timeline ul.timeline-small li:first-child{
+.timeline ul.timeline-small li{
   text-align: left;
-  width: auto !important;
-}
-.timeline ul.timeline-small li:last-child{
-  text-align: center;
-  width: auto !important;
+  width: 10% !important;
 }
 .timeline ul li.blank span {
   background-color: #FFFFFA;
