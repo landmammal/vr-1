@@ -639,11 +639,12 @@
   
   .card_list .home_card .card_title .title_name {
 		color: #ffffff;
-    padding: 10px;
+    padding: 10px 0 10px 10px;
     display: inline-block;
     font-weight: 400;
 		letter-spacing: 1px;
 		max-width: 190px;
+		font-size: 12px;
 }
   
   .card_list .home_card .card_desc {
@@ -660,7 +661,7 @@
 		font-size: 14px;
     float: right;
     text-align: center;
-    padding: 10px 10px;
+    padding: 10px 10px 10px 0;
     color: #fff;
   }
   

@@ -14,7 +14,7 @@
   </div>
 
   <div class="card_desc card_desc_<%= @item.id %>">
-    <%= @item.description %>
+      <%= @item.description[0...115] %><%= "..." if @item.description.length > 115 %>
     <div class="course_content">
       <% thisCourse = content(@item) %>
       <%= "topics: "+thisCourse[:topics].to_s if thisCourse[:topics]>0 %>
