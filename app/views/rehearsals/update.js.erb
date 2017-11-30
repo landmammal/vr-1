@@ -1,0 +1,14 @@
+'use strict';
+
+<% if @sent %>
+    $('.success.sent').slideDown();
+    $('.success.sent').delay(3000).slideUp();
+<%end%>
+
+
+<% if @retracted %>
+    $('.error.retracted').slideDown();
+    $('.error.retracted').delay(3000).slideUp();
+<%end%>
+
+changeSubmitButton(<%= @rehearsal.submission %>, <%= @rehearsal.id %>);

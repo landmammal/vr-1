@@ -167,10 +167,20 @@ class RehearsalsController < ApplicationController
 
   def update
     (!@rehearsal.submission || @rehearsal.submission == nil) ? @rehearsal.submission = true : @rehearsal.submission = false
-
+    
     @rehearsal.approval_status = 0 if @rehearsal.approval_status == nil
-    @rehearsal.save
-    render json: @rehearsal
+    if @rehearsal.save
+      @sent = false  
+      @retracted = false
+
+      AdminMailer.rehearsal_sent(@rehearsal).deliver_later if @rehearsal.submission
+      @rehearsal.submission ? @sent = true : @retracted = true 
+      
+      respond_to do |format|
+        format.js {}
+      end
+      
+    end
   end
 
   def destroy

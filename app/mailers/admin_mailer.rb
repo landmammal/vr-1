@@ -37,13 +37,19 @@ class AdminMailer < ApplicationMailer
   end
 
 
-
   def send_job_application( app )
     @app = app
     mail( to: "carlos@videorehearser.com", subject: "vR Job Application from #{ app['first_name'] } #{ app['last_name'] }!")
   end
 
-
+  def rehearsal_sent( rehearsal )
+    @student = rehearsal.trainee
+    @rehearsal = rehearsal
+    @instructor = rehearsal.lesson.instructor
+    @lesson_url = @base+rehearsal.lesson.path
+    @student_url = @base+"/rehearsals/student/?student="+@student.id.to_s+"&lesson="+rehearsal.lesson.id.to_s
+    mail( to: @instructor.email, subject: "Rehearsal Subimitted by #{@student.full_name}!")
+  end
 
   # sending approval update to user
   def user_approved_notice(user)

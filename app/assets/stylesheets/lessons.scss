@@ -723,9 +723,7 @@
   padding: 0px;
   width: 100%;
 }
-.timeline ul.timeline-small{
-  width: auto;
-}
+ 
 .timeline ul.timeline-small li{
  min-width: 50px;
 }
@@ -741,7 +739,7 @@
   display: inline-block;
   border-radius: 30px;
   position: relative;
-  z-index: 1;
+  z-index: 11;
   top: -7px;
 }
 .timeline ul::after {
@@ -749,26 +747,22 @@
   position: absolute;
   background: #cde4fc;
   height: 5px;
-  width: 99%;
+  width: 100%;
   border-radius: 10px;
   left: 0px;
   top: 0px;
 }
 .timeline ul li:first-child{
   text-align: left;
-  width: 10% !important;
+  width: auto !important;
 }
 .timeline ul li:last-child{
   text-align: right;
-  width: 10% !important;
+  width: auto !important;
 }
-.timeline ul.timeline-small li:first-child{
+.timeline ul.timeline-small li{
   text-align: left;
-  width: auto !important;
-}
-.timeline ul.timeline-small li:last-child{
-  text-align: right;
-  width: auto !important;
+  width: 10% !important;
 }
 .timeline ul li.blank span {
   background-color: #FFFFFA;
@@ -974,3 +968,6 @@
       text-align: left; 
     }
     .rehearsals-list label{ font-weight: 300; margin-top: 13px;}
+    .lesson_next.blue{
+      background-color: #777;
+    }

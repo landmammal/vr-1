@@ -211,6 +211,30 @@
             <% end %>
           </div>
 
+          <% if course_creator %>
+            <div class="rehearsals_side">
+              <h4 style="padding:7px 0;">Rehearsals List</h4>
+
+              <hr>
+              <% @course.users.each do |student| %>
+                <% if @lesson.has_rehearsals_from_user(student) %>
+                  <a href="/rehearsals/student/?student=<%= student.id %>&lesson=<%= @lesson.id %>">
+                    <div class="user_bubble <%= student.id %>">
+                      <img src="<%= student_pic(student) %>" class="img-circle" width="30px" style="float:left;">
+                      <div class="info">
+                        <%= student.full_name %>
+                        <br>
+                        <% if @lesson.has_new_rehearsals_from_user(student) %>
+                          <span style="color:red; font-size:11px;">NEW!</span>
+                        <%end%>                      
+                      </div>
+                    </div>
+                  </a>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+
 
           <!-- CONCEPTS -->
           <div class="shadebox" data-name='add_concept'>
