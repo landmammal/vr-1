@@ -1,6 +1,6 @@
 <div class="top_info">
   <div class="course_title">
-    <%= @course.title if !course_closed %>
+    <%= @course.title if !course_closed || (course_creator || course_trainee) %>
     <% if course_creator %>
       <a href="<%= edit_course_path(@course) %>" title="edit <%= @course.title %>">
         <span class="ion-edit edit" style="font-size:15px; margin:50px 10px;"></span>
