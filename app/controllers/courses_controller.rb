@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :authenticate_user! , except: [:index, :show, :all, :display, :register_with_access_code, :accept_invitation, :leave_course]
+  before_action :authenticate_user! , except: [:index, :show, :all, :display]
   before_action :set_course, only: [:show, :edit, :update, :destroy, :display]
   # GET /courses
   # GET /courses.json
@@ -55,7 +55,7 @@ class CoursesController < ApplicationController
     @access = true
     @needs_access_code = true
 
-    cr = @course.course_registrations.find_by( user_id: current_user.id )
+    cr = @course.course_registrations.find_by( user_id: current_user.id ) 
     
     if cr
       redirect_to course_path( @course )

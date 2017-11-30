@@ -459,7 +459,18 @@
   }
   .card_list {
 	overflow: hidden; padding-top: 10px;
-  }
+	}
+	
+	.with_side{
+		width: 78%;
+		margin-right: 2%;
+		float: left;
+	}
+	.the_side{
+		width: 20%;
+		float: left;
+	}
+
   .card_list .card_item {
 		border-radius: 1px;
     border: 0;
