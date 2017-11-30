@@ -50,7 +50,15 @@ var pageReady = function(checkrecorder){
 				    $('.save_ziggeo').hide();
 				    $(this).closest($('.component_wrapper')).find($('.save_'+recorderClass)).hide();
 				    // console.log('clicked');
-			    });
+				});
+
+				$(document).on("click", ".ba-videorecorder-button-primary[data-selector=stop-primary-button]", function(){	
+					$('.recorder_please_wait').fadeIn(1000);
+				});
+
+				
+				recorder.on('recording', function() {
+				});
 
 
 			    recorder.on('verified', function() {
@@ -59,7 +67,9 @@ var pageReady = function(checkrecorder){
 			    	var streamToken = recorder.get('stream');
 			    	var videoToken = recorder.get('video');
 			    	var thisForm = recorderClass;
-			    	// console.log(thisForm+" 01 ");
+					// console.log(thisForm+" 01 ");
+					$('.recorder_please_wait').hide();
+					
 			    	
 			    	setTimeout(function(){
 				    	if(thisForm == 'rehearsal'){

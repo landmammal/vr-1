@@ -749,6 +749,28 @@
 
 
 
+.recorder_please_wait{
+	color: red;
+	font-size: 10px;
+	float: right;
+	display: none;
+}
+
+.error, .success{
+	display: none;
+}
+.error{
+	padding: 5px 8px;
+	background-color: #ffc1c1;
+	border:1px red solid;
+}
+.success{
+	width: auto;
+	padding: 10px 15px;
+	background-color: #cfffc1;
+	border:1px green solid;
+}
+
 @media only screen and (max-width: 495px) {
 	.card_list .home_card, .card_list .card {
 		position: relative;
