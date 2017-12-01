@@ -140,8 +140,9 @@
           <%= render './course_registrations/course_registration_form' if !course_creator %>
         </center>
     <% end %>
-  
-    <% if @course.privacy == 2 %>
+
+    <% if @course.privacy == 2 && current_user.course_registrations.where(course_id: @course.id).blank? %>
+
       <%= form_tag charges_path, id: 'chargeForm' do %>
   
         <% if flash[:error].present? %>
@@ -149,16 +150,17 @@
             <p><%= flash[:error] %></p>
           </div>
         <% end %>
-  
+
         <script src="https://checkout.stripe.com/checkout.js"></script>
         <%= hidden_field_tag 'stripeToken' %>
-        <%= hidden_field_tag 'amount', 499 %>
+        <%= hidden_field_tag 'amount', @course.price %>
         <%= hidden_field_tag 'stripeEmail' %>
-        
+        <%= hidden_field_tag 'productId', @course.id %>
+
         <button id="btn-buy" , type="button" , class="btn btn-success btn-lg btn-block">
           <span class="glyphicon glyphicon-ok"></span> BUY THIS
         </button>
-  
+
         <script>
           var handler = StripeCheckout.configure({
             key: '<%= Rails.configuration.stripe[:publishable_key] %>',
@@ -170,8 +172,8 @@
           });
           document.getElementById('btn-buy').addEventListener('click', function (e) {
             handler.open({
-              name: 'name here',
-              description: 'price here',
+              name: '<%= @course.title %>',
+              description: '<%= @course.price %>',
               amount: parseFloat(document.getElementById("amount").value)
             });
             e.preventDefault();
