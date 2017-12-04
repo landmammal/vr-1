@@ -24,7 +24,7 @@ Rails.application.configure do
       enable_starttls_auto: true  }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { 
-    :host => 'www.videorehearser.com',
+    :host => 'www.v1.videorehearser.com',
     :protocol => 'https'
   }
 
