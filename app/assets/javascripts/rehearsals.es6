@@ -1,21 +1,22 @@
 
+var changeSubmitButton = function(submission, id){
+  if(submission === false || !submission){
+    $('button.submission').text('Send to Instructor');
+    $('button.submission').removeClass('red');
+    $('button.submission').addClass('blue');
+    $('#rehearsal_'+id+'_status').prop('class', 'blankdot');
+  }else{
+    $('button.submission').text('Keep as private Rehearsal');
+    $('button.submission').removeClass('blue red');
+    $('button.submission').addClass('red');
+    $('#rehearsal_'+id+'_status').prop('class', 'orangedot');
+  }
+}
+
 var pageReady = function(){
 
   
   // REHEARSAL SUBMISSION
-  var changeSubmitButton = function(submission, id){
-    if(submission === false || !submission){
-      $('button.submission').text('Send to Instructor');
-      $('button.submission').removeClass('red');
-      $('button.submission').addClass('blue');
-      $('#rehearsal_'+id+'_status').prop('class', 'blankdot');
-    }else{
-      $('button.submission').text('Keep as private Rehearsal');
-      $('button.submission').removeClass('blue red');
-      $('button.submission').addClass('red');
-      $('#rehearsal_'+id+'_status').prop('class', 'orangedot');
-    }
-  }
   
   $(document).on('click', 'button.rehearsal_btn', function() {
     var rehearsalid = $(this).data('rehearsal');
@@ -53,7 +54,7 @@ var pageReady = function(){
       success: function(data){
         // console.log(data);
         // console.log(data.submission);
-        changeSubmitButton(data.submission, data.id);
+        // changeSubmitButton(data.submission, data.id);
       }
     });
   });

@@ -23,4 +23,13 @@
   <% end %>
 </div>
 
+<div class="success code_success" style="margin:10px auto; width:350px; font-size:11px;">
+    Welcome to the course: <%= @course.title %>.
+</div>
+<div class="error code_error" style="margin:10px auto; width:350px; font-size:11px;">
+    There was an error registering you to the course:
+    <br>
+    - Please check your access code.
+</div>
+
 <div class="js-register_confirm" style="display:none;"></div>
