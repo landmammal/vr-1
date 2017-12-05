@@ -23,6 +23,7 @@ Rails.application.configure do
       authentication:       'plain',
       enable_starttls_auto: true  }
   config.action_mailer.perform_deliveries = true
+
   config.action_mailer.default_url_options = { :host => 'www.v1.videorehearser.com' }
 
   # Code is not reloaded between requests.
