@@ -193,7 +193,7 @@
           document.getElementById('btn-buy').addEventListener('click', function (e) {
             handler.open({
               name: '<%= @course.title %>',
-              description: '<%= @course.price %>',
+              description: '<%= @course.description %>',
               amount: parseFloat(document.getElementById("amount").value)
             });
             e.preventDefault();
