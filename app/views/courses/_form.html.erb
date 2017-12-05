@@ -17,6 +17,7 @@
     <%= f.text_field :tags, placeholder:'tags (comma separated)', class:'js-course_tags course_create' %><br>
     <%= f.text_field :approval_status, type:"hidden", class:'js-course_status', value: 0 %><br>
     <%= f.select :privacy, @course.privacy! %>
+    <%= f.text_field :price, placeholder: 'Price'%>
     <%= f.select :cstatus, @course.cstatus! %>
     <%= f.select :language, (@languages) %><br>
     <%= f.text_field :access_code, class:"access_code" , placeholder:"access code" %><button id="generate_new_access_code" class="small_btn">generate new code</button>
