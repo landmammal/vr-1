@@ -4,11 +4,13 @@
       <div class="title_name">
         <%= @course_item.title[0...23] %><%= "..." if @course_item.title.length > 23 %>
         <% if @course_item.privacy == 0 %>
-            <span class="privacy ion-earth"></span>
-        <% elsif @course_item.privacy == 2 || @course_item.privacy == 3 %>
-            <span class="privacy ion-android-unlock" style="font-size:15px;"></span>
+          <span class="privacy ion-earth"></span>
+        <% elsif @course_item.privacy == 2 %>
+          <span class="privacy" style="font-size:15px;">$</span>
+        <% elsif @course_item.privacy == 3 %>
+          <span class="privacy ion-android-unlock" style="font-size:15px;"></span>
         <% else %>
-            <span class="privacy ion-locked"></span>
+          <span class="privacy ion-locked"></span>
         <% end %>
       </div>
     </a>

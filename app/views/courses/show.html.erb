@@ -11,7 +11,7 @@
 
 <div class="about_course">
   <span class="title">About the course</span><br>
-  <%= @course.description if !course_closed %>
+  <%= @course.description if (!course_closed || course_paid) %>
 </div>
 
 <div class="course_instructor">
@@ -128,10 +128,25 @@
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>
+        </div>
+      </div>
+
+      <hr>
+      
+      <% @course.users.each do |student| %>
+        <div class="user_bubble <%= student.id %>" style="width:100%;">
+          <img src="<%= student_pic(student) %>" class="img-circle" width="30px" style="float:left;">
+          <div class="info">
+            <%= student.full_name %>
+          </div>
+        </div>
       <% end %>
+
     </div>
   
-  <% else %>
+  <% end %>
+
+<% else %>
   
     <% if @course.privacy != 2 %>
         <center style="margin:50px auto 200px;">
@@ -157,9 +172,14 @@
         <%= hidden_field_tag 'stripeEmail' %>
         <%= hidden_field_tag 'productId', @course.id %>
 
-        <button id="btn-buy" , type="button" , class="btn btn-success btn-lg btn-block">
-          <span class="glyphicon glyphicon-ok"></span> BUY THIS
-        </button>
+        <center>
+          This is a "Paid Course", click below to purchase access.
+          <hr>
+          <button id="btn-buy" type="button" class="btn btn-success">
+            BUY THIS COURSE : 
+            $<%= (@course.price/100.00).to_d %>
+          </button>
+        </center>
 
         <script>
           var handler = StripeCheckout.configure({
@@ -179,75 +199,24 @@
             e.preventDefault();
           })
         </script>
-        </div>
-      </div>
-
-      <hr>
-      <% @course.users.each do |student| %>
-        <div class="user_bubble <%= student.id %>" style="width:100%;">
-          <img src="<%= student_pic(student) %>" class="img-circle" width="30px" style="float:left;">
-          <div class="info">
-            <%= student.full_name %>
-          </div>
-        </div>
       <% end %>
-    </div>
-  <% end %>
 
-<% else %>
-
-  <% if @course.privacy != 2 %>
-    <center style="margin:50px auto 200px;">
-      <%= 'This is a "Free Course", click below to start.' if course_public %>
-      <%= 'This is a "Closed Course". You need an invitation from the course instructor.' if course_closed %><br><br>
-      <%= render './course_registrations/course_registration_form' if !course_creator %>
-    </center>
-  <% end %>
-  <% if @course.privacy == 2 %>
-    <%= form_tag charges_path, id: 'chargeForm' do %>
-      <% if flash[:error].present? %>
-        <div id="error_explanation">
-          <p><%= flash[:error] %></p>
-        </div>
-      <% end %>
-      <script src="https://checkout.stripe.com/checkout.js"></script>
-      <%= hidden_field_tag 'stripeToken' %>
-      <%= hidden_field_tag 'amount', 499 %>
-      <%= hidden_field_tag 'stripeEmail' %>
-      <button id="btn-buy" , type="button" , class="btn btn-success btn-lg btn-block">
-      <span class="glyphicon glyphicon-ok"></span> BUY THIS
-      </button>
-      <script>
-        var handler = StripeCheckout.configure({
-          key: '<%= Rails.configuration.stripe[:publishable_key] %>',
-          token: function (token, arg) {
-            document.getElementById("stripeToken").value = token.id;
-            document.getElementById("stripeEmail").value = token.email;
-            document.getElementById("chargeForm").submit();
-          }
-        });
-        document.getElementById('btn-buy').addEventListener('click', function (e) {
-          handler.open({
-            name: 'name here',
-            description: 'price here',
-            amount: parseFloat(document.getElementById("amount").value)
-          });
-          e.preventDefault();
-        })
-      </script>
     <% end %>
-  <% end %>
-  <% end %>
-  <br>
-  <% if !@course.tags.empty? %>
-    <span style="font-family:'webly_bld';">tags:</span>
-    <% @course.tags.split(', ').each do |tag| %>
+
+<% end %>
+
+<br>
+
+<% if !@course.tags.empty? %>
+  <span style="font-family:'webly_bld';">tags:</span>
+  <% @course.tags.split(', ').each do |tag| %>
     <div class="tags-text">
       <a href="#"><b><%= tag %></b></a>
     </div>
   <% end %>
 
 <% end %>
+
 <br><br>
 <button class="small_btn blue js-click_back">Back</button>
 
@@ -256,5 +225,5 @@
     <%= hidden_field_tag :course_id, nil, value: @course.id %>
     <%= hidden_field_tag :user_id, nil, value: current_user.id %>
     <%= button_tag "Leave Course", class:"small_btn red", style:"float:right;" %>
-  <%end%>
+  <% end %>
 <% end %>

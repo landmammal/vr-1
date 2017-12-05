@@ -115,14 +115,17 @@ class CoursesController < ApplicationController
     end
   end
 
-  # GET /courses/1
-  # GET /courses/1.json
+  
+
   def show
     # get original topics created by that course
     @orig_topics = Topic.where(course_id: @course.id)
     @topic = Topic.new
     @course_registration = CourseRegistration.new
   end
+
+
+
 
   def generate_code
     new_code = "CA-"+SecureRandom.hex(n=3)
@@ -134,26 +137,35 @@ class CoursesController < ApplicationController
     render json: { "new code" => new_code }.to_json
   end
 
+
+
+
   def display
     if current_user
       redirect_to '/courses/'+params[:id].to_s
     end
   end
 
-  # GET /courses/new
+  
+  
+
   def new
     @course = Course.new
   end
 
-  # GET /courses/1/edit
+ 
+  
+
   def edit
   end
 
-  # POST /courses
-  # POST /courses.json
+
+  
+
   def create
     @new_course = current_user.courses.build(course_params)
     @new_course.title = 'New Course (rename)' if @new_course.title == ''
+    @new_course.price = (params[:course][:price].to_i * 100) if params[:course][:price] != ''
     # @new_course.save
     
     respond_to do |format|
@@ -169,15 +181,19 @@ class CoursesController < ApplicationController
 
   end
 
-  # PATCH/PUT /courses/1
-  # PATCH/PUT /courses/1.json
+
+  
+
   def update
-    @course.title = 'New Course (rename)' if params[:title] = ''
+    @course.title = 'New Course (rename)' if params[:course][:title] == ''
+    
     # puts '==============='
     # puts params[:title]
     
     respond_to do |format|
       if @course.update(course_update)
+        @course.price = (params[:course][:price].to_d * 100.00) if params[:course][:price] != ''
+        @course.save
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
         format.json { render :show, status: :ok, location: @course }
       else
@@ -187,8 +203,10 @@ class CoursesController < ApplicationController
     end
   end
 
-  # DELETE /courses/1
-  # DELETE /courses/1.json
+  
+
+
+
   def destroy
     @course.delete_associations
     @course.destroy
@@ -198,7 +216,13 @@ class CoursesController < ApplicationController
     end
   end
 
+
+
+
   private
+
+
+
     # Use callbacks to share common setup or constraints between actions.
     def set_course
       @course = Course.find(params[:id])
