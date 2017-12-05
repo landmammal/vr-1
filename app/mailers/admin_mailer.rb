@@ -32,6 +32,7 @@ class AdminMailer < ApplicationMailer
     @email = email
     @course = course
     @url = @base
+    @register_url = @base+"/users/sign_up"
     @course_url = @base+"/courses/"+course.id.to_s
     mail( to: email, subject: "Welcome to the vR Community #{email}!")
   end

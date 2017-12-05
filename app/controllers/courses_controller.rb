@@ -25,25 +25,34 @@ class CoursesController < ApplicationController
   end
 
   def send_invite
-    user = User.find_by_email( params[:user_email] )
     @course = Course.find(params[:course_id])
-    if user
-      if params[:auto_add]
-        registration = @course.course_registration.build( user_id: user.id, user_role: params[:user_role], approval_status: false )
-        @course.save
-        url = '/courses/'+@course.id.to_s+'/accept_invitation/'+user.id
+    @emails = params[:emails].split(',')
+    @already = []
+    
+    @emails.each do |email|
+      user = User.find_by_email( email.strip )
+      if user
+        if params[:auto_add]
+          cr = @course.course_registrations.find_by( user_id: user.id )
+          if !cr
+            registration = @course.course_registrations.build( user_id: user.id, user_role: params[:user_role], approval_status: true )
+            @course.save
+          else
+            @already << user.email
+          end
+          url = '/courses/'+@course.id.to_s+'/accept_invitation/'+user.id.to_s
+        else
+          url = '/courses/'+@course.id.to_s+'/accept_invitation/'
+        end
+        
+        @notif = "invite"
+        AdminMailer.invite_to_course( user, @course, url).deliver_later
       else
-        url = '/courses/'+@course.id.to_s+'/accept_invitation/'
+        @notif = "new"
+        AdminMailer.invite_to_website( email.strip, @course ).deliver_later
       end
-      @emails = params[:user_email]
-      @notif = "invite"
-      AdminMailer.invite_to_course( user, @course, url).deliver_later
-    else
-      @emails = params[:user_email]
-      @notif = "new"
-      AdminMailer.invite_to_website( params[:user_email], @course ).deliver_later
     end
-
+    
     respond_to do |format|
       format.js { }
     end
@@ -83,10 +92,17 @@ class CoursesController < ApplicationController
     end
 
     if params[:access_code] == course.access_code
-      course.course_registrations.build( user_id: current_user.id, user_role: params[:user_role], approval_status: true ) if !cr
-      if course.save
-        redirect_to course_path( course )
+      ccr = course.course_registrations.build( user_id: current_user.id, user_role: params[:user_role], approval_status: true ) if !cr
+      
+      respond_to do |format|
+        if course.save
+          @accepted = true
+        else
+          @accepted = false
+        end
+        format.js { }
       end
+    
     end
 
   end
