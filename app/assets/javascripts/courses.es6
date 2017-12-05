@@ -61,6 +61,49 @@ function edit_or_start_course(course){
 
 var pageReady = function(){
 
+	$('#emails').on("input", function(){
+		let text = $(this).val();
+		let newF = new Object();
+		newF.emails = text;
+		
+		setTimeout(function(){
+
+			$.ajax({
+				url: "/email_exits",
+				type:"post",
+				data:newF,
+				success: function(data){
+
+					setTimeout(function(){
+						if(data.multipl){						
+							$('.multiple_emails').show();
+							$('.does_not_exist').hide();
+							$('.auto_add').fadeOut();					
+						}else if(data.found){
+							$('.does_not_exist').hide();
+							$('.auto_add').fadeIn();
+							$('.multiple_emails').hide();
+						}else{
+							if(newF.emails===""){ 
+								$('.does_not_exist').hide(); 
+							}else{
+								$('.does_not_exist').show();
+							}
+							$('.auto_add').fadeOut();
+							$('.multiple_emails').hide();
+						}
+					}, 500);
+
+				},error: function(e){
+
+					console.log("ERROR");
+
+				}
+			});
+
+		}, 500);
+	});
+
 	$('.js-add_form_btn').click(function(event){
 		event.preventDefault();
 		var thisForm = $(this).data('form');

@@ -1,0 +1,21 @@
+'use strict';
+
+
+<% if @created %>
+    $('.code_success').fadeIn();
+
+    $('.js-register_course').fadeOut(500);
+
+    $('.js-register_confirm').html('<img src="/assets/checkmark.png" width="40px"><br> Thank you for registering for the course.<br> Please refresh the page to view the full course content.');
+    
+    $('.js-register_confirm').delay(500).fadeIn(500);
+    setTimeout(function(){ location.reload(); }, 2500);
+
+<%else%>
+
+    $('.code_error').fadeIn();
+    setTimeout(function(){
+        $('.code_error').fadeOut();
+    }, 3000);
+
+<%end%>

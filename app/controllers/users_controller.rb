@@ -70,6 +70,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def email_exits
+    
+    if params[:emails].include?(",")
+      render json: { multipl: true }
+    else
+      email = params[:emails]
+      is_there = User.all.map{|x| x.email if x.email == email }.compact.include? (email)
+      render json: { found: is_there }
+    end
+    
+  end
+
   private
 
   def secure_params

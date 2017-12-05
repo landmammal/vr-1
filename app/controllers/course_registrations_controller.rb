@@ -11,12 +11,21 @@ class CourseRegistrationsController < ApplicationController
 		cr = @course.course_registrations.find_by( user_id: current_user.id )
 		if !cr
 			if @course.privacy == 0
-				render json: create_it(@course)
+				create_it(@course)				
+				@created = true
 			elsif @course.privacy == 1
 				if params[ :access_code ] == @course.access_code
-					render json: create_it(@course)
+					create_it(@course)				
 				end
-			end	
+				@created = true
+			else
+				@created = false
+			end
+
+			respond_to do |format|
+				format.js{ }
+			end
+
 		end	
 	end
 

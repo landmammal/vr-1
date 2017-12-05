@@ -83,7 +83,8 @@ Rails.application.routes.draw do
   get '/group_registrations/group/:id' => 'group_registrations#registrations'
 
   get "/change_first_contact" => "users#change_first_contact"
-  post "job_application" => "welcome#job_application"
+  post "/job_application" => "welcome#job_application"
+  post "/email_exits" => "users#email_exits"
 
 
 
