@@ -22,6 +22,19 @@ module UsersHelper
     end
     return access
   end
+
+  def course_pending
+    pending = false
+
+    cr = @course.course_registrations.find_by(user_id: current_user.id)
+    if cr
+      pending = true if cr.approval_status == false
+    end
+
+    pending
+    
+  end
+
   def registered_lessons
     @registered_courses = current_user.registered_courses
     lessons_count = 0

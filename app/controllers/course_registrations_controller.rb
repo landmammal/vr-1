@@ -1,5 +1,5 @@
 class CourseRegistrationsController < ApplicationController
-	before_action :set_course, only: [:create]
+	before_action :set_course, only: [:create, :destroy]
 	before_action :set_course_registration, only: [:destroy, :update, :edit]
 
 	def index
@@ -10,10 +10,10 @@ class CourseRegistrationsController < ApplicationController
 	def create
 		cr = @course.course_registrations.find_by( user_id: current_user.id )
 		if !cr
-			if @course.privacy == 0
+			if @course.free?
 				create_it(@course)				
 				@created = true
-			elsif @course.privacy == 1
+			elsif @course.with_code?
 				if params[ :access_code ] == @course.access_code
 					create_it(@course)				
 				end
@@ -30,12 +30,12 @@ class CourseRegistrationsController < ApplicationController
 	end
 
 	def create_it(course)
-		@course_registration = current_user.course_registrations.build(course_regis_params)
-		@course_registration.course_id = course.id
-		@course_registration.user_role = User.roles[current_user.role]
-		@course_registration.approval_status = false
-		@course_registration.save
-		@course_registration
+		@cr = current_user.course_registrations.build(course_regis_params)
+		@cr.course_id = course.id
+		@cr.user_role = User.roles[current_user.role]
+		course.private? ? @cr.approval_status = false : @cr.approval_status = true
+		@cr.save
+		@cr
 	end
 
 	def edit

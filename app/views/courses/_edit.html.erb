@@ -18,7 +18,7 @@
     <%= f.select :cstatus, @course.cstatus! %>
     <%= f.select :language, (@languages) %><br>
 
-    <div class="course_price" style="display: <%= @course.privacy == 2 ? "block" : "none" %> ;">
+    <div class="course_price" style="display: <%= @course.paid? ? "block" : "none" %> ;">
         $<%= f.text_field :price, placeholder: 'set price (ex: 5.99)', value:((@course.price / 100.00).to_d if @course.price != nil ) %>
     </div>
 

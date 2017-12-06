@@ -144,6 +144,14 @@ input[type="submit"], button{
     background-color:#ccc;
   }
 
+  &.default{
+    // border:1px solid #7D0009;
+    background-color:#999; color:#fff;
+    &:hover{
+      background-color:#333;
+    }
+  }
+
   &.red{
     // border:1px solid #7D0009;
     background-color:#FF0000; color:#fff;
@@ -181,6 +189,11 @@ input[type="submit"], button{
   &.reg_btn{
     width:inherit; float: none;
     border-radius:3px;
+  }
+  &.tiny_btn{
+    padding: 1px 4px; float: none;
+    border-radius:3px;
+    font-size: 11px;
   }
   &.small_btn{
     padding:2px 6px; float: none;
