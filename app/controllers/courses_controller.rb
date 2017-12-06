@@ -44,6 +44,10 @@ class CoursesController < ApplicationController
         else
           url = '/courses/'+@course.id.to_s+'/accept_invitation/'
         end
+
+        if @course.paid?
+          url = course_path( @course )
+        end
         
         @notif = "invite"
         AdminMailer.invite_to_course( user, @course, url).deliver_later
