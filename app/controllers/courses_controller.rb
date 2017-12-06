@@ -142,11 +142,32 @@ class CoursesController < ApplicationController
     cr = course.course_registrations.find_by( user_id: params[:user_id] )
 
     if cr.destroy
-      # respond_to do |format|
-      #   format.js{}
-      # end
-
       render json: {message: "removed"}.to_json
+    end
+  end
+
+
+  def student_list_nav
+    @course = Course.find( params[:course_id] )
+    @c = params[:current].to_i
+    a = params[:amount].to_i
+    @d = params[:direction]
+
+    if @d == "next"
+      @users = @course.users.limit( a ).offset( ( @c*a + a )).order("id DESC")
+      @c += 1
+    else
+      @users = @course.users.limit( a ).offset( ( @c*a - a )).order("id DESC")
+      @c -= 1
+    end
+
+    if @users.size < 1
+      @users = @course.users.limit( a ).offset( 0 ).order("id DESC")
+      @c = 0
+    end
+
+    respond_to do |format|
+      format.js{}
     end
   end
 
@@ -155,6 +176,11 @@ class CoursesController < ApplicationController
   def show
     # get original topics created by that course
     @orig_topics = Topic.where(course_id: @course.id)
+    @users = @course.users.order("id DESC").limit(8)
+
+    remainder = @course.users.size % @users.size
+    remainder > 0 ? @pages = ((@course.users.size - (remainder))/@users.size + 1) : @pages = @course.users.size/@users.size
+
     @topic = Topic.new
     @course_registration = CourseRegistration.new
   end

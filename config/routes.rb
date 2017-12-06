@@ -44,6 +44,9 @@ Rails.application.routes.draw do
   post "/leave_course" => "courses#leave_course"
   post "/activate_deactivate_student" => "courses#activate_deactivate_student"
   post "/remove_student" => "courses#remove_student"
+  
+  post "/courses/student_list_nav" => "courses#student_list_nav"
+  post "/users/course_list_nav" => "users#course_list_nav"
 
   # put '/rehearsal/:rehearsal_id/rehearsal_approved' => "rehearsals#rehearsal_approved"
   post '/rehearsal/:rehearsal_id/approved' => "rehearsals#approved"
