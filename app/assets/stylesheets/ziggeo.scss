@@ -5,10 +5,14 @@
   width:100%;
   // height:100%;
 }
+.ba-videorecorder-chooser-secondary-button{
+  position:relative;
+}
 .ba-videorecorder-chooser-file{
   position: absolute;
   bottom: 0;
-  top: 50%;
+  top: 0;
+  margin: 0 !important;
 }
 .media_wrapper, .ziggeo_create_lesson, .js-play_ziggeo{
   // width:100%;
