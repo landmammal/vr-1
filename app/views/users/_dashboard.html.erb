@@ -57,8 +57,7 @@
 		Courses you created ( last 4 ): <br>
 		<div class="card_list">
 			<% current_user.courses.order('id DESC').limit(4).each do |course| %>
-				<% @course_item = course %>
-		        <%= render 'coursecards' %>
+		        <%= render 'coursecards', course_item: course  %>
 		    <% end %>
 		</div>
     <% end %>

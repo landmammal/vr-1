@@ -133,26 +133,34 @@
 
       <hr>
       
-      <% @course.users.each do |student| %>
-        <div class="user_bubble <%= student.id %>" style="width:100%;">
-          <img src="<%= student_pic(student) %>" class="img-circle" width="30px" style="float:left;">
-          <div class="info">
-            <%= student.full_name %>
-            <br>
-            
-            <%= form_tag( '/activate_deactivate_student' , style:'float:left;', remote: true) do |f| %>
-              <%= hidden_field_tag :user_id, nil, value:student.id %>
-              <%= hidden_field_tag :course_id, nil, value:@course.id %>
-              <%= submit_tag :active, class:("tiny_btn activate_deactivate "+( @course.course_registrations.find_by_user_id( student.id ).approval_status ? "green_sft" : "default")) %>
-            <% end %>
+      <div class="student_list_nav">
+        <% @users.each do |student| %>
+          <%= render "user_bubble", student: student, course: @course %>
+        <% end %>
+      </div>
+      <% if @users.size > 0 %>
 
-            <%= form_tag( '/remove_student' , style:'float:right;', remote: true) do |f| %>
-              <%= hidden_field_tag :user_id, nil, value:student.id %>
-              <%= hidden_field_tag :course_id, nil, value:@course.id %>
-              <%= submit_tag :remove, class:"tiny_btn remove_student red", data:{ confirm: 'Are you sure you want to remove this student?' } %>
-            <% end %>
-          </div>
-        </div>
+        <hr>
+        <center style="font-size:10px;">
+          <span class="current_nav_num">1</span> out of <%= @pages %>
+        </center>
+        <hr>
+        <%= form_tag( '/courses/student_list_nav' , style:'float:left;', remote: true) do |f| %>
+          <%= hidden_field_tag :amount, nil, value:8 %>
+          <%= hidden_field_tag :direction, nil, value:"previous" %>
+          <%= hidden_field_tag :current, nil, class:'current_nav', value:0 %>
+          <%= hidden_field_tag :course_id, nil, value:@course.id %>
+          <%= submit_tag :<<, class:"tiny_btn" %>
+        <% end %>
+
+        <%= form_tag( '/courses/student_list_nav' , style:'float:right;', remote: true) do |f| %>
+          <%= hidden_field_tag :amount, nil, value:8 %>
+          <%= hidden_field_tag :direction, nil, value:"next" %>
+          <%= hidden_field_tag :current, nil, class:'current_nav', value:0 %>
+          <%= hidden_field_tag :course_id, nil, value:@course.id %>
+          <%= submit_tag :>>, class:"tiny_btn" %>
+        <% end %>
+      
       <% end %>
 
     </div>

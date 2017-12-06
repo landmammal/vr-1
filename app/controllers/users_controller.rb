@@ -22,6 +22,15 @@ class UsersController < ApplicationController
     if !current_user.level_1 && !@courses.include?(starter_course)
       current_user.course_registrations.build(course_id: starter_course.id).save
     end
+
+    if current_user.level_1
+      @all_courses_limit = Course.all.order('id DESC').limit(8)
+      @all_courses = Course.all.size
+
+      remainder = @all_courses % @all_courses_limit.size
+      remainder > 0 ? @pages = ((@all_courses - (remainder))/@all_courses_limit.size + 1) : @pages = @all_courses/@all_courses_limit.size
+
+    end
     
     if current_user.level_2
       @course = Course.new
@@ -31,13 +40,41 @@ class UsersController < ApplicationController
 
     @site_title = current_user.first_name+' '+current_user.last_name
     
-    if  !current_user.level_1 && current_user.first_contact
+    if !current_user.level_1 && current_user.first_contact
       Rails.env.development? ? re_pa = starter_course.topics.first.lessons.first.path : re_pa = Lesson.find(485).path
       redirect_to re_pa
     end
     
     authorize @user
   end
+
+
+
+  def course_list_nav
+    @c = params[:current].to_i
+    a = params[:amount].to_i
+    @d = params[:direction]
+
+    if @d == "next"
+      @courses = Course.all.limit( a ).offset( ( @c*a + a )).order("id DESC")
+      @c += 1
+    else
+      @courses = Course.all.limit( a ).offset( ( @c*a - a )).order("id DESC")
+      @c -= 1
+    end
+
+    if @courses.size < 1
+      @courses = Course.all.limit( a ).offset( 0 ).order("id DESC")
+      @c = 0
+    end
+
+    respond_to do |format|
+      format.js{}
+    end
+  end
+
+
+
 
   def change_first_contact
     user = User.find(current_user.id)

@@ -1,0 +1,12 @@
+'use strict';
+
+$('.student_list_nav').empty();
+<% @users.each do |user| %>
+
+    var bubble = "<%= escape_javascript (render partial: './courses/user_bubble', locals: { student: user, course: @course } ) %>";
+    $('.student_list_nav').append(bubble);
+
+<% end %>
+
+$('.current_nav').val( <%= @c %> );
+$('.current_nav_num').text( <%= @c + 1 %> );
