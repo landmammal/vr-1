@@ -1,4 +1,4 @@
-<% if @course.privacy == 0 %>
+<% if @course.free? %>
 
     <script>
         reload_to( "/courses/<%= params[:course_id] %>" , 0 );

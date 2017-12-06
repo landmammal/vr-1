@@ -83,6 +83,26 @@ class AdminMailer < ApplicationMailer
     mail( to:'carlos@videorehearser.com', subject: "#{user.first_name} #{user.last_name} #red @jcvazquez6")
   end
 
+
+
+
+  def send_purchase_confirmation_student( user, course )
+    @course = course
+    @user = user
+    @url = @base+"/courses/"+course.id.to_s
+    mail( to: user.email, subject: "Thank you for purchasing access to the course: "+course.title)
+  end
+
+  def send_purchase_confirmation_instructor( user, course )
+    @user = user
+    @course = course
+    @instructor = course.instructor
+    mail( to: @instructor.email, subject: user.full_name+" purchased to the course: "+course.title)
+  end
+
+
+
+
   def set_base_url
     if Rails.env.development?
       @base = "http://localhost:3000"

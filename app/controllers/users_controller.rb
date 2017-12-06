@@ -15,7 +15,8 @@ class UsersController < ApplicationController
   def show
     @group = Group.new
     @user = User.find(params[:id])
-    @courses = current_user.registered_courses.order('id DESC')
+    @courses = current_user.registered_courses.order('id DESC').map{ |x| x if (x.course_registrations.find_by(user_id: current_user.id).approval_status) }.compact
+    @courses_pending = current_user.registered_courses.order('id DESC').map{ |x| x if (!x.course_registrations.find_by(user_id: current_user.id).approval_status) }.compact
     Rails.env.development? ? starter_course = Course.all.first : starter_course = Course.find(201) 
 
     if !current_user.level_1 && !@courses.include?(starter_course)

@@ -4,7 +4,7 @@
 		<div class="js-my_courses_list card_list">
 			
 			<% if @courses.size > 0 %>
-				<% @courses.order('id DESC').each_with_index do |course, index| %>
+				<% @courses.each_with_index do |course, index| %>
 
 					<a class="js-c_<%= course.id %>" href="<%= first_lesson_path( course )%>">	
 						<div class="card">

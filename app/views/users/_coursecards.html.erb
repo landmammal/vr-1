@@ -3,11 +3,11 @@
     <a href="<%= course_path(@course_item) %>" class="js-c_<%= @course_item.id %>">
       <div class="title_name">
         <%= @course_item.title[0...23] %><%= "..." if @course_item.title.length > 23 %>
-        <% if @course_item.privacy == 0 %>
+        <% if @course_item.free? %>
           <span class="privacy ion-earth"></span>
-        <% elsif @course_item.privacy == 2 %>
+        <% elsif @course_item.paid? %>
           <span class="privacy" style="font-size:15px;">$</span>
-        <% elsif @course_item.privacy == 3 %>
+        <% elsif @course_item.private? %>
           <span class="privacy ion-android-unlock" style="font-size:15px;"></span>
         <% else %>
           <span class="privacy ion-locked"></span>

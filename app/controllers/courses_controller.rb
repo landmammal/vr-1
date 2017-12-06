@@ -109,9 +109,44 @@ class CoursesController < ApplicationController
 
   def leave_course
     course = Course.find( params[:course_id] )
+    cr = course.course_registrations.find_by( user_id: current_user.id )
+
+    if course.paid?
+      cr.approval_status = false 
+      cr.save!
+    else
+      cr.destroy
+    end
+
+    redirect_to user_path( current_user )
+  end
+
+
+  def activate_deactivate_student
+    course = Course.find( params[:course_id] )
     cr = course.course_registrations.find_by( user_id: params[:user_id] )
+
+    if cr
+      cr.approval_status ? cr.approval_status = false : cr.approval_status = true
+      cr.save!
+
+      render json: {message: "changed"}.to_json
+    end
+
+  end
+
+
+
+  def remove_student
+    course = Course.find( params[:course_id] )
+    cr = course.course_registrations.find_by( user_id: params[:user_id] )
+
     if cr.destroy
-      redirect_to user_path( params[:user_id] )
+      # respond_to do |format|
+      #   format.js{}
+      # end
+
+      render json: {message: "removed"}.to_json
     end
   end
 
@@ -165,7 +200,7 @@ class CoursesController < ApplicationController
   def create
     @new_course = current_user.courses.build(course_params)
     @new_course.title = 'New Course (rename)' if @new_course.title == ''
-    @new_course.price = (params[:course][:price].to_i * 100) if params[:course][:price] != ''
+    @new_course.price = (params[:course][:price].to_d * 100.00) if params[:course][:price] != ''
     # @new_course.save
     
     respond_to do |format|

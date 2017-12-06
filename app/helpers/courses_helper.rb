@@ -3,44 +3,17 @@ module CoursesHelper
 	def content(course)
 		thisCourse = {topics: 0, lessons: 0, content:[]}
 		thisCourse[course.title] = {}
-		topics = course.topics
-		# lessons = 0
 		lessons = []
-
-		topics.each do |topic|
-			# thisCourse[topic.title] = []
-			# thisCourse[topic.title] << topic
+		
+		course.topics.each do |topic|
 			topic.lessons.each { |lesson| lessons << lesson }
 			thisCourse[:content] << topic
-
-			# lessons += topic.lessons.size
-			# lessons = topic.lessons
 		end
-
-		thisCourse[:topics] = topics.size
+		
+		thisCourse[:topics] = course.topics.size
 		thisCourse[:lessons] = lessons.size
 
 		return thisCourse
-	end
-
-	def course_public
-		access = true if @course.privacy == 0 && @course.cstatus == 1
-		return access
-	end
-
-	def course_public_code
-		access = true if @course.privacy == 1 && @course.cstatus == 1
-		return access
-	end
-
-	def course_paid
-		paid = true if @course.privacy == 2 && @course.cstatus == 1
-		return paid
-	end
-
-	def course_closed
-		closed = true if @course.privacy == 3 && @course.cstatus == 1
-		return closed
 	end
 
 	def rehearsals_done
