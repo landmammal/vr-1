@@ -27,9 +27,13 @@ class UsersController < ApplicationController
       @all_courses_limit = Course.all.order('id DESC').limit(8)
       @all_courses = Course.all.size
 
-      remainder = @all_courses % @all_courses_limit.size
-      remainder > 0 ? @pages = ((@all_courses - (remainder))/@all_courses_limit.size + 1) : @pages = @all_courses/@all_courses_limit.size
-
+      remainder = @all_courses % @all_courses_limit.size if @all_courses > 0
+      
+      if @all_courses > 0
+        remainder > 0 ? @pages = ((@all_courses - (remainder))/@all_courses_limit.size + 1) : @pages = @all_courses/@all_courses_limit.size
+      else
+        @pages = 0
+      end
     end
     
     if current_user.level_2

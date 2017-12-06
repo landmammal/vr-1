@@ -178,8 +178,12 @@ class CoursesController < ApplicationController
     @orig_topics = Topic.where(course_id: @course.id)
     @users = @course.users.order("id DESC").limit(8)
 
-    remainder = @course.users.size % @users.size
-    remainder > 0 ? @pages = ((@course.users.size - (remainder))/@users.size + 1) : @pages = @course.users.size/@users.size
+    remainder = @course.users.size % @users.size if @users.size > 0
+    if @users.size > 0
+      remainder > 0 ? @pages = ((@course.users.size - (remainder))/@users.size + 1) : @pages = @course.users.size/@users.size
+    else
+      @pages = 0
+    end
 
     @topic = Topic.new
     @course_registration = CourseRegistration.new
