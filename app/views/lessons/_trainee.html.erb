@@ -119,10 +119,19 @@
             <div class="success sent">Rehearsal has been submitted to the instructor.</div>
             <div class="error retracted">Rehearsal has been removed from submission.</div>
             <hr>
+            <div class="peer_review_form">
+              <%= form_tag( '/send_peer_review', remote: true) do |f| %>
+                <%= text_field_tag :person_name %>
+                <%= text_field_tag :person_email %>
+                <%= hidden_field_tag :rehearsal_id, nil, value: %>
+                <%= hidden_field_tag :rehearsal_id, nil, value: %>
+                <%= submit_tag :send %>
+              <% end %>
+            </div>
         </div>
         <div class="shadebox_bottom">
             <button type="button" class="blue submission" data-rehearsalsubmission="" data-rehearsalid="" style="float:left;"></button>
-            <!-- <button type="button" class="green_sft" style="float:left;">Self-Evaluate</button> -->
+            <button type="button" class="green_sft" style="float:left;">Send for peer review</button>
             <!-- <button type="button" class="green_sft"><span class="ion-edit"></span></button> -->
             <button type="button" class="red">Delete Rehearsal</button>
         </div>

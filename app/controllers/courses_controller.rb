@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :authenticate_user! , except: [:index, :show, :all, :display]
+  before_action :authenticate_user! , except: [:index, :all, :display]
   before_action :set_course, only: [:show, :edit, :update, :destroy, :display]
   # GET /courses
   # GET /courses.json
@@ -43,6 +43,10 @@ class CoursesController < ApplicationController
           url = '/courses/'+@course.id.to_s+'/accept_invitation/'+user.id.to_s
         else
           url = '/courses/'+@course.id.to_s+'/accept_invitation/'
+        end
+
+        if @course.paid?
+          url = course_path( @course )
         end
         
         @notif = "invite"
