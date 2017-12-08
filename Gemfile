@@ -25,6 +25,8 @@ gem 'font-awesome-sass'
 gem 'sprockets-es6'
 gem 'carrierwave'
 
+gem 'roadie'
+
 # for my secrets
 gem 'dotenv'
 

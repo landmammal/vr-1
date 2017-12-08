@@ -25,9 +25,7 @@
       <% if @rehearsal.submission == true %>
         <div class="rehearsal_video">
           <div class="video_black_bg media_wrapper">
-            <% @this_video_token = @rehearsal.video_token %>
-            <% @this_added_class = 'rehearsal' %>
-            <div class="ziggeo"><%= render './shared/ziggeoplayer' %></div>
+            <div class="ziggeo"><%= render './shared/ziggeoplayer', this_class: "rehearsal", token: @rehearsal.video_token %></div>
           </div>
           <div class="lesson_script <%= @this_added_class %>_script">
             <%= simple_format(@rehearsal.script) %>

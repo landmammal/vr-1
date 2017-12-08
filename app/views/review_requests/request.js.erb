@@ -1,0 +1,13 @@
+'use strict';
+
+<% if @sent %>
+    $('.success.request_sent').slideDown();
+    $('.success.request_sent').delay(3000).slideUp();
+    $('.peer_review_form').fadeOut();
+<%end%>
+
+
+<% if @deleted %>
+    $('.error.request_deleted').slideDown();
+    $('.error.request_deleted').delay(3000).slideUp();
+<%end%>

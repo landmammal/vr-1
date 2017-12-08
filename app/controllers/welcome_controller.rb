@@ -100,7 +100,7 @@ class WelcomeController < ApplicationController
       @error_text = "First name and last name need to be filled out"
     end
 
-    AdminMailer.send_job_application( app ).deliver_now if !@error
+    AdminMailer.send_job_application( app ).deliver_later if !@error
 
     respond_to do |format|
       format.js { }

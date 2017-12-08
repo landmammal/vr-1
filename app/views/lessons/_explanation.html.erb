@@ -1,11 +1,9 @@
 <% if @all_prt || @mdl_prt || @prmt_prt %>
-	<% @this_video_token = @prior_expl.video_token %>
-	<% @this_added_class = 'explanation' %>
 	
     <div class="video_black_bg">
 		<div class="media_wrapper">
 			<div class="ziggeo">
-				<%= render './shared/ziggeoplayer' %>
+				<%= render './shared/ziggeoplayer', this_class: "explanation", token:@prior_expl.video_token %>
 			</div>
 		</div>
 	</div>

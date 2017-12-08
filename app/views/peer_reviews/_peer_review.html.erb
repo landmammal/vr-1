@@ -1,0 +1,46 @@
+<div class="js-player practice prompt_video first_contact_intro" data-intro="This is where you’ll practice to sound like the role model. The goal is for you to be a natural.">
+    Record your review here:
+    <br><br>
+    <div class="video_black_bg media_wrapper">
+        <div class="ziggeo">
+            <% @this_added_class = 'peer_review' %>
+            <%= render './shared/ziggeorecorder' %>
+        </div>
+    </div>
+
+    <%= form_for PeerReview.new, html: {class:"peer_reviewForm", id:"ziggeoForm"}, remote: true  do |f| %>
+        <% if @rehearsal.errors.any? %>
+            <div id="error_explanation">
+            <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this rehearsal from being saved:</h2>
+
+            <ul>
+                <% @rehearsal.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+            </div>
+        <% end %>
+
+        <%= f.text_area :notes, class:'peer_review_script', placeholder:'Write your notes here...' %>
+        <%= f.hidden_field :request_id, value: @request.id %>
+        <%= f.hidden_field :video_token %>
+        <%= f.hidden_field :token %></div>
+    <% end %>
+    
+    <br>
+    
+    <span class="recorder_please_wait">Please wait for the video to upload & verify</span>
+    
+    <button class='submit_peer_review submit_ziggeo submit_2 green_sft' style='float:right; display:none;' data-formname="peer_review">
+        <span>Save Peer Review</span>
+    </button>
+
+    <button class='record_another_peer_review record_another_2 blue' style='float:right; display:none;'>
+        Record Another Review
+    </button>
+
+</div>
+
+<script>
+        pageReady(true);
+</script>
