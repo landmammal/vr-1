@@ -459,7 +459,18 @@
   }
   .card_list {
 	overflow: hidden; padding-top: 10px;
-  }
+	}
+	
+	.with_side{
+		width: 78%;
+		margin-right: 2%;
+		float: left;
+	}
+	.the_side{
+		width: 20%;
+		float: left;
+	}
+
   .card_list .card_item {
 		border-radius: 1px;
     border: 0;
@@ -639,11 +650,12 @@
   
   .card_list .home_card .card_title .title_name {
 		color: #ffffff;
-    padding: 10px;
+    padding: 10px 0 10px 10px;
     display: inline-block;
     font-weight: 400;
 		letter-spacing: 1px;
 		max-width: 190px;
+		font-size: 12px;
 }
   
   .card_list .home_card .card_desc {
@@ -660,7 +672,7 @@
 		font-size: 14px;
     float: right;
     text-align: center;
-    padding: 10px 10px;
+    padding: 10px 10px 10px 0;
     color: #fff;
   }
   
@@ -728,6 +740,7 @@
 
 .confirmation_div{
 	display: none;
+	font-size: 12px;
 	border-radius:5px;
 	border: 1px solid #1EA402;
 	background: rgba(#1CDC69, 0.5);
@@ -736,6 +749,28 @@
 }
 
 
+
+.recorder_please_wait{
+	color: red;
+	font-size: 10px;
+	float: right;
+	display: none;
+}
+
+.error, .success{
+	display: none;
+}
+.error{
+	padding: 5px 8px;
+	background-color: #ffc1c1;
+	border:1px red solid;
+}
+.success{
+	width: auto;
+	padding: 10px 15px;
+	background-color: #cfffc1;
+	border:1px green solid;
+}
 
 @media only screen and (max-width: 495px) {
 	.card_list .home_card, .card_list .card {

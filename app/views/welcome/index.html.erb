@@ -59,7 +59,7 @@
 						<br>
 					</div>
 					<div class="col-sm-6">
-						<div class="demo_form">
+						<div class="demo_form" id="demo_form">
 							<h2>Schedule a Demo</h2>
 							<%= form_for @demo, remote: true do |d| %>
 								<%= d.text_field :first_name, placeholder:'First name *', class:'js-first_name js-form half' %>
@@ -248,7 +248,7 @@
 		<br>
 		<br>
 
-		<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+		<div class="flip-container home" ontouchstart="this.classList.toggle('hover');">
 			<div class="flipper home_course" >
 				<div class="content front" style="background-image:url('<%=image%>/home/interview.jpeg');">
 					<div class="title">
@@ -263,7 +263,7 @@
 			</div>
 		</div>
 
-		<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+		<div class="flip-container home" ontouchstart="this.classList.toggle('hover');">
 			<div class="flipper home_course" >
 				<div class="content front" style="background-image:url('<%=image%>/home/sales_training.jpeg');">
 					<div class="title">
@@ -278,7 +278,7 @@
 			</div>
 		</div>
 
-		<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+		<div class="flip-container home" ontouchstart="this.classList.toggle('hover');">
 			<div class="flipper home_course" >
 				<div class="content front" style="background-image:url('<%=image%>/home/customer_service.jpeg');">
 					<div class="title">
@@ -293,7 +293,7 @@
 			</div>
 		</div>
 
-		<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+		<div class="flip-container home" ontouchstart="this.classList.toggle('hover');">
 			<div class="flipper home_course" >
 				<div class="content front" style="background-image:url('<%=image%>/home/presentation.jpeg');">
 					<div class="title">
@@ -308,7 +308,7 @@
 			</div>
 		</div>
 
-		<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+		<div class="flip-container home" ontouchstart="this.classList.toggle('hover');">
 			<div class="flipper home_course" >
 				<div class="content front" style="background-image:url('<%=image%>/home/pronunciation.jpeg');">
 					<div class="title">
@@ -323,7 +323,7 @@
 			</div>
 		</div>
 
-		<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+		<div class="flip-container home" ontouchstart="this.classList.toggle('hover');">
 			<div class="flipper home_course" >
 				<div class="content front" style="background-image:url('<%=image%>/home/hospitality.jpeg');">
 					<div class="title">
@@ -333,6 +333,21 @@
 				<div class="content back" style="background-image:url('<%=image%>/home/hospitality.jpeg');">			
 					<div class="title">
 						"I am able to save time, effort, and money by using video Rehearser to engage my team. The platform puts the emphasis on the LEARNER and uses engineered training to improve employee performance, morale, and satisfaction". 
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="flip-container home" ontouchstart="this.classList.toggle('hover');">
+			<div class="flipper home_course" >
+				<div class="content front" style="background-image:url('<%=image%>/home/frame_home_1.jpg');">
+					<div class="title">
+						and more...
+					</div>
+				</div>
+				<div class="content back" style="background-image:url('<%=image%>/home/frame_home_1.jpg');">			
+					<div class="title">
+						We're looking for creative ways to use videoRehearser and are open to working with professionals and organizations looking to deliver their training virtually <br><br> <a href="#demo_form"><button>Contact us for a demo</button></a>
 					</div>
 				</div>
 			</div>

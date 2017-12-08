@@ -25,7 +25,8 @@
     <%= f.text_area :script, placeholder: 'Script' %><br>
     <%= f.select :language, (@languages) %>
     <%= f.select :privacy, (@privacy) %>
-    <%= f.submit 'Save '+@this_component, class:'shade_close reset_form blue save_'+@this_added_class, title:'Please allow the video to verify before saving' %>
+    <span class="recorder_please_wait">Please wait for the video to upload & verify</span>
+    <%= f.submit 'Save '+@this_component, class:'shade_close submit_ziggeo reset_form blue save_'+@this_added_class, title:'Please allow the video to verify before saving' %>
   <% end %>
 </div>
 <!-- <button class='submit_<%= @this_added_class %> submit_ziggeo blue' style='float:right;' data-formname="<%= @this_added_class %>">

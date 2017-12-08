@@ -1,4 +1,4 @@
-<% if @course.privacy == 0 %>
+<% if @course.free? %>
 
     <script>
         reload_to( "/courses/<%= params[:course_id] %>" , 0 );
@@ -19,6 +19,15 @@
                     <br>
                     <%= submit_tag "Submit access code", class:'blue' %>
                 <% end %>
+
+                <div class="success code_success" style="margin:10px auto; width:350px; font-size:11px;">
+                    Welcome to the course: <%= @course.title %>.
+                </div>
+                <div class="error code_error" style="margin:10px auto; width:350px; font-size:11px;">
+                    There was an error registering you to the course:
+                    <br>
+                    - Please check your access code.
+                </div>
 
             </center>
 

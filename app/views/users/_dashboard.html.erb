@@ -4,7 +4,7 @@
 		<div class="js-my_courses_list card_list">
 			
 			<% if @courses.size > 0 %>
-				<% @courses.order('id DESC').each_with_index do |course, index| %>
+				<% @courses.each_with_index do |course, index| %>
 
 					<a class="js-c_<%= course.id %>" href="<%= first_lesson_path( course )%>">	
 						<div class="card">
@@ -57,8 +57,7 @@
 		Courses you created ( last 4 ): <br>
 		<div class="card_list">
 			<% current_user.courses.order('id DESC').limit(4).each do |course| %>
-				<% @course_item = course %>
-		        <%= render 'coursecards' %>
+		        <%= render 'coursecards', course_item: course  %>
 		    <% end %>
 		</div>
     <% end %>

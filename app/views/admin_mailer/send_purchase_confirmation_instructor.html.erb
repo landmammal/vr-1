@@ -73,38 +73,21 @@
           <tr>
             <td>
               <div class="content">
-                Hi Carlos,
+                Hi <%= @instructor.full_name %>,
                 <br>
                 <br>
                 
-                <b><%= @app["first_name"] %> <%= @app["last_name"] %></b> Just applied for the job: <%= @app["job"] %>.
                 <div class="main-body">
-                    <h4>Applicant info:</h4>
-                    email: <%= link_to @app["email"], "mailto:"+@app['email'] %>
-                    <br>
-                    phone: <%= @app["phone"] %>
-                    <br>
-                    resume: <%= link_to @app["resume"], @app["resume"] %>
-                    <br>
-                    website: <%= link_to @app["website"], @app["website"] %>
-                    
-                    <hr>
-                    <h4>About them:</h4>
-                    <%= @app["about"] %>
-
-                    <hr>
-                    <h4>References:</h4>
-                    <%= @app["references"] %>
-                
+                    <%= @user.full_name %> has just purchased access to the course: <b><%= @course.title %>.</b>
                 </div>
 
                 <hr>
 
                 <div class="small">
-                    <br>
-                    Best
-                    <br>
-                    - Team Mailing System 
+                  <br>
+                  Best
+                  <br>
+                  - Team vR 
                 </div>
 
               </div>

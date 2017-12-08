@@ -42,6 +42,11 @@ Rails.application.routes.draw do
   get "/courses/:course_id/accept_invitation/:user_id" => "courses#accept_invitation"
   post "/register_with_access_code" => "courses#register_with_access_code"
   post "/leave_course" => "courses#leave_course"
+  post "/activate_deactivate_student" => "courses#activate_deactivate_student"
+  post "/remove_student" => "courses#remove_student"
+  
+  post "/courses/student_list_nav" => "courses#student_list_nav"
+  post "/users/course_list_nav" => "users#course_list_nav"
 
   # put '/rehearsal/:rehearsal_id/rehearsal_approved' => "rehearsals#rehearsal_approved"
   post '/rehearsal/:rehearsal_id/approved' => "rehearsals#approved"
@@ -83,7 +88,8 @@ Rails.application.routes.draw do
   get '/group_registrations/group/:id' => 'group_registrations#registrations'
 
   get "/change_first_contact" => "users#change_first_contact"
-  post "job_application" => "welcome#job_application"
+  post "/job_application" => "welcome#job_application"
+  post "/email_exits" => "users#email_exits"
 
 
 

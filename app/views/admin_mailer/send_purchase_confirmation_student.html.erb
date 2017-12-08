@@ -73,38 +73,33 @@
           <tr>
             <td>
               <div class="content">
-                Hi Carlos,
+                Hi <%= @user.full_name %>,
                 <br>
                 <br>
                 
-                <b><%= @app["first_name"] %> <%= @app["last_name"] %></b> Just applied for the job: <%= @app["job"] %>.
+                <b>Thank you for purchasing access to the course <%= @course.title %>.</b>
+                <br>
+                <br>
                 <div class="main-body">
-                    <h4>Applicant info:</h4>
-                    email: <%= link_to @app["email"], "mailto:"+@app['email'] %>
-                    <br>
-                    phone: <%= @app["phone"] %>
-                    <br>
-                    resume: <%= link_to @app["resume"], @app["resume"] %>
-                    <br>
-                    website: <%= link_to @app["website"], @app["website"] %>
-                    
-                    <hr>
-                    <h4>About them:</h4>
-                    <%= @app["about"] %>
-
-                    <hr>
-                    <h4>References:</h4>
-                    <%= @app["references"] %>
-                
+                  Your instructor, <%= @course.instructor.full_name %>, is excited to have you. videoRehearser is engineered to train and will lead you to performance mastery! <%= link_to "Click here to begin", @url %>.
+                  <br>
+                  <br>
+                  <b>Course details:</b>
+                  <br>
+                  Name: <%= @course.title %>
+                  <br>
+                  Access Code: <%= @course.access_code %>
+                  <br>
+                  Number of lessons: <%= @lessons %>
                 </div>
 
                 <hr>
 
                 <div class="small">
-                    <br>
-                    Best
-                    <br>
-                    - Team Mailing System 
+                  <br>
+                  Best
+                  <br>
+                  - Team vR 
                 </div>
 
               </div>

@@ -1,36 +1,39 @@
-<div class="home_card card_<%= @course_item.id %>">
+<div class="home_card card_<%= course_item.id %>">
   <div class="card_title">
-    <a href="<%= course_path(@course_item) %>" class="js-c_<%= @course_item.id %>">
+    <a href="<%= course_path(course_item) %>" class="js-c_<%= course_item.id %>">
       <div class="title_name">
-        <%= @course_item.title[0...23] %><%= "..." if @course_item.title.length > 23 %>
-        <% if @course_item.privacy == 0 %>
-            <span class="privacy ion-earth"></span>
-        <% elsif @course_item.privacy == 2 || @course_item.privacy == 3 %>
-            <span class="privacy ion-android-unlock" style="font-size:15px;"></span>
+        <%= course_item.title[0...23] %><%= "..." if course_item.title.length > 23 %>
+        <% if course_item.free? %>
+          <span class="privacy ion-earth"></span>
+        <% elsif course_item.paid? %>
+          <span class="privacy" style="font-size:15px;">$</span>
+        <% elsif course_item.private? %>
+          <span class="privacy ion-android-unlock" style="font-size:15px;"></span>
         <% else %>
-            <span class="privacy ion-locked"></span>
+          <span class="privacy ion-locked"></span>
         <% end %>
       </div>
     </a>
 
-    <div class="card_delete js-delete_<%= @course_item.id %>">
-      <%= link_to "X", @course_item, method: :delete, data: {confirm: "Are you sure?"} %>
+    <div class="card_delete js-delete_<%= course_item.id %>">
+      <%= link_to "X", course_item, method: :delete, data: {confirm: "Are you sure?"} %>
     </div>
 
-    <a href="<%= edit_course_path(@course_item) %>">
-      <div class="card_edit js-edit_<%= @course_item.id %>">
+    <a href="<%= edit_course_path(course_item) %>">
+      <div class="card_edit js-edit_<%= course_item.id %>">
         <span class="ion-edit"></span>
       </div>
     </a>
   </div>
+  
   <div class="card_desc">
-    <a href="<%= course_path(@course_item) %>">
-      <%= @course_item.description[0...115] %><%= "..." if @course_item.description.length > 115 %>
+    <a href="<%= course_path(course_item) %>">
+      <%= course_item.description[0...115] %><%= "..." if course_item.description.length > 115 %>
     </a>
 
     <div class="bottom_count">
-      <% @course_item.topics.each do |topic| %>
-        <% if course_creator %>
+      <% course_item.topics.each do |topic| %>
+        <% if course_item.owner(current_user) %>
           <div class="circle_count"></div>
         <% elsif course_trainee %>
           <div class="circle_count <%= "done" if topic.is_completed(current_user) %>"></div>

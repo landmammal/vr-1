@@ -33,26 +33,23 @@
       <!-- <pre><%= @topic_lessons %></pre> -->
 
 
-        
-    
-
       <div class="lesson-row">
           
-            <div class="lesson_add">
-                <% if lesson_creator %>
-                <a href="<%= edit_course_topic_lesson_path(@course, @topic, @lesson) %>" title="edit <%= @lesson.title %>">
-                  <span class="green_sft lesson_create_btn">Edit Lesson</span>
-                </a>
-                <a href="<%= course_topic_path(@course, @topic) %>">
-                  <button class="green_sft lesson_create_btn">
-                    Add Lesson
-                  </button>
-                </a>
-            <% end %>
-            </div>
-            <button class="btn-view lesson_create_btn right_panel_btn" data-rightpanel='browse_course' data-intro="This button will open a panel with a list of all the topics and lessons in this course. Click, if you need to navigate the course.">
-              <img src="/assets/icon-lesson.png">
-            </button>
+        <div class="lesson_add">
+          <% if lesson_creator %>
+            <a href="<%= edit_course_topic_lesson_path(@course, @topic, @lesson) %>" title="edit <%= @lesson.title %>">
+              <span class="green_sft lesson_create_btn">Edit Lesson</span>
+            </a>
+            <a href="<%= course_topic_path(@course, @topic) %>">
+              <button class="green_sft lesson_create_btn"> Add Lesson </button>
+            </a>
+          <% end %>
+        </div>
+        
+        <button class="btn-view lesson_create_btn right_panel_btn" data-rightpanel='browse_course' data-intro="This button will open a panel with a list of all the topics and lessons in this course. Click, if you need to navigate the course.">
+          <img src="/assets/icon-lesson.png">
+        </button>
+
       </div>
   <div class="timeline" data-intro="Clickin on these progress bubbles will help you navigate through the lessons of the course, this is also a visual representation of your current progress on each lesson.">
     <ul>
@@ -146,7 +143,6 @@
                   <div class="<%= progressbox[1] %>_prog_err lesson_err"></div>
                 </div>
 
-
                 <%= button_tag "Add ", class: "blue shadebox_btn", :data => {:shadebox => progressbox[1]+'_box'}, style: 'margin-bottom:15px;' %>
 
                 <div class="js_listOf<%= progressbox[1] %>s">
@@ -210,6 +206,30 @@
                 </a>
             <% end %>
           </div>
+
+          <% if course_creator %>
+            <div class="rehearsals_side">
+              <h4 style="padding:7px 0;">Rehearsals List</h4>
+
+              <hr>
+              <% @course.users.each do |student| %>
+                <% if @lesson.has_rehearsals_from_user(student) %>
+                  <a href="/rehearsals/student/?student=<%= student.id %>&lesson=<%= @lesson.id %>">
+                    <div class="user_bubble <%= student.id %>">
+                      <img src="<%= student_pic(student) %>" class="img-circle" width="30px" style="float:left;">
+                      <div class="info">
+                        <%= student.full_name %>
+                        <br>
+                        <% if @lesson.has_new_rehearsals_from_user(student) %>
+                          <span style="color:red; font-size:11px;">NEW!</span>
+                        <%end%>                      
+                      </div>
+                    </div>
+                  </a>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
 
 
           <!-- CONCEPTS -->
