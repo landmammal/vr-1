@@ -1,0 +1,13 @@
+<% content_for :body do %>
+
+  <p>
+    <%= @review.review_request.person_name %> has sent you a peer review for your rehearsal of lesson: <%= @review.review_request.rehearsal.lesson.title %>.
+  <p>
+
+  <p>
+    You can see it by clicking on this link:
+    <br>
+    <h3> <%= link_to  "Peer Review link", @base+"/review_requests/"+@review.review_request.hash_key+"/peer_reviews/"+@review.id.to_s %> </h3>
+  <p>
+  
+<% end %>

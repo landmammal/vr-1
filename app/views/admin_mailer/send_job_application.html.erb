@@ -1,124 +1,18 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-    <style>
-      body{
-        background-color: #E5E9EC;
-      }
-
-      h1, h2, h3, h4, h5, h6 { 
-           line-height: 0.5em;
-           margin-bottom: 5px;
-      }
-      .wrapper {
-        background-color: white;
-        width: 80%;
-        max-width: 600px;
-        margin: auto;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-flex-direction: row; /* works with row or column */
-        flex-direction: column;
-        -webkit-align-items: center;
-        align-items: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-        /*padding: 5px 15px 5px 15px;*/
-      }
-      .content {
-        text-align: left;
-        padding: 30px 40px;
-        color: #666666;
-      }
-      .header {
-        background-color: #0090ff;
-        padding: 20px 0px;
-        text-align: center;
-        min-width: 100%;
-      }
-      p {
-        font-family: "arial";
-        font-size: 15px;
-      }
-      .small {
-        font-size: 11px;
-      }
-      .header img {
-        width: 90px;
-      }
-      .footer {
-        border-bottom: 10px grey solid;
-        padding: 10px 0px;
-        width: 100%;
-      }
-
-
-    </style>
-  </head>
-  <body>
-    <div class="wrapper">
-      <table border-spacing="0" padding="0">
-        <thead>
-          <tr>
-            <th>
-              <div class="header">
-                <%= email_image_tag("logo_text_white.png") %>
-              </div>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <div class="content">
-                Hi Carlos,
-                <br>
-                <br>
-                
-                <b><%= @app["first_name"] %> <%= @app["last_name"] %></b> Just applied for the job: <%= @app["job"] %>.
-                <div class="main-body">
-                    <h4>Applicant info:</h4>
-                    email: <%= link_to @app["email"], "mailto:"+@app['email'] %>
-                    <br>
-                    phone: <%= @app["phone"] %>
-                    <br>
-                    resume: <%= link_to @app["resume"], @app["resume"] %>
-                    <br>
-                    website: <%= link_to @app["website"], @app["website"] %>
-                    
-                    <hr>
-                    <h4>About them:</h4>
-                    <%= @app["about"] %>
-
-                    <hr>
-                    <h4>References:</h4>
-                    <%= @app["references"] %>
-                
-                </div>
-
-                <hr>
-
-                <div class="small">
-                    <br>
-                    Best
-                    <br>
-                    - Team Mailing System 
-                </div>
-
-              </div>
-            </td>
-          </tr>
-        </tbody>
-        <footer>
-          <tr>
-            <td>
-              <div class="footer"></div>
-            </td>
-          </tr>
-        </footer>
-      </table>
-    </div>
-  </body>
-</html>
+<% content_for :body do %>
+  <b><%= @app["first_name"] %> <%= @app["last_name"] %></b> Just applied for the job: <%= @app["job"] %>.
+  <h4>Applicant info:</h4>
+  Email: <%= link_to @app["email"], "mailto:"+@app['email'] %>
+  <br>
+  Phone: <%= @app["phone"] %>
+  <br>
+  Resume: <%= link_to @app["resume"], @app["resume"] %>
+  <br>
+  Website: <%= link_to @app["website"], @app["website"] %>
+  
+  <hr>
+  <h4>About them:</h4>
+  <%= @app["about"] %>
+  <hr>
+  <h4>References:</h4>
+  <%= @app["references"] %> 
+<% end %>

@@ -15,6 +15,14 @@ var changeSubmitButton = function(submission, id){
 
 var pageReady = function(){
 
+
+  $(document).on('click', '.review_request', function() {
+    $('.peer_review_form').fadeIn();
+  });
+  $(document).on('click', '.cancel_peer_review', function(e) {
+    e.preventDefault();
+    $('.peer_review_form').fadeOut();
+  });
   
   // REHEARSAL SUBMISSION
   
@@ -31,6 +39,8 @@ var pageReady = function(){
         // console.log(data);
         $('.put_title_here').html('Rehearsal #'+rehearsalNumber);
         $('.put_video_here').html('<div class="media_wrapper"><div class="ziggeo"><ziggeoplayer ziggeo-theme="modern" class="re_'+rehearsalid+'" ziggeo-video="'+data.video_token+'" ziggeo-stretch ziggeo-responsive> </ziggeoplayer></div></div>');
+        $('#review_request_rehearsal_id').val(rehearsalid);
+
 
         $('button.submission').data('rehearsalid', rehearsalid);
         $('button.submission').data('rehearsalsubmission', data.submission);

@@ -43,17 +43,17 @@ class User < ApplicationRecord
 
   # sends admin and email of new users waiting for approval
   def send_admin_mail
-   AdminMailer.new_user_waiting_for_approval.deliver_later!
+   AdminMailer.new_user_waiting_for_approval.deliver_later
   end
 
   # sends the user and email when they register for the site
   def send_user_notice
-    AdminMailer.user_register_notice(self).deliver_later!
+    AdminMailer.user_register_notice(self).deliver_later
   end
 
   # send the user and email once there able to access the website
   def send_approved_email
-    AdminMailer.user_approved_notice(self).deliver_later!
+    AdminMailer.user_approved_notice(self).deliver_later
   end
 
   # setting the default user avatar and banner if the user hasnt set it
