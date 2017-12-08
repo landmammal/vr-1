@@ -1,44 +1,44 @@
 <% @this_added_class = 'rehearsal' %>
 <div class="column rehearsal_Container">
-<div class="js-player practice rehearsal_video first_contact_intro" data-intro="This is where you’ll practice to sound like the role model. The goal is for you to be a natural.">
-Rehearsal:  <span class="tooltip-custom" data-tooltip="Record yourself answering the prompt here. Please wait for the video to verify and click save to add it to the rehearsal list."> <img src="/assets/Antu_help_hover.png" width="22px"></span>
+    <div class="js-player practice rehearsal_video first_contact_intro" data-intro="This is where you’ll practice to sound like the role model. The goal is for you to be a natural.">
+        Rehearsal:  <span class="tooltip-custom" data-tooltip="Record yourself answering the prompt here. Please wait for the video to verify and click save to add it to the rehearsal list."> <img src="/assets/Antu_help_hover.png" width="22px"></span>
 
-<span class="recorder_please_wait">Please wait for the video to upload & verify</span>
+        <span class="recorder_please_wait">Please wait for the video to upload & verify</span>
 
-<button class='submit_rehearsal submit_ziggeo submit_2 green_sft big_btn' style='float:right;' data-formname="rehearsal">
-    <span>Save Rehearsal</span>
-</button>
-<button class='record_another_rehearsal record_another_2 blue' style='float:right; display:none;'>
-    Record Another Rehearsal
-</button><br><br>
-<div class="video_black_bg media_wrapper">
-    <div class="ziggeo">
-        <%= render './shared/ziggeorecorder' %>
-    </div>
-</div>
-
-<%= form_for [@lesson, @rehearsal], html: {class:"rehearsalForm", id:"ziggeoForm"}, remote: true  do |f| %>
-    <% if @rehearsal.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this rehearsal from being saved:</h2>
-
-          <ul>
-            <% @rehearsal.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
+        <button class='submit_rehearsal submit_ziggeo submit_2 green_sft big_btn' style='float:right;' data-formname="rehearsal">
+            <span>Save Rehearsal</span>
+        </button>
+        <button class='record_another_rehearsal record_another_2 blue' style='float:right; display:none;'>
+            Record Another Rehearsal
+        </button><br><br>
+        <div class="video_black_bg media_wrapper">
+            <div class="ziggeo">
+                <%= render './shared/ziggeorecorder' %>
+            </div>
         </div>
-    <% end %>
 
-    <%= f.text_area :script, class:'rehearsal_script', placeholder:'Write your script here...' %>
-    <div style="margin-top:-5px;"><%= render 'scriptcontrol' %></div>
-    <div style="display:none;"><%= f.text_field :course_id, type:"hidden", value:@course.id  %><br>
-    <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
-    <%= f.text_field :lesson_id, type:"hidden", value:@lesson.id %><br>
-    <%= f.text_field :topic_id, type:"hidden", value:@topic.id %><br>
-    <%= f.text_field :video_token, type:"hidden" %>
-    <%= f.text_field :token, type:"hidden" %></div>
-<% end %>
+        <%= form_for [@lesson, @rehearsal], html: {class:"rehearsalForm", id:"ziggeoForm"}, remote: true  do |f| %>
+            <% if @rehearsal.errors.any? %>
+                <div id="error_explanation">
+                <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this rehearsal from being saved:</h2>
 
-</div>
+                <ul>
+                    <% @rehearsal.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                </ul>
+                </div>
+            <% end %>
+
+            <%= f.text_area :script, class:'rehearsal_script', placeholder:'Write your script here...' %>
+            <div style="margin-top:-5px;"><%= render 'scriptcontrol' %></div>
+            <div style="display:none;"><%= f.text_field :course_id, type:"hidden", value:@course.id  %><br>
+            <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
+            <%= f.text_field :lesson_id, type:"hidden", value:@lesson.id %><br>
+            <%= f.text_field :topic_id, type:"hidden", value:@topic.id %><br>
+            <%= f.text_field :video_token, type:"hidden" %>
+            <%= f.text_field :token, type:"hidden" %></div>
+        <% end %>
+
+    </div>
 </div>

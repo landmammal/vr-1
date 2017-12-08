@@ -1,0 +1,59 @@
+<div class="wrapper" style="margin:30px auto 40px;">
+
+    <style>
+        .col3{
+            width:33%;
+            float: left;
+        }
+        .prompt_video{
+            width: 95%;
+        }
+    </style>
+
+    <h4><%= @rehearsal.trainee.full_name %> has requested a peer review from you for: </h4>
+    <h5>
+        Lesson: <%= link_to @lesson.title, @lesson.path %>
+        <br>
+        Course: <%= link_to @course.title, course_path(@course) %>
+    </h5>
+    <hr>
+
+    <div class="col3">
+		<div class="js-player prompt_video">
+            Prompt:
+            <br><br>
+		
+			<div class="video_black_bg media_wrapper">
+				<div class="ziggeo">
+					<%= render './shared/ziggeoplayer', this_class: "prompt", token:@prompt.video_token %>
+				</div>
+			</div>
+			<div class="lesson_script prompt_script">
+				<%= simple_format(@prompt.script) %>
+			</div>
+			<%= render './lessons/scriptcontrol' %>
+		</div>
+    </div>
+    
+    <div class="col3">
+        <div class="js-player prompt_video">
+            <%= @rehearsal.trainee.full_name %>'s Rehearsal:
+            <br><br>
+		
+			<div class="video_black_bg media_wrapper">
+				<div class="ziggeo">
+					<%= render './shared/ziggeoplayer', this_class: "rehearsal", token:@rehearsal.video_token %>
+				</div>
+			</div>
+			<div class="lesson_script prompt_script">
+				<%= simple_format(@rehearsal.script) %>
+			</div>
+			<%= render './lessons/scriptcontrol' %>
+		</div>
+    </div>
+    
+    <div class="col3">
+        <%= render './peer_reviews/peer_review' %>
+    </div>
+    
+</div>

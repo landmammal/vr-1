@@ -106,7 +106,7 @@ var pageReady = function(checkrecorder){
 						    	
 					    		$('.submit_'+recorderClass).delay(1500).fadeOut(500);
 						    	
-					    		$('.ba-videoplayer-theme-modern-rerecord-button-container').delay(2000).append("<button class='record_another_rehearsal blue' style='float:right; display:none;'>Record Another Rehearsal</button>")
+					    		$('.ba-videoplayer-theme-modern-rerecord-button-container').delay(2000).append("<button class='record_another_rehearsal blue' style='float:right; display:none;'>Record Another</button>")
 						        $('.record_another_'+recorderClass).delay(2000).hide(100);
 						        $('.record_another_'+recorderClass).delay(2000).fadeIn(100);
 						    	
