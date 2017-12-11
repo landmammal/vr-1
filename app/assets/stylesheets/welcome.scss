@@ -1385,7 +1385,6 @@ header.header.app .menu_list .menu_item:hover {
 @media only screen and (max-width: 400px) {
   .home_top_wrapper {
     height: 100%;
-    max-height: calc(100% - 0px);
   }
 
   .home_top .home_top_text {
@@ -1564,8 +1563,7 @@ header.header.app .menu_list .menu_item:hover {
     background-size: cover;
     background-position: 40% 20%;
     background-attachment: scroll;
-    height: calc(100% - 0);
-    max-height: 700px;
+    height: 100%;
   }
 
   .home_top #home_top_text {
