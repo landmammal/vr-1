@@ -762,20 +762,19 @@ header.header.app .menu_list .menu_item:hover {
 .home_top_wrapper {
   background-repeat: no-repeat;
   background-attachment: fixed;
-  height: calc(90% - 100px);
-  max-height: 900px;
+  min-height: calc(90% - 100px);
   overflow: hidden;
   transition: 1s;
   position: relative;
 }
 
 .home_top {
+  position: relative;
   height: 100%;
   text-align: center;
   overflow: hidden;
   background-color: rgba(11, 98, 180, 0.8);
   transition: 1s;
-  position: relative;
 }
 
 .form_err {
@@ -1384,7 +1383,7 @@ header.header.app .menu_list .menu_item:hover {
 /* Mobile Layout: 480px and below. */
 @media only screen and (max-width: 400px) {
   .home_top_wrapper {
-    height: 100%;
+    min-height: 100%;
   }
 
   .home_top .home_top_text {
@@ -1563,7 +1562,7 @@ header.header.app .menu_list .menu_item:hover {
     background-size: cover;
     background-position: 40% 20%;
     background-attachment: scroll;
-    height: 100%;
+    min-height: 100%;
   }
 
   .home_top #home_top_text {

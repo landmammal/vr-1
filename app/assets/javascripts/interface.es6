@@ -282,6 +282,10 @@ var pageReady = function(){
 		}
 	}
 
+	function homeBannerChange(){
+		$('.home_top').height( $('.home_top_wrapper').height() );
+	}
+
 	function searchBtn(){
 		if (window_width < 481) {
 			$('.search_course_btn').empty();
@@ -296,6 +300,7 @@ var pageReady = function(){
 			youtubeSize();
 			searchBtn();
 			// runChangeSize();
+			homeBannerChange();
 		}, 100);
 
 		$(window).resize(function(){
@@ -303,7 +308,8 @@ var pageReady = function(){
 			setInterval(function(){ 
 				youtubeSize();
 				searchBtn();
-				// runChangeSize(); 
+				// runChangeSize();
+				homeBannerChange();
 			}, 1000);
 		});
 
