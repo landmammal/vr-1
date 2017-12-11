@@ -7,8 +7,10 @@
 	overflow: hidden;
     width: 24%;
     border-radius: 3px;
-    float: left;
-	margin: 0.5% 1% 0.5% 0%;
+	float: left;
+	min-width: 210px;
+    max-width: 100%;
+	margin: 0.5% 1% 0.5% 0.5%;
 	position: relative;
 	& .title{
 		width: calc(100% - 50px);
