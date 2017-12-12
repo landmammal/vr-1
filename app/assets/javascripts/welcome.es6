@@ -102,6 +102,15 @@ function reload_to(url, time){
 
 
 
+
+function myFunction() {
+    $("#myTopnav").toggleClass("responsive");
+}
+
+
+
+
+
 var pageReady = function(){
 
 	$('button.submit_job_application').click(function(){
