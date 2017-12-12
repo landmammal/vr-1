@@ -258,6 +258,10 @@
         <% end %>
         <br>
         Please contact the instructor or a site admin.
+        <%= button_to "Request Re-Entry", "/reentry/"+@course.id.to_s+"/", remote: true %>
+        <div class="success reentry">
+          Request has been sent to the instructor.
+        </div>
       </center>
 
     <% end %>

@@ -41,6 +41,16 @@ class AdminMailer < ApplicationMailer
     end
   end
   
+
+  def reentry( user, course )
+    @user = user
+    @course = course
+    mail( to: course.instructor.email, subject: "#{user.full_name}, is requesting access to the course: #{course.title}") do |format|
+      @image = "people.png"
+      @recepient = course.instructor.full_name
+      mailer_formats(format)
+    end
+  end
   
   
   def invite_to_website(email, course)
