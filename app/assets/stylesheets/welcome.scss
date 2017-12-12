@@ -1407,13 +1407,13 @@ header.header.app .menu_list .menu_item:hover {
   }
 }
 /* flip the pane when hovered */
-.flip-container:hover .flipper, .flip-container.hover .flipper {
-  transform: rotateY(180deg);
-}
+// .flip-container:hover .flipper, .flip-container.hover .flipper {
+//   transform: rotateY(180deg);
+// }
 
-.flip-container:hover .flipper, .flip-container.hover .flipper, .flip-container.flip .flipper {
-  transform: rotateY(180deg);
-}
+// .flip-container:hover .flipper, .flip-container.hover .flipper, .flip-container.flip .flipper {
+//   transform: rotateY(180deg);
+// }
 
 .flip-container, .front, .back {
 	width: auto;
@@ -1762,6 +1762,15 @@ header.header.app .menu_list .menu_item:hover {
 
 /* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
 @media only screen and (min-width: 481px) {
+  .flip-container:hover .flipper, .flip-container.hover .flipper {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-container:hover .flipper, .flip-container.hover .flipper, .flip-container.flip .flipper {
+    transform: rotateY(180deg);
+  }
+
+  
   .home_info_1 {
     font-size: 40px;
     font-family: 'Roboto', sans-serif;
