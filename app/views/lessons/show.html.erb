@@ -128,9 +128,9 @@
                 <div class="progress_btn js-<%= progressbox[1] %>_prog"></div>
 
                 <% if @lesson.lesson_type == 2 && progressbox[1] == 'explanation' %>
-                    Question
+                    Explanation
                 <% elsif @lesson.lesson_type == 2 && progressbox[1] == 'prompt' %>
-                    Answer
+                    Question
                 <% elsif @lesson.lesson_type == 1 && progressbox[1] == 'explanation' %>
                     Demonstration
                 <% elsif @lesson.lesson_type == 1 && progressbox[1] == 'model' %>

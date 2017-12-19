@@ -24,9 +24,9 @@ class ApplicationController < ActionController::Base
 
 	before_action :main_links
 
-  def default_url_options(options={})
-    { :secure => true }
-  end
+  # def default_url_options(options={})
+  #   { :secure => true }
+  # end
 
 	def main_links
 		@main_menu = ['overview','contact']
