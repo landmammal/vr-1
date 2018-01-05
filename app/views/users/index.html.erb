@@ -10,7 +10,7 @@
   </div>
 
   <div class="body">
-    <% @users.each do |user| %>
+    <% @users.order("first_name, last_name").each do |user| %>
       <div class="user_card">
         <div class="image"><img src="<%= student_pic(user) %>"  class="img-circle" width="100%" ></div>
         <div class="user_info">
