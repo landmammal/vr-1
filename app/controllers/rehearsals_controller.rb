@@ -86,7 +86,7 @@ class RehearsalsController < ApplicationController
   def all
 
     @courses = {}
-    current_user.courses.each do |course|
+    current_user.courses.order("title ASC").each do |course|
       @courses[course.title] = {}
       @courses[course.title]["course"] = course
       @courses[course.title]["topics"] = {}
@@ -101,7 +101,7 @@ class RehearsalsController < ApplicationController
           @courses[course.title]["topics"][topic.title]["lessons"][lesson.title]["lesson"] = lesson
           @courses[course.title]["topics"][topic.title]["lessons"][lesson.title]["rehearsals"] = {}
 
-          lesson.rehearsals.each do |x|
+          lesson.rehearsals.order("created_at DESC").limit(10).each do |x|
             if User.all.include? x.trainee
               @courses[course.title]["topics"][topic.title]["lessons"][lesson.title]["rehearsals"][x.trainee.full_name] = {
                 "student_id" => x.trainee_id,
