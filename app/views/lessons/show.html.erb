@@ -51,7 +51,7 @@
         </button>
 
       </div>
-  <div class="timeline" data-intro="Clickin on these progress bubbles will help you navigate through the lessons of the course, this is also a visual representation of your current progress on each lesson.">
+  <div class="timeline" data-intro="Clicking on these progress bubbles will help you navigate through the lessons of the course, this is also a visual representation of your current progress on each lesson.">
     <ul>
       <% @topic_lessons.each do |key, value| %>
         <li class="<%= value[0] %> <%= "selected" if key.to_s == params[:id] %>">
@@ -162,6 +162,7 @@
                 <div class="shade box" style="max-width:630px; margin-top:10px;">
                   <div class="shadebox_title">
                     New <%= progressbox[1].capitalize %>
+
                   </div>
                   <div class="shadebox_content">
                     <% @newForm = progressbox[2] %>
