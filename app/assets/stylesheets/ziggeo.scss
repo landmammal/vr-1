@@ -7,9 +7,7 @@
 }
 
 //TEMP FIX for ZIGGEO UPLOAD BTN
-.ba-videorecorder-chooser-secondary-button{
-  position:relative;
-}
+
 .ba-videorecorder-chooser-file{
   position: absolute;
   bottom: 0;
@@ -19,7 +17,9 @@
 //TEMP FIX for ZIGGEO UPLOAD BTN
 
 
-
+.ba-videorecorder-container{
+  display: block;
+}
 .media_wrapper, .ziggeo_create_lesson, .js-play_ziggeo{
   // width:100%;
   position: relative; overflow:hidden;
@@ -29,7 +29,7 @@
     display: block;
     content: '';
   }
-  & .ziggeo, ba-ziggeoplayer, .image_holder{
+  & .ziggeo, ba-ziggeoplayer, .image_holder, .ba-videorecorder-container{
     position: absolute;
     top: 0;
     bottom: 0;
