@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171208030424) do
+ActiveRecord::Schema.define(version: 20180115004211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -370,6 +370,7 @@ ActiveRecord::Schema.define(version: 20171208030424) do
     t.boolean  "approved",               default: false, null: false
     t.string   "terms_of_use"
     t.boolean  "first_contact",          default: true
+    t.string   "chat"
     t.index ["approved"], name: "index_users_on_approved", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
