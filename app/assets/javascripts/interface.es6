@@ -13,7 +13,7 @@ function panel_section(panel_name){
 	        	var joinedName = item.name.split(' ').join('_');
 
 	        	if(item.icon === 'svg'){
-	        		var icon = `<img class="icon" src="/assets/icons/`+item.iname+`.svg">`;
+	        		var icon = `<span class="icon"><img src="/assets/icons/`+item.iname+`.svg" width="23px";></span>`;
 	        	}else{
 	        		var icon = `<span class="icon `+item.iname+`"></span>`;
 	        	};
@@ -48,7 +48,7 @@ function panel_section(panel_name){
 
 
 	        	var each_item = `<a href="${item.link}" ${link_class} title="${item.name}" target="${item.link_target}" onClick="${thisAlert}">`+
-		        					`<div class="panel_icon">`+
+		        					`<div class="panel_icon ${item.iname}_panel_ico">`+
 		        						icon+`<div class="text_label">${item.name}</div>`+
 		        						notification+
 		        					`</div>`+
@@ -119,6 +119,15 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 var pageReady = function(){
 	var doc_cookie = document.cookie;
+
+	$(document).on("click", '.videocall-button_panel_ico', function(event){
+		event.preventDefault();
+
+		var answer = confirm("This will open a live video chat with a vR Representative. Click OK to chat with a live person");
+		if(answer===true){
+			window.location = $(this).closest('a').attr("href");
+		}
+	});
 
 	$('.js-click_back').click(function(event){
 		event.preventDefault();
