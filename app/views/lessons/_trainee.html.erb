@@ -93,10 +93,18 @@
 
    <br>
    <br>
-<div style="text-align:right" class="first_contact_intro" data-intro="Use these buttons to rearrange your recording area to best fit your learning style.">
+<div class="first_contact_intro" data-intro="Use these buttons to rearrange your recording area to best fit your learning style.">
+  <% if !@lesson.instructor.chat.blank? %>
+    <a href="<%= @lesson.instructor.chat %>" target="_blank" onclick="alert('This will open a live video chat with the course instrustor. Click OK to call.')">
+      <button class="green_sft" style=" float:left;"> <img src="/assets/live_chat.png" width="20px"> Live video chat</button>
+    </a>
+  <% end %>
+  <div style="float:right; text-align:right; width:50%;">
     <span class="tooltip-custom" data-tooltip="Choose the view that you feel most comfortable with as you rehearse."> <img src="/assets/Antu_help_hover.png" width="22px"></span>
-   <button class="blue lesson_next training-path-1"> View 1</button>
-   <button class="lesson_next training-path-2"> View 2</button>
+    <button class="blue lesson_next training-path-1"> View 1</button>
+    <button class="lesson_next training-path-2"> View 2</button>
+  </div>
+
 </div>
 
     </div>

@@ -40,10 +40,16 @@ function panel_section(panel_name){
 					notification = ''; 
 				};
 
+				if(item.alert !== '' ){
+					var thisAlert = `alert('${item.alert}')`;
+				}else{
+					var thisAlert = '';
+				}
 
-	        	var each_item = `<a href="`+item.link+`"`+link_class+`title="`+item.name+`">`+
+
+	        	var each_item = `<a href="${item.link}" ${link_class} title="${item.name}" target="${item.link_target}" onClick="${thisAlert}">`+
 		        					`<div class="panel_icon">`+
-		        						icon+`<div class="text_label">`+item.name+`</div>`+
+		        						icon+`<div class="text_label">${item.name}</div>`+
 		        						notification+
 		        					`</div>`+
 	        					`</a>`;

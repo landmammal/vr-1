@@ -90,32 +90,33 @@ class ApiController < ApplicationController
 
 
 	def site_panel_api
-		@site_panel = [{name:'Home', icon:'ion', iname:'ion-home', link:user_path(current_user), link_target:'', notif:false},
-                       {name:'Settings', icon:'ion', iname:'ion-ios-gear', link:edit_user_registration_path, link_target:'', notif:false}]
+		@site_panel = [{name:'Home', icon:'ion', iname:'ion-home', link:user_path(current_user), alert:'' ,link_target:'', notif:false},
+                       {name:'Settings', icon:'ion', iname:'ion-ios-gear', link:edit_user_registration_path, alert:'' ,link_target:'', notif:false}]
         render json: @site_panel
         # edit_user_registration_path
 	end
 
 	def common_panel_api
 		@common_panel = [
-							{name:'Courses', icon:'ion', iname:'ion-map', link:search_courses_path, link_target:'', notif:false},
-							{name:'Feedback', icon:'ion', iname:'ion-archive', link:feedback_all_path, link_target:'', notif:true}
-							# {name:'Tasks', icon:'ion', iname:'ion-android-checkbox', link:'#', link_target:'', notif:true},
-							# {name:'Chat', icon:'ion', iname:'ion-android-chat', link:'#', link_target:'', notif:true},
-							# {name:'Groups', icon:'ion', iname:'ion-ios-people', link:groups_all_groups_path, link_target:'', notif:false}
+							{name:'Courses', icon:'ion', iname:'ion-map', link:search_courses_path, alert:'' ,link_target:'', notif:false},
+							{name:'Feedback', icon:'ion', iname:'ion-archive', link:feedback_all_path, alert:'' ,link_target:'', notif:true},
+							{name:'Chat', icon:'ion', iname:'ion-ios-videocam', link:'https://connect.liveninja.com/phone/?queue=standard@cdginnovations&apikey=cdginnovations', alert:'This will open a live video chat with a vR Representative. Click OK to chat with a live person' , link_target:'_blank', notif:false}
+							# {name:'Tasks', icon:'ion', iname:'ion-android-checkbox', link:'#', alert:'' ,link_target:'', notif:true},
+							# {name:'Chat', icon:'ion', iname:'ion-android-chat', link:'#', alert:'' ,link_target:'', notif:true},
+							# {name:'Groups', icon:'ion', iname:'ion-ios-people', link:groups_all_groups_path, alert:'' ,link_target:'', notif:false}
 						]
         render json: @common_panel
 	end
 
 	def instructor_panel_api
-		@instructor_panel = [#{name:'My Courses', icon:'ion', iname:'ion-university', link:courses_path, link_target:'', notif:false},
-                         {name:'My Tools', icon:'ion', iname:'ion-settings', link:'#', link_target:'', notif:false},
-                         {name:'Rehearsals', icon:'ion', iname:'ion-android-list', link:rehearsals_all_path, link_target:'', notif:true}]
+		@instructor_panel = [#{name:'My Courses', icon:'ion', iname:'ion-university', link:courses_path, alert:'' ,link_target:'', notif:false},
+                         {name:'My Tools', icon:'ion', iname:'ion-settings', link:'#', alert:'' ,link_target:'', notif:false},
+                         {name:'Rehearsals', icon:'ion', iname:'ion-android-list', link:rehearsals_all_path, alert:'' ,link_target:'', notif:true}]
         render json: @instructor_panel
 	end
 
 	def admin_panel_api
-		@admin_panel = [{name:'Demos', icon:'ion', iname:'ion-social-youtube', link:demos_path, link_target:'', notif:true}]
+		@admin_panel = [{name:'Demos', icon:'ion', iname:'ion-social-youtube', link:demos_path, alert:'' ,link_target:'', notif:true}]
         render json: @admin_panel
 	end
 
