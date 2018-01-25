@@ -130,7 +130,7 @@ class WelcomeController < ApplicationController
 
   #Footer 1 ====
   def about
-    @site_title = 'About Video Rehearser'
+    @site_title = 'About videoRehearser'
   end
 
   def press
