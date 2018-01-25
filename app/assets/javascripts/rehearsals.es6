@@ -47,7 +47,7 @@ var pageReady = function(){
         changeSubmitButton(data.submission, data.id);
         setTimeout(function(){
           var embedding = ZiggeoApi.V2.Player.findByElement($('ziggeoplayer.re_'+rehearsalid));
-          embedding.play();
+          // embedding.play();
           $('.shade_close').addClass('stop_video');
         }, 500);
       }
