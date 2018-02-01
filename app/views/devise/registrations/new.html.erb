@@ -1,8 +1,32 @@
-<div class="full_top_img" style="background-image:url('<%=image%>/frame_home_1.jpg'); height:85%;">
+<% tparams = ["interview", "customerservice", "wellness", "pronunciation", 'hospitality'] %>
+<% t = params[:t] %>
+<div class="full_top_img" style="background-image:url('<%=image%>/<%= t ? t.downcase : "frame_home_1" %>.jpg'); height:85%;">
   <%= render 'layouts/menu' if menu_welcome %>
   <div class="register_header">
     <div class="content">
-      <div style="font-family:'gotham';margin:10% 0 20px; font-size:40px; line-height:1em;">
+      <div style="font-family:'gotham'; margin:10% 0 20px; font-size:40px; line-height:1em;">
+        
+        <% if t && tparams.include?(t.downcase) %>
+          <% case t.downcase %>
+            <% when tparams[0] %>
+              Interview Skills Training
+            <% when tparams[1] %>
+              Customer Service Training
+            <% when tparams[2] %>
+              Wellness Training
+            <% when tparams[3] %>
+              Pronunciation Training
+            <% when tparams[4] %>
+              Hospitality Training
+            <% else %>
+
+          <% end %>
+          <br>
+          <br>
+          <hr style="width:200px;">
+          <br>
+          <br>
+        <%end%>
         Review . Rehearse . Transform
       </div>
       <div class="register">
@@ -76,6 +100,14 @@
         <button type="button" class="small_btn red disagreeTerms" data-dismiss="modal">I Disagree</button>
         <button type="button" class="small_btn green_sft agreeTerms" data-dismiss="modal">I Agree</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= render params[:t].downcase rescue render "default" %>
     </div>
   </div>
 </div>
