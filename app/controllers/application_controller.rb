@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
 	def main_links
 		@main_menu = ['overview','contact']
     @languages = [['English','en'],['Spanish', 'sp']]
-    @privacy = [['Public', 0],['Locked', 1],['Paid Members', 2],['Registered members', 3]]
+    (current_user && current_user.admin?) ? @privacy = [['Public', 0],['Locked', 1],['Paid Members', 2],['Registered members', 3]] : @privacy = [['Locked', 1],['Paid Members', 2],['Registered members', 3]]
 
     @lesson_type = [['Full Layout', 0],['Demonstration', 1],['Question/Answer', 2]]
     @video_type = [['Local', 'local'],['Image', 'image'],['Youtube', 'youtube']]
