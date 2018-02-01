@@ -43,7 +43,7 @@ class User < ApplicationRecord
 
   # sends admin and email of new users waiting for approval
   def send_admin_mail
-   AdminMailer.new_user_waiting_for_approval.deliver_later
+   AdminMailer.new_user_waiting_for_approval(self).deliver_later
   end
 
   # sends the user and email when they register for the site

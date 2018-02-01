@@ -1,8 +1,9 @@
 class AdminMailer < ApplicationMailer
   
   # sending admin mail when a new user registers
-  def new_user_waiting_for_approval
+  def new_user_waiting_for_approval(user)
     @url  = @base+'/users/sign_in'
+    @user = user
     mail(to: 'carlos@videorehearser.com', subject: "New User Signup") do |format|
       @recepient = "Carlos"
       @image = "default.jpg"
