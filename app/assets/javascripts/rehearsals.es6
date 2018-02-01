@@ -38,7 +38,7 @@ var pageReady = function(){
       success: function(data){
         // console.log(data);
         $('.put_title_here').html('Rehearsal #'+rehearsalNumber);
-        $('.put_video_here').html('<div class="media_wrapper"><div class="ziggeo"><ziggeoplayer ziggeo-theme="modern" class="re_'+rehearsalid+'" ziggeo-video="'+data.video_token+'" ziggeo-stretch ziggeo-responsive> </ziggeoplayer></div></div>');
+        $('.put_video_here').html('<div class="media_wrapper"><div class="ziggeo"><ziggeoplayer ziggeo-theme="modern" id="rehearsal_video" class="re_'+rehearsalid+'" ziggeo-video="'+data.video_token+'" ziggeo-stretch ziggeo-responsive> </ziggeoplayer></div></div>');
         $('#review_request_rehearsal_id').val(rehearsalid);
 
 
@@ -46,7 +46,8 @@ var pageReady = function(){
         $('button.submission').data('rehearsalsubmission', data.submission);
         changeSubmitButton(data.submission, data.id);
         setTimeout(function(){
-          var embedding = ZiggeoApi.V2.Player.findByElement($('ziggeoplayer.re_'+rehearsalid));
+          var thisplayer = $('ziggeoplayer.re_'+rehearsalid);
+          var embedding = ZiggeoApi.V2.Player.findByElement(thisplayer);
           // embedding.play();
           $('.shade_close').addClass('stop_video');
         }, 500);
@@ -120,8 +121,7 @@ var pageReady = function(){
   
   $(document).on('click', '.stop_video', function() {
     var thisplayer = $(this).closest('.shadebox').find('ziggeoplayer')[0];
-    console.log(thisplayer.className);
-    var embedding = ZiggeoApi.V2.Player.findByElement('ziggeoplayer');
+    var embedding = ZiggeoApi.V2.Recorder.findByElement( thisplayer );
     embedding.stop();
   });
 
