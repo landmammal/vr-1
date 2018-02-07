@@ -1210,7 +1210,21 @@
   background-color: #777;
 }
 
+
+
+.lesson_views{
+  float:right; text-align:right; width:200px;
+}
+
 @media screen and (max-width: 750px) {
+  .lesson_views{
+    text-align:center; width:100%;
+    margin: 30px auto;
+    & > button{
+      display: inline-block;
+    }
+  }
+
   .with_side{
    width: 100%;
    margin-right: 0px;
