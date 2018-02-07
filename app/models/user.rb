@@ -58,11 +58,11 @@ class User < ApplicationRecord
 
   # setting the default user avatar and banner if the user hasnt set it
   def photo
-      profile_file_name.present? ? profile.url(:square) : '/assets/default_user.png'
+    profile_file_name.present? ? profile.url(:square) : '/assets/default_user.png'
   end
 
   def top_banner
-      banner_file_name.present? ? banner.url(:medium) : '/assets/banner.jpg'
+    banner_file_name.present? ? banner.url(:medium) : '/assets/banner.jpg'
   end
 
   def full_name
