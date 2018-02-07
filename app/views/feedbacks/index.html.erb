@@ -1,5 +1,5 @@
 <div class="rehearsals_title">
-	You have <span style="color:red; font-weight:bold; font-size:15px;"><%= @feedbacks.size.to_s %></span> Feedback<%= @feedbacks.size > 1 ? 's' : '' %> for rehearsal in Lesson :: <%= link_to @rehearsal.lesson.title, course_topic_lesson_path(@rehearsal.course, @rehearsal.topic, @rehearsal.lesson) %>
+	You have <span style="color:red; font-weight:bold; font-size:15px;"><%= @feedbacks.size.to_s %></span> Feedback for rehearsal in Lesson :: <%= link_to @rehearsal.lesson.title, course_topic_lesson_path(@rehearsal.course, @rehearsal.topic, @rehearsal.lesson) %>
 </div>
 
 <hr>
