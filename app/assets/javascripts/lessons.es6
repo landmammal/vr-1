@@ -158,9 +158,9 @@ function lessonProgress(les_type, expl_arr, prompt_arr, model_arr){
 			progressErr('notready ion-close', 'You havent created one yet');
 		}
 
-		$('.js-'+name+'_prog').hover(function(){
-			$('.'+name+'_prog_err').toggle();
-		});
+		// $('.js-'+name+'_prog').hover(function(){
+		// 	$('.'+name+'_prog_err').toggle();
+		// });
 		return isReady;
 	}
 	
