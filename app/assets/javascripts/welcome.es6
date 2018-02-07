@@ -201,7 +201,7 @@ var pageReady = function(){
 			$('#termsServices').prop('checked', false);
 
 			$('.form').fadeOut(500);
-			$('.registered_confirmation').html('Thank you for signing up with Video Rehearser.<br>  <br> <img src="/assets/checkmark.png" width="50px"><br> <br> You will recieve an email shortly.');
+			$('.registered_confirmation').html('Thank you for signing up with videoRehearser.<br>  <br> <img src="/assets/checkmark.png" width="50px"><br> <br> You will recieve an email shortly.');
 
 			$('.form').delay(500).empty();
 			$('.registered_confirmation').delay(500).fadeIn(500);

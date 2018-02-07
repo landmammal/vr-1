@@ -19,7 +19,7 @@
     <% end %>
     <%= f.text_field :title, class:'full', value:@this_component+' Title', placeholder:@this_component+' Title' %>
     <br>
-    <%= f.check_box :position_prior %> Active <%= @this_component %>
+    <%= f.check_box :position_prior, checked: true %> Active <%= @this_component %>
     <br>
     <br>
     <%= f.select :language, (@languages) %>

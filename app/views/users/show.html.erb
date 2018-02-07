@@ -1,23 +1,23 @@
 <div class="main_title">
-	<%= current_user.role.capitalize %> interface
+	<%= current_user.role.capitalize %> Dashboard
 </div>
 
 <%= render 'topinfo' %>
 
 <% if current_user.level_4 %>
-	<button class="tab selected" data-frame="dashboard" data-group='top'>Dashboard</button>
+	<button class="tab selected" data-frame="my_courses" data-group='top'>My Courses</button>
 <% end %> <% if current_user.level_3 %>
-	<button class="tab" data-frame="coaching_tools" data-group='top'>Coaching Tools</button>
+	<!-- <button class="tab" data-frame="coaching_tools" data-group='top'>Coaching Tools</button> -->
 <% end %> <% if current_user.level_2 %>
-	<button class="tab" data-frame="creator_space" data-group='top'>Creator Space</button>
+	<button class="tab" data-frame="instructor_tools" data-group='top'>Instructor Tools</button>
 <% end %> <% if current_user.level_1 %>
 	<button class="tab" data-frame="admin_tools" data-group='top'>Admin Tools</button>
 <% end %> 
 
 <div class="box_sep">
 	
-	<div class="all_content js-dashboard_content">
-		<%= render 'dashboard' if current_user.level_4 %>
+	<div class="all_content js-my_courses_content">
+		<%= render 'my_courses' if current_user.level_4 %>
 	</div>
 
 
@@ -26,8 +26,8 @@
 	</div>
 
 
-	<div class="all_content js-creator_space_content" style="display: none;">
-		<%= render 'creatorspace' if current_user.level_2 %>
+	<div class="all_content js-instructor_tools_content" style="display: none;">
+		<%= render 'instructor_tools' if current_user.level_2 %>
 	</div>
 
 

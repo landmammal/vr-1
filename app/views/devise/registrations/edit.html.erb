@@ -55,12 +55,13 @@
   <br>
   <hr>
 
-
-  <div class="field">
-    <h3>Others:</h3>
-    <br>
-    Live Chat URL: <%= f.text_field :chat, placeholder:'place live chat url here' %>
-  </div>
+  <% if current_user.level_2 %>
+   <div class="field">
+      <h3>Others:</h3>
+      <br>
+      Live Chat URL: <%= f.text_field :chat, placeholder:'place live chat url here' %>
+    </div>
+  <%end%>
 
   <br>
   <hr>

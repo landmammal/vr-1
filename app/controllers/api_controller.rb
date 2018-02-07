@@ -90,8 +90,10 @@ class ApiController < ApplicationController
 
 
 	def site_panel_api
-		@site_panel = [{name:'Home', icon:'ion', iname:'ion-home', link:user_path(current_user), alert:'' ,link_target:'', notif:false},
-                       {name:'Settings', icon:'ion', iname:'ion-ios-gear', link:edit_user_registration_path, alert:'' ,link_target:'', notif:false}]
+		@site_panel = [
+						{name:'Home', icon:'ion', iname:'ion-home', link:user_path(current_user), alert:'' ,link_target:'', notif:false}
+						# {name:'Settings', icon:'ion', iname:'ion-ios-gear', link:edit_user_registration_path, alert:'' ,link_target:'', notif:false}
+					]
         render json: @site_panel
         # edit_user_registration_path
 	end
@@ -99,7 +101,7 @@ class ApiController < ApplicationController
 	def common_panel_api
 		@common_panel = [
 							{name:'Courses', icon:'ion', iname:'ion-map', link:search_courses_path, alert:'' ,link_target:'', notif:false},
-							{name:'Feedback', icon:'ion', iname:'ion-archive', link:feedback_all_path, alert:'' ,link_target:'', notif:true},
+							{name:'Feedback', icon:'ion', iname:'ion-ios-chatboxes', link:feedback_all_path, alert:'' ,link_target:'', notif:true},
 							{name:'Chat', icon:'svg', iname:'videocall-button', link:'https://connect.liveninja.com/phone/?queue=standard@cdginnovations&apikey=cdginnovations', alert:'' , link_target:'_blank', notif:false}
 							# {name:'Tasks', icon:'ion', iname:'ion-android-checkbox', link:'#', alert:'' ,link_target:'', notif:true},
 							# {name:'Chat', icon:'ion', iname:'ion-android-chat', link:'#', alert:'' ,link_target:'', notif:true},
