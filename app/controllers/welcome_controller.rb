@@ -130,7 +130,7 @@ class WelcomeController < ApplicationController
 
   #Footer 1 ====
   def about
-    @site_title = 'About Video Rehearser'
+    @site_title = 'About videoRehearser'
   end
 
   def press
@@ -159,10 +159,10 @@ class WelcomeController < ApplicationController
     @site_title = 'Frequently Asksed Questions'
 
     @faqs = [
-      ['What is Video Rehearser (vR)?','Created by CDG Innovations LLC, Video Rehearser (vR) is a virtual training platform engineered by educations to expedite social, academic, and workplace learning. vR is uniquely positioned to empower the community in an unprecedented way because it fosters authentic changes through natural learning principles and processes.'],
+      ['What is videoRehearser (vR)?','Created by CDG Innovations LLC, videoRehearser (vR) is a virtual training platform engineered by educations to expedite social, academic, and workplace learning. vR is uniquely positioned to empower the community in an unprecedented way because it fosters authentic changes through natural learning principles and processes.'],
       ['Who uses vR?','Individuals, Professionals and Enterprises.'],
       ['Why was it created?','In 2015, blended learning techniques increased to 32% of instructional hours.Traditional e-Learning systems have been over promising, but underperforming. We believe in evolutionizing the current blended learning format and introducing engineered training that works.'],
-      ['What do I need to use Video Rehearser?','A computer, tablet or mobile device equipped with a webcam.'],
+      ['What do I need to use videoRehearser?','A computer, tablet or mobile device equipped with a webcam.'],
       ['Who do I contact for more information?','If you are interested in learning more or setting up a demo, contact demo@videorehearser.com'],
     ]
   end
