@@ -19,6 +19,7 @@
 			<div class="menu_list">
 			
 				<div class="user_dropdown">
+					<%= button_to "Settings", edit_user_registration_path, class:"drop_down_item" %>
 					<%= button_to "Log out", destroy_user_session_path, method: "delete", class:"drop_down_item" %>
 				</div>
 				

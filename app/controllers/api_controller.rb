@@ -90,8 +90,10 @@ class ApiController < ApplicationController
 
 
 	def site_panel_api
-		@site_panel = [{name:'Home', icon:'ion', iname:'ion-home', link:user_path(current_user), alert:'' ,link_target:'', notif:false},
-                       {name:'Settings', icon:'ion', iname:'ion-ios-gear', link:edit_user_registration_path, alert:'' ,link_target:'', notif:false}]
+		@site_panel = [
+						{name:'Home', icon:'ion', iname:'ion-home', link:user_path(current_user), alert:'' ,link_target:'', notif:false}
+						# {name:'Settings', icon:'ion', iname:'ion-ios-gear', link:edit_user_registration_path, alert:'' ,link_target:'', notif:false}
+					]
         render json: @site_panel
         # edit_user_registration_path
 	end
