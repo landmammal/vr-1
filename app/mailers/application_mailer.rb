@@ -1,7 +1,7 @@
 class ApplicationMailer < ActionMailer::Base
-	add_template_helper(EmailHelper)
-	default from: '\'Video Rehearser\' <notification@videorehearser.com>'
-	before_action :set_base_url
+    add_template_helper(EmailHelper)
+    default from: '\'videorRehearser\' <notification@videorehearser.com>'
+    before_action :set_base_url
 
 
 	def set_base_url

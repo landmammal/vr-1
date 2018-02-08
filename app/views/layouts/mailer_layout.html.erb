@@ -103,29 +103,47 @@
 
         <div class="wrapper">
 
-            <div class="header">
-                <%= email_image_tag("logo_white.png")%>
-            </div>
-            
-            <div class="content">
-                <h3>Hi <%= @recepient %>,</h3>
-                <%= yield :body %>
-            </div>
-
-            <div class="contact">
-                <hr>
-                - The vR Team
-                <br>
-                <span class="small"> Have any questions? contact us at <%= link_to  "support@videorehearser.com", "mailto:support@videorehearser.com" %></span>
-            </div>
-            
-            <% if @image %>
-                <div class="footer_image"></div>
-            <% end %>
-
-            <div class="links">
-
-            </div>
+            <table style="width:100%" border="0" cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="header">
+                                <%= email_image_tag("logo_white.png")%>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="content">
+                                <h3>Hi <%= @recepient %>,</h3>
+                                <%= yield :body %>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="contact">
+                                <hr>
+                                - The vR Team
+                                <br>
+                                <span class="small"> Have any questions? contact us at <%= link_to  "support@videorehearser.com", "mailto:support@videorehearser.com" %></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <% if @image %>
+                                <div class="footer_image"></div>
+                            <% end %>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>
+                            <div class="links"></div>    
+                        </td>
+                    </tr>
+                </tbody>
+            </table>        
 
         </div>
 

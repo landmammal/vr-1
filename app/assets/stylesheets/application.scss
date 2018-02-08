@@ -16,6 +16,86 @@
 
 
 
+// HAMBURGER MENU
+.topnav {
+  overflow: hidden;
+
+  & .sepa{
+    margin: 0;
+    padding: 0;
+    width: 0;
+    height: 0;
+  }
+
+  a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    padding-bottom:10px;
+    
+    &:not(:first-child)  {
+      float: right;
+      padding: 15px 20px;
+    }
+
+    &:hover {
+      color: black;
+    }
+  }
+
+  & .icon {
+    display: none;
+  }
+
+}
+
+.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) { display: none; }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+  .topnav.responsive {
+    position: relative;
+    & .sepa{
+      width: 100%;
+      height: 30px;
+      float: none;
+    }
+    a {
+      float: none;
+      display: block;
+      text-align: center;
+      
+      &.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
 .login_links{
   a{color:#44B7FF;}
 }

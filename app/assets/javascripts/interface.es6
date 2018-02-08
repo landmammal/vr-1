@@ -13,7 +13,7 @@ function panel_section(panel_name){
 	        	var joinedName = item.name.split(' ').join('_');
 
 	        	if(item.icon === 'svg'){
-	        		var icon = `<img class="icon" src="/assets/icons/`+item.iname+`.svg">`;
+	        		var icon = `<span class="icon"><img src="/assets/icons/`+item.iname+`.svg" width="23px";></span>`;
 	        	}else{
 	        		var icon = `<span class="icon `+item.iname+`"></span>`;
 	        	};
@@ -40,10 +40,16 @@ function panel_section(panel_name){
 					notification = ''; 
 				};
 
+				if(item.alert !== '' ){
+					var thisAlert = `alert('${item.alert}')`;
+				}else{
+					var thisAlert = '';
+				}
 
-	        	var each_item = `<a href="`+item.link+`"`+link_class+`title="`+item.name+`">`+
-		        					`<div class="panel_icon">`+
-		        						icon+`<div class="text_label">`+item.name+`</div>`+
+
+	        	var each_item = `<a href="${item.link}" ${link_class} title="${item.name}" target="${item.link_target}" onClick="${thisAlert}">`+
+		        					`<div class="panel_icon ${item.iname}_panel_ico">`+
+		        						icon+`<div class="text_label">${item.name}</div>`+
 		        						notification+
 		        					`</div>`+
 	        					`</a>`;
@@ -113,6 +119,15 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 var pageReady = function(){
 	var doc_cookie = document.cookie;
+
+	$(document).on("click", '.videocall-button_panel_ico', function(event){
+		event.preventDefault();
+
+		var answer = confirm("This will open a live video chat with a vR Representative. Click OK to chat with a live person");
+		if(answer===true){
+			window.location = $(this).closest('a').attr("href");
+		}
+	});
 
 	$('.js-click_back').click(function(event){
 		event.preventDefault();
@@ -188,8 +203,8 @@ var pageReady = function(){
 
 
 	// =========== SHADEBOX ============= //
-	$('.shadebox_bottom').prepend('<button class="shade_close red small_btn">x</button>');
-	$('.shadebox_title').prepend('<div class="shade_close">x</div>');
+	$('.shadebox_title').prepend('<button class="shade_close red small_btn">x</button>');
+	$('.shadebox_bottom').prepend('<div class="shade_close">x</div>');
 	
 	
 	$('.shadebox').click(function(e){
@@ -282,6 +297,10 @@ var pageReady = function(){
 		}
 	}
 
+	function homeBannerChange(){
+		$('.home_top').height( $('.home_top_wrapper').height() );
+	}
+
 	function searchBtn(){
 		if (window_width < 481) {
 			$('.search_course_btn').empty();
@@ -296,6 +315,7 @@ var pageReady = function(){
 			youtubeSize();
 			searchBtn();
 			// runChangeSize();
+			homeBannerChange();
 		}, 100);
 
 		$(window).resize(function(){
@@ -303,7 +323,8 @@ var pageReady = function(){
 			setInterval(function(){ 
 				youtubeSize();
 				searchBtn();
-				// runChangeSize(); 
+				// runChangeSize();
+				homeBannerChange();
 			}, 1000);
 		});
 

@@ -1,8 +1,9 @@
 class AdminMailer < ApplicationMailer
   
   # sending admin mail when a new user registers
-  def new_user_waiting_for_approval
+  def new_user_waiting_for_approval(user)
     @url  = @base+'/users/sign_in'
+    @user = user
     mail(to: 'carlos@videorehearser.com', subject: "New User Signup") do |format|
       @recepient = "Carlos"
       @image = "default.jpg"
@@ -41,6 +42,16 @@ class AdminMailer < ApplicationMailer
     end
   end
   
+
+  def reentry( user, course )
+    @user = user
+    @course = course
+    mail( to: course.instructor.email, subject: "#{user.full_name}, is requesting access to the course: #{course.title}") do |format|
+      @image = "people.png"
+      @recepient = course.instructor.full_name
+      mailer_formats(format)
+    end
+  end
   
   
   def invite_to_website(email, course)

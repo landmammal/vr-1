@@ -51,6 +51,7 @@ Rails.application.routes.draw do
       post "/leave_course" => "courses#leave_course"
       post "/remove_student" => "courses#remove_student"
       post "/activate_deactivate_student" => "courses#activate_deactivate_student"
+      post "/reentry/:id/" => "courses#reentry"
       
       
       # COURSE INVITATIONS

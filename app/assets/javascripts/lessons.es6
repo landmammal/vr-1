@@ -137,14 +137,14 @@ function lessonProgress(les_type, expl_arr, prompt_arr, model_arr){
 
 			if( count_prior > 1 ){ 
 				isReady = false;
-				progressErr('caution2 ion-alert', 'More than one has been set as Primary, please only choose one.');
+				progressErr('caution2 ion-alert', 'More than one has been set as Active, please only choose one.');
 			}else if( count_prior < 1 ){
 				isReady = false;
-				progressErr('caution2 ion-alert', 'At least one needs to be set as Primary');
+				progressErr('caution2 ion-alert', 'At least one needs to be set as Active');
 			}else{
 				if(token_check == ''){
 					isReady = false;
-					progressErr('caution1 ion-alert', 'Primary selection is missing video');
+					progressErr('caution1 ion-alert', 'Active selection is missing video');
 				}else{
 					isReady = true;
 					// console.log('READY');
@@ -158,9 +158,9 @@ function lessonProgress(les_type, expl_arr, prompt_arr, model_arr){
 			progressErr('notready ion-close', 'You havent created one yet');
 		}
 
-		$('.js-'+name+'_prog').hover(function(){
-			$('.'+name+'_prog_err').toggle();
-		});
+		// $('.js-'+name+'_prog').hover(function(){
+		// 	$('.'+name+'_prog_err').toggle();
+		// });
 		return isReady;
 	}
 	

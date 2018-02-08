@@ -22,9 +22,14 @@ class Course < ApplicationRecord
     self.access_code ||= "CA-"+SecureRandom.hex(n=3)
   end
 
-  def privacy!
-  [["Public", 0], ["Public (with access code)", 1],["Paid", 2],["Private (invite only)", 3]]
+  def adminprivacy
+    [["Public", 0], ["Public (with access code)", 1],["Paid", 2],["Private (invite only)", 3]]
   end
+
+  def privacy!
+    [["Private (invite only)", 3],["Paid", 2]]
+  end
+
   def cstatus!
     [[:Draft, 0],[:Published, 1]]
   end
