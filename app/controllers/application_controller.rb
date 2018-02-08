@@ -1,12 +1,13 @@
 class ApplicationController < ActionController::Base
   include Pundit
   before_action :set_fix
+  before_action :set_base_url
 
-  
+
   def self.force_ssl(options = {})
     host = options.delete(:host)
     before_filter(options) do
-      
+
       if !request.ssl? && !Rails.env.development? && !(respond_to?(:allow_http?) && allow_http?)
         redirect_options = {:protocol => 'https://', :status => :moved_permanently}
         redirect_options.merge!(:host => host) if host
@@ -22,14 +23,24 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   protect_from_forgery with: :null_session
 
-	before_action :main_links
+  before_action :main_links
 
   def default_url_options(options={})
     { :secure => true }
   end
 
-	def main_links
-		@main_menu = ['overview','contact']
+  def base_url
+    if Rails.env.development?
+      @base = "http://localhost:3000"
+    elsif Rails.env.test?
+      @base = "https://test.videorehearser.com"
+    else
+      @base = "https://v1.videorehearser.com"
+    end
+  end
+
+  def main_links
+    @main_menu = ['overview','contact']
     @languages = [['English','en'],['Spanish', 'sp']]
     @privacy = [['Public', 0],['Locked', 1],['Paid Members', 2],['Registered members', 3]]
 
@@ -45,8 +56,8 @@ class ApplicationController < ActionController::Base
                 { name:'Mevurah Deleon', role:'Digital Strategist', link:'https://www.linkedin.com/in/mevurah-deleon-06bb08123' }]
 
     if current_user
-  		# @demos = Demo.all
-  		@demos = Demo.where(completed: nil)
+      # @demos = Demo.all
+      @demos = Demo.where(completed: nil)
       @tasks = current_user.tasks
 
       @r = User.roles.keys
@@ -56,14 +67,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
-	# def after_sign_up_path_for(resource)
-	# end
+  # def after_sign_up_path_for(resource)
+  # end
 
-	def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(resource)
     request.env['omniauth.origin'] || stored_location_for(resource) || user_path(current_user)
-	end
+  end
 
-	private
+  private
 
   def user_not_authorized
     flash[:alert] = "Access denied."
