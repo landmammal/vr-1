@@ -25,9 +25,9 @@ class ApplicationController < ActionController::Base
 
   before_action :main_links
 
-  def default_url_options(options={})
-    { :secure => true }
-  end
+  # def default_url_options(options={})
+  #   { :secure => true }
+  # end
 
   def base_url
     if Rails.env.development?

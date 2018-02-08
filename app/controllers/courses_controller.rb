@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
-  before_action :authenticate_user! , except: [:index, :all, :display]
-  before_action :set_course, only: [:show, :edit, :update, :destroy, :display]
+  before_action :authenticate_user! , except: [:index, :all, :display, :reentry]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :display, :reentry]
   # GET /courses
   # GET /courses.json
   def index
@@ -147,6 +147,14 @@ class CoursesController < ApplicationController
 
     if cr.destroy
       render json: {message: "removed"}.to_json
+    end
+  end
+
+
+  def reentry
+    AdminMailer.reentry( current_user, @course ).deliver_now
+    respond_to do |f|
+      f.js{ }
     end
   end
 

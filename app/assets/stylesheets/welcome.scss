@@ -762,20 +762,19 @@ header.header.app .menu_list .menu_item:hover {
 .home_top_wrapper {
   background-repeat: no-repeat;
   background-attachment: fixed;
-  height: calc(90% - 100px);
-  max-height: 900px;
+  min-height: calc(90% - 100px);
   overflow: hidden;
   transition: 1s;
   position: relative;
 }
 
 .home_top {
+  position: relative;
   height: 100%;
   text-align: center;
   overflow: hidden;
   background-color: rgba(11, 98, 180, 0.8);
   transition: 1s;
-  position: relative;
 }
 
 .form_err {
@@ -1384,8 +1383,7 @@ header.header.app .menu_list .menu_item:hover {
 /* Mobile Layout: 480px and below. */
 @media only screen and (max-width: 400px) {
   .home_top_wrapper {
-    height: 100%;
-    max-height: calc(100% - 0px);
+    min-height: 100%;
   }
 
   .home_top .home_top_text {
@@ -1409,13 +1407,13 @@ header.header.app .menu_list .menu_item:hover {
   }
 }
 /* flip the pane when hovered */
-.flip-container:hover .flipper, .flip-container.hover .flipper {
-  transform: rotateY(180deg);
-}
+// .flip-container:hover .flipper, .flip-container.hover .flipper {
+//   transform: rotateY(180deg);
+// }
 
-.flip-container:hover .flipper, .flip-container.hover .flipper, .flip-container.flip .flipper {
-  transform: rotateY(180deg);
-}
+// .flip-container:hover .flipper, .flip-container.hover .flipper, .flip-container.flip .flipper {
+//   transform: rotateY(180deg);
+// }
 
 .flip-container, .front, .back {
 	width: auto;
@@ -1486,55 +1484,65 @@ header.header.app .menu_list .menu_item:hover {
   header.header {
     padding: 0 10px 10px;
     text-align: center;
+    & .logo {
+      float: left;
+      padding: 10px 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    & .logo_white {
+      font-family: 'gotham';
+      font-size: 15px;
+      color: white;
+      margin-top: 10px;
+    }
+  
+    & .logo_blue {
+      font-family: 'gotham';
+      font-size: 15px;
+      color: #437cbf;
+      margin-top: 10px;
+    }
+
+    & .menu_list {
+      float: none;
+      width: 100%;
+      text-align: center;
+      margin-top: 15px;
+      & .menu_item {
+        padding: 5px 7px;
+        margin: 5px 3px 0;
+        float: none;
+        display: inline-block;
+      }
+    }
+    
+    &.home {
+      position: relative;
+    }
+    &.app {
+      height: 98px;
+      padding: 0 10px;
+      & .menu_list {
+        float: none;
+        margin: 30px auto 0;
+        overflow: visible;
+        & .user_info {
+          float: left;
+          position: relative;
+          bottom: 5px;
+          left: 25%;
+          & .drop_menu {
+            padding: 6px 0 10px 30px;
+            font-size: 25px;
+          }
+        }
+      }
+    }
   }
 
-  header.header .logo {
-    float: none;
-    padding: 10px 0;
-    width: 100%;
-    text-align: center;
-  }
 
-  header.header .menu_list {
-    float: none;
-    width: 100%;
-    text-align: center;
-    margin-top: 15px;
-  }
-
-  header.header .menu_list .menu_item {
-    padding: 5px 7px;
-    margin: 5px 3px 0;
-    float: none;
-    display: inline-block;
-  }
-
-  header.header.home {
-    position: relative;
-  }
-
-  header.header.app {
-    height: 98px;
-    padding: 0 10px;
-  }
-
-  header.header.app .menu_list {
-    float: none;
-    margin: 30px auto 0;
-    overflow: visible;
-  }
-
-  header.header.app .menu_list .user_info {
-    float: left;
-    position: relative;
-    bottom: 5px;
-    left: 25%;
-  }
-
-  header.header.app .menu_list .user_info .drop_menu {
-    padding: 6px 0 10px 30px;
-    font-size: 25px;
-  }
 
   header.header.app .menu_list .user_dropdown {
     top: -200px;
@@ -1546,26 +1554,13 @@ header.header.app .menu_list .menu_item:hover {
     top: 98px;
   }
 
-  header.header .logo_white {
-    font-family: 'gotham';
-    font-size: 15px;
-    color: white;
-    margin-top: 10px;
-  }
-
-  header.header .logo_blue {
-    font-family: 'gotham';
-    font-size: 15px;
-    color: #437cbf;
-    margin-top: 10px;
-  }
+  
 
   .home_top_wrapper {
     background-size: cover;
     background-position: 40% 20%;
     background-attachment: scroll;
-    height: calc(100% - 0);
-    max-height: 700px;
+    min-height: 100%;
   }
 
   .home_top #home_top_text {
@@ -1573,55 +1568,56 @@ header.header.app .menu_list .menu_item:hover {
     color: white;
     font-weight: bold;
     transition: 1s;
+    &.top_right, &.center_right, &.bottom_right, &.top_center, &.center_center, &.bottom_center, &.top_left, &.center_left, &.bottom_left {
+      top: 35%;
+      text-align: center;
+    }
+
+    & .ht1 {
+      font-weight: bold;
+      font-family: 'gotham';
+      font-size: 40px;
+      line-height: 1em;
+    }
+  
+    & .ht2 {
+      font-weight: bold;
+      font-family: 'gotham_thin';
+      font-size: 20px;
+      line-height: 1em;
+    }
+  
+    & .ht3 {
+      font-weight: bold;
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px;
+      line-height: 1em;
+    }
+  
+    &.demo_open {
+      top: 7%;
+      transition: 1s;
+    }
   }
 
-  .home_top #home_top_text.top_right, .home_top #home_top_text.center_right, .home_top #home_top_text.bottom_right, .home_top #home_top_text.top_center, .home_top #home_top_text.center_center, .home_top #home_top_text.bottom_center, .home_top #home_top_text.top_left, .home_top #home_top_text.center_left, .home_top #home_top_text.bottom_left {
-    top: 35%;
-    text-align: center;
-  }
 
-  .home_top #home_top_text .ht1 {
-    font-weight: bold;
-    font-family: 'gotham';
-    font-size: 40px;
-    line-height: 1em;
-  }
-
-  .home_top #home_top_text .ht2 {
-    font-weight: bold;
-    font-family: 'gotham_thin';
-    font-size: 20px;
-    line-height: 1em;
-  }
-
-  .home_top #home_top_text .ht3 {
-    font-weight: bold;
-    font-family: 'Roboto', sans-serif;
-    font-size: 15px;
-    line-height: 1em;
-  }
-
-  .home_top #home_top_text.demo_open {
-    top: 7%;
-    transition: 1s;
-  }
 
   .home_submenu {
     height: 120px;
+    & .submenu_item {
+      height: 60px;
+      width: 30%;
+      margin: 0;
+      float: none;
+      display: inline-block;
+      padding: 20px 0;
+      & .text {
+        font-size: 13px;
+      }
+    }
   }
 
-  .home_submenu .submenu_item {
-    height: 60px;
-    width: 30%;
-    margin: 0;
-    float: none;
-    display: inline-block;
-    padding: 20px 0;
-  }
 
-  .home_submenu .submenu_item .text {
-    font-size: 13px;
-  }
 
   .home_top_info .info_left .content, .home_top_info .info_right .content {
     position: absolute;
@@ -1765,6 +1761,15 @@ header.header.app .menu_list .menu_item:hover {
 
 /* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
 @media only screen and (min-width: 481px) {
+  .flip-container:hover .flipper, .flip-container.hover .flipper {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-container:hover .flipper, .flip-container.hover .flipper, .flip-container.flip .flipper {
+    transform: rotateY(180deg);
+  }
+
+
   .home_info_1 {
     font-size: 40px;
     font-family: 'Roboto', sans-serif;

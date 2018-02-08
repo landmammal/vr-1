@@ -1,10 +1,11 @@
 <div class="component_wrapper">
+  <%= form_for [@lesson, @newForm], html: {class:@this_added_class+"Form", id:"ziggeoForm"}, remote: true do |f| %>
+  <%= f.text_area :script, class:'full', placeholder: 'Write your script here ...' %><br>
   <div class="media_wrapper">
     <div class="ziggeo">
       <%= render './shared/ziggeorecorder' %>
     </div>
   </div>
-  <%= form_for [@lesson, @newForm], html: {class:@this_added_class+"Form", id:"ziggeoForm"}, remote: true do |f| %>
     <% if @newForm.errors.any? %>
       <div id="<%= @this_error %>">
         <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
@@ -16,15 +17,17 @@
         </ul>
       </div>
     <% end %>
+    <%= f.text_field :title, class:'full', value:@this_component+' Title', placeholder:@this_component+' Title' %>
+    <br>
+    <%= f.check_box :position_prior, checked: true %> Active <%= @this_component %>
+    <br>
+    <br>
+    <%= f.select :language, (@languages) %>
+    <%= f.select :privacy, (@privacy) %>
     <%= f.text_field :video_token, type:"hidden", class:'video_token' %>
     <%= f.text_field :token, type:"hidden", class:'token' %>
     <%= f.text_field :user_id, value:current_user.id, type:'hidden' %>
     <%= f.text_field :lesson_id, value:@lesson.id, type:'hidden' %>
-    <%= f.text_field :title, value:'New '+@this_component+' (rename)', placeholder:'New '+@this_component+' (rename)' %>
-    <%= f.check_box :position_prior %> Active <%= @this_component %><br>
-    <%= f.text_area :script, placeholder: 'Script' %><br>
-    <%= f.select :language, (@languages) %>
-    <%= f.select :privacy, (@privacy) %>
     <span class="recorder_please_wait">Please wait for the video to upload & verify</span>
     <%= f.submit 'Save '+@this_component, class:'shade_close submit_ziggeo reset_form blue save_'+@this_added_class, title:'Please allow the video to verify before saving' %>
   <% end %>

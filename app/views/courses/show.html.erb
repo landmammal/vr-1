@@ -54,18 +54,20 @@
           <%= link_to "X", [@course, topic], method: :delete, data: {confirm: "Are you sure?"}, id: 'topic_card_delete' %>
         </div>
 
-        <div class="card_desc topic">
-          <%= topic.description[0...130] %><%= "..." if topic.description.length > 130 %>
-          <div class="bottom_count">
-            <% topic.lessons.each do |lesson| %>
-              <% if course_creator %>
-                <div class="bar_count <%= !topic_lesson_status(lesson) ? 'imcomplete' : 'done' %> "></div>
-              <% elsif course_trainee && topic_lesson_status(lesson) %>
-                <div class="bar_count <%= lesson.completion_status(current_user)[0] %> "></div>
+        <a href="<%= course_topic_path(@course, topic) %>" style="color: white;">
+          <div class="card_desc topic">
+            <%= topic.description[0...130] %><%= "..." if topic.description.length > 130 %>
+            <div class="bottom_count">
+              <% topic.lessons.each do |lesson| %>
+                <% if course_creator %>
+                  <div class="bar_count <%= !topic_lesson_status(lesson) ? 'imcomplete' : 'done' %> "></div>
+                <% elsif course_trainee && topic_lesson_status(lesson) %>
+                  <div class="bar_count <%= lesson.completion_status(current_user)[0] %> "></div>
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
 
     <% end %>
@@ -258,6 +260,10 @@
         <% end %>
         <br>
         Please contact the instructor or a site admin.
+        <%= button_to "Request Re-Entry", "/reentry/"+@course.id.to_s+"/", remote: true %>
+        <div class="success reentry">
+          Request has been sent to the instructor.
+        </div>
       </center>
 
     <% end %>
