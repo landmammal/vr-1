@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include Pundit
   before_action :set_fix
-  before_action :set_base_url
+  before_action :base_url
 
 
   def self.force_ssl(options = {})
