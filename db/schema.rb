@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127184205) do
+ActiveRecord::Schema.define(version: 20171208030424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20171127184205) do
     t.datetime "updated_at",      null: false
     t.integer  "cstatus"
     t.string   "access_code"
+    t.integer  "price"
   end
 
   create_table "demos", force: :cascade do |t|
@@ -200,6 +201,17 @@ ActiveRecord::Schema.define(version: 20171127184205) do
     t.datetime "updated_at",      null: false
   end
 
+  create_table "peer_reviews", force: :cascade do |t|
+    t.integer  "review_request_id"
+    t.string   "token"
+    t.string   "video_token"
+    t.string   "notes"
+    t.integer  "rating"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["review_request_id"], name: "index_peer_reviews_on_review_request_id", using: :btree
+  end
+
   create_table "performance_feedbacks", force: :cascade do |t|
     t.integer  "rehearsal_id"
     t.integer  "feedback_id"
@@ -256,6 +268,16 @@ ActiveRecord::Schema.define(version: 20171127184205) do
     t.index ["group_id"], name: "index_rehearsals_on_group_id", using: :btree
     t.index ["lesson_id"], name: "index_rehearsals_on_lesson_id", using: :btree
     t.index ["topic_id"], name: "index_rehearsals_on_topic_id", using: :btree
+  end
+
+  create_table "review_requests", force: :cascade do |t|
+    t.string   "person_name"
+    t.string   "person_email"
+    t.integer  "rehearsal_id"
+    t.string   "hash_key"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["rehearsal_id"], name: "index_review_requests_on_rehearsal_id", using: :btree
   end
 
   create_table "tasks", force: :cascade do |t|

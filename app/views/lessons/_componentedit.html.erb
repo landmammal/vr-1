@@ -17,7 +17,7 @@
 
         <div class="ziggeo js-play_ziggeo hide">
           <% @this_video_token = @component.video_token if @component.video_token != "" %>
-          <%= render './shared/ziggeoplayer' %>
+          <%= render './shared/ziggeoplayer', this_class: @this_added_class, token:@this_video_token %>
         </div>
 
         <div class="image_holder js-add_image hide">

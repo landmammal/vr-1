@@ -1,21 +1,21 @@
-require 'faker'
+# require 'faker'
+User.delete_all
+User.create([{ first_name:'Administrator', last_name:'Man', username:'admin', race:'White', email:'admin@vr.com', password:'admin123', password_confirmation:'admin123', age:Time.now, role: 0, approved: true, first_contact: false},
+			 { first_name:'Instructor', last_name:'Sir', username:'instructor', race:'Asian', email:'instructor@vr.com', password:'instructor123', password_confirmation:'instructor123', age:Time.now, role: 1, approved: true, first_contact: false},
+			 { first_name:'Coach', last_name:'Jane', username:'coach', race:'White', email:'coach@vr.com', password:'coach123', password_confirmation:'coach123', age:Time.now, role: 2, approved: true, first_contact: false},
+			 { first_name:'Student', last_name:'John', username:'trainee', race:'Black', email:'trainee@vr.com', password:'trainee123', password_confirmation:'trainee123', age:Time.now, role: 3, approved: true, first_contact: false}])
 
-User.create([{ first_name:'Administrator', last_name:'Man', username:'admin', race:'White', email:'admin@videorehearser.com', password:'admin123', password_confirmation:'admin123', age:Time.now, role: 0, approved: true, first_contact: false},
-			 { first_name:'Instructor', last_name:'Sir', username:'instructor', race:'Asian', email:'instructor@videorehearser.com', password:'instructor123', password_confirmation:'instructor123', age:Time.now, role: 1, approved: true, first_contact: false},
-			 { first_name:'Coach', last_name:'Jane', username:'coach', race:'White', email:'coach@videorehearser.com', password:'coach123', password_confirmation:'coach123', age:Time.now, role: 2, approved: true, first_contact: false},
-			 { first_name:'Student', last_name:'John', username:'trainee', race:'Black', email:'trainee@videorehearser.com', password:'trainee123', password_confirmation:'trainee123', age:Time.now, role: 3, approved: true, first_contact: false}])
+# @user = User.find(1)
+# @user.courses.build(title: "first course")
+# @user.save
 
-@user = User.all.first
-@user.courses.build(title: "first course")
-@user.save
+# @course = Course.find(1)
+# @course.topics.build(title:"first topic", instructor_id:@user.id)
+# @course.save
 
-@course = Course.all.first
-@course.topics.build(title:"first topic", instructor_id:@user.id)
-@course.save
-
-@topic = Topic.all.first
-@topic.lessons.build(title:"first lesson", instructor_id:@user.id)
-@topic.save
+# @topic = Topic.find(1)
+# @topic.lessons.build(title:"first lesson", instructor_id:@user.id)
+# @topic.save
 
 
 

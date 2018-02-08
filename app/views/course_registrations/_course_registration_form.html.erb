@@ -11,10 +11,10 @@
             </ul>
         </div>
       <% end %>
-      <% if course_public %>
+      <% if @course.free? %>
         <%= button_tag "Start Course", type:'submit', class:"big_btn blue js-course_register_btn" %>
-      <% elsif !course_closed %> 
-        <%if course_public_code %>
+      <% elsif !@course.private? %> 
+        <%if @course.with_code? %>
           <%= text_field_tag :access_code, nil, placeholder:"Enter course access code", style:" width:200px; " %>
           <br>
         <% end %>

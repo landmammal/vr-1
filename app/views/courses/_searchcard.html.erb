@@ -8,6 +8,9 @@
         <% if @item.title.length > 25 %>
            ...
         <% end %>
+        <span style="float:right;">
+          <!-- <%= @item.show_price if ( @item.paid? && @item.price != nil ) %> -->
+        </span>
       </div>
     </a>
 
@@ -21,8 +24,10 @@
       <%= " - lessons: "+thisCourse[:lessons].to_s if thisCourse[:lessons]>0 %>
     </div>
     <a href="<%= course_path(@item) %>">
-      <%if current_user.registered_courses.include? @item %>
+      <%if current_user.registered_courses.include?(@item) || @item.owner(current_user) %>
         <button class="start_course"> enter </button>
+      <% elsif @item.paid? %>
+        <button class="register_to_course" style="background-color:rgb(1, 185, 1);"> Purchase  <%= @item.show_price %></button>
       <% else %>
         <button class="register_to_course"> register </button>
       <% end %>

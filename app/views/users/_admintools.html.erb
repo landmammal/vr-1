@@ -12,14 +12,36 @@
 
 
 	<div class="js-my_courses_list">
-	<br>ALL COURSES:<br>
-		<div class="card_list">
+		<br>ALL COURSES:<br>
+		<div class="admin_c_list card_list">
 
-			<% Course.all.order('id DESC').each do |course| %>
-		        <% @course_item = course %>
-		        <%= render 'coursecards' %>
-		    <% end %>
+			<% @all_courses_limit.each do |course| %>
+		        <%= render 'coursecards', course_item: course %>
+			<% end %>
+			
 		</div>
+
+		<hr>
+			<center style="font-size:10px;">
+				<span class="current_nav_num">1</span> out of <%= @pages %>
+			</center>
+		<hr>
+		<center style="text-align:center;">
+			<%= form_tag( '/users/course_list_nav' , style:'float:none; display:inline-block; margin:10px;', remote: true) do |f| %>
+				<%= hidden_field_tag :amount, nil, value:8 %>
+				<%= hidden_field_tag :direction, nil, value:"previous" %>
+				<%= hidden_field_tag :current, nil, class:'current_nav', value:0 %>
+				<%= submit_tag :<<, class:"regular_btn" %>
+			<% end %>
+
+			<%= form_tag( '/users/course_list_nav' , style:'float:none; display:inline-block; margin:10px;', remote: true) do |f| %>
+				<%= hidden_field_tag :amount, nil, value:8 %>
+				<%= hidden_field_tag :direction, nil, value:"next" %>
+				<%= hidden_field_tag :current, nil, class:'current_nav', value:0 %>
+				<%= submit_tag :>>, class:"regular_btn" %>
+			<% end %>
+		</center>
+		
 	</div>
 
 </div>	

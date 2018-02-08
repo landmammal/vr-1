@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :authenticate_user! , except: [:index, :show, :all, :display]
+  before_action :authenticate_user! , except: [:index, :all, :display]
   before_action :set_course, only: [:show, :edit, :update, :destroy, :display]
   # GET /courses
   # GET /courses.json
@@ -43,6 +43,10 @@ class CoursesController < ApplicationController
           url = '/courses/'+@course.id.to_s+'/accept_invitation/'+user.id.to_s
         else
           url = '/courses/'+@course.id.to_s+'/accept_invitation/'
+        end
+
+        if @course.paid?
+          url = course_path( @course )
         end
         
         @notif = "invite"
@@ -109,20 +113,88 @@ class CoursesController < ApplicationController
 
   def leave_course
     course = Course.find( params[:course_id] )
+    cr = course.course_registrations.find_by( user_id: current_user.id )
+
+    if course.paid?
+      cr.approval_status = false 
+      cr.save!
+    else
+      cr.destroy
+    end
+
+    redirect_to user_path( current_user )
+  end
+
+
+  def activate_deactivate_student
+    course = Course.find( params[:course_id] )
     cr = course.course_registrations.find_by( user_id: params[:user_id] )
+
+    if cr
+      cr.approval_status ? cr.approval_status = false : cr.approval_status = true
+      cr.save!
+
+      render json: {message: "changed"}.to_json
+    end
+
+  end
+
+
+
+  def remove_student
+    course = Course.find( params[:course_id] )
+    cr = course.course_registrations.find_by( user_id: params[:user_id] )
+
     if cr.destroy
-      redirect_to user_path( params[:user_id] )
+      render json: {message: "removed"}.to_json
     end
   end
 
-  # GET /courses/1
-  # GET /courses/1.json
+
+  def student_list_nav
+    @course = Course.find( params[:course_id] )
+    @c = params[:current].to_i
+    a = params[:amount].to_i
+    @d = params[:direction]
+
+    if @d == "next"
+      @users = @course.users.limit( a ).offset( ( @c*a + a )).order("id DESC")
+      @c += 1
+    else
+      @users = @course.users.limit( a ).offset( ( @c*a - a )).order("id DESC")
+      @c -= 1
+    end
+
+    if @users.size < 1
+      @users = @course.users.limit( a ).offset( 0 ).order("id DESC")
+      @c = 0
+    end
+
+    respond_to do |format|
+      format.js{}
+    end
+  end
+
+  
+
   def show
     # get original topics created by that course
     @orig_topics = Topic.where(course_id: @course.id)
+    @users = @course.users.order("id DESC").limit(8)
+
+    remainder = @course.users.size % @users.size if @users.size > 0
+    if @users.size > 0
+      remainder > 0 ? @pages = ((@course.users.size - (remainder))/@users.size + 1) : @pages = @course.users.size/@users.size
+    else
+      @pages = 0
+    end
+
     @topic = Topic.new
     @course_registration = CourseRegistration.new
   end
+
+
+
 
   def generate_code
     new_code = "CA-"+SecureRandom.hex(n=3)
@@ -134,26 +206,35 @@ class CoursesController < ApplicationController
     render json: { "new code" => new_code }.to_json
   end
 
+
+
+
   def display
     if current_user
       redirect_to '/courses/'+params[:id].to_s
     end
   end
 
-  # GET /courses/new
+  
+  
+
   def new
     @course = Course.new
   end
 
-  # GET /courses/1/edit
+ 
+  
+
   def edit
   end
 
-  # POST /courses
-  # POST /courses.json
+
+  
+
   def create
     @new_course = current_user.courses.build(course_params)
     @new_course.title = 'New Course (rename)' if @new_course.title == ''
+    @new_course.price = (params[:course][:price].to_d * 100.00) if params[:course][:price] != ''
     # @new_course.save
     
     respond_to do |format|
@@ -169,15 +250,19 @@ class CoursesController < ApplicationController
 
   end
 
-  # PATCH/PUT /courses/1
-  # PATCH/PUT /courses/1.json
+
+  
+
   def update
-    @course.title = 'New Course (rename)' if params[:title] = ''
+    @course.title = 'New Course (rename)' if params[:course][:title] == ''
+    
     # puts '==============='
     # puts params[:title]
     
     respond_to do |format|
       if @course.update(course_update)
+        @course.price = (params[:course][:price].to_d * 100.00) if params[:course][:price] != ''
+        @course.save
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
         format.json { render :show, status: :ok, location: @course }
       else
@@ -187,8 +272,10 @@ class CoursesController < ApplicationController
     end
   end
 
-  # DELETE /courses/1
-  # DELETE /courses/1.json
+  
+
+
+
   def destroy
     @course.delete_associations
     @course.destroy
@@ -198,7 +285,13 @@ class CoursesController < ApplicationController
     end
   end
 
+
+
+
   private
+
+
+
     # Use callbacks to share common setup or constraints between actions.
     def set_course
       @course = Course.find(params[:id])

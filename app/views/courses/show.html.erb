@@ -1,6 +1,6 @@
 <div class="top_info">
   <div class="course_title">
-    <%= @course.title if !course_closed || (course_creator || course_trainee) %>
+    <%= @course.title if !@course.private? || (course_creator || course_trainee) %>
     <% if course_creator %>
       <a href="<%= edit_course_path(@course) %>" title="edit <%= @course.title %>">
         <span class="ion-edit edit" style="font-size:15px; margin:50px 10px;"></span>
@@ -11,7 +11,7 @@
 
 <div class="about_course">
   <span class="title">About the course</span><br>
-  <%= @course.description if !course_closed %>
+  <%= @course.description if (!@course.private?) %>
 </div>
 
 <div class="course_instructor">
@@ -25,7 +25,7 @@
 
 <br>
 
-<% if course_creator || course_trainee %>
+<% if course_creator || ( course_trainee && !course_pending ) %>
   <div class="card_list <%= 'with_side' if course_creator %>">
     <h4> Topics
       <% if course_creator %>
@@ -75,7 +75,7 @@
     <div class="the_side">
       <h4 style="padding:7px 0;">Students List
         <% if course_creator %>
-          <% if @course.privacy == 0 %>
+          <% if @course.free? %>
             <button id="send_course_link" class="blue small_btn" data-toggle="modal" data-target="#inviteModal" > Send Link </button>
           <% else %>
             <button id="invite_student" class="blue small_btn" data-toggle="modal" data-target="#inviteModal" > Invite </button>
@@ -128,133 +128,160 @@
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>
-      <% end %>
-    </div>
-  
-  <% else %>
-  
-    <% if @course.privacy != 2 %>
-        <center style="margin:50px auto 200px;">
-          <%= 'This is a "Free Course", click below to start.' if course_public %>
-          <%= 'This is a "Closed Course". You need an invitation from the course instructor.' if course_closed %><br><br>
-          <%= render './course_registrations/course_registration_form' if !course_creator %>
-        </center>
-    <% end %>
-
-    <% if @course.privacy == 2 && current_user.course_registrations.where(course_id: @course.id).blank? %>
-
-      <%= form_tag charges_path, id: 'chargeForm' do %>
-  
-        <% if flash[:error].present? %>
-          <div id="error_explanation">
-            <p><%= flash[:error] %></p>
-          </div>
-        <% end %>
-
-        <script src="https://checkout.stripe.com/checkout.js"></script>
-        <%= hidden_field_tag 'stripeToken' %>
-        <%= hidden_field_tag 'amount', @course.price %>
-        <%= hidden_field_tag 'stripeEmail' %>
-        <%= hidden_field_tag 'productId', @course.id %>
-
-        <button id="btn-buy" , type="button" , class="btn btn-success btn-lg btn-block">
-          <span class="glyphicon glyphicon-ok"></span> BUY THIS
-        </button>
-
-        <script>
-          var handler = StripeCheckout.configure({
-            key: '<%= Rails.configuration.stripe[:publishable_key] %>',
-            token: function (token, arg) {
-              document.getElementById("stripeToken").value = token.id;
-              document.getElementById("stripeEmail").value = token.email;
-              document.getElementById("chargeForm").submit();
-            }
-          });
-          document.getElementById('btn-buy').addEventListener('click', function (e) {
-            handler.open({
-              name: '<%= @course.title %>',
-              description: '<%= @course.price %>',
-              amount: parseFloat(document.getElementById("amount").value)
-            });
-            e.preventDefault();
-          })
-        </script>
         </div>
       </div>
 
       <hr>
-      <% @course.users.each do |student| %>
-        <div class="user_bubble <%= student.id %>" style="width:100%;">
-          <img src="<%= student_pic(student) %>" class="img-circle" width="30px" style="float:left;">
-          <div class="info">
-            <%= student.full_name %>
-          </div>
-        </div>
+      
+      <div class="student_list_nav">
+        <% @users.each do |student| %>
+          <%= render "user_bubble", student: student, course: @course %>
+        <% end %>
+      </div>
+      <% if @users.size > 0 %>
+
+        <hr>
+        <center style="font-size:10px;">
+          <span class="current_nav_num">1</span> out of <%= @pages %>
+        </center>
+        <hr>
+        <%= form_tag( '/courses/student_list_nav' , style:'float:left;', remote: true) do |f| %>
+          <%= hidden_field_tag :amount, nil, value:8 %>
+          <%= hidden_field_tag :direction, nil, value:"previous" %>
+          <%= hidden_field_tag :current, nil, class:'current_nav', value:0 %>
+          <%= hidden_field_tag :course_id, nil, value:@course.id %>
+          <%= submit_tag :<<, class:"tiny_btn" %>
+        <% end %>
+
+        <%= form_tag( '/courses/student_list_nav' , style:'float:right;', remote: true) do |f| %>
+          <%= hidden_field_tag :amount, nil, value:8 %>
+          <%= hidden_field_tag :direction, nil, value:"next" %>
+          <%= hidden_field_tag :current, nil, class:'current_nav', value:0 %>
+          <%= hidden_field_tag :course_id, nil, value:@course.id %>
+          <%= submit_tag :>>, class:"tiny_btn" %>
+        <% end %>
+      
       <% end %>
+
     </div>
+  
   <% end %>
 
 <% else %>
+  
+    <% if !@course.paid? && !course_pending %>
 
-  <% if @course.privacy != 2 %>
-    <center style="margin:50px auto 200px;">
-      <%= 'This is a "Free Course", click below to start.' if course_public %>
-      <%= 'This is a "Closed Course". You need an invitation from the course instructor.' if course_closed %><br><br>
-      <%= render './course_registrations/course_registration_form' if !course_creator %>
-    </center>
-  <% end %>
-  <% if @course.privacy == 2 %>
-    <%= form_tag charges_path, id: 'chargeForm' do %>
-      <% if flash[:error].present? %>
-        <div id="error_explanation">
-          <p><%= flash[:error] %></p>
+        <center style="margin:50px auto 200px;">
+          <%= 'This is a "Free Course", click below to start.' if @course.free? %>
+          <%= 'This is a "Closed Course". You need an invitation from the course instructor.' if @course.private? %><br><br>
+          <%= render './course_registrations/course_registration_form' if !course_creator %>
+        </center>
+
+    <% elsif @course.paid? && !course_pending %>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-9">
+
+            <% if @course.paid? && !course_trainee %>
+              <h4>Topics:</h4>
+              <% @course.topics.each_with_index do |topic, ind| %>
+                <%= (ind+1).to_s+" - "+topic.title %>
+                <br>
+              <%end%>
+            <%end%>
+
+          </div>
+          <div class="col-sm-3">
+
+
+
+            <%= form_tag charges_path, id: 'chargeForm' do %>
+        
+              <% if flash[:error].present? %>
+                <div id="error_explanation">
+                  <p><%= flash[:error] %></p>
+                </div>
+              <% end %>
+    
+              <script src="https://checkout.stripe.com/checkout.js"></script>
+              <%= hidden_field_tag 'stripeToken' %>
+              <%= hidden_field_tag 'amount', @course.price %>
+              <%= hidden_field_tag 'stripeEmail' %>
+              <%= hidden_field_tag 'productId', @course.id %>
+  
+              <h2><%= @course.show_price %></h2>
+              <button id="btn-buy" type="button" class="btn btn-success btn-lg btn-block">
+                PURCHASE THIS COURSE
+              </button>
+              <hr>
+              <h5>Includes:</h5>
+              <%= content(@course)[:topics] %> Topics <br> 
+              <%= content(@course)[:lessons] %> Lessons
+
+    
+              <script>
+                var handler = StripeCheckout.configure({
+                  key: '<%= Rails.configuration.stripe[:publishable_key] %>',
+                  token: function (token, arg) {
+                    document.getElementById("stripeToken").value = token.id;
+                    document.getElementById("stripeEmail").value = token.email;
+                    document.getElementById("chargeForm").submit();
+                  }
+                });
+                document.getElementById('btn-buy').addEventListener('click', function (e) {
+                  handler.open({
+                    name: '<%= @course.title %>',
+                    description: '<%= @course.description %>',
+                    email:'<%= current_user.email %>',
+                    amount: parseFloat(document.getElementById("amount").value)
+                  });
+                  e.preventDefault();
+                })
+              </script>
+            <% end %>
+
+
+          </div>
         </div>
-      <% end %>
-      <script src="https://checkout.stripe.com/checkout.js"></script>
-      <%= hidden_field_tag 'stripeToken' %>
-      <%= hidden_field_tag 'amount', 499 %>
-      <%= hidden_field_tag 'stripeEmail' %>
-      <button id="btn-buy" , type="button" , class="btn btn-success btn-lg btn-block">
-      <span class="glyphicon glyphicon-ok"></span> BUY THIS
-      </button>
-      <script>
-        var handler = StripeCheckout.configure({
-          key: '<%= Rails.configuration.stripe[:publishable_key] %>',
-          token: function (token, arg) {
-            document.getElementById("stripeToken").value = token.id;
-            document.getElementById("stripeEmail").value = token.email;
-            document.getElementById("chargeForm").submit();
-          }
-        });
-        document.getElementById('btn-buy').addEventListener('click', function (e) {
-          handler.open({
-            name: 'name here',
-            description: 'price here',
-            amount: parseFloat(document.getElementById("amount").value)
-          });
-          e.preventDefault();
-        })
-      </script>
+      </div>
+
+    <% elsif course_pending %>
+
+      <center>
+        <% if @course.paid? %>
+          You already bought this course, but for some reason you are not activated to view it's content. 
+          <br>
+          You might have accidently left it or been removed by the course admin.
+        <% else %>
+          You are not activated to view this course's content.
+        <% end %>
+        <br>
+        Please contact the instructor or a site admin.
+      </center>
+
     <% end %>
-  <% end %>
-  <% end %>
-  <br>
-  <% if !@course.tags.empty? %>
-    <span style="font-family:'webly_bld';">tags:</span>
-    <% @course.tags.split(', ').each do |tag| %>
+
+<% end %>
+
+<br>
+
+<% if !@course.tags.empty? %>
+  <span style="font-family:'webly_bld';">tags:</span>
+  <% @course.tags.split(', ').each do |tag| %>
     <div class="tags-text">
       <a href="#"><b><%= tag %></b></a>
     </div>
   <% end %>
 
 <% end %>
+
 <br><br>
 <button class="small_btn blue js-click_back">Back</button>
 
-<% if course_trainee %>
+<% if course_trainee && !course_pending %>
   <%= form_tag "/leave_course/" do %>
     <%= hidden_field_tag :course_id, nil, value: @course.id %>
-    <%= hidden_field_tag :user_id, nil, value: current_user.id %>
     <%= button_tag "Leave Course", class:"small_btn red", style:"float:right;" %>
-  <%end%>
+  <% end %>
 <% end %>

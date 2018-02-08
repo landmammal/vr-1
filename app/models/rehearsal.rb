@@ -12,6 +12,9 @@ class Rehearsal < ApplicationRecord
   has_many :performance_feedbacks, dependent: :destroy
   has_many :feedbacks, through: :performance_feedbacks, dependent: :destroy
 
+  has_many :review_requests
+  has_many :peer_reviews, through: :review_requests, dependent: :destroy
+
   def submitted?
     self.submission != nil || self.submission
   end

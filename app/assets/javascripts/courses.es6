@@ -61,6 +61,40 @@ function edit_or_start_course(course){
 
 var pageReady = function(){
 
+	$('.activate_deactivate').click(function(){
+		$(this).toggleClass('default green_sft');
+	});
+	$('.remove_student').click(function(){
+		let vr = this;
+		$(vr).closest('.user_bubble').fadeOut();
+		setTimeout(function(){
+			$(vr).closest('.user_bubble').remove();
+		}, 1000);
+	});
+
+	$('form.edit_course').on("change", function(){
+		if($('#course_privacy').val() === "2" ){
+			$('.course_price').show();
+		}else{
+			$('.course_price').hide();
+		}
+	});
+	$('form.new_course').on("change", function(){
+		if($('#course_privacy').val() === "2" ){
+			$('.course_price').show();
+		}else{
+			$('.course_price').hide();
+		}
+	});
+
+
+	$('#btn-buy').click(function(){
+		console.log("HEY");
+		setTimeout(function(){
+			$('.Modal-form input[type="email"]').hide();
+		}, 1000)
+	});
+
 	$('#emails').on("input", function(){
 		let text = $(this).val();
 		let newF = new Object();

@@ -15,11 +15,25 @@ class UsersController < ApplicationController
   def show
     @group = Group.new
     @user = User.find(params[:id])
-    @courses = current_user.registered_courses.order('id DESC')
+    @courses = current_user.registered_courses.order('id DESC').map{ |x| x if (x.course_registrations.find_by(user_id: current_user.id).approval_status) }.compact
+    @courses_pending = current_user.registered_courses.order('id DESC').map{ |x| x if (!x.course_registrations.find_by(user_id: current_user.id).approval_status) }.compact
     Rails.env.development? ? starter_course = Course.all.first : starter_course = Course.find(201) 
 
-    if !current_user.level_1 && !@courses.include?(starter_course)
+    if !current_user.level_1 && starter_course && !@courses.include?(starter_course)
       current_user.course_registrations.build(course_id: starter_course.id).save
+    end
+
+    if current_user.level_1
+      @all_courses_limit = Course.all.order('id DESC').limit(8)
+      @all_courses = Course.all.size
+
+      remainder = @all_courses % @all_courses_limit.size if @all_courses > 0
+      
+      if @all_courses > 0
+        remainder > 0 ? @pages = ((@all_courses - (remainder))/@all_courses_limit.size + 1) : @pages = @all_courses/@all_courses_limit.size
+      else
+        @pages = 0
+      end
     end
     
     if current_user.level_2
@@ -30,13 +44,41 @@ class UsersController < ApplicationController
 
     @site_title = current_user.first_name+' '+current_user.last_name
     
-    if  !current_user.level_1 && current_user.first_contact
+    if !current_user.level_1 && current_user.first_contact && starter_course
       Rails.env.development? ? re_pa = starter_course.topics.first.lessons.first.path : re_pa = Lesson.find(485).path
       redirect_to re_pa
     end
     
     authorize @user
   end
+
+
+
+  def course_list_nav
+    @c = params[:current].to_i
+    a = params[:amount].to_i
+    @d = params[:direction]
+
+    if @d == "next"
+      @courses = Course.all.limit( a ).offset( ( @c*a + a )).order("id DESC")
+      @c += 1
+    else
+      @courses = Course.all.limit( a ).offset( ( @c*a - a )).order("id DESC")
+      @c -= 1
+    end
+
+    if @courses.size < 1
+      @courses = Course.all.limit( a ).offset( 0 ).order("id DESC")
+      @c = 0
+    end
+
+    respond_to do |format|
+      format.js{}
+    end
+  end
+
+
+
 
   def change_first_contact
     user = User.find(current_user.id)

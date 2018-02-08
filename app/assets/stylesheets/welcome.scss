@@ -270,7 +270,7 @@ textarea:focus, input:focus, select:focus {
 
 textarea {
   min-height: 100px;
-  min-width: 400px;
+  // min-width: 400px;
   padding: 5px 8px;
   margin: 5px 5px 5px 0;
 }
@@ -595,7 +595,7 @@ header.header .logo_white {
 header.header .logo_blue {
   font-family: 'gotham';
   font-size: 15px;
-  color: #52A4FF;
+  color: #437cbf;
 }
 
 header.header .menu_list {
@@ -628,7 +628,7 @@ header.header .menu_list .register_item {
 }
 
 header.header .menu_list .register_item:hover {
-  background-color: #52A4FF;
+  background-color: #437cbf;
   transition: 0.5s;
 }
 
@@ -650,7 +650,7 @@ header.header.home .menu_list .register_item {
   background-color: white;
   border: white solid 1px;
   border-radius: 3px;
-  color: #0044FF;
+  color: #437cbf;
 }
 
 header.header.home .menu_list .register_item:hover {
@@ -1212,7 +1212,7 @@ header.header.app .menu_list .menu_item:hover {
 
 .full_top_img {
   background-position: center;
-  height: 85%;
+  // height: 85%;
 }
 
 .devices {
@@ -1459,6 +1459,13 @@ header.header.app .menu_list .menu_item:hover {
 
 
 @media only screen and (max-width: 480px) {
+  .flip-container {
+    &.home{
+      width: 100%;
+      display: inline-block;
+    }
+  }
+
   .home_course{ 
     width:99% !important;
     min-height:130px;
@@ -1482,17 +1489,17 @@ header.header.app .menu_list .menu_item:hover {
   }
 
   header.header .logo {
-    float: left;
+    float: none;
     padding: 10px 0;
     width: 100%;
-    position: relative;
+    text-align: center;
   }
 
   header.header .menu_list {
     float: none;
     width: 100%;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 15px;
   }
 
   header.header .menu_list .menu_item {
@@ -1543,8 +1550,13 @@ header.header.app .menu_list .menu_item:hover {
     font-family: 'gotham';
     font-size: 15px;
     color: white;
-    position: absolute;
-    left: 30%;
+    margin-top: 10px;
+  }
+
+  header.header .logo_blue {
+    font-family: 'gotham';
+    font-size: 15px;
+    color: #437cbf;
     margin-top: 10px;
   }
 
@@ -1552,7 +1564,7 @@ header.header.app .menu_list .menu_item:hover {
     background-size: cover;
     background-position: 40% 20%;
     background-attachment: scroll;
-    height: calc(100% - 120px);
+    height: calc(100% - 0);
     max-height: 700px;
   }
 

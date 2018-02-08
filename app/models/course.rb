@@ -47,4 +47,30 @@ class Course < ApplicationRecord
     self.submitted_rehearsals.size > 0
   end
 
+
+
+  def free?
+		self.privacy == 0 && self.cstatus == 1
+	end
+
+	def with_code?
+		self.privacy == 1 && self.cstatus == 1
+	end
+
+	def paid?
+		self.privacy == 2 && self.cstatus == 1
+  end
+  
+  def show_price
+    "$"+(sprintf "%.2f", (self.price.to_f/100))
+  end
+
+	def private?
+		self.privacy == 3 && self.cstatus == 1
+  end
+  
+  def owner(user)
+    self.instructor == user
+  end
+
 end
