@@ -96,7 +96,7 @@
             <div class="modal-body">
               <div class="invite_student_div" data-action="invite_student">
                 <%= form_tag "/invite_student", class:'invite_student_form', remote: true do %>
-                  <%= text_field_tag :emails, nil, class:"full", placeholder:"Enter Student's email" %>
+                  <%= text_field_tag :emails, nil, class:"full", autocomplete:"off", autocorrect:"off", autocapitalize:"off", spellcheck:"false", placeholder:"Enter Student's email" %>
                   <span class="does_not_exist" style="color:red; display:none; font-size:10px;">
                     This user does not exists, an email will be sent to invite them to video Reheaeser.
                   </span>
