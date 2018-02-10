@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
     if Rails.env.development?
       @base = "http://localhost:3000"
     elsif Rails.env.test?
-      @base = "https://test.videorehearser.com"
+      @base = "https://testing.videorehearser.com"
     else
       @base = "https://v1.videorehearser.com"
     end
