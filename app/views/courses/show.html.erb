@@ -134,6 +134,10 @@
       </div>
 
       <hr>
+      <% if course_creator %>
+        <span style="font-size:12px;" >Course Code: <b><%= @course.access_code %></b></span>
+        <hr>
+      <%end%>
       
       <div class="student_list_nav">
         <% @users.each do |student| %>
