@@ -31,7 +31,7 @@
     <div class="card_desc">
       <%= if !course_item.description.blank? %>
         <%= course_item.description[0...115] %><%= "..." if course_item.description.length > 115 %>
-      <% else %>
+      <% end %>
       <div class="bottom_count">
         <% course_item.topics.each do |topic| %>
           <% if course_item.owner(current_user) %>
