@@ -56,7 +56,9 @@
 
         <a href="<%= course_topic_path(@course, topic) %>" style="color: white;">
           <div class="card_desc topic">
-            <%= topic.description[0...130] %><%= "..." if topic.description.length > 130 %>
+            <% if !topic.description.blank? %>
+              <%= topic.description[0...130] %><%= "..." if topic.description.length > 130 %>
+            <% end %>
             <div class="bottom_count">
               <% topic.lessons.each do |lesson| %>
                 <% if course_creator %>
