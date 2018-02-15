@@ -278,7 +278,7 @@
 
 <br>
 
-<% if !@course.tags.empty? %>
+<% if !@course.tags.blank? %>
   <span style="font-family:'webly_bld';">tags:</span>
   <% @course.tags.split(', ').each do |tag| %>
     <div class="tags-text">
