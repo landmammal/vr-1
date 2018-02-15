@@ -70,9 +70,6 @@ group :development, :test do
   gem 'faker'
   gem 'database_cleaner'
   gem 'shoulda-matchers' # Model Testing Help for Rspec
-end
-
-group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   gem 'spring'
