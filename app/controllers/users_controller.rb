@@ -3,9 +3,11 @@ class UsersController < ApplicationController
   
   def  index
     if params[:approved] == "false"
-      @users = User.where( approved: false )
+      @users = User.order("first_name, last_name").where( approved: false ).where.not(id: current_user.id)
+    elsif params[:role]
+      @users = User.where(role: params[:role]).where.not(id: current_user.id)
     else
-      @users = User.all
+      @users = User.order("first_name, last_name").where.not(id: current_user.id).all
     end
     @site_title = 'All Users'
     # you have to be and admin to access this page
@@ -23,18 +25,8 @@ class UsersController < ApplicationController
       current_user.course_registrations.build(course_id: starter_course.id).save
     end
 
-    if current_user.level_1
-      @all_courses_limit = Course.all.order('id DESC').limit(8)
-      @all_courses = Course.all.size
-
-      remainder = @all_courses % @all_courses_limit.size if @all_courses > 0
-      
-      if @all_courses > 0
-        remainder > 0 ? @pages = ((@all_courses - (remainder))/@all_courses_limit.size + 1) : @pages = @all_courses/@all_courses_limit.size
-      else
-        @pages = 0
-      end
-    end
+    
+    @all_courses = Course.all.page( params[:page] ).reverse_order if current_user.level_1
     
     if current_user.level_2
       @course = Course.new
@@ -122,6 +114,81 @@ class UsersController < ApplicationController
       render json: { found: is_there }
     end
     
+  end
+
+
+  def batch_update
+    ids = params[:list_ids].split(',')
+    
+    User.where(id: ids).each do |user|
+      if !params[:role].blank?
+        user.role = params[:role] 
+        user.save
+      end
+      
+      if !params[:approved].blank?
+        if params[:approved] == 'delete'
+          user.destroy
+        else
+          user.approved = params[:approved]
+          user.save
+        end
+      end
+    end
+
+    redirect_back(fallback_location: request.original_url )
+  end
+
+  def transfer
+    # SELF
+    # user.skills
+    # user.experience
+    # user.facebook
+    # user.twitter
+    # user.linkedin
+    # user.first_contact
+    # user.chat
+
+    # REHEARSER
+    User.all.each do |user|
+      user_data = {
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
+        username: user.username,
+        password:'password1234',
+        age: user.age,
+        sex: user.gender,
+        race: user.race,
+        education: user.education,
+        skills: nil ,
+        language: user.preferred_language,
+        about: nil ,
+        bio: user.bio,
+        photo: nil ,
+        banner: nil ,
+        theme: nil ,
+        phone_number: user.phone_number,
+        website: user.website,
+        address_1: nil ,
+        address_2: nil ,
+        city: nil ,
+        state: nil ,
+        country: nil ,
+        zipcode: user.zip_code,
+        industry: nil ,
+        category: nil ,
+        privacy: nil ,
+        approved: user.approved,
+        role: user.role,
+        auth_token: nil ,
+        terms_of_use: user.terms_of_use
+      }
+      rehearser( param:user_data, action:'post', v:1, path:'/users', uid:false)
+    end
+
+    # Transfer
+
   end
 
   private

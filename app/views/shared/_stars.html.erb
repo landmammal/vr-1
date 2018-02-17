@@ -1,0 +1,61 @@
+<style>
+    .star{
+        display: inline-block;
+    }
+    .star img{
+        width: 20px;
+        content:url('/assets/star-inactive.svg');
+        background-color: transparent; 
+    }
+    .star img.active, .star img.set{
+        content:url('/assets/star-active.svg');
+    }
+</style>
+
+<% fld=nil if !fld %>
+<% set=0 if !set %>
+
+<stars></stars>
+
+
+
+
+<script type="text/javascript">
+    for( let i=1 ; i<=5 ; i++ ){
+        $('stars').append(`<div class="star" id="${i}"><img></div>`);
+    }
+
+   
+    
+    function changeStar( cstar, cls){
+        let current_star = $(cstar);
+
+        $('.star').each(function(item){
+            let star = $('.star#'+(item+1));
+            if( star[0].id <= current_star[0].id ){
+                star.find('img').addClass(cls);
+            }else{
+                star.find('img').removeClass(cls); 
+            }
+        });
+    }
+
+    if( '<%= set %>' > 0 ){
+
+        changeStar( $('.star#<%= set %>'), 'set');
+    }
+    
+    $(document).on('mouseover' ,'.star', function(){
+        changeStar( this, 'active');
+    });
+
+    $(document).on('mouseleave' ,'.star', function(){
+        $('.star').find('img').removeClass('active');
+    });
+
+    $(document).on('click' ,'.star', function(){
+        changeStar( this, 'set');
+        $('#<%= fld %>').val( $(this)[0].id )
+    });
+
+</script>

@@ -28,6 +28,42 @@ class ApplicationController < ActionController::Base
   # def default_url_options(options={})
   #   { :secure => true }
   # end
+  def rehearser_link
+    Rails.env.production? ? 'http://www.rehearser.co' : 'http://localhost:4000'
+  end
+
+  def rehearser( param:nil, action:'get', v:1, path:, uid:true)
+    version = "api/v"+v.to_s+"/"
+    url = rehearser_link+'/'
+    
+    if uid
+      hdrs = { "Authorization" => ENV["REHEARSER_APP_TOKEN"], "Accept" => "application/json", "Content-Type" => "application/x-www-form-urlencoded", "uid" => "#{current_user.auth_token}" }
+    else
+      hdrs = { "Authorization" => ENV["REHEARSER_APP_TOKEN"], "Accept" => "application/json", "Content-Type" => "application/x-www-form-urlencoded" }
+    end
+
+
+    case action
+      when "post"
+        response = Unirest.post url+version+path,
+                    headers: hdrs,
+                    parameters: param.to_h
+      when "put"
+        response = Unirest.put url+version+path,
+                    headers: hdrs,
+                    parameters: param.to_h
+      when "delete"
+        response = Unirest.delete url+version+path,
+                    headers: hdrs,
+                    parameters: param.to_h
+      else
+        response = Unirest.get url+version+path,
+                    headers: hdrs,
+                    parameters: param.to_h
+    end
+
+    response
+  end
 
   def base_url
     if Rails.env.development?

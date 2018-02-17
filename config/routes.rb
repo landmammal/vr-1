@@ -2,24 +2,23 @@ Rails.application.routes.draw do
 
   # landing page
   root 'welcome#index'
-
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
   
-
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+  
   # MENU LINKS
   menu_routes = ['about','markets','overview','process','contact','versions','jobs']
   menu_routes.push('theteam','termsandservices','FAQs','requirements','policies','press','teach','coach','learn','create','companies','support')
   menu_routes.each do |menu|
     get "/#{menu}" => "welcome##{menu}"
   end
-  
 
   # API routes
-  api_routes = ['courses','topics','lessons','course_registrations','site_panel','common_panel','instructor_panel','admin_panel']
-  api_routes.push('demos','tasks','chat')
-  api_routes.push('rehearsals', 'feedbacks', 'group', 'reviewrehearsal')
+  api_routes = [
+    'courses','topics','lessons','course_registrations',
+    'site_panel','common_panel','instructor_panel',
+    'admin_panel','demos','tasks','chat',
+    'rehearsals', 'feedbacks', 'group', 'reviewrehearsal'
+  ]
   api_routes.each do |apir|
     get '/'+apir+'/api' => "api##{apir}_api"
     post '/'+apir+'/api' => "#{apir}#create"
@@ -28,14 +27,8 @@ Rails.application.routes.draw do
   end
   
 
-
-
-
-
-
   # EXTRA LINKS ------
 
-      post '/rehearsal/:rehearsal_id/approved' => "rehearsals#approved"
       get "/rehearsals/student" => "rehearsals#student"
       get "/rehearsals/all" => "rehearsals#all"
       
@@ -61,15 +54,12 @@ Rails.application.routes.draw do
       get "/courses/:course_id/accept_invitation/" => "courses#accept_invitation"
       get "/courses/:course_id/accept_invitation/:user_id" => "courses#accept_invitation"
 
-
       post '/topic/create' => "topics#create"
-
 
       get '/group_registrations/group/:id' => 'group_registrations#registrations'
       post '/group_registrations/group/:id' => 'group_registrations#create'
       get "/groups/all_groups" => "groups#all_groups"
       get '/groups/:id' => 'groups#my_group'
-      
       
       # OTHER LINKS
       post "/users/course_list_nav" => "users#course_list_nav"
@@ -86,14 +76,14 @@ Rails.application.routes.draw do
   # EXTRA LINKS ------ END
 
 
-
-
-
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users do
     resources :groups do
       resources :user_groups
       resources :group_registrations
+    end
+    collection do
+      post 'batch_update' => "users#batch_update"
     end
   end
 
@@ -132,7 +122,7 @@ Rails.application.routes.draw do
   # routes for purchases
   resources :charges
   resources :purchases, only: [:show]
-  
+
   resources :peer_reviews
   resources :review_requests do
     resources :peer_reviews
@@ -153,4 +143,5 @@ Rails.application.routes.draw do
   # resources :lesson_prompts
   # resources :lesson_explanations
   # resources :lesson_rehearsals
+
 end
