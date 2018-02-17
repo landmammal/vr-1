@@ -11,10 +11,10 @@ if Rails.env.development? || Rails.env.test?
 	@user.save
 
 	@course = Course.find(1)
-	@course.topics.build(title:"first topic", instructor_id:@user.id)
+	@course.topics.build(title:"first topic", course_id:@course.id, instructor_id:@user.id)
 	@course.save
 
 	@topic = Topic.find(1)
-	@topic.lessons.build(title:"first lesson", instructor_id:@user.id)
+	@topic.lessons.build(title:"first lesson", topic_id:@topic.id, instructor_id:@user.id)
 	@topic.save
 end

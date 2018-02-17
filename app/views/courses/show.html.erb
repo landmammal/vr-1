@@ -56,7 +56,9 @@
 
         <a href="<%= course_topic_path(@course, topic) %>" style="color: white;">
           <div class="card_desc topic">
-            <%= topic.description[0...130] %><%= "..." if topic.description.length > 130 %>
+            <% if !topic.description.blank? %>
+              <%= topic.description[0...130] %><%= "..." if topic.description.length > 130 %>
+            <% end %>
             <div class="bottom_count">
               <% topic.lessons.each do |lesson| %>
                 <% if course_creator %>
@@ -276,14 +278,13 @@
 
 <br>
 
-<% if !@course.tags.empty? %>
+<% if !@course.tags.blank? %>
   <span style="font-family:'webly_bld';">tags:</span>
   <% @course.tags.split(', ').each do |tag| %>
     <div class="tags-text">
       <a href="#"><b><%= tag %></b></a>
     </div>
   <% end %>
-
 <% end %>
 
 <br><br>

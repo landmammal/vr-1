@@ -31,7 +31,6 @@ gem 'roadie'
 gem 'dotenv'
 
 # pre install ready gems
-
 gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -41,6 +40,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'hirb'
 gem 'rails_12factor'
+gem 'kaminari' # Pagination
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -70,9 +70,6 @@ group :development, :test do
   gem 'faker'
   gem 'database_cleaner'
   gem 'shoulda-matchers' # Model Testing Help for Rspec
-end
-
-group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   gem 'spring'
