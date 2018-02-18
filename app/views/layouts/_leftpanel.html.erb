@@ -1,14 +1,5 @@
 <div class="side-menu">
 
-	<!-- <div class="panel_seperator">
-		<a href="#" class="js-max_min">
-			<div class="panel_icon">
-			
-				<img class="icon" src="<%=image%>/icons/expand.svg">
-				<div class="text_label">Minimize</div>
-			</div>
-		</a>
-	</div> -->
 	<span class="menu-togglebtn"><img src="/assets/menu.png" class="menu-control"></span>
 
 	<div class="panel_seperator js-site_panel">
@@ -16,9 +7,7 @@
 		<script type="text/javascript">
 			panel_section('site_panel')
 		</script>
-		<!-- <div class="sidepanel js-side_Settings">
-		</div> -->
-
+		
 	</div>
 
 
@@ -50,16 +39,6 @@
 			</script>
 
 			<span class="Rehearsals_notif" style="display:none;"><%= rehearsals_notif %></span>
-
-			<!-- <div class="sidepanel js-side_My_Tools">
-				Intructor Tools<br>
-				<button>Create Course</button><br>
-				<a href="/course_registrations/">
-					<button>Course Registrations</button>
-				</a><br>
-				<%= link_to 'Create Group', new_user_group_path(current_user) %><br>
-				<%= link_to 'My Groups', user_groups_path(current_user) %>
-			</div> -->
 		</div>
 
 	<% end %>

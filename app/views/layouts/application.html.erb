@@ -17,34 +17,26 @@
   <body>
 
   <%= render 'layouts/loading' %>
+  <script type="text/javascript">$('.loading_app').show(); startLoadingProg();</script>
 
   <script type="text/javascript">TermsandServices(<%= check_terms(termsVersion) %>);</script>
   <div class="terms_not_aggreed" style="display:<%= check_terms(termsVersion) ? 'none' : 'block' %>;">
     <%= render '/welcome/reviewtermsandservices' %>
   </div>
-
-  <script type="text/javascript">$('.loading_app').show(); startLoadingProg();</script>
-
-  <%= render 'layouts/notice' %>
-  <%= render 'layouts/menu' unless menu_welcome %>
-
-  <% if user_signed_in? %>
-    <div class="main-content">
-
-      <%= render 'layouts/leftpanel' %>
-      
-      <div class="content-container">
-        <%= yield %>
-        <input type="hidden" name="thisPath" value="<%= request.original_fullpath %>">
-      </div>
-
-    </div>
-    <br>
-  <% else %>
-    <%= yield %>
-  <% end %>
   
-  <%= render 'layouts/footer' %>
+  <%= render 'layouts/notice' %>
+
+  <div class="layout">
+      <%= render 'layouts/header/header' %>
+
+      <div class="main-content <%= 'in_app' if in_app %>">
+        <%= render 'layouts/leftpanel' if user_signed_in? %>
+        <div class="content-container"> <%= yield %></div>
+      </div>
+    
+      <%= render 'layouts/footer' %>
+  </div>
+  
 
   </body>
 </html>
