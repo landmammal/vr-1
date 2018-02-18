@@ -11,7 +11,7 @@ module WelcomeHelper
 #       @devise_mapping ||= Devise.mappings[:user]
 #   end
 
-  def menu_welcome
+  def home
     url = request.original_fullpath
     case url
       when '/'
@@ -28,6 +28,10 @@ module WelcomeHelper
     a && !current_user ? b=true : b=false
 
     return b
+  end
+
+  def in_app
+    user_signed_in?
   end
   
 end
