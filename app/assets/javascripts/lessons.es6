@@ -1,13 +1,3 @@
-$(document).ready(function () {
-	$(".menu-control").click(function () {
-		$("body").toggleClass('menu-large');
-		var src = $(this).attr('src');
-		var newsrc = (src == '/assets/menu.png') ? '/assets/menu-close.png' : '/assets/menu.png';
-		$(this).attr('src', newsrc);
-	});
-
-   
-});
 function thisLessonsList(name, json_object){
 	var newjson = railsToJson(json_object);
 	// console.log(newjson);
