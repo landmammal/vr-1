@@ -1,4 +1,4 @@
-<div class="home_card card_<%= course_item.id %>">
+<!-- <div class="home_card card_<%= course_item.id %>">
     <div class="card_title">
       <a href="<%= course_path(course_item) %>" class="js-c_<%= course_item.id %>">
         <div class="title_name">
@@ -43,4 +43,26 @@
       </div>
     </div>
   </a>
+</div> -->
+
+
+
+<div class="card course_card" id="card_<%= course_item.id %>">
+  
+  <a href="<%= course_path(course_item) %>">
+    <div class="ctitle"> <%= course_item.title[0...23] %><%= "..." if course_item.title.length > 23 %> </div>
+    <div class="description">
+      <% if !course_item.description.blank? %>
+        <%= course_item.description[0...115] %><%= "..." if course_item.description.length > 115 %>
+      <% end %>
+    </div>
+  </a>
+  
+  
+  <div class="actions <%= 'owner' if course_item.owner(current_user) %>">
+    <span class="<%= course_item.privacy_icon[0] %>" title="<%= course_item.privacy_icon[1] %>"></span>
+    <%= ( link_to '', course_item, class:'edit ion-edit') if course_item.owner(current_user)  %>
+    <%= ( link_to '', course_item, class:'delete ion-trash-a', method: :delete, data: {confirm: "Are you sure you want to delete #{ course_item.title }?"} ) if course_item.owner(current_user)  %>
+  </div>
+
 </div>

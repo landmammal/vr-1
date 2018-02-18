@@ -1,6 +1,17 @@
 <div class="body">
 
 	<div class="section js-display_my_courses">
+		<% if @courses.size < 1 %>
+			<center style="margin:20px auto; max-width:400px;">
+				<a href="/courses/search"> <button class="big_btn blue" > Browse Courses </button> </a>
+				<br>
+				<br>
+				<% if current_user.level_2 %>
+					<a href="/users/<%= current_user.id.to_s %>?view=instructor_tools&group=top"> <button class="big_btn green_sft" > Create a course </button> </a>	
+				<% end %>
+			</center>
+		<%end%>
+
 		<div class="js-my_courses_list card_list">
 			<% if @courses.size > 0 %>
 				<% @courses.each_with_index do |course, index| %>
@@ -31,20 +42,6 @@
 					</a>
 
 				<%end%>
-			<%else%>
-				<center style="margin:20px auto; max-width:400px;">
-					
-					<a href="/courses/search">
-						<button class="big_btn blue" > Browse Courses </button>
-					</a>
-					<br>
-					<br>
-					<% if current_user.level_2 %>
-						<a href="/users/<%= current_user.id.to_s %>?view=instructor_tools&group=top">
-							<button class="big_btn green_sft" > Create a course </button>
-						</a>	
-					<% end %>
-				</center>
 			<%end%>
 
 		</div>

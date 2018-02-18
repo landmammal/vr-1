@@ -21,7 +21,8 @@ class ApplicationController < ActionController::Base
 
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  protect_from_forgery with: :null_session
+  protect_from_forgery prepend: true
+  skip_before_action :verify_authenticity_token
 
   before_action :main_links
 

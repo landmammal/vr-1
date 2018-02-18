@@ -338,13 +338,14 @@ var pageReady = function(){
 			tmp_shift.remove();
 		});
 
-		$('.home_card').each(function() {
-			var $divs = $('.home_card');
-			var tallestHeight_home = $divs.map(function(i, el) {
-				return $(el).height();
-			}).get();
-			$divs.height(Math.max.apply(this, tallestHeight_home));
-		});
+		// $('.home_card').each(function() {
+		// 	var $divs = $('.home_card');
+		// 	var tallestHeight_home = $divs.map(function(i, el) {
+		// 		return $(el).height();
+		// 	}).get();
+		// 	$divs.height(Math.max.apply(this, tallestHeight_home));
+		// });
+
 		$('.lesson_list').each(function() {
 			var $lessondivs = $('.lesson_list');
 			var tallestHeight_lesson = $lessondivs.map(function(i, el) {

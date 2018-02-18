@@ -12,14 +12,12 @@
 
 	<div class="js-my_courses_list">
 
-		<div class="card_list creator_list">
-		
-			<h3>Course I Created:</h3>
+		<h4>Course Created</h4>
 
+		<div class="card_list creator_list">
 			<% current_user.courses.order('id DESC').each do |course| %>
 		        <%= render 'coursecards', course_item: course  %>
 		    <% end %>
-
 		</div>
 
 	</div>

@@ -26,26 +26,29 @@
 <br>
 
 <% if course_creator || ( course_trainee && !course_pending ) %>
-  <div class="card_list <%= 'with_side' if course_creator %>">
-    <h4> Topics
-      <% if course_creator %>
-        <button class="js-add_form_btn green_sft add_btn small" data-form="topic">+</button>
-      <% end %>
-    </h4>
-
-    <hr>
-
+  
+  <h4> Topics
     <% if course_creator %>
-      <div class="js-topic_form" style="display:none;">
-        <%= render './topics/form' %>
-      </div>
-      <!-- <button class="js-show_external_form reg_btn green_sft">Add External Topic</button> -->
-      <br>
+      <button class="js-add_form_btn green_sft add_btn small" data-form="topic">+</button>
     <% end %>
+  </h4>
+
+  <hr>
+
+  <% if course_creator %>
+    <div class="js-topic_form" style="display:none;">
+      <%= render './topics/form' %>
+    </div>
+    <!-- <button class="js-show_external_form reg_btn green_sft">Add External Topic</button> -->
+    <br>
+  <% end %>
+
+
+  <div class="card_list <%= 'with_side' if course_creator %>">
 
     <% @course.topics.order('id ASC').each_with_index do |topic, index| %>
 
-      <div class="card">
+      <!-- <div class="card">
         
         <div class="card_title topic">
           <a href="<%= course_topic_path(@course, topic) %>" style="color: white;">
@@ -70,7 +73,7 @@
             </div>
           </div>
         </a>
-      </div>
+      </div> -->
 
     <% end %>
   </div>

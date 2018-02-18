@@ -1,8 +1,6 @@
 class RehearsalsController < ApplicationController
   include RehearsalsHelper
-
-  skip_before_action :verify_authenticity_token, only: [:update]
-
+  
   before_action :set_rehearsal, only: [:edit, :destroy]
   before_action :set_update_rehearsal, only: [:update]
   before_action :set_lesson, only: [:create, :index]

@@ -12,9 +12,9 @@
 
 	<div class="js-my_courses_list">
 
-		<br>ALL COURSES:<br>
+		<h4>All Courses</h4>
 		
-		<div class="admin_c_list card_list">
+		<div class="card_list admin_c_list">
 
 			<% @all_courses.each do |course| %>
 		        <%= render 'coursecards', course_item: course %>
