@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   
   # MENU LINKS
-  menu_routes = ['about','markets','overview','process','contact','versions','jobs']
-  menu_routes.push('theteam','termsandservices','FAQs','requirements','policies','press','teach','coach','learn','create','companies','support')
+  menu_routes = [
+    'about','markets','overview','process','contact','versions','jobs',
+    'theteam','termsandservices','FAQs','requirements','policies','press',
+    'teach','coach','learn','create','companies','support'
+  ]
   menu_routes.each do |menu|
     get "/#{menu}" => "welcome##{menu}"
   end
@@ -32,10 +35,8 @@ Rails.application.routes.draw do
       get "/rehearsals/student" => "rehearsals#student"
       get "/rehearsals/all" => "rehearsals#all"
       
-
       get "/feedback/all" => "feedbacks#all"
       
-
       # COURSE LINKS
       post "/courses_search/api" => "api#courses_search_api"
       post '/courses/:course_id/topics/:topic_id/lessons/new' => "lessons#create"
@@ -45,7 +46,6 @@ Rails.application.routes.draw do
       post "/remove_student" => "courses#remove_student"
       post "/activate_deactivate_student" => "courses#activate_deactivate_student"
       post "/reentry/:id/" => "courses#reentry"
-      
       
       # COURSE INVITATIONS
       get "/generate_course_code/" => "courses#generate_code"
