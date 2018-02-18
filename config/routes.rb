@@ -29,49 +29,49 @@ Rails.application.routes.draw do
 
   # EXTRA LINKS ------
 
-      get "/rehearsals/student" => "rehearsals#student"
-      get "/rehearsals/all" => "rehearsals#all"
-      
+    get "/rehearsals/student" => "rehearsals#student"
+    get "/rehearsals/all" => "rehearsals#all"
+    
 
-      get "/feedback/all" => "feedbacks#all"
-      
+    get "/feedback/all" => "feedbacks#all"
+    
 
-      # COURSE LINKS
-      post "/courses_search/api" => "api#courses_search_api"
-      post '/courses/:course_id/topics/:topic_id/lessons/new' => "lessons#create"
-      get "/course_registrations/" => "course_registrations#index"
-      post "/email_exits" => "users#email_exits"
-      post "/leave_course" => "courses#leave_course"
-      post "/remove_student" => "courses#remove_student"
-      post "/activate_deactivate_student" => "courses#activate_deactivate_student"
-      post "/reentry/:id/" => "courses#reentry"
-      
-      
-      # COURSE INVITATIONS
-      get "/generate_course_code/" => "courses#generate_code"
-      post "/invite_student/" => "courses#send_invite"
-      post "/register_with_access_code" => "courses#register_with_access_code"
-      get "/courses/:course_id/accept_invitation/" => "courses#accept_invitation"
-      get "/courses/:course_id/accept_invitation/:user_id" => "courses#accept_invitation"
+    # COURSE LINKS
+    post "/courses_search/api" => "api#courses_search_api"
+    post '/courses/:course_id/topics/:topic_id/lessons/new' => "lessons#create"
+    get "/course_registrations/" => "course_registrations#index"
+    post "/email_exits" => "users#email_exits"
+    post "/leave_course" => "courses#leave_course"
+    post "/remove_student" => "courses#remove_student"
+    post "/activate_deactivate_student" => "courses#activate_deactivate_student"
+    post "/reentry/:id/" => "courses#reentry"
+    
+    
+    # COURSE INVITATIONS
+    get "/generate_course_code/" => "courses#generate_code"
+    post "/invite_student/" => "courses#send_invite"
+    post "/register_with_access_code" => "courses#register_with_access_code"
+    get "/courses/:course_id/accept_invitation/" => "courses#accept_invitation"
+    get "/courses/:course_id/accept_invitation/:user_id" => "courses#accept_invitation"
 
-      post '/topic/create' => "topics#create"
+    post '/topic/create' => "topics#create"
 
-      get '/group_registrations/group/:id' => 'group_registrations#registrations'
-      post '/group_registrations/group/:id' => 'group_registrations#create'
-      get "/groups/all_groups" => "groups#all_groups"
-      get '/groups/:id' => 'groups#my_group'
-      
-      # OTHER LINKS
-      post "/users/course_list_nav" => "users#course_list_nav"
-      post "/courses/student_list_nav" => "courses#student_list_nav"
-      get "/change_first_contact" => "users#change_first_contact"
-      post "/job_application" => "welcome#job_application"
-      get "/test" => "welcome#test"
-      get "/reset" => "welcome#reset"
-      get "/lessonexp/" => "lesson_explanations#index"
-      get "/display_course/:id" => "courses#display"
-      get "/new_termsandservices" => "welcome#reviewtermsandservices"
-      post "/accepttermsandservices" => "welcome#accepttermandservices"
+    get '/group_registrations/group/:id' => 'group_registrations#registrations'
+    post '/group_registrations/group/:id' => 'group_registrations#create'
+    get "/groups/all_groups" => "groups#all_groups"
+    get '/groups/:id' => 'groups#my_group'
+    
+    # OTHER LINKS
+    post "/users/course_list_nav" => "users#course_list_nav"
+    post "/courses/student_list_nav" => "courses#student_list_nav"
+    get "/change_first_contact" => "users#change_first_contact"
+    post "/job_application" => "welcome#job_application"
+    get "/test" => "welcome#test"
+    get "/reset" => "welcome#reset"
+    get "/lessonexp/" => "lesson_explanations#index"
+    get "/display_course/:id" => "courses#display"
+    get "/new_termsandservices" => "welcome#reviewtermsandservices"
+    post "/accepttermsandservices" => "welcome#accepttermandservices"
   
   # EXTRA LINKS ------ END
 
