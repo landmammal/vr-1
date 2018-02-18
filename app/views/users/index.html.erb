@@ -1,42 +1,22 @@
-<div class="box_sep">
-  <div class="title filter_users" style="overflow:hidden;">
-    <button class="left" > <%= link_to "All Users", :action => "index" %> </button>
-    <button class="left" > <%= link_to "Inactive Users", :action => "index", :approved => "false" %> </button>
 
-    <button class="right" ><%= link_to :Admins, action: :index, role:'admin' %> </button>
-    <button class="right" ><%= link_to :Instructors, action: :index, role:'instructor' %> </button>
-    <button class="right" ><%= link_to :Coaches, action: :index, role:'coach' %> </button>
-    <button class="right" ><%= link_to :Trainees, action: :index, role:'trainee' %> </button>
-  </div>
-  
-  <!-- <div class="title" style="background-color:#FFE7E1;">
-    <button class="green_sft small_btn">Batch Modify</button>
-    not yet functional
-  </div> -->
+<h3 style="margin-top:0;"> Users Index </h3>
+<hr>
 
-  <!-- <div class="body">
-    <% @users.each do |user| %>
-      <div class="user_card">
-        <div class="image"><img src="<%= student_pic(user) %>"  class="img-circle" width="100%" ></div>
-        <div class="user_info">
-          <b style="font-family:'gotham';"><%= user.first_name%> <%= user.last_name%></b><br>
-          <%= link_to user.email, user %>
-          <%= form_for(user) do |f| %>
-            <%= f.select( :role, User.roles.keys.map {|role| [role.titleize,role]} ) %>
-            <%= f.select :approved, [['Active', true], ['Inactive', false]] %>
-            <%= f.submit 'Modify User', class:'small_btn green_sft' %>
-          <% end %>
-          <%= user == current_user ? button_to('Edit Account', edit_user_path(current_user), class:'blue small_btn') : button_to('Delete user', user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'small_btn red') %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div> -->
+<div class="filter_users" style="overflow:hidden;">
+  <button class="left" > <%= link_to "All Users", :action => "index" %> </button>
+  <button class="left" > <%= link_to "Inactive Users", :action => "index", :approved => "false" %> </button>
 
-<h3>
+  <button class="right" ><%= link_to :Admins, action: :index, role:'admin' %> </button>
+  <button class="right" ><%= link_to :Instructors, action: :index, role:'instructor' %> </button>
+  <button class="right" ><%= link_to :Coaches, action: :index, role:'coach' %> </button>
+  <button class="right" ><%= link_to :Trainees, action: :index, role:'trainee' %> </button>
+</div>
+
+
+<h4>
   <%= 'New Users' if params[:approved] == 'false' %>
   <%= params[:role].capitalize.pluralize if params[:role] %>
-</h3>
+</h4>
 <hr>
 
 <div class="batch_update">
@@ -49,39 +29,48 @@
     
     <%= select_tag :role, options_for_select(@roles)  %>
 
-    
     <%= submit_tag :update, class:'blue right' %>
   <% end %>
   <hr>
 </div>
 
 <div class="body user_list">
-  <% @users.each_with_index do |user, index| %>
-    <div class="user_item <%= 'odd' if index.odd? %>" id="<%= user.id %>">
+  <% if @users.size > 0 %>
 
-      <div class="select <%= 'inactive' if !user.approved %>">
-        <span class="ion-android-checkbox-outline-blank" ></span>
+    <% @users.each_with_index do |user, index| %>
+      <div class="user_item <%= 'odd' if index.odd? %>" id="<%= user.id %>">
+
+        <div class="select <%= 'inactive' if !user.approved %>">
+          <span class="ion-android-checkbox-outline-blank" ></span>
+        </div>
+
+        <img src="<%= student_pic(user) %>"  class="image img-circle" width="100%" >
+        
+        <div class="info">
+          <%= user.full_name %>
+          <br>
+          <span class="role"><%= user.role %></span>
+        </div>
+
+        <div class="edit">
+          <%= 'Not Active' if !user.approved %>
+        </div>
+
+        <div class="delete">
+          <!-- <span class="ion-ios-close-outline" ></span> -->
+          <%= link_to '', user_path(user), :data => { :confirm => "Are you sure you want to delete #{user.full_name}'s account ?" }, :method => :delete, :class => 'small_btn ion-ios-close-outline red' %>        
+        </div>
+
       </div>
+    <% end %>
+  
+  <% else %>
+    <center>
+      <h3 style="color:#ccc;" >No Users</h3>
+    </center>
 
-      <img src="<%= student_pic(user) %>"  class="image img-circle" width="100%" >
-      
-      <div class="info">
-        <%= user.full_name %>
-        <br>
-        <span class="role"><%= user.role %></span>
-      </div>
-
-      <div class="edit">
-        <%= user.approved ? 'Active' : 'Not Active' %>
-      </div>
-
-      <div class="delete">
-        <!-- <span class="ion-ios-close-outline" ></span> -->
-        <%= link_to '', user_path(user), :data => { :confirm => "Are you sure you want to delete #{user.full_name}'s account ?" }, :method => :delete, :class => 'small_btn ion-ios-close-outline red' %>        
-      </div>
-
-    </div>
   <% end %>
+  
 </div>
 
 
@@ -113,7 +102,4 @@
       $('.batch_update').hide();
     }
   });
-
-  
-
 </script>
