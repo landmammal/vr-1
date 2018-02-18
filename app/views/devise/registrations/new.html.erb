@@ -1,7 +1,6 @@
 <% tparams = ["interview", "customerservice", "wellness", "pronunciation", 'hospitality'] %>
 <% t = params[:t] %>
 <div class="full_top_img" style="background-image:url('<%=image%>/<%= t ? t.downcase : "frame_home_1" %>.jpg'); height:85%;">
-  <%= render 'layouts/menu' if menu_welcome %>
   <div class="register_header">
     <div class="content">
       <div style="font-family:'gotham'; margin:10% 0 20px; font-size:40px; line-height:1em;">
@@ -39,10 +38,10 @@
             <%= devise_error_messages! %>
 
             <!-- <div class="register_label">User Information</div> -->
-            <%= f.text_field :first_name, class:'firstname name clearform', autofocus: true, placeholder:'First Name'%>
-            <%= f.text_field :last_name, class:'lastname name clearform', placeholder:'Last Name'%>
-            <%= f.text_field :username, class:'username clearform', placeholder:'Create Username'%><br>
-            <%= f.email_field :email, class:'email clearform', autofocus: true, placeholder:'Email'%><br><br>
+            <%= f.text_field :first_name, class:'firstname name clearform', autofocus: true, placeholder:'First Name', value:('Demo' if Rails.env.development?)%>
+            <%= f.text_field :last_name, class:'lastname name clearform', placeholder:'Last Name', value:('User' if Rails.env.development?)%>
+            <%= f.text_field :username, class:'username clearform', placeholder:'Create Username', value:('user1' if Rails.env.development?)%><br>
+            <%= f.email_field :email, class:'email clearform', autofocus: true, placeholder:'Email', value:('user1@email.com' if Rails.env.development?)%><br><br>
 
 
             <!-- <div class="register_label">Password -->
@@ -50,8 +49,8 @@
                 <!-- <span style="font-size:10px;">(<%= @minimum_password_length %> characters minimum)</span> -->
               <!-- <% end %>: -->
             <!-- </div> -->
-            <%= f.password_field :password, class:'pass clearform', autocomplete: "off", placeholder:'Password (6 characters or more)' %><br>
-            <%= f.password_field :password_confirmation, class:'passComf clearform', autocomplete: "off", placeholder:'Confirm Password' %><br><br>
+            <%= f.password_field :password, class:'pass clearform', autocomplete: "off", placeholder:'Password (6 characters or more)', value:('test123' if Rails.env.development?) %><br>
+            <%= f.password_field :password_confirmation, class:'passComf clearform', autocomplete: "off", placeholder:'Confirm Password', value:('test123' if Rails.env.development?) %><br><br>
             
 
 

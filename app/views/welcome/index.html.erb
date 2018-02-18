@@ -1,10 +1,6 @@
 <div class="home_top_wrapper" style="background-image:url('<%= image %>/home/frame_home_1.jpg');">
 	<div class="home_top">
 
-
-		<%= render 'layouts/menu' if menu_welcome %>
-
-
 		<!-- <div id="home_top_text" class="center_right">
 			<div class="content">
 				<span class="ht3">A video Training Platform</span><br>
@@ -62,9 +58,9 @@
 					<div class="demo_form" id="demo_form">
 						<h2>Schedule a Demo</h2>
 						<%= form_for @demo, remote: true do |d| %>
-							<%= d.text_field :first_name, placeholder:'First name *', class:'js-first_name js-form half' %>
-							<%= d.text_field :last_name, placeholder:'Last name *', class:'js-last_name js-form half' %>
-							<%= d.text_field :email, placeholder:'Email *', class:'js-email js-form full' %>
+							<%= d.text_field :first_name, placeholder:'First name *', class:'js-first_name js-form half', value:('Demo' if Rails.env.development?) %>
+							<%= d.text_field :last_name, placeholder:'Last name *', class:'js-last_name js-form half', value:('User' if Rails.env.development?) %>
+							<%= d.text_field :email, placeholder:'Email *', class:'js-email js-form full', value:('user@email.com' if Rails.env.development?) %>
 							<!-- <%= d.text_field :phone_number, placeholder:'Phone number', class:'js-phone_number js-form full' %> -->
 							<!-- <div class="half" style=" width: calc(100% - 155.39); font-size: 18px; padding: 10px 0; float: left; text-align: left;">
 								Set a date:
