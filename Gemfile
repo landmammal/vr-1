@@ -70,8 +70,14 @@ group :development, :test do
   gem 'faker'
   gem 'database_cleaner'
   gem 'shoulda-matchers' # Model Testing Help for Rspec
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 2.0' # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'spring'
   gem 'better_errors' # Better Errors
+  gem 'listen', '~> 3.0'
+
+  # LIVE RELOADING
+  gem 'guard', '>= 2.2.2', require: false
+  gem 'guard-livereload', '~> 2.5.2', require: false
+  gem 'rack-livereload'
+  gem 'rb-fsevent', require: false
 end

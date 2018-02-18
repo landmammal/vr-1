@@ -18,6 +18,8 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+  config.middleware.insert_after(ActionDispatch::Static, Rack::LiveReload)
+
   # Show full error reports.
   config.consider_all_requests_local = true
 
