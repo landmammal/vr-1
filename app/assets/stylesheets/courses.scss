@@ -333,12 +333,17 @@
 		display: grid;
 		grid-template-rows: 85px 28px;
 		border-radius: 3px; 
-		overflow: hidden;
+		overflow: hidden; background-color: #eee;
 
 		a{ grid-template-rows: 28px 53px; }
 
 		&:hover{
 			box-shadow: 1px 1px 3px #ddd;
+		}
+
+		& .ctitle{
+			align-content: center;
+			font-size: 12px;
 		}
 
 		& .ctitle, & .description { overflow: hidden; }
@@ -347,31 +352,32 @@
 		}
 
 		&.course_card{
-			background-color: #eee;
+			& .ctitle{ color: white; background-color: $base_color; }
+		}
 
+		&.topic_card{
 			& .ctitle{
-				align-content: center;
+				background-color: #999;
+				font-weight: 700;
 				color: white;
-				font-size: 12px;
-				background-color: $base_color;
 			}
+		}
 
-			& .actions{
-				border-top: 1px #ddd solid;
-				display:grid;
+		& .actions{
+			border-top: 1px #ddd solid;
+			display:grid;
 
-				&.owner{
-					grid-template-columns: auto 50px 20px;  
-					a.delete, a.edit{ 
-						color:#ccc; font-size: 15px;
-						text-align: center;
-					}
-					a.delete{	
-						&:hover{ color:red; }
-					}
-					a.edit{
-						&:hover{ color:$base_color; }
-					}
+			&.owner{
+				grid-template-columns: auto 50px 20px;  
+				a.delete, a.edit{ 
+					color:#ccc; font-size: 15px;
+					text-align: center;
+				}
+				a.delete{	
+					&:hover{ color:red; }
+				}
+				a.edit{
+					&:hover{ color:$base_color; }
 				}
 			}
 		}

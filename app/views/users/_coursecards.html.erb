@@ -47,7 +47,7 @@
 
 
 
-<div class="card course_card" id="card_<%= course_item.id %>">
+<div class="card course_card" id="course_card_<%= course_item.id %>">
   
   <a href="<%= course_path(course_item) %>">
     <div class="ctitle"> <%= course_item.title[0...23] %><%= "..." if course_item.title.length > 23 %> </div>

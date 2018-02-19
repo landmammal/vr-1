@@ -38,5 +38,12 @@ if Rails.env.development? || Rails.env.test?
     end
   end
 
+  Lesson.all.each do |lesson|
+    lesson.explanations.build( lesson_id:lesson.id, title:'Explanation Test Video', video_token:'9681962d39338bded5a63422709f1022', script:'Random generated script here for Explanation', position_prior:1 )
+    lesson.prompts.build( lesson_id:lesson.id, title:'Prompt Test Video', video_token:'9681962d39338bded5a63422709f1022', script:'Random generated script here for Prompt', position_prior:1 )
+    lesson.models.build( lesson_id:lesson.id, title:'Model Test Video', video_token:'9681962d39338bded5a63422709f1022', script:'Random generated script here for Model', position_prior:1 )
+    lesson.save
+  end
+
   
 end

@@ -29,4 +29,8 @@ class Topic < ApplicationRecord
     self.lessons.map{ |x| x if topic_lesson_status(x) }.compact.size == user.rehearsals.map{ |x| x if (x.topic == self && x.approved? ) }.compact.size
   end
 
+  def owner(user)
+    self.instructor == user || user.role == 'admin'
+  end
+
 end

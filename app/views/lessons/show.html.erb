@@ -158,9 +158,9 @@
               </div>
 
 
-              <div class="shadebox" data-name='<%= progressbox[1] %>_box'>
-                <div class="shade box" style="max-width:630px; margin-top:10px;">
-                  <div class="shadebox_title">
+              <div class="shadebox_bg" data-name='<%= progressbox[1] %>_box'>
+                <div class="shadebox" style="max-width:630px; margin-top:10px;">
+                  <div class="shadebox_header">
                     New <%= progressbox[1].capitalize %>
 
                   </div>
@@ -171,7 +171,7 @@
                     <% @this_error = 'error_'+progressbox[1] %>
                     <%= render 'componentnew' %>
                   </div>
-                  <div class="shadebox_bottom">
+                  <div class="shadebox_footer">
                   </div>
                 </div>
               </div>
@@ -234,9 +234,9 @@
 
 
           <!-- CONCEPTS -->
-          <div class="shadebox" data-name='add_concept'>
-            <div class="shade box" style="max-width:630px; top:20%;">
-              <div class="shadebox_title">
+          <div class="shadebox_bg" data-name='add_concept'>
+            <div class="shadebox" style="max-width:630px; top:20%;">
+              <div class="shadebox_header">
                 <div class="put_title_here">
                   <span style="font-family:'gotham';">Add Concept</span>
                 </div>
@@ -269,7 +269,7 @@
                     <%= f.submit 'Add Concept', class: 'shade_close blue', style: 'float:right;' %>
                 <% end %>
               </div>
-              <div class="shadebox_bottom">
+              <div class="shadebox_footer">
               </div>
             </div>
           </div>

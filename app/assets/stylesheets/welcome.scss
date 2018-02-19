@@ -7,7 +7,7 @@ body {
   font-size: 13px;
   font-weight: 300;
   line-height: 18px;
-  font-family: 'Roboto', sans-serif;
+  font-family: $primary_font;
 }
 
 html, body {
@@ -31,7 +31,7 @@ hr {
 }
 
 p, ol, ul, td {
-  font-family: 'Roboto', sans-serif;
+  font-family: $primary_font;
 }
 
 pre {
@@ -1236,7 +1236,7 @@ video#bgvid {
   
     & .ht3 {
       font-weight: bold;
-      font-family: 'Roboto', sans-serif;
+      font-family: $primary_font;
       font-size: 15px;
       line-height: 1em;
     }
@@ -1419,7 +1419,7 @@ video#bgvid {
 
   .home_info_1 {
     font-size: 40px;
-    font-family: 'Roboto', sans-serif;
+    font-family: $primary_font;
     margin: 10px auto 15px;
   }
 
@@ -1516,7 +1516,7 @@ video#bgvid {
 
   .home_top_wrapper #home_top_text .ht3 {
     font-weight: bold;
-    font-family: 'Roboto', sans-serif;
+    font-family: $primary_font;
     font-size: 20px;
     line-height: 1em;
     text-shadow: 0px 0px black, 0.1px 0.1px black, 0.2px 0.2px black, 0.3px 0.3px black, 0.4px 0.4px black, 0.5px 0.5px black, 0.6px 0.6px black, 0.7px 0.7px black, 0.8px 0.8px black, 0.9px 0.9px black, 1px 1px black;
@@ -1559,7 +1559,7 @@ video#bgvid {
 @media only screen and (min-width: 768px) {
   .home_info_1 {
     font-size: 60px;
-    font-family: 'Roboto', sans-serif;
+    font-family: $primary_font;
     margin: 0 auto 35px;
   }
 

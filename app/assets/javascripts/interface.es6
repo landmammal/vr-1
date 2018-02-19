@@ -203,22 +203,22 @@ var pageReady = function(){
 
 
 	// =========== SHADEBOX ============= //
-	$('.shadebox_title').prepend('<button class="shade_close red small_btn">x</button>');
-	$('.shadebox_bottom').prepend('<div class="shade_close">x</div>');
+	// $('.shadebox_header').prepend('<button class="shade_close red small_btn">x</button>');
 	
-	
-	$('.shadebox').click(function(e){
-		if(e.target != this) return;
-		$(this).fadeOut(500);
+	$(document).on('mouseup', '.shadebox_bg', function(e) {
+		let sbx = $('.shadebox');
+		if ( !sbx.is(e.target) && sbx.has(e.target).length === 0 ) { 
+			$('.shadebox_bg').removeClass('open'); 
+		}
 	});
 
 	$(document).on('click', '.shadebox_btn', function() {
 		var thisShadebox = $(this).data('shadebox');
-		$('.shadebox[data-name='+thisShadebox+']').fadeIn(500);
+		$('.shadebox_bg[data-name='+thisShadebox+']').addClass('open');
 	});
 
 	$(document).on('click', '.shade_close', function() {
-		$('.shadebox').fadeOut(500);
+		$('.shadebox_bg').removeClass('open');
 	});
 	$(document).on('click', '.reset_form', function() {
 		$(this).closest('form')[0].reset();
@@ -228,6 +228,11 @@ var pageReady = function(){
 		$('.shadebox_content').delay(2500).empty();
 		$(this).removeClass('empty_shadebox_content');
 	});
+
+
+
+
+
 
 	//=============== RIGHT PANEL ============ //
 

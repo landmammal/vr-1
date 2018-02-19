@@ -75,6 +75,24 @@
         </a>
       </div> -->
 
+      <div class="card topic_card" id="topic_card_<%= topic.id %>">
+        <a href="<%= course_topic_path(@course, topic) %>">
+          <div class="ctitle"><%= topic.title[0...25] %><%= '...' if topic.title.length > 25 %></div>
+          <div class="description">
+            <% if !topic.description.blank? %>
+              <%= topic.description[0...130] %><%= "..." if topic.description.length > 130 %>
+            <% end %>
+          </div>
+        </a>
+
+        <div class="actions <%= 'owner' if topic.owner(current_user) %>">
+          <div></div>
+          <%= ( link_to '', course_topic_path(@course, topic), class:'edit ion-edit') if topic.owner(current_user)  %>
+          <%= ( link_to '', course_topic_path(@course, topic), class:'delete ion-trash-a', method: :delete, data: {confirm: "Are you sure you want to delete #{ topic.title }?"} ) if topic.owner(current_user)  %>
+        </div>
+
+      </div>
+
     <% end %>
   </div>
 

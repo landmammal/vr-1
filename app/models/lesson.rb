@@ -101,4 +101,8 @@ class Lesson < ApplicationRecord
 
   end
 
+  def owner(user)
+    self.instructor == user || user.role == 'admin'
+  end
+
 end

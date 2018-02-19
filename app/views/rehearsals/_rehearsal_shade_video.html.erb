@@ -1,43 +1,46 @@
-<div class="shadebox" data-name="rehearsal" style="display:block;">
-    <div class="shade box">
-        <div class="shadebox_title">
-            <div class="put_title_here">
-                Rehearsal
-                <div class="shade_close stop_video right">x</div>
-            </div>
-        </div>
-        <div class="shadebox_content" style="text-align:center;">
-            <div class="put_video_here">
-                <div class="media_wrapper">
-                    <div class="ziggeo">
-                        <ziggeoplayer ziggeo-theme="modern" id="rehearsal_video" class="re_<%= rehearsal.id %>" ziggeo-video="<%= rehearsal.video_token %>" ziggeo-stretch ziggeo-responsive> </ziggeoplayer>
-                    </div>
-                </div>
-            </div>
-            <div class="success sent">Rehearsal has been submitted to the instructor.</div>
-            <div class="error retracted">Rehearsal has been removed from submission.</div>
-            
-            <hr>
+<div class="shadebox_bg open" data-name="rehearsal">
+  <div class="shadebox large no_header">
 
-            <div class="peer_review_form">
-                <h5>Send for peer review</h5>
-                <%= form_for ReviewRequest.new, remote: true do |f| %>
-                <%= f.text_field :person_name, placeholder: :person_name %>
-                <%= f.text_field :person_email, placeholder: :person_email %>
-                <%= f.hidden_field :rehearsal_id, value:rehearsal.id %>
-                <br>
-
-                <%= f.submit :send %>
-                <button class="cancel_peer_review red"> cancel </button>
-                <% end %>
-            </div>
-            <div class="success request_sent">Peer Review Request has been sent.</div>
-            <div class="error request_deleted">Request has been successfully deleted.</div>
-
+    <div class="shadebox_content no_padding" style="text-align:center;">
+      
+      <div class="media_wrapper">
+        <div class="ziggeo">
+          <ziggeoplayer ziggeo-theme="modern" id="rehearsal_video" class="re_<%= rehearsal.id %>" ziggeo-video="<%= rehearsal.video_token %>" ziggeo-stretch ziggeo-responsive> </ziggeoplayer>
         </div>
-        <div class="shadebox_bottom">
-            <%= render './rehearsals/approval', rehearsal:rehearsal, user:'trainee' %>
-            <button type="button" class="red">Delete</button>
-        </div>
+      </div>
+
+      <div class="content">
+        <h4>Rehearsal</h4>
+        <hr>
+      </div>
+
+      <div class="success sent">Rehearsal has been submitted to the instructor.</div>
+      <div class="error retracted">Rehearsal has been removed from submission.</div>
+
+      <div class="peer_review_form">
+        <h5>Send for peer review</h5>
+          <%= form_for ReviewRequest.new, remote: true do |f| %>
+          <%= f.text_field :person_name, placeholder: :person_name %>
+          <%= f.text_field :person_email, placeholder: :person_email %>
+          <%= f.hidden_field :rehearsal_id, value:rehearsal.id %>
+          <br>
+          <%= f.submit :send %>
+          <button class="cancel_peer_review red"> cancel </button>
+        <% end %>
+        <hr>
+      </div>
+
+      <div class="success request_sent">Peer Review Request has been sent.</div>
+      <div class="error request_deleted">Request has been successfully deleted.</div>
+
     </div>
+
+    <div class="shadebox_footer full">
+      <div class="content">
+        <%= render './rehearsals/approval', rehearsal:rehearsal, user:'trainee' %>
+        <button type="button" class="red right">Delete</button>
+      </div>
+    </div>
+
+  </div>
 </div>

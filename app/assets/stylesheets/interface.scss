@@ -205,52 +205,58 @@ $panel_color: rgba(#2F3132,1) ;
 
 
 // SHADEBOX
-.shadebox{
-	height:100%; width:100%;
-	padding:10px; text-align:center;
-	position:fixed; z-index:100;
-	top:0; bottom:0; left:0; right:0;
+.shadebox_bg{
+	min-height:100%; width:100%;
+	position:fixed; z-index:150; top:0; bottom:0; left:0; right:0;
 	background-color:rgba(0,0,0,0.85);
-	display:none;
-	& .shade.box{
-		min-width:250px; max-width:60%;
-		height:auto; max-height:calc(100% - 10px);  overflow:scroll;
-		position:relative; z-index:120;
-		margin:60px auto 5px; overflow:hidden; border-radius:5px;
-		background-color: rgba(255,255,255,0.9);
-		& .shadebox_title{
-			min-height:30px; background-color:white;
-			border-bottom:1px solid #00AFFF;
-			overflow:hidden; padding:5px 10px;
-			text-align: left;
+	display:none; overflow: scroll;
+
+	&.open{ display:block; }
+
+	& .shadebox{
+		display: grid; overflow: hidden;
+		grid-template-columns: 1fr;
+		grid-template-rows: 30px minmax( 200px, auto) minmax(30px 50px) ; 
+		
+		width:500px; margin: 20px auto 20px;
+		background-color: white; border-radius:5px;
+		&.no_header{ grid-template-rows: minmax( 200px, auto) minmax(30px 50px) ;  }
+		&.large{ width:800px;  }
+
+		& .shadebox_header, & .shadebox_content, & .shadebox_footer{
+			padding:5px 8px;
+		}
+		& .content{ 
+			padding:10px 15px; text-align: left;
+			hr{ width:150px; }
+			h1, h2, h3 { margin-top:5px; }
+		}
+
+		& .shadebox_header{
+			border-bottom:1px solid #ddd;
 		}
 		& .shadebox_content{ 
-			min-height:200px;  overflow:hidden; padding:5px 10px;
-			text-align: left;
+			&.no_padding{ padding:0; }			
 		}
-		& .shadebox_bottom{
-			min-height:30px; background-color:white;
-			border-top:1px solid #00AFFF;
-			overflow:hidden; padding:5px 10px;
-			text-align: right;
-		}
-		input[type='submit'].shade_close, button.shade_close{
-			padding:5px 10px;
-			cursor:pointer;
-		}
-		.shade_close{
-			float: right;
-			padding:0 5px;
-			cursor:pointer;
+		& .shadebox_footer{
+			border-top:1px solid #ddd;
+			display: grid;
+			grid-template-columns: auto 20px;
+			&.full{ grid-template-columns: 1fr ; }
+			
+			.content{ padding: 0; }			
+
+			& .shade_close{
+				align-self: center;
+				width: 20px; height: 20px;
+				font-size: 20px;
+				background-color: white; color: red;
+				border-radius: 50%; float: right;
+				cursor:pointer;
+			}
 		}
 	}
 }
-
-button.shade_close{
-	padding:4px 6px !important;
-	line-height: 0.7em;
-}
-
 
 // ========================================================
 
