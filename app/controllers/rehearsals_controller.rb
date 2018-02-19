@@ -106,7 +106,9 @@ class RehearsalsController < ApplicationController
       @retracted = false
       @rehearsal.submission ? @sent = true : @retracted = true 
       
-      respond_to { |format| format.js {} }      
+      respond_to do |format|
+        format.js {} 
+      end
     end
   end
 

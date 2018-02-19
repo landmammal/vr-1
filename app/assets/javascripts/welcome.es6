@@ -152,7 +152,12 @@ var pageReady = function(){
 	$('.dropdownToggle').click(function(event){
 		event.preventDefault();
 		let drop = $(this).data('drop');
-		$(`div[data-dropdown="${drop}"]`).fadeToggle('fast');
+		let dropdown = $(`div[data-dropdown="${drop}"]`);
+		let rightOffset = $(this).data('offset');
+
+		dropdown.fadeToggle('fast');
+		dropdown.css( 'right', rightOffset );
+		
 	});
 	$(document).mouseup(function(e) {
 		let dd = $('.dropdown');
