@@ -1,5 +1,5 @@
 <% @course_item = @new_course %>
-var newCourse = "<%= escape_javascript (render partial: './users/coursecards', course: @course_item ) %>";
+var newCourse = "<%= escape_javascript (render partial: './courses/cards', course: @course_item ) %>";
 $('.card_list.creator_list').prepend(newCourse);
 
 var newHomeCard = $('.card_<%= @course_item.id %>');

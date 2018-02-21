@@ -1,0 +1,72 @@
+<!-- <div class="home_card card_<%= course_item.id %>">
+    <div class="card_title">
+      <a href="<%= course_path(course_item) %>" class="js-c_<%= course_item.id %>">
+        <div class="title_name">
+          <%= course_item.title[0...23] %><%= "..." if course_item.title.length > 23 %>
+          <% if course_item.free? %>
+            <span class="privacy ion-earth"></span>
+          <% elsif course_item.paid? %>
+            <span class="privacy" style="font-size:15px;">$</span>
+          <% elsif course_item.private? %>
+            <span class="privacy ion-android-unlock" style="font-size:15px;"></span>
+          <% else %>
+            <span class="privacy ion-locked"></span>
+          <% end %>
+        </div>
+      </a>
+      
+      <div class="card_delete js-delete_<%= course_item.id %>">
+        <%= link_to "X", course_item, method: :delete, data: {confirm: "Are you sure?"} %>
+      </div>
+
+      <a href="<%= edit_course_path(course_item) %>">
+        <div class="card_edit js-edit_<%= course_item.id %>">
+          <span class="ion-edit"></span>
+        </div>
+      </a>
+    </div>
+
+    
+  <a href="<%= course_path(course_item) %>">
+    <div class="card_desc">
+      <% if !course_item.description.blank? %>
+        <%= course_item.description[0...115] %><%= "..." if course_item.description.length > 115 %>
+      <% end %>
+      <div class="bottom_count">
+        <% course_item.topics.each do |topic| %>
+          <% if course_item.owner(current_user) %>
+            <div class="circle_count"></div>
+          <% elsif course_trainee %>
+            <div class="circle_count <%= "done" if topic.is_completed(current_user) %>"></div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </a>
+</div> -->
+
+
+<% cid = course_item.id %>
+<div class="card course_card course_card_<%= cid %>">
+  
+  <a href="<%= course_path(course_item) %>">
+    <div class="ctitle" id="ct_<%= cid %>" style="background-color:<%= course_item.color if !course_item.color.blank? %>;"> 
+      <%= course_item.title[0...35] %><%= "..." if course_item.title.length > 50 %>
+    </div>
+    <div class="description" id="cd_<%= cid %>">
+      <% if !course_item.description.blank? %>
+        <%= course_item.description[0...115] %><%= "..." if course_item.description.length > 115 %>
+      <% end %>
+    </div>
+  </a>
+  
+  
+  <div class="actions <%= 'owner' if course_item.owner(current_user) %>">
+    <span class="<%= course_item.privacy_icon[0] %>" title="<%= course_item.privacy_icon[1] %>"></span>
+    <% if course_item.owner(current_user) %>
+      <%= link_to '', edit_course_path(course_item), class:'edit ion-edit', remote: true %>
+      <%= link_to '', course_item, class:'delete ion-trash-a', method: :delete, data: {confirm: "Are you sure you want to delete #{ course_item.title }?"} %>
+    <% end %>
+  </div>
+
+</div>
