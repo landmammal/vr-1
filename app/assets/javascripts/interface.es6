@@ -205,7 +205,7 @@ var pageReady = function(){
 	// =========== SHADEBOX ============= //
 	// $('.shadebox_header').prepend('<button class="shade_close red small_btn">x</button>');
 	
-	$(document).on('mouseup', '.shadebox_bg', function(e) {
+	$(document).on('click', '.shadebox_bg', function(e) {
 		let sbx = $('.shadebox');
 		if ( !sbx.is(e.target) && sbx.has(e.target).length === 0 ) { 
 			$('.shadebox_bg').removeClass('open'); 
@@ -220,6 +220,11 @@ var pageReady = function(){
 	$(document).on('click', '.shade_close', function() {
 		$('.shadebox_bg').removeClass('open');
 	});
+
+	$(document).on('click', '.shadebox_close', function() {
+		$('.shadebox_bg').removeClass('open');
+	});
+
 	$(document).on('click', '.reset_form', function() {
 		$(this).closest('form')[0].reset();
 	});
@@ -236,22 +241,19 @@ var pageReady = function(){
 
 	//=============== RIGHT PANEL ============ //
 
-	$('.right_panel').prepend('<div class="close"> x </div>');
-
 	$(document).on('click', '.right_panel_btn', function() {
 		var thisPanel = $(this).data('rightpanel');
 		$('.right_panel[data-name='+thisPanel+']').toggleClass('pop');
 	});
 
-	$(document).on('click', '.right_panel .close', function() {
-		$('.right_panel').removeClass('pop');
+	$(document).on('click', '.right_panel .close_panel', function() {
+		$(this).closest('.right_panel').removeClass('pop');
 	});
 	
 	$('.right_panel').click(function(e){
 		if(e.target != this) return;
 		$(this).removeClass('pop');
 	});
-
 
 
 

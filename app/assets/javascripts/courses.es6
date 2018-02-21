@@ -17,7 +17,14 @@ function edit_or_start_course(course){
 
 
 
+function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
 
+function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
 
 
 
@@ -101,6 +108,7 @@ var pageReady = function(){
 		}, 500);
 	});
 
+	// TODO: CHECK TO SEE IF WE"RE STILL USING THIS FUNCTION
 	$('.js-add_form_btn').click(function(event){
 		event.preventDefault();
 		var thisForm = $(this).data('form');

@@ -310,6 +310,11 @@ var pageReady = function(){
 	// 				   text:'<span class="ht3">Rehearse to become</span><br><span class="ht1">A BETTER YOU</span>'
 	// 				 }];
 
+
+
+
+
+	
 	// var hbg = 0;
 
 	// setInterval(function(){
