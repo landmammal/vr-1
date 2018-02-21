@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import 'application';
+
 .group_slice {
   background-color: #f9f9f9;
   overflow: hidden;
@@ -18,10 +20,10 @@
 }
 
 span.group_registration_notice {
-  background-color: red;
+  background-color: $red;
   color: white;
   font-size: 8px;
-  border: 2px solid red;
+  border: 2px solid $red;
   padding: 0px 4.5px;
   border-radius: 25px;
   font-family: 'gotham';

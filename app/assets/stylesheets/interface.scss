@@ -109,24 +109,28 @@ $panel_color: rgba(#2F3132,1) ;
 }
 
 .right_panel{
-	position: fixed;
-    top: 0;
-    right: -100%;
-    bottom: 0;
-    width: 30%;
-    min-width: 350px;
-    z-index: 40;
-    background-color: rgb(255, 255, 255);
+	position: fixed; top: 0; right: -100%; bottom: 0; z-index: 40;
+    min-width: auto; padding-right: 100px;
+    background-color: rgb(255, 255, 255); color: $base_color;
     transition: 0.5s;
-    color: $base_color;
-    box-shadow: 1px 0px 31px 1px rgba(0,0,0,0.2);
-	& .title{ color:black;}
-	& .close{
-		border:0; padding:10px 15px 12px; background-color:black; color:white; font-size:16px; 
-		position:relative; right:0; top:0;
-	}
+	box-shadow: 1px 0px 31px 1px rgb(129, 129, 129);
+	overflow: scroll;
+	& .title{ font-size: 1.5em; color:black; padding:10px 0 0 10px; }
+	& .topic_title{ font-size: 15px; margin-bottom: 10px; max-width: 200px; max-height: 1em; overflow: hidden;  }
+	& .close_panel{ padding: 5px 10px !important; position: absolute; top:5px; right:3px; }
 	&.pop{ right:0; transition:0.5s; }
-	& .content{ padding: 10px ;}
+	& .content{ 
+		padding: 10px ;
+		& .right_lesson_list{
+			margin-bottom: 15px;
+			& .item {
+				padding: 5px 10px;
+				&:hover, &.selected { background-color: #333; color: white; }
+				&.ready { border-left: 2px $green solid; }
+				&.not_ready { border-left: 2px $red solid; }
+			}
+		}
+	}
 }
 
 .inter_content{
@@ -160,26 +164,6 @@ $panel_color: rgba(#2F3132,1) ;
 		}
 	}
 
-
-	& .top_info{
-		padding:5px; margin:10px 0 10px; border-bottom:solid #ddd 2px; overflow:hidden;
-		width:100%; background-color:#fff;
-		& .user_stat{ 
-			padding:0; margin:0 15px; float:left; text-align:center;
-			& .number{ 
-				float:none; width:100%; margin:4px auto 0 auto; 
-				font-family:'gotham_light'; font-size:12px; font-weight:bold; color:#4482c3;
-				& .completed{
-					font-family:'gotham_book'; color:black;
-				}
-				& .num{
-					font-size:10px; font-family:inherit;
-					border-radius: 5px;
-				}
-			}
-			& .stat{ float:none; width:100%; margin:0 auto; padding-top:-3px; font-size:10px; }
-		}
-	}
 	& .box_sep{
 		margin:5px 0; border-bottom:solid #ddd 2px;  overflow:hidden;
 		width:100%; background-color:rgba(255,255,255,0.5);
@@ -189,6 +173,34 @@ $panel_color: rgba(#2F3132,1) ;
 	& .body{
 		height:calc(100% - 200px); padding:10px;  overflow:hidden;
 	}
+}
+
+
+.page_info{
+	padding: 8px 10px;
+	background: #f7f8fd;
+	width: 100%;
+	margin-bottom: 10px;
+
+	& .user_stat{ 
+		padding:0; margin:0 15px; float:left; text-align:center;
+		& .number{ 
+			float:none; width:100%; margin:4px auto 0 auto; 
+			font-family:'gotham_light'; font-size:12px; font-weight:bold; color:#4482c3;
+			& .completed{
+				font-family:'gotham_book'; color:black;
+			}
+			& .num{
+				font-size:10px; font-family:inherit;
+				border-radius: 5px;
+			}
+		}
+		& .stat{ float:none; width:100%; margin:0 auto; padding-top:-3px; font-size:10px; }
+	}
+}
+
+.edit.ion-edit{
+	margin:0 20px;
 }
 
 .main_title{
@@ -235,7 +247,8 @@ $panel_color: rgba(#2F3132,1) ;
 		& .shadebox_header{
 			border-bottom:1px solid #ddd;
 		}
-		& .shadebox_content{ 
+		& .shadebox_content{
+			font-size: 15px;
 			&.no_padding{ padding:0; }			
 		}
 		& .shadebox_footer{
@@ -250,7 +263,7 @@ $panel_color: rgba(#2F3132,1) ;
 				align-self: center;
 				width: 20px; height: 20px;
 				font-size: 20px;
-				background-color: white; color: red;
+				background-color: white; color: $red;
 				border-radius: 50%; float: right;
 				cursor:pointer;
 			}
@@ -261,9 +274,9 @@ $panel_color: rgba(#2F3132,1) ;
 // ========================================================
 
 span.num{
-	background-color: red; 
+	background-color: $red; 
 	color: white; font-size:13px;
-	border:2px solid red; padding:0px 4.5px;
+	border:2px solid $red; padding:0px 4.5px;
 	border-radius: 5px;
 	font-family:'gotham';
 }
