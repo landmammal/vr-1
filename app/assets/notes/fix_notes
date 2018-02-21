@@ -3,3 +3,13 @@ fixes:
 ** change all the .where in database calls to ? method
 ** change 'Make Rehearsal Private' to something less confusing
 ** make home slider navigate with keyboard arrows
+
+
+
+// TODO LIST: SORTABLE
+    // TODO: Re-Run Migrations
+    // TODO: Create default Ref Numbers for courses to feedbacks
+    // TODO: Create Update Scripts (tasks)
+    // TODO: Order Sortable list item by id by Default.
+    // TODO: Create Update Scripts for that (tasks with prerequisites)
+    // TODO: Update list whenever you create/delete a sortable list item

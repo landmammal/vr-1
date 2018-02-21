@@ -43,7 +43,7 @@
   <% end %>
 
 
-  <div class="card_list <%= 'with_side' if course_creator %>">
+  <div id="card_list" class="card_list <%= 'with_side' if course_creator %>">
 
     <% @course.topics.order('id ASC').each_with_index do |topic, index| %>
 
@@ -74,7 +74,7 @@
         </a>
       </div> -->
 
-      <div class="card topic_card" id="topic_card_<%= topic.id %>">
+      <div class="card topic_card" id="topic_card_<%= topic.id %>" data-topicRef="<%= topic.id %>">
         <a href="<%= course_topic_path(@course, topic) %>">
           <div class="ctitle"><%= topic.title[0...25] %><%= '...' if topic.title.length > 25 %></div>
           <div class="description">
@@ -305,3 +305,15 @@
     <%= button_tag "Leave Course", class:"small_btn red", style:"float:right;" %>
   <% end %>
 <% end %>
+
+<script>
+  $( function() {
+    $( "#card_list" ).sortable({
+      placeholder: "ui-state-highlight",
+      update: function( ) {
+        console.log( 'HEY' );
+      }
+    });
+    $( "#card_list" ).disableSelection();
+  });
+</script>
