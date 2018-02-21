@@ -99,6 +99,18 @@ class User < ApplicationRecord
     [@@r[0], @@r[1], @@r[2], @@r[3]].include? self.role
   end
 
+  def pending_feedback
+    self.rehearsals.size > 0 ? self.rehearsals.all.map{ |r| r.feedbacks.size }.compact.reduce(:+) : 0
+  end
+
+  def pending_rehearsals
+    self.courses.size > 0 ?  self.courses.all.map{ |c| c.submitted_rehearsals.size }.compact.reduce(:+) : 0
+  end
+
+  def notifications
+    self.pending_rehearsals + self.pending_feedback
+  end
+
   # associations
   has_many :course_registrations
   has_many :registered_courses, through: :course_registrations, source: :course

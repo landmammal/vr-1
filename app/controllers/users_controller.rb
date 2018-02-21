@@ -29,9 +29,7 @@ class UsersController < ApplicationController
     @all_courses = Course.all.page( params[:page] ).reverse_order if current_user.level_1
     
     if current_user.level_2
-      @course = Course.new
-      @topic = Topic.new
-      @lesson = Lesson.new
+      @new_course = Course.new
     end
 
     @site_title = current_user.first_name+' '+current_user.last_name

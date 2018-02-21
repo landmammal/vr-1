@@ -199,6 +199,11 @@ class CoursesController < ApplicationController
 
     @topic = Topic.new
     @course_registration = CourseRegistration.new
+
+    respond_to do |format|
+      format.html {}
+      format.json { render json: @course if current_user.admin? }
+    end
   end
 
 
@@ -215,29 +220,17 @@ class CoursesController < ApplicationController
   end
 
 
-
-
   def display
     if current_user
       redirect_to '/courses/'+params[:id].to_s
     end
   end
 
-  
-  
 
-  def new
-    @course = Course.new
+  def edit    
+    respond_to { |format| format.js{} }
   end
 
- 
-  
-
-  def edit
-  end
-
-
-  
 
   def create
     @new_course = current_user.courses.build(course_params)
@@ -262,20 +255,20 @@ class CoursesController < ApplicationController
   
 
   def update
-    @course.title = 'New Course (rename)' if params[:course][:title] == ''
-    
-    # puts '==============='
-    # puts params[:title]
     
     respond_to do |format|
       if @course.update(course_update)
+        @course.title = 'Unnamed Course' if @course.title.blank?
         @course.price = (params[:course][:price].to_d * 100.00) if params[:course][:price] != ''
         @course.save
+        
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
-        format.json { render :show, status: :ok, location: @course }
+        format.json { render json: @course }
+        format.js {}
       else
         format.html { render :edit }
         format.json { render json: @course.errors, status: :unprocessable_entity }
+        format.js {}
       end
     end
   end
@@ -308,9 +301,9 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:title, :description, :tags, :cstatus, :access_code, :instructor_id, :approval_status, :privacy, :language, :price)
+      params.require(:course).permit(:title, :description, :color, :tags, :cstatus, :access_code, :instructor_id, :approval_status, :privacy, :language, :price)
     end
     def course_update
-      params.require(:course).permit(:title, :description, :tags, :cstatus, :access_code, :approval_status, :privacy, :language, :price)
+      params.require(:course).permit(:title, :description, :color, :tags, :cstatus, :access_code, :approval_status, :privacy, :language, :price)
     end
 end
