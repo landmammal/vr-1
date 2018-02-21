@@ -3,7 +3,8 @@
 <div class="full_top_img" style="background-image:url('<%=image%>/<%= t ? t.downcase : "frame_home_1" %>.jpg'); height:85%;">
   <div class="register_header">
     <div class="content">
-      <div style="font-family:'gotham'; margin:10% 0 20px; font-size:40px; line-height:1em;">
+      
+      <div class="register_text">
         
         <% if t && tparams.include?(t.downcase) %>
           <% case t.downcase %>
@@ -18,16 +19,16 @@
             <% when tparams[4] %>
               Hospitality Training
             <% else %>
-
           <% end %>
-          <br>
+
           <br>
           <hr style="width:200px;">
           <br>
-          <br>
         <%end%>
         Review . Rehearse . Transform
+        
       </div>
+
       <div class="register">
         <h2>Register</h2>
         
@@ -56,7 +57,7 @@
 
             <!-- <div class="register_label">Ethnicity</div> -->
             <!-- <%= f.select :race, ([["Hispanic or Latino", "Hispanic or Latino"], ["American Indian or Alaska Native", "American Indian or Alaska Native"], ["Asian", "Asian"], ["Black or African American", "Black or African American"], ["Native Hawaiian or Pacific Islander", "Native Hawaiian or Pacific Islander"], ["White", "White"], ["Multiple races or ethnicities", "Multiple races or ethnicities"], ["Prefer not to answer", "Prefer not to answer"], ["Other", "Other"]]) %> -->
-            <br><br>
+            <br>
               <!--this line is broken therefore is not in production-->
             <div class="register_label">Date of birth</div>
             <%= f.date_field :age, placeholder:'Age'%><br><br>
@@ -81,7 +82,7 @@
   </div>
 </div>
 
-<div style="height:200px;"></div>
+<div style="height:300px;"></div>
 
 
 <!-- Modal -->

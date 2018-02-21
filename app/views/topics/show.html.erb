@@ -1,11 +1,9 @@
 <!-- <center><p id="notice"> <%= notice %> </p></center> -->
 
-<div class="top_info">
-  <div class="course_title">
-    <span class="grey"><%= link_to @course.title, course_path(@course) if !@course.private? %> :: </span>
-  </div>
-  <div class="course_title">
-    <%= @topic.title if !@course.private? %>
+<div class="page_info">
+  <div class="the_title">
+    <span class="grey"></span><%= link_to @course.title, course_path(@course) %> :: </span>
+    <%= @topic.title %>
     <% if topic_creator %>
       <a href="<%= edit_course_topic_path(@course, @topic) %>" title="edit <%= @topic.title %>">
         <span class="ion-edit edit" style="font-size:15px; margin:50px 10px;"></span>
