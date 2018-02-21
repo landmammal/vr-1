@@ -3,7 +3,7 @@
 $('.admin_c_list.card_list').empty();
 <% @courses.each do |course| %>
 
-    var card = "<%= escape_javascript (render partial: './users/coursecards', locals: { course_item: course } ) %>";
+    var card = "<%= escape_javascript (render partial: './courses/cards', locals: { course_item: course } ) %>";
     $('.admin_c_list.card_list').append(card);
 
 <% end %>
