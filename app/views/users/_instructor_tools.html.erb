@@ -14,6 +14,8 @@
 
 		<div class="card_list creator_list">
 		
+			<h3>Course I Created:</h3>
+
 			<% current_user.courses.order('id DESC').each do |course| %>
 		        <%= render 'coursecards', course_item: course  %>
 		    <% end %>
