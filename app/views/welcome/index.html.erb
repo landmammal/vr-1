@@ -1,42 +1,5 @@
-<div class="home_top_wrapper" style="background-image:url('<%= image %>/home/frame_home_1.jpg');">
-	<div class="home_top">
-
-		<!-- <div id="home_top_text" class="center_right">
-			<div class="content">
-				<span class="ht3">A video Training Platform</span><br>
-				<span class="ht2">ENGINEERED TO TRANSFORM</span><br>
-			</div>
-			<button class="demo">Schedule Demo</button>
-			<button class="learn_more">Learn more...</button>
-		</div> -->
-
-
-
-		<!-- <div class="demo_box">
-			<div class="demo_separation"></div>
-			<div class="demo_form" style="display:none;">
-				<h2>Schedule a Demo</h2>
-				<%= form_for @demo, remote: true do |d| %>
-					<%= d.text_field :first_name, placeholder:'First name *', class:'js-first_name js-form half' %>
-					<%= d.text_field :last_name, placeholder:'Last name *', class:'js-last_name js-form half' %>
-					<%= d.text_field :email, placeholder:'Email *', class:'js-email js-form full' %>
-					<%= d.text_field :phone_number, placeholder:'Phone number', class:'js-phone_number js-form full' %>
-					<div class="half" style=" width: calc(100% - 155.39); font-size: 18px; padding: 10px 0; float: left; text-align: left;">
-						Set a date:
-					</div>
-					<%= d.date_field :date, class:'js-date half'%><br>
-					<%= d.submit "schedule demo", class:'js-schedule_demo green_sft' %>
-					<button class="js-cancel_sched red">cancel</button>
-					<div id="notice_demo_err">  </div>
-				<%end%>
-			</div>
-			<div class="check_mark" style="display:none;"></div>
-			<div id="notice_demo">
-				Thank you for scheduling a demo, we will contact you soon.
-			</div>
-			<div id="notice_demo_err"></div>
-		</div> -->
-
+<div class="full_top_img" style="background-image:url('<%= image %>/home/frame_home_1.jpg');">
+	<div class="home_top" style=" padding-bottom:5em;">
 
 		<div class="container" style="padding-top:8%;">
 			<div class="row">
@@ -425,13 +388,13 @@ Hospitality -->
 
 <div class="devices" style="background-image:url('<%= image %>/home/device_bg.jpg');">
 	<div class="halfsec">
-	<div class="devicetext">
-		<span class="from_anywhere">
-			Easy to use
-		</span>
-		<br>
-		All you need is a working webcam
-	</div>
+		<div class="devicetext">
+			<span class="from_anywhere">
+				Easy to use
+			</span>
+			<br>
+			All you need is a working webcam
+		</div>
 		<img class="computers" src="<%= image %>/home/devices.png" alt="">
 		<img class="camera" src="<%= image %>/home/camera.png" alt="">
 	</div>
