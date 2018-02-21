@@ -1,0 +1,21 @@
+<div class="title">
+	<button class="creator_btn shadebox_btn" data-shadebox="course_form">
+		Create New Course
+	</button>
+</div>
+<div class="body">
+
+	<div class="instructor_courses_list">
+
+		<h4>Course Created</h4>
+
+		<div class="card_list creator_list">
+			<% current_user.courses.order('id DESC').each do |course| %>
+		        <%= render './courses/cards', course_item:course  %>
+		    <% end %>
+		</div>
+	</div>
+</div>
+
+
+
