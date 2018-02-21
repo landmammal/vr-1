@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20180216030404) do
     t.integer  "cstatus"
     t.string   "access_code"
     t.integer  "price"
+    t.string   "color"
   end
 
   create_table "demos", force: :cascade do |t|
@@ -262,10 +263,8 @@ ActiveRecord::Schema.define(version: 20180216030404) do
     t.text     "script"
     t.integer  "approval_status"
     t.boolean  "submission"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "instructor_rating"
-    t.integer  "self_rating"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.index ["course_id"], name: "index_rehearsals_on_course_id", using: :btree
     t.index ["group_id"], name: "index_rehearsals_on_group_id", using: :btree
     t.index ["lesson_id"], name: "index_rehearsals_on_lesson_id", using: :btree

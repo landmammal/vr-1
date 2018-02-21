@@ -1,6 +1,6 @@
 # require 'faker'
 if Rails.env.development? || Rails.env.test?
-  User.delete_all
+  # User.delete_all
   User.create([
     { first_name:'Administrator', last_name:'Man', username:'admin', race:'White', email:'admin@videorehearser.com', password:'test123', age:Time.now, role: 0, approved: true, first_contact: false},
     { first_name:'Instructor', last_name:'Sir', username:'instructor', race:'Asian', email:'instructor@videorehearser.com', password:'test123', age:Time.now, role: 1, approved: true, first_contact: false},
