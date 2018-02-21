@@ -7,7 +7,17 @@
     </div>
 
     <hr>
-    <%= link_to "Feedback", feedback_all_path, class:"item link" %>
+    <a href="<%= feedback_all_path %>" class="item link">
+        <div class="left">Feedback</div>
+        <% if current_user.pending_feedback > 0 %>
+            <div class="notif_num"><%= current_user.pending_feedback %></div>
+        <% end %>
+    </a>
     <hr>
-    <%= link_to "Rehearsals", rehearsals_all_path, class:"item link" %>
+    <a href="<%= rehearsals_all_path %>" class="item link">
+        <div class="left">Rehearsals</div>
+        <% if current_user.pending_rehearsals > 0 %>
+            <div class="notif_num"><%= current_user.pending_rehearsals %></div>
+        <% end %>
+    </a>
 </div>
