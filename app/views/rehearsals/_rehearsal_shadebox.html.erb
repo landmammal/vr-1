@@ -1,33 +1,21 @@
 <div class="shadebox" data-name="rehearsal" style="display:block;">
   <div class="shade box">
     <div class="shadebox_title">
-        Rehearsal for lesson: <%= link_to @rehearsal.lesson.title, course_topic_lesson_path(@rehearsal.course, @rehearsal.topic, @rehearsal.lesson) %>
+        Rehearsal for: <%= link_to @rehearsal.lesson.title, course_topic_lesson_path(@rehearsal.course, @rehearsal.topic, @rehearsal.lesson) %>
         <div class="shade_close stop_video">x</div>
     </div>
     <div class="shadebox_content" style="text-align:center;">
 
-        <div class="media_wrapper">
-          <div class="ziggeo">
-            <ziggeoplayer ziggeo-theme="modern" id="rehearsal_<%= @rehearsal.id %>" ziggeo-video="<%= @rehearsal.video_token %>" ziggeo-stretch ziggeo-responsive> </ziggeoplayer>
-          </div>
+      <div class="media_wrapper">
+        <div class="ziggeo">
+          <ziggeoplayer ziggeo-theme="modern" id="rehearsal_<%= @rehearsal.id %>" ziggeo-video="<%= @rehearsal.video_token %>" ziggeo-stretch ziggeo-responsive> </ziggeoplayer>
         </div>
-        <div style="text-align:left;">
-          Course: '<%= link_to @rehearsal.course.title, course_path(@rehearsal.course) %><br>
-          Topic: <%= link_to @rehearsal.topic.title, course_topic_path(@rehearsal.course, @rehearsal.topic) %>
-        </div>
+      </div>
   
       <hr>
     </div>
     <div class="shadebox_bottom">
-      <!-- <button type="button" class="mark_as_completed green_sft" style="float:left;" data-rehearsalid="<%= @rehearsal.id %>" data-userid="<%= current_user.id %>">Mark as completed</button> -->
-
-      <%= (@rehearsal.approval_status==1 ? (button_tag 'Approved', class:'mark_rehearsal_status green_sft pass', style:'float:left;', data:{approvalstatus:1, rehearsalid:@rehearsal.id}):(button_tag 'Approve', class:'mark_rehearsal_status pass', style:'float:left;', data:{approvalstatus:1, rehearsalid:@rehearsal.id})) %>
-
-      <%= (@rehearsal.approval_status==2 ? (button_tag 'Redo', class:'mark_rehearsal_status red fail', style:'float:left;', data:{approvalstatus:2, rehearsalid:@rehearsal.id}):(button_tag 'Redo', class:'mark_rehearsal_status fail', style:'float:left;', data:{approvalstatus:2, rehearsalid:@rehearsal.id})) %>
-
-      <a href="/rehearsals/<%= @rehearsal.id %>" class="leave_feedback">
-        <button type="button" class="blue leave_feedback" style="float:left;" data-rehearsalid="<%= @rehearsal.id %> ">Leave Video Feedback</button>
-      </a>
+      <%= render './rehearsals/approval', rehearsal:@rehearsal, user:'instructor' %>
       <button class="shade_close red small_btn stop_video">x</button>
     </div>
   </div>

@@ -53,7 +53,7 @@ class User < ApplicationRecord
 
   # send the user and email once there able to access the website
   def send_approved_email
-    AdminMailer.user_approved_notice(self).deliver_later
+    AdminMailer.user_approved_notice(self).deliver_later if self.approved
   end
 
   # setting the default user avatar and banner if the user hasnt set it

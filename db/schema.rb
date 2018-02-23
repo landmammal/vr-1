@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20180214190305) do
 
   # These are extensions that must be enabled in order to support this database
@@ -263,8 +264,10 @@ ActiveRecord::Schema.define(version: 20180214190305) do
     t.text     "script"
     t.integer  "approval_status"
     t.boolean  "submission"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "instructor_rating"
+    t.integer  "self_rating"
     t.index ["course_id"], name: "index_rehearsals_on_course_id", using: :btree
     t.index ["group_id"], name: "index_rehearsals_on_group_id", using: :btree
     t.index ["lesson_id"], name: "index_rehearsals_on_lesson_id", using: :btree

@@ -8,79 +8,12 @@ class RehearsalsController < ApplicationController
 
   require 'rest-client'
 
-  # approving  a rehearsal
-  # def rehearsal_approved
-  #   @rehearsal = Rehearsal.find(params[:rehearsal_id])
-  #   @rehearsal.approval_status = 1
-  #   user = @rehearsal.trainee
-  #   respond_to do |format|
-  #     if @rehearsal.save!
-  #       AdminMailer.lesson_complete_notice(user).deliver_later
-  #       format.js { render :js => "window.location = '/rehearsals/all'" }
-  #     else
-  #       format.html { render :new }
-  #       format.json { render json: @rehearsal.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
-  def approved
-    @rehearsal = Rehearsal.find(params[:rehearsal_id])
-    # puts "===================LOADED================="
-    @rehearsal.approval_status = params[:approval_status]
-    user = @rehearsal.trainee
-    respond_to do |format|
-      if @rehearsal.save!
-        # admin mailer must be put on hold until we find a better way to do a redo
-        @rehearsal.approval_status == 1 ? message = "Your performance was approved!" : message = "You need to tweak a few things."
-        AdminMailer.lesson_complete_notice(user, @rehearsal.approval_status, message, @rehearsal.lesson).deliver_later
-        format.js {}
-      else
-        format.html { render :new }
-        format.json { render json: @rehearsal.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   def index
     @rehearsals = Rehearsal.all
     @rehearsals_api = Rehearsal.all
     @feedback = Feedback.new
     @performance_feedback = PerformanceFeedback.new
   end
-
-  # def all
-  #   @courses = []
-
-  #   @rehearsals = []
-  #   @students = {}
-
-  #   current_user.courses.each do |course|
-  #     course.rehearsals.where(submission: true).each do |rehearsal|
-  #       if User.all.include? rehearsal.trainee 
-  #         @students[rehearsal.trainee]=[]
-  #       end
-  #     end
-  #     course.rehearsals.where(submission: true).each do |rehearsal|
-  #       if params[:list] == "all"
-  #         @rehearsals << rehearsal
-  #         @re_title = "All Rehearsals"
-  #         @students[rehearsal.trainee] << rehearsal
-  #       elsif !params[:student].blank?
-  #         if rehearsal.trainee_id = params[:student].to_i
-  #           @rehearsals << rehearsal
-  #         end
-  #       else
-  #         if (rehearsal.feedbacks.size < 1 && rehearsal.approval_status == 0) || (rehearsal.feedbacks.size > 1 && rehearsal.approval_status == 1) && User.exists?(rehearsal.trainee_id)
-  #           @re_title = "Rehearsals"
-  #           @rehearsals << rehearsal
-  #           @students[rehearsal.trainee] << rehearsal
-  #         end
-  #       end
-  #       @courses<<rehearsal.course if !@courses.include? rehearsal.course
-  #     end
-  #   end
-  # end
 
 
   def all
@@ -166,20 +99,13 @@ class RehearsalsController < ApplicationController
   end
 
   def update
-    (!@rehearsal.submission || @rehearsal.submission == nil) ? @rehearsal.submission = true : @rehearsal.submission = false
-    
-    @rehearsal.approval_status = 0 if @rehearsal.approval_status == nil
-    if @rehearsal.save
+
+    if @rehearsal.update(rehearsal_update_params)
       @sent = false  
       @retracted = false
-
-      AdminMailer.rehearsal_sent(@rehearsal).deliver_later if @rehearsal.submission
       @rehearsal.submission ? @sent = true : @retracted = true 
       
-      respond_to do |format|
-        format.js {}
-      end
-      
+      respond_to { |format| format.js {} }      
     end
   end
 
@@ -210,7 +136,11 @@ class RehearsalsController < ApplicationController
   end
 
   def rehearsal_params
-    params.require(:rehearsal).permit(:course_id, :lesson_id, :group_id, :token, :video_token, :trainee_id, :script, :submission, :topic_id)
+    params.require(:rehearsal).permit(:course_id, :lesson_id, :group_id, :token, :video_token, :trainee_id, :script, :submission, :topic_id, :instructor_rating, :self_rating)
+  end
+
+  def rehearsal_update_params
+    params.require(:rehearsal).permit(:approval_status, :submission, :instructor_rating, :self_rating)
   end
 
   def set_lesson
