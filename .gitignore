@@ -19,5 +19,4 @@
 !/log/.keep
 /tmp
 .idea
-seeds.rb
 .env
