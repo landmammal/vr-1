@@ -14,6 +14,8 @@
 
     <%= f.text_field :title, placeholder:'Course title', class:'js-course_title course_create' %><br>
     <%= f.text_area :description, placeholder:'Description', class:'js-course_description' %><br>
+    <%= f.file_field :cover %>
+    <%= f.hidden_field :cover_cache %>
     <%= f.text_field :tags, placeholder:'tags (comma separated)', class:'js-course_tags course_create' %><br>
     <%= f.text_field :approval_status, type:"hidden", class:'js-course_status', value: 0 %><br>
     <%= f.select :privacy, (current_user.level_1 ? [["Public", 0], ["Public (with access code)", 1],["Paid", 2],["Private (invite only)", 3]] : [["Private (invite only)", 3],["Paid", 2]] ) %>

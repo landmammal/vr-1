@@ -25,8 +25,8 @@
         </div>
       </a>
     </div>
-
-    
+  <!--this is the line adding course image to the course been display in the dash-->
+  <%= image_tag(course_item.cover) %>
   <a href="<%= course_path(course_item) %>">
     <div class="card_desc">
       <% if !course_item.description.blank? %>
