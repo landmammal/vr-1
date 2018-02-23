@@ -1,0 +1,5 @@
+'use strict';
+
+var newCourse = "<%= escape_javascript (render partial: './courses/form',  locals: { course: @newCourse } ) %>";
+$('.edit_course').html(newCourse);
+$('.edit_course').delay(500).find('.shadebox_bg').addClass('open');

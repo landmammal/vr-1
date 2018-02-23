@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :model do
     user_id ""
     lesson_id ""

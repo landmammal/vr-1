@@ -95,6 +95,6 @@ class FeedbacksController < ApplicationController
   end
 
   def feedback_params
-    params.require(:feedback).permit(:user_id, :notes, :token, :video_token, :review_status, :concept_review, :video_type, :approved, :rehearsal_id)
+    params.require(:feedback).permit(:user_id, :notes, :token, :video_token, :review_status, :concept_review, :video_type, :refnum, :approved, :rehearsal_id)
   end
 end

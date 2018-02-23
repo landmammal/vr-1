@@ -139,7 +139,7 @@ class RehearsalsController < ApplicationController
   end
 
   def rehearsal_params
-    params.require(:rehearsal).permit(:course_id, :lesson_id, :group_id, :token, :video_token, :trainee_id, :script, :submission, :topic_id, :instructor_rating, :self_rating)
+    params.require(:rehearsal).permit(:course_id, :lesson_id, :group_id, :token, :video_token, :trainee_id, :script, :submission, :topic_id, :instructor_rating, :refnum, :self_rating)
   end
 
   def rehearsal_update_params

@@ -17,13 +17,12 @@ gem 'rest-client'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 # for user profile and banner
+gem 'carrierwave'
 gem 'paperclip'
 gem 'aws-sdk', '<3'
 
-# Al Delcy GEMS
 gem 'font-awesome-sass'
 gem 'sprockets-es6'
-gem 'carrierwave'
 
 gem 'roadie'
 
@@ -51,6 +50,8 @@ gem 'kaminari' # Pagination
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+
 group :production do
   gem 'puma'
   gem 'pg', '0.20'
@@ -60,7 +61,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'sqlite3'
   gem 'rspec-rails' # Test Helper
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'capybara'
   gem 'letter_opener', :git => 'https://github.com/ryanb/letter_opener' # preview email without actually sending it
   gem 'letter_opener_web', :git => 'https://github.com/fgrehm/letter_opener_web' # lets us preview the emails in our web browser

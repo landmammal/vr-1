@@ -2,32 +2,26 @@ class TopicsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
   before_action :set_course, only: [:index, :show, :new, :edit, :destroy]
-  # GET /topics
-  # GET /topics.json
+
   def index
     @topics = Topic.all
   end
 
-  # GET /topics/1
-  # GET /topics/1.json
   def show
-    @rehearsal = Rehearsal.new
     @lessons = @topic.lessons.order('id ASC')
     @course_registration = CourseRegistration.new
     @lesson = Lesson.new
   end
 
-  # GET /topics/new
   def new
-    @topic = Topic.new
+    @newTopic = Topic.new
+    respond_to { |format| format.js { } }
   end
 
-  # GET /topics/1/edit
   def edit
+    respond_to { |format| format.js { } }
   end
 
-  # POST /topics
-  # POST /topics.json
   def create
     @course = current_user.courses.find(params[:course_id])
     @course.topics.build(topic_params)
@@ -46,13 +40,12 @@ class TopicsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /topics/1
-  # PATCH/PUT /topics/1.json
   def update
-    @topic.title = 'New Topic (rename)'
-
+    
     respond_to do |format|
       if @topic.update(topic_update)
+        @topic.title = 'Unnamed Topic' if params['topic']['title'].blank?
+        @topic.save
         format.html { redirect_to course_topic_path(@topic.course, @topic), notice: 'Topic was successfully updated.' }
         format.json { render :show, status: :ok, location: @topic }
       else
@@ -60,10 +53,9 @@ class TopicsController < ApplicationController
         format.json { render json: @topic.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
-  # DELETE /topics/1
-  # DELETE /topics/1.json
   def destroy
     @topic.destroy
     respond_to do |format|
@@ -83,9 +75,9 @@ class TopicsController < ApplicationController
     end
 
     def topic_params
-      params.require(:topic).permit(:course_id, :title, :description, :tags, :approval_status, :instructor_id)
+      params.require(:topic).permit(:course_id, :title, :description, :tags, :approval_status, :lessons_list, :refnum, :instructor_id)
     end
     def topic_update
-      params.require(:topic).permit(:title, :description, :tags, :approval_status)
+      params.require(:topic).permit(:title, :description, :tags, :approval_status, :lessons_list)
     end
 end

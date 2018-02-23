@@ -3,18 +3,18 @@ class AddRefnumToEverything < ActiveRecord::Migration[5.0]
     add_column :courses, :color, :string
     add_column :courses, :requirements, :text
     add_column :courses, :short_desc, :text
-    add_column :courses, :topics_order, :array
-    add_column :topics, :lessons_order, :array
+    add_column :courses, :topics_order, :string ,array: true, default: []
+    add_column :topics, :lessons_order, :string ,array: true, default: []
     
     # TODO: REF NUMBERS
-    add_column :courses, :refnum, :array
-    add_column :topics, :refnum, :array
-    add_column :lessons, :refnum, :array
-    add_column :explanations, :refnum, :array
-    add_column :prompts, :refnum, :array
-    add_column :models, :refnum, :array
-    add_column :feedbacks, :refnum, :array
-    add_column :rehearsals, :refnum, :array
-    add_column :concepts, :refnum, :array
+    add_column :courses, :refnum, :string
+    add_column :topics, :refnum, :string
+    add_column :lessons, :refnum, :string
+    add_column :concepts, :refnum, :string
+    add_column :explanations, :refnum, :string
+    add_column :prompts, :refnum, :string
+    add_column :models, :refnum, :string
+    add_column :feedbacks, :refnum, :string
+    add_column :rehearsals, :refnum, :string
   end
 end
