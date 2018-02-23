@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+
 ruby '2.3.1'
 gem 'rails', '5.0.0.1'
 gem 'rb-readline'
@@ -24,6 +25,7 @@ gem 'aws-sdk', '<3'
 gem 'font-awesome-sass'
 gem 'sprockets-es6'
 gem 'carrierwave'
+gem 'fog-aws'
 
 gem 'roadie'
 
@@ -58,7 +60,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'sqlite3'
   gem 'rspec-rails' # Test Helper
-  gem 'factory_girl_rails'
+  gem 'factory_bot'
   gem 'capybara'
   gem 'letter_opener', :git => 'https://github.com/ryanb/letter_opener' # preview email without actually sending it
   gem 'letter_opener_web', :git => 'https://github.com/fgrehm/letter_opener_web' # lets us preview the emails in our web browser
