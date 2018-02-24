@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user! , except: [:index, :all, :display, :reentry]
-  before_action :set_course, only: [:show, :edit, :update, :destroy, :display, :reentry]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :display, :reentry, :change_topics_order]
 
   
   def index
@@ -9,9 +9,8 @@ class CoursesController < ApplicationController
 
 
   def show
-    # get original topics created by that course
-    @orig_topics = Topic.where(course_id: @course.id)
     @users = @course.users.order("id DESC").limit(8)
+    @topics = @course.topics_order.collect {|r| Topic.find_by_refnum(r) }.compact
 
     remainder = @course.users.size % @users.size if @users.size > 0
     if @users.size > 0
@@ -112,6 +111,11 @@ class CoursesController < ApplicationController
 
 
   # OTHER METHODS ---------------------
+
+  def change_topics_order
+    @course.topics_order = params[:order]
+    @course.save
+  end
 
 
   def send_invite

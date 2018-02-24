@@ -28,6 +28,11 @@ class User < ApplicationRecord
   validates :username, presence: true
   validates_uniqueness_of :username
 
+  after_initialize :set_defaults, :if => :new_record?
+  def set_defaults
+    self.auth_token ||= SecureRandom.hex(n=10)
+  end
+
   # checking for approved in user field
   def active_for_authentication?
     super && approved?

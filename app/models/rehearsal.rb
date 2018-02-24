@@ -18,6 +18,11 @@ class Rehearsal < ApplicationRecord
   has_many :review_requests
   has_many :peer_reviews, through: :review_requests, dependent: :destroy
 
+  after_initialize :set_defaults, :if => :new_record?
+  def set_defaults
+    # self.refnum ||= "Re-"+SecureRandom.hex(n=3)
+  end
+
   def submitted?
     self.submission != nil || self.submission
   end

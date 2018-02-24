@@ -12,10 +12,14 @@ class Topic < ApplicationRecord
 
   has_many :rehearsals, dependent: :destroy
 
+  after_initialize :set_defaults, :if => :new_record?
+  def set_defaults
+    # self.refnum ||= "To-"+SecureRandom.hex(n=3)
+  end
+
   def has_rehearsals?
     self.rehearsals.size > 0
   end
-
   
   def submitted_rehearsals
     self.rehearsals.where(submission: true)

@@ -16,5 +16,6 @@ class AddRefnumToEverything < ActiveRecord::Migration[5.0]
     add_column :models, :refnum, :string
     add_column :feedbacks, :refnum, :string
     add_column :rehearsals, :refnum, :string
+    add_column :users, :auth_token, :string
   end
 end

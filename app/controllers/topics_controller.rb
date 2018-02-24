@@ -31,6 +31,9 @@ class TopicsController < ApplicationController
     respond_to do |format|
       if @course.save
         @topic = @course.topics.last
+        @course.topics_order << @topic.refnum
+        @course.save
+
         format.html { redirect_to course_topic_path(@course, @topic), notice: 'Topic was successfully created.' }
         format.json { render :show, status: :created, location: @topic }
       else
@@ -57,6 +60,9 @@ class TopicsController < ApplicationController
   end
 
   def destroy
+    @course.topics_order.delete(@topic.refnum)
+    @course.save
+    
     @topic.destroy
     respond_to do |format|
       format.html { redirect_to course_path(@course), notice: 'Topic was successfully destroyed.' }

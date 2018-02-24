@@ -1,0 +1,37 @@
+desc "Ref Number Generation"
+task :refnum_generation => :environment do
+    items = [ [Course, 'Co'], [Topic, 'To'], [Lesson, 'Le'], [Explanation, 'Ex'], [Prompt, 'Pr'], [Model, 'Mo'], [Rehearsal, 'Re'], [Feedback, 'Fe'], [Concept, 'Con'] 
+    ]
+    
+    items.each do |item|
+        item[0].all.each do |i|
+            i.refnum = item[1]+'_'+SecureRandom.hex(n=3) if i.refnum == nil
+            i.save
+        end
+    end
+    puts "DONE 1"
+end
+
+
+desc "List of Topics and course"
+task :topics_order => :environment do    
+    Course.all.each do |course|
+        if course.topics_order.size < 1
+            course.topics_order = course.topics.map{ |t| t.refnum }
+            course.save
+        end
+    end
+    puts "DONE 2"
+end
+
+
+desc "List of Lessons in topic"
+task :lessons_order => :environment do    
+    Topic.all.each do |topic|
+        if topic.lessons_order.size < 1
+            topic.lessons_order = topic.lessons.map{ |l| l.refnum }
+            topic.save
+        end
+    end
+    puts "DONE 3"
+end

@@ -20,6 +20,7 @@ class Course < ApplicationRecord
   
   def set_defaults
     self.access_code ||= "CA-"+SecureRandom.hex(n=3)
+    # self.refnum ||= "Co-"+SecureRandom.hex(n=3)
     self.privacy ||= "2"
     self.cstatus ||= "0"
   end

@@ -93,6 +93,9 @@ Rails.application.routes.draw do
     collection do
       get '/search' => "courses#search"
     end
+    member do 
+      post '/change_topics_order' => "courses#change_topics_order"
+    end
     resources :topics do
       resources :lessons
     end

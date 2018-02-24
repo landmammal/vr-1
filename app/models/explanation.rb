@@ -6,4 +6,10 @@ class Explanation < ApplicationRecord
   has_many :lessons, through: :lesson_explanations
 
   serialize :tags
+
+  after_initialize :set_defaults, :if => :new_record?
+  def set_defaults
+    # self.refnum ||= "Ex-"+SecureRandom.hex(n=3)
+  end
+
 end
