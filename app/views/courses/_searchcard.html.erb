@@ -16,7 +16,7 @@
 
   </div>
   <!--this is the line adding course image to the course been display in the dash-->
-  <%= image_tag(@item.cover) %>
+  <div class="course_cover" style="background-image:url('<%= @item.cover %>');"></div>
   <div class="card_edit_sec edit_sec_<%= @item.id %>" style="display: none;">
       <button class="blue small_btn">quick edit</button>
       <a href="<%= course_path(@item) %>"><button class="green_sft small_btn">view course</button></a>
