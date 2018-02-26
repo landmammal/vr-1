@@ -37,15 +37,16 @@
   }
 
 	
-	.with_side{
-		width: 78%;
-		margin-right: 2%;
-		float: left;
-	}
-	.the_side{
-		width: 20%;
-		float: left;
-	}
+.with_side{
+	width: 78%;
+	margin-right: 2%;
+	float: left;
+}
+.the_side{
+	width: 20%;
+	float: left;
+}
+
 //   .card_list {
 // 		overflow: hidden; padding-top: 10px;
 // 	}
@@ -311,20 +312,53 @@
 //   }
 
 
+.search_area{
+	display: grid;
+	grid-template-columns: 1fr;
+}
+
+.search_form{
+	width:50%; max-width: 600px; overflow: hidden;
+	box-shadow: 1px 1px 3px #ccc;
+	border-radius: 5px; 
+	input#search_input, button#search_btn{
+		border:0 !important; border-radius: 0 !important;
+		margin: 0;
+		float: left;
+	}
+	input#search_input{
+		width: calc(100% - 30px);
+	}
+	button#search_btn{
+		width: 30px;
+		padding:5px 8px;
+		background-color: transparent;
+		color: $base_color;
+		&:hover{
+			background-color: $base_color;
+			color:white;
+		}
+	}
+}
 
 .card_list{
 	display: grid;
-	grid-template-columns: repeat(4, minmax(250px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	grid-gap: 1em;
 	margin-top: 10px;
 
 	.card{
 		display: grid;
-		grid-template-rows: 85px 28px;
+		grid-template-rows: 1fr 28px;
 		border-radius: 3px; 
 		overflow: hidden; background-color: #eee;
 
-		a{ grid-template-rows: 28px 53px; }
+		a{
+			grid-template-rows: 28px minmax(70px);
+			&.search{
+				grid-template-rows: 28px minmax(70px) 15px;
+			}
+		}
 
 		&:hover{
 			box-shadow: 1px 1px 3px #ddd;
@@ -336,9 +370,11 @@
 		}
 
 		& .ctitle, & .description { overflow: hidden; }
-		& .ctitle, & .description, & .actions {
+		& .ctitle, & .description, & .actions, & .instructor {
 			padding: 5px 8px;
 		}
+		& .instructor{ font-size:10px; }
+		& .description{ font-size:12px; }
 
 		&.course_card{
 			& .ctitle{ color: white; background-color: $base_color; }
@@ -355,6 +391,12 @@
 		& .actions{
 			border-top: 1px #ddd solid;
 			display:grid;
+			grid-template-columns: 20px 1fr;
+
+			& .todo{
+				.left{ font-size:10px; margin-left:5px; }
+				.right{ font-size:12px; color:$base_color; }
+			}
 
 			&.owner{
 				grid-template-columns: auto 50px 20px;  

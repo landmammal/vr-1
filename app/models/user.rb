@@ -111,6 +111,10 @@ class User < ApplicationRecord
     self.pending_rehearsals + self.pending_feedback
   end
 
+  def registered(item)
+    self.registered_courses.include?(item)
+  end
+
   # associations
   has_many :course_registrations
   has_many :registered_courses, through: :course_registrations, source: :course

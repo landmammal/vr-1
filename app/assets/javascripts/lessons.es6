@@ -354,13 +354,13 @@ var pageReady = function(){
 			$lessondivs.height(Math.max.apply(this, tallestHeight_lesson));
 		});
 
-		$('.card_item').each(function() {
-			var $carddivs = $('.card_item');
-			var tallestHeight_card = $carddivs.map(function(i, el) {
-				return $(el).height();
-			}).get();
-			$carddivs.height(Math.max.apply(this, tallestHeight_card));
-		});
+		// $('.card_item').each(function() {
+		// 	var $carddivs = $('.card_item');
+		// 	var tallestHeight_card = $carddivs.map(function(i, el) {
+		// 		return $(el).height();
+		// 	}).get();
+		// 	$carddivs.height(Math.max.apply(this, tallestHeight_card));
+		// });
 
 		 
 // Get all parts of the progress bar.

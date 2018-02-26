@@ -1,7 +1,7 @@
 <div class="page_info">
   <div class="the_title">
     <span id="ct_<%= @course.id %>">
-      <%= @course.title if !@course.private? || (course_creator || course_trainee) %>
+      <%= @course.title if !@course.private? || (course_creator || current_user.registered(@course)) %>
     </span>
     <%= (link_to '', edit_course_path(@course), class:'edit ion-edit', remote: true) if course_creator %>
     <div class="edit_course"></div>
@@ -24,7 +24,7 @@
 
 <br>
 
-<% if course_creator || ( course_trainee && !course_pending ) %>
+<% if course_creator || ( current_user.registered(@course) && !course_pending ) %>
   
   <h4> Topics
     <% if course_creator %>
@@ -46,33 +46,6 @@
   <div class="card_list <%= 'with_side' if course_creator %>">
 
     <% @course.topics.order('id ASC').each_with_index do |topic, index| %>
-
-      <!-- <div class="card">
-        
-        <div class="card_title topic">
-          <a href="<%= course_topic_path(@course, topic) %>" style="color: white;">
-          <%= topic.title[0...25] %><%= '...' if topic.title.length > 25 %>
-          </a>
-          <%= link_to "X", [@course, topic], method: :delete, data: {confirm: "Are you sure?"}, id: 'topic_card_delete' %>
-        </div>
-
-        <a href="<%= course_topic_path(@course, topic) %>" style="color: white;">
-          <div class="card_desc topic">
-            <% if !topic.description.blank? %>
-              <%= topic.description[0...130] %><%= "..." if topic.description.length > 130 %>
-            <% end %>
-            <div class="bottom_count">
-              <% topic.lessons.each do |lesson| %>
-                <% if course_creator %>
-                  <div class="bar_count <%= !topic_lesson_status(lesson) ? 'imcomplete' : 'done' %> "></div>
-                <% elsif course_trainee && topic_lesson_status(lesson) %>
-                  <div class="bar_count <%= lesson.completion_status(current_user)[0] %> "></div>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-        </a>
-      </div> -->
 
       <div class="card topic_card" id="topic_card_<%= topic.id %>">
         <a href="<%= course_topic_path(@course, topic) %>">
@@ -152,7 +125,7 @@
       
       <div class="student_list_nav">
         <% @users.each do |student| %>
-          <%= render "user_bubble", student: student, course: @course %>
+          <%= render "./users/bubble", student: student, course: @course %>
         <% end %>
       </div>
       <% if @users.size > 0 %>
@@ -200,7 +173,7 @@
         <div class="row">
           <div class="col-sm-9">
 
-            <% if @course.paid? && !course_trainee %>
+            <% if @course.paid? && !current_user.registered(@course) %>
               <h4>Topics:</h4>
               <% @course.topics.each_with_index do |topic, ind| %>
                 <%= (ind+1).to_s+" - "+topic.title %>
@@ -299,7 +272,7 @@
 <br><br>
 <!-- <button class="small_btn blue js-click_back">Back</button> -->
 
-<% if course_trainee && !course_pending %>
+<% if current_user.registered(@course) && !course_pending %>
   <%= form_tag "/leave_course/" do %>
     <%= hidden_field_tag :course_id, nil, value: @course.id %>
     <%= button_tag "Leave Course", class:"small_btn red", style:"float:right;" %>

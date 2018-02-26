@@ -17,11 +17,14 @@ class CoursesController < ApplicationController
   def search
     @courses = Course.all.map{ |x| x if ( x.privacy != 3 && x.cstatus == 1 ) }.compact
     @site_title = 'Search Courses'
-    if current_user.level_2
-      @course = Course.new
-      @new_topic = Topic.new
-      @new_lesson = Lesson.new
+    @newCourse = Course.new if current_user.level_2
+
+    if params[:term]
+      @searchResult = Course.where(["lower(title) LIKE ?", "%#{params[:term]}%"]).map{ |x| x if ( x.privacy != 3 && x.cstatus == 1 ) }.compact
+      # render json: @searchResult
+      respond_to { |format| format.js { } }
     end
+
   end
 
   def send_invite

@@ -15,7 +15,7 @@
 
 <%= @topic.description if !@course.private? %>
 
-<%if topic_creator || course_trainee %>
+<%if topic_creator || current_user.registered(@course) %>
 
   <br>
 
@@ -36,7 +36,7 @@
   <% end %>
 
   <% @lessons.order('id ASC').each_with_index do |lesson, index| %>
-    <div class="lesson_list <%= (index + 1).even? ? 'even' : 'odd' %>" style="display:<%= (course_trainee && !topic_lesson_status(lesson)) ? 'none' : 'block' %>;">
+    <div class="lesson_list <%= (index + 1).even? ? 'even' : 'odd' %>" style="display:<%= (current_user.registered(@course) && !topic_lesson_status(lesson)) ? 'none' : 'block' %>;">
       <a href="<%= course_topic_lesson_path(@course, @topic, lesson) %>">
         <div class="title">
           <%= lesson.title %>
@@ -55,7 +55,7 @@
           <%= link_to 'Edit', edit_course_topic_lesson_path(@course, @topic, lesson) %>
         </div>
 
-      <% elsif course_trainee %>
+      <% elsif current_user.registered(@course) %>
         <div class="lesson_completion_status <%= lesson.completion_status(current_user)[0] %>" title="<%= lesson.completion_status(current_user)[1] %>"></div>
       <% end %>
 

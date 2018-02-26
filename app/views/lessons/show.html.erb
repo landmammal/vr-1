@@ -1,4 +1,4 @@
-<% if course_creator || course_trainee %>
+<% if course_creator || current_user.registered(@course) %>
   <div class="course-bredcum">
 
     <div class="page_info">
@@ -253,7 +253,7 @@
 
         </div>
 
-    <% elsif (@lesson_ready && course_trainee) %>
+    <% elsif (@lesson_ready && current_user.registered(@course)) %>
 
         <div class="body lesson_holder">
           <%= render 'trainee' %>

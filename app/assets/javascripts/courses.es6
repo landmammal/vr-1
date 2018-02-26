@@ -1,18 +1,18 @@
-function edit_or_start_course(course){
-	var course = course;
+// function edit_or_start_course(course){
+// 	var course = course;
 
-	$('.js-edit_'+course).click(function(event){
-		event.preventDefault();
+// 	$('.js-edit_'+course).click(function(event){
+// 		event.preventDefault();
 
-        // console.log('clicked to edit')
-        $('.edit_'+course).toggle();
-        $('.more_'+course).toggle();
-        $('.edit_sec_'+course).toggle();
-        $('.card_desc_'+course).toggle();
-    });
+//         // console.log('clicked to edit')
+//         $('.edit_'+course).toggle();
+//         $('.more_'+course).toggle();
+//         $('.edit_sec_'+course).toggle();
+//         $('.card_desc_'+course).toggle();
+//     });
 
     
-};
+// };
 
 
 
