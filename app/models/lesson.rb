@@ -20,6 +20,11 @@ class Lesson < ApplicationRecord
   has_many :lesson_rehearsals
   has_many :rehearsals, through: :lesson_rehearsals
 
+  after_initialize :set_defaults, :if => :new_record?
+  def set_defaults
+    # self.refnum ||= "Le-"+SecureRandom.hex(n=3)
+  end
+
 
   def path
     "/courses/"+self.topic.course.id.to_s+"/topics/"+self.topic.id.to_s+"/lessons/"+self.id.to_s

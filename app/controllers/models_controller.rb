@@ -66,7 +66,7 @@ class ModelsController < ApplicationController
   end
 
   def model_params
-    params.require(:model).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :position_prior)
+    params.require(:model).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :refnum, :position_prior)
   end
   def model_update
     params.require(:model).permit(:title, :script, :privacy, :language, :token, :video_token, :position_prior)

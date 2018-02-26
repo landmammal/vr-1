@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :course do
     title { Faker::Space.planet }
     description { Faker::Space.agency }

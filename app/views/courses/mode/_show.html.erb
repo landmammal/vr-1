@@ -43,9 +43,9 @@
   <% end %>
 
 
-  <div class="card_list <%= 'with_side' if course_creator %>">
+  <div id="card_list" class="card_list <%= 'with_side' if course_creator %>">
 
-    <% @course.topics.order('id ASC').each_with_index do |topic, index| %>
+    <% @topics.each_with_index do |topic, index| %>
 
       <div class="card topic_card" id="topic_card_<%= topic.id %>">
         <a href="<%= course_topic_path(@course, topic) %>">
@@ -278,3 +278,27 @@
     <%= button_tag "Leave Course", class:"small_btn red", style:"float:right;" %>
   <% end %>
 <% end %>
+
+<script>
+  let topOrd = new Object;
+  
+  $( function() {
+    $( "#card_list" ).sortable({
+      placeholder: "ui-state-highlight",
+      update: function( ) {
+        topOrd.order = [];
+        $('.topic_card').each(function(){
+          topOrd.order.push( $(this).data('refnum') );
+        }); 
+
+        $.ajax({
+          url:'/courses/<%= @course.id %>/change_topics_order',
+          type:'POST',
+          data: topOrd,
+          success: function(data){}
+        })
+      }
+    });
+    $( "#card_list" ).disableSelection();
+  });
+</script>

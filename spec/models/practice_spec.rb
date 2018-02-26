@@ -2,20 +2,20 @@
 #
 # RSpec.describe Practice, type: :model do
 #   context "new practice" do
-#     let! (:user) {FactoryGirl.create(:user)}
-#     let! (:practice) {FactoryGirl.create(:practice, user: user)}
+#     let! (:user) {FactoryBot.create(:user)}
+#     let! (:practice) {FactoryBot.create(:practice, user: user)}
 #       it 'should be assigned user' do
 #         expect(user).to eq(practice.user)
 #       end
 #   end
 #
 #   context "new practice" do
-#     let! (:user) {FactoryGirl.create(:user)}
-#     let! (:course) {FactoryGirl.create(:course, user: user)}
-#     let! (:topic) {FactoryGirl.create(:topic, course: course)}
-#     let! (:lesson) {FactoryGirl.create(:lesson, topic: topic)}
-#     let! (:trainee) {FactoryGirl.create(:user)}
-#     let! (:practice) {FactoryGirl.create(:practice, lesson: lesson, user: trainee)}
+#     let! (:user) {FactoryBot.create(:user)}
+#     let! (:course) {FactoryBot.create(:course, user: user)}
+#     let! (:topic) {FactoryBot.create(:topic, course: course)}
+#     let! (:lesson) {FactoryBot.create(:lesson, topic: topic)}
+#     let! (:trainee) {FactoryBot.create(:user)}
+#     let! (:practice) {FactoryBot.create(:practice, lesson: lesson, user: trainee)}
 #
 #       it 'should lesson id when created under lesson' do
 #         expect(practice.lesson).to eq lesson

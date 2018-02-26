@@ -11,7 +11,7 @@
 
 		<div class="card_list creator_list">
 			<% current_user.courses.order('id DESC').each do |course| %>
-		        <%= render './courses/cards', course_item:course  %>
+		        <%= render './courses/card', course_item:course  %>
 		    <% end %>
 		</div>
 	</div>
