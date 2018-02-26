@@ -16,7 +16,7 @@ end
 desc "List of Topics and course"
 task :topics_order => :environment do    
     Course.all.each do |course|
-        if course.topics_order.size < 1
+        if !course.topics_order
             course.topics_order = course.topics.map{ |t| t.refnum }
             course.save
         end
@@ -28,10 +28,32 @@ end
 desc "List of Lessons in topic"
 task :lessons_order => :environment do    
     Topic.all.each do |topic|
-        if topic.lessons_order.size < 1
+        if !topic.lessons_order
             topic.lessons_order = topic.lessons.map{ |l| l.refnum }
             topic.save
         end
     end
     puts "DONE 3"
+end
+
+
+desc "Set Topics Privacy"
+task :topics_privacy => :environment do    
+    Topic.all.each do |topic|
+        topic.privacy ||= 1
+        topic.approval_status ||= 1
+        topic.save
+    end
+    puts "DONE 4"
+end
+
+
+desc "Set Lessons Privacy"
+task :lessons_privacy => :environment do    
+    Lesson.all.each do |lesson|
+        lesson.privacy ||= 1
+        lesson.approval_status ||= 1
+        lesson.save
+    end
+    puts "DONE 5"
 end

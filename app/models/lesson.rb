@@ -23,6 +23,8 @@ class Lesson < ApplicationRecord
   after_initialize :set_defaults, :if => :new_record?
   def set_defaults
     # self.refnum ||= "Le-"+SecureRandom.hex(n=3)
+    self.privacy ||= 1
+    self.approval_status ||= 1
   end
 
 

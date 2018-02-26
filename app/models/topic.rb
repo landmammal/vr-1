@@ -15,6 +15,12 @@ class Topic < ApplicationRecord
   after_initialize :set_defaults, :if => :new_record?
   def set_defaults
     # self.refnum ||= "To-"+SecureRandom.hex(n=3)
+    self.privacy ||= 1
+    self.approval_status ||= 1
+  end
+
+  def lessons_ready
+    self.lessons_order.collect {|r| Lesson.find_by_refnum(r) }.compact.map{ |l| l if (l.privacy == 1 && l.approval_status == 1) }.compact
   end
 
   def has_rehearsals?

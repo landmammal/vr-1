@@ -58,7 +58,9 @@
           </div>
 
         <% elsif course_trainee %>
+
           <div class="lesson_completion_status <%= lesson.completion_status(current_user)[0] %>" title="<%= lesson.completion_status(current_user)[1] %>"></div>
+        
         <% end %>
 
       </div>

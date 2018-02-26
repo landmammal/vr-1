@@ -41,6 +41,14 @@ $green:#4EBC52;
 $red:rgb(255, 108, 108);
 
 
+h1, h2, h3, h4, h5, h6{
+  margin: 0.5em 0 ;
+}
+.bold{
+  font-weight: 700;
+}
+
+
 // HAMBURGER MENU
 .topnav {
   overflow: hidden;

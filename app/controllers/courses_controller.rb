@@ -12,6 +12,8 @@ class CoursesController < ApplicationController
     @users = @course.users.order("id DESC").limit(8)
     @topics = @course.topics_order.collect {|r| Topic.find_by_refnum(r) }.compact
 
+    @course.tags ? @course_tags = @course.tags.split(',') : @course_tags = []
+
     remainder = @course.users.size % @users.size if @users.size > 0
     if @users.size > 0
       remainder > 0 ? @pages = ((@course.users.size - (remainder))/@users.size + 1) : @pages = @course.users.size/@users.size
@@ -36,9 +38,12 @@ class CoursesController < ApplicationController
     @newCourse = Course.new if current_user.level_2
 
     if params[:term]
-      @searchResult = Course.where(["lower(title) LIKE ?", "%#{params[:term]}%"]).map{ |x| x if ( x.privacy != 3 && x.cstatus == 1 ) }.compact
+      @courses = Course.where(["lower(title) LIKE ?", "%#{params[:term]}%"]).map{ |x| x if ( x.privacy != 3 && x.cstatus == 1 ) }.compact
       # render json: @searchResult
-      respond_to { |format| format.js { } }
+      respond_to do |format| 
+        format.html { }
+        format.js { } 
+      end
     end
 
   end

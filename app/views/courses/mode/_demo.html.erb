@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col course_demo">
+
+            <div class="course_info">
+
+                <%= render './courses/mode/header' %>
+                
+                <% if @course.description %>
+                    <h4>About this Course</h4>
+                    <%= @course.description %>
+                <% end %>
+
+                <% if @course.requirements %>
+                    <div class="course_requirements">
+                        <h4>Requirements:</h4>
+                        <%= @course.requirements %>
+                    </div>
+                <% end %>
+                
+                <div class="tags">
+                    <hr>
+                    <h5>Tags</h5>
+                    <% @course_tags.each do |tag| %>
+                        <a href="/courses/search?term=<%= tag.strip %>"> <div class="tag"> <%= tag %> </div> </a>
+                    <% end %>
+                </div>
+
+            </div>
+
+            <%= render './courses/mode/demoSide' %>
+
+        </div>
+    </div>
+</div>

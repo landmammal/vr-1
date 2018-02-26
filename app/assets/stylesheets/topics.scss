@@ -91,3 +91,39 @@
 		border-bottom:0px solid #00B1D8;
 	}
 }
+
+
+.trainee_lesson{
+	overflow: hidden;
+
+	& .lesson_title{
+		font-size:15px;
+		display: inline-block;
+		position: relative; top:-12px;
+	}
+	& .lesson_completion{
+		width:23px; height:23px; margin:4px;
+		display: inline-block;
+		border-radius:50%;
+		
+		&.new{
+			background-color:#ccc;
+		}
+		&.approved{
+			background-color:$green;
+			background-image: url(/assets/checkmark_white.png);
+			background-size: 150%;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+		&.submitted{
+			background-color:#ff9d23;
+		}
+		&.rejected{
+			background-color:#fc0f0f;
+		}
+		&.has_rehearsal{
+			background-color:#05a5e4;
+		}
+	}
+}

@@ -12,13 +12,12 @@
         </div>
       <% end %>
       <% if @course.free? %>
-        <%= button_tag "Start Course", type:'submit', class:"big_btn blue js-course_register_btn" %>
+        <%= button_tag "Start", type:'submit', class:"big_btn blue js-course_register_btn" %>
       <% elsif !@course.private? %> 
         <%if @course.with_code? %>
-          <%= text_field_tag :access_code, nil, placeholder:"Enter course access code", style:" width:200px; " %>
-          <br>
+          <%= text_field_tag :access_code, nil, class:'left', placeholder:"Enter course access code", style:"width:150px; margin:0;" %>
         <% end %>
-        <%= button_tag "Register for Course", type:'submit', class:"big_btn blue js-course_register_btn" %>
+        <%= button_tag "Register", type:'submit', class:"blue js-course_register_btn left" %>
       <% end %>
   <% end %>
 </div>

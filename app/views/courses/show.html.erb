@@ -1,9 +1,19 @@
+<% if course_creator %>
+    <!-- Instructor -->
+    <%= render './courses/mode/build' %>
+<% else %>
 
-<!-- if course is paid for or user regisered -->
-<%= render './courses/mode/show'%>
+    <% if  current_user.registered(@course) %>
+        <!-- Registered -->
+        <%= render './courses/mode/show' %>
+    <% elsif @course.with_code? || @course.free? || @course.paid? %>
+        <!-- Free/paid and Not Registered -->
+        <%= render './courses/mode/demo' %>
+    <% elsif @course.private? %>
+        <!-- Private -->
+        <center style="padding:250px 0;">
+            <h1>This is a Private Course</h1>
+        </center>
+    <% end %>
 
-<!-- if course paid and user hasnt purchased -->
-<!-- <% render './courses/mode/sell'%> -->
-
-<!-- if user not registered -->
-<!-- <% render './courses/mode/demo'%> -->
+<% end %>
