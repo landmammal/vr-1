@@ -2,7 +2,7 @@
 <% if @searchResult.size > 0 %>
     $('.card_list_search').empty();
     <% @searchResult.each do |course| %>
-        let courseCard = "<%= escape_javascript ( render partial: './courses/cards', locals:{ course_item: course }) %>";
+        let courseCard = "<%= escape_javascript ( render partial: './courses/card', locals:{ course_item: course }) %>";
         $('.card_list_search').append(courseCard);
     <% end %>
 <% else %>

@@ -18,7 +18,7 @@
 
 		<div class="card_list card_list_original">
 			<% @courses.each do |course| %>
-				<%= render 'cards', course_item:course, search:true %>
+				<%= render 'card', course_item:course, search:true %>
 			<% end %>
 		</div>
 	</div>
