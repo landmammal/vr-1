@@ -308,13 +308,12 @@
 
 <script>
   let topOrd = new Object;
-  topOrd.order = [];
-
+  
   $( function() {
     $( "#card_list" ).sortable({
       placeholder: "ui-state-highlight",
       update: function( ) {
-        topics_order = []
+        topOrd.order = [];
         $('.topic_card').each(function(){
           topOrd.order.push( $(this).data('refnum') );
         }); 

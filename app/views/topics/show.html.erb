@@ -35,32 +35,36 @@
     <!-- <button class="reg_btn green_sft">Add External Lesson</button> -->
   <% end %>
 
-  <% @lessons.order('id ASC').each_with_index do |lesson, index| %>
-    <div class="lesson_list <%= (index + 1).even? ? 'even' : 'odd' %>" style="display:<%= (course_trainee && !topic_lesson_status(lesson)) ? 'none' : 'block' %>;">
-      <a href="<%= course_topic_lesson_path(@course, @topic, lesson) %>">
-        <div class="title">
-          <%= lesson.title %>
-        </div>
-      </a>
-      
-      <% if topic_creator %>
+  <div id="card_list" class="card_list">
 
-        <% if topic_lesson_status(lesson) %>
-          <div class="lesson_status ready"></div>
-        <% else %>
-          <div class="lesson_status notready"></div>
+    <% @lessons.each_with_index do |lesson, index| %>
+      <div class="lesson_list lesson_card <%= (index + 1).even? ? 'even' : 'odd' %>" data-refnum="<%= lesson.refnum %>" style="display:<%= (course_trainee && !topic_lesson_status(lesson)) ? 'none' : 'block' %>;">
+        <a href="<%= course_topic_lesson_path(@course, @topic, lesson) %>">
+          <div class="title">
+            <%= lesson.title %>
+          </div>
+        </a>
+        
+        <% if topic_creator %>
+
+          <% if topic_lesson_status(lesson) %>
+            <div class="lesson_status ready"></div>
+          <% else %>
+            <div class="lesson_status notready"></div>
+          <% end %>
+
+          <div class="edit_lesson">
+            <%= link_to 'Edit', edit_course_topic_lesson_path(@course, @topic, lesson) %>
+          </div>
+
+        <% elsif course_trainee %>
+          <div class="lesson_completion_status <%= lesson.completion_status(current_user)[0] %>" title="<%= lesson.completion_status(current_user)[1] %>"></div>
         <% end %>
 
-        <div class="edit_lesson">
-          <%= link_to 'Edit', edit_course_topic_lesson_path(@course, @topic, lesson) %>
-        </div>
+      </div>
+    <% end %>
 
-      <% elsif course_trainee %>
-        <div class="lesson_completion_status <%= lesson.completion_status(current_user)[0] %>" title="<%= lesson.completion_status(current_user)[1] %>"></div>
-      <% end %>
-
-    </div>
-  <% end %>
+  </div>
 
 
   <br><br>
@@ -88,3 +92,29 @@
 <button class="small_btn blue js-click_back">Back</button>
 
 <br><br>
+
+
+
+<script>
+  let lessOrd = new Object;
+  
+  $( function() {
+    $( "#card_list" ).sortable({
+      placeholder: "ui-state-highlight",
+      update: function( ) {
+        lessOrd.order = [];
+        $('.lesson_card').each(function(){
+          lessOrd.order.push( $(this).data('refnum') );
+        }); 
+
+        $.ajax({
+          url:'/topics/<%= @topic.id %>/change_lessons_order',
+          type:'POST',
+          data: lessOrd,
+          success: function(data){}
+        })
+      }
+    });
+    $( "#card_list" ).disableSelection();
+  });
+</script>

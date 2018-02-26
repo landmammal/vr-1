@@ -51,7 +51,7 @@ Rails.application.routes.draw do
     get "/generate_course_code/" => "courses#generate_code"
     post "/invite_student/" => "courses#send_invite"
     post "/register_with_access_code" => "courses#register_with_access_code"
-    get "/courses/:course_id/accept_invitation/" => "courses#accept_invitation"
+    # get "/courses/:course_id/accept_invitation/" => "courses#accept_invitation"
     get "/courses/:course_id/accept_invitation/:user_id" => "courses#accept_invitation"
 
     post '/topic/create' => "topics#create"
@@ -62,8 +62,6 @@ Rails.application.routes.draw do
     get '/groups/:id' => 'groups#my_group'
     
     # OTHER LINKS
-    post "/users/course_list_nav" => "users#course_list_nav"
-    post "/courses/student_list_nav" => "courses#student_list_nav"
     get "/change_first_contact" => "users#change_first_contact"
     post "/job_application" => "welcome#job_application"
     get "/test" => "welcome#test"
@@ -83,7 +81,8 @@ Rails.application.routes.draw do
       resources :group_registrations
     end
     collection do
-      post 'batch_update' => "users#batch_update"
+      post 'batch_update'
+      post "course_list_nav"
     end
   end
 
@@ -91,16 +90,23 @@ Rails.application.routes.draw do
   resources :courses do
     resources :course_registrations
     collection do
-      get '/search' => "courses#search"
+      get 'search'
+      post "student_list_nav"
     end
     member do 
-      post '/change_topics_order' => "courses#change_topics_order"
+      post 'change_topics_order'
+      get 'accept_invitation'
     end
     resources :topics do
       resources :lessons
     end
   end
-
+  
+  resources :topics do
+    member do 
+      post 'change_lessons_order'
+    end
+  end
 
   resources :lessons, shallow: true do
     resources :explanations

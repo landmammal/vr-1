@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_topic, only: [:show, :edit, :update, :destroy]
+  before_action :set_topic, only: [:show, :edit, :update, :destroy, :change_lessons_order]
   before_action :set_course, only: [:index, :show, :new, :edit, :destroy]
 
   def index
@@ -8,7 +8,7 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @lessons = @topic.lessons.order('id ASC')
+    @lessons = @topic.lessons_order.collect {|r| Lesson.find_by_refnum(r) }.compact
     @course_registration = CourseRegistration.new
     @lesson = Lesson.new
   end
@@ -70,7 +70,20 @@ class TopicsController < ApplicationController
     end
   end
 
+
+
+  # OTHER CODES
+
+  def change_lessons_order
+    @topic.lessons_order = params[:order]
+    @topic.save
+  end
+
+
+
+
   private
+
     def set_course
       @course = Course.find(params[:course_id])
     end
