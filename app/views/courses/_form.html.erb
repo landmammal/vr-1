@@ -2,9 +2,11 @@
 <div class="shadebox_bg" data-name="<%= editMode ? 'edit_course_form' : 'course_form' %>">
   <%= form_for course, remote: editMode do |f| %>
     <div class="shadebox">
+      
       <div class="shadebox_header">
         <h5> <%= editMode ? course.title : 'Create a New Course' %> </h5>
       </div>
+
       <div class="shadebox_content">
 
           <% if course.errors.any? %>
@@ -23,6 +25,10 @@
         <span class="reset_color"> reset color </span>
         <br>
         <%= f.text_area :description, placeholder:'Description', class:'full editor' %><br>
+        
+        <%= f.file_field :cover %>
+        <%= f.hidden_field :cover_cache %>
+
         <%= f.text_field :tags, placeholder:'tags (comma separated)', class:'full course_create' %><br>
         <%= f.text_field :approval_status, type:"hidden", value: 0 %><br>
         <%= f.select :privacy, (current_user.level_1 ? [["Public", 0], ["Public (with access code)", 1],["Paid", 2],["Private (invite only)", 3]] : [["Private (invite only)", 3],["Paid", 2]] ) %>
@@ -40,6 +46,7 @@
         <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %><br>
         
       </div>
+
       <div class="shadebox_footer">
         <div class="content">
           <%= button_tag 'Save Course', type:'submit', class:'blue shadebox_close' %>
@@ -47,6 +54,7 @@
         </div>
         <div class="shade_close ion-ios-close"></div>
       </div>
+
     </div>
 </div>
 

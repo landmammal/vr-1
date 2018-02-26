@@ -16,26 +16,26 @@
   </head>
   <body>
 
-  <%= render 'layouts/loading' %>
-  <script type="text/javascript">$('.loading_app').show(); startLoadingProg();</script>
+    <%= render 'layouts/loading' %>
+    <script type="text/javascript">$('.loading_app').show(); startLoadingProg();</script>
 
-  <script type="text/javascript">TermsandServices(<%= check_terms(termsVersion) %>);</script>
-  <div class="terms_not_aggreed" style="display:<%= check_terms(termsVersion) ? 'none' : 'block' %>;">
-    <%= render '/welcome/reviewtermsandservices' %>
-  </div>
-  
-  <%= render 'layouts/notice' %>
-
-  <div class="layout">
-      <%= render 'layouts/header/header' %>
-
-      <div class="main-content <%= 'in_app' if in_app %>">
-        <% render 'layouts/leftpanel' if user_signed_in? %>
-        <div class="content-container"> <%= yield %></div>
-      </div>
+    <script type="text/javascript">TermsandServices(<%= check_terms(termsVersion) %>);</script>
+    <div class="terms_not_aggreed" style="display:<%= check_terms(termsVersion) ? 'none' : 'block' %>;">
+      <%= render '/welcome/reviewtermsandservices' %>
+    </div>
     
-      <%= render 'layouts/footer' %>
-  </div>
+    <%= render 'layouts/notice' %>
+
+    <div class="layout">
+        <%= render 'layouts/header/header' %>
+
+        <div class="main-content <%= 'in_app' if in_app %>">
+          <% render 'layouts/leftpanel' if user_signed_in? %>
+          <div class="content-container"> <%= yield %></div>
+        </div>
+      
+        <%= render 'layouts/footer' %>
+    </div>
 
   </body>
 </html>

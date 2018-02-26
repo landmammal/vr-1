@@ -17,6 +17,8 @@ class Course < ApplicationRecord
   after_initialize :set_defaults, :if => :new_record?
 
   validates :access_code, uniqueness: true
+
+  mount_uploader :cover, CoverUploader
   
   def set_defaults
     self.access_code ||= "CA-"+SecureRandom.hex(n=3)

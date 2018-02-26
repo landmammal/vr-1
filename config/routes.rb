@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   
   # MENU LINKS
-  menu_routes = ['about','markets','overview','process','contact','versions','jobs']
-  menu_routes.push('theteam','termsandservices','FAQs','requirements','policies','press','teach','coach','learn','create','companies','support')
+  menu_routes = [
+    'about','markets','overview','process','contact','versions','jobs',
+    'theteam','termsandservices','FAQs','requirements','policies','press',
+    'teach','coach','learn','create','companies','support'
+  ]
   menu_routes.each do |menu|
     get "/#{menu}" => "welcome##{menu}"
   end
@@ -32,7 +35,6 @@ Rails.application.routes.draw do
     get "/rehearsals/student" => "rehearsals#student"
     get "/rehearsals/all" => "rehearsals#all"
     
-
     get "/feedback/all" => "feedbacks#all"
     
 
