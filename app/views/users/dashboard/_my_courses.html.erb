@@ -10,47 +10,22 @@
 					<button class="big_btn green_sft shadebox_btn" data-shadebox="course_form" > Create a course </button>
 				<% end %>
 			</center>
-		<%end%>
-
-		<div class="js-my_courses_list card_list">
-			<% if @courses.size > 0 %>
-				<% @courses.each_with_index do |course, index| %>
-
-					<a class="js-c_<%= course.id %>" href="<%= first_lesson_path( course )%>">	
-						<div class="card">
-							<div class="card_title course">
-								<%= course.title[0...25] %>
-								<% if course.title.length > 25 %>
-									...
-								<% end %>
-							</div>
-							<div class="card_desc course">
-								<%= course.description[0...110] %>
-								<% if course.description.length > 110 %>
-								... <span class="blue">more</span>
-								<% end %>
-
-								<div class="bottom_count">
-									<% course.topics.each do |topic| %>
-										<% if current_user.role == "trainee" %>
-											<div class="circle_count <%= "done" if topic.is_completed(current_user) %>"></div>
-										<% end %>
-									<% end %>
-								</div>
-							</div>
-						</div>
-					</a>
-
+		<%else%>
+			<h4>Registered Courses</h4>
+			<hr>
+			<div class="registered_courses card_list">
+				<% @courses.each do |course| %>
+					<%= render './courses/card', course_item: course  %>
 				<%end%>
-			<%end%>
-
-		</div>
-
+			</div>
+		
+		<%end%>
 	</div>
 	
 	<% if current_user.level_2 && current_user.courses.size > 0 %>
-		Courses you created ( last 4 ): <br>
-		<div class="card_list">
+		<h4>Courses you created ( last 4 )</h4>
+		<hr>
+		<div class="created_courses card_list">
 			<% current_user.courses.order('id DESC').limit(4).each do |course| %>
 		        <%= render './courses/card', course_item: course  %>
 		    <% end %>
