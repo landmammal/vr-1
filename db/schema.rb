@@ -10,12 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180216030405) do
-=======
-
-ActiveRecord::Schema.define(version: 20180214190305) do
->>>>>>> testing
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,15 +56,12 @@ ActiveRecord::Schema.define(version: 20180214190305) do
     t.integer  "cstatus"
     t.string   "access_code"
     t.integer  "price"
-<<<<<<< HEAD
+    t.string   "cover"
     t.string   "color"
     t.text     "requirements"
     t.text     "short_desc"
     t.string   "topics_order",    default: [],              array: true
     t.string   "refnum"
-=======
-    t.string   "cover"
->>>>>>> testing
   end
 
   create_table "demos", force: :cascade do |t|

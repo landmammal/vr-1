@@ -347,7 +347,7 @@
 }
 
 .tags{
-	margin-top:50px;
+	margin:50px 0;
 
 	.tag {
 		color: white;
@@ -385,7 +385,7 @@
 	.course_side_info{
 		background-color: #fcfcfc; box-shadow: 1px 1px 3px #ccc;
 		border-radius:5px; overflow: hidden;
-		& .img{ width: 100%; height:200px; background-color:$base_color ; }
+		& .img{ width: 100%; height:200px; background-color:$base_color; background-size: cover; }
 		& .content{
 			overflow: hidden;
 			padding:10px 15px;
@@ -409,9 +409,9 @@
 		overflow: hidden; background-color: #eee;
 
 		a{
-			grid-template-rows: 28px minmax(70px);
+			grid-template-rows: auto 28px minmax(70px);
 			&.search{
-				grid-template-rows: 28px minmax(70px) 15px;
+				grid-template-rows: auto 28px minmax(70px) 15px;
 			}
 		}
 
@@ -422,6 +422,12 @@
 		& .ctitle{
 			align-content: center;
 			font-size: 12px;
+		}
+
+		& .course_cover{
+			background-size: cover;
+			background-position: center;
+			height: 140px;
 		}
 
 		& .ctitle, & .description { overflow: hidden; }
@@ -524,22 +530,22 @@
 }
 
 @media only screen and (max-width: 495px) {
-	.card_list{ grid-template-columns: 1fr; }
+	// .card_list{ grid-template-columns: 1fr; }
 }
 
 @media only screen and (min-width: 496px) {
-	.card_list{ grid-template-columns: repeat(2, 1fr); }
+	// .card_list{ grid-template-columns: repeat(2, 1fr); }
 }
 	
 
 /* Desktop Layout: 827px to max.  Inherits styles from: Mobile Layout and Tablet Layout. */
 @media only screen and (min-width: 827px) {
-	.card_list{ grid-template-columns: repeat(3, minmax(250px, 1fr)); }
+	// .card_list{ grid-template-columns: repeat(3, minmax(250px, 1fr)); }
 }
 	
 /* Desktop Layout: 1261px to max.  Inherits styles from: Mobile Layout and Tablet Layout. */
 @media only screen and (min-width: 1051px) {
-	.card_list{ grid-template-columns: repeat(4, minmax(250px, 1fr)); }
+	// .card_list{ grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
 }
  	
 .box_sep .title{

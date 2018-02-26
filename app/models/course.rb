@@ -49,6 +49,27 @@ class Course < ApplicationRecord
     self.topics_order.collect {|r| Topic.find_by_refnum(r) }.compact.map{ |t| t if (t.privacy == 1 && t.approval_status == 1) }.compact
   end
 
+  def get_tags
+    self.tags ? self.tags.split(',') : ['no tags']
+  end
+
+  def related
+    related = []
+    self.get_tags.each do |tag|
+      
+      Course.all.where.not( id: self.id ).each do |c| 
+        next if ( related.include?( c ) )
+
+        if c.get_tags.include?(tag)
+          related << c
+          next
+        end
+      end
+
+    end
+    related.uniq
+  end
+
   def has_rehearsals?
     self.rehearsals.size > 0
   end

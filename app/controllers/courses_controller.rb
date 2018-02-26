@@ -12,8 +12,6 @@ class CoursesController < ApplicationController
     @users = @course.users.order("id DESC").limit(8)
     @topics = @course.topics_order.collect {|r| Topic.find_by_refnum(r) }.compact
 
-    @course.tags ? @course_tags = @course.tags.split(',') : @course_tags = []
-
     remainder = @course.users.size % @users.size if @users.size > 0
     if @users.size > 0
       remainder > 0 ? @pages = ((@course.users.size - (remainder))/@users.size + 1) : @pages = @course.users.size/@users.size
@@ -322,7 +320,7 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:title, :description, :requirements, :short_desc, :colorm :tags, :cstatus, :access_code, :refnum, :instructor_id, :approval_status, :cover, :cover_cache, :privacy, :language, :price, :topics_list)
+      params.require(:course).permit(:title, :description, :requirements, :short_desc, :color, :tags, :cstatus, :access_code, :refnum, :instructor_id, :approval_status, :cover, :cover_cache, :privacy, :language, :price, :topics_list)
     end
     def course_update
       params.require(:course).permit(:title, :description, :requirements, :short_desc, :color, :tags, :cstatus, :access_code, :approval_status, :cover, :cover_cache, :privacy, :language, :price, :topics_list)

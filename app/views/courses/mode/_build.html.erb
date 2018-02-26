@@ -65,7 +65,7 @@
     <div class="tags">
       tags
       <hr>
-      <% @course_tags.each do |tag| %>
+      <% @course.get_tags.each do |tag| %>
         <div class="tag">
           <a href="#"><b><%= tag %></b></a>
         </div>
