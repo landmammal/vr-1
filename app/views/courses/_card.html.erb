@@ -1,13 +1,13 @@
 <% cid = course_item.id %>
 <% search = false if !search %>
 
-<div class="card course_card course_card_<%= cid %>">
+<div class="card course_card course_<%= cid %>">
   
   <a href="<%= course_path(course_item) %>" class="<%= 'search' if search %>">
   
-    <div class="course_cover" style="background-image:url('<%= course_item.image %>');"></div>
+    <div class="course_cover" id="cco_<%= cid %>" style="background-image:url('<%= course_item.image %>');"></div>
     
-    <div class="ctitle" id="ct_<%= cid %>" style="background-color:<%= course_item.color if !course_item.color.blank? %>;"> 
+    <div class="ctitle ccl_<%= cid %>" id="ct_<%= cid %>" style="background-color:<%= course_item.color if !course_item.color.blank? %>;"> 
       <%= course_item.title[0...35] %><%= "..." if course_item.title.length > 50 %>
     </div>
 

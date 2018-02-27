@@ -40,7 +40,7 @@
     }
 
     $.ajax({
-      url:`/courses/search?term=${searchTerm}`,
+      url:`/courses/search?term=${searchTerm}&f=js`,
       success: function(data){
         //console.log(data);
         console.log( `Search term: ${searchTerm}` );

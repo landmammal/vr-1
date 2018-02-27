@@ -43,6 +43,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'hirb'
 gem 'rails_12factor'
 gem 'kaminari' # Pagination
+gem 'remotipart', '~> 1.2' # Ajax Image Uploading
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

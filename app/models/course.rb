@@ -71,7 +71,7 @@ class Course < ApplicationRecord
   end
 
   def image
-    self.cover.url ? self.cover : '/assets/default_cover.png'
+    self.cover.url ? self.cover.url : '/assets/default_cover.png'
   end
 
   def has_rehearsals?

@@ -36,11 +36,16 @@ class CoursesController < ApplicationController
     @newCourse = Course.new if current_user.level_2
 
     if params[:term]
-      @courses = Course.where(["lower(title) LIKE ?", "%#{params[:term]}%"]).map{ |x| x if ( x.privacy != 3 && x.cstatus == 1 ) }.compact
-      # render json: @searchResult
-      respond_to do |format| 
-        format.html { }
-        format.js { } 
+      columns = %w{title short_desc tags}
+      @results = Course.where( columns.map {|c| "lower(#{c}) like :term" }.join(' OR '), term: "%#{params[:term].downcase}%" )
+      @courses = @results.map{ |x| x if ( x.privacy != 3 && x.cstatus == 1 ) }.compact
+
+      respond_to do |format|
+        if params[:f] == 'js'
+          format.js { } 
+        else
+          format.html { }
+        end
       end
     end
 

@@ -18,9 +18,9 @@
         <div class="course_cover_form" style="background-image:url('<%= course.image %>');"></div>
     <% end %>
 
-    <!-- <%= f.label :course_cover %> -->
-    <!-- <%= f.file_field :cover %>
-    <%= f.hidden_field :cover_cache %> -->
+    <%= f.label :course_cover %>
+    <%= f.file_field :cover %>
+    <%= f.hidden_field :cover_cache %>
     
     <%= f.text_field :title, placeholder:'Course title', class:'full course_create' %>
     <%= f.color_field :color, value:('#0070C0' if !editMode || course.color.blank?) %>
@@ -36,14 +36,16 @@
         <%= f.text_area :requirements, placeholder:'Requirements', class:'full editor' %><br>
     <% end %>
 
-    <%= f.text_field :tags, placeholder:'tags (comma separated)', class:'full course_create' %><br>
     <%= f.text_field :approval_status, type:"hidden", value: 0 %><br>
     <%= f.select :privacy, (current_user.level_1 ? [["Public", 0], ["Public (with access code)", 1],["Paid", 2],["Private (invite only)", 3]] : [["Private (invite only)", 3],["Paid", 2]] ) %>
     <%= f.select :cstatus, course.cstatus! %>
     <%= f.select :language, (@languages) %><br>
+    
     <div class="course_price" style="display:none;">
         $<%= f.text_field :price, placeholder: 'set price (ex: 5.99)' %>
     </div>
+
+    <%= f.text_field :tags, placeholder:'tags (comma separated)', class:'full course_create' %><br>
 
     <br>
     Course Access Code:
