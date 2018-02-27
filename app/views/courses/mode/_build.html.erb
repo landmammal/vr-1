@@ -40,7 +40,7 @@
 
       <% @topics.each_with_index do |topic, index| %>
 
-        <div class="card topic_card" id="topic_card_<%= topic.id %>">
+        <div class="card topic_card" id="topic_card_<%= topic.refnum %>">
           <a href="<%= course_topic_path(@course, topic) %>">
             <div class="ctitle"><%= topic.title[0...25] %><%= '...' if topic.title.length > 25 %></div>
             <div class="description">
