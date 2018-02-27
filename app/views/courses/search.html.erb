@@ -5,7 +5,7 @@
 
 <% if current_user.level_2 %>
   <button class="small right green_sft shadebox_btn" data-shadebox="course_form">Add Course</button>
-  <%= render './courses/form', course:@newCourse %>
+  <%= render './courses/popForm', course:@newCourse %>
 <%end%>
 
 <br> <br> <hr>

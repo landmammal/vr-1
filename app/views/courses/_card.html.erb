@@ -5,7 +5,7 @@
   
   <a href="<%= course_path(course_item) %>" class="<%= 'search' if search %>">
   
-    <div class="course_cover" style="background-image:url('<%= course_item.cover %>');"></div>
+    <div class="course_cover" style="background-image:url('<%= course_item.image %>');"></div>
     
     <div class="ctitle" id="ct_<%= cid %>" style="background-color:<%= course_item.color if !course_item.color.blank? %>;"> 
       <%= course_item.title[0...35] %><%= "..." if course_item.title.length > 50 %>

@@ -1,85 +1,55 @@
-<% editMode = false if !editMode %>
-<div class="shadebox_bg" data-name="<%= editMode ? 'edit_course_form' : 'course_form' %>">
-  <%= form_for course, remote: editMode do |f| %>
-  <div class="shadebox">
-    
-    <div class="shadebox_header">
-      <h5> <%= editMode ? course.title : 'Create a New Course' %> </h5>
+<%= form_for course, remote: quickEdit do |f| %>
+    <% if course.errors.any? %>
+    <div id="error_explanation">
+    <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+    <ul>
+        <% course.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
     </div>
+    <% end %>
     
-    <div class="shadebox_content">
-      
-      <% if course.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
-        <ul>
-          <% course.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-      <% end %>
-      
-        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
-        <!-- //TODO:  PUT IMAGE HERE IF THERE IS ONE in EDIT MODE -->
-
-        <%= f.file_field :cover %>
-        <%= f.hidden_field :cover_cache %>
-
-        <%= f.text_field :title, placeholder:'Course title', class:'full course_create' %>
-        <%= f.color_field :color, value:('#0070C0' if !editMode || course.color.blank?) %>
-        <span class="reset_color"> reset color </span>
-        <br>
-        <%= f.text_area :description, placeholder:'Description', class:'full editor' %><br>      
-
-        <%= f.text_field :tags, placeholder:'tags (comma separated)', class:'full course_create' %><br>
-        <%= f.text_field :approval_status, type:"hidden", value: 0 %><br>
-        <%= f.select :privacy, (current_user.level_1 ? [["Public", 0], ["Public (with access code)", 1],["Paid", 2],["Private (invite only)", 3]] : [["Private (invite only)", 3],["Paid", 2]] ) %>
-        <%= f.select :cstatus, course.cstatus! %>
-        <%= f.select :language, (@languages) %><br>
-        <div class="course_price" style="display:none;">
-          $<%= f.text_field :price, placeholder: 'set price (ex: 5.99)' %>
-        </div>
+    <!-- //TODO:  PUT IMAGE HERE IF THERE IS ONE in EDIT MODE -->
     
-        <br>
-        Course Access Code:
-        <br>
-        <%= f.text_field :access_code, class:"access_code" , placeholder:"access code" %><button id="generate_new_access_code" class="small_btn">generate new code</button>
-        <br>
-        <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %><br>
-        
-      </div>
+    <% if course.cover.url %>
+        <div class="course_cover_form" style="background-image:url('<%= course.image %>');"></div>
+    <% end %>
 
-      <div class="shadebox_footer">
-        <div class="content">
-          <%= button_tag 'Save Course', type:'submit', class:'blue shadebox_close' %>
-          <% end %>
-        </div>
-        <div class="shade_close ion-ios-close"></div>
-      </div>
+    <!-- <%= f.label :course_cover %> -->
+    <!-- <%= f.file_field :cover %>
+    <%= f.hidden_field :cover_cache %> -->
+    
+    <%= f.text_field :title, placeholder:'Course title', class:'full course_create' %>
+    <%= f.color_field :color, value:('#0070C0' if !editMode || course.color.blank?) %>
+    <span class="reset_color"> reset color </span>
+    <br>
+    <%= f.label :short_description %>
+    <%= f.text_area :short_desc, placeholder:'Short Description', class:'full editor' %><br>      
 
+    <% if editMode == 'full' %>
+        <%= f.label :description %>
+        <%= f.text_area :description, placeholder:'Description', class:'full editor' %><br>
+        <%= f.label :requirements %>
+        <%= f.text_area :requirements, placeholder:'Requirements', class:'full editor' %><br>
+    <% end %>
+
+    <%= f.text_field :tags, placeholder:'tags (comma separated)', class:'full course_create' %><br>
+    <%= f.text_field :approval_status, type:"hidden", value: 0 %><br>
+    <%= f.select :privacy, (current_user.level_1 ? [["Public", 0], ["Public (with access code)", 1],["Paid", 2],["Private (invite only)", 3]] : [["Private (invite only)", 3],["Paid", 2]] ) %>
+    <%= f.select :cstatus, course.cstatus! %>
+    <%= f.select :language, (@languages) %><br>
+    <div class="course_price" style="display:none;">
+        $<%= f.text_field :price, placeholder: 'set price (ex: 5.99)' %>
     </div>
-</div>
 
-<script>
-
-  $(document).on('input', '#course_title', function(){
-    let header = $(this).closest('.shadebox').find('.shadebox_header h5');
-
-    if($(this).val().length === 0 && $('.shadebox_bg').data('name') === 'course_mode' ){
-      header.text( 'Create new course' );
-    }else{
-      header.text( $(this).val() );
-    }
-  });
-
-  $('.reset_color').click(function(){
-    $(this).closest('.shadebox').find('#course_color').val( '#0070C0' );
-  })
-
-  $(document).on('submit', 'form.edit_course', function(){
-    let sb = $(this).closest('.shadebox_bg');
-    sb.removeClass('open');
-  });
-</script>
+    <br>
+    Course Access Code:
+    <br>
+    <%= f.text_field :access_code, class:"access_code" , placeholder:"access code" %><button id="generate_new_access_code" class="small_btn">generate new code</button>
+    <br>
+    <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %><br>
+    <%= button_tag 'Save Course', type:'submit', class:'blue shadebox_close' %>
+<% end %>

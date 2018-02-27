@@ -1,0 +1,46 @@
+<% editMode = false if !editMode %>
+<% editMode == 'quick' ? quickEdit = true : quickEdit = false %>
+
+<div class="shadebox_bg" data-name="<%= editMode ? 'edit_course_form' : 'course_form' %>">
+  
+  <div class="shadebox">
+    
+    <div class="shadebox_header">
+      <h5> <%= editMode ? course.title : 'Create a New Course' %> </h5>
+    </div>
+    
+    <div class="shadebox_content">
+      <%= render './courses/form', course:course, editMode: editMode, quickEdit: quickEdit %>  
+    </div>
+
+    <div class="shadebox_footer">
+      <div class="content">
+        
+      </div>
+      <div class="shade_close ion-ios-close"></div>
+    </div>
+
+    </div>
+</div>
+
+<script>
+
+  $(document).on('input', '#course_title', function(){
+    let header = $(this).closest('.shadebox').find('.shadebox_header h5');
+
+    if($(this).val().length === 0 && $('.shadebox_bg').data('name') === 'course_mode' ){
+      header.text( 'Create new course' );
+    }else{
+      header.text( $(this).val() );
+    }
+  });
+
+  $('.reset_color').click(function(){
+    $(this).closest('.shadebox').find('#course_color').val( '#0070C0' );
+  })
+
+  $(document).on('submit', 'form.edit_course', function(){
+    let sb = $(this).closest('.shadebox_bg');
+    sb.removeClass('open');
+  });
+</script>

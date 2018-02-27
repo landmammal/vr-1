@@ -5,7 +5,7 @@ body {
   margin:0px auto;
   color: #333; font-size: 13px; line-height: 18px;
   // font-family: verdana, arial, helvetica, sans-serif;
-  font-family: 'gotham_light';
+  font-family: $primary_font;
 }
 
 html, body {
@@ -31,7 +31,7 @@ hr{
 }
 
 p, ol, ul, td {
-  font-family: 'gotham_light';
+  font-family: $primary_font;
 }
 
 pre {
@@ -41,10 +41,10 @@ pre {
 }
 
 a {
-  color: #fff;
+  color: #333;
 
   &:visited, &:hover, &:focus {
-    color: #fff; text-decoration:none;
+    color: #333; text-decoration:none;
     // background-color: #000;
   }
 }

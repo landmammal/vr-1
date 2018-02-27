@@ -16,7 +16,7 @@ end
 desc "List of Topics and course"
 task :topics_order => :environment do    
     Course.all.each do |course|
-        if !course.topics_order
+        if !course.topics_order || course.topics_order.size < 1
             course.topics_order = course.topics.map{ |t| t.refnum }
             course.save
         end
@@ -28,7 +28,7 @@ end
 desc "List of Lessons in topic"
 task :lessons_order => :environment do    
     Topic.all.each do |topic|
-        if !topic.lessons_order
+        if !topic.lessons_order || topic.lessons_order.size < 1
             topic.lessons_order = topic.lessons.map{ |l| l.refnum }
             topic.save
         end

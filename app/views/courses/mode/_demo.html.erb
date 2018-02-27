@@ -27,7 +27,7 @@
                 </div>
 
                 <% if @course.related.size > 0 %>
-                    <h4>Related Courses</h4><hr>
+                    <h4>Related Courses</h4><hr class="small">
                     <div class="card_list">
                         <% @course.related.each do |course| %>
                             <%= render './courses/card', course_item:course, search:true %>

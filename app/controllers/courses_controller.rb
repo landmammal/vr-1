@@ -53,7 +53,10 @@ class CoursesController < ApplicationController
 
 
   def edit    
-    respond_to { |format| format.js{} }
+    respond_to do |format| 
+      format.html{} 
+      format.js{} 
+    end
   end
 
 

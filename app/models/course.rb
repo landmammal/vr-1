@@ -67,7 +67,11 @@ class Course < ApplicationRecord
       end
 
     end
-    related.uniq
+    related
+  end
+
+  def image
+    self.cover.url ? self.cover : '/assets/default_cover.png'
   end
 
   def has_rehearsals?
