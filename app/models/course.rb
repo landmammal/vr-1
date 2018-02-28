@@ -1,4 +1,6 @@
 class Course < ApplicationRecord
+  mount_uploader :cover, CoverUploader
+
   belongs_to :instructor, optional: true, class_name: 'User'
 
   # delete all registrations to this course
@@ -6,25 +8,28 @@ class Course < ApplicationRecord
   has_many :users, through: :course_registrations
 
   has_many :course_topics, dependent: :destroy
-  has_many :topics, through: :course_topics
+  has_many :topics, through: :course_topics, dependent: :destroy
 
   # delete all registrations to this course
   has_many :group_registrations, dependent: :destroy
   has_many :groups, through: :group_registrations
 
   has_many :rehearsals, dependent: :destroy
-
-  after_initialize :set_defaults, :if => :new_record?
-
   validates :access_code, uniqueness: true
 
-  mount_uploader :cover, CoverUploader
+  after_initialize :set_defaults, :if => :new_record?
+  after_update :set_updates
   
   def set_defaults
     self.access_code ||= "CA-"+SecureRandom.hex(n=3)
-    # self.refnum ||= "Co-"+SecureRandom.hex(n=3)
+    self.refnum ||= "Co-"+SecureRandom.hex(n=3)
+    self.title ||= "Unnamed Course"
     self.privacy ||= "2"
     self.cstatus ||= "0"
+  end
+
+  def set_updates
+    self.title ||= "Unnamed Course"
   end
 
   def adminprivacy
@@ -71,7 +76,7 @@ class Course < ApplicationRecord
   end
 
   def image
-    self.cover.url ? self.cover.url : '/assets/default_cover.png'
+    self.cover.url ? self.cover.url.gsub('amp;', '') : '/assets/default_cover.png'
   end
 
   def has_rehearsals?

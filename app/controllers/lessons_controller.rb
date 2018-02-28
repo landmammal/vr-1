@@ -2,7 +2,7 @@ class LessonsController < ApplicationController
   include TopicsHelper
   before_action :authenticate_user!
   before_action :set_course, only: [:show, :new, :create, :edit, :destroy]
-  before_action :set_topic, only: [:show, :new, :edit, :destroy]
+  before_action :set_topic, only: [:show, :create, :new, :edit, :destroy]
   before_action :set_lesson, only: [ :show, :edit, :update, :destroy]
 
 
@@ -59,26 +59,28 @@ class LessonsController < ApplicationController
 
   end
 
-  # GET /lessons/new
   def new
     @lesson = Lesson.new
+    respond_to { |format| format.js {  } }
   end
 
-  # GET /lessons/1/edit
   def edit
+    respond_to do |format|
+      format.js {  }
+    end
   end
 
-  # POST /lessons
-  # POST /lessons.json
+
   def create
-    @topic = current_user.topics.find(params[:topic_id])
     @topic.lessons.build(lesson_params)
-
-    @topic.lessons.last.title = 'New Lesson (rename)' if @topic.lessons.last.title == ''
-
+    
     respond_to do |format|
       if @topic.save
         @lesson = @topic.lessons.last
+        @topic.lessons_order << @lesson.refnum
+        @topic.save
+
+        format.js   { }
         format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Lesson was successfully created.' }
         format.json { render :show, status: :created, location: @topic }
       else
@@ -88,15 +90,10 @@ class LessonsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /lessons/1
-  # PATCH/PUT /lessons/1.json
   def update
-    # @topic = current_user.topics.find(params[:lesson][:topic_id])
-    # @course = @topic.courses.first
-
-    # @lesson.title = 'New Lesson (rename)' if params[:title] = ''
     respond_to do |format|
       if @lesson.update(lesson_update)
+        format.js   { }
         format.html { redirect_to course_topic_lesson_path(@lesson.topic.course, @lesson.topic, @lesson), notice: 'Lesson was updated created.' }
         format.json { render :show, status: :ok, location: @lesson }
       else
@@ -105,25 +102,24 @@ class LessonsController < ApplicationController
       end
     end
   end
-
-  # DELETE /lessons/1
-  # DELETE /lessons/1.json
+  
   def destroy
+    @topic.lessons_order.delete(@lesson.refnum)
+    @topic.save
+    
+    Rehearsal.where(lesson_id: @lesson).destroy_all
+    @lesson.delete_associations
 
-    rehearsals = Rehearsal.where(lesson_id: @lesson)
-    rehearsals.each { |r| LessonRehearsal.where(rehearsal_id: r).delete_all } if rehearsals.any?
-    rehearsals.each { |r| PerformanceFeedback.where(rehearsal_id: r).delete_all } if rehearsals.any?
-    Rehearsal.where(lesson_id: @lesson).delete_all
-
-    @lesson.destroy
+    if @lesson.destroy
       respond_to do |format|
         format.html { redirect_to course_topic_path(@course, @topic), notice: 'Lesson was successfully destroyed.' }
         format.json { head :no_content }
       end
+    end
   end
 
   private
-    # set the topic you are in before you start adding lessons
+
     def set_course
       @course = Course.find(params[:course_id])
     end
@@ -131,18 +127,17 @@ class LessonsController < ApplicationController
     def set_topic
       @topic = Topic.find(params[:topic_id])
     end
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_lesson
       @lesson = Lesson.find(params[:id])
       @site_title = 'Lesson:: '+@lesson.title
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
-      params.require(:lesson).permit(:topic_id, :title, :description, :lesson_type, :tags, :approval_status, :refnum, :instructor_id)
+      params.require(:lesson).permit(:topic_id, :title, :description, :lesson_type, :tags, :language, :approval_status, :refnum, :instructor_id)
     end
 
     def lesson_update
-      params.require(:lesson).permit(:title, :description, :lesson_type, :tags, :approval_status)
+      params.require(:lesson).permit(:title, :description, :lesson_type, :tags, :language, :approval_status)
     end
 end

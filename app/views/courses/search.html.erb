@@ -4,8 +4,8 @@
 </div>
 
 <% if current_user.level_2 %>
-  <button class="small right green_sft shadebox_btn" data-shadebox="course_form">Add Course</button>
-  <%= render './courses/popForm', course:@newCourse %>
+  <%= button_to  "Add Course", new_user_course_path(current_user), class:'small right green_sft', method: :get, remote: true %>
+  <div class="courseForm"></div>
 <%end%>
 
 <br> <br> <hr>

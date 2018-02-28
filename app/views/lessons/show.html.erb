@@ -1,20 +1,18 @@
 <% if course_creator || current_user.registered(@course) %>
-  <div class="course-bredcum">
 
-    <div class="page_info">
-      <div class="the_title">
-        <span class="grey"><%= link_to @course.title, course_path(@course) %> ::</span>
-        <span class="grey"><%= link_to @topic.title, course_topic_path(@course, @topic) %> ::</span>
-        <%= @lesson.title %>
-      </div>
-      
-      <%= (link_to '', edit_course_topic_lesson_path(@course, @topic, @lesson), class:'edit ion-edit', remote: true) if course_creator %>
-      
-      <div class="lesson_panel_btn right right_panel_btn ion-android-list" data-rightpanel='browse_course' data-intro="This button will open a panel with a list of all the topics and lessons in this course. Click, if you need to navigate the course."></div>  
-      <span class="the_title right">Lesson List: </span>
+  <div class="page_info lesson_<%= @lesson.id %>">
+    <div class="the_title">
+      <span class="grey"><%= link_to @course.title, course_path(@course) %> ::</span>
+      <span class="grey"><%= link_to @topic.title, course_topic_path(@course, @topic) %> ::</span>
+      <span class="lt_<%= @lesson.id %>"><%= @lesson.title %></span>
     </div>
-      
+    
+    <%= (link_to '', edit_course_topic_lesson_path(@course, @topic, @lesson), class:'edit ion-edit', remote: true) if course_creator %>
+    
+    <div class="lesson_panel_btn right right_panel_btn ion-android-list" data-rightpanel='browse_course' data-intro="This button will open a panel with a list of all the topics and lessons in this course. Click, if you need to navigate the course."></div>  
+    <span class="the_title right">Lesson List: </span>
   </div>
+  <div class="lessonForm"></div>    
 
   <!-- RIGHT PANEL -->
   <div class="right_panel" data-name='browse_course'>

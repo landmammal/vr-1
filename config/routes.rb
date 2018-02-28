@@ -86,6 +86,7 @@ Rails.application.routes.draw do
       post 'batch_update'
       post "course_list_nav"
     end
+    resources :courses
   end
 
 

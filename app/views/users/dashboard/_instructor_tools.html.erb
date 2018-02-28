@@ -1,7 +1,5 @@
 <div class="title">
-	<button class="creator_btn shadebox_btn" data-shadebox="course_form">
-		Create New Course
-	</button>
+	<%= button_to "Add Course", new_user_course_path(current_user), class:'small green_sft', method: :get, remote: true %>
 </div>
 <div class="body">
 

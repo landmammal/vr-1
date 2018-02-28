@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_topic, only: [:show, :edit, :update, :destroy, :change_lessons_order]
-  before_action :set_course, only: [:index, :show, :new, :edit, :destroy]
+  before_action :set_course, only: [:index, :create, :show, :new, :edit, :destroy]
 
   def index
     @topics = Topic.all
@@ -23,10 +23,7 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @course = current_user.courses.find(params[:course_id])
     @course.topics.build(topic_params)
-
-    @course.topics.last.title = 'New Topic (rename)' if @course.topics.last.title == ''
 
     respond_to do |format|
       if @course.save
@@ -47,8 +44,7 @@ class TopicsController < ApplicationController
     
     respond_to do |format|
       if @topic.update(topic_update)
-        @topic.title = 'Unnamed Topic' if params['topic']['title'].blank?
-        @topic.save
+        format.js   { }
         format.html { redirect_to course_topic_path(@topic.course, @topic), notice: 'Topic was successfully updated.' }
         format.json { render :show, status: :ok, location: @topic }
       else
@@ -63,6 +59,8 @@ class TopicsController < ApplicationController
     @course.topics_order.delete(@topic.refnum)
     @course.save
     
+    Lesson.where( topic_id: @topic.id ).destroy_all    
+    @topic.delete_associations
     @topic.destroy
     respond_to do |format|
       format.html { redirect_to course_path(@course), notice: 'Topic was successfully destroyed.' }

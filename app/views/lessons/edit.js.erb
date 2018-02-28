@@ -1,0 +1,5 @@
+'use strict';
+
+var editLesson = "<%= escape_javascript (render partial: './lessons/popForm',  locals: {lesson: @lesson, editMode:'quick' } ) %>";
+$('.lessonForm').html(editLesson);
+$('.lessonForm').delay(500).find('.shadebox_bg').addClass('open');

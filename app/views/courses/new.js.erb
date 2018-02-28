@@ -1,5 +1,5 @@
 'use strict';
 
-var newCourse = "<%= escape_javascript (render partial: './courses/popForm',  locals: { course: @newCourse } ) %>";
-$('.edit_course').html(newCourse);
-$('.edit_course').delay(500).find('.shadebox_bg').addClass('open');
+var newCourse = "<%= escape_javascript (render partial: './courses/popForm', locals: { course: @newCourse } ) %>";
+$('.courseForm').html(newCourse);
+$('.courseForm').delay(500).find('.shadebox_bg').addClass('open');

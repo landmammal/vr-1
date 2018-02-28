@@ -15,7 +15,7 @@
 
     <div class="shadebox_footer">
       <div class="content">
-        
+        <%= (button_to  "full edit mode", edit_course_path(course), method: :get, class:'small green_sft') if editMode %>
       </div>
       <div class="shade_close ion-ios-close"></div>
     </div>
@@ -28,7 +28,7 @@
   $(document).on('input', '#course_title', function(){
     let header = $(this).closest('.shadebox').find('.shadebox_header h5');
 
-    if($(this).val().length === 0 && $('.shadebox_bg').data('name') === 'course_mode' ){
+    if($(this).val().length === 0 && $('.shadebox_bg').data('name') === 'course_form' ){
       header.text( 'Create new course' );
     }else{
       header.text( $(this).val() );

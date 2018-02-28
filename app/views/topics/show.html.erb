@@ -1,120 +1,98 @@
-<!-- <center><p id="notice"> <%= notice %> </p></center> -->
-
-<div class="page_info">
-  <div class="the_title">
-    <span class="grey"></span><%= link_to @course.title, course_path(@course) %> :: </span>
-    <%= @topic.title %>
-    <% if topic_creator %>
-      <a href="<%= edit_course_topic_path(@course, @topic) %>" title="edit <%= @topic.title %>">
-        <span class="ion-edit edit" style="font-size:15px; margin:50px 10px;"></span>
-      </a>
-    <% end %>
-  </div>
-</div>
-
-
-<%= @topic.description if !@course.private? %>
-
 <%if topic_creator || current_user.registered(@course) %>
+  <div class="topic_<%= @topic.id %>" style="margin-bottom:30px;">
+  
+    <div class="page_info">
+      <div class="the_title">
+        <span class="grey"><%= link_to @course.title, course_path(@course) %> :: </span>
+        <span class="tt_<%= @topic.id %>" ><%= @topic.title %></span>
+        <%= (link_to '', edit_course_topic_path(@course, @topic), class:'edit ion-edit', remote: true, style:"font-size:15px; margin:50px 10px;") if course_creator %>
+        <div class="topicForm"></div>
+      </div>
+    </div>
 
-  <br>
+    <h2 class="tt_<%= @topic.id %>" ><%= @topic.title %></h2>
 
-  <h3>
-    Lessons
-    <%if course_creator %>
-    <!-- <a href="<%= new_course_topic_lesson_path(@course, @topic) %>"> -->
-      <button class="js-add_form_btn blue add_btn small" data-form="lesson">+</button>
-    <!-- </a> -->
-    <%end%>
-  </h3>
+    <span id="td_<%= @topic.id %>" ><%= @topic.description %></span>
+
+  </div>
+
+  <h3>Lessons</h3>
+  
+  <%= (button_to  "add +", new_course_topic_lesson_path(@course, @topic), method: :get, class:'green_sft small', remote: true) if course_creator %>
+  <div class="lessonForm"></div>
 
   <%if topic_creator %>
-    <div class="js-lesson_form" style="display:none;">
-      <%= render './lessons/form' %>
-    </div>
     <!-- <button class="reg_btn green_sft">Add External Lesson</button> -->
   <% end %>
 
-  <div id="card_list" class="card_list">
+  <div id="card_list" class="card_list creator_list">
 
     <% @lessons.each_with_index do |lesson, index| %>
-      <div class="lesson_list lesson_card <%= (index + 1).even? ? 'even' : 'odd' %>" data-refnum="<%= lesson.refnum %>" style="display:<%= (course_trainee && !topic_lesson_status(lesson)) ? 'none' : 'block' %>;">
+      <!-- <div class="lesson_list lesson_<%= lesson.id %> lesson_card <%= (index + 1).even? ? 'even' : 'odd' %>" data-refnum="<%= lesson.refnum %>" style="display:<%= (course_trainee && !topic_lesson_status(lesson)) ? 'none' : 'block' %>;">
+        
         <a href="<%= course_topic_lesson_path(@course, @topic, lesson) %>">
-          <div class="title">
+          <div class="title lt_<%= lesson.id %>">
             <%= lesson.title %>
           </div>
         </a>
-        
-        <% if topic_creator %>
 
-          <% if topic_lesson_status(lesson) %>
-            <div class="lesson_status ready"></div>
-          <% else %>
-            <div class="lesson_status notready"></div>
-          <% end %>
-
-          <div class="edit_lesson">
-            <%= link_to 'Edit', edit_course_topic_lesson_path(@course, @topic, lesson) %>
-          </div>
-
-        <% elsif course_trainee %>
-
-          <div class="lesson_completion_status <%= lesson.completion_status(current_user)[0] %>" title="<%= lesson.completion_status(current_user)[1] %>"></div>
-        
+        <% if topic_lesson_status(lesson) %>
+          <div class="lesson_status ready"></div>
+        <% else %>
+          <div class="lesson_status notready"></div>
         <% end %>
 
-      </div>
+        <div class="edit_lesson">
+          <%= link_to 'Edit', edit_course_topic_lesson_path(@course, @topic, lesson), remote: true %>
+        </div>
+
+      </div> -->
+
+      <%= render './lessons/card', lesson:lesson %>
     <% end %>
 
   </div>
 
 
-  <br><br>
-  <%if !@topic.tags.blank? %>
-    tags:
-    <div class="tags-text"><% @topic.tags.split(', ').each do |tag| %>
-      <a href="#"><%= tag %></a>
+  <div class="tags">
+    <%if !@topic.tags.blank? %>
+      tags:
+      <% @topic.tags.split(', ').each do |tag| %>
+        <div class="tag"><%= tag %></div>
+      <%end%>
     <%end%>
   </div>
-  <%end%>
-  <br><br>
+
+  <script>
+    let lessOrd = new Object;
+    
+    $( function() {
+      $( "#card_list" ).sortable({
+        placeholder: "ui-state-highlight",
+        update: function( ) {
+          lessOrd.order = [];
+          $('.lesson_card').each(function(){
+            lessOrd.order.push( $(this).data('refnum') );
+          }); 
+  
+          $.ajax({
+            url:'/topics/<%= @topic.id %>/change_lessons_order',
+            type:'POST',
+            data: lessOrd,
+            success: function(data){}
+          })
+        }
+      });
+      $( "#card_list" ).disableSelection();
+    });
+  </script>
 
 <% else %>
   
-<center style="margin:50px auto 200px;">
-    <br><br><br>
+  <center style="margin:50px auto 200px;">
     You are not registered to this course<br>
     <%=  "This is a Free Course, click below to start." if @course.free? %>
     <%=  'This is a "Closed Course". You need an invitation from the course instructor.' if @course.private? %><br><br>
     <%= render './course_registrations/course_registration_form' if !course_creator %>
   </center>
-
 <% end %>
- 
-<button class="small_btn blue js-click_back">Back</button>
-
-<br><br>
-
-<script>
-  let lessOrd = new Object;
-  
-  $( function() {
-    $( "#card_list" ).sortable({
-      placeholder: "ui-state-highlight",
-      update: function( ) {
-        lessOrd.order = [];
-        $('.lesson_card').each(function(){
-          lessOrd.order.push( $(this).data('refnum') );
-        }); 
-
-        $.ajax({
-          url:'/topics/<%= @topic.id %>/change_lessons_order',
-          type:'POST',
-          data: lessOrd,
-          success: function(data){}
-        })
-      }
-    });
-    $( "#card_list" ).disableSelection();
-  });
-</script>

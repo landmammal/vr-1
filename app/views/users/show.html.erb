@@ -35,9 +35,8 @@
 		<%= render './users/dashboard/admintools' if current_user.level_1 %>
 	</div>
 	
-	<% if current_user.level_2 %>
-		<%= render './courses/popForm', course:@new_course %>
-		<div class="edit_course"></div>
+	<% if current_user.level_2 %>		
+		<div class="courseForm"></div>
 	<% end %>
 
 </div>

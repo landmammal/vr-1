@@ -7,43 +7,30 @@
     <div class="left" style="margin-top:23px; font-size:17px;">
       <%= link_to '', edit_course_path(@course), class:'edit ion-edit', remote: true %>
     </div>
-    <div class="edit_course"></div>
+    <br>
+    <%= "Instructor: "+@course.instructor.full_name if current_user != @course.instructor %>
+    <div class="courseForm"></div>
+   
     <br>
 
-    <h4><%= 'Description' if !@course.description.blank? %></h4>
-    <div id="cd_<%= @course.id %>">
-      <%= @course.description if (!@course.private?) %>
-    </div>
-    <!-- 
-    <div class="course_instructor">
-      <span class="user-image-show">
-        <img src="<%= instructor_profile %>" class="img-circle" width='60px'>
-      </span>
-      <span class="title">Instructor<br>
-      <label><%= @course.instructor.full_name %></label></span>
-      <br>
-    </div> -->
+    <% if !@course.description.blank? %>
+      <h4>Description</h4>
+      <div id="cd_<%= @course.id %>"> <%= @course.description if (!@course.private?) %> </div>
+    <% end %>
 
     <br>
 
-    <h4> Topics
-      <% if course_creator %>
-        <button class="js-add_form_btn green_sft add_btn small" data-form="topic">+</button>
-      <% end %>
-    </h4>
-
-    <div class="js-topic_form" style="display:none;">
-      <%= render './topics/form' %>
-    </div>
+    <h4> Topics </h4>
+    <%= button_to  "add +", new_course_topic_path(@course), method: :get, class:'green_sft small', remote: true %><br>
 
     <div id="card_list" class="card_list">
 
       <% @topics.each_with_index do |topic, index| %>
 
-        <div class="card topic_card" id="topic_card_<%= topic.id %>" data-refnum="<%= topic.refnum %>">
+        <div class="card topic_card topic_<%= topic.id %>" id="topic_card_<%= topic.id %>" data-refnum="<%= topic.refnum %>">
           <a href="<%= course_topic_path(@course, topic) %>">
-            <div class="ctitle"><%= topic.title[0...25] %><%= '...' if topic.title.length > 25 %></div>
-            <div class="description">
+            <div class="ctitle tt_<%= topic.id %>"><%= topic.title[0...25] %><%= '...' if topic.title.length > 25 %></div>
+            <div class="description" id="td_<%= topic.id %>">
               <% if !topic.description.blank? %>
                 <%= topic.description[0...130] %><%= "..." if topic.description.length > 130 %>
               <% end %>
@@ -52,14 +39,16 @@
 
           <div class="actions <%= 'owner' if topic.owner(current_user) %>">
             <div></div>
-            <%= ( link_to '', course_topic_path(@course, topic), class:'edit ion-edit') if topic.owner(current_user)  %>
+            <%= ( link_to '', edit_course_topic_path(@course, topic), class:'edit ion-edit', remote: true) if topic.owner(current_user)  %>
             <%= ( link_to '', course_topic_path(@course, topic), class:'delete ion-trash-a', method: :delete, data: {confirm: "Are you sure you want to delete #{ topic.title }?"} ) if topic.owner(current_user)  %>
           </div>
 
         </div>
 
       <% end %>
+      
     </div>
+    <div class="topicForm"></div>
 
 
     <div class="tags">

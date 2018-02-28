@@ -1,0 +1,5 @@
+'use strict';
+
+var newTopic = "<%= escape_javascript (render partial: './topics/popForm',  locals: { topic: Topic.new } ) %>";
+$('.topicForm').html(newTopic);
+$('.topicForm').delay(500).find('.shadebox_bg').addClass('open');

@@ -837,11 +837,10 @@ video#bgvid {
 
 .newUsers {
   background-color: $red;
-  position: relative;
-  right: -6px;
-  top: -2px;
-  float: right;
-  padding: 0 5px;
+  color:white; font-size:10px;
+  display: inline-block; margin-bottom:3px;
+  border-radius:5px;
+  padding: 3px 5px;
 }
 
 .search_result a {
@@ -1599,27 +1598,27 @@ video#bgvid {
 .form_field label {
   font-weight: 400;
 }
-.form_field input[type='file'] {
-  border: 0px;
-  margin: 0px;
-  padding: 11px 5px;
-  position: absolute;
-  z-index: 2;
-  opacity: 0;
-}
-.form_field input[type='file'] + span {
-  background: #f7f8fd;
-  padding: 10px;
-  display: block;
-  max-width: 95%;
-  border-radius: 3px;
-  color: #6894bf;
-  font-weight: 500;
-  border: 1px solid #e1e4f5;
-  cursor: pointer;
-  position: relative;
-  z-index: 1;
-}
+// .form_field input[type='file'] {
+//   border: 0px;
+//   margin: 0px;
+//   padding: 11px 5px;
+//   position: absolute;
+//   z-index: 2;
+//   opacity: 0;
+// }
+// .form_field input[type='file'] + span {
+//   background: #f7f8fd;
+//   padding: 10px;
+//   display: block;
+//   max-width: 95%;
+//   border-radius: 3px;
+//   color: #6894bf;
+//   font-weight: 500;
+//   border: 1px solid #e1e4f5;
+//   cursor: pointer;
+//   position: relative;
+//   z-index: 1;
+// }
 
 .EditUser-container {
   width: 538px;

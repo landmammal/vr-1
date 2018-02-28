@@ -113,6 +113,8 @@ class RehearsalsController < ApplicationController
   end
 
   def destroy
+    LessonRehearsal.where(rehearsal_id: @rehearsal).destroy_all 
+    PerformanceFeedback.where(rehearsal_id: @rehearsal).destroy_all 
     @rehearsal.destroy
     respond_to do |format|
       format.html { redirect_to rehearsals_url, notice: 'Rehearsal was successfully destroyed.' }

@@ -24,21 +24,21 @@
 	}
 }
 
-  .privacy {
+.privacy {
 	font-size: 12px;
 	margin: 0 5px;
-  }
-  #topic_card_delete {
+}
+#topic_card_delete {
 		float: right;
-    color: white;
-    background: #6daaef;
-    padding: 10px 16px;
-    font-family: sans-serif;
-  }
+	color: white;
+	background: #6daaef;
+	padding: 10px 16px;
+	font-family: sans-serif;
+}
 
 	
-  .topics_area{
-	  overflow: hidden;
+.topics_area{
+	overflow: hidden;
 	.topics_list{
 		width: calc(100% - 310px);
 		float: left;
@@ -48,273 +48,7 @@
 		margin-left:10px;
 		float: left;
 	}
-  }
-
-
-
-//   .card_list {
-// 		overflow: hidden; padding-top: 10px;
-// 	}
-//   .card_list .card_item {
-// 		border-radius: 1px;
-//     border: 0;
-//     min-width: 250px;
-//     width: 24%;
-//     max-width: 350px;
-// 		background: #f7f8fd;
-// 		margin: 0% 0.2% 0.4% 0.2%;
-// 		position: relative;
-// 		float: left;
-//   }
-//   .card_list .card_item .card_title_sec {
-// 		margin: 0;
-//     background-color: $base_color;
-//     overflow: hidden;
-//   }
-  
-//   .card_list .card_item .card_title_sec .card_title {
-// 		font-size: 14px;
-//     float: left;
-//     text-align: left;
-//     width: 100%;
-//     color: #fff;
-//     font-weight: 400;
-//     padding: 10px 10px;
-//   }
-//   .card_list .card_item .card_desc, .card_list .card_item .card_edit_sec {
-// 	background-color: rgba(255, 255, 255, 0.5);
-// 	height: 100px;
-// 	overflow: hidden;
-// 	padding: 5px;
-// 	border-top: 1px dotted #CDCDCD;
-// 	text-align: left;
-// 	margin-bottom: 30px;
-//   }
-  
-//   .card_list .card_item .card_desc:hover, .card_list .card_item .card_edit_sec:hover {
-// 	background-color: white;
-//   }
-//   .card_list .card_item .card_desc button.register_to_course, .card_list .card_item .card_desc .course_content, .card_list .card_item .card_desc button.start_course, .card_list .card_item .card_edit_sec button.register_to_course, .card_list .card_item .card_edit_sec .course_content, .card_list .card_item .card_edit_sec button.start_course {
-// 	position: absolute;
-// 	bottom: 0;
-// 	padding: 1px 5px;
-// 	font-size: 10px;
-// 	font-weight: 500;
-// 	border-radius: 0;
-//   }
-//   .card_list .card_item .card_desc .course_content, .card_list .card_item .card_edit_sec .course_content {
-// 		width: calc(100% - 50px);
-//     left: 0;
-//     background-color: #e5e9f7;
-//     font-size: 12px;
-//     font-weight: 400;
-//     padding: 7px 10px;
-//   }
-//   .card_list .card_item .card_desc button.register_to_course, .card_list .card_item .card_desc button.start_course, .card_list .card_item .card_edit_sec button.register_to_course, .card_list .card_item .card_edit_sec button.start_course {
-// 		right: 0;
-//     margin: 0;
-//     background-color: $base_color;
-//     color: white;
-//     text-align: center;
-//     font-size: 13px;
-//     display: inline-block;
-//     padding: 7px;
-//   }
-  
-//   .card_list .card_item .card_desc button.register_to_course:hover, .card_list .card_item .card_desc button.start_course:hover, .card_list .card_item .card_edit_sec button.register_to_course:hover, .card_list .card_item .card_edit_sec button.start_course:hover {
-// 	background-color: #333;
-//   }
-//   .card_list .card_item .card_desc button.start_course, .card_list .card_item .card_edit_sec button.start_course {
-// 	background-color: #1CDC69;
-//   }
-//   .card_list .card_item .card_edit_sec {
-// 	padding: 20px 5px;
-// 	text-align: center;
-//   }
-//   .card_list .card, .card_list .home_card {
-// 	margin: 0;
-// 	float: left;
-// 	overflow: hidden;
-// 	text-align: left;
-// 	transition: 0.5s;
-//   }
-  
-//   .card_list .card .card_title, .card_list .home_card .card_title {
-// 	padding: 5px 8px;
-// 	font-size: 14px;
-// 	font-family: 'webly_bld';
-// 	transition: 0.5s;
-//   }
-  
-//   .card_list .card .card_desc, .card_list .home_card .card_desc {
-// 	min-height: 80px;
-// 	padding: 10px 10px;
-// 	color: #333;
-// 	border-top: 0;
-// 	transition: 0.5s;
-// 	padding-bottom: 30px;
-//   }
-  
-//   .card_list .card:hover, .card_list .home_card:hover {
-// 	transition: 0.5s;
-//   }
-  
-//   .card_list .card .bottom_count, .card_list .home_card .bottom_count {
-// 	position: absolute;
-// 	left: 10px;
-// 	bottom: 10px;
-// 	overflow: hidden;
-// 	width: 95%;
-// 	background-color: none;
-//   }
-  
-//   .card_list .card .bottom_count .circle_count, .card_list .home_card .bottom_count .circle_count {
-// 	width: 7px;
-// 	height: 7px;
-// 	float: left;
-// 	color: #00BDFF;
-// 	border-radius: 50%;
-// 	border: 2px solid;
-// 	margin: 1px;
-//   }
-  
-//   .card_list .card .bottom_count .circle_count.pending, .card_list .home_card .bottom_count .circle_count.pending {
-// 	color: #FEA808;
-// 	background-color: #FEA808;
-//   }
-  
-//   .card_list .card .bottom_count .circle_count.done, .card_list .home_card .bottom_count .circle_count.done {
-// 	color: #28D024;
-// 	background-color: #28D024;
-//   }
-  
-//   .card_list .card .bottom_count .bar_count, .card_list .home_card .bottom_count .bar_count {
-// 	width: 10px;
-// 	height: 10px;
-// 	float: left;
-// 	color: #00BDFF;
-// 	border-radius:12px;
-// 	border: 5px solid;
-// 	margin: 2px 2px;
-//   }
-  
-//   .card_list .card .bottom_count .bar_count.pending, .card_list .home_card .bottom_count .bar_count.pending {
-// 	color: #FEA808;
-//   }
-  
-//   .card_list .card .bottom_count .bar_count.done, .card_list .home_card .bottom_count .bar_count.done {
-// 	color: #28D024;
-//   }
-  
-//   .card_list .card.newcard, .card_list .home_card.newcard {
-// 	transition: 0.5s;
-//   }
-  
-//   .card_list .card.newcard .card_title, .card_list .home_card.newcard .card_title {
-// 	background-color: #1EA402;
-// 	transition: 0.5s;
-//   }
-  
-//   .card_list .card.newcard .card_desc, .card_list .home_card.newcard .card_desc {
-// 	background-color: #C4FFC4;
-// 	transition: 0.5s;
-//   }
-  
-//   .card_list .home_card {
-// 	overflow: hidden;
-// 	margin: 0 0.5% 4px 0;
-//   }
-  
-//   .card_list .home_card .card_title {
-// 		background-color: $base_color;
-//     color: white;
-//     overflow: hidden;
-//     padding: 0;
-//   }
-  
-//   .card_list .home_card .card_title .title_name {
-// 		color: #ffffff;
-//     padding: 10px 0 10px 10px;
-//     display: inline-block;
-//     font-weight: 400;
-// 		letter-spacing: 1px;
-// 		max-width: 190px;
-// 		font-size: 12px;
-// }
-  
-//   .card_list .home_card .card_desc {
-// 	background-color: #f7f8fd;
-//   }
-//   .card_list .home_card .card_desc a {
-// 	color: black;
-// 	color: #2b2b2b;
-// 	font-weight: 400;
-// 	font-size: 14px;
-// 	letter-spacing: 1px;
-//   }
-//   .card_list .home_card .card_edit {
-// 		font-size: 14px;
-//     float: right;
-//     text-align: center;
-//     padding: 10px 10px 10px 0;
-//     color: #fff;
-//   }
-  
-//   .card_list .home_card .card_edit:hover {
-// 	background-color: #0095DD;
-// 	color: white;
-//   }
-  
-//   .card_list .home_card .card_delete {
-// 		font-size: 14px;
-//     float: right;
-//     text-align: center;
-//     color: white;
-//     background: #6daaef;
-//     padding: 11px 16px;
-//     font-family: sans-serif;
-//   }
-  
-//   .card_list .home_card .card_delete:hover {
-// 	background-color: #FF0000;
-// 	color: white;
-//   }
-  
-//   .card_list .home_card .card_delete:hover a {
-// 	color: white;
-//   }
-  
-//   .card_list .home_card .card_delete a {
-// 	color: #ffffff;
-//   }
-//   .card_list .card {
-// 	margin: 0 0.5% 4px 0;
-//   }
-//   .card_list .card .card_title.course {
-// 	background-color: #FF7C86;
-// 	color: white;
-//   }
-//   .card_list .card .card_title.topic {
-// 		background-color: $base_color;
-//     color: white;
-//     font-size: 14px;
-//     font-weight: 400;
-//     padding: 0px 0px;
-// 	}
-// 	.card_list .card .card_title.topic a{
-// 		color: #ffffff;
-//     padding: 10px;
-//     display: inline-block;
-//     font-weight: 400;
-//     letter-spacing: 1px;
-// 	}
-//   .card_list .card .card_desc.course {
-// 	background-color: rgba(#eee, 0.5);
-//   }
-//   .card_list .card .card_desc.topic {
-// 		background-color: #f7f8fd;
-//     padding: 10px 10px 30px 10px;
-//   }
+}
 
 
 .search_area{
@@ -350,22 +84,20 @@
 	margin:50px 0;
 
 	.tag {
-		color: white;
-		background-color: #b6d8ff;
+		color: #333;
+		background-color: #eee;
 		border-radius: 5px;
-		border: 1px solid #b6d8ff;
 		font-size: 12px;
-		padding: 0px 14px;
+		padding: 3px 14px;
 		display: inline-block;
 		transition:0.5s;
 		
 		&:hover{
 			transition:0.5s;
-			color: $base_color;
+			a{ color: $base_color; }
 			background-color: transparent;
 		}
 	}
-
 }
 
 .c_detail{
@@ -400,7 +132,7 @@
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	grid-gap: 1em;
-	margin-top: 10px;
+	margin: 10px 0 20px;
 
 	.card{
 		display: grid;
@@ -461,6 +193,15 @@
 
 			&.owner{
 				grid-template-columns: auto 50px 20px;  
+
+				& .lesson_status{
+					width: 10px;
+					height: 10px;
+					border-radius: 50%; margin-top: 3px;
+					&.ready{ background-color:#00D718;}
+					&.notready{ background-color:red;}
+				}
+
 				a.delete, a.edit{ 
 					color:#ccc; font-size: 15px;
 					text-align: center;
@@ -481,10 +222,10 @@
 
 
 .course_cover_form{
-	width: 50%;
+	width: 50%; padding-top: 30%;
 	background-size: cover;
 	background-position: center;
-	height: 140px;
+	margin:0 auto 20px;
 }
 
 .course_cover_build{
@@ -542,27 +283,23 @@
 }
 
 @media only screen and (max-width: 495px) {
-	// .card_list{ grid-template-columns: 1fr; }
 }
 
 @media only screen and (min-width: 496px) {
-	// .card_list{ grid-template-columns: repeat(2, 1fr); }
 }
 	
 
 /* Desktop Layout: 827px to max.  Inherits styles from: Mobile Layout and Tablet Layout. */
 @media only screen and (min-width: 827px) {
-	// .card_list{ grid-template-columns: repeat(3, minmax(250px, 1fr)); }
 }
 	
 /* Desktop Layout: 1261px to max.  Inherits styles from: Mobile Layout and Tablet Layout. */
 @media only screen and (min-width: 1051px) {
-	// .card_list{ grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
 }
  	
 .box_sep .title{
 	padding: 10px;
 	font-size: 18px;
 }
-.user-image-show{display: inline-block; float: left; margin-right: 10px;} 
-.user-image-show img{ max-width: 45px;}
+.user-image-show{ display: inline-block; float: left; margin-right: 10px; } 
+.user-image-show img{ max-width: 45px; }

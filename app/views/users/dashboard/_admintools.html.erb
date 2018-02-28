@@ -1,11 +1,10 @@
 <div class="title">
 	<a href="<%= users_path %>">
-	<button class="admin_btn">
-		User Index 
-		<div class="newUsers" style="display:<%= unapprovedUsers <= 0 ? 'none' : '' %>;">
-			<%= unapprovedUsers.to_s %>
-		</div>
-	</button>
+		<% if unapprovedUsers > 0 %>
+			<button class="newUsers"> <%= unapprovedUsers.to_s %> inactive users </button>
+		<% else %>
+			<button class="green_sft small">User Index</button>
+		<% end %>
 	</a>
 </div>
 <div class="body">

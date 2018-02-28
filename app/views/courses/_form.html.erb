@@ -18,11 +18,11 @@
         <div class="course_cover_form" style="background-image:url('<%= course.image %>');"></div>
     <% end %>
 
-    <%= f.label :course_cover %>
-    <%= f.file_field :cover %>
+    <%= f.file_field :cover, class:'half' %>
+    <span> upload cover image </span>
     <%= f.hidden_field :cover_cache %>
     
-    <%= f.text_field :title, placeholder:'Course title', class:'full course_create' %>
+    <%= f.text_field :title, placeholder:'Course title', class:'full' %>
     <%= f.color_field :color, value:('#0070C0' if !editMode || course.color.blank?) %>
     <span class="reset_color"> reset color </span>
     <br>
@@ -45,11 +45,10 @@
         $<%= f.text_field :price, placeholder: 'set price (ex: 5.99)' %>
     </div>
 
-    <%= f.text_field :tags, placeholder:'tags (comma separated)', class:'full course_create' %><br>
+    <%= f.text_field :tags, placeholder:'tags (comma separated)', class:'full' %><br>
 
     <br>
-    Course Access Code:
-    <br>
+    <h5> Course Access Code: </h5>
     <%= f.text_field :access_code, class:"access_code" , placeholder:"access code" %><button id="generate_new_access_code" class="small_btn">generate new code</button>
     <br>
     <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %><br>

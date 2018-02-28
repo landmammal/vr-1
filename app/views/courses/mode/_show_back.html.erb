@@ -4,7 +4,7 @@
       <%= @course.title if !@course.private? || (course_creator || current_user.registered(@course)) %>
     </span>
     <%= (link_to '', edit_course_path(@course), class:'edit ion-edit', remote: true) if course_creator %>
-    <div class="edit_course"></div>
+    <div class="courseForm"></div>
   </div>
 </div>
 

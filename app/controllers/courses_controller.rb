@@ -33,7 +33,6 @@ class CoursesController < ApplicationController
   def search
     @courses = Course.all.map{ |x| x if ( x.privacy != 3 && x.cstatus == 1 ) }.compact
     @site_title = 'Search Courses'
-    @newCourse = Course.new if current_user.level_2
 
     if params[:term]
       columns = %w{title short_desc tags}
@@ -67,15 +66,11 @@ class CoursesController < ApplicationController
 
   def create
     @new_course = current_user.courses.build(course_params)
-    @new_course.title = 'New Course (rename)' if @new_course.title == ''
     @new_course.price = (params[:course][:price].to_d * 100.00) if params[:course][:price] != ''
-    # @new_course.save
     
     respond_to do |format|
       if @new_course.save
         format.html { redirect_to @new_course, notice: 'Course was successfully created.' }
-        # format.json { render :show, status: :created, location: @course }
-        # format.js { }
       else
         format.html { render :new }
         format.json { render json: @course.errors, status: :unprocessable_entity }
@@ -105,6 +100,7 @@ class CoursesController < ApplicationController
   end
 
   def destroy
+    Topic.where( course_id: @course.id ).destroy_all
     @course.delete_associations
     @course.destroy
     respond_to do |format|

@@ -4,7 +4,7 @@ class Topic < ApplicationRecord
   belongs_to :instructor, optional: true, class_name: 'User'
   belongs_to :course, optional: true
 
-  has_many :topic_lessons
+  has_many :topic_lessons, dependent: :destroy
   has_many :lessons, through: :topic_lessons
 
   has_many :course_topics
@@ -13,10 +13,17 @@ class Topic < ApplicationRecord
   has_many :rehearsals, dependent: :destroy
 
   after_initialize :set_defaults, :if => :new_record?
+  after_update :set_updates
+  
   def set_defaults
-    # self.refnum ||= "To-"+SecureRandom.hex(n=3)
+    self.refnum ||= "To-"+SecureRandom.hex(n=3)
+    self.title ||= "Unnamed Topic"
     self.privacy ||= 1
     self.approval_status ||= 1
+  end
+
+  def set_updates
+    self.title ||= "Unnamed Topic"
   end
 
   def lessons_ready

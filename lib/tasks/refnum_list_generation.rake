@@ -57,3 +57,12 @@ task :lessons_privacy => :environment do
     end
     puts "DONE 5"
 end
+
+desc "Purge Unassociated Items"
+task :purge => :environment do   
+
+    Topic.all.each { |t| t.destroy if t.course == nil }
+    Lesson.all.each { |l| l.destroy if l.topic == nil }
+
+    puts "DONE Purging Unassociated"
+end

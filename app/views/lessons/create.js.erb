@@ -1,0 +1,4 @@
+'use strict';
+
+var newLesson = "<%= escape_javascript (render partial: './lessons/card', locals:{ lesson: @lesson }) %>";
+$('.card_list.creator_list').append(newLesson);

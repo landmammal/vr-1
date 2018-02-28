@@ -131,6 +131,29 @@ span{
   }
 }
 
+input[type='file'] {
+  border: 0px;
+  width: 100%;
+  margin: 0px;
+  padding: 11px 5px;
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+
+  & + span {
+    background: #f7f8fd;
+    padding: 10px;
+    display: block;
+    max-width: 100%;
+    border-radius: 3px;
+    color: #6894bf;
+    font-weight: 500;
+    border: 1px solid #e1e4f5;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+  }
+}
 
 
 input[type="submit"], button {
@@ -191,13 +214,6 @@ input[type="submit"], button {
     }
   }
 
-  &.admin_btn{
-    .newUsers{
-      border-radius: 3px;
-      margin-top:2px;
-    }
-  }
-
   &.reg_btn {
     width: inherit;
     float: none;    
@@ -229,11 +245,11 @@ input[type="submit"], button {
   }
 
   &.add_btn {
-    padding: 15px 14px 13px;
+    padding: 15px 17px 13px;
     float: none;
     font-size: 30px;
     color: #fff;
-    border-radius: 50%;
+    border-radius: 50% !important;
     &:hover {
       border-radius: 25%;
     }
@@ -260,18 +276,12 @@ textarea, input, select{
   
 	&.half {
 		margin: 5px 0.5%;
-		width: 49%;
-		float: left;
+		width: 48%;
 	}
 	&.full {
 		margin: 5px 0.5%;
 		width: 99%;
 		float: none;
-	}
-	&.course_create {
-		width: 50%;
-		max-width: 300px;
-		float: left;
 	}
 }
 

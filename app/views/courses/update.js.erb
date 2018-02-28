@@ -4,7 +4,7 @@ $('.course_<%= @course.id %>').each(function(){
     let card = $(this);
     card.find("#ct_<%= @course.id %>").text('<%= @course.title %>');
     card.find(".ccl_<%= @course.id %>").css('background-color', '<%= @course.color %>');
-    card.find("#cco_<%= @course.id %>").css('background-image', 'url("<%= @course.image %>")');
+    card.find("#cco_<%= @course.id %>").css('background-image', "url('<%= @course.image %>')");
     card.find("#cd_<%= @course.id %>").text('<%= @course.description %>');
     card.find("#cc_<%= @course.id %>").text('<%= @course.access_code %>');
 })

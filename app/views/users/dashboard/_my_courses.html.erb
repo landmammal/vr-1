@@ -7,7 +7,7 @@
 				<br>
 				<br>
 				<% if current_user.level_2 %>
-					<button class="big_btn green_sft shadebox_btn" data-shadebox="course_form" > Create a course </button>
+					<%= button_to "Add Course", new_user_course_path(current_user), class:'big_btn green_sft', method: :get, remote: true %>			
 				<% end %>
 			</center>
 		<%else%>

@@ -5,26 +5,33 @@ class Lesson < ApplicationRecord
   has_many :topic_lessons
   has_many :topics, through: :topic_lessons
 
-  has_many :lesson_explanations
+  has_many :lesson_explanations, dependent: :destroy
   has_many :explanations, through: :lesson_explanations
 
-  has_many :lesson_prompts
+  has_many :lesson_prompts, dependent: :destroy
   has_many :prompts, :through => :lesson_prompts
 
-  has_many :lesson_models
+  has_many :lesson_models, dependent: :destroy
   has_many :models, :through => :lesson_models
 
-  has_many :lesson_concepts
+  has_many :lesson_concepts, dependent: :destroy
   has_many :concepts, through: :lesson_concepts
 
   has_many :lesson_rehearsals
   has_many :rehearsals, through: :lesson_rehearsals
 
   after_initialize :set_defaults, :if => :new_record?
+  after_update :set_updates
+  
   def set_defaults
-    # self.refnum ||= "Le-"+SecureRandom.hex(n=3)
+    self.refnum ||= "Le-"+SecureRandom.hex(n=3)
+    self.title ||= "Unnamed Lesson"
     self.privacy ||= 1
     self.approval_status ||= 1
+  end
+
+  def set_updates
+    self.title ||= "Unnamed Lesson"
   end
 
 

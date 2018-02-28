@@ -1,0 +1,7 @@
+'use strict';
+
+$('.lesson_<%= @lesson.id %>').each(function(){
+    let card = $(this);
+    card.find(".lt_<%= @lesson.id %>").text('<%= @lesson.title %>');
+    card.find("#ld_<%= @lesson.id %>").text('<%= @lesson.description %>');
+})
