@@ -50,7 +50,7 @@ end
 desc "Set Privacy and Approval Status"
 task :set_privacy => :environment do 
     items = [ Lesson, Topic ]   
-    items.all.each do |item|
+    items.each.all.each do |item|
         item.privacy ||= 1
         item.approval_status ||= 1
         item.save
@@ -77,4 +77,35 @@ task :purge => :environment do
     Lesson.all.each { |l| l.destroy if l.topic == nil }
 
     puts "DONE: Purging Unassociated"
+end
+
+
+
+desc "Purge Course 1"
+task :purge_course_1 => :environment do   
+
+    User.all.each do |user|
+        fis = CourseRegistration.where( user_id: user.id).where(course_id: 1 ).first
+
+        CourseRegistration.where( user_id: user.id).where(course_id: 1 ).each do |cr|
+            cr.destroy if cr != fis
+        end
+    end
+
+    puts "DONE: Purging Course 1"
+end
+
+
+desc "Purge Course 201"
+task :purge_course_201 => :environment do   
+
+    User.all.each do |user|
+        fis = CourseRegistration.where( user_id: user.id).where(course_id: 201 ).first
+
+        CourseRegistration.where( user_id: user.id).where(course_id: 201 ).each do |cr|
+            cr.destroy if cr != fis
+        end
+    end
+
+    puts "DONE: Purging Course 201"
 end

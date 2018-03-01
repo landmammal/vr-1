@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @courses_pending = current_user.registered_courses.order('id DESC').map{ |x| x if (!x.course_registrations.find_by(user_id: current_user.id).approval_status) }.compact
     ( Rails.env.development? || Rails.env.test? ) ? starter_course = Course.all.first : starter_course = Course.find(201) 
 
-    if !current_user.level_1 && starter_course && !@courses.include?(starter_course)
+    if !current_user.level_1 && starter_course && !current_user.registered(starter_course)
       current_user.course_registrations.build(course_id: starter_course.id).save
     end
 
