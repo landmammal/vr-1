@@ -92,41 +92,42 @@ class Course < ApplicationRecord
 
 
   def draft?
-    self.cstatus == 0
+   	self.cstatus == 0
   end
 
   def free?
-		self.privacy == 0 && !self.draft?
-	end
+	self.privacy == 0 && !self.draft?
+  end
 
-	def with_code?
-		self.privacy == 1 && !self.draft?
-	end
+  def with_code?
+	self.privacy == 1 && !self.draft?
+  end
 
-	def paid?
-		self.privacy == 2 && !self.draft?
+  def paid?
+	self.privacy == 2 && !self.draft?
   end
   
   def show_price
-    "$"+(sprintf "%.2f", (self.price.to_f/100))
+ 	"$"+(sprintf "%.2f", (self.price.to_f/100))
   end
 
-	def private?
-		self.privacy == 3 && !self.draft?
+  def private?
+	self.privacy == 3 && !self.draft?
   end
 
   def privacy_icon
     if self.free?
-      ['ion-earth', 'free course']
+      result = ['ion-earth', 'free course']
     elsif self.with_code?
-      ['ion-lock-combination', 'access code required']
+      result = ['ion-lock-combination', 'access code required']
     elsif self.paid?
-      ['ion-social-usd', 'paid course']
+      result = ['ion-social-usd', 'paid course']
     elsif self.private?
-      ['ion-locked', 'private course']
+      result = ['ion-locked', 'private course']
     elsif self.draft?
-      ['ion-mouse', 'draft mode']
+      result = ['ion-mouse', 'draft mode']
     end
+    result
   end
   
   def owner(user)
