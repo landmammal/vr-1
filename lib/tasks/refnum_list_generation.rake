@@ -49,11 +49,13 @@ end
 
 desc "Set Privacy and Approval Status"
 task :set_privacy => :environment do 
-    items = [ Lesson, Topic ]   
-    items.each.all.each do |item|
-        item.privacy ||= 1
-        item.approval_status ||= 1
-        item.save
+    items = [ Lesson, Topic ]  
+    items.each do |item|
+        item.all.each do |i|
+            i.privacy ||= 1
+            i.approval_status ||= 1
+            i.save
+        end
     end
     puts "DONE: Set Approval and Privacy"
 end
