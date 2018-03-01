@@ -9,7 +9,7 @@ class Explanation < ApplicationRecord
 
   after_initialize :set_defaults, :if => :new_record?
   def set_defaults
-    # self.refnum ||= "Ex-"+SecureRandom.hex(n=3)
+    self.refnum ||= "Ex-"+SecureRandom.hex(n=3)
   end
 
 end
