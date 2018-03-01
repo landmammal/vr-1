@@ -72,10 +72,10 @@ class LessonsController < ApplicationController
 
 
   def create
-    @topic.lessons.build(lesson_params)
+    @lesson = @topic.lessons.build(lesson_params)
     
     respond_to do |format|
-      if @topic.save
+      if @lesson.save
         format.js   { }
         format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Lesson was successfully created.' }
         format.json { render :show, status: :created, location: @topic }

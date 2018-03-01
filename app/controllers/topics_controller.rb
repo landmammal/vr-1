@@ -23,10 +23,10 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @course.topics.build(topic_params)
+    @topic = @course.topics.build(topic_params)
 
     respond_to do |format|
-      if @course.save        
+      if @topic.save 
         format.html { redirect_to course_topic_path(@course, @topic), notice: 'Topic was successfully created.' }
         format.json { render :show, status: :created, location: @topic }
       else

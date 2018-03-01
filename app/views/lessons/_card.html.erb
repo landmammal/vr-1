@@ -15,5 +15,4 @@
     <%= ( link_to '', edit_course_topic_lesson_path(@course, @topic, lesson), class:'edit ion-edit', remote: true) if lesson.owner(current_user)  %>
     <%= ( link_to '', course_topic_lesson_path(@course, @topic, lesson), class:'delete ion-trash-a', method: :delete, data: {confirm: "Are you sure you want to delete #{ lesson.title }?"} ) if lesson.owner(current_user)  %>
     </div>
-
 </div>
