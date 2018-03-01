@@ -1,3 +1,12 @@
+desc "Run_all_rakes"
+task :run_all_rakes => [ :refnum_generation, :auth_token_generation, 
+                         :topics_order, :lessons_order, :set_privacy, 
+                         :courses_privacy, :purge, :purge_course_201 
+                    ] do
+
+    puts "DONE: Running all the rakes"
+end
+
 desc "Ref Number Generation"
 task :refnum_generation => :environment do
     items = [ [Course, 'Co'], [Topic, 'To'], [Lesson, 'Le'], [Explanation, 'Ex'], [Prompt, 'Pr'], [Model, 'Mo'], [Rehearsal, 'Re'], [Feedback, 'Fe'], [Concept, 'Con'] 

@@ -20,7 +20,7 @@ class Rehearsal < ApplicationRecord
 
   after_initialize :set_defaults, :if => :new_record?
   def set_defaults
-    # self.refnum ||= "Re-"+SecureRandom.hex(n=3)
+    self.refnum ||= "Re-"+SecureRandom.hex(n=3)
   end
 
   def submitted?

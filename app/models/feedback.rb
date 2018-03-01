@@ -8,6 +8,6 @@ class Feedback < ApplicationRecord
 
   after_initialize :set_defaults, :if => :new_record?
   def set_defaults
-    # self.refnum ||= "Fe-"+SecureRandom.hex(n=3)
+    self.refnum ||= "Fe-"+SecureRandom.hex(n=3)
   end
 end
