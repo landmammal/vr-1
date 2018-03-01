@@ -81,8 +81,6 @@ task :purge => :environment do
     puts "DONE: Purging Unassociated"
 end
 
-
-
 desc "Purge Course 1"
 task :purge_course_1 => :environment do   
 
@@ -111,3 +109,4 @@ task :purge_course_201 => :environment do
 
     puts "DONE: Purging Course 201"
 end
+
