@@ -9,7 +9,17 @@ task :refnum_generation => :environment do
             i.save
         end
     end
-    puts "DONE 1"
+    puts "DONE: Ref Number Generation"
+end
+
+
+desc "Auth Token Generation"
+task :auth_token_generation => :environment do
+    User.all.each do |user|
+        user.auth_token = SecureRandom.hex(n=10) if user.auth_token == nil
+        user.save
+    end
+    puts "DONE: Auth Token Generation"
 end
 
 
@@ -21,7 +31,7 @@ task :topics_order => :environment do
             course.save
         end
     end
-    puts "DONE 2"
+    puts "DONE: List of Topics and course"
 end
 
 
@@ -33,7 +43,7 @@ task :lessons_order => :environment do
             topic.save
         end
     end
-    puts "DONE 3"
+    puts "DONE: List of Lessons in topic"
 end
 
 
@@ -44,7 +54,7 @@ task :topics_privacy => :environment do
         topic.approval_status ||= 1
         topic.save
     end
-    puts "DONE 4"
+    puts "DONE: Set Topics Privacy"
 end
 
 
@@ -55,7 +65,7 @@ task :lessons_privacy => :environment do
         lesson.approval_status ||= 1
         lesson.save
     end
-    puts "DONE 5"
+    puts "DONE: Set Lessons Privacy"
 end
 
 desc "Purge Unassociated Items"
@@ -64,5 +74,5 @@ task :purge => :environment do
     Topic.all.each { |t| t.destroy if t.course == nil }
     Lesson.all.each { |l| l.destroy if l.topic == nil }
 
-    puts "DONE Purging Unassociated"
+    puts "DONE: Purging Unassociated"
 end
