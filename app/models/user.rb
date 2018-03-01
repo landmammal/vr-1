@@ -29,6 +29,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :username
 
   after_initialize :set_defaults, :if => :new_record?
+  
   def set_defaults
     self.auth_token ||= SecureRandom.hex(n=10)
   end
