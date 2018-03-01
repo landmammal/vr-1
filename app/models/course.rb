@@ -1,4 +1,6 @@
 class Course < ApplicationRecord
+  mount_uploader :cover, CoverUploader
+
   belongs_to :instructor, optional: true, class_name: 'User'
 
   # delete all registrations to this course
@@ -6,22 +8,28 @@ class Course < ApplicationRecord
   has_many :users, through: :course_registrations
 
   has_many :course_topics, dependent: :destroy
-  has_many :topics, through: :course_topics
+  has_many :topics, through: :course_topics, dependent: :destroy
 
   # delete all registrations to this course
   has_many :group_registrations, dependent: :destroy
   has_many :groups, through: :group_registrations
 
   has_many :rehearsals, dependent: :destroy
-
-  after_initialize :set_defaults, :if => :new_record?
-
   validates :access_code, uniqueness: true
 
-  mount_uploader :cover, CoverUploader
+  after_initialize :set_defaults, :if => :new_record?
+  after_update :set_updates
   
   def set_defaults
     self.access_code ||= "CA-"+SecureRandom.hex(n=3)
+    self.refnum ||= "Co-"+SecureRandom.hex(n=3)
+    self.title ||= "Unnamed Course"
+    self.privacy ||= "2"
+    self.cstatus ||= "0"
+  end
+
+  def set_updates
+    self.title ||= "Unnamed Course"
   end
 
   def adminprivacy
@@ -42,6 +50,34 @@ class Course < ApplicationRecord
     self.topics.each { |t| @lessons << Lesson.where(instructor_id: self.instructor, topic_id: t) }
   end
 
+  def topics_ready
+    self.topics_order.collect {|r| Topic.find_by_refnum(r) }.compact.map{ |t| t if (t.privacy == 1 && t.approval_status == 1) }.compact
+  end
+
+  def get_tags
+    self.tags ? self.tags.split(',') : ['no tags']
+  end
+
+  def related
+    related = []
+    self.get_tags.each do |tag|
+      
+      Course.all.where.not( id: self.id ).each do |c| 
+        next if ( related.include?( c ) )
+
+        if c.get_tags.include?(tag)
+          related << c
+          next
+        end
+      end
+
+    end
+    related
+  end
+
+  def image
+    self.cover.url ? self.cover.url.gsub('amp;', '') : '/assets/default_cover.png'
+  end
 
   def has_rehearsals?
     self.rehearsals.size > 0
@@ -55,17 +91,20 @@ class Course < ApplicationRecord
   end
 
 
+  def draft?
+    self.cstatus == 0
+  end
 
   def free?
-		self.privacy == 0 && self.cstatus == 1
+		self.privacy == 0 && !self.draft?
 	end
 
 	def with_code?
-		self.privacy == 1 && self.cstatus == 1
+		self.privacy == 1 && !self.draft?
 	end
 
 	def paid?
-		self.privacy == 2 && self.cstatus == 1
+		self.privacy == 2 && !self.draft?
   end
   
   def show_price
@@ -73,11 +112,25 @@ class Course < ApplicationRecord
   end
 
 	def private?
-		self.privacy == 3 && self.cstatus == 1
+		self.privacy == 3 && !self.draft?
+  end
+
+  def privacy_icon
+    if self.free?
+      ['ion-earth', 'free course']
+    elsif self.with_code?
+      ['ion-lock-combination', 'access code required']
+    elsif self.paid?
+      ['ion-social-usd', 'paid course']
+    elsif self.private?
+      ['ion-locked', 'private course']
+    elsif self.draft?
+      ['ion-mouse', 'draft mode']
+    end
   end
   
   def owner(user)
-    self.instructor == user
+    self.instructor == user || user.role == 'admin'
   end
 
 end

@@ -1,5 +1,6 @@
 class RehearsalsController < ApplicationController
   include RehearsalsHelper
+  
   before_action :set_rehearsal, only: [:edit, :destroy]
   before_action :set_update_rehearsal, only: [:update]
   before_action :set_lesson, only: [:create, :index]
@@ -105,11 +106,15 @@ class RehearsalsController < ApplicationController
       @retracted = false
       @rehearsal.submission ? @sent = true : @retracted = true 
       
-      respond_to { |format| format.js {} }      
+      respond_to do |format|
+        format.js {} 
+      end
     end
   end
 
   def destroy
+    LessonRehearsal.where(rehearsal_id: @rehearsal).destroy_all 
+    PerformanceFeedback.where(rehearsal_id: @rehearsal).destroy_all 
     @rehearsal.destroy
     respond_to do |format|
       format.html { redirect_to rehearsals_url, notice: 'Rehearsal was successfully destroyed.' }
@@ -136,7 +141,7 @@ class RehearsalsController < ApplicationController
   end
 
   def rehearsal_params
-    params.require(:rehearsal).permit(:course_id, :lesson_id, :group_id, :token, :video_token, :trainee_id, :script, :submission, :topic_id, :instructor_rating, :self_rating)
+    params.require(:rehearsal).permit(:course_id, :lesson_id, :group_id, :token, :video_token, :trainee_id, :script, :submission, :topic_id, :instructor_rating, :refnum, :self_rating)
   end
 
   def rehearsal_update_params

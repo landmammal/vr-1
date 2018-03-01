@@ -113,9 +113,17 @@ function myFunction() {
 
 var pageReady = function(){
 
+	$(".menu-control").click(function () {
+		$(".main-content.in_app").toggleClass('menu-large');
+		var src = $(this).attr('src');
+		var newsrc = (src == '/assets/menu.png') ? '/assets/menu-close.png' : '/assets/menu.png';
+		$(this).attr('src', newsrc);
+	});
+
 	$('button.submit_job_application').click(function(){
 		$('form.application_form').submit();
 	});
+	
 	$('.apply_job').click(function(){
 		$('form.application_form')[0].reset();
 		$('.success').fadeOut(500);
@@ -141,10 +149,21 @@ var pageReady = function(){
 
 
 	// User Profile drop Menu
-	$('.drop_menu').click(function(event){
+	$('.dropdownToggle').click(function(event){
 		event.preventDefault();
-		$('.user_dropdown').toggleClass('drop');
-		$('#chevron').toggleClass('ion-chevron-up ion-chevron-down');
+		let drop = $(this).data('drop');
+		let dropdown = $(`div[data-dropdown="${drop}"]`);
+		let rightOffset = $(this).data('offset');
+
+		dropdown.fadeToggle('fast');
+		dropdown.css( 'right', rightOffset );
+		
+	});
+	$(document).mouseup(function(e) {
+		let dd = $('.dropdown');
+		if ( !dd.is(e.target) && dd.has(e.target).length === 0 && e.target!==dd.prev('.dropdownToggle') ) { 
+			dd.hide(); 
+		}
 	});
 
 
@@ -291,6 +310,11 @@ var pageReady = function(){
 	// 				   text:'<span class="ht3">Rehearse to become</span><br><span class="ht1">A BETTER YOU</span>'
 	// 				 }];
 
+
+
+
+
+	
 	// var hbg = 0;
 
 	// setInterval(function(){

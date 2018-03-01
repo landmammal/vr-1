@@ -1,94 +1,67 @@
-<% if course_creator || course_trainee %>
-  <div class="course-bredcum">
+<% if course_creator || current_user.registered(@course) %>
 
-  <div class="top_info">
-    <div class="course_title">
+  <div class="page_info lesson_<%= @lesson.id %>">
+    <div class="the_title">
       <span class="grey"><%= link_to @course.title, course_path(@course) %> ::</span>
-    </div>
-    <div class="course_title">
       <span class="grey"><%= link_to @topic.title, course_topic_path(@course, @topic) %> ::</span>
-    </div>
-    <div class="course_title">
-      <%= @lesson.title %>
+      <span class="lt_<%= @lesson.id %>"><%= @lesson.title %></span>
     </div>
     
-    <% if lesson_creator %>
-      <% if topic_lesson_status(@lesson) %>
-        <div class="lesson_ready">
-          <span class="ion-checkmark-circled" title="Lesson is ready"></span>
-          <button class="btn-trainee green_sft js-trainee_view" title="Click to view trainee window"> Trainee view</button>
-        </div>
-      <% end %>
-    <% end %>
+    <%= (link_to '', edit_course_topic_lesson_path(@course, @topic, @lesson), class:'edit ion-edit', remote: true) if course_creator %>
     
+    <div class="lesson_panel_btn right right_panel_btn ion-android-list" data-rightpanel='browse_course' data-intro="This button will open a panel with a list of all the topics and lessons in this course. Click, if you need to navigate the course."></div>  
+    <span class="the_title right">Lesson List: </span>
   </div>
-      
-  </div>
+  <div class="lessonForm"></div>    
 
-  <div class="lesson_type" style="display:none;"><%= @lesson.lesson_type %></div>
-
-
-  <div class="box_sep">
-    <div class="title" style="padding:0;">
-      <!-- <pre><%= @topic_lessons %></pre> -->
-
-
-      <div class="lesson-row">
-          
-        <div class="lesson_add">
-          <% if lesson_creator %>
-            <a href="<%= edit_course_topic_lesson_path(@course, @topic, @lesson) %>" title="edit <%= @lesson.title %>">
-              <span class="green_sft lesson_create_btn">Edit Lesson</span>
-            </a>
-            <a href="<%= course_topic_path(@course, @topic) %>">
-              <button class="green_sft lesson_create_btn"> Add Lesson </button>
+  <!-- RIGHT PANEL -->
+  <div class="right_panel" data-name='browse_course'>
+    <div class="title"><%= @course.title %></div>
+    <button class="close_panel small red add_btn">x</button>
+    <div class="content">
+      <% @course.topics.each do |topic| %>
+        <div class="topic_title"><%= topic.title %></div>
+        <div class="right_lesson_list">
+          <% topic.lessons.each do |lesson| %>
+            <a href="<%= course_topic_lesson_path(@course, topic, lesson) %>">
+              <div class="item <%= 'selected' if lesson == @lesson %> <%= ((topic_lesson_status(@lesson)) ? 'ready' : 'not_ready') if lesson_creator %>">
+                <%= lesson.title %>
+              </div>
             </a>
           <% end %>
         </div>
-        
-        <button class="btn-view lesson_create_btn right_panel_btn" data-rightpanel='browse_course' data-intro="This button will open a panel with a list of all the topics and lessons in this course. Click, if you need to navigate the course.">
-          <img src="/assets/icon-lesson.png">
-        </button>
-
-      </div>
-  <div class="timeline" data-intro="Clicking on these progress bubbles will help you navigate through the lessons of the course, this is also a visual representation of your current progress on each lesson.">
-    <ul>
-      <% @topic_lessons.each do |key, value| %>
-        <li class="<%= value[0] %> <%= "selected" if key.to_s == params[:id] %>">
-          <span class="tooltip-custom" data-tooltip="<%= Lesson.find(key).title %> :: <%= value[1] %>">
-            <a href="<%= course_topic_lesson_path(@course, @topic, key)%>"></a>
-          </span>
-        </li>
       <% end %>
-    </ul>
+    </div>
   </div>
 
+  <!-- TRAINEE VIEW -->
+  <% if lesson_creator %>
+    <% if topic_lesson_status(@lesson) %>
+      <div class="lesson_ready">
+        Lesson is ready <br><br>
+        <%= button_tag 'Trainee view', class:"btn-trainee green_sft js-trainee_view", title:"Click to view trainee window" %>
+      </div>
+    <% end %>
+  <% end %>
+  
+  <!-- DESCRIBING LESSON TYPE -->
+  <div class="lesson_type" style="display:none;"><%= @lesson.lesson_type %></div>
 
-      
-    </div>
+  <div class="box_sep">
+    <div class="title" style="padding:0;">
 
-
-    <div class="right_panel" data-name='browse_course'>
-      <div class="title"><%= @course.title %></div>
-      <div class="content">
-        <% @course.topics.each do |topic| %>
-            <span style="font-family:'gotham';"><%= topic.title %></span>
-            <div class="right_lesson_list">
-              <% topic.lessons.each do |lesson| %>
-                  <a href="<%= course_topic_lesson_path(@course, topic, lesson) %>">
-                    <div class="item <%= ((topic_lesson_status(@lesson)) ? 'ready' : 'not_ready') if lesson_creator %>">
-                      <%= lesson.title %>
-                      <% if lesson == @lesson %>
-                          <span class="ion-android-arrow-dropleft-circle"></span>
-                      <% end %>
-                    </div>
-                  </a>
-              <% end %>
-            </div>
-        <% end %>
+      <div class="timeline" data-intro="Clicking on these progress bubbles will help you navigate through the lessons of the course, this is also a visual representation of your current progress on each lesson.">
+        <ul>
+          <% @topic_lessons.each do |key, value| %>
+            <li class="<%= value[0] %> <%= "selected" if key.to_s == params[:id] %>">
+              <span class="tooltip-custom" data-tooltip="<%= Lesson.find(key).title %> :: <%= value[1] %>">
+                <a href="<%= course_topic_lesson_path(@course, @topic, key)%>"></a>
+              </span>
+            </li>
+          <% end %>
+        </ul>
       </div>
     </div>
-
 
     <!-- <div class="lesson_half"></div> -->
     <% @next = LessonNextPrevious(@lesson)[1] %>
@@ -158,11 +131,10 @@
               </div>
 
 
-              <div class="shadebox" data-name='<%= progressbox[1] %>_box'>
-                <div class="shade box" style="max-width:630px; margin-top:10px;">
-                  <div class="shadebox_title">
+              <div class="shadebox_bg" data-name='<%= progressbox[1] %>_box'>
+                <div class="shadebox" style="max-width:630px; margin-top:10px;">
+                  <div class="shadebox_header">
                     New <%= progressbox[1].capitalize %>
-
                   </div>
                   <div class="shadebox_content">
                     <% @newForm = progressbox[2] %>
@@ -171,23 +143,23 @@
                     <% @this_error = 'error_'+progressbox[1] %>
                     <%= render 'componentnew' %>
                   </div>
-                  <div class="shadebox_bottom">
+                  <div class="shadebox_footer">
+                    <div class="content"></div>
+                    <div class="shade_close ion-ios-close"></div>
                   </div>
                 </div>
               </div>
 
           <% end %>
 
-
-
           <br>
 
           <center>
-            <div class="lesson_desc" style="margin:50px 0 70px;"></div>
+            <div class="lesson_desc" style="margin:25px 0 70px;"></div>
           </center>
 
 
-          <div class="concept_list">
+          <!-- <div class="concept_list">
             <div class="concept_title">
               Concepts
               <% if lesson_creator %>
@@ -206,7 +178,9 @@
                   </div>
                 </a>
             <% end %>
-          </div>
+          </div> -->
+
+          <%= (button_to 'Add Lesson +', course_topic_path(@course, @topic), class:'green_sft small', method: :get) if course_creator %>
 
           <% if course_creator %>
             <div class="rehearsals_side">
@@ -234,9 +208,9 @@
 
 
           <!-- CONCEPTS -->
-          <div class="shadebox" data-name='add_concept'>
-            <div class="shade box" style="max-width:630px; top:20%;">
-              <div class="shadebox_title">
+          <!-- <div class="shadebox_bg" data-name='add_concept'>
+            <div class="shadebox" style="max-width:630px; top:20%;">
+              <div class="shadebox_header">
                 <div class="put_title_here">
                   <span style="font-family:'gotham';">Add Concept</span>
                 </div>
@@ -269,15 +243,15 @@
                     <%= f.submit 'Add Concept', class: 'shade_close blue', style: 'float:right;' %>
                 <% end %>
               </div>
-              <div class="shadebox_bottom">
+              <div class="shadebox_footer">
               </div>
             </div>
-          </div>
+          </div> -->
 
 
         </div>
 
-    <% elsif (@lesson_ready && course_trainee) %>
+    <% elsif (@lesson_ready && current_user.registered(@course)) %>
 
         <div class="body lesson_holder">
           <%= render 'trainee' %>

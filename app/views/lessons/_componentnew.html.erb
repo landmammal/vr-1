@@ -1,5 +1,5 @@
 <div class="component_wrapper">
-  <%= form_for [@lesson, @newForm], html: {class:@this_added_class+"Form", id:"ziggeoForm"}, remote: true do |f| %>
+  <%= form_for [@lesson, @newForm], html: {class:@this_added_class+"Form", id:"ziggeoForm"}, authenticity_token: true, remote: true do |f| %>
   <%= f.text_area :script, class:'full', placeholder: 'Write your script here ...' %><br>
   <div class="media_wrapper">
     <div class="ziggeo">

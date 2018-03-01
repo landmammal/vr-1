@@ -28,6 +28,11 @@ class User < ApplicationRecord
   validates :username, presence: true
   validates_uniqueness_of :username
 
+  after_initialize :set_defaults, :if => :new_record?
+  def set_defaults
+    self.auth_token ||= SecureRandom.hex(n=10)
+  end
+
   # checking for approved in user field
   def active_for_authentication?
     super && approved?
@@ -97,6 +102,22 @@ class User < ApplicationRecord
   # trainee & coach & instructor & admin
   def level_4
     [@@r[0], @@r[1], @@r[2], @@r[3]].include? self.role
+  end
+
+  def pending_feedback
+    self.rehearsals.size > 0 ? self.rehearsals.all.map{ |r| r.feedbacks.size }.compact.reduce(:+) : 0
+  end
+
+  def pending_rehearsals
+    self.courses.size > 0 ?  self.courses.all.map{ |c| c.submitted_rehearsals.size }.compact.reduce(:+) : 0
+  end
+
+  def notifications
+    self.pending_rehearsals + self.pending_feedback
+  end
+
+  def registered(item)
+    self.registered_courses.include?(item)
   end
 
   # associations

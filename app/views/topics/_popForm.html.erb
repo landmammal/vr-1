@@ -1,0 +1,42 @@
+<% editMode = false if !editMode %>
+<% editMode == 'quick' ? quickEdit = true : quickEdit = false %>
+
+<div class="shadebox_bg" data-name="<%= editMode ? 'edit_topic_form' : 'topic_form' %>">
+  
+  <div class="shadebox">
+    
+    <div class="shadebox_header">
+      <h5> <%= editMode ? topic.title : 'Create a New Topic' %> </h5>
+    </div>
+    
+    <div class="shadebox_content">
+      <%= render './topics/form', topic:topic, editMode: editMode, quickEdit: quickEdit %>  
+    </div>
+
+    <div class="shadebox_footer">
+      <div class="content">
+        
+      </div>
+      <div class="shade_close ion-ios-close"></div>
+    </div>
+
+    </div>
+</div>
+
+<script>
+
+  $(document).on('input', '#topic_title', function(){
+    let header = $(this).closest('.shadebox').find('.shadebox_header h5');
+
+    if($(this).val().length === 0 && $('.shadebox_bg').data('name') === 'topic_form' ){
+      header.text( 'Create new topic' );
+    }else{
+      header.text( $(this).val() );
+    }
+  });
+
+  $(document).on('submit', 'form.edit_topic', function(){
+    let sb = $(this).closest('.shadebox_bg');
+    sb.removeClass('open');
+  });
+</script>

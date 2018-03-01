@@ -1,0 +1,8 @@
+<div class="user_info">
+    <div class="user_name">
+        <%= current_user.full_name %>
+        <div class="role"> <%= current_user.role %> </div>
+    </div>
+    <profile class="dropdownToggle" data-offset="5" data-drop="userDropdown" style="background-image:url('<%= current_user.photo %>');" ></profile>
+    <%= render 'layouts/header/user_dropdown' %>
+</div>

@@ -11,20 +11,23 @@
     
    <!-- VIDEO WINDOWS -->
 
-  <div class="shadebox" data-name="explanation">
-    <div class="shade box" style="max-width:630px; margin-top:10px;">
-        <div class="shadebox_title">
-          <div class="put_title_here">Explanation Video</div>
-        </div>
-        <div class="shadebox_content" style="text-align:center;">
-          <div class="put_video_here">
-            <div class="js-player explanation explanation_video">
-              <%= render 'explanation' %>
-            </div>
+  <div class="shadebox_bg" data-name="explanation">
+    <div class="shadebox no_header">
+      
+        <div class="shadebox_content no_padding">
+          <%= render 'explanation' %>
+          <div class="content">
+            <h3>Explanation Video</h3>
+            <hr>
+            <%= simple_format(@prior_expl.script) %>
           </div>
         </div>
-        <div class="shadebox_bottom">
+
+        <div class="shadebox_footer">
+          <div class="content"></div>
+          <div class="shade_close ion-ios-close"></div>
         </div>
+
     </div>
   </div>
 

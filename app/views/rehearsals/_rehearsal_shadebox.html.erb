@@ -1,22 +1,24 @@
-<div class="shadebox" data-name="rehearsal" style="display:block;">
-  <div class="shade box">
-    <div class="shadebox_title">
-        Rehearsal for: <%= link_to @rehearsal.lesson.title, course_topic_lesson_path(@rehearsal.course, @rehearsal.topic, @rehearsal.lesson) %>
-        <div class="shade_close stop_video">x</div>
-    </div>
-    <div class="shadebox_content" style="text-align:center;">
+<div class="shadebox_bg open" data-name="rehearsal">
+
+  <div class="shadebox large no_header">
+    <div class="shadebox_content no_padding" style="text-align:center;">
 
       <div class="media_wrapper">
         <div class="ziggeo">
           <ziggeoplayer ziggeo-theme="modern" id="rehearsal_<%= @rehearsal.id %>" ziggeo-video="<%= @rehearsal.video_token %>" ziggeo-stretch ziggeo-responsive> </ziggeoplayer>
         </div>
       </div>
+
+      <div class="content">
+        <h4>Rehearsal for: <%= link_to @rehearsal.lesson.title, course_topic_lesson_path(@rehearsal.course, @rehearsal.topic, @rehearsal.lesson) %></h4>
+      </div>
   
-      <hr>
     </div>
-    <div class="shadebox_bottom">
-      <%= render './rehearsals/approval', rehearsal:@rehearsal, user:'instructor' %>
-      <button class="shade_close red small_btn stop_video">x</button>
+    <div class="shadebox_footer">
+      <div class="content">
+        <%= render './rehearsals/approval', rehearsal:@rehearsal, user:'instructor' %>
+      </div>
+      <div class="shade_close stop_video ion-ios-close"></div>
     </div>
   </div>
 </div>

@@ -17,22 +17,26 @@
 <div class="box_sep">
 	
 	<div class="all_content js-my_courses_content">
-		<%= render 'my_courses' if current_user.level_4 %>
+		<%= render './users/dashboard/my_courses' if current_user.level_4 %>
 	</div>
 
 
 	<div class="all_content js-coaching_tools_content" style="display: none;">
-		<%= render 'coachingtools' if current_user.level_3 %>
+		<%= render './users/dashboard/coachingtools' if current_user.level_3 %>
 	</div>
 
 
 	<div class="all_content js-instructor_tools_content" style="display: none;">
-		<%= render 'instructor_tools' if current_user.level_2 %>
+		<%= render './users/dashboard/instructor_tools' if current_user.level_2 %>
 	</div>
 
 
 	<div class="all_content js-admin_tools_content" style="display: none;">
-		<%= render 'admintools' if current_user.level_1 %>
+		<%= render './users/dashboard/admintools' if current_user.level_1 %>
 	</div>
+	
+	<% if current_user.level_2 %>		
+		<div class="courseForm"></div>
+	<% end %>
 
 </div>

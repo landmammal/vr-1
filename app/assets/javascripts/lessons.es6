@@ -1,13 +1,3 @@
-$(document).ready(function () {
-	$(".menu-control").click(function () {
-		$("body").toggleClass('menu-large');
-		var src = $(this).attr('src');
-		var newsrc = (src == '/assets/menu.png') ? '/assets/menu-close.png' : '/assets/menu.png';
-		$(this).attr('src', newsrc);
-	});
-
-   
-});
 function thisLessonsList(name, json_object){
 	var newjson = railsToJson(json_object);
 	// console.log(newjson);
@@ -348,13 +338,14 @@ var pageReady = function(){
 			tmp_shift.remove();
 		});
 
-		$('.home_card').each(function() {
-			var $divs = $('.home_card');
-			var tallestHeight_home = $divs.map(function(i, el) {
-				return $(el).height();
-			}).get();
-			$divs.height(Math.max.apply(this, tallestHeight_home));
-		});
+		// $('.home_card').each(function() {
+		// 	var $divs = $('.home_card');
+		// 	var tallestHeight_home = $divs.map(function(i, el) {
+		// 		return $(el).height();
+		// 	}).get();
+		// 	$divs.height(Math.max.apply(this, tallestHeight_home));
+		// });
+
 		$('.lesson_list').each(function() {
 			var $lessondivs = $('.lesson_list');
 			var tallestHeight_lesson = $lessondivs.map(function(i, el) {
@@ -363,13 +354,13 @@ var pageReady = function(){
 			$lessondivs.height(Math.max.apply(this, tallestHeight_lesson));
 		});
 
-		$('.card_item').each(function() {
-			var $carddivs = $('.card_item');
-			var tallestHeight_card = $carddivs.map(function(i, el) {
-				return $(el).height();
-			}).get();
-			$carddivs.height(Math.max.apply(this, tallestHeight_card));
-		});
+		// $('.card_item').each(function() {
+		// 	var $carddivs = $('.card_item');
+		// 	var tallestHeight_card = $carddivs.map(function(i, el) {
+		// 		return $(el).height();
+		// 	}).get();
+		// 	$carddivs.height(Math.max.apply(this, tallestHeight_card));
+		// });
 
 		 
 // Get all parts of the progress bar.

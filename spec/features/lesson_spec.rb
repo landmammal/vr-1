@@ -3,10 +3,10 @@ require 'rails_helper'
   feature 'Lesson', type: :feature do
     context 'instructor', js: true do
 
-      let!(:instructor) { FactoryGirl.create(:user, :as_instructor) }
-      let!(:course) { FactoryGirl.create :course, instructor: instructor }
-      let!(:topic) { FactoryGirl.create :topic, instructor: instructor, courses: [course] }
-      let!(:lesson) { FactoryGirl.create :lesson, instructor: instructor, topics: [topic] }
+      let!(:instructor) { FactoryBot.create(:user, :as_instructor) }
+      let!(:course) { FactoryBot.create :course, instructor: instructor }
+      let!(:topic) { FactoryBot.create :topic, instructor: instructor, courses: [course] }
+      let!(:lesson) { FactoryBot.create :lesson, instructor: instructor, topics: [topic] }
 
       it 'can create a lesson' do
         visit new_user_session_path

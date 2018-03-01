@@ -1,8 +1,9 @@
-<h1>Editing Course</h1>
-
-<%= render 'edit' %>
-
-
-<br><br><br>
-<%= link_to 'Show', @course %><br>
-<button class="small_btn blue js-click_back">Back</button>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <%= render './courses/form', course:@course, editMode: 'full', quickEdit: false %>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>

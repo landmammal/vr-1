@@ -1,0 +1,5 @@
+'use strict';
+
+var newLesson = "<%= escape_javascript (render partial: './lessons/popForm',  locals: { lesson: Lesson.new } ) %>";
+$('.lessonForm').html(newLesson);
+$('.lessonForm').delay(500).find('.shadebox_bg').addClass('open');

@@ -3,11 +3,11 @@ require 'rails_helper'
 feature 'Explanation', type: :feature do
   context 'instructor' do
 
-    let!(:instructor) { FactoryGirl.create(:user, :as_instructor) }
-    let!(:course) { FactoryGirl.create :course, instructor: instructor }
-    let!(:topic) { FactoryGirl.create :topic, instructor: instructor, courses: [course] }
-    let!(:lesson) { FactoryGirl.create :lesson, instructor: instructor, topics: [topic] }
-    let!(:explanation) { FactoryGirl.create :explanation, instructor: instructor, lessons: [lesson] }
+    let!(:instructor) { FactoryBot.create(:user, :as_instructor) }
+    let!(:course) { FactoryBot.create :course, instructor: instructor }
+    let!(:topic) { FactoryBot.create :topic, instructor: instructor, courses: [course] }
+    let!(:lesson) { FactoryBot.create :lesson, instructor: instructor, topics: [topic] }
+    let!(:explanation) { FactoryBot.create :explanation, instructor: instructor, lessons: [lesson] }
     # 
     # it 'can create and Explanation', focus: true, js: true do
     #   visit new_user_session_path

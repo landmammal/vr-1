@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20180214190305) do
+ActiveRecord::Schema.define(version: 20180216030405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +24,7 @@ ActiveRecord::Schema.define(version: 20180214190305) do
     t.string   "language"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "refnum"
   end
 
   create_table "course_registrations", force: :cascade do |t|
@@ -51,12 +51,17 @@ ActiveRecord::Schema.define(version: 20180214190305) do
     t.integer  "privacy"
     t.string   "language"
     t.integer  "approval_status"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "cstatus"
     t.string   "access_code"
     t.integer  "price"
     t.string   "cover"
+    t.string   "color"
+    t.text     "requirements"
+    t.text     "short_desc"
+    t.string   "topics_order",    default: [],              array: true
+    t.string   "refnum"
   end
 
   create_table "demos", force: :cascade do |t|
@@ -88,6 +93,7 @@ ActiveRecord::Schema.define(version: 20180214190305) do
     t.integer  "approval_status"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "refnum"
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -103,6 +109,7 @@ ActiveRecord::Schema.define(version: 20180214190305) do
     t.string   "video_type"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.string   "refnum"
     t.index ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
   end
 
@@ -184,6 +191,7 @@ ActiveRecord::Schema.define(version: 20180214190305) do
     t.integer  "lesson_level"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "refnum"
   end
 
   create_table "models", force: :cascade do |t|
@@ -201,6 +209,7 @@ ActiveRecord::Schema.define(version: 20180214190305) do
     t.integer  "approval_status"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "refnum"
   end
 
   create_table "peer_reviews", force: :cascade do |t|
@@ -238,6 +247,7 @@ ActiveRecord::Schema.define(version: 20180214190305) do
     t.integer  "approval_status"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "refnum"
   end
 
   create_table "purchases", force: :cascade do |t|
@@ -268,6 +278,7 @@ ActiveRecord::Schema.define(version: 20180214190305) do
     t.datetime "updated_at",        null: false
     t.integer  "instructor_rating"
     t.integer  "self_rating"
+    t.string   "refnum"
     t.index ["course_id"], name: "index_rehearsals_on_course_id", using: :btree
     t.index ["group_id"], name: "index_rehearsals_on_group_id", using: :btree
     t.index ["lesson_id"], name: "index_rehearsals_on_lesson_id", using: :btree
@@ -314,8 +325,10 @@ ActiveRecord::Schema.define(version: 20180214190305) do
     t.integer  "privacy"
     t.string   "language"
     t.integer  "approval_status"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "lessons_order",   default: [],              array: true
+    t.string   "refnum"
   end
 
   create_table "user_groups", force: :cascade do |t|
@@ -375,6 +388,7 @@ ActiveRecord::Schema.define(version: 20180214190305) do
     t.string   "terms_of_use"
     t.boolean  "first_contact",          default: true
     t.string   "chat"
+    t.string   "auth_token"
     t.index ["approved"], name: "index_users_on_approved", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

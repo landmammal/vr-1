@@ -32,7 +32,6 @@ module UsersHelper
     end
 
     pending
-    
   end
 
   def registered_lessons

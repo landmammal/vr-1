@@ -1,26 +1,25 @@
-<h2> Add a new Lesson </h2>
-<%= form_for [@course, @topic, @lesson] do |f| %>
-  <% if @lesson.errors.any? %>
+<%= form_for [@course, @topic, lesson], remote: true do |f| %>
+  <% if lesson.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
-
+      <h2><%= pluralize(lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+      
       <ul>
-      <% @lesson.errors.full_messages.each do |message| %>
+      <% lesson.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <%= f.text_field :title, class:'course_create', placeholder:'Title' %><br>
-  <%= f.text_area :description, placeholder:'Description' %><br>
+  <%= f.text_field :title, class:'course_create', class:'full', placeholder:'Title' %><br>
+  <%= f.text_area :description, class:'full', placeholder:'Description' %><br>
   Lesson type: <br> <%= f.select :lesson_type, (@lesson_type) %><br>
-  <%= f.text_field :tags, class:'course_create', placeholder:'tags (comma separated)' %><br>
-  <%= f.text_field :status, type:"hidden", value: 0 %><br>
+  <%= f.text_field :tags, class:'course_create', class:'full', placeholder:'tags (comma separated)' %><br>
   <%= f.select :language, (@languages) %><br>
-  <%= f.text_field :topic_id, type:"hidden", value:params[:id] %><br>
-  <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %><br>
+  
+  <%= f.text_field :status, type:"hidden", value: 0 %>
+  <%= f.text_field :topic_id, type:"hidden", value:@topic.id %>
+  <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %>
 
-  <%= button_tag 'Save Lesson', type:'submit', class:"blue" %>
-  <button class="red js-cancel_form" data-form="lesson">Cancel</button>
+  <%= button_tag 'Save Lesson', type:'submit', class:"blue shade_close" %>
 <% end %>

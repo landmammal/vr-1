@@ -2,11 +2,11 @@
 #
 #   feature 'making practice video', type: :feature do
 #     context 'Trainee submits a video' do
-#       let! (:user) {FactoryGirl.create(:user)}
-#       let! (:course) {FactoryGirl.create(:course, user: user)}
-#       let! (:topic) {FactoryGirl.create(:topic, course: course)}
-#       let! (:lesson) {FactoryGirl.create_list(:lesson, 3, topic: topic)}
-#       let! (:trainee) {FactoryGirl.create(:user)}
+#       let! (:user) {FactoryBot.create(:user)}
+#       let! (:course) {FactoryBot.create(:course, user: user)}
+#       let! (:topic) {FactoryBot.create(:topic, course: course)}
+#       let! (:lesson) {FactoryBot.create_list(:lesson, 3, topic: topic)}
+#       let! (:trainee) {FactoryBot.create(:user)}
 #
 #
 #       it 'trainee work thru', js: true do
