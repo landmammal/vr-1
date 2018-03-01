@@ -76,10 +76,6 @@ class LessonsController < ApplicationController
     
     respond_to do |format|
       if @topic.save
-        @lesson = @topic.lessons.last
-        @topic.lessons_order << @lesson.refnum
-        @topic.save
-
         format.js   { }
         format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Lesson was successfully created.' }
         format.json { render :show, status: :created, location: @topic }

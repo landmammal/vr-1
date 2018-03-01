@@ -13,6 +13,7 @@ class Topic < ApplicationRecord
   has_many :rehearsals, dependent: :destroy
 
   after_initialize :set_defaults, :if => :new_record?
+  after_create :set_create_def
   after_update :set_updates
   
   def set_defaults
@@ -20,6 +21,11 @@ class Topic < ApplicationRecord
     self.title ||= "Unnamed Topic"
     self.privacy ||= 1
     self.approval_status ||= 1
+  end
+
+  def set_create_def
+    self.course.topics_order << self.refnum
+    self.course.save
   end
 
   def set_updates

@@ -21,6 +21,7 @@ class Lesson < ApplicationRecord
   has_many :rehearsals, through: :lesson_rehearsals
 
   after_initialize :set_defaults, :if => :new_record?
+  after_create :set_create_def
   after_update :set_updates
   
   def set_defaults
@@ -28,6 +29,11 @@ class Lesson < ApplicationRecord
     self.title ||= "Unnamed Lesson"
     self.privacy ||= 1
     self.approval_status ||= 1
+  end
+
+  def set_create_def
+    self.topic.lessons_order << self.refnum
+    self.topic.save
   end
 
   def set_updates
