@@ -47,26 +47,28 @@ task :lessons_order => :environment do
 end
 
 
-desc "Set Topics Privacy"
-task :topics_privacy => :environment do    
-    Topic.all.each do |topic|
-        topic.privacy ||= 1
-        topic.approval_status ||= 1
-        topic.save
+desc "Set Privacy and Approval Status"
+task :set_privacy => :environment do 
+    items = [ Lesson, Topic ]   
+    items.all.each do |item|
+        item.privacy ||= 1
+        item.approval_status ||= 1
+        item.save
     end
-    puts "DONE: Set Topics Privacy"
+    puts "DONE: Set Approval and Privacy"
 end
 
 
-desc "Set Lessons Privacy"
-task :lessons_privacy => :environment do    
-    Lesson.all.each do |lesson|
-        lesson.privacy ||= 1
-        lesson.approval_status ||= 1
-        lesson.save
+desc "Set Courses Privacy"
+task :courses_privacy => :environment do    
+    Course.all.each do |course|
+        course.privacy ||= 3
+        course.approval_status ||= 1
+        course.save
     end
-    puts "DONE: Set Lessons Privacy"
+    puts "DONE: Set Courses Privacy"
 end
+
 
 desc "Purge Unassociated Items"
 task :purge => :environment do   

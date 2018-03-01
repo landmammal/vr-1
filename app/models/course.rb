@@ -24,7 +24,7 @@ class Course < ApplicationRecord
     self.access_code ||= "CA-"+SecureRandom.hex(n=3)
     self.refnum ||= "Co-"+SecureRandom.hex(n=3)
     self.title ||= "Unnamed Course"
-    self.privacy ||= "2"
+    self.privacy ||= "3"
     self.cstatus ||= "0"
   end
 
