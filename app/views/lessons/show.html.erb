@@ -63,26 +63,6 @@
       </div>
     </div>
 
-    <!-- <div class="lesson_half"></div> -->
-    <% @next = LessonNextPrevious(@lesson)[1] %>
-    <% @previous = LessonNextPrevious(@lesson)[0] %>
-
-    <% @next_topic = TopicNextPrevious(@topic)[1] %>
-    <% @previous_topic = TopicNextPrevious(@topic)[0] %>
-
-    <div class="lesson_nav_holder">
-      <% if @previous != false %>
-          <a href="<%= course_topic_path(@course, @topic) %>/lessons/<%= @previous %>" class="ion-android-arrow-dropleft-circle lesson_nav"></a>
-      <% else %>
-          <% if !@previous_topic %>
-              <span class="ion-android-arrow-dropleft-circle lesson_nav inactive"></span>
-          <% else %>
-              <a href="<%= course_path(@course) %>/topics/<%= @previous_topic %>" class="ion-android-arrow-dropleft-circle lesson_nav next_topic" title="next topic" alt="next topic"></a>
-          <% end %>
-      <% end %>
-    </div>
-
-
     <% if lesson_creator %>
 
         <div class="body lesson_holder">
