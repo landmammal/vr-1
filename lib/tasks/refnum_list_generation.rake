@@ -95,9 +95,13 @@ task :purge_course_1 => :environment do
 
     User.all.each do |user|
         fis = CourseRegistration.where( user_id: user.id).where(course_id: 1 ).first
-
-        CourseRegistration.where( user_id: user.id).where(course_id: 1 ).each do |cr|
-            cr.destroy if cr != fis
+        CourseRegistration.where( user_id: user.id ).where(course_id: 1 ).each do |cr|
+            if cr == fis
+                cr.approval_status = true 
+                cr.save
+            else
+                cr.destroy
+            end
         end
     end
 
@@ -109,10 +113,14 @@ desc "Purge Course 201"
 task :purge_course_201 => :environment do   
 
     User.all.each do |user|
-        fis = CourseRegistration.where( user_id: user.id).where(course_id: 201 ).first
-
-        CourseRegistration.where( user_id: user.id).where(course_id: 201 ).each do |cr|
-            cr.destroy if cr != fis
+        fis = CourseRegistration.where( user_id: user.id).where(course_id: 201 ).first        
+        CourseRegistration.where( user_id: user.id ).where(course_id: 201 ).each do |cr|
+            if cr == fis
+                cr.approval_status = true 
+                cr.save
+            else
+                cr.destroy
+            end
         end
     end
 

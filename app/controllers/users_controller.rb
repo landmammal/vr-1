@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     ( Rails.env.development? || Rails.env.test? ) ? starter_course = Course.all.first : starter_course = Course.find(201) 
 
     if !current_user.level_1 && starter_course && !current_user.registered(starter_course)
-      current_user.course_registrations.build(course_id: starter_course.id).save
+      current_user.course_registrations.build(course_id: starter_course.id, approval_status: true).save
     end
 
     
