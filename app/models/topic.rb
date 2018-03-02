@@ -4,16 +4,13 @@ class Topic < ApplicationRecord
   belongs_to :instructor, optional: true, class_name: 'User'
   belongs_to :course, optional: true
 
-  has_many :topic_lessons, dependent: :destroy
-  has_many :lessons, through: :topic_lessons
-
-  has_many :course_topics
-  has_many :courses, through: :course_topics
+  has_many :lessons, dependent: :destroy
+  belongs_to :courses
 
   has_many :rehearsals, dependent: :destroy
 
   after_initialize :set_defaults, :if => :new_record?
-  after_create :set_create_def
+  after_create :set_create_defs
   after_update :set_updates
   
   def set_defaults
@@ -23,7 +20,9 @@ class Topic < ApplicationRecord
     self.approval_status ||= 1
   end
 
-  def set_create_def
+  def set_create_defs
+    self.lessons.create( instructor_id: self.instructor_id )
+    self.save
     self.course.topics_order << self.refnum
     self.course.save
   end

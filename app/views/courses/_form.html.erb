@@ -51,6 +51,5 @@
     <h5> Course Access Code: </h5>
     <%= f.text_field :access_code, class:"access_code" , placeholder:"access code" %><button id="generate_new_access_code" class="small_btn">generate new code</button>
     <br>
-    <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %><br>
     <%= button_tag 'Save Course', type:'submit', class:'blue shadebox_close' %>
 <% end %>

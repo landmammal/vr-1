@@ -2,26 +2,26 @@ class Lesson < ApplicationRecord
   belongs_to :instructor, optional: true, class_name: 'User'
   belongs_to :topic, optional: true
 
-  has_many :topic_lessons
-  has_many :topics, through: :topic_lessons
+  # has_many :topic_lessons
+  belongs_to :topics
 
-  has_many :lesson_explanations, dependent: :destroy
-  has_many :explanations, through: :lesson_explanations
+  # has_many :lesson_explanations, dependent: :destroy
+  has_many :explanations, dependent: :destroy
 
-  has_many :lesson_prompts, dependent: :destroy
-  has_many :prompts, :through => :lesson_prompts
+  # has_many :lesson_prompts, dependent: :destroy
+  has_many :prompts, dependent: :destroy
 
-  has_many :lesson_models, dependent: :destroy
-  has_many :models, :through => :lesson_models
+  # has_many :lesson_models, dependent: :destroy
+  has_many :models, dependent: :destroy
 
-  has_many :lesson_concepts, dependent: :destroy
-  has_many :concepts, through: :lesson_concepts
+  # has_many :lesson_concepts, dependent: :destroy
+  has_many :concepts, dependent: :destroy
 
-  has_many :lesson_rehearsals
-  has_many :rehearsals, through: :lesson_rehearsals
+  # has_many :lesson_rehearsals
+  has_many :rehearsals
 
   after_initialize :set_defaults, :if => :new_record?
-  after_create :set_create_def
+  after_create :set_create_defs
   after_update :set_updates
   
   def set_defaults
@@ -31,7 +31,7 @@ class Lesson < ApplicationRecord
     self.approval_status ||= 1
   end
 
-  def set_create_def
+  def set_create_defs
     self.topic.lessons_order << self.refnum
     self.topic.save
   end

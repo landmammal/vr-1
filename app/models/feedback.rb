@@ -3,8 +3,8 @@ class Feedback < ApplicationRecord
 
   serialize :concept_review
 
-  has_many :performance_feedbacks, dependent: :destroy
-  has_many :rehearsals, through: :performance_feedbacks
+  # has_many :performance_feedbacks, dependent: :destroy
+  belongs_to :rehearsal
 
   after_initialize :set_defaults, :if => :new_record?
   def set_defaults

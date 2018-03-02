@@ -7,8 +7,8 @@ class Course < ApplicationRecord
   has_many :course_registrations, dependent: :destroy
   has_many :users, through: :course_registrations
 
-  has_many :course_topics, dependent: :destroy
-  has_many :topics, through: :course_topics, dependent: :destroy
+  # has_many :course_topics, dependent: :destroy
+  has_many :topics, dependent: :destroy
 
   # delete all registrations to this course
   has_many :group_registrations, dependent: :destroy
@@ -18,6 +18,7 @@ class Course < ApplicationRecord
   validates :access_code, uniqueness: true
 
   after_initialize :set_defaults, :if => :new_record?
+  after_create :set_create_defs
   after_update :set_updates
   
   def set_defaults
@@ -30,6 +31,11 @@ class Course < ApplicationRecord
 
   def set_updates
     self.title ||= "Unnamed Course"
+  end
+
+  def set_create_defs
+    self.topics.build( instructor_id: self.instructor_id )
+    self.save
   end
 
   def adminprivacy
