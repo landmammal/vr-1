@@ -17,8 +17,6 @@
   <%= f.text_field :tags, class:'course_create', class:'full', placeholder:'tags (comma separated)' %><br>
   <%= f.select :language, (@languages) %><br>
   
-  <%= f.text_field :status, type:"hidden", value: 0 %>
-  <%= f.text_field :topic_id, type:"hidden", value:@topic.id %>
   <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %>
 
   <%= button_tag 'Save Lesson', type:'submit', class:"blue shade_close" %>

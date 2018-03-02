@@ -31,7 +31,7 @@ class CoursesController < ApplicationController
 
   # SEARCH FEATURE
   def search
-    @courses = Course.all.map{ |x| x if ( x.privacy != 3 && x.cstatus == 1 ) }.compact
+    @courses = Course.where.not( privacy: 3 ).where( cstatus: 1 )
     @site_title = 'Search Courses'
 
     if params[:term]

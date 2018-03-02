@@ -51,7 +51,6 @@ class ExplanationsController < ApplicationController
 
   def destroy
     # this will be and issue if explantions are been transfer to other users. but if not is valid way of deleting and explantion and its dependecies
-    @explanation.lesson_explanations.destroy_all
     @explanation.destroy
     respond_to do |format|
       format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Explanation was successfully destroyed.' }
