@@ -133,7 +133,7 @@ end
 desc "Course description to short description"
 task :course_desc_to_short_desc => :environment do    
     Course.all.each do |course|
-        course.short_desc ||= course.description
+        course.short_desc = course.description if course.short_desc.blank?
         course.save
     end
     puts "DONE: Course description to short description"
