@@ -28,10 +28,10 @@
 					<%= render './shared/ziggeoplayer', this_class: "prompt", token:@prompt.video_token %>
 				</div>
 			</div>
-			<div class="lesson_script prompt_script">
+			<div class="lesson_script prompt_script peer_prompt_script">
 				<%= simple_format(@prompt.script) %>
 			</div>
-			<%= render './lessons/scriptcontrol' %>
+			<%= render './lessons/scriptcontrol', thisclass: 'peer_prompt' %>
 		</div>
     </div>
     
@@ -45,10 +45,10 @@
 					<%= render './shared/ziggeoplayer', this_class: "rehearsal", token:@rehearsal.video_token %>
 				</div>
 			</div>
-			<div class="lesson_script prompt_script">
+			<div class="lesson_script prompt_script rehearsal_script">
 				<%= simple_format(@rehearsal.script) %>
 			</div>
-			<%= render './lessons/scriptcontrol' %>
+			<%= render './lessons/scriptcontrol', thisclass: 'rehearsal' %>
 		</div>
     </div>
     

@@ -24,37 +24,37 @@ class WelcomeController < ApplicationController
   end
 
   def test
-    @site_title = 'TESTBOX'
-    topics = Topic.all
-    lessons = Lesson.all
-    explanations = Explanation.all
+    # @site_title = 'TESTBOX'
+    # topics = Topic.all
+    # lessons = Lesson.all
+    # explanations = Explanation.all
 
-    @topics_to_fix = []
-    @lessons_to_fix = []
-    @explanations_to_fix = []
+    # @topics_to_fix = []
+    # @lessons_to_fix = []
+    # @explanations_to_fix = []
 
-    topics.each do |topic|
-      course_topic = CourseTopic.find(topic.id)
-      topic.course_id = course_topic.course_id if course_topic.course_id != topic.course_id
-      topic.save
-      @topics_to_fix << topic if course_topic.course_id != topic.course_id
-    end
-
-
-    lessons.each do |lesson|
-      topic_lesson = TopicLesson.find(lesson.id)
-      lesson.topic_id = topic_lesson.topic_id if topic_lesson.topic_id != lesson.topic_id
-      lesson.save
-      @lessons_to_fix << lesson if topic_lesson.topic_id != lesson.topic_id
-    end
+    # topics.each do |topic|
+    #   course_topic = CourseTopic.find(topic.id)
+    #   topic.course_id = course_topic.course_id if course_topic.course_id != topic.course_id
+    #   topic.save
+    #   @topics_to_fix << topic if course_topic.course_id != topic.course_id
+    # end
 
 
-    explanations.each do |explanation|
-      lesson_explanation = LessonExplanation.find(explanation.id)
-      explanation.lesson_id = lesson_explanation.lesson_id if lesson_explanation.lesson_id != explanation.lesson_id
-      explanation.save
-      @explanations_to_fix << explanation if lesson_explanation.lesson_id != explanation.lesson_id
-    end
+    # lessons.each do |lesson|
+    #   topic_lesson = TopicLesson.find(lesson.id)
+    #   lesson.topic_id = topic_lesson.topic_id if topic_lesson.topic_id != lesson.topic_id
+    #   lesson.save
+    #   @lessons_to_fix << lesson if topic_lesson.topic_id != lesson.topic_id
+    # end
+
+
+    # explanations.each do |explanation|
+    #   lesson_explanation = LessonExplanation.find(explanation.id)
+    #   explanation.lesson_id = lesson_explanation.lesson_id if lesson_explanation.lesson_id != explanation.lesson_id
+    #   explanation.save
+    #   @explanations_to_fix << explanation if lesson_explanation.lesson_id != explanation.lesson_id
+    # end
 
 
   end

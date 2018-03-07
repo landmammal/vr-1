@@ -2,7 +2,6 @@
     <!-- Instructor -->
     <%= render './courses/mode/build' %>
 <% else %>
-
     <% if  current_user.registered(@course) %>
         <!-- Registered -->
         <%= render './courses/mode/show' %>
@@ -15,5 +14,4 @@
             <h1>This is a Private Course</h1>
         </center>
     <% end %>
-    
 <% end %>

@@ -1,12 +1,55 @@
 'use strict';
 
-<% if @sent %>
-    $('.success.sent').slideDown();
-    $('.success.sent').delay(3000).slideUp();
-<%end%>
+var subBtn = $('#submit');
+var passBtn = $('#approve');
+var rejBtn = $('#reject');
 
+<% if @change.include?( 'submission' ) %>
+    subBtn.toggleClass('default green_sft');
+    <% if @rehearsal.submission %>
+        $('.success.sent').slideDown();
+        $('.success.sent').delay(3000).slideUp();
+        subBtn.text('Submitted');
+    <% else %>
+        $('.error.retracted').slideDown();
+        $('.error.retracted').delay(3000).slideUp();
+        subBtn.text('Submit');
+    <% end %>
+<% end %>
 
-<% if @retracted %>
-    $('.error.retracted').slideDown();
-    $('.error.retracted').delay(3000).slideUp();
-<%end%>
+<% if @change.include?( 'approval_status' ) %>
+
+    var btn = $('#rhs_<%= @rehearsal.id %>.rehearsal_bubble');
+
+    <% if @rehearsal.approval_status == 1 %>
+        passBtn.removeClass( 'default' );
+        passBtn.addClass( 'green_sft' );
+        passBtn.data( 'status', '0');
+        
+        rejBtn.removeClass( 'red' );
+        rejBtn.addClass( 'default' );
+        rejBtn.data( 'status', '2');
+
+        btn.data('status', 'approved_rehearsal');
+    <% elsif @rehearsal.approval_status == 2 %>
+        passBtn.removeClass( 'green_sft' );
+        passBtn.addClass( 'default' );
+        passBtn.data( 'status', '1');
+
+        rejBtn.removeClass( 'default' );
+        rejBtn.addClass( 'red' );
+        rejBtn.data( 'status', '0');
+
+        btn.data('status', 'rejected_rehearsal');
+    <% elsif @rehearsal.approval_status == 0 %>
+        passBtn.removeClass( 'green_sft' );
+        passBtn.addClass( 'default' );
+        passBtn.data( 'status', '1');
+
+        rejBtn.removeClass( 'red' );
+        rejBtn.addClass( 'default' );
+        rejBtn.data( 'status', '2');
+
+        btn.data('status', 'new_rehearsal');
+    <% end %>
+<% end %>

@@ -197,7 +197,7 @@
   width: 99%;
 }
 
-.explanation_video {
+.explanation_video, .prompt_video, .model_video, .rehearsal_video, .feedback_video {
   textarea, .lesson_script {
     height: 150px;
     padding: 10px;
@@ -207,53 +207,9 @@
     text-align: left;
     overflow: scroll;
   }
-}
-
-.prompt_video {
-  textarea, .lesson_script {
-    height: 150px;
-    padding: 10px;
-    min-width: 10px;
-    border: 1px solid #AAAAAA;
-    background-color: white;
-    text-align: left;
-    overflow: scroll;
-  }
-}
-
-.model_video {
-  textarea, .lesson_script {
-    height: 150px;
-    padding: 10px;
-    min-width: 10px;
-    border: 1px solid #AAAAAA;
-    background-color: white;
-    text-align: left;
-    overflow: scroll;
-  }
-}
-
-.rehearsal_video {
-  textarea, .lesson_script {
-    height: 150px;
-    padding: 10px;
-    min-width: 10px;
-    border: 1px solid #AAAAAA;
-    background-color: white;
-    text-align: left;
-    overflow: scroll;
-  }
-}
-
-.feedback_video {
-  textarea, .lesson_script {
-    height: 150px;
-    padding: 10px;
-    min-width: 10px;
-    border: 1px solid #AAAAAA;
-    background-color: white;
-    text-align: left;
-    overflow: scroll;
+  .lesson_script {
+    background-color: #fcfcfc;
+    border:none;
   }
 }
 

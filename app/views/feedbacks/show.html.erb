@@ -28,7 +28,7 @@
         <div class="lesson_script <%= @this_added_class %>_script">
           <%= simple_format(@feedback.notes) %>
         </div>
-        <%= render './lessons/scriptcontrol' %>
+        <%= render './lessons/scriptcontrol', thisclass: @this_added_class %>
       </div>
       <center>
         <a href="<%= course_topic_lesson_path(@rehearsal.course, @rehearsal.topic, @rehearsal.lesson) %>">
