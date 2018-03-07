@@ -58,7 +58,9 @@
     <%if !@topic.tags.blank? %>
       tags:
       <% @topic.tags.split(', ').each do |tag| %>
-        <div class="tag"><%= tag %></div>
+        <div class="tag">
+          <a href="/courses/search?term=<%= tag %>"><b><%= tag %></b></a>
+        </div>
       <%end%>
     <%end%>
   </div>

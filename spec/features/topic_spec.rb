@@ -16,7 +16,7 @@ require 'rails_helper'
         click_on 'Create New Topic'
         fill_in 'Title', with: Faker::Space.planet
         fill_in 'Description', with: Faker::Lorem.paragraph
-        fill_in 'tags (comma separated)', with: 'test,this,tags'
+        fill_in 'tags (separate with comma)', with: 'test,this,tags'
         click_on 'Create Topic'
         expect(page).to have_content 'Topic was successfully created.'
       end
