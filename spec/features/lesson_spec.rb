@@ -18,7 +18,7 @@ require 'rails_helper'
         click_on 'Create New Lesson', match: :first
         fill_in 'Title', with: Faker::Lorem.word
         fill_in 'Description', with: Faker::Lorem.paragraph
-        fill_in 'tags (comma separated)', with: 'hello,my,name'
+        fill_in 'tags (separate with comma)', with: 'hello,my,name'
         click_on 'Create Lesson'
         expect(page).to have_content 'Lesson was successfully created.'
       end
