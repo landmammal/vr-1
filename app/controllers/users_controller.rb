@@ -38,7 +38,6 @@ class UsersController < ApplicationController
       ( Rails.env.development? || Rails.env.test? ) ? re_pa = starter_course.topics.first.lessons.first.path : re_pa = Lesson.find(485).path
       redirect_to re_pa
     end
-    
     authorize @user
   end
 

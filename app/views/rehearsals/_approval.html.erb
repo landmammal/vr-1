@@ -9,20 +9,19 @@
 <% end %>
 
 <style>
-    .send_data{ display: none; float: left; }
-    .send_data.show{ display: block; }
+    .send_data{ float: left; }
+    .default{ background-color: #ccc; }
 </style>
 
 
 <% if user == 'instructor' %>
-    <button id="approve" data-show="approved" class="send_data default <%= 'show' if rehearsal.approval_status == 0 || rehearsal.approval_status == 2 %> " data-target="rehearsal_approval_status" data-status="1" >
-    Approve</button>
-    <button id="approved" data-show="approve" class="send_data green_sft <%= 'show' if rehearsal.approval_status == 1 %> " data-target="rehearsal_approval_status" data-status="0" >
-    Approved</button>
-    <button id="reject" data-show="rejected" class="send_data default <%= 'show' if rehearsal.approval_status == 0 || rehearsal.approval_status == 2 %> " data-target="rehearsal_approval_status" data-status="2" >
-    Reject</button>
-    <button id="rejected" data-show="reject" class="send_data red <%= 'show' if rehearsal.approval_status == 2 %> " data-target="rehearsal_approval_status" data-status="0" >
-    Rejected</button>
+    <% rs = rehearsal.approval_status %>
+    <button id="approve" class="send_data <%= rs == 1 ? 'green_sft' : 'default' %>" data-target="rehearsal_approval_status" data-status="<%= rs == 1 ? '0' : '1' %>" >
+        <%= rs == 1 ? 'Approved' : 'Approve' %>
+    </button>
+    <button id="reject" class="send_data <%= rs == 2 ? 'red' : 'default' %>" data-target="rehearsal_approval_status" data-status="<%= rs == 2 ? '0' : '2' %>" >
+        <%= rs == 1 ? 'Rejected' : 'Reject' %>
+    </button>
     
     <a href="/rehearsals/<%= @rehearsal.id %>" class="leave_feedback">
         <button type="button" class="blue leave_feedback ion-ios-videocam" style="float:left;" data-rehearsalid="<%= @rehearsal.id %> "> Video Feedback</button>
@@ -30,11 +29,10 @@
 <% end %>
 
 <% if user == 'trainee' %>
-    <button id="submit" data-show="submitted" class="send_data default <%= 'show' if !rehearsal.submission %> " data-target="rehearsal_submission" data-status="true" >
-    Submit</button>
-    
-    <button id="submitted" data-show="submit" class="send_data green_sft <%= 'show' if rehearsal.submission %> " data-target="rehearsal_submission" data-status="false" >
-    Submitted</button>
+
+    <button id="submit" class="send_data <%= rehearsal.submission ? 'green_sft' : 'default' %>" data-target="rehearsal_submission" data-status="<%= !rehearsal.submission ? 'true' : 'false' %>" >
+        <%= rehearsal.submission ? 'Submitted' : 'Submit' %>
+    </button>
 
     <button type="button" class="green_sft review_request" style="float:left;">Request peer review</button>
 <% end %>
@@ -50,23 +48,24 @@
 
 <script>
 
-    function submitForm(){
-        $('form#edit_rehearsal_1').submit();
+    function submitForm(form){
+        form.submit();
     }
 
     $(document).on('click' ,'.star', function(){
-        submitForm();
+        submitForm( $('form.edit_rehearsal') );
     });
 
-    $(document).on('click' ,'.send_data', function(){
-        $('form#edit_rehearsal_1')
-        .find( '#'+$(this).data('target') )
+    $(document).on('click', '.send_data', function(){
+        var form = $('form.edit_rehearsal');
+
+        form.find( '#'+$(this).data('target') )
         .val( $(this).data('status') );
         
-        submitForm();
+        submitForm(form);
         
-        $(this).toggleClass('show');
-        $('#'+$(this).data('show')).toggleClass('show');
+        // $(this).toggleClass('show');
+        // $('#'+$(this).data('show')).toggleClass('show');
     });
 
 </script>
