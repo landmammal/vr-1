@@ -102,23 +102,23 @@ class Course < ApplicationRecord
   end
 
   def free?
-	self.privacy == 0 && !self.draft?
+    self.privacy == 0 && !self.draft?
   end
 
   def with_code?
-	self.privacy == 1 && !self.draft?
+    self.privacy == 1 && !self.draft?
   end
 
   def paid?
-	self.privacy == 2 && !self.draft?
+    self.privacy == 2 && !self.draft?
   end
   
   def show_price
- 	"$"+(sprintf "%.2f", (self.price.to_f/100))
+    (sprintf "%.2f", (self.price.to_f/100))
   end
 
   def private?
-	self.privacy == 3 && !self.draft?
+    self.privacy == 3 && !self.draft?
   end
 
   def privacy_icon
