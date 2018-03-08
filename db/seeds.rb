@@ -1,113 +1,55 @@
 # require 'faker'
-User.delete_all
-User.create([{ first_name:'Administrator', last_name:'Man', username:'admin', race:'White', email:'admin@vr.com', password:'admin123', password_confirmation:'admin123', age:Time.now, role: 0, approved: true, first_contact: false},
-			 { first_name:'Instructor', last_name:'Sir', username:'instructor', race:'Asian', email:'instructor@vr.com', password:'instructor123', password_confirmation:'instructor123', age:Time.now, role: 1, approved: true, first_contact: false},
-			 { first_name:'Coach', last_name:'Jane', username:'coach', race:'White', email:'coach@vr.com', password:'coach123', password_confirmation:'coach123', age:Time.now, role: 2, approved: true, first_contact: false},
-			 { first_name:'Student', last_name:'John', username:'trainee', race:'Black', email:'trainee@vr.com', password:'trainee123', password_confirmation:'trainee123', age:Time.now, role: 3, approved: true, first_contact: false}])
+if Rails.env.development? || Rails.env.test?
+  User.delete_all
+  User.create([
+    { first_name:'Administrator', last_name:'Man', username:'admin', race:'White', email:'admin@videorehearser.com', password:'test123', age:Time.now, role: 0, approved: true, first_contact: false},
+    { first_name:'Instructor', last_name:'Sir', username:'instructor', race:'Asian', email:'instructor@videorehearser.com', password:'test123', age:Time.now, role: 1, approved: true, first_contact: false},
+    { first_name:'Coach', last_name:'Jane', username:'coach', race:'White', email:'coach@videorehearser.com', password:'test123', age:Time.now, role: 2, approved: true, first_contact: false},
+    { first_name:'Student', last_name:'John', username:'trainee', race:'Black', email:'trainee@videorehearser.com', password:'test123', age:Time.now, role: 3, approved: true, first_contact: false}
+  ])
 
-# @user = User.find(1)
-# @user.courses.build(title: "first course")
-# @user.save
+  @admin = User.find_by_username('admin')
+  @admin.courses.build([
+    {title: "Free course", description:'this is a description for first course', privacy:'0', cstatus:'1'},
+    {title: "Access Code course", description:'this is a description for second course', privacy:'1', cstatus:'1'},
+    {title: "Paid course", description:'this is a description for third course', privacy:'2', cstatus:'1'},
+    {title: "Private course", description:'this is a description for fourth course', privacy:'3', cstatus:'1'}
+  ])
+  @admin.save
 
-# @course = Course.find(1)
-# @course.topics.build(title:"first topic", instructor_id:@user.id)
-# @course.save
+  @courses = @admin.courses
+  @courses.each do |course|
+    course.topics.build([
+      { title:"first topic", description:'this is a description for first topic', course_id:course.id, instructor_id:course.instructor.id },
+      { title:"second topic", description:'this is a description for second topic', course_id:course.id, instructor_id:course.instructor.id } 
+    ])
+    course.save  
+  end
 
-# @topic = Topic.find(1)
-# @topic.lessons.build(title:"first lesson", instructor_id:@user.id)
-# @topic.save
+  Topic.all.each do |topic|
+    topic.lessons.build([
+      { title:"first lesson", description:'this is a description for first lesson', topic_id:topic.id, instructor_id:topic.course.instructor.id },
+      { title:"second lesson", description:'this is a description for second lesson', topic_id:topic.id, instructor_id:topic.course.instructor.id },
+      { title:"third lesson", description:'this is a description for third lesson', topic_id:topic.id, instructor_id:topic.course.instructor.id },
+      { title:"fourth lesson", description:'this is a description for fourth lesson', topic_id:topic.id, instructor_id:topic.course.instructor.id },
+      { title:"fifth lesson", description:'this is a description for fifth lesson', topic_id:topic.id, instructor_id:topic.course.instructor.id }
+    ])
+    topic.save
+  end
 
+  Lesson.all.each do |lesson|
+    lesson.explanations.build( lesson_id:lesson.id, title:'Explanation Test Video', video_token:'9681962d39338bded5a63422709f1022', script:'Random generated script here for Explanation', position_prior:1 )
+    lesson.prompts.build( lesson_id:lesson.id, title:'Prompt Test Video', video_token:'32540d64be31529cc50749592d69b929', script:'Random generated script here for Prompt', position_prior:1 )
+    lesson.models.build( lesson_id:lesson.id, title:'Model Test Video', video_token:'3a9cd76230216091b8ed4ba5140ec60e', script:'Random generated script here for Model', position_prior:1 )
 
+    lesson.rehearsals.build([
+      { trainee_id: 4, course_id: lesson.topic.course.id, topic_id: lesson.topic.id, lesson_id: lesson.id, video_token: "0177546f07d256f750fc2f779473effe", script: "SCRIPT FOR LESSON "+lesson.title, submission: false },
+      { trainee_id: 4, course_id: lesson.topic.course.id, topic_id: lesson.topic.id, lesson_id: lesson.id, video_token: "e0725dd5ff134bbd483f3a1ad964a7bc", script: "SCRIPT FOR LESSON "+lesson.title, submission: false },
+      { trainee_id: 1, course_id: lesson.topic.course.id, topic_id: lesson.topic.id, lesson_id: lesson.id, video_token: "0177546f07d256f750fc2f779473effe", script: "SCRIPT FOR LESSON "+lesson.title, submission: false },
+      { trainee_id: 1, course_id: lesson.topic.course.id, topic_id: lesson.topic.id, lesson_id: lesson.id, video_token: "e0725dd5ff134bbd483f3a1ad964a7bc", script: "SCRIPT FOR LESSON "+lesson.title, submission: false }
+    ])
+    lesson.save
+  end
 
-# # courses topic and lessons
-# 10.times do
-#   course = Course.create(
-#     title: Faker::Space.planet,
-#     description: Faker::Lorem.sentence(4),
-#     tags: Faker::Lorem.word,
-#     privacy: 'public',
-#     approval_status: "1",
-#     instructor_id: 2
-#   )
   
-# # you can create more topics but then have to itirate over the topics while making lesson same for lessons and exp,prompt,model.
-#   topic = course.topics.create(
-#     title: Faker::Educator.course,
-#     description: Faker::Lorem.sentence(4),
-#     tags: Faker::Lorem.word,
-#     privacy: 'public',
-#     approval_status: "1",
-#     course_id: course,
-#     instructor_id:2
-#   )
-
-#   lesson = topic.lessons.create(
-#     title: Faker::Space.planet,
-#     description: Faker::Lorem.sentence(4),
-#     tags: Faker::Lorem.word,
-#     privacy: 'public',
-#     approval_status: "1",
-#     topic_id: topic,
-#     instructor_id:2
-#   )
-
-#   lesson.explanations.create(
-#     title: Faker::Space.planet,
-#     token: "26695d8c37e99ecfce9a4e3290883e04",
-#     video_token: "4f8bca227273050849582c9ab3e710d4",
-#     script: Faker::Lorem.sentence(5),
-#     position_prior: 1,
-#     privacy: 'public',
-#     lesson_id: lesson,
-#     user_id:2
-#   )
-
-#   lesson.prompts.create(
-#     title: Faker::Space.planet,
-#     token: "26695d8c37e99ecfce9a4e3290883e04",
-#     video_token: "4f8bca227273050849582c9ab3e710d4",
-#     script: Faker::Lorem.sentence(5),
-#     position_prior: 1,
-#     privacy: 'public',
-#     lesson_id: lesson,
-#     user_id:2
-#   )
-
-#   lesson.models.create(
-#     title: Faker::Space.planet,
-#     token: "26695d8c37e99ecfce9a4e3290883e04",
-#     video_token: "4f8bca227273050849582c9ab3e710d4",
-#     script: Faker::Lorem.sentence(5),
-#     position_prior: 1,
-#     privacy: 'public',
-#     lesson_id: lesson,
-#     user_id:2
-#   )
-# end
-
-# # groups
-# 3.times do
-#   Group.create(
-#       name: Faker::GameOfThrones.house,
-#       description: Faker::Lorem.paragraph(5),
-#       instructor_id:2
-#   )
-
-# end
-# Rehearsal.create(trainee_id: 4, course_id: 5, topic_id: 5, lesson_id: 5, group_id: nil, video_type: 'ziggeo', token: '', video_token: '61a2afb4365a410b6c5f6ffc81e60f5d', script: 'This is script 1', submission: true)
-# Rehearsal.create(trainee_id: 4, course_id: 10, topic_id: 10, lesson_id: 10, group_id: nil, video_type: 'ziggeo', token: '', video_token: '61a2afb4365a410b6c5f6ffc81e60f5d', script: 'This is script 2', submission: true)
-# Rehearsal.create(trainee_id: 4, course_id: 2, topic_id: 2, lesson_id: 2, group_id: nil, video_type: 'ziggeo', token: '', video_token: '61a2afb4365a410b6c5f6ffc81e60f5d', script: 'This is script 3', submission: true)
-# LessonRehearsal.create(rehearsal_id: 1, lesson_id: 5)
-# LessonRehearsal.create(rehearsal_id: 2, lesson_id: 10)
-# LessonRehearsal.create(rehearsal_id: 3, lesson_id: 2)
-
-# Feedback.create(user_id: 3, rehearsal_id: 1, rehearsal_rating: 3, concept_review: '' , notes: 'U look funny' , token: '' , video_token: '4d840f4dfbed6bfc96c23f933126be19' , approved: true , viewed_by_user: false , video_type: 'ziggeo')
-# Feedback.create(user_id: 3, rehearsal_id: 2, rehearsal_rating: 1, concept_review: '' , notes: 'Do it again' , token: '' , video_token: '4d840f4dfbed6bfc96c23f933126be19' , approved: false , viewed_by_user: true , video_type: 'ziggeo')
-# # Feedback.create(user_id: 3, rehearsal_id: 1, rehearsal_rating: 5, concept_review: '' , notes: 'Perfect' , token: '' , video_token: '4d840f4dfbed6bfc96c23f933126be19' , approved: true , viewed_by_user: false , video_type: 'ziggeo')
-# PerformanceFeedback.create(rehearsal_id: 1, feedback_id: 1)
-# PerformanceFeedback.create(rehearsal_id: 2, feedback_id: 2)
-# # PerformanceFeedback.create(rehearsal_id: 3, feedback_id: 3)
-
-# User.create(id=3, first_name="Coach", last_name="Jane", username="coach", role="coach", age=1480451392, race="White", gender=nil, email="coach@gmail.com", approved=true, terms_of_use=nil)
-
-
+end

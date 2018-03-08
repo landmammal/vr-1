@@ -51,7 +51,6 @@ class ExplanationsController < ApplicationController
 
   def destroy
     # this will be and issue if explantions are been transfer to other users. but if not is valid way of deleting and explantion and its dependecies
-    @explanation.lesson_explanations.delete_all
     @explanation.destroy
     respond_to do |format|
       format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Explanation was successfully destroyed.' }
@@ -66,7 +65,7 @@ class ExplanationsController < ApplicationController
   end
 
   def explanation_params
-      params.require(:explanation).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :video_type, :token, :video_token, :position_prior)
+      params.require(:explanation).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :video_type, :token, :video_token, :refnum, :position_prior)
   end
 
   def explanation_update

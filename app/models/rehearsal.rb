@@ -1,4 +1,7 @@
 class Rehearsal < ApplicationRecord
+  after_update :send_submitted_email, if: :submission_changed?
+  after_update :send_approval_email, if: :approval_status_changed?
+
   belongs_to :trainee, optional: true, class_name: 'User'
 
   belongs_to :course, optional: true
@@ -6,14 +9,19 @@ class Rehearsal < ApplicationRecord
   belongs_to :lesson, optional: true
   belongs_to :group, optional: true
 
-  has_many :lesson_rehearsals, dependent: :destroy
-  has_many :lessons, through: :lesson_rehearsals
+  # has_many :lesson_rehearsals, dependent: :destroy
+  # has_many :lessons, through: :lesson_rehearsals
 
-  has_many :performance_feedbacks, dependent: :destroy
-  has_many :feedbacks, through: :performance_feedbacks, dependent: :destroy
+  # has_many :performance_feedbacks, dependent: :destroy
+  has_many :feedbacks, dependent: :destroy
 
   has_many :review_requests
   has_many :peer_reviews, through: :review_requests, dependent: :destroy
+
+  after_initialize :set_defaults, :if => :new_record?
+  def set_defaults
+    self.refnum ||= "Re-"+SecureRandom.hex(n=3)
+  end
 
   def submitted?
     self.submission != nil || self.submission
@@ -49,4 +57,14 @@ class Rehearsal < ApplicationRecord
 
     status
   end
+
+  def send_approval_email
+    self.approval_status == 1 ? message = "Your performance was approved!" : message = "You need to tweak a few things."
+    AdminMailer.lesson_complete_notice(self.trainee, self.approval_status, message, self.lesson).deliver_later if ( self.approved? || self.rejected? )
+  end
+
+  def send_submitted_email
+    AdminMailer.rehearsal_sent(self).deliver_later if self.submitted?
+  end
+
 end

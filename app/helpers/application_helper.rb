@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def image
-    Rails.env.production? ? 'https://s3.amazonaws.com/facential/images' : '/assets/as3'
+    Rails.env.development? ? '/assets/as3' : 'https://s3.amazonaws.com/facential/images'
   end
 
   def termsVersion

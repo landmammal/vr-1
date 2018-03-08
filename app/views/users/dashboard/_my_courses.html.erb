@@ -1,0 +1,35 @@
+<div class="body">
+	
+	<div class="section js-display_my_courses">
+		<% if @courses.size < 1 %>
+			<center style="margin:20px auto; max-width:400px;">
+				<a href="/courses/search"> <button class="big_btn blue" > Browse Courses </button> </a>
+				<br>
+				<br>
+				<% if current_user.level_2 %>
+					<%= button_to "Add Course", new_user_course_path(current_user), class:'big_btn green_sft', method: :get, remote: true %>			
+				<% end %>
+			</center>
+		<%else%>
+			<h4>Registered Courses</h4>
+			<hr>
+			<div class="registered_courses card_list">
+				<% @courses.each do |course| %>
+					<%= render './courses/card', course_item: course  %>
+				<%end%>
+			</div>
+		
+		<%end%>
+	</div>
+	
+	<% if current_user.level_2 && current_user.courses.size > 0 %>
+		<h4>Courses you created ( last 4 )</h4>
+		<hr>
+		<div class="created_courses card_list">
+			<% current_user.courses.order('id DESC').limit(4).each do |course| %>
+		        <%= render './courses/card', course_item: course  %>
+		    <% end %>
+		</div>
+    <% end %>
+
+</div>

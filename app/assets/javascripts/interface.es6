@@ -203,23 +203,28 @@ var pageReady = function(){
 
 
 	// =========== SHADEBOX ============= //
-	$('.shadebox_title').prepend('<button class="shade_close red small_btn">x</button>');
-	$('.shadebox_bottom').prepend('<div class="shade_close">x</div>');
+	// $('.shadebox_header').prepend('<button class="shade_close red small_btn">x</button>');
 	
-	
-	$('.shadebox').click(function(e){
-		if(e.target != this) return;
-		$(this).fadeOut(500);
+	$(document).on('click', '.shadebox_bg', function(e) {
+		let sbx = $('.shadebox');
+		if ( !sbx.is(e.target) && sbx.has(e.target).length === 0 ) { 
+			$('.shadebox_bg').removeClass('open'); 
+		}
 	});
 
 	$(document).on('click', '.shadebox_btn', function() {
 		var thisShadebox = $(this).data('shadebox');
-		$('.shadebox[data-name='+thisShadebox+']').fadeIn(500);
+		$('.shadebox_bg[data-name='+thisShadebox+']').addClass('open');
 	});
 
 	$(document).on('click', '.shade_close', function() {
-		$('.shadebox').fadeOut(500);
+		$('.shadebox_bg').removeClass('open');
 	});
+
+	$(document).on('click', '.shadebox_close', function() {
+		$('.shadebox_bg').removeClass('open');
+	});
+
 	$(document).on('click', '.reset_form', function() {
 		$(this).closest('form')[0].reset();
 	});
@@ -229,24 +234,26 @@ var pageReady = function(){
 		$(this).removeClass('empty_shadebox_content');
 	});
 
-	//=============== RIGHT PANEL ============ //
 
-	$('.right_panel').prepend('<div class="close"> x </div>');
+
+
+
+
+	//=============== RIGHT PANEL ============ //
 
 	$(document).on('click', '.right_panel_btn', function() {
 		var thisPanel = $(this).data('rightpanel');
 		$('.right_panel[data-name='+thisPanel+']').toggleClass('pop');
 	});
 
-	$(document).on('click', '.right_panel .close', function() {
-		$('.right_panel').removeClass('pop');
+	$(document).on('click', '.right_panel .close_panel', function() {
+		$(this).closest('.right_panel').removeClass('pop');
 	});
 	
 	$('.right_panel').click(function(e){
 		if(e.target != this) return;
 		$(this).removeClass('pop');
 	});
-
 
 
 

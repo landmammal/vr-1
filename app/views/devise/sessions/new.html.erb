@@ -3,8 +3,8 @@
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-      <%= f.email_field :email, autofocus: true, autocomplete: "off", placeholder:'Email', class:'login' %><br>
-      <%= f.password_field :password, autocomplete: "off", placeholder:'Password', class:'login' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "off", placeholder:'Email', class:'login', value:('admin@videorehearser.com' if Rails.env.development?) %><br>
+      <%= f.password_field :password, autocomplete: "off", placeholder:'Password', class:'login', value:('test123' if Rails.env.development?) %>
 
     <% if devise_mapping.rememberable? -%>
       <div class="field">

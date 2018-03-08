@@ -51,7 +51,7 @@ class ConceptsController < ApplicationController
   end
 
   def destroy
-    @concept.lesson_concept.delete_all
+    @concept.lesson_concept.destroy_all
     @concept.destroy
     respond_to do |format|
       format.html { redirect_to explanations_url, notice: 'Concept was successfully destroyed.' }
@@ -67,7 +67,7 @@ class ConceptsController < ApplicationController
   end
 
   def concept_params
-    params.require(:concept).permit(:description, :lesson_id, :user_id, :privacy, :language)
+    params.require(:concept).permit(:description, :lesson_id, :user_id, :refnum, :privacy, :language)
   end
   def concept_update
     params.require(:concept).permit(:description, :privacy, :language)

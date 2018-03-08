@@ -16,8 +16,8 @@ var pageReady = function(checkrecorder){
 
 			    $(document).on('click', '.shade_close', function() {
 					recorder.reset();
-					$(this).closest('.shade.box').find('.save_'+recorderClass).show();
-					$(this).closest('.shadebox').find('form')[0].reset();
+					$(this).closest('.shadebox').find('.save_'+recorderClass).show();
+					$(this).closest('.shadebox_bg').find('form')[0].reset();
 					// console.log('clicked')
 				});
 
@@ -122,7 +122,7 @@ var pageReady = function(checkrecorder){
 				    	$('.save_'+recorderClass).click(function() {
 					    	postTokenInForm(thisForm, videoToken, streamToken);
 					    	if($(this).hasClass('shade_close')){
-					    		$('.shadebox').fadeOut(500);
+					    		$('.shadebox_bg').removeClass('open');
 					    		recorder.reset();
 					    	}
 				    		// $('form.'+recorderClass+'Form')[0].reset();

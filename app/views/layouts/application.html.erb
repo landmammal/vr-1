@@ -1,124 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    <title><%= @site_title ? @site_title : "videoRehearser" %></title>
+    <link rel="shortcut icon" href="/assets/ico.png">
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <%= render 'layouts/styles' %>
 
-  <LINK REL="SHORTCUT ICON" HREF="/assets/ico.png">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <!-- <%= javascript_include_tag :defaults %> -->
+    <%= csrf_meta_tags %>
+    
+  </head>
+  <body>
 
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <%= render 'layouts/loading' %>
+    <script type="text/javascript">$('.loading_app').show(); startLoadingProg();</script>
 
-  <!-- BOOSTRAP -->
-  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <link rel="stylesheet" href="/bootstrap/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-  <script src="/bootstrap/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-  <link href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' rel='stylesheet' type='text/css'>
-
-  <title><%= @site_title ? @site_title : "videoRehearser" %></title>
-
-  <!-- INTRO JS -->
-<!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.7.0/intro.js"></script> -->
-<!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.7.0/introjs.css" /> -->
-
-  <!-- ziggeo api token and styles -->
-  <link rel="stylesheet" href="//assets-cdn.ziggeo.com/v1-latest/ziggeo.css" />
-  <script src="//assets-cdn.ziggeo.com/v1-latest/ziggeo.js"></script>
-  <script> ZiggeoApi.token ='<%= ENV["ZIGGEO_TOKEN"] %>'; </script>
-
-  <!-- <script>ZiggeoApi.Config.webrtc = true;</script> -->
-
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-83591568-1', 'auto');
-    ga('send', 'pageview');
-  </script>
-
-
-
-</head>
-<body>
-
-<div class="loading_app" style="display:none;">
-  <div class="loading_wrapper">
-    <span class="load_text"> 
-      <span class="ion-ios-cloud-download"></span> 
-    </span><br>
-    <progress class="loading_prog" value="0" max="101"></progress>
-    <div class="loading_reload" style="display:none;">
-      <button class="js-reload green_sft small_btn" >
-        Reload page
-      </button>
+    <script type="text/javascript">TermsandServices(<%= check_terms(termsVersion) %>);</script>
+    <div class="terms_not_aggreed" style="display:<%= check_terms(termsVersion) ? 'none' : 'block' %>;">
+      <%= render '/welcome/reviewtermsandservices' %>
     </div>
-  </div>
-</div>
+    
+    <%= render 'layouts/notice' %>
 
-<script type="text/javascript">TermsandServices(<%= check_terms(termsVersion) %>);</script>
-<div class="terms_not_aggreed" style="display:<%= check_terms(termsVersion) ? 'none' : 'block' %>;">
-  <%= render '/welcome/reviewtermsandservices' %>
-</div>
+    <div class="layout">
+        <%= render 'layouts/header/header' %>
 
-<script type="text/javascript">$('.loading_app').show(); startLoadingProg();</script>
-
-<% if notice || alert %>
-  <div id="notice_wrapper" class="<%= notice ? 'notice' : 'alert' %>">
-    <%= notice ? notice : alert %>
-    <div class="close_notice">x</div>
-  </div>
-<% end %>
-
-
-
-<%= render 'layouts/menu' unless menu_welcome %>
-
-
-<% if user_signed_in? %>
-
-  <div class="main-content">
-
-    <div class="side-menu">
-        <%= render 'layouts/leftpanel' %>
-    </div>
-    <div class="content-container">
-        <%= yield %>
-        <input type="hidden" name="thisPath" value="<%= request.original_fullpath %>">
+        <div class="main-content <%= 'in_app' if in_app %>">
+          <% render 'layouts/leftpanel' if user_signed_in? %>
+          <div class="content-container"> <%= yield %></div>
+        </div>
+      
+        <%= render 'layouts/footer' %>
     </div>
 
-  </div>
-  <br>
-
- 
-
-<% else %>
-
-  <%= yield %>
-
-<% end %>
-
-
-<%= render 'layouts/footer' %>
-
-
-<script type="text/javascript"> endLoadingProg(); </script>
-
-<script type="text/javascript">
-   (function(d,s,i,r) {
-     if (d.getElementById(i)){return;}
-     var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
-     n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/2530258.js';
-     e.parentNode.insertBefore(n, e);
-   })(document,"script","hs-analytics",300000);
-</script>
-
-</body>
+  </body>
 </html>

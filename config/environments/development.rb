@@ -6,28 +6,19 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
 
   # action mailer settings
-  # config.action_mailer.delivery_method = :letter_opener_web
-  config.action_mailer.delivery_method = ENV['USER'] == 'vagrant' ? :letter_opener_web : :letter_opener
+  config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  config.action_mailer.smtp_settings = {
-             address:              'smtp.gmail.com',
-             port:                 587,
-             domain:               'gmail.com',
-             user_name:            ENV['GOOGLE_USERNAME'],
-             password:             ENV['GOOGLE_PASSWORD'],
-             authentication:       'plain',
-             enable_starttls_auto: true
-  }
-  # set to false for developement
+  
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.cache_classes = false
-  
-  
+
   config.action_mailer.perform_caching = false
 
   # Do not eager load code on boot.
   config.eager_load = false
+
+  config.middleware.insert_after(ActionDispatch::Static, Rack::LiveReload)
 
   # Show full error reports.
   config.consider_all_requests_local = true

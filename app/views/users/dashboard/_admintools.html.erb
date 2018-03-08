@@ -1,0 +1,30 @@
+<div class="title">
+	<a href="<%= users_path %>">
+		<% if unapprovedUsers > 0 %>
+			<button class="newUsers"> <%= unapprovedUsers.to_s %> inactive users </button>
+		<% else %>
+			<button class="green_sft small">User Index</button>
+		<% end %>
+	</a>
+</div>
+<div class="body">
+
+	<div class="js-my_courses_list">
+
+		<h4>All Courses</h4>
+		
+		<div class="card_list admin_c_list">
+
+			<% @all_courses.each do |course| %>
+		        <%= render './courses/card', course_item: course %>
+			<% end %>
+			
+		</div>
+
+		<hr>
+		
+		<%= paginate @all_courses %>
+
+	</div>
+
+</div>	

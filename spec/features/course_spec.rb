@@ -3,8 +3,8 @@ require 'rails_helper'
   feature 'Course', type: :feature do
     context 'Instructor', js: true do
 
-      let!(:instructor) { FactoryGirl.create(:user, :as_instructor) }
-      let!(:course) { FactoryGirl.create :course, instructor: instructor }
+      let!(:instructor) { FactoryBot.create(:user, :as_instructor) }
+      let!(:course) { FactoryBot.create :course, instructor: instructor }
 
       it "creates a course" do
         visit new_user_session_path
@@ -15,7 +15,7 @@ require 'rails_helper'
         click_on 'Create New Course'
         fill_in 'Title', with: Faker::Space.planet
         fill_in 'Description', with: Faker::Lorem.paragraph
-        fill_in 'tags (comma separated)', with: 'hello,tags,king'
+        fill_in 'tags (separate with comma)', with: 'hello,tags,king'
         click_on 'Create Course'
         expect(page).to have_content 'Course was successfully created.'
       end

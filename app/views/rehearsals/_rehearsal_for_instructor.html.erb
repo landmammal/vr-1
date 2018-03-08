@@ -1,8 +1,8 @@
 <% @this_user = rehearsal.trainee %>
 <% @link_to_lesson = course_topic_lesson_path(rehearsal.course, rehearsal.topic, rehearsal.lesson) %>
 
-<div class="top_info">
-  <div class="course_title">
+<div class="page_info">
+  <div class="the_title">
     Rehearsal submission for the lesson ::
     <%= link_to rehearsal.lesson.title, @link_to_lesson %>
   </div>
@@ -32,7 +32,7 @@
                 <div class="lesson_script <%= @this_added_class %>_script">
                   <%= simple_format(rehearsal.script) %>
                 </div>
-                <%= render './lessons/scriptcontrol' %>
+                <%= render './lessons/scriptcontrol', thisclass: @this_added_class %>
               </div>
             </div>
 

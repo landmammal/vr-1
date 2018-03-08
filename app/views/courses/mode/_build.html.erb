@@ -1,0 +1,190 @@
+<div class="topics_area course_<%= @course.id %>">
+
+  <div class="topics_list">
+    <h2 id="ct_<%= @course.id %>" class="left">
+      <%= @course.title %>
+    </h2>
+    <div class="left" style="margin-top:23px; font-size:17px;">
+      <%= link_to '', edit_course_path(@course), class:'edit ion-edit', remote: true %>
+    </div>
+    <br>
+    <%= "Instructor: "+@course.instructor.full_name if current_user != @course.instructor %>
+    <div class="courseForm"></div>
+   
+    <br>
+
+    <% if !@course.description.blank? %>
+      <h4>Description</h4>
+      <div id="cd_<%= @course.id %>"> <%= @course.description if (!@course.private?) %> </div>
+    <% end %>
+
+    <br>
+
+    <h4> Topics </h4>
+    <%= button_to  "add +", new_course_topic_path(@course), method: :get, class:'green_sft small', remote: true %><br>
+
+    <div id="card_list" class="card_list">
+
+      <% @topics.each_with_index do |topic, index| %>
+
+        <div class="card topic_card topic_<%= topic.id %>" id="topic_card_<%= topic.id %>" data-refnum="<%= topic.refnum %>">
+          <a href="<%= course_topic_path(@course, topic) %>">
+            <div class="ctitle tt_<%= topic.id %>"><%= topic.title[0...25] %><%= '...' if topic.title.length > 25 %></div>
+            <div class="description" id="td_<%= topic.id %>">
+              <% if !topic.description.blank? %>
+                <%= topic.description[0...130] %><%= "..." if topic.description.length > 130 %>
+              <% end %>
+            </div>
+          </a>
+
+          <div class="actions <%= 'owner' if topic.owner(current_user) %>">
+            <div></div>
+            <%= ( link_to '', edit_course_topic_path(@course, topic), class:'edit ion-edit', remote: true) if topic.owner(current_user)  %>
+            <%= ( link_to '', course_topic_path(@course, topic), class:'delete ion-trash-a', method: :delete, data: {confirm: "Are you sure you want to delete #{ topic.title }?"} ) if topic.owner(current_user)  %>
+          </div>
+
+        </div>
+
+      <% end %>
+      
+    </div>
+    <div class="topicForm"></div>
+
+
+    <div class="tags">
+      tags
+      <hr>
+      <% @course.get_tags.each do |tag| %>
+        <div class="tag">
+          <a href="/courses/search?term=<%= tag %>"><b><%= tag %></b></a>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+
+
+
+
+
+  <!-- SIDE BAR -->
+  <div class="side">
+    <div class="course_cover_build" id="cco_<%= @course.id %>" style="background-image:url('<%= @course.image %>');"></div>
+    <br>
+    <h4 style="padding:7px 0;">Students List
+      <button class="blue small_btn shadebox_btn" data-shadebox="invite_student" > Invite </button>
+    </h4>
+  
+  
+    <div class="shadebox_bg" data-name="invite_student">
+      <div class="shadebox">
+        <div class="shadebox_header">Invite a student to your course</div>
+        
+        <%= form_tag "/invite_student", class:'invite_student_form', remote: true do %>
+          <div class="shadebox_content">
+  
+            <div class="invite_student_div" data-action="invite_student">
+              <%= text_field_tag :emails, nil, class:"full", autocomplete:"off", autocorrect:"off", autocapitalize:"off", spellcheck:"false", placeholder:"Enter Student's email" %>
+              <span class="does_not_exist" style="color:red; display:none; font-size:10px;">
+                This user does not exists, an email will be sent to invite them to video Reheaeser.
+              </span>
+              <span class="multiple_emails" style="color:rgb(25, 0, 255); display:none; font-size:10px;">
+                You are attempting to add multiple emails by adding commas ",".
+              </span>
+              <%= text_field_tag :course_id, nil, type:'hidden', class:"full", value:@course.id %>
+              <br>
+              Select role: <%= select_tag :user_role, options_for_select(["trainee", "coach"]) %>
+              <br>
+              <br>
+              <div class="auto_add" style="display:none; font-size:13px;">
+                <span style="font-size:12px;">
+                  This user is already in signed up on the platform:
+                </span>
+                <br>
+                Want to Automatically register to the course? <%= check_box_tag :auto_add %>
+              </div>          
+              <br>
+            </div>
+            <div class="confirmation_div"></div>
+            
+          </div>
+          <div class="shadebox_footer">
+            <div class="content"><%= submit_tag "Send Invitation", class:'blue' %></div>
+            <div class="shade_close ion-ios-close"></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    
+    Course Code: <span style="font-size:12px; font-weight:bold;" id="cc_<%= @course.id %>" ><%= @course.access_code %></span>
+    <hr>
+    
+    <div class="student_list_nav">
+      <% @users.each do |student| %>
+        <%= render "./users/bubble", student: student, course: @course %>
+      <% end %>
+    </div>
+    <% if @users.size > 0 %>
+  
+      <center style="font-size:10px;">
+        <span class="current_nav_num">1</span> out of <%= @pages %>
+      </center>
+      <hr>
+      <%= form_tag( '/courses/student_list_nav' , style:'float:left;', remote: true) do |f| %>
+        <%= hidden_field_tag :amount, nil, value:8 %>
+        <%= hidden_field_tag :direction, nil, value:"previous" %>
+        <%= hidden_field_tag :current, nil, class:'current_nav', value:0 %>
+        <%= hidden_field_tag :course_id, nil, value:@course.id %>
+        <%= submit_tag :<<, class:"tiny_btn" %>
+      <% end %>
+  
+      <%= form_tag( '/courses/student_list_nav' , style:'float:right;', remote: true) do |f| %>
+        <%= hidden_field_tag :amount, nil, value:8 %>
+        <%= hidden_field_tag :direction, nil, value:"next" %>
+        <%= hidden_field_tag :current, nil, class:'current_nav', value:0 %>
+        <%= hidden_field_tag :course_id, nil, value:@course.id %>
+        <%= submit_tag :>>, class:"tiny_btn" %>
+      <% end %>
+    
+    <% end %>
+  
+  </div>
+
+
+
+
+</div>
+
+
+<!-- <button class="small_btn blue js-click_back">Back</button> -->
+
+<% if current_user.registered(@course) && !course_pending %>
+  <%= form_tag "/leave_course/" do %>
+    <%= hidden_field_tag :course_id, nil, value: @course.id %>
+    <%= button_tag "Unregister from this course", class:"small_btn red", style:"float:right;" %>
+  <% end %>
+<% end %>
+
+<script>
+  let topOrd = new Object;
+  
+  $( function() {
+    $( "#card_list" ).sortable({
+      placeholder: "ui-state-highlight",
+      update: function( ) {
+        topOrd.order = [];
+        $('.topic_card').each(function(){
+          topOrd.order.push( $(this).data('refnum') );
+        }); 
+
+        $.ajax({
+          url:'/courses/<%= @course.id %>/change_topics_order',
+          type:'POST',
+          data: topOrd,
+          success: function(data){}
+        })
+      }
+    });
+    $( "#card_list" ).disableSelection();
+  });
+</script>
