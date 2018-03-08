@@ -1,7 +1,8 @@
 desc "Run_all_rakes"
 task :run_all_rakes => [ :refnum_generation, :auth_token_generation, 
                          :topics_order, :lessons_order, :set_privacy, 
-                         :courses_privacy, :purge, :purge_course_201 
+                         :courses_privacy, :purge, :purge_course_201,
+                         :course_desc_to_short_desc
                     ] do
 
     puts "DONE: Running all the rakes"
@@ -127,3 +128,13 @@ task :purge_course_201 => :environment do
     puts "DONE: Purging Course 201"
 end
 
+
+
+desc "Course description to short description"
+task :course_desc_to_short_desc => :environment do    
+    Course.all.each do |course|
+        course.short_desc = course.description if course.short_desc.blank? 
+        course.save
+    end
+    puts "DONE: Course description to short description"
+end

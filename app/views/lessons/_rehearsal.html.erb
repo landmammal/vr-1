@@ -31,7 +31,7 @@
             <% end %>
 
             <%= f.text_area :script, class:'rehearsal_script', placeholder:'Write your script here...' %>
-            <div style="margin-top:-5px;"><%= render 'scriptcontrol' %></div>
+            <div style="margin-top:-5px;"><%= render 'scriptcontrol', thisclass: @this_added_class %></div>
             <div style="display:none;"><%= f.text_field :course_id, type:"hidden", value:@course.id  %><br>
             <%= f.text_field :trainee_id, type:"hidden", value:current_user.id %><br>
             <%= f.text_field :lesson_id, type:"hidden", value:@lesson.id %><br>

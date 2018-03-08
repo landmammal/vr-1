@@ -12,13 +12,10 @@
 
   <%= f.text_field :title, class:'full', placeholder:'Title' %><br>
   <%= f.text_area :description, class:'full', placeholder:'Description' %><br>
-  <%= f.text_field :tags, class:'full', placeholder:'tags (comma separated)' %><br>
+  <%= f.text_field :tags, class:'full', placeholder:'tags (separate with comma)' %><br>
   <%= f.select :language, (@languages) %><br><br>
   
   <%= button_tag 'Save Topic', type:'submit', class:"blue" %>
-
-  <%= f.text_field :status, type:"hidden", value: 0 %>
-  <%= f.text_field :course_id, type:"hidden", value:@course.id %>
   <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %>
 
 <%end%>

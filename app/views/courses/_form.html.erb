@@ -19,7 +19,7 @@
     <% end %>
 
     <%= f.file_field :cover, class:'half' %>
-    <span> upload cover image </span>
+    <span> upload cover image ( 16 x 9 ratio recommended ) </span>
     <%= f.hidden_field :cover_cache %>
     
     <%= f.text_field :title, placeholder:'Course title', class:'full' %>
@@ -45,12 +45,11 @@
         $<%= f.text_field :price, placeholder: 'set price (ex: 5.99)' %>
     </div>
 
-    <%= f.text_field :tags, placeholder:'tags (comma separated)', class:'full' %><br>
+    <%= f.text_field :tags, placeholder:'tags (separate with comma)', class:'full' %><br>
 
     <br>
     <h5> Course Access Code: </h5>
     <%= f.text_field :access_code, class:"access_code" , placeholder:"access code" %><button id="generate_new_access_code" class="small_btn">generate new code</button>
     <br>
-    <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %><br>
     <%= button_tag 'Save Course', type:'submit', class:'blue shadebox_close' %>
 <% end %>

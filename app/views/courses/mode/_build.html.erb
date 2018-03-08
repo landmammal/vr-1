@@ -56,7 +56,7 @@
       <hr>
       <% @course.get_tags.each do |tag| %>
         <div class="tag">
-          <a href="#"><b><%= tag %></b></a>
+          <a href="/courses/search?term=<%= tag %>"><b><%= tag %></b></a>
         </div>
       <% end %>
     </div>

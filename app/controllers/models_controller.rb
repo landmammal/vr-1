@@ -6,11 +6,7 @@ class ModelsController < ApplicationController
 
 
   def new
-    # @newComponent = Model.new
-    # @this_component = 'Model'
-    # @this_error = 'error_model'
-    # @this_added_class = 'model'
-    # respond_to { |format| format.js { }}
+    
   end
 
   def create
@@ -20,12 +16,8 @@ class ModelsController < ApplicationController
     respond_to do |format|
       if @lesson.save
         @newComponent = Model.find(@lesson.models.last)
-        # format.html { redirect_to edit_model_path(@model)}
-        # format.json { render :show, status: :created, location: @topic }
         format.js { }
       else
-        # format.html { render :new }
-        # format.json { render json: @topic.errors, status: :unprocessable_entity }
       end
     end
   end

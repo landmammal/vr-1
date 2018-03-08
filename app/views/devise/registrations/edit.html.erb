@@ -5,10 +5,18 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
+  <center>
+    <img src="<%= current_user.photo %>" class="img-circle" width="95px">
+  </center>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
   </div>
 
   <div class="form_field">
@@ -28,14 +36,31 @@
             </p>
       </div>
     </div>
-     
- 
-     
+  </div>
+  
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email %>
+  </div>
+  
+  <hr>
+
+  <div class="field">
+    <%= f.label :phone_number %><br />
+    <%= f.text_field :phone_number %>
   </div>
 
+  <div class="field">
+    <%= f.label :website %><br />
+    <%= f.text_field :website %>
+  </div>
 
+  <div class="field">
+    <%= f.label :bio %><br />
+    <%= f.text_area :bio, class:'full' %>
+  </div>
 
-
+  <br>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -80,8 +105,9 @@
 
   <br>
   <h3>Cancel my account</h3>
+  <br>
+  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class:'red', method: :delete %>
 
-  <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
   <br>
   <br>
   

@@ -12,8 +12,8 @@
     </div>
 
     <div class="description" id="cd_<%= cid %>">
-      <% if !course_item.description.blank? %>
-        <%= course_item.description[0...115] %><%= "..." if course_item.description.length > 115 %>
+      <% if !course_item.short_desc.blank? %>
+        <%= course_item.short_desc[0...115] %><%= "..." if course_item.short_desc.length > 115 %>
       <% end %>
       <br>
     </div>

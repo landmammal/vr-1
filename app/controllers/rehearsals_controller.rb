@@ -101,11 +101,14 @@ class RehearsalsController < ApplicationController
 
   def update
 
+    @rehearsal.submission = params[:rehearsal][:submission] if params[:rehearsal][:submission] != nil
+    @rehearsal.approval_status = params[:rehearsal][:approval_status] if params[:rehearsal][:approval_status] != nil
+    @rehearsal.instructor_rating = params[:rehearsal][:instructor_rating] if params[:rehearsal][:instructor_rating] != nil
+    @rehearsal.self_rating = params[:rehearsal][:self_rating] if params[:rehearsal][:self_rating] != nil
+
+    @change = @rehearsal.changed[0..5]
+
     if @rehearsal.update(rehearsal_update_params)
-      @sent = false  
-      @retracted = false
-      @rehearsal.submission ? @sent = true : @retracted = true 
-      
       respond_to do |format|
         format.js {} 
       end

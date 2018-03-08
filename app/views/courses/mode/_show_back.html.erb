@@ -264,7 +264,7 @@
   tags:
   <% @course.tags.split(', ').each do |tag| %>
     <div class="tags-text">
-      <a href="#"><b><%= tag %></b></a>
+      <a href="/courses/search?term=<%= tag %>"><b><%= tag %></b></a>
     </div>
   <% end %>
 <% end %>
