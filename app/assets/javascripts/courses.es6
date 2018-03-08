@@ -42,18 +42,18 @@ var pageReady = function(){
 		}, 1000);
 	});
 
-	$('form.edit_course').on("change", function(){
-		if($('#course_privacy').val() === "2" ){
-			$('.course_price').show();
+	$(document).on("change", 'form.edit_course', function(){
+		if($(this).find('#course_privacy').val() === "2" ){
+			$(this).find('.course_price').show();
 		}else{
-			$('.course_price').hide();
+			$(this).find('.course_price').hide();
 		}
 	});
-	$('form.new_course').on("change", function(){
-		if($('#course_privacy').val() === "2" ){
-			$('.course_price').show();
+	$(document).on("change", 'form.new_course', function(){
+		if($(this).find('#course_privacy').val() === "2" ){
+			$(this).find('.course_price').show();
 		}else{
-			$('.course_price').hide();
+			$(this).find('.course_price').hide();
 		}
 	});
 

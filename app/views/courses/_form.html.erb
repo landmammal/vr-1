@@ -41,8 +41,8 @@
     <%= f.select :cstatus, course.cstatus! %>
     <%= f.select :language, (@languages) %><br>
     
-    <div class="course_price" style="display:none;">
-        $<%= f.text_field :price, placeholder: 'set price (ex: 5.99)' %>
+    <div class="course_price" style="display:<%= 'none' if !course.paid? %>;">
+        $<%= f.text_field :price, placeholder: 'set price (ex: 5.99)', value: course.show_price %>
     </div>
 
     <%= f.text_field :tags, placeholder:'tags (separate with comma)', class:'full' %><br>
