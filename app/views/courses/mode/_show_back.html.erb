@@ -200,7 +200,7 @@
               <%= hidden_field_tag 'stripeEmail' %>
               <%= hidden_field_tag 'productId', @course.id %>
   
-              <h2><%= @course.show_price %></h2>
+              <h2>$<%= @course.show_price %></h2>
               <button id="btn-buy" type="button" class="btn btn-success btn-lg btn-block">
                 PURCHASE THIS COURSE
               </button>

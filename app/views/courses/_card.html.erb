@@ -32,7 +32,7 @@
           Resume Course
         <% elsif course_item.paid? %>
           <div class="left"> Paid course</div>
-          <div class="right"><%= course_item.show_price %></div>
+          <div class="right">$<%= course_item.show_price %></div>
         <% elsif course_item.with_code? %>
           <div class="left"> *Requires Access Code</div>
           <div class="right">Register</div>
