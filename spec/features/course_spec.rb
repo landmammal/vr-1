@@ -3,8 +3,8 @@ require 'rails_helper'
   feature 'Course', type: :feature do
     context 'Instructor', js: true do
 
-      let!(:instructor) { FactoryGirl.create(:user, :as_instructor) }
-      let!(:course) { FactoryGirl.create :course, instructor: instructor }
+      let!(:instructor) { FactoryBot.create(:user, :as_instructor) }
+      let!(:course) { FactoryBot.create :course, instructor: instructor }
 
       it "creates a course" do
         visit new_user_session_path

@@ -6,4 +6,9 @@ class Prompt < ApplicationRecord
   has_many :lessons
 
   serialize :tags
+
+  after_initialize :set_defaults, :if => :new_record?
+  def set_defaults
+    self.refnum ||= "Pr-"+SecureRandom.hex(n=3)
+  end
 end

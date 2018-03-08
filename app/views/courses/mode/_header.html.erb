@@ -1,0 +1,7 @@
+<h1><%= @course.title %></h1>
+<div class="c_detail"> <%= "Language: "+@course.language if @course.language %> </div>
+<div class="c_detail"> Created: <%= getDate(@course.created_at) %> </div>
+<div class="c_detail"> Reference Number: <%= @course.refnum %> </div>
+<br>
+<h3><%= @course.short_desc if @course.short_desc %></h3>
+<hr>

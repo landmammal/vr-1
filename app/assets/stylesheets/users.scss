@@ -41,3 +41,77 @@
 		background-color:white;
 	}
 }
+
+.filter_users{
+	& button a{ color:white; }
+}
+
+.batch_update{
+	display: none;
+}
+
+.user_list{
+	max-height: 500px;
+	overflow: scroll;
+	.user_item{
+		display: grid;
+		width: 33.33%;
+		float: left;
+		grid-template-columns: 40px 50px auto 70px 60px;
+		background-color: #f9f9f9;
+		padding-left: 3px;
+
+		&>*{
+			padding:5px 8px;
+		}
+
+		& .select{
+			align-self: center;
+			color:#dceaff;
+			font-size:30px;
+			&:hover{
+				color:white;
+			}
+			& .ion-android-checkbox{
+				color: rgb(125, 166, 255);
+			}
+			&.inactive{
+				background-color: rgb(255, 228, 228);
+				& .ion-android-checkbox-outline-blank{
+					color:white;
+				}
+			}
+		}
+		
+		&.odd{ background-color: #fdfdfd; }
+
+		& .image{
+			padding-right: 10px;
+			align-self: center;
+		}
+
+		& .info{
+			& .role{
+				font-size: 10px;
+			}
+		}
+		& .edit{
+			align-self: center;
+			font-size: 10px;
+			text-align: right;
+		}
+		& .delete{
+			align-self: center;
+			text-align: left;
+			font-size: 30px;
+			cursor: pointer;
+			& a{
+				color:#ccc;
+				&:hover{ color:red; }
+			}
+		}
+		&.selected, &.highlithed{
+			background-color:#dceaff;
+		}
+	}
+}

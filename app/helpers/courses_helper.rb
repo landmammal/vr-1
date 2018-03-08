@@ -28,14 +28,4 @@ module CoursesHelper
 
 		return instructor_pic
 	end
-
-	def instructor_name
-		@instructor = User.find(@course.instructor_id)
-		instructor_f = @instructor.first_name
-		instructor_l = @instructor.last_name
-		instructor_fullname = instructor_f+" "+instructor_l
-
-		return instructor_fullname
-	end
-
 end

@@ -1,79 +1,61 @@
-<!-- <div class="panel_seperator">
-	<a href="#" class="js-max_min">
-		<div class="panel_icon">
-		 
-			<img class="icon" src="<%=image%>/icons/expand.svg">
-			<div class="text_label">Minimize</div>
-		</div>
-	</a>
-</div> -->
-<span class="menu-togglebtn"><img src="/assets/menu.png" class="menu-control"></span>
+<div class="side-menu">
 
-<div class="panel_seperator js-site_panel">
+	<span class="menu-togglebtn"><img src="/assets/menu.png" class="menu-control"></span>
 
-	<script type="text/javascript">
-		panel_section('site_panel')
-	</script>
-	<!-- <div class="sidepanel js-side_Settings">
-	</div> -->
-
-</div>
-
-
-
-<div class="panel_seperator js-common_panel">
-
-	<script type="text/javascript">
-		panel_section('common_panel')
-	</script>
-	<span class="Feedback_notif" style="display:none;"><%= feedback_notif.to_s %></span>
-	<span class="Chat_notif" style="display:none;"><%= chat_notif.to_s %></span>
-	<span class="Tasks_notif" style="display:none;"><%= tasks_notif.to_s %></span>
-
-	<div class="sidepanel js-side_Tasks">TASKS</div>
-	<div class="sidepanel js-side_Chat">CHAT</div>
-
-</div>
-
-
-<!-- Instructor Features -->
-
-
-<% if current_user.level_2 %>
-
-	<div class="panel_seperator js-instructor_panel">
+	<div class="panel_seperator js-site_panel">
 
 		<script type="text/javascript">
-			panel_section('instructor_panel')
-		</script>
-
-		<span class="Rehearsals_notif" style="display:none;"><%= rehearsals_notif %></span>
-
-		<!-- <div class="sidepanel js-side_My_Tools">
-			Intructor Tools<br>
-			<button>Create Course</button><br>
-			<a href="/course_registrations/">
-				<button>Course Registrations</button>
-			</a><br>
-      		<%= link_to 'Create Group', new_user_group_path(current_user) %><br>
-      		<%= link_to 'My Groups', user_groups_path(current_user) %>
-		</div> -->
-	</div>
-
-<% end %>
-
-
-<!-- Admin Features -->
-
-
-<% if current_user.level_1 %>
-	
-	<div class="panel_seperator js-admin_panel">
-
-		<script type="text/javascript">
-			panel_section('admin_panel')
+			panel_section('site_panel')
 		</script>
 		
-  	</div>
+	</div>
 
-<% end %>
+
+
+	<div class="panel_seperator js-common_panel">
+
+		<script type="text/javascript">
+			panel_section('common_panel')
+		</script>
+		<span class="Feedback_notif" style="display:none;"><%= feedback_notif.to_s %></span>
+		<span class="Chat_notif" style="display:none;"><%= chat_notif.to_s %></span>
+		<span class="Tasks_notif" style="display:none;"><%= tasks_notif.to_s %></span>
+
+		<div class="sidepanel js-side_Tasks">TASKS</div>
+		<div class="sidepanel js-side_Chat">CHAT</div>
+
+	</div>
+
+
+	<!-- Instructor Features -->
+
+
+	<% if current_user.level_2 %>
+
+		<div class="panel_seperator js-instructor_panel">
+
+			<script type="text/javascript">
+				panel_section('instructor_panel')
+			</script>
+
+			<span class="Rehearsals_notif" style="display:none;"><%= rehearsals_notif %></span>
+		</div>
+
+	<% end %>
+
+
+	<!-- Admin Features -->
+
+
+	<% if current_user.level_1 %>
+		
+		<div class="panel_seperator js-admin_panel">
+
+			<script type="text/javascript">
+				panel_section('admin_panel')
+			</script>
+			
+		</div>
+
+	<% end %>
+</div>

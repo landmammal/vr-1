@@ -48,7 +48,7 @@ class ModelsController < ApplicationController
 
   def destroy
     # will become invalid if models are sold to other users
-    @model.lesson_models.delete_all
+    @model.lesson_models.destroy_all
     @model.destroy
     respond_to do |format|
       format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Role Model was successfully deleted.' }
@@ -66,7 +66,7 @@ class ModelsController < ApplicationController
   end
 
   def model_params
-    params.require(:model).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :position_prior)
+    params.require(:model).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :refnum, :position_prior)
   end
   def model_update
     params.require(:model).permit(:title, :script, :privacy, :language, :token, :video_token, :position_prior)

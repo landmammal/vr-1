@@ -3,9 +3,9 @@ require 'rails_helper'
   feature 'topic', type: :feature do
     context 'instructor', js: true do
 
-      let! (:instructor) { FactoryGirl.create(:user, :as_instructor) }
-      let! (:course) { FactoryGirl.create :course, instructor: instructor }
-      let! (:topic) { FactoryGirl.create :topic, instructor: instructor }
+      let! (:instructor) { FactoryBot.create(:user, :as_instructor) }
+      let! (:course) { FactoryBot.create :course, instructor: instructor }
+      let! (:topic) { FactoryBot.create :topic, instructor: instructor }
 
       it 'can create a topic' do
         visit new_user_session_path

@@ -50,7 +50,7 @@ class PromptsController < ApplicationController
 
   def destroy
     # this will be invalid if prompts can be sold to other users
-    @prompt.lesson_prompts.delete_all
+    @prompt.lesson_prompts.destroy_all
     @prompt.destroy
     respond_to do |format|
       format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Prompt was successfully deleted.' }
@@ -68,7 +68,7 @@ class PromptsController < ApplicationController
   end
 
   def prompt_params
-    params.require(:prompt).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :position_prior)
+    params.require(:prompt).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :refnum, :position_prior)
   end
   def prompt_update
     params.require(:prompt).permit(:title, :script, :privacy, :language, :token, :video_token, :position_prior)

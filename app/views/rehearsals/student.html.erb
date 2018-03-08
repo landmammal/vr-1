@@ -26,8 +26,8 @@
           <% @r = 'rehearsal_bubble_'+ rehearsal.id.to_s %>
           <% @date_sub = time_diff(Time.now, rehearsal.created_at) %>
 
-          <%= form_tag ("/rehearsals/"+rehearsal.id.to_s+"/api"), class: 'rehearsal_button', method: :get, remote: true do %>
-              <button type="submit" id="rhs_<%= rehearsal.id %>" class="rehearsal_bubble" data-status="<%= rehearsal.check_status %>">
+          <a href="/rehearsals/<%= rehearsal.id.to_s %>/api" class='rehearsal_button' data-remote="true">
+              <div id="rhs_<%= rehearsal.id %>" class="rehearsal_bubble" data-status="<%= rehearsal.check_status %>">
                 <div class="pic" style="width:100% !important;">
                   <img src="https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= rehearsal.video_token %>/image">
                 </div>
@@ -38,8 +38,8 @@
                     <font size="0.1em">submitted <%= @date_sub %></font>
                   </div>
                 </div>
-              </button>
-          <% end %>
+              </div>
+          </a>
 
       <% end %>
 

@@ -1,42 +1,32 @@
 class TopicsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_topic, only: [:show, :edit, :update, :destroy]
-  before_action :set_course, only: [:index, :show, :new, :edit, :destroy]
-  # GET /topics
-  # GET /topics.json
+  before_action :set_topic, only: [:show, :edit, :update, :destroy, :change_lessons_order]
+  before_action :set_course, only: [:index, :create, :show, :new, :edit, :destroy]
+
   def index
     @topics = Topic.all
   end
 
-  # GET /topics/1
-  # GET /topics/1.json
   def show
-    @rehearsal = Rehearsal.new
-    @lessons = @topic.lessons.order('id ASC')
+    @lessons = @topic.lessons_order.collect {|r| Lesson.find_by_refnum(r) }.compact
     @course_registration = CourseRegistration.new
     @lesson = Lesson.new
   end
 
-  # GET /topics/new
   def new
-    @topic = Topic.new
+    @newTopic = Topic.new
+    respond_to { |format| format.js { } }
   end
 
-  # GET /topics/1/edit
   def edit
+    respond_to { |format| format.js { } }
   end
 
-  # POST /topics
-  # POST /topics.json
   def create
-    @course = current_user.courses.find(params[:course_id])
-    @course.topics.build(topic_params)
-
-    @course.topics.last.title = 'New Topic (rename)' if @course.topics.last.title == ''
+    @topic = @course.topics.build(topic_params)
 
     respond_to do |format|
-      if @course.save
-        @topic = @course.topics.last
+      if @topic.save 
         format.html { redirect_to course_topic_path(@course, @topic), notice: 'Topic was successfully created.' }
         format.json { render :show, status: :created, location: @topic }
       else
@@ -46,13 +36,11 @@ class TopicsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /topics/1
-  # PATCH/PUT /topics/1.json
   def update
-    @topic.title = 'New Topic (rename)'
-
+    
     respond_to do |format|
       if @topic.update(topic_update)
+        format.js   { }
         format.html { redirect_to course_topic_path(@topic.course, @topic), notice: 'Topic was successfully updated.' }
         format.json { render :show, status: :ok, location: @topic }
       else
@@ -60,11 +48,15 @@ class TopicsController < ApplicationController
         format.json { render json: @topic.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
-  # DELETE /topics/1
-  # DELETE /topics/1.json
   def destroy
+    @course.topics_order.delete(@topic.refnum)
+    @course.save
+    
+    Lesson.where( topic_id: @topic.id ).destroy_all    
+    @topic.delete_associations
     @topic.destroy
     respond_to do |format|
       format.html { redirect_to course_path(@course), notice: 'Topic was successfully destroyed.' }
@@ -72,7 +64,20 @@ class TopicsController < ApplicationController
     end
   end
 
+
+
+  # OTHER CODES
+
+  def change_lessons_order
+    @topic.lessons_order = params[:order]
+    @topic.save
+  end
+
+
+
+
   private
+
     def set_course
       @course = Course.find(params[:course_id])
     end
@@ -83,9 +88,9 @@ class TopicsController < ApplicationController
     end
 
     def topic_params
-      params.require(:topic).permit(:course_id, :title, :description, :tags, :approval_status, :instructor_id)
+      params.require(:topic).permit(:course_id, :title, :description, :tags, :approval_status, :lessons_list, :refnum, :instructor_id)
     end
     def topic_update
-      params.require(:topic).permit(:title, :description, :tags, :approval_status)
+      params.require(:topic).permit(:title, :description, :tags, :approval_status, :lessons_list)
     end
 end

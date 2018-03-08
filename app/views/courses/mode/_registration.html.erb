@@ -1,0 +1,34 @@
+
+<div class="js-register_course">
+  <%= form_for [@course, @course_registration], remote: true do |f| %>
+      <% if @course_registration.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@course_registration.errors.count, "error") %> prohibited the registration to this course from being saved:</h2>
+            <ul>
+              <% @course_registration.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+        </div>
+      <% end %>
+      <% if @course.free? %>
+        <%= button_tag "Start", type:'submit', class:"big_btn blue js-course_register_btn" %>
+      <% elsif !@course.private? %> 
+        <%if @course.with_code? %>
+          <%= text_field_tag :access_code, nil, class:'left', placeholder:"Enter course access code", style:"width:150px; margin:0;" %>
+        <% end %>
+        <%= button_tag "Register", type:'submit', class:"blue js-course_register_btn left" %>
+      <% end %>
+  <% end %>
+</div>
+
+<div class="success code_success" style="margin:10px auto; width:350px; font-size:11px;">
+    Welcome to the course: <%= @course.title %>.
+</div>
+<div class="error code_error" style="margin:10px auto; width:350px; font-size:11px;">
+    There was an error registering you to the course:
+    <br>
+    - Please check your access code.
+</div>
+
+<div class="js-register_confirm" style="display:none;"></div>

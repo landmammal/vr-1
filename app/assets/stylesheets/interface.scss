@@ -1,7 +1,4 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
+@import 'application';
 
 .banner{
 	background-position: top; background-size:cover;
@@ -23,6 +20,9 @@ $panel_color: rgba(#2F3132,1) ;
 	min-height:$min_height; width:100%;
 }
 
+
+
+// TODO: REVISIT LEFT PANEL CODE
 .leftpanel{
 	width:$mn_pnl_s;
 	background-color:$panel_color; position:relative; z-index:5;
@@ -109,24 +109,28 @@ $panel_color: rgba(#2F3132,1) ;
 }
 
 .right_panel{
-	position: fixed;
-    top: 0;
-    right: -100%;
-    bottom: 0;
-    width: 30%;
-    min-width: 350px;
-    z-index: 40;
-    background-color: rgb(255, 255, 255);
+	position: fixed; top: 0; right: -100%; bottom: 0; z-index: 40;
+    min-width: auto; padding-right: 100px;
+    background-color: rgb(255, 255, 255); color: $base_color;
     transition: 0.5s;
-    color: #448fe4;
-    box-shadow: 1px 0px 31px 1px rgba(0,0,0,0.2);
-	& .title{ color:black;}
-	& .close{
-		border:0; padding:10px 15px 12px; background-color:black; color:white; font-size:16px; 
-		position:relative; right:0; top:0;
-	}
+	box-shadow: 1px 0px 31px 1px rgb(129, 129, 129);
+	overflow: scroll;
+	& .title{ font-size: 1.5em; color:black; padding:10px 0 0 10px; }
+	& .topic_title{ font-size: 15px; margin-bottom: 10px; max-width: 200px; max-height: 1em; overflow: hidden;  }
+	& .close_panel{ padding: 5px 10px !important; position: absolute; top:5px; right:3px; }
 	&.pop{ right:0; transition:0.5s; }
-	& .content{ padding: 10px ;}
+	& .content{ 
+		padding: 10px ;
+		& .right_lesson_list{
+			margin-bottom: 15px;
+			& .item {
+				padding: 5px 10px;
+				&:hover, &.selected { background-color: #333; color: white; }
+				&.ready { border-left: 2px $green solid; }
+				&.not_ready { border-left: 2px $red solid; }
+			}
+		}
+	}
 }
 
 .inter_content{
@@ -160,26 +164,6 @@ $panel_color: rgba(#2F3132,1) ;
 		}
 	}
 
-
-	& .top_info{
-		padding:5px; margin:10px 0 10px; border-bottom:solid #ddd 2px; overflow:hidden;
-		width:100%; background-color:#fff;
-		& .user_stat{ 
-			padding:0; margin:0 15px; float:left; text-align:center;
-			& .number{ 
-				float:none; width:100%; margin:4px auto 0 auto; 
-				font-family:'gotham_light'; font-size:12px; font-weight:bold; color:#4482c3;
-				& .completed{
-					font-family:'gotham_book'; color:black;
-				}
-				& .num{
-					font-size:10px; font-family:inherit;
-					border-radius: 5px;
-				}
-			}
-			& .stat{ float:none; width:100%; margin:0 auto; padding-top:-3px; font-size:10px; }
-		}
-	}
 	& .box_sep{
 		margin:5px 0; border-bottom:solid #ddd 2px;  overflow:hidden;
 		width:100%; background-color:rgba(255,255,255,0.5);
@@ -191,48 +175,36 @@ $panel_color: rgba(#2F3132,1) ;
 	}
 }
 
-.main_title{
-  font-weight:bold; font-size:20px; font-family:'webly_bld'; margin:10px auto 15px; 
-}
 
+.page_info{
+	padding: 8px 10px;
+	background: #f7f8fd;
+	width: 100%;
+	margin-bottom: 10px;
 
-footer{
-	background-color:#222; color:white; min-height:100px;
-	padding:50px 0 ;
-	& .footer_width{
-		max-width: 1500px; margin:0 auto; padding:5px; overflow: hidden;
-		text-align: center; 
-		& .footer_newsletter{
-			border-bottom:1px solid #454545; max-width:96%; margin:10px auto; padding-bottom:20px;
-		}
-
-		& .footer_menu, & .footer_contact, & .footer_social{
-			margin:5px; padding:5px 20px; display:inline-block; text-align:left; overflow:hidden;
-			& .footer_sec{
-				float:left; margin: 0 40px 0 0;
-				line-height: 1.5em;
+	& .user_stat{ 
+		padding:0; margin:0 15px; float:left; text-align:center;
+		& .number{ 
+			float:none; width:100%; margin:4px auto 0 auto; 
+			font-family:'gotham_light'; font-size:12px; font-weight:bold; color:#4482c3;
+			& .completed{
+				font-family:'gotham_book'; color:black;
+			}
+			& .num{
+				font-size:10px; font-family:inherit;
+				border-radius: 5px;
 			}
 		}
-
-		& .footer_menu{ max-width: 480px; float:left; }
-		& .footer_contact{ 
-			width: calc(100% - 800px); min-width:250px; float:left; text-align:center; margin-bottom:20px; line-height:2em; 
-		}
-		& .footer_social{ max-width: 300px; float:right; text-align:center; }
+		& .stat{ float:none; width:100%; margin:0 auto; padding-top:-3px; font-size:10px; }
 	}
-	a, a:visited, a:hover, a:focus { color:white; }
-	& .title{ font-family:'webly_bld'; font-size:15px; margin-bottom:10px; }
-	& .contact_footer{
-      background-color:white; border:1px solid; border-radius:3px; color:#343434; font-weight:bold; width:100%;
-      margin-top: 25px;
-      &:hover{ background-color:transparent; color:white; transition:0.5s;}
-    }
-    & .social_icon{
-    	font-size: 20px; margin:5px 15px;
-    }
-    & .social_icon_2{
-    	font-size: 15px; margin:8px 15px;
-    }
+}
+
+.edit.ion-edit{
+	margin:0 20px;
+}
+
+.main_title{
+  font-weight:bold; font-size:20px; font-family:'webly_bld'; margin:10px auto 15px; 
 }
 
 
@@ -241,59 +213,70 @@ footer{
 }
 
 
-.shadebox{
-	height:100%; width:100%;
-	padding:10px; text-align:center;
-	position:fixed; z-index:100;
-	top:0; bottom:0; left:0; right:0;
+
+
+
+// SHADEBOX
+.shadebox_bg{
+	min-height:100%; width:100%;
+	position:fixed; z-index:150; top:0; bottom:0; left:0; right:0;
 	background-color:rgba(0,0,0,0.85);
-	display:none;
-	& .shade.box{
-		min-width:250px; max-width:60%;
-		height:auto; max-height:calc(100% - 10px);  overflow:scroll;
-		position:relative; z-index:120;
-		margin:60px auto 5px; overflow:hidden; border-radius:5px;
-		background-color: rgba(255,255,255,0.9);
-		& .shadebox_title{
-			min-height:30px; background-color:white;
-			border-bottom:1px solid #00AFFF;
-			overflow:hidden; padding:5px 10px;
-			text-align: left;
+	display:none; overflow: scroll;
+
+	&.open{ display:block; }
+
+	& .shadebox{
+		display: grid; overflow: hidden;
+		grid-template-columns: 1fr;
+		grid-template-rows: 30px minmax( 200px, auto) minmax(30px 50px) ; 
+		
+		width:500px; margin: 20px auto 20px;
+		background-color: white; border-radius:5px;
+		&.no_header{ grid-template-rows: minmax( 200px, auto) minmax(30px 50px) ;  }
+		&.large{ width:800px;  }
+
+		& .shadebox_header, & .shadebox_content, & .shadebox_footer{
+			padding:5px 8px;
 		}
-		& .shadebox_content{ 
-			min-height:200px;  overflow:hidden; padding:5px 10px;
-			text-align: left;
+		& .content{ 
+			padding:10px 15px; text-align: left;
+			hr{ width:150px; }
+			h1, h2, h3 { margin-top:5px; }
 		}
-		& .shadebox_bottom{
-			min-height:30px; background-color:white;
-			border-top:1px solid #00AFFF;
-			overflow:hidden; padding:5px 10px;
-			text-align: right;
+
+		& .shadebox_header{
+			border-bottom:1px solid #ddd;
 		}
-		input[type='submit'].shade_close, button.shade_close{
-			padding:5px 10px;
-			cursor:pointer;
+		& .shadebox_content{
+			font-size: 15px;
+			&.no_padding{ padding:0; }			
 		}
-		.shade_close{
-			float: right;
-			padding:0 5px;
-			cursor:pointer;
+		& .shadebox_footer{
+			border-top:1px solid #ddd;
+			display: grid;
+			grid-template-columns: auto 20px;
+			&.full{ grid-template-columns: 1fr ; }
+			
+			.content{ padding: 0; }			
+
+			& .shade_close{
+				align-self: center;
+				width: 20px; height: 20px;
+				font-size: 20px;
+				background-color: white; color: $red;
+				border-radius: 50%; float: right;
+				cursor:pointer;
+			}
 		}
 	}
 }
 
-button.shade_close{
-	padding:4px 6px !important;
-	line-height: 0.7em;
-}
-
-
 // ========================================================
 
 span.num{
-	background-color: red; 
+	background-color: $red; 
 	color: white; font-size:13px;
-	border:2px solid red; padding:0px 4.5px;
+	border:2px solid $red; padding:0px 4.5px;
 	border-radius: 5px;
 	font-family:'gotham';
 }
@@ -345,7 +328,7 @@ span.num{
 	&.selected, &:hover{
  
 		background-color: rgb(4, 110, 172) ; color: white;
-		background-color: #448fe4;
+		background-color: $base_color;
 	}
 }
 
@@ -356,7 +339,8 @@ span.num{
 	border-radius: 5px;
     position: relative;
     padding: 10px;
-    border: 0px solid #ddd;
+	// border: 0px solid #ddd;
+	border:0;
     overflow: hidden;
     background-color: #f7f8fd;
     display: inline-block;
@@ -365,7 +349,7 @@ span.num{
     margin: 5px;
 	& .pic{
 		overflow: hidden; float:left; width:40px;
-		border-radius:3px;
+		border-radius:0px;
 		img{ float:left;  width:100%;}
 	}
 	& .info{
@@ -386,18 +370,22 @@ span.num{
 
 .rehearsal_bubble{
 	width: 200px;
+	padding:0;
 	padding-bottom: 10px !important;
 	&[data-status="approved_rehearsal"]{
 		border-bottom:4px solid rgb(0, 173, 78);
-		padding:2px;
+		// padding:2px;
 	}
 	&[data-status="rejected_rehearsal"]{
 		border-bottom:4px solid rgb(255, 126, 126);
-		padding:2px;
+		// padding:2px;
 	}
 	&[data-status="new_rehearsal"]{
 		border-bottom:4px solid rgb(255, 209, 110);
-		padding:2px;
+		// padding:2px;
+	}
+	&:hover{
+		box-shadow: 0px 1px 3px #ccc;
 	}
 }
 
@@ -411,24 +399,6 @@ span.num{
 @media only screen and (max-width: 480px) {
 	.shadebox{
 		& .shade.box{ width:98%; max-width:98%;}
-	}
-	footer{
-		& .footer_width{
-			.footer_menu, .footer_contact, .footer_social{
-				margin:5px; padding:5px; text-align:center;
-				& .footer_sec{
-					width: calc((100% / 3) - 25px);
-					float:left; margin: 0 25px 0 0;
-					font-size: 10px;
-				}
-			}
-			.footer_menu{ width:90%; float:none; }
-			.footer_contact{ 
-				margin: 50px 5px;
-				width: 90%; float:none;
-			}
-			.footer_social{ max-width: 300px; float:none; text-align:center; }
-		}
 	}
 }
 

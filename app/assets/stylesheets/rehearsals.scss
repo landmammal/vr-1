@@ -1,7 +1,4 @@
-// Place all the styles related to the Tasks controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
+@import 'application';
 
 .floating-action-button {
 	position: relative;
@@ -50,7 +47,7 @@ ul.dropdown-menu {
 		color: #ffffff;
 		font-weight: 400;
 		font-size: 13px;
-		background: #448fe4;
+		background: $base_color;
 		border-radius: 20px;
 		display: inline-block;
 		

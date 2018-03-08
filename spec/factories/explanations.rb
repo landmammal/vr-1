@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :explanation do
     script { Faker::Lorem.sentence(3) }
     token { Faker::Space.agency }

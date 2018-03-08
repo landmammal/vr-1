@@ -2,24 +2,26 @@ Rails.application.routes.draw do
 
   # landing page
   root 'welcome#index'
-
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
   
-
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+  
   # MENU LINKS
-  menu_routes = ['about','markets','overview','process','contact','versions','jobs']
-  menu_routes.push('theteam','termsandservices','FAQs','requirements','policies','press','teach','coach','learn','create','companies','support')
+  menu_routes = [
+    'about','markets','overview','process','contact','versions','jobs',
+    'theteam','termsandservices','FAQs','requirements','policies','press',
+    'teach','coach','learn','create','companies','support'
+  ]
   menu_routes.each do |menu|
     get "/#{menu}" => "welcome##{menu}"
   end
-  
 
   # API routes
-  api_routes = ['courses','topics','lessons','course_registrations','site_panel','common_panel','instructor_panel','admin_panel']
-  api_routes.push('demos','tasks','chat')
-  api_routes.push('rehearsals', 'feedbacks', 'group', 'reviewrehearsal')
+  api_routes = [
+    'courses','topics','lessons','course_registrations',
+    'site_panel','common_panel','instructor_panel',
+    'admin_panel','demos','tasks','chat',
+    'rehearsals', 'feedbacks', 'group', 'reviewrehearsal'
+  ]
   api_routes.each do |apir|
     get '/'+apir+'/api' => "api##{apir}_api"
     post '/'+apir+'/api' => "#{apir}#create"
@@ -28,65 +30,50 @@ Rails.application.routes.draw do
   end
   
 
-
-
-
-
-
   # EXTRA LINKS ------
 
-      post '/rehearsal/:rehearsal_id/approved' => "rehearsals#approved"
-      get "/rehearsals/student" => "rehearsals#student"
-      get "/rehearsals/all" => "rehearsals#all"
-      
+    get "/rehearsals/student" => "rehearsals#student"
+    get "/rehearsals/all" => "rehearsals#all"
+    
+    get "/feedback/all" => "feedbacks#all"
+    
 
-      get "/feedback/all" => "feedbacks#all"
-      
+    # COURSE LINKS
+    post "/courses_search/api" => "api#courses_search_api"
+    post '/courses/:course_id/topics/:topic_id/lessons/new' => "lessons#create"
+    get "/course_registrations/" => "course_registrations#index"
+    post "/email_exits" => "users#email_exits"
+    post "/leave_course" => "courses#leave_course"
+    post "/remove_student" => "courses#remove_student"
+    post "/activate_deactivate_student" => "courses#activate_deactivate_student"
+    post "/reentry/:id/" => "courses#reentry"
+    
+    
+    # COURSE INVITATIONS
+    get "/generate_course_code/" => "courses#generate_code"
+    post "/invite_student/" => "courses#send_invite"
+    post "/register_with_access_code" => "courses#register_with_access_code"
+    # get "/courses/:course_id/accept_invitation/" => "courses#accept_invitation"
+    get "/courses/:course_id/accept_invitation/:user_id" => "courses#accept_invitation"
 
-      # COURSE LINKS
-      post "/courses_search/api" => "api#courses_search_api"
-      post '/courses/:course_id/topics/:topic_id/lessons/new' => "lessons#create"
-      get "/course_registrations/" => "course_registrations#index"
-      post "/email_exits" => "users#email_exits"
-      post "/leave_course" => "courses#leave_course"
-      post "/remove_student" => "courses#remove_student"
-      post "/activate_deactivate_student" => "courses#activate_deactivate_student"
-      post "/reentry/:id/" => "courses#reentry"
-      
-      
-      # COURSE INVITATIONS
-      get "/generate_course_code/" => "courses#generate_code"
-      post "/invite_student/" => "courses#send_invite"
-      post "/register_with_access_code" => "courses#register_with_access_code"
-      get "/courses/:course_id/accept_invitation/" => "courses#accept_invitation"
-      get "/courses/:course_id/accept_invitation/:user_id" => "courses#accept_invitation"
+    post '/topic/create' => "topics#create"
 
-
-      post '/topic/create' => "topics#create"
-
-
-      get '/group_registrations/group/:id' => 'group_registrations#registrations'
-      post '/group_registrations/group/:id' => 'group_registrations#create'
-      get "/groups/all_groups" => "groups#all_groups"
-      get '/groups/:id' => 'groups#my_group'
-      
-      
-      # OTHER LINKS
-      post "/users/course_list_nav" => "users#course_list_nav"
-      post "/courses/student_list_nav" => "courses#student_list_nav"
-      get "/change_first_contact" => "users#change_first_contact"
-      post "/job_application" => "welcome#job_application"
-      get "/test" => "welcome#test"
-      get "/reset" => "welcome#reset"
-      get "/lessonexp/" => "lesson_explanations#index"
-      get "/display_course/:id" => "courses#display"
-      get "/new_termsandservices" => "welcome#reviewtermsandservices"
-      post "/accepttermsandservices" => "welcome#accepttermandservices"
+    get '/group_registrations/group/:id' => 'group_registrations#registrations'
+    post '/group_registrations/group/:id' => 'group_registrations#create'
+    get "/groups/all_groups" => "groups#all_groups"
+    get '/groups/:id' => 'groups#my_group'
+    
+    # OTHER LINKS
+    get "/change_first_contact" => "users#change_first_contact"
+    post "/job_application" => "welcome#job_application"
+    get "/test" => "welcome#test"
+    get "/reset" => "welcome#reset"
+    get "/lessonexp/" => "lesson_explanations#index"
+    get "/display_course/:id" => "courses#display"
+    get "/new_termsandservices" => "welcome#reviewtermsandservices"
+    post "/accepttermsandservices" => "welcome#accepttermandservices"
   
   # EXTRA LINKS ------ END
-
-
-
 
 
   devise_for :users, :controllers => { registrations: 'registrations' }
@@ -95,19 +82,34 @@ Rails.application.routes.draw do
       resources :user_groups
       resources :group_registrations
     end
+    collection do
+      post 'batch_update'
+      post "course_list_nav"
+    end
+    resources :courses
   end
 
 
   resources :courses do
     resources :course_registrations
     collection do
-      get '/search' => "courses#search"
+      get 'search'
+      post "student_list_nav"
+    end
+    member do 
+      post 'change_topics_order'
+      get 'accept_invitation'
     end
     resources :topics do
       resources :lessons
     end
   end
-
+  
+  resources :topics do
+    member do 
+      post 'change_lessons_order'
+    end
+  end
 
   resources :lessons, shallow: true do
     resources :explanations
@@ -132,7 +134,7 @@ Rails.application.routes.draw do
   # routes for purchases
   resources :charges
   resources :purchases, only: [:show]
-  
+
   resources :peer_reviews
   resources :review_requests do
     resources :peer_reviews
@@ -153,4 +155,5 @@ Rails.application.routes.draw do
   # resources :lesson_prompts
   # resources :lesson_explanations
   # resources :lesson_rehearsals
+
 end

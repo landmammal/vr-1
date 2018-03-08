@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import 'scaffold';
+@import 'application';
 
 .demo_box{
   position:relative;
@@ -64,7 +65,7 @@
   padding:20px 0;
   font-size: 15px;
   font-family: 'gotham_light';
-  color: red;
+  color: $red;
 }
 
 
