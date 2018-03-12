@@ -181,6 +181,10 @@ class WelcomeController < ApplicationController
     @site_title = 'Teach with us'
   end
 
+  def pricing
+    @site_title = 'Pricing'
+  end
+
   def coach
     @site_title = 'Coach students'
   end

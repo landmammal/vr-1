@@ -46,7 +46,7 @@
   <% else %>
 
     <div class="actions <%= 'owner' if course_item.owner(current_user) %>">    
-      <span class="<%= course_item.privacy_icon[0] %>" title="<%= course_item.privacy_icon[1] %>"></span>
+      <span class="<%= course_item.privacy_icon[0] %>" title="<%= course_item.privacy_icon[1] %>"> <%= course_item.show_price if course_item.paid? %> </span>
       <% if course_item.owner(current_user) %>
         <%= link_to '', edit_course_path(course_item), class:'edit ion-edit', remote: true %>
         <%= link_to '', course_item, class:'delete ion-trash-a', method: :delete, data: {confirm: "Are you sure you want to delete #{ course_item.title }?"} %>

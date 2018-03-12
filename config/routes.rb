@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   menu_routes = [
     'about','markets','overview','process','contact','versions','jobs',
     'theteam','termsandservices','FAQs','requirements','policies','press',
-    'teach','coach','learn','create','companies','support'
+    'teach','coach','learn','create','companies','support', 'pricing'
   ]
   menu_routes.each do |menu|
     get "/#{menu}" => "welcome##{menu}"
