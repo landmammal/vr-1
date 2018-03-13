@@ -34,10 +34,10 @@ class UsersController < ApplicationController
 
     @site_title = current_user.first_name+' '+current_user.last_name
     
-    if !current_user.level_1 && current_user.first_contact && starter_course
-      ( Rails.env.development? || Rails.env.test? ) ? re_pa = starter_course.topics.first.lessons.first.path : re_pa = Lesson.find(485).path
-      redirect_to re_pa
-    end
+    # if !current_user.level_1 && current_user.first_contact && starter_course
+    #   ( Rails.env.development? || Rails.env.test? ) ? re_pa = starter_course.topics.first.lessons.first.path : re_pa = Lesson.find(485).path
+    #   redirect_to re_pa
+    # end
     authorize @user
   end
 
