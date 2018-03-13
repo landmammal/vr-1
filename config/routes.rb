@@ -53,7 +53,7 @@ Rails.application.routes.draw do
     get "/generate_course_code/" => "courses#generate_code"
     post "/invite_student/" => "courses#send_invite"
     post "/register_with_access_code" => "courses#register_with_access_code"
-    # get "/courses/:course_id/accept_invitation/" => "courses#accept_invitation"
+    get "/courses/:course_id/accept_invitation/" => "courses#accept_invitation"
     get "/courses/:course_id/accept_invitation/:user_id" => "courses#accept_invitation"
 
     post '/topic/create' => "topics#create"
@@ -98,7 +98,7 @@ Rails.application.routes.draw do
     end
     member do 
       post 'change_topics_order'
-      get 'accept_invitation'
+      # get 'accept_invitation'
     end
     resources :topics do
       resources :lessons
