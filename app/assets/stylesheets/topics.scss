@@ -92,38 +92,51 @@
 	}
 }
 
+.trainee_lessons{
 
-.trainee_lesson{
-	overflow: hidden;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	grid-gap: 10px;
 
-	& .lesson_title{
-		font-size:15px;
-		display: inline-block;
-		position: relative; top:-12px;
-	}
-	& .lesson_completion{
-		width:23px; height:23px; margin:4px;
-		display: inline-block;
-		border-radius:50%;
-		
-		&.new{
-			background-color:#ccc;
+	.trainee_lesson{
+		overflow: hidden;
+		background-color: #ededed;
+		border-radius: 5px;
+		padding:5px 8px 0px;
+	
+		&:hover{
+			background-color: #ccc;
 		}
-		&.approved{
-			background-color:$green;
-			background-image: url(/assets/checkmark_white.png);
-			background-size: 150%;
-			background-repeat: no-repeat;
-			background-position: center;
+	
+		& .lesson_title{
+			font-size:15px;
+			display: inline-block;
+			position: relative; top:-10px;
 		}
-		&.submitted{
-			background-color:#ff9d23;
-		}
-		&.rejected{
-			background-color:#fc0f0f;
-		}
-		&.has_rehearsal{
-			background-color:#05a5e4;
+		& .lesson_completion{
+			width:23px; height:23px; margin:4px;
+			display: inline-block;
+			border-radius:50%;
+			
+			&.new{
+				background-color:#ccc;
+			}
+			&.approved{
+				background-color:$green;
+				background-image: url(/assets/checkmark_white.png);
+				background-size: 150%;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+			&.submitted{
+				background-color:#ff9d23;
+			}
+			&.rejected{
+				background-color:#fc0f0f;
+			}
+			&.has_rehearsal{
+				background-color:#05a5e4;
+			}
 		}
 	}
 }

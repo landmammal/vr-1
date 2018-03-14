@@ -85,6 +85,7 @@
            </div>
            <% end %>
         </div>
+        <div class="rehearsal_shade_video"></div>  
      </div>
   </div>
 
@@ -100,24 +101,24 @@
 
    <br>
    <br>
-<div style="overflow:hidden;">
-  <% if !@lesson.instructor.chat.blank? %>
-    <a href="<%= @lesson.instructor.chat %>" target="_blank" onclick="alert('This will open a live video chat with the course instrustor. Click OK to call.')">
-      <button class="green_sft" style=" float:left;"> <img src="/assets/live_chat.png" width="20px"> Live video chat</button>
-    </a>
-  <% end %>
+  <div style="overflow:hidden;">
+    <% if !@lesson.instructor.chat.blank? %>
+      <a href="<%= @lesson.instructor.chat %>" target="_blank" onclick="alert('This will open a live video chat with the course instrustor. Click OK to call.')">
+        <button class="green_sft" style=" float:left;"> <img src="/assets/live_chat.png" width="20px"> Live video chat</button>
+      </a>
+    <% end %>
 
-  <div class="first_contact_intro lesson_views" data-intro="Use these buttons to rearrange your recording area to best fit your learning style.">
-    <span class="tooltip-custom" data-tooltip="Choose the view that you feel most comfortable with as you rehearse."> <img src="/assets/Antu_help_hover.png" width="22px"></span>
-    <button class="blue lesson_next training-path-1"> View 1</button>
-    <button class="lesson_next training-path-2"> View 2</button>
+    <div class="first_contact_intro lesson_views" data-intro="Use these buttons to rearrange your recording area to best fit your learning style.">
+      <span class="tooltip-custom" data-tooltip="Choose the view that you feel most comfortable with as you rehearse."> <img src="/assets/Antu_help_hover.png" width="22px"></span>
+      <button class="blue lesson_next training-path-1"> View 1</button>
+      <button class="lesson_next training-path-2"> View 2</button>
+    </div>
+
   </div>
-
-</div>
 
   </div>
   <div class="clearfix"></div>
 
-  <div class="rehearsal_shade_video"></div>  
+  
 
 <% end %>
