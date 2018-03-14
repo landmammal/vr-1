@@ -64,9 +64,12 @@ class ReviewRequestsController < ApplicationController
     def others
         @rehearsal = @request.rehearsal
         @lesson = @rehearsal.lesson
-        @prompt = @lesson.prompts.find_by(position_prior: '1')
         @topic = @lesson.topic
         @course = @topic.course
+
+        @prompt = @lesson.prompts.find_by(position_prior: '1')
+        @model = @lesson.models.find_by(position_prior: '1')
+        @explanation = @lesson.explanations.find_by(position_prior: '1')
     end
 
 end

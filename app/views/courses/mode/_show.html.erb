@@ -13,12 +13,16 @@
           <h4><%= topic.title %></h4>
           <%= topic.description %>
           <br><br>
-          <% topic.lessons_ready.each do |lesson| %>
-            <div class="trainee_lesson">
-              <div class="lesson_completion <%= lesson.completion_status(current_user)[0] %>" title="<%= lesson.completion_status(current_user)[1] %>"></div>              
-              <div class="lesson_title"><%= link_to lesson.title, course_topic_lesson_path( @course, topic, lesson ) %></div>
-            </div>
-          <% end %>
+          <div class="trainee_lessons">
+            <% topic.lessons_ready.each do |lesson| %>
+              <a href="<%= course_topic_lesson_path( @course, topic, lesson ) %>">
+                <div class="trainee_lesson">
+                  <div class="lesson_completion <%= lesson.completion_status(current_user)[0] %>" title="<%= lesson.completion_status(current_user)[1] %>"></div>              
+                  <div class="lesson_title"><%= lesson.title %></div>
+                </div>
+              </a>
+            <% end %>
+          </div>
 
         </div>
         <br>
