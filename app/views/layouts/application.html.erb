@@ -31,7 +31,7 @@
         <%= render 'layouts/header/header' %>
 
         <div class="main-content <%= 'in_app' if in_app %>">
-          <% render 'layouts/leftpanel' if user_signed_in? %>
+          <%= render 'layouts/leftpanel' if user_signed_in? %>
           <div class="content-container"> <%= yield %></div>
         </div>
       

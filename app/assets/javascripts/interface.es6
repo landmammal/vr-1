@@ -241,6 +241,16 @@ var pageReady = function(){
 
 	//=============== RIGHT PANEL ============ //
 
+	$('.mobile_hamburger').click(function(){
+        $('.main_nav_items').toggleClass('away');
+	});
+	$('.left_menu_toggle').click(function(){
+        $('.left_menu').toggleClass('away');
+	});
+	
+
+
+
 	$(document).on('click', '.right_panel_btn', function() {
 		var thisPanel = $(this).data('rightpanel');
 		$('.right_panel[data-name='+thisPanel+']').toggleClass('pop');
