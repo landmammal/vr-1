@@ -113,12 +113,12 @@ function myFunction() {
 
 var pageReady = function(){
 
-	$(".menu-control").click(function () {
-		$(".main-content.in_app").toggleClass('menu-large');
-		var src = $(this).attr('src');
-		var newsrc = (src == '/assets/menu.png') ? '/assets/menu-close.png' : '/assets/menu.png';
-		$(this).attr('src', newsrc);
-	});
+	// $(".menu-control").click(function () {
+	// 	$(".main-content.in_app").toggleClass('menu-large');
+	// 	var src = $(this).attr('src');
+	// 	var newsrc = (src == '/assets/menu.png') ? '/assets/menu-close.png' : '/assets/menu.png';
+	// 	$(this).attr('src', newsrc);
+	// });
 
 	$('button.submit_job_application').click(function(){
 		$('form.application_form').submit();

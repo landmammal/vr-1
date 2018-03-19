@@ -1,8 +1,44 @@
-<div class="side-menu">
+<div class="left_menu away">
 
-	<span class="menu-togglebtn"><img src="/assets/menu.png" class="menu-control"></span>
+	<div class="left_menu_toggle ion-chevron-left"></div>
 
-	<div class="panel_seperator js-site_panel">
+	<div class="show_on_mobile">
+
+		<%= link_to 'Dashboard', root_path, class:'nav_item' %>
+		<%= link_to 'Courses', '/courses/search', class:'nav_item' %>
+
+		<a href="<%= feedback_all_path %>" class="nav_item">
+			Feedback
+			<% if current_user.pending_feedback > 0 %>
+				<div class="notif_num"><%= current_user.pending_feedback %></div>
+			<% end %>
+		</a>
+
+		<a href="<%= rehearsals_all_path %>" class="nav_item">
+			Rehearsals
+			<% if current_user.pending_rehearsals > 0 %>
+				<div class="notif_num"><%= current_user.pending_rehearsals %></div>
+			<% end %>
+		</a>
+
+	</div>
+	<hr>
+	<!-- <div class="nav_item">Tutorials</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<!-- <div class="panel_seperator js-site_panel">
 
 		<script type="text/javascript">
 			panel_section('site_panel')
@@ -24,13 +60,13 @@
 		<div class="sidepanel js-side_Tasks">TASKS</div>
 		<div class="sidepanel js-side_Chat">CHAT</div>
 
-	</div>
+	</div> -->
 
 
 	<!-- Instructor Features -->
 
 
-	<% if current_user.level_2 %>
+	<!-- <% if current_user.level_2 %>
 
 		<div class="panel_seperator js-instructor_panel">
 
@@ -41,13 +77,13 @@
 			<span class="Rehearsals_notif" style="display:none;"><%= rehearsals_notif %></span>
 		</div>
 
-	<% end %>
+	<% end %> -->
 
 
 	<!-- Admin Features -->
 
 
-	<% if current_user.level_1 %>
+	<!-- <% if current_user.level_1 %>
 		
 		<div class="panel_seperator js-admin_panel">
 
@@ -57,5 +93,5 @@
 			
 		</div>
 
-	<% end %>
+	<% end %> -->
 </div>

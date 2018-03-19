@@ -283,6 +283,13 @@
 }
 
 @media only screen and (max-width: 495px) {
+	.topics_area{
+		.topics_list, .side{
+			width: 95%;
+			margin: 5% 2.5%;
+			float: none;
+		}
+	}
 }
 
 @media only screen and (min-width: 496px) {
