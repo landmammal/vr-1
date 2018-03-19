@@ -211,7 +211,7 @@ footer{
 }
 
 
-.left_menu, .main_nav_items {
+.left_menu {
   position: fixed; z-index: 1000;
   top: 0; bottom:0;
   background-color: #333;
@@ -325,20 +325,32 @@ footer{
 
       &.user_control{
         .mobile_hamburger{ display: block; }
-        .main_nav_items{
-          right:0; width: 50%;
-          
+
+
+        .left_menu, .main_nav_items {
+          position: fixed; z-index: 1000;
+          top: 0; bottom:0;
+          background-color: #333;
+          color: white; right:0; width: 50%;
+        
+          & a, & a:visited, & a:hover, & a:focus{ 
+            color: white; 
+          }
+
           &.away{ right:-50%; }
 
           & .mobile_hamburger.ion-chevron-right{
             padding: 10px 30px 10px 15px;
             font-size: 20px;
           }
+        
           & .nav_item{
-            padding: 10px 30px 10px 15px;
+            display: inline-block;
+            float: none; width: 100%;
+            padding: 10px 40px 10px 15px;
           }
-
         }
+        
       }
     }
   }
