@@ -8,3 +8,9 @@ $('.course_<%= @course.id %>').each(function(){
     card.find("#cd_<%= @course.id %>").text('<%= @course.short_desc %>');
     card.find("#cc_<%= @course.id %>").text('<%= @course.access_code %>');
 })
+
+<% if @course.cstatus == 0 %>
+    $('.course_<%= @course.id %>').addClass('draft');
+<% else %>
+    $('.course_<%= @course.id %>').removeClass('draft');
+<% end %>

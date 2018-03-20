@@ -1,7 +1,7 @@
 <% cid = course_item.id %>
 <% search = false if !search %>
 
-<div class="card course_card course_<%= cid %>">
+<div class="card course_card course_<%= cid %>  <%= 'draft' if course_item.cstatus == 0 %>">
   
   <a href="<%= course_path(course_item) %>" class="<%= 'search' if search %>">
   
