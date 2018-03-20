@@ -1,4 +1,4 @@
-<div class="card lesson_card lesson_<%= lesson.id %>" id="lesson_card_<%= lesson.id %>" data-refnum="<%= lesson.refnum %>">
+<div class="card lesson_card lesson_<%= lesson.id %> <%= 'draft' if lesson.privacy == 0 %>" id="lesson_card_<%= lesson.id %>" data-refnum="<%= lesson.refnum %>">
     <a href="<%= course_topic_lesson_path(@course, @topic, lesson) %>">
     <div class="ctitle tt_<%= lesson.id %>"><%= lesson.title[0...25] %><%= '...' if lesson.title.length > 25 %></div>
     <div class="description" id="td_<%= lesson.id %>">

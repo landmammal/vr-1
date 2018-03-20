@@ -15,7 +15,8 @@
   <%= f.text_area :description, class:'full', placeholder:'Description' %><br>
   Lesson type: <br> <%= f.select :lesson_type, (@lesson_type) %><br>
   <%= f.text_field :tags, class:'course_create', class:'full', placeholder:'tags (separate with comma)' %><br>
-  <%= f.select :language, (@languages) %><br>
+  <%= f.select :language, (@languages) %>
+  <%= f.select :privacy, [["Draft", 0], ["Published", 1]] %><br>
   
   <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %>
 

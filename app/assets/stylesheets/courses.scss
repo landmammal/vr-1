@@ -140,6 +140,8 @@
 		border-radius: 3px; 
 		overflow: hidden; background-color: #eee;
 
+		&.draft{ background-color: #fff; border:1px dotted; }
+
 		a{
 			grid-template-rows: auto 28px minmax(70px);
 			&.search{
