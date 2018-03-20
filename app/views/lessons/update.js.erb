@@ -5,3 +5,9 @@ $('.lesson_<%= @lesson.id %>').each(function(){
     card.find(".lt_<%= @lesson.id %>").text('<%= @lesson.title %>');
     card.find("#ld_<%= @lesson.id %>").text('<%= @lesson.description %>');
 })
+
+<% if @lesson.privacy == 0 %>
+    $('.lesson_<%= @lesson.id %>').addClass('draft');
+<% else %>
+    $('.lesson_<%= @lesson.id %>').removeClass('draft');
+<% end %>

@@ -104,7 +104,9 @@ class LessonsController < ApplicationController
     @topic.save
     
     Rehearsal.where(lesson_id: @lesson).destroy_all
-    @lesson.delete_associations
+    Explanation.where(lesson_id: @lesson).destroy_all
+    Prompt.where(lesson_id: @lesson).destroy_all
+    Model.where(lesson_id: @lesson).destroy_all
 
     if @lesson.destroy
       respond_to do |format|
@@ -134,6 +136,6 @@ class LessonsController < ApplicationController
     end
 
     def lesson_update
-      params.require(:lesson).permit(:title, :description, :lesson_type, :tags, :language, :approval_status)
+      params.require(:lesson).permit(:title, :description, :lesson_type, :privacy, :tags, :language, :approval_status)
     end
 end
