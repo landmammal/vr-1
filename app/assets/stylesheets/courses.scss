@@ -158,6 +158,10 @@
 			font-size: 12px;
 		}
 
+		&.lesson_card{
+			& .ctitle{ font-size: 14px; font-weight: bold; }
+		}
+
 		& .course_cover{
 			background-size: cover;
 			background-position: center;

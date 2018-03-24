@@ -1,7 +1,7 @@
 desc "Run_all_rakes"
 task :run_all_rakes => [ :refnum_generation, :auth_token_generation, 
                          :topics_order, :lessons_order, :set_privacy, 
-                         :courses_privacy, :purge, :purge_course_201,
+                         :courses_privacy, :purge_unassoc, :purge_course_201,
                          :course_desc_to_short_desc
                     ] do
 
@@ -83,12 +83,30 @@ end
 
 
 desc "Purge Unassociated Items"
-task :purge => :environment do   
+task :purge_unassoc => :environment do   
 
     Topic.all.each { |t| t.destroy if t.course == nil }
     Lesson.all.each { |l| l.destroy if l.topic == nil }
+    Explanation.all.each { |e| e.destroy if e.lesson == nil }
+    Model.all.each { |m| m.destroy if m.lesson == nil }
+    Prompt.all.each { |p| p.destroy if p.lesson == nil }
+    Rehearsal.all.each { |r| r.destroy if r.lesson == nil }
 
     puts "DONE: Purging Unassociated"
+end
+
+desc "Purge Associations"
+task :purge_assoc => :environment do   
+
+    CourseTopic.all.destroy_all
+    TopicLesson.all.destroy_all
+    LessonExplanation.all.destroy_all
+    LessonModel.all.destroy_all
+    LessonPrompt.all.destroy_all
+    LessonRehearsal.all.destroy_all
+    PerformanceFeedback.all.destroy_all
+
+    puts "DONE: Purging Associations"
 end
 
 desc "Purge Course 1"
