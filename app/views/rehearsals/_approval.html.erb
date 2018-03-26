@@ -29,7 +29,6 @@
 <% end %>
 
 <% if user == 'trainee' %>
-
     <button id="submit" class="send_data <%= rehearsal.submission ? 'green_sft' : 'default' %>" data-target="rehearsal_submission" data-status="<%= !rehearsal.submission ? 'true' : 'false' %>" >
         <%= rehearsal.submission ? 'Submitted' : 'Submit' %>
     </button>

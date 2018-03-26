@@ -103,9 +103,13 @@ class LessonsController < ApplicationController
     @topic.lessons_order.delete(@lesson.refnum)
     @topic.save
     
+    LessonRehearsal.where(lesson_id: @lesson).destroy_all
     Rehearsal.where(lesson_id: @lesson).destroy_all
+    LessonExplanation.where(lesson_id: @lesson).destroy_all
     Explanation.where(lesson_id: @lesson).destroy_all
+    LessonPrompt.where(lesson_id: @lesson).destroy_all
     Prompt.where(lesson_id: @lesson).destroy_all
+    LessonModel.where(lesson_id: @lesson).destroy_all
     Model.where(lesson_id: @lesson).destroy_all
 
     if @lesson.destroy
