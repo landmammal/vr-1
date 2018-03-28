@@ -11,10 +11,7 @@
 
     <div class="notifications">
       <!-- <span class="ion-heart"></span> -->
-      <span class="ion-ios-bell dropdownToggle" data-drop="notifDropdown" data-offset="118">
-        <% if current_user.notifications > 0 %>
-          <span class="notif_num"><%= current_user.notifications %></span>
-        <% end %>
+      <span class="ion-ios-bell dropdownToggle" data-drop="notifDropdown" data-offset="118">        
       </span>
       <%= render 'layouts/header/notif_dropdown' %>
     </div>
