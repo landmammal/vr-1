@@ -1,4 +1,4 @@
-@import 'application';
+@import "application";
 .blankdot {
     width: 8px;
     height: 8px;
@@ -16,7 +16,7 @@
 }
 
 .orangedot {
-    background-color: #FFA800;
+    background-color: #ffa800;
 }
 
 .reddot {
@@ -24,7 +24,7 @@
 }
 
 .greendot {
-    background-color: #0FDF0F;
+    background-color: #0fdf0f;
 }
 
 .site_wrapper {
@@ -43,6 +43,31 @@
     &.padding {
         padding: 50px 0;
     }
+}
+
+@for $i from 1 through 5 {
+    .box-#{$i} {
+        display: grid;
+        grid-template-columns: repeat(#{$i}, 1fr);
+        grid-gap: 2%;
+    }
+}
+
+.shadow_box {
+    box-shadow: 0px 0px 20px #ddd;
+    padding-top: 20px;
+    border-radius: 10px;
+    text-align: center;
+    img {
+        min-width: 50px;
+        max-width: 60px;
+    }
+}
+
+.companies_list {
+    color: white;
+    padding: 40px 0;
+    background-color: #264f64;
 }
 
 video#bgvid {
@@ -263,7 +288,7 @@ video#bgvid {
 }
 
 .loading_app .loading_wrapper .load_text {
-    color: #0883C3;
+    color: #0883c3;
     font-size: 20px;
     margin: 5px auto;
 }
@@ -291,12 +316,12 @@ video#bgvid {
 }
 
 .loading_app .loading_wrapper progress::-webkit-progress-value {
-    background-color: #0883C3;
+    background-color: #0883c3;
     border-radius: 2px;
 }
 
 .loading_app .loading_wrapper progress::-moz-progress-bar {
-    background-color: #0883C3;
+    background-color: #0883c3;
     border-radius: 2px;
 }
 
@@ -409,7 +434,7 @@ video#bgvid {
     top: -1px;
     font-size: 30px;
     color: white;
-    font-family: 'gotham';
+    font-family: "gotham";
 }
 
 .search_section .search_box input.search_course_term ::-webkit-input-placeholder {
@@ -441,7 +466,7 @@ video#bgvid {
 }
 
 .search_section .search_box button.search_course_btn:hover {
-    background-color: #00A6FF;
+    background-color: #00a6ff;
 }
 
 /* line 873, /home/deepak-vimal/projects/videorehearser/app/assets/stylesheets/welcome.scss */
@@ -527,7 +552,7 @@ video#bgvid {
 
 .home_top_info .info_left .content .title,
 .home_top_info .info_right .content .title {
-    font-family: 'gotham';
+    font-family: "gotham";
     font-size: 30px;
     margin-bottom: 10px;
     line-height: 0.8em;
@@ -577,7 +602,7 @@ video#bgvid {
             text-align: center;
             color: white;
             width: 100%;
-            font-family: 'gotham_thin';
+            font-family: "gotham_thin";
             font-size: 20px;
             background-color: rgba(0, 0, 0, 0.6);
             min-height: 140px;
@@ -604,7 +629,7 @@ video#bgvid {
 }
 
 .faq_title {
-    font-family: 'gotham';
+    font-family: "gotham";
     margin-bottom: 10px;
     font-size: 18px;
 }
@@ -633,7 +658,7 @@ video#bgvid {
     color: white;
     padding: 15px 20px;
     font-size: 15px;
-    font-family: 'gotham';
+    font-family: "gotham";
 }
 
 .press_bg .press_packet button.press_packet_btn:hover {
@@ -659,7 +684,7 @@ video#bgvid {
     min-width: 140px;
     text-align: center;
     font-size: 12px;
-    font-family: 'webly_reg';
+    font-family: "webly_reg";
     display: inline-block;
     margin: 20px 1%;
 }
@@ -670,7 +695,7 @@ video#bgvid {
 }
 
 .teammember .name {
-    font-family: 'webly_bld';
+    font-family: "webly_bld";
     font-size: 17px;
     margin: 3px auto 5px;
     color: black;
@@ -682,7 +707,7 @@ video#bgvid {
 
 .home_sec {
     font-size: 23px;
-    font-family: 'webly_reg';
+    font-family: "webly_reg";
     color: #858585;
     line-height: 1em;
     margin: 50px auto;
@@ -698,7 +723,7 @@ video#bgvid {
 .video_info_title {
     font-size: 25px;
     font-weight: bold;
-    font-family: 'webly_reg';
+    font-family: "webly_reg";
     margin: 100px 10px 5px;
     text-align: right;
 }
@@ -709,7 +734,7 @@ video#bgvid {
     margin-right: 10px;
     line-height: 1.5em;
     font-size: 15px;
-    font-family: 'webly_reg';
+    font-family: "webly_reg";
     text-align: right;
 }
 
@@ -717,13 +742,13 @@ video#bgvid {
     font-size: 40px;
     color: white;
     font-weight: bold;
-    font-family: 'webly_reg';
+    font-family: "webly_reg";
 }
 
 .user_box {
     height: 150px;
     background-color: transparent;
-    border: 1px solid #C4C1C1;
+    border: 1px solid #c4c1c1;
     border-bottom: 0;
 }
 
@@ -745,9 +770,9 @@ video#bgvid {
 .info_box .title {
     padding: 10px;
     text-align: center;
-    color: #5D5D5D;
+    color: #5d5d5d;
     font-size: 20px;
-    font-family: 'gotham_bld';
+    font-family: "gotham_bld";
 }
 
 .info_box .desc {
@@ -794,7 +819,7 @@ video#bgvid {
             font-family: "webly_reg";
             line-height: 1.5em;
             .from_anywhere {
-                font-family: 'gotham_bld';
+                font-family: "gotham_bld";
             }
         }
     }
@@ -838,7 +863,7 @@ video#bgvid {
     padding: 5px 10px;
     float: none;
     display: inline-block;
-    background-color: #FF7C86;
+    background-color: #ff7c86;
     margin: 3px;
 }
 
@@ -912,7 +937,7 @@ video#bgvid {
         border-top: 5px solid #999;
         box-shadow: 1px 1px 10px #666;
         a {
-            color: #1AA8FF;
+            color: #1aa8ff;
         }
         form {
             color: #333;
@@ -1117,11 +1142,11 @@ video#bgvid {
     }
     .home_info_2 {
         font-size: 20px;
-        font-family: 'webly_reg';
+        font-family: "webly_reg";
     }
     .home_info_3 {
         font-size: 14px;
-        font-family: 'webly_reg';
+        font-family: "webly_reg";
         margin: 0 auto;
     }
     .video_info_title {
@@ -1241,11 +1266,11 @@ video#bgvid {
     }
     .home_info_2 {
         font-size: 20px;
-        font-family: 'webly_reg';
+        font-family: "webly_reg";
     }
     .home_info_3 {
         font-size: 18px;
-        font-family: 'webly_reg';
+        font-family: "webly_reg";
         margin: 10px auto;
     }
     .home_top_wrapper {
@@ -1359,12 +1384,12 @@ video#bgvid {
     }
     .home_info_2 {
         font-size: 20px;
-        font-family: 'webly_reg';
+        font-family: "webly_reg";
         line-height: 1.5em;
     }
     .home_info_3 {
         font-size: 18px;
-        font-family: 'webly_reg';
+        font-family: "webly_reg";
         margin: 10px auto;
     }
     .info_box.hlf {
@@ -1650,7 +1675,7 @@ video#bgvid {
 
 .BannerOverlay {
     background: -moz-linear-gradient(left, black 0%, rgba(125, 185, 232, 0) 100%);
-    background: -webkit-linear-gradient(left, black 0%, rgba(125, 185, 232, 0) 100%);
+    background: -webkit-linear-gradient( left, black 0%, rgba(125, 185, 232, 0) 100%);
     background: linear-gradient(to right, black 0%, rgba(125, 185, 232, 0) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#007db9e8', GradientType=1);
     position: absolute;
@@ -1951,7 +1976,7 @@ div.panel {
 }
 
 button.accordion:after {
-    content: '\002B';
+    content: "\002B";
     color: #000;
     float: right;
     margin-left: 5px;
@@ -2280,7 +2305,7 @@ button.accordion.active:after {
     }
 }
 
-.jobs-form input[type='file'] {
+.jobs-form input[type="file"] {
     border: 0px;
     margin: 0px;
     padding: 11px 5px;
@@ -2289,7 +2314,7 @@ button.accordion.active:after {
     opacity: 0;
 }
 
-.jobs-form input[type='file']+span {
+.jobs-form input[type="file"]+span {
     background: #ffffff;
     padding: 8px 20px;
     display: block;
