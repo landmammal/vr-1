@@ -93,7 +93,7 @@
 
 <div class="container-fluid">
 	<div class="row wrapper padding">
-		<div class="col-sm-5">
+		<div class="col-sm-5" style="margin-top:0px;">
 			<h4>Engage your learners leveraging <br> neurobehavioral principles.</h4>
 			85% of every training dollar is spent just getting people into a room. Turn your training budget into an asset.
 			<br><br>
@@ -105,20 +105,18 @@
 		</div>
 
 		<div class="col-sm-7">
-			
+			<img src="/assets/home_illustration_1.jpg" style="width:100%;">
 		</div>
 	</div>
 </div>
 
-<br><br>
-
 <div class="container-fluid">
 	<div class="row wrapper padding">
 		<div class="col-sm-7">
-			
+			<img src="/assets/home_illustration_2.png" style="width:100%; max-width:550px;">			
 		</div>
 
-		<div class="col-sm-5">
+		<div class="col-sm-5" style="margin-top:0px;">
 			<h4>The future of online <br> training has arrived.</h4>
 			We use an authentically interactive interface to ensure that learners are able to apply what they’ve learned and iterate based on self-feedback and coaching. Your business success is based on performance, not badges.
 			<br><br>
@@ -131,11 +129,10 @@
 	</div>
 </div>
 
-<br><br>
 
 <div class="container-fluid">
 	<div class="row wrapper padding">
-		<div class="col-sm-5">
+		<div class="col-sm-5" style="margin-top:0px;">
 			<h4>Automatically engage with your people at the right time.</h4>
 			Share the best practice. Invite stakeholders  to learn how to improve their existing performance.
 			<br><br>
@@ -148,19 +145,36 @@
 		</div>
 
 		<div class="col-sm-7">
-			
+			<img src="/assets/home_illustration_3.png" style="width:100%; max-width:550px;">						
 		</div>
 	</div>
 </div>
 
 
 <div class="container-fluid companies_list">
-	<div class="row wrapper" style="padding:60px 0;">
+	<div class="row wrapper" style="padding:20px 0 60px;">
 		<div class="col-sm-12 center_text">
-
 			<h4>Used to train employees at <br> some of your favorite companies.</h4>
 			<h6> Our patented coaching and training process leads to improved employee performance.  </h6>			
-			
+			<br><br>
+			<div class="box-5">
+				<div><img src="<%= image %>/partnership/mdc.png" width="90%"></div>
+				<div><img src="<%= image %>/partnership/wells_fargo.png" width="90%"></div>
+				<div><img src="<%= image %>/partnership/linked_in.png" width="90%"></div>
+				<div><img src="<%= image %>/partnership/google.png" width="90%"></div>
+				<div><img src="<%= image %>/partnership/american_express.png" width="90%"></div>
+			</div>
 		</div>
 	</div>
+</div>
+
+<div class="bottom_form">
+	<h3>Sign up for a FREE trial.</h3>
+	<h6>No contract, no set-up costs, just an incredible training experience.</h6>
+	<br><br>
+	<%= form_for( Demo.new , remote: true) do |f| %>
+		<%= f.text_field :email, placeholder: :email %>
+		<%= f.submit "Request Demo" %>
+	<% end %>
+	<h6><a href="<%= pricing_url %>" style="color:#0070C0; text-decoration:underline;">view our pricing</a></h6>	
 </div>
