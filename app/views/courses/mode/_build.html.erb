@@ -1,9 +1,9 @@
 <div class="topics_area course_<%= @course.id %>">
 
   <div class="topics_list">
-    <h2 id="ct_<%= @course.id %>" class="left">
+    <h3 id="ct_<%= @course.id %>" class="left">
       <%= @course.title %>
-    </h2>
+    </h3>
     <div class="left" style="margin-top:23px; font-size:17px;">
       <%= link_to '', edit_course_path(@course), class:'edit ion-edit', remote: true %>
     </div>
@@ -71,9 +71,9 @@
   <div class="side">
     <div class="course_cover_build" id="cco_<%= @course.id %>" style="background-image:url('<%= @course.image %>');"></div>
     <br>
-    <h4 style="padding:7px 0;">Students List
+    <h5 style="padding:7px 0;">Students List
       <button class="blue small_btn shadebox_btn" data-shadebox="invite_student" > Invite </button>
-    </h4>
+    </h5>
   
   
     <div class="shadebox_bg" data-name="invite_student">
