@@ -37,7 +37,6 @@ class TopicsController < ApplicationController
   end
 
   def update
-    
     respond_to do |format|
       if @topic.update(topic_update)
         format.js   { }
@@ -48,7 +47,6 @@ class TopicsController < ApplicationController
         format.json { render json: @topic.errors, status: :unprocessable_entity }
       end
     end
-
   end
 
   def destroy

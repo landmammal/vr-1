@@ -6,10 +6,10 @@
     </div>
 
     <div class="col-12">
-      <h3>Curriculum</h3>
+      <h4 class="bold">Curriculum</h4>
       <br>
       <% @course.topics_ready.each do |topic| %>
-        <div class="topic">
+        <h4 class="topic">
           <h4><%= topic.title %></h4>
           <%= topic.description %>
           <br><br>

@@ -20,10 +20,10 @@
     <%= render 'layouts/loading' %>
     <script type="text/javascript">$('.loading_app').show(); startLoadingProg();</script>
 
-    <script type="text/javascript">TermsandServices(<%= check_terms(termsVersion) %>);</script>
+    <!-- <script type="text/javascript">TermsandServices(<%= check_terms(termsVersion) %>);</script>
     <div class="terms_not_aggreed" style="display:<%= check_terms(termsVersion) ? 'none' : 'block' %>;">
       <%= render '/welcome/reviewtermsandservices' %>
-    </div>
+    </div> -->
     
     <%= render 'layouts/notice' %>
 
