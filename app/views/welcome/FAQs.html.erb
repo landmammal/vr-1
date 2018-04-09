@@ -1,8 +1,1 @@
-<div class="site_wrapper" style="margin:70px auto 100px;">
-	<h2>Frequently Asked Questions</h2>
-	<hr style=" width:90%; margin:30px auto;">
-	<% @faqs.each do |faq| %>
-		<div class='faq_title'><%= faq[0] %></div>
-		<div class='faq_content'><%= faq[1] %></div>
-	<% end %>
-</div>
+<%= render 'faqs' %>

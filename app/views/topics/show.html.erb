@@ -10,13 +10,13 @@
       </div>
     </div>
 
-    <h2 class="tt_<%= @topic.id %>" ><%= @topic.title %></h2>
+    <h3 class="tt_<%= @topic.id %>" ><%= @topic.title %></h3>
 
     <span id="td_<%= @topic.id %>" ><%= @topic.description %></span>
 
   </div>
 
-  <h3>Lessons</h3>
+  <h4>Lessons</h4>
   
   <%= (button_to  "add +", new_course_topic_lesson_path(@course, @topic), method: :get, class:'green_sft small', remote: true) if course_creator %>
   <div class="lessonForm"></div>
