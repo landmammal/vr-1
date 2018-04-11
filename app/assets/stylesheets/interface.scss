@@ -320,13 +320,13 @@ span.num{
 .rehearsal_filter{
 	padding: 5px 18px;
     background-color: #f7f8fd;
-    display: inline-block;
+	display: inline-block;
+	float: left;
     cursor: pointer;
     border-radius: 20px;
     font-size: 13px;
     font-weight: 400;
 	&.selected, &:hover{
- 
 		background-color: rgb(4, 110, 172) ; color: white;
 		background-color: $base_color;
 	}
@@ -344,8 +344,8 @@ span.num{
     overflow: hidden;
     background-color: #f7f8fd;
     display: inline-block;
-    float: none;
-    width: 300px;
+	float: none;
+	max-width: 300px;
     margin: 5px;
 	& .pic{
 		overflow: hidden; float:left; width:40px;

@@ -10,55 +10,51 @@ class RehearsalsController < ApplicationController
   require 'rest-client'
 
   def index
-    @rehearsals = Rehearsal.all
-    @rehearsals_api = Rehearsal.all
-    @feedback = Feedback.new
-    @performance_feedback = PerformanceFeedback.new
+    if params[:lesson_id]
+      if params[:trainee_id]
+        @student = User.find(params[:trainee_id])
+        @lesson = Lesson.find(params[:lesson_id])
+        @rehearsals = @lesson.rehearsals.where(trainee_id: params[:trainee_id], submission: true)
+      else
+        @rehearsals = Rehearsal.where( lesson_id: params[:lesson_id] )
+      end
+    else
+      @rehearsals = Rehearsal.all
+      @rehearsals_api = Rehearsal.all
+      @feedback = Feedback.new
+      @performance_feedback = PerformanceFeedback.new
+    end
+
+    respond_to do |format| 
+      format.html { }
+      format.js { }
+    end
   end
 
 
   def all
-
-    @courses = {}
-    current_user.courses.order("title ASC").each do |course|
-      @courses[course.title] = {}
-      @courses[course.title]["course"] = course
-      @courses[course.title]["topics"] = {}
-
-      course.topics.each do |topic|
-        @courses[course.title]["topics"][topic.title] = {}
-        @courses[course.title]["topics"][topic.title]["topic"] = topic
-        @courses[course.title]["topics"][topic.title]["lessons"] = {}
-
-        topic.lessons.each do |lesson|
-          @courses[course.title]["topics"][topic.title]["lessons"][lesson.title] = {}
-          @courses[course.title]["topics"][topic.title]["lessons"][lesson.title]["lesson"] = lesson
-          @courses[course.title]["topics"][topic.title]["lessons"][lesson.title]["rehearsals"] = {}
-
-          lesson.rehearsals.order("created_at DESC").limit(10).each do |x|
-            if User.all.include? x.trainee
-              @courses[course.title]["topics"][topic.title]["lessons"][lesson.title]["rehearsals"][x.trainee.full_name] = {
-                "student_id" => x.trainee_id,
-                "image" => student_pic(x.trainee),
-                "lesson_info" => [ lesson.title, lesson.id ],
-                "rhs_count" => x.trainee.rehearsals.where( lesson_id: lesson.id).where( submission: true ).size,
-                "new_count" => x.trainee.rehearsals.map{ |x| x if (  x.lesson_id == lesson.id && x.new? )   }.compact.size
-              }
-            end
-          end
-
-        end
-
-      end
-    end
-
+    @courses = current_user.courses.all
   end
 
 
   def student
-    @student = User.find(params[:student])
-    @lesson = Lesson.find(params[:lesson])
-    @rehearsals = @lesson.rehearsals.where(trainee_id: params[:student], submission: true)
+    # @student = User.find(params[:student])
+    # @lesson = Lesson.find(params[:lesson])
+    # @rehearsals = @lesson.rehearsals.where(trainee_id: params[:student], submission: true)
+  end
+
+  def trainees
+    if params[:lesson_id]
+      rehearsal_trainee_ids = Rehearsal.where( lesson_id: params[:lesson_id], submission: true ).map{ |x| x.trainee_id }.compact.uniq
+      @lesson = Lesson.find(params[:lesson_id])
+      @trainees = User.where( id: rehearsal_trainee_ids )
+    else
+      @trainees = nil
+    end
+
+    respond_to do |format|
+      format.js { }
+    end
   end
 
   def show

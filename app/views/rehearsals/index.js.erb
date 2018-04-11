@@ -1,0 +1,6 @@
+'use strict';
+
+$('#notrainees').hide();
+
+var reharsals = "<%= escape_javascript (render partial: './rehearsals/rehearsals_list', locals:{ student: @student, lesson: @lesson, rehearsals: @rehearsals }) %>";
+$('#video_list').html(reharsals);
