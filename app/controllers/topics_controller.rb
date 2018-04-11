@@ -4,7 +4,17 @@ class TopicsController < ApplicationController
   before_action :set_course, only: [:index, :create, :show, :new, :edit, :destroy]
 
   def index
-    @topics = Topic.all
+    if params[:course_id]
+      topics = Topic.where( course_id: params[:course_id] )
+    else
+      topics = Topic.all
+    end
+
+    respond_to do |format| 
+      format.html { }
+      format.js { }
+      format.json { render json: topics }
+    end
   end
 
   def show

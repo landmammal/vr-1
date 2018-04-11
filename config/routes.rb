@@ -106,6 +106,7 @@ Rails.application.routes.draw do
   end
   
   resources :topics do
+    resources :lessons
     member do 
       post 'change_lessons_order'
     end
@@ -118,6 +119,9 @@ Rails.application.routes.draw do
     resources :concepts
     resources :rehearsals do
       resources :feedbacks
+      collection do
+        get 'trainees'
+      end
     end
   end
 

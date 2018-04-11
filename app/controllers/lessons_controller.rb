@@ -9,7 +9,17 @@ class LessonsController < ApplicationController
   # GET /lessons
   # GET /lessons.json
   def index
-    @lessons = Lesson.all
+    if params[:topic_id]
+      lessons = Lesson.where( topic_id: params[:topic_id] )
+    else
+      lessons = Lesson.all
+    end
+
+    respond_to do |format| 
+      format.html { }
+      format.js { }
+      format.json { render json: lessons }
+    end
   end
 
   # GET /lessons/1

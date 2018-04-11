@@ -1,0 +1,41 @@
+<h4><%= student.first_name + " " + student.last_name %></h4>
+<h5>
+  <%= link_to lesson.topic.course.title, course_path(lesson.topic.course) %> ::
+  <%= link_to lesson.topic.title, course_topic_path(lesson.topic.course, lesson.topic) %> ::
+  <%= link_to lesson.title, course_topic_lesson_path(lesson.topic.course, lesson.topic, lesson) %>
+</h5>
+
+<div style="float:left; margin:5px 10px 0 0;">Filter rehearsals by:</div>
+<div class="rehearsal_filter selected" id="all_rehearsals" >All</div>
+<div class="rehearsal_filter" id="new_rehearsal" >New</div>
+<div class="rehearsal_filter" id="approved_rehearsal" >Approved</div>
+<div class="rehearsal_filter" id="rejected_rehearsal" >Rejected</div>
+<div class="rehearsal_filter" id="rehearsal_with_feedback" >With Feedback</div>
+
+<br>
+<br>
+<br>
+
+<% rehearsals.each_with_index do |rehearsal, index| %>
+
+    <% @r = 'rehearsal_bubble_'+ rehearsal.id.to_s %>
+    <% @date_sub = time_diff(Time.now, rehearsal.created_at) %>
+
+    <a href="/rehearsals/<%= rehearsal.id.to_s %>/api" class='rehearsal_button' data-remote="true">
+        <div id="rhs_<%= rehearsal.id %>" class="rehearsal_bubble" data-status="<%= rehearsal.check_status %>">
+          <div class="pic" style="width:100% !important;">
+            <img src="https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= rehearsal.video_token %>/image">
+          </div>
+          <br>
+          <div class="info">
+            Submission - <%= index+1 %>
+            <div class="other_info">
+              <font size="0.1em">submitted <%= @date_sub %></font>
+            </div>
+          </div>
+        </div>
+    </a>
+
+<% end %>
+
+<div class="open_rehearsal"></div>

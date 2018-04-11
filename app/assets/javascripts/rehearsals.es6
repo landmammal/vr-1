@@ -95,7 +95,7 @@ var pageReady = function(){
 
 
 
-  $('.rehearsal_filter').click(function(){
+  $(document).on('click', '.rehearsal_filter', function(){
     $('.rehearsal_filter').removeClass('selected');
     $(this).addClass('selected');
     
@@ -133,9 +133,43 @@ var pageReady = function(){
     });
   });
 
+  $(document).on('click', '.course_rehearsal_item', function(){
+    var thisID = $(this).data('id');
+    $('.topics #course').html($(this).text());
 
+    $.ajax({
+      url:"/courses/"+thisID+"/topics.json",
+      type:'GET',
+      success: function (data) {
+        $('.courses').hide();
+        $('.topics_list').empty();
+        $('.topics').show();
+        for (var item in data) {
+          $('.topics_list').append(`<div class="topic_rehearsal_item" data-id="${data[item].id}" id="topic_${item.id}"> ${data[item].title} </div>`);
+        }
+      }
+    });
+  });
 
+  $(document).on('click', '.topic_rehearsal_item', function(){
+    var thisID = $(this).data('id');
+    $('.lessons #topic').text( $(this).text() );
 
+    $.ajax({
+      url:"/topics/"+thisID+"/lessons.json",
+      type:'GET',
+      success: function (data) {
+        $('.topics').hide();
+        $('.lessons_list').empty();
+        $('.lessons').show();
+        for (var item in data) {
+          $('.lessons_list').append(`<a href="/lessons/${data[item].id}/rehearsals/trainees" data-remote="true">
+            <div class="lesson_rehearsal_item" data-id="${data[item].id}" id="lesson_${data[item].id}"> ${data[item].title} </div>
+          </a>`);
+        }
+      }
+    });
+  });
 };
 
 $(document).ready(pageReady);
