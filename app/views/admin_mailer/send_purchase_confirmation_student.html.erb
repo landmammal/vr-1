@@ -1,119 +1,20 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-    <style>
-      body{
-        background-color: #E5E9EC;
-      }
+<% content_for :body do %>
+  <b>Thank you for purchasing access to the course <%= @course.title %>.</b>
+  <br>
+  <br>
+  <div class="main-body">
+    Your instructor, <%= @course.instructor.full_name %>, is excited to have you. videoRehearser is engineered to train and will lead you to performance mastery! <%= link_to "Click here to begin", @url %>.
+    <br>
+    <br>
+    <b>Course details:</b>
+    <br>
+    Name: <%= @course.title %>
+    <br>
+    Access Code: <%= @course.access_code %>
+    <br>
+    Number of lessons: <%= @lessons %>
+  </div>
 
-      h1, h2, h3, h4, h5, h6 { 
-           line-height: 0.5em;
-           margin-bottom: 5px;
-      }
-      .wrapper {
-        background-color: white;
-        width: 80%;
-        max-width: 600px;
-        margin: auto;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-flex-direction: row; /* works with row or column */
-        flex-direction: column;
-        -webkit-align-items: center;
-        align-items: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-        /*padding: 5px 15px 5px 15px;*/
-      }
-      .content {
-        text-align: left;
-        padding: 30px 40px;
-        color: #666666;
-      }
-      .header {
-        background-color: #0090ff;
-        padding: 20px 0px;
-        text-align: center;
-        min-width: 100%;
-      }
-      p {
-        font-family: "arial";
-        font-size: 15px;
-      }
-      .small {
-        font-size: 11px;
-      }
-      .header img {
-        width: 90px;
-      }
-      .footer {
-        border-bottom: 10px grey solid;
-        padding: 10px 0px;
-        width: 100%;
-      }
-
-
-    </style>
-  </head>
-  <body>
-    <div class="wrapper">
-      <table border-spacing="0" padding="0">
-        <thead>
-          <tr>
-            <th>
-              <div class="header">
-                <%= email_image_tag("logo_text_white.png") %>
-              </div>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <div class="content">
-                Hi <%= @user.full_name %>,
-                <br>
-                <br>
+  <hr>
+<%end%>
                 
-                <b>Thank you for purchasing access to the course <%= @course.title %>.</b>
-                <br>
-                <br>
-                <div class="main-body">
-                  Your instructor, <%= @course.instructor.full_name %>, is excited to have you. videoRehearser is engineered to train and will lead you to performance mastery! <%= link_to "Click here to begin", @url %>.
-                  <br>
-                  <br>
-                  <b>Course details:</b>
-                  <br>
-                  Name: <%= @course.title %>
-                  <br>
-                  Access Code: <%= @course.access_code %>
-                  <br>
-                  Number of lessons: <%= @lessons %>
-                </div>
-
-                <hr>
-
-                <div class="small">
-                  <br>
-                  Best
-                  <br>
-                  - Team vR 
-                </div>
-
-              </div>
-            </td>
-          </tr>
-        </tbody>
-        <footer>
-          <tr>
-            <td>
-              <div class="footer"></div>
-            </td>
-          </tr>
-        </footer>
-      </table>
-    </div>
-  </body>
-</html>
