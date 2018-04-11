@@ -99,7 +99,10 @@ class AdminMailer < ApplicationMailer
   def user_approved_notice(user)
     @url = @base+'/users/sign_in'
     @user = user
-    mail(from: '\'Carlos Vazquez\' <notification@videorehearser.com>', to: @user.email, subject: "Welcome to vR!")
+    mail(from: '\'Carlos Vazquez\' <notification@videorehearser.com>', to: @user.email, subject: "Welcome to vR!") do |format|
+      @recepient = @user.full_name
+      mailer_formats(format)
+    end
   end
 
 
@@ -124,7 +127,10 @@ class AdminMailer < ApplicationMailer
     @lesson = lesson
     @status = status
     @message = message
-    mail( to:@user.email, subject: message )
+    mail( to:@user.email, subject: message ) do |format|
+      @recepient = @user.full_name
+      mailer_formats(format)
+    end
   end
 
 
@@ -133,7 +139,10 @@ class AdminMailer < ApplicationMailer
   def lead_notice(user)
     @url = @base+'/users/sign_in'
     @user = user
-    mail( to:'carlos@videorehearser.com', subject: "#{user.first_name} #{user.last_name} #red @jcvazquez6")
+    mail( to:'carlos@videorehearser.com', subject: "#{user.first_name} #{user.last_name} #red @jcvazquez6") do |format|
+      @recepient = 'Carlos'
+      mailer_formats(format)
+    end
   end
 
 
@@ -143,7 +152,10 @@ class AdminMailer < ApplicationMailer
     @course = course
     @user = user
     @url = @base+"/courses/"+course.id.to_s
-    mail( to: user.email, subject: "Thank you for purchasing access to the course: "+course.title)
+    mail( to: user.email, subject: "Thank you for purchasing access to the course: "+course.title) do |format|
+      @recepient = user.full_name
+      mailer_formats(format)
+    end
   end
 
 
@@ -152,7 +164,10 @@ class AdminMailer < ApplicationMailer
     @user = user
     @course = course
     @instructor = course.instructor
-    mail( to: @instructor.email, subject: user.full_name+" purchased to the course: "+course.title)
+    mail( to: @instructor.email, subject: user.full_name+" purchased to the course: "+course.title) do |format|
+      @recepient = @instructor.full_name
+      mailer_formats(format)
+    end
   end
 
 
