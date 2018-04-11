@@ -1,7 +1,7 @@
 <div class="mobile_hamburger hamburger ion-navicon-round"></div>
 <div class="main_nav_items away" data-mode="mobile_menu">
     <div class="mobile_hamburger ion-chevron-right"></div>
-    <a href="#overview" class="nav_item"> overview </a>
+    <a href="#overview" class="nav_item"> Overview </a>
     <% @main_menu.each do |menu| %>
         <%= link_to menu.capitalize, '/'+menu, class:'nav_item' %>
     <%end%>
