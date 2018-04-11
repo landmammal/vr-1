@@ -3,7 +3,10 @@
 	<div class="<%= thisclass %>_switch switch">
 		<div class="knob <%= thisclass %>_knob"></div>
 	</div>
-	<input type="range" class="<%= thisclass %>_script_opacity" min="0" max="1" value="1" step="0.1">
+	<input type="range" class="<%= thisclass %>_script_opacity" min="0" max="1" value="1" step="0.1" style="float:left;">
+	<% if thisclass == "rehearsal" %>
+		<span class="copy_btn" style="float:right; margin-top:8px;" onClick="copyToClipboard(<%= thisclass %>_script, this)"> Copy </span>
+	<% end %>
 	<script type="text/javascript">
 		scriptOpacityToggle('<%= thisclass %>')
 	</script>

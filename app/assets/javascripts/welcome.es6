@@ -108,10 +108,21 @@ function myFunction() {
 }
 
 
-
+function copyToClipboard(element, item) {
+	var $temp = $("<input>");
+	$("body").append($temp);
+	$temp.val($(element).val()).select();
+	document.execCommand("copy");
+	$temp.remove();
+	$(item).text('copied ✓')
+}
 
 
 var pageReady = function(){
+
+	$('.rehearsal_script').on('input', function(){
+		$('.copy_btn').text( 'Copy' );
+	} );
 
 	// $(".menu-control").click(function () {
 	// 	$(".main-content.in_app").toggleClass('menu-large');
