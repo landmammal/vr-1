@@ -171,7 +171,7 @@ class WelcomeController < ApplicationController
 
 
   #Footer 3 ====
-  def theteam
+  def team
     @site_title = 'Who we are'
   end
 

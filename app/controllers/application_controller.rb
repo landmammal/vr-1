@@ -86,12 +86,12 @@ class ApplicationController < ActionController::Base
     @video_type = [['Local', 'local'],['Image', 'image'],['Youtube', 'youtube']]
 
     @ziggeo_priority = [["Not Primary", ],["Primary", true]]
-    @theteam = [{ name:'Carlos Vazquez', role:'CEO/Co-Founder', link:'https://www.linkedin.com/in/juancvazquez' },
-                { name:'David Kay', role:'Co-Founder', link:'https://www.linkedin.com/in/davidlkay' },
-                { name:'Al Delcy', role:'Product Manager', link:'https://www.linkedin.com/in/aldelcy' },
-                { name:'Roger Rodriguez', role:'Lead Developer', link:'https://www.linkedin.com/in/landmammal' },
-                { name:'Alexis Mabe', role:'Instructional Designer' },
-                { name:'Mevurah Deleon', role:'Digital Strategist', link:'https://www.linkedin.com/in/mevurah-deleon-06bb08123' }]
+    @theteam = [{ name:'Carlos Vazquez', title:'M.S.Ed, M.I.T', role:'CEO/Co-Founder', link:'https://www.linkedin.com/in/juancvazquez' },
+                { name:'David Kay', title:'MA', role:'Co-Founder', link:'https://www.linkedin.com/in/davidlkay' },
+                { name:'Al Delcy', title:'MBA', role:'Lead FullStack Developer', link:'https://www.linkedin.com/in/aldelcy' },
+                { name:'Roger Rodriguez', title:'', role:'BackEnd Developer', link:'https://www.linkedin.com/in/landmammal' },
+                { name:'Alexis Mabe', title:'MA', role:'Instructional Designer' },
+                { name:'Mevurah Deleon', title:'', role:'Digital Strategist', link:'https://www.linkedin.com/in/mevurah-deleon-06bb08123' }]
 
     if current_user
       # @demos = Demo.all
