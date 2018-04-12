@@ -473,3 +473,16 @@ a:focus {
 @mixin text_extrude($color, $size){
   text-shadow: extrude($color, $size) ;
 }
+
+
+
+@media only screen and (max-width: 480px) {
+  textarea, input, select{
+    
+    &.half {
+      margin: 5px 1%;
+      width: 98%;
+      float: none;
+    }
+  }
+}
