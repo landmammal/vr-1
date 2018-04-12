@@ -28,6 +28,11 @@ if( window.location.pathname === '/contact'){
 
 		$('form#new_demo')[0].reset();
 
+		$('.demo_sent').fadeIn(500);
+		setTimeout(function(){
+			$('.demo_sent').fadeOut(500);
+		}, 2000);
+
 		setTimeout(function(){
 			$('.check_mark').fadeOut(500);
 			$('#notice_demo').fadeOut(500);
