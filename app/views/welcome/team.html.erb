@@ -1,0 +1,25 @@
+
+<div class="wrapper" style="text-align:center;">
+
+  <div style=" font-size:15px; margin-top:40px; padding:5px 20px;">
+    <p style=" font-family:'gotham_bld'; font-size:250x; letter-spacing:0.1em;">MEET THE TEAM</p><br>
+    <p>Our team brings deep, hands-on experience to the world of virtual training and coaching. We provide a platform
+      for Managers, Teachers, and Trainers to deliver content instantly, monitor employee skill mastery, and provide
+      feedback.</p><br>
+  </div>
+
+  	<div class="teammembers">
+		<% @theteam.each_with_index do |member, index| %>
+			<a href="<%= member[:link] %>">
+				<div class="teammember">
+				<img src="<%= image %>/teammembers/<%= member[:name].split(' ').join.downcase %>.jpg">
+				<div class="name"><b><%= member[:name] %></b></div>
+				<% member[:title] %>
+				<div class="team-role"><%= member[:role] %></div>
+				</div>
+			</a>
+			<% if index == 1 %> <br>
+		<% end %>
+	<% end %>
+  	</div>
+</div>

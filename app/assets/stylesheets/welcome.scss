@@ -675,7 +675,9 @@ video#bgvid {
     height: 470px;
     overflow: auto;
 }
-
+.teammembers{
+    text-align: center;
+}
 .teammember {
     max-width: 170px;
     width: 25%;
@@ -684,6 +686,7 @@ video#bgvid {
     font-size: 12px;
     font-family: "webly_reg";
     display: inline-block;
+    float:none;
     margin: 20px 1%;
 }
 
