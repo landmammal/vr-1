@@ -3,11 +3,9 @@
     We have a new lead here is some info about our prospect. <br>
     Name: <%= @user.first_name %> <%= @user.last_name %> <br>
     email: <%= @user.email %> <br>
-    Phone number: <%= @user.phone_number %>
-    Schedule date: <%= @user.date %>
-    <% if @user.messagecontent != '' %>
-    Message: <%= @user.messagecontent %>
-    <% end %>
+    <%= "Phone number: "+@user.phone_number if !@user.phone_number.blank? %>
+    <%= "Schedule date: "+@user.date if !@user.date.blank? %>
+    <%= "Message:"+@user.messagecontent if !@user.messagecontent.blank? %>
 
   </p>
   <br>

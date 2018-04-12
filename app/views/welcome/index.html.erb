@@ -210,7 +210,8 @@
 	<h6>No contract, no set-up costs, just an incredible training experience.</h6>
 	<br>
 	<div style="width:90%; margin:5px auto 30px;">
-		<%= form_for( Demo.new , remote: true) do |f| %>
+		<p class="bg-success demo_sent" style="display:none; padding:10px 0;">Demo Request Sent.</p>
+		<%= form_for( Demo.new , remote: true ) do |f| %>
 			<%= f.text_field :first_name, placeholder: :first_name, class:'half' %>
 			<%= f.text_field :last_name, placeholder: :last_name, class:'half' %>
 			<%= f.email_field :email, placeholder: :email, class:'full' %>
