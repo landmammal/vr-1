@@ -24,7 +24,7 @@ class User < ApplicationRecord
   validates_attachment_content_type :banner, :content_type => /\Aimage\/.*\Z/
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :age, presence: true
+  # validates :age, presence: true
   validates :username, presence: true
   validates_uniqueness_of :username
 
