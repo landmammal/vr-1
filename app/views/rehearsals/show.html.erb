@@ -68,7 +68,7 @@
           Send Feedback
         </button>
         <button class='record_another_rehearsal blue' style='float:right; display:none;'>
-            Record Another Feedback
+          Record Another Feedback
         </button>
       <% end %>
 
@@ -100,11 +100,11 @@
 
         <div class="rehearsal_thumbnail">
           <a href="<%= rehearsal_path(rehearsal) %>">
-            <button class="shadebox_btn rehearsal_btn" data-rehearsal="<%= rehearsal.id.to_s %>" data-rehearsalnumber="Rehearsal #<%= (index + 1).to_s %>">
+            <button class="shadebox_btn rehearsal_btn" data-rehearsal="<%= rehearsal.id.to_s %>" data-rehearsalnumber="Rehearsal #<%= (index + 1).to_s %>" style="color:#333;">
                 Rehearsal <%= (index + 1).to_s %>
                 <div class="<%= @rehearsal.id != rehearsal.id ? 'blankdot' : 'greendot' %>">
                 </div><br>
-              <img src='https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= @this_video_token %>/image' width="100%" class="rehearsal_img"><br>
+                <div class="rehearsal_img bg_fixed" style="width:100% !important; padding-top:70%; background-image:url('https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= @this_video_token %>/image');"></div>
                 ref#: <%= genReherasalRef(rehearsal.id) %>
             </button>
           </a>

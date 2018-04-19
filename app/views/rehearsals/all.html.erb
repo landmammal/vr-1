@@ -12,7 +12,7 @@
         <div class="courses_list">
           <h5 class="bold">Courses</h5><hr>
           <% @courses.each do |course| %>
-            <div class="course_rehearsal_item" data-id="<%=course.id%>" id="course_<%=course.id%>" >
+            <div class="course_rehearsal_item <%= "pending" if course.pending_rehearsals %>" data-id="<%=course.id%>" id="course_<%=course.id%>" >
               <%= course.title %>
             </div>
           <% end %>
