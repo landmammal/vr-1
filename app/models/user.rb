@@ -59,7 +59,7 @@ class User < ApplicationRecord
 
   # send the user and email once there able to access the website
   def send_approved_email
-    AdminMailer.user_approved_notice(self).deliver_later if self.approved
+    AdminMailer.user_approved_notice(self).deliver_now if self.approved
   end
 
   # setting the default user avatar and banner if the user hasnt set it
@@ -105,17 +105,31 @@ class User < ApplicationRecord
     [@@r[0], @@r[1], @@r[2], @@r[3]].include? self.role
   end
 
-  # def pending_feedback
-  #   self.rehearsals.size > 0 ? self.rehearsals.all.map{ |r| r.feedbacks.size }.compact.reduce(:+) : 0
-  # end
+  def pending_feedback
+    has_pending = false
+    self.rehearsals.each do |r|
+      has_pending = r.pending_feedback
+      if has_pending
+        break
+      end
+    end
+    has_pending
+  end
 
-  # def pending_rehearsals
-  #   self.courses.size > 0 ?  self.courses.all.map{ |c| c.submitted_rehearsals.size }.compact.reduce(:+) : 0
-  # end
+  def pending_rehearsals
+    has_pending = false
+    self.courses.each do |c|
+      has_pending = c.pending_rehearsals
+      if has_pending
+        break
+      end      
+    end
+    has_pending
+  end
 
-  # def notifications
-  #   self.pending_rehearsals + self.pending_feedback
-  # end
+  def notifications
+    self.pending_rehearsals || self.pending_feedback
+  end
 
   def registered(item)
     self.registered_courses.include?(item)

@@ -28,8 +28,7 @@
 
           <a href="/rehearsals/<%= rehearsal.id.to_s %>/api" class='rehearsal_button' data-remote="true">
               <div id="rhs_<%= rehearsal.id %>" class="rehearsal_bubble" data-status="<%= rehearsal.check_status %>">
-                <div class="pic" style="width:100% !important;">
-                  <img src="https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= rehearsal.video_token %>/image">
+                <div class="pic bg_fixed" style="width:100% !important; padding-top:70%; background-image:url('https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= rehearsal.video_token %>/image');">
                 </div>
                 <br>
                 <div class="info">

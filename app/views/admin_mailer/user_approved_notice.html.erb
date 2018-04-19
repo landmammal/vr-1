@@ -1,6 +1,10 @@
 <% content_for :body do %>
-  Your application has been approved and you can now login.
+  Welcome to videoRehearser! You now have access as a <%= @user.role %>. Check out the available courses and see what can help you transform!
+  <br><br>
   Log in here <%= link_to "Login", @url %>
   <br><br>
-  For support requests, please contact us at support@videorehearser.com. We'd also love to hear what you think of the platform! 
+  If you are interested in becoming an Instructor on videoRehearser (to create courses) shoot us an email <a href="mailto:support@videorehearser.com">support@videorehearser.com<a/>
 <%end%>
+
+
+

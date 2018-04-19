@@ -38,9 +38,9 @@ class RehearsalsController < ApplicationController
 
 
   def student
-    # @student = User.find(params[:student])
-    # @lesson = Lesson.find(params[:lesson])
-    # @rehearsals = @lesson.rehearsals.where(trainee_id: params[:student], submission: true)
+    @student = User.find(params[:student])
+    @lesson = Lesson.find(params[:lesson])
+    @rehearsals = @lesson.rehearsals.where(trainee_id: params[:student], submission: true)
   end
 
   def trainees
