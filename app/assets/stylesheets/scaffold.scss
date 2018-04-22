@@ -275,12 +275,12 @@ textarea, input, select{
   padding: 5px 8px;
   
 	&.half {
-		margin: 5px 0.5%;
+		margin: 5px 1%;
 		width: 48%;
 	}
 	&.full {
-		margin: 5px 0.5%;
-		width: 99%;
+		margin: 5px 1%;
+		width: 98%;
 		float: none;
 	}
 }
@@ -472,4 +472,17 @@ a:focus {
 
 @mixin text_extrude($color, $size){
   text-shadow: extrude($color, $size) ;
+}
+
+
+
+@media only screen and (max-width: 480px) {
+  textarea, input, select{
+    
+    &.half {
+      margin: 5px 1%;
+      width: 98%;
+      float: none;
+    }
+  }
 }

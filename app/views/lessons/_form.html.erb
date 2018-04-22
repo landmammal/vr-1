@@ -1,4 +1,4 @@
-<%= form_for [@course, @topic, lesson], remote: true do |f| %>
+<%= form_for [@course, @topic, lesson], remote: quickEdit do |f| %>
   <% if lesson.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
@@ -11,11 +11,12 @@
     </div>
   <% end %>
 
-  <%= f.text_field :title, class:'course_create', class:'full', placeholder:'Title' %><br>
+  <%= f.text_field :title, class:'full', placeholder:'Title' %><br>
   <%= f.text_area :description, class:'full', placeholder:'Description' %><br>
   Lesson type: <br> <%= f.select :lesson_type, (@lesson_type) %><br>
-  <%= f.text_field :tags, class:'course_create', class:'full', placeholder:'tags (separate with comma)' %><br>
-  <%= f.select :language, (@languages) %><br>
+  <%= f.text_field :tags, class:'full', placeholder:'tags (separate with comma)' %><br>
+  <%= f.select :language, (@languages) %>
+  <%= f.select :privacy, [["Draft", 0], ["Published", 1]] %><br>
   
   <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %>
 

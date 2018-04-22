@@ -4,7 +4,17 @@ class TopicsController < ApplicationController
   before_action :set_course, only: [:index, :create, :show, :new, :edit, :destroy]
 
   def index
-    @topics = Topic.all
+    if params[:course_id]
+      topics = Topic.where( course_id: params[:course_id] )
+    else
+      topics = Topic.all
+    end
+
+    respond_to do |format| 
+      format.html { }
+      format.js { }
+      format.json { render json: topics }
+    end
   end
 
   def show
@@ -37,7 +47,6 @@ class TopicsController < ApplicationController
   end
 
   def update
-    
     respond_to do |format|
       if @topic.update(topic_update)
         format.js   { }
@@ -48,7 +57,6 @@ class TopicsController < ApplicationController
         format.json { render json: @topic.errors, status: :unprocessable_entity }
       end
     end
-
   end
 
   def destroy

@@ -1,61 +1,21 @@
-<div class="side-menu">
+<div class="left_menu away">
 
-	<span class="menu-togglebtn"><img src="/assets/menu.png" class="menu-control"></span>
+	<div class="left_menu_toggle ion-chevron-left"></div>
 
-	<div class="panel_seperator js-site_panel">
+	<div class="show_on_mobile">
 
-		<script type="text/javascript">
-			panel_section('site_panel')
-		</script>
-		
-	</div>
+		<%= link_to 'Dashboard', root_path, class:'nav_item' %>
+		<%= link_to 'Courses', '/courses/search', class:'nav_item' %>
 
+		<a href="<%= feedback_all_path %>" class="nav_item">
+			Feedback
+		</a>
 
-
-	<div class="panel_seperator js-common_panel">
-
-		<script type="text/javascript">
-			panel_section('common_panel')
-		</script>
-		<span class="Feedback_notif" style="display:none;"><%= feedback_notif.to_s %></span>
-		<span class="Chat_notif" style="display:none;"><%= chat_notif.to_s %></span>
-		<span class="Tasks_notif" style="display:none;"><%= tasks_notif.to_s %></span>
-
-		<div class="sidepanel js-side_Tasks">TASKS</div>
-		<div class="sidepanel js-side_Chat">CHAT</div>
+		<a href="<%= rehearsals_all_path %>" class="nav_item">
+			Rehearsals
+		</a>
 
 	</div>
-
-
-	<!-- Instructor Features -->
-
-
-	<% if current_user.level_2 %>
-
-		<div class="panel_seperator js-instructor_panel">
-
-			<script type="text/javascript">
-				panel_section('instructor_panel')
-			</script>
-
-			<span class="Rehearsals_notif" style="display:none;"><%= rehearsals_notif %></span>
-		</div>
-
-	<% end %>
-
-
-	<!-- Admin Features -->
-
-
-	<% if current_user.level_1 %>
-		
-		<div class="panel_seperator js-admin_panel">
-
-			<script type="text/javascript">
-				panel_section('admin_panel')
-			</script>
-			
-		</div>
-
-	<% end %>
+	<hr>
+	<!-- <div class="nav_item">Tutorials</div> -->
 </div>

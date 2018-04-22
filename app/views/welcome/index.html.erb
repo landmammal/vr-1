@@ -1,424 +1,223 @@
-<div class="full_top_img" style="background-image:url('<%= image %>/home/frame_home_1.jpg');">
-	<div class="home_top" style=" padding-bottom:5em;">
+<div class="container-fluid">
+	<div class="row wrapper padding">
+		<div class="col-sm-12 center_text">
 
-		<div class="container" style="padding-top:8%;">
-			<div class="row">
-				<div class="col-sm-6 left_text" style="color:white;">
-						
-					<h1 class="bold white scallingText">A Training Management System engineered to improve performance in
-					<br>
-					<br> 
-					<span class="typewrite" data-period="3000" data-type='[ "Hospitality", "Sales", "Language", "Customer Service", "Interview Prep", "Presentation Skills", "Compliance" ]'></span> </h1>	 
-					<br>
-					<h4 class="white" >
-							We help organizations scale and improve their 
-						<br>
-						training through interactive video.
-					</h4>
-					<br>
-				</div>
-				<div class="col-sm-6">
-					<div class="demo_form" id="demo_form">
-						<h2>Schedule a Demo</h2>
-						<%= form_for @demo, remote: true do |d| %>
-							<%= d.text_field :first_name, placeholder:'First name *', class:'js-first_name js-form half', value:('Demo' if Rails.env.development?) %>
-							<%= d.text_field :last_name, placeholder:'Last name *', class:'js-last_name js-form half', value:('User' if Rails.env.development?) %>
-							<%= d.text_field :email, placeholder:'Email *', class:'js-email js-form full', value:('user@email.com' if Rails.env.development?) %>
-							<!-- <%= d.text_field :phone_number, placeholder:'Phone number', class:'js-phone_number js-form full' %> -->
-							<!-- <div class="half" style=" width: calc(100% - 155.39); font-size: 18px; padding: 10px 0; float: left; text-align: left;">
-								Set a date:
-							</div>
-							<%= d.date_field :date, class:'js-date half'%><br> -->
-							<%= d.submit "schedule demo", class:'js-schedule_demo green_sft' %>
-							<button class="js-cancel_sched red">cancel</button>
-							<div id="notice_demo_err">  </div>
-						<%end%>
-					</div>
-
-					<div class="check_mark" style="display:none;"></div>
-					
-					<div id="notice_demo">
-						Thank you for scheduling a demo, we will contact you soon.
-					</div>
-					
-					<div id="notice_demo_err"></div>
-				</div>
-			</div>
+			<h2>Transform the way <br> your company trains.</h2>
+			<h5 style="color:#999;"> Adaptive microlearning built for enhanced job performance. </h5>
+			<br>
+			<a href="/users/sign_up">
+				<button class="big_btn blue">
+					Start for free
+				</button>
+			</a>
+			or you can
+			<a href="#demo" style="color:#0070C0; text-decoration:underline;"> Request a Demo. </a>
+			<img src="/assets/top_img.png" width="80%">
 		</div>
-
 	</div>
 </div>
 
 
-
-<div class="container" style='padding-top:60px; padding-bottom:60px; max-width:500px; margin:auto;'>
+<div class="container">
 	<div class="row">
-		<div class="col-sm-12">
-			<center>
-				<h1> What they are saying. </h1>
-				<br>
-				<div style="max-width:400px; font-size:20px; margin:20px auto;">
-					<i> "I am able to save time, effort, and money by using videoRehearser to engage my team. The platform puts the emphasis on the LEARNER and uses engineered training to improve employee performance, morale, and satisfaction" </i>
-				</div>
+		<div class="col-sm-12 box-4">
+
+			<div class="shadow_box">
+				<img src="https://image.flaticon.com/icons/svg/126/126122.svg">
 				<br>
 				<br>
-				<div class="right_text"> - Former GM at Four Seasons </div>
-			</center>
-		</div>
-	</div>
-</div>
-
-
-
-<div class="wrapper" style="padding:50px 10px 50px; margin-top:0; text-align: center; overflow:hidden;">
-	
-	<h1> Industries and Departments </h1>
-	<br>
-	<br>
-
-	<div class="flip-container home" ontouchstart="this.classList.toggle('hover');">
-		<div class="flipper home_course" >
-			<div class="content front" style="background-image:url('<%=image%>/home/interview.jpeg');">
-				<div class="title">
-					Interview Training
-				</div>
+				<h6>Coaching & Supervision</h6>
+				<br>
+				<br>
 			</div>
-			<div class="content back" style="background-image:url('<%=image%>/home/interview.jpeg');">			
-				<div class="title">
-					"As Career Services Director, I use videoRehearser to prepare my students for job interviews. The platform allows the students to practice on their own time and get feedback from me." 
-				</div>
+
+			<div class="shadow_box">
+				<img src="https://image.flaticon.com/icons/svg/753/753114.svg">
+				<br>
+				<br>
+				<h6>Customer Service</h6>
+				<br>
+				<br>
 			</div>
-		</div>
-	</div>
 
-	<div class="flip-container home" ontouchstart="this.classList.toggle('hover');">
-		<div class="flipper home_course" >
-			<div class="content front" style="background-image:url('<%=image%>/home/sales_training.jpeg');">
-				<div class="title">
-					Sales Training
-				</div>
+			<div class="shadow_box">
+				<img src="https://image.flaticon.com/icons/svg/313/313011.svg">
+				<br>
+				<br>
+				<h6>Sales & Compliance</h6>
+				<br>
+				<br>
 			</div>
-			<div class="content back" style="background-image:url('<%=image%>/home/sales_training.jpeg');">			
-				<div class="title">
-					"We always have a new 'message' to deliver to our customers. vR allows us to get our reps updated and on the same page ASAP."
-				</div>
+
+			<div class="shadow_box">
+				<img src="https://image.flaticon.com/icons/svg/188/188379.svg">
+				<br>
+				<br>
+				<h6>Hospitality & Leisure</h6>
+				<br>
+				<br>
 			</div>
-		</div>
-	</div>
-
-	<div class="flip-container home" ontouchstart="this.classList.toggle('hover');">
-		<div class="flipper home_course" >
-			<div class="content front" style="background-image:url('<%=image%>/home/customer_service.jpeg');">
-				<div class="title">
-					Customer Service
-				</div>
-			</div>
-			<div class="content back" style="background-image:url('<%=image%>/home/customer_service.jpeg');">			
-				<div class="title">
-					"We don't have the bandwidth to onboard our reps with the type of attention they need. vR helps us demonstrate best practices and allows them the flexibilty to learn on their own." 
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="flip-container home" ontouchstart="this.classList.toggle('hover');">
-		<div class="flipper home_course" >
-			<div class="content front" style="background-image:url('<%=image%>/home/presentation.jpeg');">
-				<div class="title">
-					Presentation Skills
-				</div>
-			</div>
-			<div class="content back" style="background-image:url('<%=image%>/home/presentation.jpeg');">			
-				<div class="title">
-					"My students always get nervous before pitching their final projects. vR allows them to rehearse and build their confidence before presenting to the audience."
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="flip-container home" ontouchstart="this.classList.toggle('hover');">
-		<div class="flipper home_course" >
-			<div class="content front" style="background-image:url('<%=image%>/home/pronunciation.jpeg');">
-				<div class="title">
-					Pronunciation
-				</div>
-			</div>
-			<div class="content back" style="background-image:url('<%=image%>/home/pronunciation.jpeg');">			
-				<div class="title">
-					"I manage an English Language Learning MeetUp group of over 1500 people. This platform lets me reach them as individuals and give them the opportunity to practice specific challenges." 
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="flip-container home" ontouchstart="this.classList.toggle('hover');">
-		<div class="flipper home_course" >
-			<div class="content front" style="background-image:url('<%=image%>/home/hospitality.jpeg');">
-				<div class="title">
-					Hospitality
-				</div>
-			</div>
-			<div class="content back" style="background-image:url('<%=image%>/home/hospitality.jpeg');">			
-				<div class="title">
-					"I am able to save time, effort, and money by using videoRehearser to engage my team. The platform puts the emphasis on the LEARNER and uses engineered training to improve employee performance, morale, and satisfaction". 
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="flip-container home" ontouchstart="this.classList.toggle('hover');">
-		<div class="flipper home_course" >
-			<div class="content front" style="background-image:url('<%=image%>/home/frame_home_1.jpg');">
-				<div class="title">
-					and more...
-				</div>
-			</div>
-			<div class="content back" style="background-image:url('<%=image%>/home/frame_home_1.jpg');">			
-				<div class="title">
-					We're looking for creative ways to use videoRehearser and are open to working with professionals and organizations looking to deliver their training virtually <br><br> <a href="#demo_form"><button>Contact us for a demo</button></a>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-</div>
-
-
-
-
-<div class="home_top_info overview" data-topinfo='overview' style="background-color:#fff;">
-
-	<hr style="margin:50px 0; border: #fff;">
-	<div class="home_sec">
-		<a href="/overview" style="color:#666; font-size:30px;">
-			<img src="<%=image%>/transform.svg" width="100px"><br>
-			BUILT WITH THE LEARNER IN MIND
-		</a>
-	</div>
-	<hr style="margin:50px 0; border: #fff;">
-
-
-	<div class="info_box thrd">
-		<div class="title">User Generated Content</div>
-		<div class="desc">Easily create and upload lessons.</div>
-	</div>
-
-	<div class="info_box thrd">
-		<div class="title">Engineered Training</div>
-		<div class="desc">Uses natural learning processes.</div>
-	</div>
-
-	<div class="info_box thrd">
-		<div class="title">Cloud-based learning</div>
-		<div class="desc">Access content anywhere at anytime.</div>
-	</div>
-	
-	<br><br><br><br>
-	<a href="/users/sign_up">
-		<button class="blue big_btn" style="font-size:15px;"> Request Access </button>
-	</a>
-	<br><br><br><br>
-
-</div>
-
-
-
-
-<div class="container wrapper">
-	<div class="row">
-		<div class="col-sm-4"></div>
-		<div class="col-sm-4"></div>
-		<div class="col-sm-4"></div>
-		<div class="col-sm-6" style="margin:0;">
-			<h1> HOW? </h1>
 			
-			<h3> Authentic Learning</h3>
-			<h5 style="color:#999;" >
-				The platform harnesses the power of natural learning
-				<br>
-				processes and provides a digital tool for leveraging 
-				<br>
-				neurobehavioral and educational principles.
-			</h5>
-		
-			<h3> Iterative Training </h3>
-			<h5 style="color:#999;" >
-				Provide measurable performance goals and iterative 
-				<br>
-				feedback to help new employees add value quickly
-				<br>
-				and existing employees exceed performance expectations.
-			</h5>
-							
-			<h3> Performance Support </h3>
-			<h5 style="color:#999;" >
-				Empower managers and HR departments to create scaleable
-				<br>
-				lessons that are always available and accessible from 
-				<br>
-				anywhere an internet connection exists. 
-			</h5>
-			<br>		       	       
-							
-			<!-- button.small Learn More -->
-		</div>			       			       
-		<div class="col-sm-6 bg_fixed" style='background-image:url("<%= image %>/home/customer_service.jpeg"); height:inherit; min-height:400px;'></div>
+		</div>
 	</div>
-	<br>
 </div>
 
 
+<div class="container-fluid">
+	<div class="row wrapper" style="padding:60px 0;">
+		<div class="col-sm-12 center_text">
 
-<div class="container-fluid bg_scroll" style='background-image:url("<%= image %>/home/job_interview_1.jpg"); padding:0;'>
-	<div class="container-fluid black_transp" style='margin:0; padding-top:100px; padding-bottom:100px;'>
-		<div class="row wrapper">
-
-			<div class="col-sm-4"></div>
-			
-			<div class="col-sm-8 right_text">
-				<h1 class="white"> IMPROVE PERFORMANCE </h1>
-				<h3 class="white"> Increase your ROI </h3>
-				<h5 class="white">
-					Through consistent, efficient, and cost-effective training. 
-					<br>
-					videoRehearser uses social learning, neurobehavioral and  
-					<br>
-					educational principles to engineer training
-					<br>
-					that leads to a better performing team.
-				</h5>
-			</div>
+			<h4>Your People are Your Greatest Asset</h4>
 
 		</div>
 	</div>
 </div>
 
 
-<!-- Interview Skills
-Sales Training
-Customer Service
-Presentation Skills
-English Pronunciation
-Hospitality -->
+
+<div class="wrapper" id="overview">
+	<div class="box-2 image_text">
+		<div class="text">
+			<h4>Engage your learners leveraging <br> neurobehavioral principles.</h4>
+			85% of every training dollar is spent just getting people into a room. Turn your training budget into an asset.
+			<br>
+			<br>
+			<h6>Training paths designed by experienced educators.</h6>
+			<h6>Scale your best practices leveraging your own talent.</h6>
+			<h6>Create and deliver engaging and effective lessons.</h6>
+			<br>
+			<a href="https://www.youtube.com/watch?v=UED7BvAtN8I" data-fancybox style="color:#0070C0; text-decoration:underline;">Learn more</a>
+		</div>
+
+		<div class="image">
+			<img src="/assets/home_illustration_1.jpg" style="width:100%;">
+		</div>
+	</div>
+</div>
 
 
-<div class="container" style='padding-top:60px; padding-bottom:60px;'>
+
+
+<div class="container" style="margin-top:100px; margin-bottom:50px;">
 	<div class="row">
-		<div class="col-sm-12" style="text-align:center;">
-			<h1> When can you use videoRehearser? </h1>
-		</div>
-		<br>
-		<br> 						 
-		<div class="col-sm-4" style="text-align:center;">
-			<br>
-			<img src="https://image.flaticon.com/icons/svg/538/538899.svg" width="60px">
-			<br>
-			<br>
-			<h4> During On-boarding </h4>
-			<h4> To maintain consistent branding </h4>
-		</div>
-		<div class="col-sm-4" style="text-align:center;">
-			<br>
-			<img src="https://image.flaticon.com/icons/svg/538/538905.svg" width="60px">
-			<br>
-			<br>
-			<h4> To simulate new techniques </h4>
-			<h4> When you update messaging </h4>
-		</div>
-		<div class="col-sm-4" style="text-align:center;">
-			<br>
-			<img src="https://image.flaticon.com/icons/svg/538/538889.svg" width="60px">
-			<br>
-			<br>
-			<h4> To assess performance </h4>
-			<h4> Professional development </h4>
-		</div>
-	</div>
-</div>
-
-
-
-
-<div class="container-fluid bg_scroll" style='background-image:url("<%= image %>/home/bg1.jpg"); padding:0;'>
-	<div class="container-fluid blue_transp" style='margin:0; padding-top:100px; padding-bottom:100px;'>
-		<div class="row wrapper">
-
-			<div class="col-sm-8">
-				<h1 class="white"> Virtual Training </h1>
-				<h3 class="white">
-					Deliver the type of interactive virtual 
-					<br>
-					learning demanded by the millenial workforce.
-				</h3>
-				<h5 class="white">
-					By 2020, Millennials will make up 35% 
-					<br>
-					of the global workforce. 
-				</h5>
+		<div class="col-sm-12 box-3 center_text">
+			<div class="box">
+				<img src="https://image.flaticon.com/icons/svg/681/681649.svg" style="min-width:50px; max-width:70px;">
+				<br>
+				<br>
+				<h5>1. Capture the teachable moment.</h5>
+				Create a lesson in three easy steps
+				<br> or upload an existing video or media.
 			</div>
 
-			<div class="col-sm-4"></div>
+			<div class="box">
+				<img src="https://image.flaticon.com/icons/svg/326/326731.svg" style="min-width:50px; max-width:70px;">
+				<br>
+				<br>
+				<h5>2. Share instantly with your learners.</h5>
+				Leverage personalized learning
+				<br> and empower your people.
+			</div>
 
+			<div class="box">
+				<img src="https://image.flaticon.com/icons/svg/160/160127.svg" style="min-width:50px; max-width:70px;">
+				<br>
+				<br>
+				<h5>3. Transformation through feedback.</h5>
+				Use the platforms’ empowerment
+				<br> oriented techniques to train.
+			</div>
 		</div>
 	</div>
 </div>
 
+<br><br>
 
-
-
-<div class="container-fluid" style='background-color:#fff;'>
-	<div class="row " style=" margin:50px;">
-		<div class="col-sm-4" style="text-align:center;">
-			<img src="<%= image %>/partnership/mdc.jpg" style="max-width:250px; min-width:100px;">
+<div class="wrapper">
+	<div class="box-2 image_text">
+		<div class="image">
+			<img src="/assets/home_illustration_2.png" style="width:100%; max-width:550px;">
 		</div>
-		<div class="col-sm-4" style="text-align:center;">
-			<img src="<%= image %>/partnership/meetup.jpg" style="max-width:250px; min-width:100px;">
-		</div>
-		<div class="col-sm-4" style="text-align:center;">
-			<img src="<%= image %>/partnership/year_up.jpg" style="max-width:250px; min-width:100px;">
-		</div>
-	</div>
-</div>
 
-
-
-
-
-
-
-<div class="devices" style="background-image:url('<%= image %>/home/device_bg.jpg');">
-	<div class="halfsec">
-		<div class="devicetext">
-			<span class="from_anywhere">
-				Easy to use
-			</span>
+		<div class="text">
+			<h4>The future of online <br> training has arrived.</h4>
+			We use an authentically interactive interface to ensure that learners are able to apply what they’ve learned and iterate
+			based on self-feedback and coaching. Your business success is based on performance, not badges.
 			<br>
-			All you need is a working webcam
+			<br>
+			<h6>Simulate difficult moments for improved onboarding.</h6>
+			<h6>Empower supervisors with a tool that saves time and energy.</h6>
+			<h6>See where your team needs help and support.</h6>
+			<br>
+			<a href="#" style="color:#0070C0; text-decoration:underline;">Learn more</a>
 		</div>
-		<img class="computers" src="<%= image %>/home/devices.png" alt="">
-		<img class="camera" src="<%= image %>/home/camera.png" alt="">
 	</div>
 </div>
 
 
+<div class="wrapper">
+	<div class="box-2 image_text">
+		<div class="text">
+			<h4>Automatically engage with your people at the right time.</h4>
+			Share the best practice. Invite stakeholders to learn how to improve their existing performance.
+			<br>
+			<br>
+			<h6>Design lessons using our structured process</h6>
+			<h6>Segment learners based on capabilities</h6>
+			<h6>Automate your training processes and techniques</h6>
+			<h6>Spend more time growing your business</h6>
+			<br>
+			<a href="#" style="color:#0070C0; text-decoration:underline;">Learn more</a>
+		</div>
 
-
-<div style="width:100%; padding:100px 0 0; background-color:#fff;">
+		<div class="image">
+			<img src="/assets/home_illustration_3.png" style="width:100%; max-width:550px;">
+		</div>
+	</div>
 </div>
 
 
+<div class="container-fluid companies_list">
+	<div class="row wrapper" style="padding:20px 0 60px;">
+		<div class="col-sm-12 center_text">
+			<h3>Used to train employees at <br> some of your favorite companies.</h3>
+			<h6> Our patented coaching and training process leads to improved employee performance. </h6>
+			<br>
+			<br>
+			<div class="box-5">
+				<div>
+					<img src="<%= image %>/partnership/mdc.png" width="90%">
+				</div>
+				<div>
+					<img src="<%= image %>/partnership/wells_fargo.png" width="90%">
+				</div>
+				<div>
+					<img src="<%= image %>/partnership/linked_in.png" width="90%">
+				</div>
+				<div>
+					<img src="<%= image %>/partnership/google.png" width="90%">
+				</div>
+				<div>
+					<img src="<%= image %>/partnership/american_express.png" width="90%">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-
-
-<script>
-	(function(n,i,_n,j,a){
-		n.addEventListener("DOMContentLoaded", function() {
-			i['liveninja'] = ["https://messenger.liveninja.com/w/video-rehearser?frame=true"];
-			var _n = n.createElement('script');
-			var j = n.getElementsByTagName('script')[0];
-			_n.async = 1;
-			_n.src='https://messenger.liveninja.com/w/assets/widget.js';
-			j.parentNode.insertBefore(_n, j);
-		})
-	})(document, window);
-</script>
+<div id="demo" class="bottom_form">
+	<h3>Request a DEMO</h3>
+	<h6>No contract, no set-up costs, just an incredible training experience.</h6>
+	<br>
+	<div style="width:90%; margin:5px auto 30px;">
+		<p class="bg-success demo_sent" style="display:none; padding:10px 0;">Demo Request Sent.</p>
+		<%= form_for( Demo.new , remote: true ) do |f| %>
+			<%= f.text_field :first_name, placeholder: :first_name, class:'half' %>
+			<%= f.text_field :last_name, placeholder: :last_name, class:'half' %>
+			<%= f.email_field :email, placeholder: :email, class:'full' %>
+			<br>
+			<%= f.submit "Request Demo" %>
+		<% end %>
+	</div>
+	<h6><a href="<%= pricing_url %>" style="color:#0070C0; text-decoration:underline;">view our pricing</a></h6>	
+</div>

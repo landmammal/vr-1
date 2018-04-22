@@ -92,6 +92,18 @@ class Course < ApplicationRecord
   def submitted_rehearsals
     self.rehearsals.where(submission: true)
   end
+
+  def pending_rehearsals
+    has_pending = false
+    self.rehearsals.where(submission: true).each do |r|
+      if r.feedbacks.size < 1
+        has_pending = true
+        break
+      end
+    end
+    has_pending
+  end
+
   def has_submitted_rehearsals?
     self.submitted_rehearsals.size > 0
   end

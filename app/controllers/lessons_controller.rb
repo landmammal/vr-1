@@ -9,7 +9,17 @@ class LessonsController < ApplicationController
   # GET /lessons
   # GET /lessons.json
   def index
-    @lessons = Lesson.all
+    if params[:topic_id]
+      lessons = Lesson.where( topic_id: params[:topic_id] )
+    else
+      lessons = Lesson.all
+    end
+
+    respond_to do |format| 
+      format.html { }
+      format.js { }
+      format.json { render json: lessons }
+    end
   end
 
   # GET /lessons/1
@@ -103,8 +113,14 @@ class LessonsController < ApplicationController
     @topic.lessons_order.delete(@lesson.refnum)
     @topic.save
     
+    LessonRehearsal.where(lesson_id: @lesson).destroy_all
     Rehearsal.where(lesson_id: @lesson).destroy_all
-    @lesson.delete_associations
+    LessonExplanation.where(lesson_id: @lesson).destroy_all
+    Explanation.where(lesson_id: @lesson).destroy_all
+    LessonPrompt.where(lesson_id: @lesson).destroy_all
+    Prompt.where(lesson_id: @lesson).destroy_all
+    LessonModel.where(lesson_id: @lesson).destroy_all
+    Model.where(lesson_id: @lesson).destroy_all
 
     if @lesson.destroy
       respond_to do |format|
@@ -134,6 +150,6 @@ class LessonsController < ApplicationController
     end
 
     def lesson_update
-      params.require(:lesson).permit(:title, :description, :lesson_type, :tags, :language, :approval_status)
+      params.require(:lesson).permit(:title, :description, :lesson_type, :privacy, :tags, :language, :approval_status)
     end
 end

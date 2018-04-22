@@ -1,7 +1,7 @@
 <header class="<%= 'in_app' if in_app %>">
-  <% if in_app %> <hamburger class="ion-navicon-round"></hamburger> <% end %>
+  <% if in_app %> <div class="hamburger left_menu_toggle ion-navicon-round"></div> <% end %>
   
-  <logo> <%= link_to  "videoRehearser", '/' %> </logo>
+  <div class="logo"> <%= link_to  "videoRehearser", '/' %> </div>
   
   <% if in_app %>
     <nav class="app_nav">
@@ -9,15 +9,15 @@
       <%= link_to 'Courses', '/courses/search', class:'item' %>
     </nav>
 
-    <notifications>
+    <div class="notifications">
       <!-- <span class="ion-heart"></span> -->
-      <span class="ion-ios-bell dropdownToggle" data-drop="notifDropdown" data-offset="118">
-        <% if current_user.notifications > 0 %>
-          <span class="notif_num"><%= current_user.notifications %></span>
+      <span class="ion-ios-bell dropdownToggle" data-drop="notifDropdown" data-offset="118">        
+        <% if current_user.notifications %>
+          <div class="notif_num"></div>
         <% end %>
       </span>
       <%= render 'layouts/header/notif_dropdown' %>
-    </notifications>
+    </div>
     
   <% end %>
 

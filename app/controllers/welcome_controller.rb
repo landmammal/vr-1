@@ -155,30 +155,37 @@ class WelcomeController < ApplicationController
     @site_title = 'System Requirements'
   end
 
-  def FAQs
+  def faqs
     @site_title = 'Frequently Asksed Questions'
 
     @faqs = [
-      ['What is videoRehearser (vR)?','Created by CDG Innovations LLC, videoRehearser (vR) is a virtual training platform engineered by educations to expedite social, academic, and workplace learning. vR is uniquely positioned to empower the community in an unprecedented way because it fosters authentic changes through natural learning principles and processes.'],
-      ['Who uses vR?','Individuals, Professionals and Enterprises.'],
-      ['Why was it created?','In 2015, blended learning techniques increased to 32% of instructional hours.Traditional e-Learning systems have been over promising, but underperforming. We believe in evolutionizing the current blended learning format and introducing engineered training that works.'],
-      ['What do I need to use videoRehearser?','A computer, tablet or mobile device equipped with a webcam.'],
-      ['Who do I contact for more information?','If you are interested in learning more or setting up a demo, contact demo@videorehearser.com'],
+      ['What is videoRehearser (vR)?', 'videoRehearser (vR) is a virtual training platform engineered by educators to expedite social, academic, and workplace learning. '],
+      ['How does it work? ', 'vR is uniquely positioned to empower learners in an unprecedented way because it fosters authentic changes through natural learning principles and processes.'],
+      ['Who uses vR?', 'vR expedites learning and helps companies scale their training. '],
+      ['Why was it created?', 'Traditional e-Learning systems have been overpromising, but underperforming. We believe in evolutionizing the current blended learning format and introducing engineered training that works.'],
+      ['What do I need to use videoRehearser?', 'A computer, tablet or mobile device equipped with a webcam.'],
+      ['Who do I contact for more information?', 'If you are interested in learning more or setting up a demo, contact demo@videorehearser.com']
     ]
   end
 
 
+
   #Footer 3 ====
-  def theteam
+  def team
     @site_title = 'Who we are'
   end
 
-  def learn
-    @site_title = 'Learn with us'
+  def education
+    @site_title = 'vR for Education'
   end
 
   def teach
     @site_title = 'Teach with us'
+  end
+
+  def pricing
+    @site_title = 'Pricing'
+    faqs
   end
 
   def coach

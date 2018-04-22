@@ -24,7 +24,7 @@ class User < ApplicationRecord
   validates_attachment_content_type :banner, :content_type => /\Aimage\/.*\Z/
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :age, presence: true
+  # validates :age, presence: true
   validates :username, presence: true
   validates_uniqueness_of :username
 
@@ -59,7 +59,7 @@ class User < ApplicationRecord
 
   # send the user and email once there able to access the website
   def send_approved_email
-    AdminMailer.user_approved_notice(self).deliver_later if self.approved
+    AdminMailer.user_approved_notice(self).deliver_now if self.approved
   end
 
   # setting the default user avatar and banner if the user hasnt set it
@@ -106,15 +106,29 @@ class User < ApplicationRecord
   end
 
   def pending_feedback
-    self.rehearsals.size > 0 ? self.rehearsals.all.map{ |r| r.feedbacks.size }.compact.reduce(:+) : 0
+    has_pending = false
+    self.rehearsals.each do |r|
+      has_pending = r.pending_feedback
+      if has_pending
+        break
+      end
+    end
+    has_pending
   end
 
   def pending_rehearsals
-    self.courses.size > 0 ?  self.courses.all.map{ |c| c.submitted_rehearsals.size }.compact.reduce(:+) : 0
+    has_pending = false
+    self.courses.each do |c|
+      has_pending = c.pending_rehearsals
+      if has_pending
+        break
+      end      
+    end
+    has_pending
   end
 
   def notifications
-    self.pending_rehearsals + self.pending_feedback
+    self.pending_rehearsals || self.pending_feedback
   end
 
   def registered(item)
