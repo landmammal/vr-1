@@ -53,7 +53,11 @@
             <%= f.password_field :password, class:'pass clearform', autocomplete: "off", placeholder:'Password (6 characters or more)', value:('test123' if Rails.env.development?) %><br>
             <%= f.password_field :password_confirmation, class:'passComf clearform', autocomplete: "off", placeholder:'Confirm Password', value:('test123' if Rails.env.development?) %><br><br>
             
+            <hr>
 
+            <h5 class="bold">Coupon Code</h5>
+            <%= f.text_field :coupon_code, class:'coupon_code name clearform', placeholder:'Access Code', value:('emerge2018' if Rails.env.development?)%>
+            <br>
 
             <!-- <div class="register_label">Ethnicity</div>
             <%= f.select :race, ([["Hispanic or Latino", "Hispanic or Latino"], ["American Indian or Alaska Native", "American Indian or Alaska Native"], ["Asian", "Asian"], ["Black or African American", "Black or African American"], ["Native Hawaiian or Pacific Islander", "Native Hawaiian or Pacific Islander"], ["White", "White"], ["Multiple races or ethnicities", "Multiple races or ethnicities"], ["Prefer not to answer", "Prefer not to answer"], ["Other", "Other"]]) %>
