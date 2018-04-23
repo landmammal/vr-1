@@ -108,7 +108,6 @@ class Course < ApplicationRecord
     self.submitted_rehearsals.size > 0
   end
 
-
   def draft?
    	self.cstatus == 0
   end
@@ -150,6 +149,10 @@ class Course < ApplicationRecord
   
   def owner(user)
     self.instructor == user || user.role == 'admin'
+  end
+
+  def register(user)
+    self.course_registrations.build( user_id: user.id, user_role: 3, approval_status: true ).save
   end
 
 end
