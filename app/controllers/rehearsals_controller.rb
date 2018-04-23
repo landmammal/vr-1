@@ -33,11 +33,7 @@ class RehearsalsController < ApplicationController
 
 
   def all
-    if current_user.level_1
-      @courses = Course.all.order("title ASC")
-    else
-      @courses = current_user.courses.all.order("title ASC")
-    end
+     @courses = current_user.courses.all.order("title ASC")
   end
 
 
