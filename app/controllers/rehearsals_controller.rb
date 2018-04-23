@@ -33,7 +33,7 @@ class RehearsalsController < ApplicationController
 
 
   def all
-    @courses = current_user.courses.all.order("id ASC")
+    @courses = current_user.courses.all.order("title ASC")
   end
 
 
