@@ -7,7 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
     if coupon_code  && coupon_code == "emerge2018"
       new_user.approved = true
       new_user.save
-      course = Course.find(3)
+      course = Course.find(220)
       course.register(new_user)
     end
   end
