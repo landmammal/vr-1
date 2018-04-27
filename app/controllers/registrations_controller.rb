@@ -6,7 +6,7 @@ class RegistrationsController < Devise::RegistrationsController
     new_user = User.new(sign_up_params)
     code = params[:user][:access_code]
 
-    if code 
+    if !code.blank?
       if check_access_code(code)
         # new_user.approved = true
         if new_user.save
