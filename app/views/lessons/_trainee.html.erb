@@ -63,7 +63,7 @@
      
      <div class="rehearsals-list">
              
-     <label class="title-head">Rehearsals List <span class="tooltip-custom" data-tooltip="Choose the rehearsal from this list that you would like to send to the instructor for approval or feedback."> <img src="/assets/Antu_help_hover.png" width="22px"></span></label>
+     <h5>Rehearsals List <span class="tooltip-custom" data-tooltip="Choose the rehearsal from this list that you would like to send to the instructor for approval or feedback."> <img src="/assets/Antu_help_hover.png" width="22px"></span></h5>     
      <div class="contenido">
         <div class="list_of_lesson_rehearsals">
            <% rehearsals_for_this_lesson.each_with_index do |rehearsal, index| %>
@@ -71,16 +71,7 @@
            <% @this_added_class = 'rehearsal_'+rehearsal.id.to_s %>
            <div class="rehearsal_thumbnail">
               
-              <a href="/reviewrehearsal/<%= rehearsal.id %>/api" data-remote="true">
-                <button class="rehearsal_btn" data-shadebox="rehearsal" data-rehearsal="<%= rehearsal.id.to_s %>" data-rehearsalnumber="<%= (index+1).to_s %>">
-                  Rehearsal <%= (index+1).to_s %>
-                  <div id="rehearsal_<%= rehearsal.id.to_s %>_status" class="<%= rehearsal_approved(rehearsal.id) %>"></div>
-                  <div class="rehearsal-thumb-round">
-                      <img src='https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= @this_video_token %>/image' width="100%" class="rehearsal_img">
-                  </div>
-                  ref#: <%= genReherasalRef(rehearsal.id) %>
-                </button>
-              </a>
+              <%= render "./rehearsals/rehearsal", rehearsal: rehearsal, index: index %>
 
            </div>
            <% end %>
