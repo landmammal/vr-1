@@ -256,7 +256,7 @@ class CoursesController < ApplicationController
 
 
   def reentry
-    AdminMailer.reentry( current_user, @course ).deliver_now
+    AdminMailer.reentry( current_user, @course ).deliver_later
     respond_to do |f|
       f.js{ }
     end

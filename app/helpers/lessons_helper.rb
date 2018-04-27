@@ -33,7 +33,7 @@ module LessonsHelper
 
 
 	def rehearsals_for_this_lesson
-		@rehearsals_for_this_lesson = @lesson.rehearsals.where(trainee_id: current_user.id).order("id ASC")
+		@rehearsals_for_this_lesson = @lesson.rehearsals.where(trainee_id: current_user.id).order("id DESC")
 		return @rehearsals_for_this_lesson
 	end
 

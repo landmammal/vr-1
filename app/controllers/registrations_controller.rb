@@ -1,14 +1,32 @@
 class RegistrationsController < Devise::RegistrationsController
 
   def create
-    new_user = User.create(sign_up_params)    
-    coupon_code = params[:user][:coupon_code]
-    
-    if coupon_code  && coupon_code == "emerge2018"
-      new_user.approved = true
-      new_user.save
-      course = Course.find(220)
-      course.register(new_user)
+    @registered = false
+   
+    new_user = User.new(sign_up_params)
+    code = params[:user][:access_code]
+
+    if code 
+      if check_access_code(code)
+        # new_user.approved = true
+        if new_user.save
+          Course.find_by(access_code: code).register(new_user)
+          @registered = true
+        end
+      end
+    elsif new_user.save
+      @registered = true
+    end
+
+    respond_to { |format| format.js {  } }
+  end
+
+  def check_access_code(code)
+    course = Course.find_by(access_code: code)
+    if course 
+      return true
+    else
+      return false
     end
   end
 

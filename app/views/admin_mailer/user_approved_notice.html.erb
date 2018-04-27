@@ -1,9 +1,15 @@
 <% content_for :body do %>
-  Welcome to videoRehearser! You now have access as a <%= @user.role %>. Check out the available courses and see what can help you transform!
+  Welcome to videoRehearser! You now have access as the role of: <%= @user.role %>. 
+  <br>
+  Check out the available courses and see what can help you transform!
   <br><br>
-  Log in here <%= link_to "Login", @url %>
+  You can <%= link_to "Log in here", @url %>.
   <br><br>
-  If you are interested in becoming an Instructor on videoRehearser (to create courses) shoot us an email <a href="mailto:support@videorehearser.com">support@videorehearser.com<a/>
+  <% if @user.role == 'instructor' %>
+    If you would like to set up a time to meet with a member of our vR Success Team, <a href="http://www.calendly.com/mevurah" targer="_blank">click here to schedule a session</a>.
+  <% else %>
+    If you are interested in becoming an Instructor on videoRehearser (to create courses) shoot us an email <a href="mailto:support@videorehearser.com">support@videorehearser.com<a/>
+  <%end%>
 <%end%>
 
 
