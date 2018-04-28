@@ -1,1 +1,1 @@
-$('.list_of_lesson_rehearsals').prepend( "<%= j render partial: 'rehearsal', locals: {rehearsal: @rehearsal} %>" );
+$('.list_of_lesson_rehearsals').prepend( "<%= j render partial: 'rehearsal', locals: {rehearsal: @rehearsal, index: @index, rhs: @rehearsals.size } %>" );

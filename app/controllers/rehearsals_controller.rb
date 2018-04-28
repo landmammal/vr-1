@@ -1,5 +1,6 @@
 class RehearsalsController < ApplicationController
   include RehearsalsHelper
+  include LessonsHelper
   
   before_action :set_rehearsal, only: [:edit, :destroy]
   before_action :set_update_rehearsal, only: [:update]
@@ -74,7 +75,9 @@ class RehearsalsController < ApplicationController
     @rehearsal = @lesson.rehearsals.build(rehearsal_params)
     respond_to do |format|
       if @lesson.save
-        @rehearsal = @lesson.rehearsals.last
+        @rehearsal = @lesson.rehearsals.last 
+        @rehearsals = rehearsals_for_this_lesson(@lesson, current_user)
+        @index = 0
 
         # headers = {content_type: :json, accept: :json, app_id: '4985f625', app_key: '4423301b832793e217d04bc44eb041d3'}
 
