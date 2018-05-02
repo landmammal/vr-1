@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   before_action :set_fix
   before_action :base_url
 
-
   def self.force_ssl(options = {})
     host = options.delete(:host)
     before_action(options) do
