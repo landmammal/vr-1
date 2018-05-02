@@ -19,13 +19,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @courses = current_user.registered_courses.order('id DESC').map{ |x| x if (x.course_registrations.find_by(user_id: current_user.id).approval_status) }.compact
     @courses_pending = current_user.registered_courses.order('id DESC').map{ |x| x if (!x.course_registrations.find_by(user_id: current_user.id).approval_status) }.compact
-    ( Rails.env.development? || Rails.env.test? ) ? starter_course = Course.all.first : starter_course = Course.find(201) 
-
-    if !current_user.level_1 && starter_course && !current_user.registered(starter_course)
-      current_user.course_registrations.build(course_id: starter_course.id, approval_status: true).save
-    end
-
-    
+        
     @all_courses = Course.all.page( params[:page] ).reverse_order if current_user.level_1
     
     if current_user.level_2
@@ -38,6 +32,7 @@ class UsersController < ApplicationController
     #   ( Rails.env.development? || Rails.env.test? ) ? re_pa = starter_course.topics.first.lessons.first.path : re_pa = Lesson.find(485).path
     #   redirect_to re_pa
     # end
+
     authorize @user
   end
 
