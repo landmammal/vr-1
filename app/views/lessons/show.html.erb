@@ -4,11 +4,12 @@
   <div class="right_panel" data-name='browse_course'>
     <div class="title"><%= @course.title %></div>
     <button class="close_panel small red add_btn">x</button>
+
     <div class="content">
-      <% @course.topics.each do |topic| %>
+      <% @course.topics_ready(current_user).each do |topic| %>
         <div class="topic_title"><%= topic.title %></div>
         <div class="right_lesson_list">
-          <% topic.lessons.each do |lesson| %>
+          <% topic.lessons_ready(current_user).each do |lesson| %>
             <a href="<%= course_topic_lesson_path(@course, topic, lesson) %>">
               <div class="item <%= 'selected' if lesson == @lesson %> <%= ((topic_lesson_status(@lesson)) ? 'ready' : 'not_ready') if lesson_creator %>">
                 <%= lesson.title %>

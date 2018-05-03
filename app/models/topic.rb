@@ -31,8 +31,13 @@ class Topic < ApplicationRecord
     self.title ||= "Unnamed Topic"
   end
 
-  def lessons_ready
-    self.lessons_order.collect {|r| Lesson.find_by_refnum(r) }.compact.map{ |l| l if (l.privacy == 1 && l.approval_status == 1) }.compact
+  def lessons_ready(user)
+    lessons = self.lessons_order.collect {|r| Lesson.find_by_refnum(r) }.compact
+    if self.owner(user)
+      lessons
+    else
+      lessons.map{ |l| l if (l.privacy == 1 && l.approval_status == 1) }.compact
+    end
   end
 
   def has_rehearsals?

@@ -56,8 +56,13 @@ class Course < ApplicationRecord
     self.topics.each { |t| @lessons << Lesson.where(instructor_id: self.instructor, topic_id: t) }
   end
 
-  def topics_ready
-    self.topics_order.collect {|r| Topic.find_by_refnum(r) }.compact.map{ |t| t if (t.privacy == 1 && t.approval_status == 1) }.compact
+  def topics_ready(user)
+    topics = self.topics_order.collect {|r| Topic.find_by_refnum(r) }.compact
+    if self.owner(user)
+      topics
+    else
+      topics.map{ |t| t if (t.privacy == 1 && t.approval_status == 1) }.compact
+    end
   end
 
   def get_tags
