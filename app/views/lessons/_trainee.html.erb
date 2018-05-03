@@ -94,7 +94,7 @@
    <br>
   <div style="overflow:hidden;">
     <% if !@lesson.instructor.chat.blank? %>
-      <a href="<%= @lesson.instructor.chat %>" target="_blank" onclick="alert('This will open a live video chat with the course instrustor. Click OK to call.')">
+      <a target="popup" onclick="window.open('<%= @lesson.instructor.chat %>','popup','width=800,height=600')" >
         <button class="green_sft" style=" float:left;"> <img src="/assets/live_chat.png" width="20px"> Live video chat</button>
       </a>
     <% end %>
