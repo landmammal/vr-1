@@ -376,12 +376,46 @@ footer {
   grid-template-columns: 100px 1fr;
 }
 
+tbody.flexible{
+  tr{
+    td.img{ width:50%; }
+    td.text{ width:50%; padding:0 40px; }
+  }
+}
+
+.case_studies{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 0.33fr));
+  grid-gap: 10px;
+  .case{ 
+    border: solid 1px #ddd;
+    padding: 8px 10px;
+    margin-bottom:20px;
+    border-radius: 5px;
+    text-align: center;
+    transition:1s;
+    &:hover{ box-shadow: 0px 0px 10px #ddd; transition:1s; }
+  }
+}
+
 @media only screen and (max-width: 480px) {
 
   #lesson_top{
     display: grid;
     grid-template-columns:1fr;
     #course_img{ display: none; }
+  }
+
+  tbody.flexible{
+    width: 100%;
+    tr{
+      width: 100%;
+      display: grid;
+      grid-template-areas: "image"
+      "text";      
+      td.img{ grid-area:image; width: 100%; }
+      td.text{ grid-area:text; width: 100%; text-align: center; padding:10px; }
+    }
   }
 
   .contact_wrapper{
