@@ -371,7 +371,19 @@ footer {
 }
 
 
+#lesson_top{
+  display: grid;
+  grid-template-columns: 100px 1fr;
+}
+
 @media only screen and (max-width: 480px) {
+
+  #lesson_top{
+    display: grid;
+    grid-template-columns:1fr;
+    #course_img{ display: none; }
+  }
+
   .contact_wrapper{
     display:grid; grid-template-columns:1fr;
   }

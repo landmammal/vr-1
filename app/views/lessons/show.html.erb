@@ -1,19 +1,5 @@
 <% if course_creator || current_user.registered(@course) %>
 
-  <div class="page_info lesson_<%= @lesson.id %>">
-    <div class="the_title">
-      <span class="grey"><%= link_to @course.title, course_path(@course) %> ::</span>
-      <span class="grey"><%= link_to @topic.title, course_topic_path(@course, @topic) %> ::</span>
-      <span class="lt_<%= @lesson.id %>"><%= @lesson.title %></span>
-    </div>
-    
-    <%= (link_to '', edit_course_topic_lesson_path(@course, @topic, @lesson), class:'edit ion-edit', remote: true) if course_creator %>
-    
-    <div class="lesson_panel_btn right right_panel_btn ion-android-list" data-rightpanel='browse_course' data-intro="This button will open a panel with a list of all the topics and lessons in this course. Click, if you need to navigate the course."></div>  
-    <span class="the_title right">Lesson List: </span>
-  </div>
-  <div class="lessonForm"></div>    
-
   <!-- RIGHT PANEL -->
   <div class="right_panel" data-name='browse_course'>
     <div class="title"><%= @course.title %></div>
@@ -34,34 +20,57 @@
     </div>
   </div>
 
+
+  <div class="lessonForm"></div>  
+
   <!-- TRAINEE VIEW -->
   <% if lesson_creator %>
     <% if topic_lesson_status(@lesson) %>
-      <div class="lesson_ready">
-        Lesson is ready <br><br>
-        <%= button_tag 'Trainee view', class:"btn-trainee green_sft js-trainee_view", title:"Click to view trainee window" %>
+      <div class="lesson_ready" style="margin:10px auto;">
+        <%= button_tag 'Toggle Trainee View', class:"btn-trainee green_sft js-trainee_view", title:"Click to view trainee window" %>
       </div>
     <% end %>
   <% end %>
+
+<div id="lesson_top">
+  <div id="course_img">
+    <img class="img-circle" src="<%= @course.cover %>" alt="Course Cover" style="width:80px; height:80px;">
+  </div>
+  <div id="lesson_breadcrum">
+    <div class="page_info lesson_<%= @lesson.id %>">
+      <div class="the_title">
+        <span class="grey"><%= link_to @course.title, course_path(@course) %> ::</span>
+        <span class="grey"><%= link_to @topic.title, course_topic_path(@course, @topic) %> ::</span>
+        <span class="lt_<%= @lesson.id %>"><%= @lesson.title %></span>
+      </div>
+      
+      <%= (link_to '', edit_course_topic_lesson_path(@course, @topic, @lesson), class:'edit ion-edit', remote: true) if course_creator %>
+      
+      <div class="lesson_panel_btn right right_panel_btn ion-android-list" data-rightpanel='browse_course' data-intro="This button will open a panel with a list of all the topics and lessons in this course. Click, if you need to navigate the course."></div>  
+      <span class="the_title right">Lesson List: </span>
+    </div>
+    
+    <!-- DESCRIBING LESSON TYPE -->
+    <div class="lesson_type" style="display:none;"><%= @lesson.lesson_type %></div>
+
+    <div class="timeline" data-intro="Clicking on these progress bubbles will help you navigate through the lessons of the course, this is also a visual representation of your current progress on each lesson.">
+      <ul>
+        <% @topic_lessons.each do |key, value| %>
+          <li class="<%= value[0] %> <%= "selected" if key.to_s == params[:id] %>">
+            <span class="tooltip-custom" data-tooltip="<%= Lesson.find(key).title %> :: <%= value[1] %>">
+              <a href="<%= course_topic_lesson_path(@course, @topic, key)%>"></a>
+            </span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   
-  <!-- DESCRIBING LESSON TYPE -->
-  <div class="lesson_type" style="display:none;"><%= @lesson.lesson_type %></div>
+  </div>
+</div>
+  
+  
 
   <div class="box_sep">
-    <div class="title" style="padding:0;">
-
-      <div class="timeline" data-intro="Clicking on these progress bubbles will help you navigate through the lessons of the course, this is also a visual representation of your current progress on each lesson.">
-        <ul>
-          <% @topic_lessons.each do |key, value| %>
-            <li class="<%= value[0] %> <%= "selected" if key.to_s == params[:id] %>">
-              <span class="tooltip-custom" data-tooltip="<%= Lesson.find(key).title %> :: <%= value[1] %>">
-                <a href="<%= course_topic_lesson_path(@course, @topic, key)%>"></a>
-              </span>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
 
     <% if lesson_creator %>
 
