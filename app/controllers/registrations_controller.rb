@@ -15,6 +15,7 @@ class RegistrationsController < Devise::RegistrationsController
         end
       end
     elsif new_user.save
+      ( Rails.env.development? || Rails.env.test? ) ? Course.all.first.register(new_user) : Course.find(201).register(new_user)       
       @registered = true
     end
 
