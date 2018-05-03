@@ -1,11 +1,17 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-12">
+  <div id="lesson_top">
+    <div id="course_img" style="margin-top:10px;">
+      <img class="img-circle" src="<%= @course.image %>" alt="Course Cover" style="width:80px; height:80px;">
+    </div>
+    <div id="lesson_breadcrum">
       <%= render './courses/mode/header' %> 
     </div>
+  </div>
 
-    <div class="col-12">
+
+    <div class="col-12">      
       <h4 class="bold">Curriculum</h4>
       <br>
       <% @course.topics_ready.each do |topic| %>
@@ -31,7 +37,6 @@
       <% end %>
 
     </div>
-
   </div>
 </div>
 
