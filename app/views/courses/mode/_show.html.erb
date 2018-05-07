@@ -24,7 +24,9 @@
               <% if topic_lesson_status(lesson) %>
                 <a href="<%= course_topic_lesson_path( @course, topic, lesson ) %>">
                   <div class="trainee_lesson">
-                    <div class="lesson_completion <%= lesson.completion_status(current_user)[0] %>" title="<%= lesson.completion_status(current_user)[1] %>"></div>              
+                    <div class="circle">
+                      <div class="lesson_completion <%= lesson.completion_status(current_user)[0] %>" title="<%= lesson.completion_status(current_user)[1] %>"></div>              
+                    </div>
                     <div class="lesson_title"><%= lesson.title %></div>
                   </div>
                 </a>
