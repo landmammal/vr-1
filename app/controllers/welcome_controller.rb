@@ -175,10 +175,28 @@ class WelcomeController < ApplicationController
     @site_title = 'Who we are'
   end
 
+  
+  
+  
   def education
     @site_title = 'vR for Education'
   end
 
+  def business
+    @site_title = 'vR for Business'
+  end
+
+  def workforce
+    @site_title = 'vR for Workforce'
+  end
+
+  def wellness
+    @site_title = 'vR for Wellness'
+  end
+
+  
+  
+  
   def teach
     @site_title = 'Teach with us'
   end
