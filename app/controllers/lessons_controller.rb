@@ -39,14 +39,15 @@ class LessonsController < ApplicationController
 
     @topic_lessons = {}
     
-    @lesson.topic.lessons.order("id ASC").each do |lesson|
+    @lesson.topic.lessons_order.each do |l|
+      lesson = Lesson.find_by_refnum(l)
+      
       if topic_lesson_status(lesson)
-
         @topic_lessons[lesson.id] = lesson.completion_status(current_user)
-        
       elsif lesson.instructor == current_user
         @topic_lessons[lesson.id] = ["new", "Incomplete lesson"]
       end
+      
     end
 
 
