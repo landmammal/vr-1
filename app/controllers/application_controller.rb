@@ -72,7 +72,7 @@ class ApplicationController < ActionController::Base
     elsif Rails.env.test?
       @base = "https://testing.videorehearser.com"
     else
-      @base = "https://v1.videorehearser.com"
+      @base = "https://videorehearser.com"
     end
   end
 

@@ -137,9 +137,9 @@ class AdminMailer < ApplicationMailer
 
   # sending mail to team with information on a new lead up
   def lead_notice(user)
-    @url = @base+'/users/sign_in'
+    @url = @base+'/demos'
     @user = user
-    mail( to:'carlos@videorehearser.com', subject: "#{user.first_name} #{user.last_name} #red @jcvazquez6") do |format|
+    mail( to:'carlos@videorehearser.com, jcvazquez6+nim0hphnl0tdjaselg7q@boards.trello.com', subject: "#{user.first_name} #{user.last_name} #red @jcvazquez6") do |format|
       @recepient = 'Carlos'
       mailer_formats(format)
     end

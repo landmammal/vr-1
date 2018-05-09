@@ -10,7 +10,7 @@ class ApplicationMailer < ActionMailer::Base
 		elsif Rails.env.test?
 			@base = "https://testing.videorehearser.com"
 		else
-			@base = "https://v1.videorehearser.com"
+			@base = "https://www.videorehearser.com"
 		end
 		# @image = "default.jpg"
 	end
