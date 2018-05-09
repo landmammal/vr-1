@@ -2,5 +2,7 @@
 
 
 <% @all_demos.each do |demo| %>
-	<%= demo.id.to_s %> - <%= demo.first_name %> <%= demo.last_name %><br>
+	<b>Name:</b> <%= demo.first_name %> <%= demo.last_name %> <br>
+	<b>Email:</b> <%= demo.email %><br>
+	<br>
 <%end%>

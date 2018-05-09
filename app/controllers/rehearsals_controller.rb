@@ -15,9 +15,9 @@ class RehearsalsController < ApplicationController
       if params[:trainee_id]
         @student = User.find(params[:trainee_id])
         @lesson = Lesson.find(params[:lesson_id])
-        @rehearsals = @lesson.rehearsals.where(trainee_id: params[:trainee_id], submission: true)
+        @rehearsals = @lesson.rehearsals.where(trainee_id: params[:trainee_id], submission: true).order("id DESC")
       else
-        @rehearsals = Rehearsal.where( lesson_id: params[:lesson_id] )
+        @rehearsals = Rehearsal.where( lesson_id: params[:lesson_id] ).order("id DESC")
       end
     else
       @rehearsals = Rehearsal.all
@@ -34,7 +34,7 @@ class RehearsalsController < ApplicationController
 
 
   def all
-     @courses = current_user.courses.all.order("title ASC")
+    @courses = current_user.courses.all.order("title ASC")
   end
 
 
@@ -75,20 +75,12 @@ class RehearsalsController < ApplicationController
     @rehearsal = @lesson.rehearsals.build(rehearsal_params)
     respond_to do |format|
       if @lesson.save
-        @rehearsal = @lesson.rehearsals.last 
+        @rehearsal = @lesson.rehearsals.order("id DESC").first
         @rehearsals = rehearsals_for_this_lesson(@lesson, current_user)
         @index = 0
 
         # headers = {content_type: :json, accept: :json, app_id: '4985f625', app_key: '4423301b832793e217d04bc44eb041d3'}
-
         # kairos = RestClient.post("https://api.kairos.com/v2/media?source=https://embed-cdn.ziggeo.com/v1/applications/5b2dedd0371b8806b7f81390a7555653/videos/26cda86833d2458025e46b2df33cf55d/video.mp4" , headers={content_type: :json, accept: :json, app_id: '4985f625', app_key: '4423301b832793e217d04bc44eb041d3'})
-        # sleep 6
-
-        # puts "==================================="
-        # puts kairos
-        # puts "==================================="
-
-        # binding.pry
 
         format.js {}
       else
