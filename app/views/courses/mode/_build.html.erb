@@ -8,7 +8,9 @@
       <%= link_to '', edit_course_path(@course), class:'edit ion-edit', remote: true %>
     </div>
     <br>
-    <%= "Instructor: "+@course.instructor.full_name if current_user != @course.instructor %>
+    <%= "Instructor: "+@course.instructor.full_name %>
+    <br>
+    <%= "Email: "+@course.instructor.email %>
     <div class="courseForm"></div>
    
     <br>

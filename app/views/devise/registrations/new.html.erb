@@ -5,27 +5,27 @@
     <div class="content">
       
       <div class="register_text">
-        
         <% if t && tparams.include?(t.downcase) %>
-          <% case t.downcase %>
-            <% when tparams[0] %>
-              Interview Skills Training
-            <% when tparams[1] %>
-              Customer Service Training
-            <% when tparams[2] %>
-              Wellness Training
-            <% when tparams[3] %>
-              Pronunciation Training
-            <% when tparams[4] %>
-              Hospitality Training
-            <% else %>
-          <% end %>
-
-          <br>
+          <h2>
+            <% case t.downcase %>
+              <% when tparams[0] %>
+                Interview Skills Training
+              <% when tparams[1] %>
+                Customer Service Training
+              <% when tparams[2] %>
+                Wellness Training
+              <% when tparams[3] %>
+                Pronunciation Training
+              <% when tparams[4] %>
+                Hospitality Training
+              <% else %>
+            <% end %>
+          </h2>
           <hr style="width:200px;">
-          <br>
         <%end%>
         Review . Rehearse . Transform
+        <br>
+        <%= render params[:t].downcase rescue render "default" %>
         
       </div>
 
@@ -86,7 +86,7 @@
   </div>
 </div>
 
-<div style="height:300px;"></div>
+<!-- <div style="height:300px;"></div> -->
 
 
 <!-- Modal -->
@@ -104,14 +104,6 @@
         <button type="button" class="small_btn red disagreeTerms" data-dismiss="modal">I Disagree</button>
         <button type="button" class="small_btn green_sft agreeTerms" data-dismiss="modal">I Agree</button>
       </div>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <%= render params[:t].downcase rescue render "default" %>
     </div>
   </div>
 </div>
