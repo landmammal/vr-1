@@ -39,10 +39,10 @@
             <%= devise_error_messages! %>
 
             <!-- <div class="register_label">User Information</div> -->
-            <%= f.text_field :first_name, class:'firstname name clearform', autofocus: true, placeholder:'First Name', value:('Demo' if Rails.env.development?)%>
-            <%= f.text_field :last_name, class:'lastname name clearform', placeholder:'Last Name', value:('User' if Rails.env.development?)%>
+            <%= f.text_field :first_name, class:'firstname name clearform', autofocus: true, placeholder:'First Name', value:( Rails.env.development? 'Demo' ? : params[:fname])%>
+            <%= f.text_field :last_name, class:'lastname name clearform', placeholder:'Last Name', value:( Rails.env.development? ? 'User' : params[:lname] )%>
             <%= f.text_field :username, class:'username clearform', placeholder:'Create Username', value:('user1' if Rails.env.development?)%><br>
-            <%= f.email_field :email, class:'email clearform', autofocus: true, placeholder:'Email', value:('user1@email.com' if Rails.env.development?)%><br><br>
+            <%= f.email_field :email, class:'email clearform', autofocus: true, placeholder:'Email', value:(Rails.env.development? 'user1@email.com' ? : params[:email])%><br><br>
 
 
             <!-- <div class="register_label">Password -->
