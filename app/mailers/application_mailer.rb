@@ -4,6 +4,7 @@ class ApplicationMailer < ActionMailer::Base
     before_action :set_base_url
 
 
+	
 	def set_base_url
 		if Rails.env.development?
 			@base = "http://localhost:3000"
