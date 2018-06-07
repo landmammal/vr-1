@@ -1,9 +1,10 @@
 class ApplicationMailer < ActionMailer::Base
     add_template_helper(EmailHelper)
-    default from: '\'videorRehearser\' <notification@videorehearser.com>'
+    default from: '\'videoRehearser\' <notification@videorehearser.com>'
     before_action :set_base_url
 
 
+	
 	def set_base_url
 		if Rails.env.development?
 			@base = "http://localhost:3000"
