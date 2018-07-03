@@ -87,7 +87,7 @@ class AdminMailer < ApplicationMailer
     @lesson_url = @base+rehearsal.lesson.path
     @student_url = @base+"/rehearsals/student/?student="+@student.id.to_s+"&lesson="+rehearsal.lesson.id.to_s
     
-    mail( to: @instructor.email, subject: "Rehearsal Subimitted by #{@student.full_name}!") do |format|
+    mail( to: @instructor.email, subject: "Rehearsal Submitted by #{@student.full_name}!") do |format|
       @recepient = @instructor.full_name
       mailer_formats(format)
     end
