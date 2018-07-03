@@ -33,6 +33,19 @@ class UsersController < ApplicationController
     #   redirect_to re_pa
     # end
 
+
+    user_rehearsals = current_user.rehearsals.order('id DESC')
+    @feedbacks = []
+
+    user_rehearsals.each do |rehearsal| 
+      r_feedbacks = rehearsal.feedbacks.order('id DESC')
+
+      r_feedbacks.each do |feedback| 
+        @feedbacks.push(feedback) if @feedbacks.size < 10
+      end
+
+    end
+
     authorize @user
   end
 
