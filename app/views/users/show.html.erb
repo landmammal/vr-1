@@ -54,14 +54,16 @@
 			<hr>
 			<% @feedbacks.each_with_index do |feedback, index| %>
 				<a href="/feedbacks/<%= feedback.id %>">
-					<div class="dashboard_feedback_item <%= index.even? ? 'even' : 'odd' %> <%= 'new' if !feedback.viewed_by_user %>">
+					<div class="dashboard_feedback_item <%= 'even' if !feedback.viewed_by_user %>">
 						<b><%= feedback.user.first_name %></b> on <b><%= feedback.rehearsal.lesson.title %></b>
 						<br>	
 						<span style="font-size:10px;">submitted: <%= feedback.created_at.strftime("%m/%d/%Y at %I:%M%p") %> </span>
 					</div>
 				</a>
-
 			<% end %>
+
+			<br>
+			<span style="color:#0070C0;"><%= (link_to  "All Feedbacks", "/feedback/all") if @feedbacks.size == 10 %><span>
 			
 		</div>
 	</div>
