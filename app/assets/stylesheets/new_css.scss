@@ -532,10 +532,11 @@ tbody.flexible{
 .dashboard_feedback_item {
   border-left: transparent 3px solid ;
   width: 100%;
+  background-color: #eee;
+  border-bottom:#ccc 1px solid;
   padding: 5px 8px;
   &.new{ border-left: red 3px solid ; }
   &.even{ background-color: #e1e1e1; }
-  &.odd{ background-color: #eee; }
 }
 
 @media only screen and (min-width: 481px) {
