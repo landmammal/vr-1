@@ -19,8 +19,8 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 # for user profile and banner
 gem 'paperclip'
-gem 'aws-sdk', '<3'
-# gem 'aws-sdk-s3', '~> 1.0.0.rc2'
+gem 'aws-sdk'
+gem 'aws-sdk-s3'
 
 gem 'font-awesome-sass'
 gem 'sprockets-es6'
