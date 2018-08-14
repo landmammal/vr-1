@@ -201,7 +201,7 @@ class WelcomeController < ApplicationController
     @site_title = 'Teach with us'
   end
 
-  def pricing
+  def price
     @site_title = 'Pricing'
     faqs
   end
