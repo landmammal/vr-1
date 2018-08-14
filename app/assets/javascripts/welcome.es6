@@ -108,17 +108,28 @@ function myFunction() {
 }
 
 
-
+function copyToClipboard(element, item) {
+	var $temp = $("<input>");
+	$("body").append($temp);
+	$temp.val($(element).val()).select();
+	document.execCommand("copy");
+	$temp.remove();
+	$(item).text('copied ✓')
+}
 
 
 var pageReady = function(){
 
-	$(".menu-control").click(function () {
-		$(".main-content.in_app").toggleClass('menu-large');
-		var src = $(this).attr('src');
-		var newsrc = (src == '/assets/menu.png') ? '/assets/menu-close.png' : '/assets/menu.png';
-		$(this).attr('src', newsrc);
-	});
+	$('.rehearsal_script').on('input', function(){
+		$('.copy_btn').text( 'Copy' );
+	} );
+
+	// $(".menu-control").click(function () {
+	// 	$(".main-content.in_app").toggleClass('menu-large');
+	// 	var src = $(this).attr('src');
+	// 	var newsrc = (src == '/assets/menu.png') ? '/assets/menu-close.png' : '/assets/menu.png';
+	// 	$(this).attr('src', newsrc);
+	// });
 
 	$('button.submit_job_application').click(function(){
 		$('form.application_form').submit();
@@ -215,16 +226,6 @@ var pageReady = function(){
 		
 		if(!checkRegisForm()){ 
 			regisForm.submit(); 
-			$('.clearform').val('');
-			$('#user_age').val('');
-			$('#termsServices').prop('checked', false);
-
-			$('.form').fadeOut(500);
-			$('.registered_confirmation').html('Thank you for signing up with videoRehearser.<br>  <br> <img src="/assets/checkmark.png" width="50px"><br> <br> You will recieve an email shortly.');
-
-			$('.form').delay(500).empty();
-			$('.registered_confirmation').delay(500).fadeIn(500);
-
 		}
 
 	});

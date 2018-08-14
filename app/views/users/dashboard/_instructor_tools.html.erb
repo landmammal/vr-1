@@ -8,7 +8,7 @@
 		<h4>Course Created</h4>
 
 		<div class="card_list creator_list">
-			<% current_user.courses.order('id DESC').each do |course| %>
+			<% current_user.courses.each do |course| %>
 		        <%= render './courses/card', course_item:course  %>
 		    <% end %>
 		</div>

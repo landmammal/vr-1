@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -20,10 +19,10 @@
     <%= render 'layouts/loading' %>
     <script type="text/javascript">$('.loading_app').show(); startLoadingProg();</script>
 
-    <script type="text/javascript">TermsandServices(<%= check_terms(termsVersion) %>);</script>
+    <!-- <script type="text/javascript">TermsandServices(<%= check_terms(termsVersion) %>);</script>
     <div class="terms_not_aggreed" style="display:<%= check_terms(termsVersion) ? 'none' : 'block' %>;">
       <%= render '/welcome/reviewtermsandservices' %>
-    </div>
+    </div> -->
     
     <%= render 'layouts/notice' %>
 
@@ -31,7 +30,7 @@
         <%= render 'layouts/header/header' %>
 
         <div class="main-content <%= 'in_app' if in_app %>">
-          <% render 'layouts/leftpanel' if user_signed_in? %>
+          <%= render 'layouts/leftpanel' if user_signed_in? %>
           <div class="content-container"> <%= yield %></div>
         </div>
       

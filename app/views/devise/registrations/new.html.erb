@@ -5,27 +5,27 @@
     <div class="content">
       
       <div class="register_text">
-        
         <% if t && tparams.include?(t.downcase) %>
-          <% case t.downcase %>
-            <% when tparams[0] %>
-              Interview Skills Training
-            <% when tparams[1] %>
-              Customer Service Training
-            <% when tparams[2] %>
-              Wellness Training
-            <% when tparams[3] %>
-              Pronunciation Training
-            <% when tparams[4] %>
-              Hospitality Training
-            <% else %>
-          <% end %>
-
-          <br>
+          <h2>
+            <% case t.downcase %>
+              <% when tparams[0] %>
+                Interview Skills Training
+              <% when tparams[1] %>
+                Customer Service Training
+              <% when tparams[2] %>
+                Wellness Training
+              <% when tparams[3] %>
+                Pronunciation Training
+              <% when tparams[4] %>
+                Hospitality Training
+              <% else %>
+            <% end %>
+          </h2>
           <hr style="width:200px;">
-          <br>
         <%end%>
         Review . Rehearse . Transform
+        <br>
+        <%= render params[:t].downcase rescue render "default" %>
         
       </div>
 
@@ -39,10 +39,10 @@
             <%= devise_error_messages! %>
 
             <!-- <div class="register_label">User Information</div> -->
-            <%= f.text_field :first_name, class:'firstname name clearform', autofocus: true, placeholder:'First Name', value:('Demo' if Rails.env.development?)%>
-            <%= f.text_field :last_name, class:'lastname name clearform', placeholder:'Last Name', value:('User' if Rails.env.development?)%>
+            <%= f.text_field :first_name, class:'firstname name clearform', autofocus: true, placeholder:'First Name', value:( Rails.env.development? ? 'Demo' : params[:fname])%>
+            <%= f.text_field :last_name, class:'lastname name clearform', placeholder:'Last Name', value:( Rails.env.development? ? 'User' : params[:lname] )%>
             <%= f.text_field :username, class:'username clearform', placeholder:'Create Username', value:('user1' if Rails.env.development?)%><br>
-            <%= f.email_field :email, class:'email clearform', autofocus: true, placeholder:'Email', value:('user1@email.com' if Rails.env.development?)%><br><br>
+            <%= f.email_field :email, class:'email clearform', autofocus: true, placeholder:'Email', value:(Rails.env.development? ? 'user1@email.com' : params[:email])%><br><br>
 
 
             <!-- <div class="register_label">Password -->
@@ -53,14 +53,18 @@
             <%= f.password_field :password, class:'pass clearform', autocomplete: "off", placeholder:'Password (6 characters or more)', value:('test123' if Rails.env.development?) %><br>
             <%= f.password_field :password_confirmation, class:'passComf clearform', autocomplete: "off", placeholder:'Confirm Password', value:('test123' if Rails.env.development?) %><br><br>
             
+            <hr>
 
-
-            <!-- <div class="register_label">Ethnicity</div> -->
-            <!-- <%= f.select :race, ([["Hispanic or Latino", "Hispanic or Latino"], ["American Indian or Alaska Native", "American Indian or Alaska Native"], ["Asian", "Asian"], ["Black or African American", "Black or African American"], ["Native Hawaiian or Pacific Islander", "Native Hawaiian or Pacific Islander"], ["White", "White"], ["Multiple races or ethnicities", "Multiple races or ethnicities"], ["Prefer not to answer", "Prefer not to answer"], ["Other", "Other"]]) %> -->
+            <h5 class="bold">Access Code</h5>
+            <%= f.text_field :access_code, class:'coupon_code name clearform', placeholder:'Access Code', value:params[:access_code]%>
             <br>
-              <!--this line is broken therefore is not in production-->
+
+            <!-- <div class="register_label">Ethnicity</div>
+            <%= f.select :race, ([["Hispanic or Latino", "Hispanic or Latino"], ["American Indian or Alaska Native", "American Indian or Alaska Native"], ["Asian", "Asian"], ["Black or African American", "Black or African American"], ["Native Hawaiian or Pacific Islander", "Native Hawaiian or Pacific Islander"], ["White", "White"], ["Multiple races or ethnicities", "Multiple races or ethnicities"], ["Prefer not to answer", "Prefer not to answer"], ["Other", "Other"]]) %>
+            <br>
+            this line is broken therefore is not in production
             <div class="register_label">Date of birth</div>
-            <%= f.date_field :age, placeholder:'Age'%><br><br>
+            <%= f.date_field :age, placeholder:'Age'%><br><br> -->
             
            
             <input type="checkbox" class="termsServices" id="termsServices" name="terms_services" style="width:20px; float:left;">
@@ -82,7 +86,7 @@
   </div>
 </div>
 
-<div style="height:300px;"></div>
+<!-- <div style="height:300px;"></div> -->
 
 
 <!-- Modal -->
@@ -100,14 +104,6 @@
         <button type="button" class="small_btn red disagreeTerms" data-dismiss="modal">I Disagree</button>
         <button type="button" class="small_btn green_sft agreeTerms" data-dismiss="modal">I Agree</button>
       </div>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <%= render params[:t].downcase rescue render "default" %>
     </div>
   </div>
 </div>

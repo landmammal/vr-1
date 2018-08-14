@@ -56,8 +56,13 @@ class Course < ApplicationRecord
     self.topics.each { |t| @lessons << Lesson.where(instructor_id: self.instructor, topic_id: t) }
   end
 
-  def topics_ready
-    self.topics_order.collect {|r| Topic.find_by_refnum(r) }.compact.map{ |t| t if (t.privacy == 1 && t.approval_status == 1) }.compact
+  def topics_ready(user)
+    topics = self.topics_order.collect {|r| Topic.find_by_refnum(r) }.compact
+    if self.owner(user)
+      topics
+    else
+      topics.map{ |t| t if (t.privacy == 1 && t.approval_status == 1) }.compact
+    end
   end
 
   def get_tags
@@ -92,10 +97,21 @@ class Course < ApplicationRecord
   def submitted_rehearsals
     self.rehearsals.where(submission: true)
   end
+
+  def pending_rehearsals
+    has_pending = false
+    self.rehearsals.where(submission: true).each do |r|
+      if r.feedbacks.size < 1
+        has_pending = true
+        break
+      end
+    end
+    has_pending
+  end
+
   def has_submitted_rehearsals?
     self.submitted_rehearsals.size > 0
   end
-
 
   def draft?
    	self.cstatus == 0
@@ -138,6 +154,10 @@ class Course < ApplicationRecord
   
   def owner(user)
     self.instructor == user || user.role == 'admin'
+  end
+
+  def register(user)
+    self.course_registrations.build( user_id: user.id, user_role: 3, approval_status: true ).save
   end
 
 end

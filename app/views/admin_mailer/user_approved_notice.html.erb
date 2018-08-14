@@ -1,80 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  <style>
-    .wrapper {
-      background-color: white;
-      width: 80%;
-      max-width: 500px;
-      margin: auto;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-flex-direction: row; /* works with row or column */
-      flex-direction: column;
-      -webkit-align-items: center;
-      align-items: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-      /*padding: 5px 15px 5px 15px;*/
-    }
-    .content {
-      text-align: left;
-      padding: 30px 40px;
-      color: #666666;
-    }
-    .header {
-      background-color: #0090ff;
-      padding: 20px 0px;
-      text-align: center;
-      width: 100%;
-    }
-    p {
-      font-family: "arial";
-      font-size: 15px;
-    }
-    .small {
-      font-size: 11px;
-    }
-    .header img {
-      width: 90px;
-    }
-    .footer {
-      background-color: grey;
-      padding: 10px 0px;
-      width: 100%;
-    }
+<% content_for :body do %>
+  Welcome to videoRehearser! You now have access as the role of: <%= @user.role %>. 
+  <br>
+  Check out the available courses and see what can help you transform!
+  <br><br>
+  You can <%= link_to "Log in here", @url %>.
+  <br><br>
+  <% if @user.role == 'instructor' %>
+    If you would like to set up a time to meet with a member of our vR Success Team, <a href="http://www.calendly.com/mevurah" targer="_blank">click here to schedule a session</a>.
+  <% else %>
+    If you are interested in becoming an Instructor on videoRehearser (to create courses) shoot us an email <a href="mailto:support@videorehearser.com">support@videorehearser.com<a/>
+  <%end%>
+<%end%>
 
 
-  </style>
-</head>
-<body>
-<div class="wrapper">
-  <div class="header">
-    <%= email_image_tag("logo_text_white.png")%>
-  </div>
-  <div class="content">
-    <p>
-      Hi <%= @user.first_name.capitalize %>,
-    </p>
 
-    <p>
-      Your application has been approved and you can now login.
-      Log in here <%= link_to "Login", @url %>
-    </p>
-
-    <div>
-      For support requests, please contact us at support@videorehearser.com. We'd also love to hear what you think of the platform! 
-    </div>
-    <br>
-    <div class="small">
-      -The vR Team
-    </div>
-  </div>
-  <div class="footer">
-
-  </div>
-</div>
-</body>
-</html>

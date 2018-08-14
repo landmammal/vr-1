@@ -1,0 +1,36 @@
+<div class="dropdown" data-dropdown="notifDropdown">
+    <div class="arrow_up center"></div>
+
+    <div class="item">
+        <h4 class="left">Notifications</h4>
+        <div class="right ion-ios-gear-outline" style="font-size:18px; margin-top:10px;"></div>
+    </div>
+
+    <hr>
+
+
+    <!-- Put in header -->
+        <!-- <% if current_user.notifications > 0 %>
+          <span class="notif_num"><%= current_user.notifications %></span>
+        <% end %> -->
+    <!-- Put in header end -->
+
+
+    <a href="<%= feedback_all_path %>" class="item link">
+        <div class="left">Feedback</div>
+        <% if current_user.pending_feedback > 0 %>
+            <div class="notif_num">
+                <%= #current_user.pending_feedback %>
+            </div>
+        <% end %>
+    </a>
+    <hr>
+    <a href="<%= rehearsals_all_path %>" class="item link">
+        <div class="left">Rehearsals</div>
+        <% if current_user.pending_rehearsals > 0 %>
+            <div class="notif_num">
+                <%= #current_user.pending_rehearsals %>
+            </div>
+        <% end %>
+    </a>
+</div>

@@ -140,6 +140,8 @@
 		border-radius: 3px; 
 		overflow: hidden; background-color: #eee;
 
+		&.draft{ background-color: #fff; border:1px dashed #999; }
+
 		a{
 			grid-template-rows: auto 28px minmax(70px);
 			&.search{
@@ -154,6 +156,10 @@
 		& .ctitle{
 			align-content: center;
 			font-size: 12px;
+		}
+
+		&.lesson_card{
+			& .ctitle{ font-size: 14px; font-weight: bold; }
 		}
 
 		& .course_cover{
@@ -184,7 +190,7 @@
 		& .actions{
 			border-top: 1px #ddd solid;
 			display:grid;
-			grid-template-columns: 20px 1fr;
+			grid-template-columns: 100px 1fr;
 
 			& .todo{
 				.left{ font-size:10px; margin-left:5px; }
@@ -283,6 +289,13 @@
 }
 
 @media only screen and (max-width: 495px) {
+	.topics_area{
+		.topics_list, .side{
+			width: 95%;
+			margin: 5% 2.5%;
+			float: none;
+		}
+	}
 }
 
 @media only screen and (min-width: 496px) {

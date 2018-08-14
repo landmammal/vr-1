@@ -27,7 +27,7 @@ class Lesson < ApplicationRecord
   def set_defaults
     self.refnum ||= "Le-"+SecureRandom.hex(n=3)
     self.title ||= "Unnamed Lesson"
-    self.privacy ||= 1
+    self.privacy ||= 0
     self.approval_status ||= 1
   end
 

@@ -1,23 +1,30 @@
-<div class="site_wrapper contact-container">
-	<!-- Change the width and height values to suit you best -->
-	<!-- <div class="typeform-widget" data-url="https://videorehearser.typeform.com/to/UJHxYm" data-text="Contact Form" style="width:100%;height:500px; background-color:#fff;"></div> -->
+<div class="contact_wrapper">
 
-	<h2>Contact us</h2>
-	<%= form_for @demo, html:{ style:'' }, remote: true do |d| %>
-		<%= d.text_field :first_name, placeholder:'First name *', class:'js-first_name js-form half', value:('Demo' if Rails.env.development?) %>
-		<%= d.text_field :last_name, placeholder:'Last name *', class:'js-last_name js-form half', value:('User' if Rails.env.development?) %>
-		<%= d.text_field :email, placeholder:'Email *', class:'js-email js-form full', value:('user@email.com' if Rails.env.development?) %>
-		<%= d.text_field :phone_number, placeholder:'Phone number', class:'js-phone_number js-form full', value:('555-123-4529' if Rails.env.development?) %>
-		<%= d.text_area :messagecontent, placeholder:'Message', class:'full', value:('This is a test message for the contact form' if Rails.env.development?) %><br>
-		<%= d.submit "Send", class:'js-schedule_demo green_sft' %>
-		<div class="form_err">  </div>
-	<%end%>
-	<div class="thank_you_contact">
-		<br><br>Thank you :)
+	<div class="right wrapper" style="padding:100px 20px;">
+		<!-- Change the width and height values to suit you best -->
+		<!-- <div class="typeform-widget" data-url="https://videorehearser.typeform.com/to/UJHxYm" data-text="Contact Form" style="width:100%;height:500px; background-color:#fff;"></div> -->
+
+		<h2>Contact us</h2>
+		<%= form_for @demo, html:{ style:'' }, remote: true do |d| %>
+			<%= d.text_field :first_name, placeholder:'First name *', class:'js-first_name js-form half', value:('Demo' if Rails.env.development?) %>
+			<%= d.text_field :last_name, placeholder:'Last name *', class:'js-last_name js-form half', value:('User' if Rails.env.development?) %>
+			<%= d.text_field :email, placeholder:'Email *', class:'js-email js-form full', value:('user@email.com' if Rails.env.development?) %>
+			<%= d.text_field :phone_number, placeholder:'Phone number', class:'js-phone_number js-form full', value:('555-123-4529' if Rails.env.development?) %>
+			<%= d.text_area :messagecontent, placeholder:'Message', class:'full', value:('This is a test message for the contact form' if Rails.env.development?) %><br>
+			<%= d.submit "Send", class:'js-schedule_demo green_sft' %>
+			<div class="form_err">  </div>
+		<%end%>
+		<div class="thank_you_contact">
+			<br><br>Thank you :)
+		</div>
+		<div class="err_contact">
+			You missed a field
+		</div>
+		
+		<!-- <script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'widget.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script> -->
 	</div>
-	<div class="err_contact">
-		You missed a field
+	<div class="left bg_fixed" style="background-image:url('/assets/contact.jpg'); background-size:cover;">
+
 	</div>
-	
-	<!-- <script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'widget.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script> -->
+
 </div>

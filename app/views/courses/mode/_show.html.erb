@@ -1,31 +1,44 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-12">
+  <div id="lesson_top">
+    <div id="course_img" style="margin-top:10px;">
+      <img class="img-circle" src="<%= @course.image %>" alt="Course Cover" style="width:80px; height:80px;">
+    </div>
+    <div id="lesson_breadcrum">
       <%= render './courses/mode/header' %> 
     </div>
+  </div>
 
-    <div class="col-12">
-      <h3>Curriculum</h3>
+
+    <div class="col-12">      
+      <h4 class="bold">Curriculum</h4>
       <br>
-      <% @course.topics_ready.each do |topic| %>
-        <div class="topic">
+      <% @course.topics_ready(current_user).each do |topic| %>
+        <h4 class="topic">
           <h4><%= topic.title %></h4>
           <%= topic.description %>
           <br><br>
-          <% topic.lessons_ready.each do |lesson| %>
-            <div class="trainee_lesson">
-              <div class="lesson_completion <%= lesson.completion_status(current_user)[0] %>" title="<%= lesson.completion_status(current_user)[1] %>"></div>              
-              <div class="lesson_title"><%= link_to lesson.title, course_topic_lesson_path( @course, topic, lesson ) %></div>
-            </div>
-          <% end %>
+          <div class="trainee_lessons">
+            <% topic.lessons_ready(current_user).each do |lesson| %>
+              <% if topic_lesson_status(lesson) %>
+                <a href="<%= course_topic_lesson_path( @course, topic, lesson ) %>">
+                  <div class="trainee_lesson">
+                    <div class="circle">
+                      <div class="lesson_completion <%= lesson.completion_status(current_user)[0] %>" title="<%= lesson.completion_status(current_user)[1] %>"></div>              
+                    </div>
+                    <div class="lesson_title"><%= lesson.title %></div>
+                  </div>
+                </a>
+              <% end %>
+            <% end %>
+          </div>
 
         </div>
         <br>
       <% end %>
 
     </div>
-
   </div>
 </div>
 

@@ -1,7 +1,8 @@
 class DemosController < ApplicationController
+	before_action :authenticate_user! , only: [:index]
 
 	def index
-		@all_demos = Demo.all.order(id: :desc)
+		current_user.level_1 ? @all_demos = Demo.all.order(id: :desc) : @all_demos = []
 		@site_title = 'Requested Demos'
 	end
 

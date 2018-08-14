@@ -1,0 +1,21 @@
+'use strict';
+
+<% if @registered %>
+
+    $('.clearform').val('');
+    $('#user_age').val('');
+    $('#termsServices').prop('checked', false);
+
+    $('.form').fadeOut(500);
+    $('.registered_confirmation').html('Thank you for signing up with videoRehearser.<br>  <br> <img src="/assets/checkmark.png" width="50px"><br> <br> You will recieve an email shortly.');
+
+    $('.form').delay(500).empty();
+    $('.registered_confirmation').delay(500).fadeIn(500);
+
+<% else %>
+    if($('.form_err').css('display') !== 'block'){
+        $('.form_err').fadeIn(500);
+	    $('.form_err').text('Could not register user');
+	    $('.form_err').delay(3000).fadeOut(500);
+    }
+<% end %>

@@ -39,6 +39,12 @@ class Rehearsal < ApplicationRecord
     self.feedbacks.size > 0
   end
 
+  def pending_feedback
+    has_pending = false
+    has_pending = true if self.feedbacks.where(viewed_by_user: true).size > 0
+    has_pending
+  end
+
   def new?
     self.submitted? && ( !self.approved? && !self.rejected? && !self.has_feedback? )
   end

@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   # MENU LINKS
   menu_routes = [
     'about','markets','overview','process','contact','versions','jobs',
-    'theteam','termsandservices','FAQs','requirements','policies','press',
-    'teach','coach','learn','create','companies','support'
+    'team','termsandservices','faqs','requirements','policies','press',
+    'teach','coach','education','workforce','business','wellness','create','companies','support',
   ]
   menu_routes.each do |menu|
     get "/#{menu}" => "welcome##{menu}"
@@ -53,7 +53,7 @@ Rails.application.routes.draw do
     get "/generate_course_code/" => "courses#generate_code"
     post "/invite_student/" => "courses#send_invite"
     post "/register_with_access_code" => "courses#register_with_access_code"
-    # get "/courses/:course_id/accept_invitation/" => "courses#accept_invitation"
+    get "/courses/:course_id/accept_invitation/" => "courses#accept_invitation"
     get "/courses/:course_id/accept_invitation/:user_id" => "courses#accept_invitation"
 
     post '/topic/create' => "topics#create"
@@ -98,7 +98,7 @@ Rails.application.routes.draw do
     end
     member do 
       post 'change_topics_order'
-      get 'accept_invitation'
+      # get 'accept_invitation'
     end
     resources :topics do
       resources :lessons
@@ -106,6 +106,7 @@ Rails.application.routes.draw do
   end
   
   resources :topics do
+    resources :lessons
     member do 
       post 'change_lessons_order'
     end
@@ -118,6 +119,9 @@ Rails.application.routes.draw do
     resources :concepts
     resources :rehearsals do
       resources :feedbacks
+      collection do
+        get 'trainees'
+      end
     end
   end
 

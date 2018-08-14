@@ -21,7 +21,7 @@
 		
 		<%end%>
 	</div>
-	
+
 	<% if current_user.level_2 && current_user.courses.size > 0 %>
 		<h4>Courses you created ( last 4 )</h4>
 		<hr>
@@ -33,3 +33,17 @@
     <% end %>
 
 </div>
+
+<% if current_user.sign_in_count < 1 %>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var cookieValue = Cookies.get("seen_vr_tutorial");
+			if( !cookieValue ){
+				document.getElementById("how_it_works").click(); 
+			}
+			setTimeout(function(){
+				Cookies.set("seen_vr_tutorial", "true");
+			}, 10000);
+		});
+	</script>
+<% end %>

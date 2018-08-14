@@ -14,7 +14,6 @@
 *Ignore images hosted on AS3
 /app/assets/images/as3
 /public/system
-/public/bootstrap
 
 # Ignore all logfiles and tempfiles.
 /log/*
