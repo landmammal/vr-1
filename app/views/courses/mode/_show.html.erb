@@ -17,7 +17,7 @@
       <% @course.topics_ready(current_user).each do |topic| %>
         <h4 class="topic">
           <h4><%= topic.title %></h4>
-          <%= topic.description %>
+          <%= topic.description.gsub(/\n/, '<br/>').html_safe %>
           <br><br>
           <div class="trainee_lessons">
             <% topic.lessons_ready(current_user).each do |lesson| %>
