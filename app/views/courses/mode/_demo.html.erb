@@ -8,7 +8,7 @@
                 
                 <% if @course.description %>
                     <h4>About this Course</h4>
-                    <%= @course.description %>
+                    <%= @course.description.html_safe %>
                 <% end %>
 
                 <% if @course.requirements %>
