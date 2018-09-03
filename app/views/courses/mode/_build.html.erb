@@ -17,7 +17,7 @@
 
     <% if !@course.description.blank? %>
       <h4>Description</h4>
-      <div id="cd_<%= @course.id %>"> <%= @course.description if (!@course.private?) %> </div>
+      <div id="cd_<%= @course.id %>"> <%= @course.description.html_safe %> </div>
     <% end %>
 
     <br>
