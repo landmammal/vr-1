@@ -1,0 +1,12 @@
+<div class="wrapper">
+	<h2>Frequently Asked Questions</h2>
+	<hr style=" width:90%; margin:30px auto;">
+	<div class="box-3">
+		<% @faqs.each do |faq| %>
+			<div style="margin-bottom:30px;">
+				<h5 class="bold"><%= faq[0] %></h5>
+				<%= faq[1] %>
+			</div>
+		<% end %>
+	</div>
+</div>

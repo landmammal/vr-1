@@ -28,13 +28,17 @@ if( window.location.pathname === '/contact'){
 
 		$('form#new_demo')[0].reset();
 
+		$('.demo_sent').fadeIn(500);
+		setTimeout(function(){
+			$('.demo_sent').fadeOut(500);
+		}, 2000);
+
 		setTimeout(function(){
 			$('.check_mark').fadeOut(500);
 			$('#notice_demo').fadeOut(500);
 		}, 3000);
 		setTimeout(function(){
 			$('.demo_form').fadeIn(500);
-			$('.home_top_text').removeClass('demo_open');
 		}, 3600);
 	}else{
 		$('#notice_demo_err').text('<%= @err %>');

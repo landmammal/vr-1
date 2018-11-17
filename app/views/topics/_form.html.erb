@@ -1,26 +1,21 @@
-<h2> Add a new Topic </h2>
-<%= form_for [@course, @topic] do |f| %>
-  <% if @topic.errors.any? %>
+<%= form_for [@course, topic], remote: quickEdit do |f| %>
+  <% if topic.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+      <h2><%= pluralize(topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
       <ul>
-      <% @topic.errors.full_messages.each do |message| %>
+      <% topic.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <%= f.text_field :title, placeholder:'Title' %><br>
-  <%= f.text_area :description, placeholder:'Description' %><br>
-  <%= f.text_field :tags, placeholder:'tags (comma separated)' %><br>
+  <%= f.text_field :title, class:'full', placeholder:'Title' %><br>
+  <%= f.text_area :description, class:'full', placeholder:'Description' %><br>
+  <%= f.text_field :tags, class:'full', placeholder:'tags (separate with comma)' %><br>
   <%= f.select :language, (@languages) %><br><br>
   
   <%= button_tag 'Save Topic', type:'submit', class:"blue" %>
-  <button class="red js-cancel_form" data-form="topic">Cancel</button>
-
-  <%= f.text_field :status, type:"hidden", value: 0 %><br>
-  <%= f.text_field :course_id, type:"hidden", value:params[:id] %><br>
-  <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %><br>
+  <%= f.text_field :instructor_id, type:"hidden", value:current_user.id %>
 
 <%end%>

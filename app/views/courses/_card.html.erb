@@ -1,0 +1,60 @@
+<% cid = course_item.id %>
+<% search = false if !search %>
+
+<div class="card course_card course_<%= cid %>  <%= 'draft' if course_item.cstatus == 0 %>">
+  
+  <a href="<%= course_path(course_item) %>" class="<%= 'search' if search %>">
+  
+    <div class="course_cover" id="cco_<%= cid %>" style='background-image:url("<%= course_item.image %>");'></div>
+    
+    <div class="ctitle ccl_<%= cid %>" id="ct_<%= cid %>" style="background-color:<%= course_item.color if !course_item.color.blank? %>;"> 
+      <%= course_item.title[0...35] %><%= "..." if course_item.title.length > 50 %>
+    </div>
+
+    <div class="description" id="cd_<%= cid %>">
+      <% if !course_item.short_desc.blank? %>
+        <%= course_item.short_desc[0...115] %><%= "..." if course_item.short_desc.length > 115 %>
+      <% end %>
+      <br>
+    </div>
+
+    <div class="instructor" ><%= "by: "+course_item.instructor.full_name if search %></div>
+
+  </a>
+  
+  
+  <% if search %>
+
+    <div class="actions text-right">
+      <span class="<%= course_item.privacy_icon[0] if course_item.privacy != 2 %>" title="<%= course_item.privacy_icon[1] %>"></span>
+      <div class="todo">
+        <% if current_user.registered(course_item) %>
+          Resume Course
+        <% elsif course_item.paid? %>
+          <div class="left"> Paid course</div>
+          <div class="right">$<%= course_item.show_price %></div>
+        <% elsif course_item.with_code? %>
+          <div class="left"> *Requires Access Code</div>
+          <div class="right">Register</div>
+        <% elsif course_item.free? %>
+          <div class="left"> Free</div>
+          <div class="right">Register</div>
+        <% end %>
+      </div>
+    </div>
+
+  <% else %>
+
+    <div class="actions <%= 'owner' if course_item.owner(current_user) %>">    
+      <span class="<%= course_item.privacy_icon[0] %>" title="<%= course_item.privacy_icon[1] %>"> <%= course_item.show_price if course_item.paid? %> </span>
+      <% if course_item.owner(current_user) %>
+        <%= link_to '', edit_course_path(course_item), class:'edit ion-edit', remote: true %>
+        <%= link_to '', course_item, class:'delete ion-trash-a', method: :delete, data: {confirm: "Are you sure you want to delete #{ course_item.title }?"} %>
+      <% end %>
+    </div>
+
+  <% end %>
+
+  
+
+</div>

@@ -3,10 +3,9 @@ class ApplicationController < ActionController::Base
   before_action :set_fix
   before_action :base_url
 
-
   def self.force_ssl(options = {})
     host = options.delete(:host)
-    before_filter(options) do
+    before_action(options) do
 
       if !request.ssl? && !Rails.env.development? && !(respond_to?(:allow_http?) && allow_http?)
         redirect_options = {:protocol => 'https://', :status => :moved_permanently}
@@ -21,7 +20,9 @@ class ApplicationController < ActionController::Base
 
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  # protect_from_forgery prepend: true
   protect_from_forgery with: :null_session
+  # skip_before_action :verify_authenticity_token
 
   before_action :main_links
 
@@ -71,12 +72,12 @@ class ApplicationController < ActionController::Base
     elsif Rails.env.test?
       @base = "https://testing.videorehearser.com"
     else
-      @base = "https://v1.videorehearser.com"
+      @base = "https://videorehearser.com"
     end
   end
 
   def main_links
-    @main_menu = ['overview','contact']
+    @main_menu = ['contact']
     @languages = [['English','en'],['Spanish', 'sp']]
     @privacy = [['Public', 0],['Locked', 1],['Paid Members', 2],['Registered members', 3]]
 
@@ -84,12 +85,12 @@ class ApplicationController < ActionController::Base
     @video_type = [['Local', 'local'],['Image', 'image'],['Youtube', 'youtube']]
 
     @ziggeo_priority = [["Not Primary", ],["Primary", true]]
-    @theteam = [{ name:'Carlos Vazquez', role:'CEO/Co-Founder', link:'https://www.linkedin.com/in/juancvazquez' },
-                { name:'David Kay', role:'Co-Founder', link:'https://www.linkedin.com/in/davidlkay' },
-                { name:'Al Delcy', role:'Product Manager', link:'https://www.linkedin.com/in/aldelcy' },
-                { name:'Roger Rodriguez', role:'Lead Developer', link:'https://www.linkedin.com/in/landmammal' },
-                { name:'Alexis Mabe', role:'Instructional Designer' },
-                { name:'Mevurah Deleon', role:'Digital Strategist', link:'https://www.linkedin.com/in/mevurah-deleon-06bb08123' }]
+    @theteam = [{ name:'Carlos Vazquez', title:'M.S.Ed, M.I.T', role:'CEO/Co-Founder', link:'https://www.linkedin.com/in/juancvazquez' },
+                { name:'David Kay', title:'MA', role:'Co-Founder', link:'https://www.linkedin.com/in/davidlkay' },
+                { name:'Al Delcy', title:'MBA', role:'Lead FullStack Developer', link:'https://www.linkedin.com/in/aldelcy' },
+                { name:'Roger Rodriguez', title:'', role:'BackEnd Developer', link:'https://www.linkedin.com/in/landmammal' },
+                { name:'Alexis Mabe', title:'MA', role:'Instructional Designer' },
+                { name:'Mevurah Deleon', title:'', role:'Digital Strategist', link:'https://www.linkedin.com/in/mevurah-deleon-06bb08123' }]
 
     if current_user
       # @demos = Demo.all

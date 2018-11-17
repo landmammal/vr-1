@@ -1,6 +1,6 @@
-<div class="shadebox">
-  <div class="shade box">
-    <div class="shadebox_title">
+<div class="shadebox_bg">
+  <div class="shadebox">
+    <div class="shadebox_header">
       <%= @group.name %>
       <% @this_user = User.find(@group.instructor_id) %>
       <button class="shade_close red small_btn">x</button>
@@ -24,7 +24,7 @@
       <% end %>
       <hr>
     </div>
-    <div class="shadebox_bottom">
+    <div class="shadebox_footer">
 
     </div>
   </div>

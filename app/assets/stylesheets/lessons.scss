@@ -1,3 +1,5 @@
+@import 'application';
+
 .perfomance {
   width: 630px;
   margin: 5px;
@@ -39,9 +41,9 @@
       color: #7D1B21;
     }
     &.caution1 {
-      border-bottom: 2px red solid;
+      border-bottom: 2px $red solid;
       background: #FF7B7B;
-      color: red;
+      color: $red;
     }
     &.caution2 {
       border-bottom: 2px orange solid;
@@ -79,16 +81,9 @@
 }
 
 .lesson_ready {
-  margin: 0 5px;
-  float: right;
-  width: 168px;
-  font-size: 30px;
-  font-weight: bold;
+  text-align: center;
   color: #36CF40;
-  span {
-    position: relative;
-    top: 3px;
-  }
+  margin: auto;
 }
 
 .lesson_err_wrapper {
@@ -96,22 +91,8 @@
   .lesson_err {
     font-weight: bold;
     font-size: 10px;
-    color: red;
+    color: $red;
     // display: none;
-  }
-}
-
-.right_lesson_list .item {
-  padding: 5px 5px 5px 10px;
-  &:hover {
-    background-color: #333;
-    color: white;
-  }
-  &.ready {
-    border-left: 2px #23FF06 solid;
-  }
-  &.not_ready {
-    border-left: 2px red solid;
   }
 }
 
@@ -148,7 +129,7 @@
     float: none;
     border-radius: 3px;
     &.selected {
-      background-color: #4EBC52;
+      background-color: $green;
       color: #fff;
     }
   }
@@ -196,15 +177,6 @@
   }
 }
 
-.lesson_create_btn {
-  border-radius: 30px;
-  padding: 4px 7px;
-  margin: 0;
-  font-size: 13px;
-  color: #448fe4;
-  font-weight: 400;
-}
-
 .record_component {
   min-width: 250px;
   max-width: 600px;
@@ -225,7 +197,7 @@
   width: 99%;
 }
 
-.explanation_video {
+.explanation_video, .prompt_video, .model_video, .rehearsal_video, .feedback_video {
   textarea, .lesson_script {
     height: 150px;
     padding: 10px;
@@ -235,53 +207,9 @@
     text-align: left;
     overflow: scroll;
   }
-}
-
-.prompt_video {
-  textarea, .lesson_script {
-    height: 150px;
-    padding: 10px;
-    min-width: 10px;
-    border: 1px solid #AAAAAA;
-    background-color: white;
-    text-align: left;
-    overflow: scroll;
-  }
-}
-
-.model_video {
-  textarea, .lesson_script {
-    height: 150px;
-    padding: 10px;
-    min-width: 10px;
-    border: 1px solid #AAAAAA;
-    background-color: white;
-    text-align: left;
-    overflow: scroll;
-  }
-}
-
-.rehearsal_video {
-  textarea, .lesson_script {
-    height: 150px;
-    padding: 10px;
-    min-width: 10px;
-    border: 1px solid #AAAAAA;
-    background-color: white;
-    text-align: left;
-    overflow: scroll;
-  }
-}
-
-.feedback_video {
-  textarea, .lesson_script {
-    height: 150px;
-    padding: 10px;
-    min-width: 10px;
-    border: 1px solid #AAAAAA;
-    background-color: white;
-    text-align: left;
-    overflow: scroll;
+  .lesson_script {
+    background-color: #fcfcfc;
+    border:none;
   }
 }
 
@@ -618,10 +546,11 @@
     }
   }
   .rehearsal_btn {
-    text-align: center;
+    text-align: left;
     color: #000;
     font-size: 11px;
     font-weight: 100;
+    line-height: 1.1em;
   }
 }
 
@@ -774,7 +703,7 @@
     background-color: #05a5e4;
   }
   &.approved {
-    background-color: #51cf40;
+    background-color: $green;
     background-image: url(/assets/checkmark_white.png);
     background-size: 150%;
     background-repeat: no-repeat;
@@ -834,22 +763,11 @@
   padding: 0.75rem 0rem;
 }
 
-.lesson-row {
-  width: 230px;
-  float: right;
-  padding-top: 7px;
-  padding-right: 10px;
-}
-
 .timeline {
   padding: 21px 0px;
   margin: 0px 20px 0px 0px;
   border-radius: 3px;
-  width: calc(100% - 220px);
-  padding: 21px 0px;
-  margin: 0px 20px 0px 0px;
-  border-radius: 3px;
-  width: calc(100% - 230px);
+  width: 100%;
   ul {
     position: relative;
     display: table;
@@ -867,7 +785,7 @@
       span {
         width: 18px;
         height: 18px;
-        background: #289f33;
+        background: $green;
         display: inline-block;
         border-radius: 30px;
         position: relative;
@@ -910,13 +828,13 @@
         background-color: #ff9d23;
       }
       &.has_rehearsal span {
-        background-color: #289f33;
+        background-color: $green;
       }
       &.active span {
         box-shadow: 0 0 0 4px #cde4fc;
       }
       &.approved span {
-        background-color: #51cf40;
+        background-color: $green;
         background-image: url(../assets/check-white.png);
         background-size: 15px;
         background-repeat: no-repeat;
@@ -937,21 +855,18 @@
   }
 }
 
-.btn-view {
+.lesson_panel_btn {
   background: transparent;
   padding: 0px 10px;
-  &:hover {
-    background: transparent;
-  }
-}
-
-.lesson_add {
-  float: left;
+  font-size: 20px; color: #333;
+  display: inline;
+  cursor: pointer;
+  &:hover{ color: $green; }
 }
 
 .menu-togglebtn {
   position: relative;
-  background: #448fe4;
+  background: $base_color;
   display: inline-block;
   width: 100%;
   text-align: left;
@@ -1188,12 +1103,12 @@
     -moz-border-radius: 24px;
     -webkit-border-radius: 24px;
     border-radius: 24px;
-    background-color: #448fe4;
+    background-color: $base_color;
     color: #fff;
     padding: 9px 22px;
   }
   .ba-videorecorder-chooser-secondary-button {
-    color: #448fe4;
+    color: $base_color;
     padding: 8px;
   }
 }
@@ -1225,14 +1140,6 @@
     }
   }
 
-  .with_side{
-   width: 100%;
-   margin-right: 0px;
-  }
-  .the_side{
-    width: 100%;
-    margin: 0px;
-  }
   .lesson_progress {
     width: 100% !important;
   }
@@ -1242,10 +1149,6 @@
     margin: 0px auto 30px auto;
     position: relative;
     top: 20px;
-  }
-  .lesson-row {
-    width: 100% !important;
-    text-align: right;
   }
   .js-custom-player-container {
     .columns, .column {
@@ -1262,27 +1165,7 @@
     }
     max-width: inherit;
   }
-  header.header {
-    .menu.app {
-      padding: 0px 0px 0px 0px !important;
-    }
-    .logo {
-      width: auto !important;
-    }
-  }
-  .user_info .drop_menu {
-    padding: 12px 0 10px 10px !important;
-    font-size: 15px !important;
-  }
-  header.header.app .menu_list {
-    .user_info {
-      float: right !important;
-      left: 0 !important;
-    }
-    .user_dropdown.drop {
-      top: 50px !important;
-    }
-  }
+
   .row .rehearsal_courses {
     width: 100%;
     border: 0;
@@ -1292,17 +1175,11 @@
     width: 270px;
     float: left;
   }
-  .content-container {
-    padding: 0px 0px 10px !important;
-  }
+  
   .all_rehearsals_list {
     width: 100%;
     float: left;
   }
-  .main-content .card_list .card_item{
-    margin-left: 0.5%;
-    width: 49%;
-    min-width: inherit;
-  }
+  
   .title{ padding-left: 10px;}
 }

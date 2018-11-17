@@ -1,5 +1,7 @@
 class RehearsalsController < ApplicationController
   include RehearsalsHelper
+  include LessonsHelper
+  
   before_action :set_rehearsal, only: [:edit, :destroy]
   before_action :set_update_rehearsal, only: [:update]
   before_action :set_lesson, only: [:create, :index]
@@ -9,48 +11,30 @@ class RehearsalsController < ApplicationController
   require 'rest-client'
 
   def index
-    @rehearsals = Rehearsal.all
-    @rehearsals_api = Rehearsal.all
-    @feedback = Feedback.new
-    @performance_feedback = PerformanceFeedback.new
+    if params[:lesson_id]
+      if params[:trainee_id]
+        @student = User.find(params[:trainee_id])
+        @lesson = Lesson.find(params[:lesson_id])
+        @rehearsals = @lesson.rehearsals.where(trainee_id: params[:trainee_id], submission: true).order("id DESC")
+      else
+        @rehearsals = Rehearsal.where( lesson_id: params[:lesson_id] ).order("id DESC")
+      end
+    else
+      @rehearsals = Rehearsal.all
+      @rehearsals_api = Rehearsal.all
+      @feedback = Feedback.new
+      @performance_feedback = PerformanceFeedback.new
+    end
+
+    respond_to do |format| 
+      format.html { }
+      format.js { }
+    end
   end
 
 
   def all
-
-    @courses = {}
-    current_user.courses.order("title ASC").each do |course|
-      @courses[course.title] = {}
-      @courses[course.title]["course"] = course
-      @courses[course.title]["topics"] = {}
-
-      course.topics.each do |topic|
-        @courses[course.title]["topics"][topic.title] = {}
-        @courses[course.title]["topics"][topic.title]["topic"] = topic
-        @courses[course.title]["topics"][topic.title]["lessons"] = {}
-
-        topic.lessons.each do |lesson|
-          @courses[course.title]["topics"][topic.title]["lessons"][lesson.title] = {}
-          @courses[course.title]["topics"][topic.title]["lessons"][lesson.title]["lesson"] = lesson
-          @courses[course.title]["topics"][topic.title]["lessons"][lesson.title]["rehearsals"] = {}
-
-          lesson.rehearsals.order("created_at DESC").limit(10).each do |x|
-            if User.all.include? x.trainee
-              @courses[course.title]["topics"][topic.title]["lessons"][lesson.title]["rehearsals"][x.trainee.full_name] = {
-                "student_id" => x.trainee_id,
-                "image" => student_pic(x.trainee),
-                "lesson_info" => [ lesson.title, lesson.id ],
-                "rhs_count" => x.trainee.rehearsals.where( lesson_id: lesson.id).where( submission: true ).size,
-                "new_count" => x.trainee.rehearsals.map{ |x| x if (  x.lesson_id == lesson.id && x.new? )   }.compact.size
-              }
-            end
-          end
-
-        end
-
-      end
-    end
-
+    @courses = current_user.courses.all.order("title ASC")
   end
 
 
@@ -58,6 +42,20 @@ class RehearsalsController < ApplicationController
     @student = User.find(params[:student])
     @lesson = Lesson.find(params[:lesson])
     @rehearsals = @lesson.rehearsals.where(trainee_id: params[:student], submission: true)
+  end
+
+  def trainees
+    if params[:lesson_id]
+      rehearsal_trainee_ids = Rehearsal.where( lesson_id: params[:lesson_id], submission: true ).map{ |x| x.trainee_id }.compact.uniq
+      @lesson = Lesson.find(params[:lesson_id])
+      @trainees = User.where( id: rehearsal_trainee_ids )
+    else
+      @trainees = nil
+    end
+
+    respond_to do |format|
+      format.js { }
+    end
   end
 
   def show
@@ -77,18 +75,12 @@ class RehearsalsController < ApplicationController
     @rehearsal = @lesson.rehearsals.build(rehearsal_params)
     respond_to do |format|
       if @lesson.save
-        @rehearsal = @lesson.rehearsals.last
+        @rehearsal = @lesson.rehearsals.order("id DESC").first
+        @rehearsals = rehearsals_for_this_lesson(@lesson, current_user)
+        @index = 0
 
         # headers = {content_type: :json, accept: :json, app_id: '4985f625', app_key: '4423301b832793e217d04bc44eb041d3'}
-
         # kairos = RestClient.post("https://api.kairos.com/v2/media?source=https://embed-cdn.ziggeo.com/v1/applications/5b2dedd0371b8806b7f81390a7555653/videos/26cda86833d2458025e46b2df33cf55d/video.mp4" , headers={content_type: :json, accept: :json, app_id: '4985f625', app_key: '4423301b832793e217d04bc44eb041d3'})
-        # sleep 6
-
-        # puts "==================================="
-        # puts kairos
-        # puts "==================================="
-
-        # binding.pry
 
         format.js {}
       else
@@ -100,16 +92,23 @@ class RehearsalsController < ApplicationController
 
   def update
 
+    @rehearsal.submission = params[:rehearsal][:submission] if params[:rehearsal][:submission] != nil
+    @rehearsal.approval_status = params[:rehearsal][:approval_status] if params[:rehearsal][:approval_status] != nil
+    @rehearsal.instructor_rating = params[:rehearsal][:instructor_rating] if params[:rehearsal][:instructor_rating] != nil
+    @rehearsal.self_rating = params[:rehearsal][:self_rating] if params[:rehearsal][:self_rating] != nil
+
+    @change = @rehearsal.changed[0..5]
+
     if @rehearsal.update(rehearsal_update_params)
-      @sent = false  
-      @retracted = false
-      @rehearsal.submission ? @sent = true : @retracted = true 
-      
-      respond_to { |format| format.js {} }      
+      respond_to do |format|
+        format.js {} 
+      end
     end
   end
 
   def destroy
+    LessonRehearsal.where(rehearsal_id: @rehearsal).destroy_all 
+    PerformanceFeedback.where(rehearsal_id: @rehearsal).destroy_all 
     @rehearsal.destroy
     respond_to do |format|
       format.html { redirect_to rehearsals_url, notice: 'Rehearsal was successfully destroyed.' }
@@ -136,7 +135,7 @@ class RehearsalsController < ApplicationController
   end
 
   def rehearsal_params
-    params.require(:rehearsal).permit(:course_id, :lesson_id, :group_id, :token, :video_token, :trainee_id, :script, :submission, :topic_id, :instructor_rating, :self_rating)
+    params.require(:rehearsal).permit(:course_id, :lesson_id, :group_id, :token, :video_token, :trainee_id, :script, :submission, :topic_id, :instructor_rating, :refnum, :self_rating)
   end
 
   def rehearsal_update_params

@@ -1,0 +1,89 @@
+<div class="course_demo_side">
+
+    <div class="course_side_info">
+        <div class="img" style="background-image:url('<%= @course.cover %>');">
+    
+        </div>
+    
+        <div class="content">
+            <h2><%= @course.title %></h2>
+            <div style="margin-bottom:30px;">
+                <img src="<%= instructor_profile %>" class="img-circle left" width='50px'>
+                <div class="title left" style="margin-left:10px;">
+                    Instructor<br>
+                    <h5><%= @course.instructor.full_name %></h5>
+                </div>
+                <br>
+            </div>
+    
+            <% if @course.free? || @course.with_code? %>
+
+                <%= 'This is a "Free Course", click below to start' if @course.free? %>
+                <%= 'Enter your course Access Code below' if @course.with_code? %>
+                <br><br>
+                <%= render './courses/mode/registration' if !course_creator %>
+
+            <% elsif @course.paid? %> 
+    
+                <%= form_tag charges_path, id: 'chargeForm' do %>
+    
+                    <% if flash[:error].present? %>
+                    <div id="error_explanation">
+                        <p><%= flash[:error] %></p>
+                    </div>
+                    <% end %>
+        
+                    <script src="https://checkout.stripe.com/checkout.js"></script>
+                    <%= hidden_field_tag 'stripeToken' %>
+                    <%= hidden_field_tag 'amount', @course.price %>
+                    <%= hidden_field_tag 'stripeEmail' %>
+                    <%= hidden_field_tag 'productId', @course.id %>
+    
+                    <h2>$<%= @course.show_price %></h2>
+                    <button id="btn-buy" type="button" class="big_btn green_sft" style="width:100%;">
+                        Buy Course
+                    </button>
+        
+                    <script>
+                    var handler = StripeCheckout.configure({
+                        key: '<%= Rails.configuration.stripe[:publishable_key] %>',
+                        token: function (token, arg) {
+                        document.getElementById("stripeToken").value = token.id;
+                        document.getElementById("stripeEmail").value = token.email;
+                        document.getElementById("chargeForm").submit();
+                        }
+                    });
+                    document.getElementById('btn-buy').addEventListener('click', function (e) {
+                        handler.open({
+                        name: '<%= @course.title %>',
+                        description: '<%= @course.description %>',
+                        email:'<%= current_user.email %>',
+                        amount: parseFloat(document.getElementById("amount").value)
+                        });
+                        e.preventDefault();
+                    })
+                    </script>
+                <% end %>
+    
+            <% end %>
+    
+        </div>
+    </div>
+    
+    
+    <div class="course_content">
+        <h4>
+            <span class="ion-clipboard"></span>
+            Course Content
+        </h4>
+        <hr>
+        <h5>
+            <%= content(@course)[:topics] %> Topics <br> <br>
+            <%= content(@course)[:lessons] %> Lessons <br> <br>
+            <% if !@course.instructor.chat.blank? %>
+                <span class="ion-ios-videocam"></span> Live Chat
+            <% end %>
+        </h5>
+    </div>
+
+</div>

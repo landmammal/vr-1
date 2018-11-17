@@ -1,13 +1,14 @@
-<% @this_video_token = @rehearsal.video_token %>
+<% @this_video_token = rehearsal.video_token %>
 <% @rehearsalNum = @lesson.rehearsals.where(trainee_id: current_user.id).size.to_s %>
 <div class="rehearsal_thumbnail">
   
-  <a href="/reviewrehearsal/<%= @rehearsal.id %>/api" data-remote="true">
-    <button class="rehearsal_btn" data-shadebox="rehearsal" data-rehearsal="<%= @rehearsal.id %>" data-rehearsalnumber="<%= @rehearsalNum %>">Rehearsal <%= @rehearsalNum %>
-      <div id="rehearsal_<%= @rehearsal.id %>_status" class="blankdot"></div>
-      <img src='https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= @this_video_token %>/image' width="100%" class="rehearsal_img"><br>
-      ref#: <%= genReherasalRef(@rehearsal.id) %>
-    </button>
+  <a href="/reviewrehearsal/<%= rehearsal.id %>/api" data-remote="true">
+    <div class="rehearsal_btn" data-shadebox="rehearsal" data-rehearsal="<%= rehearsal.id %>" data-rehearsalnumber="<%= (index+1).to_s %>" style="cursor:pointer; margin-bottom:20px;">
+      <div class="rehearsal_img bg_fixed" style="background-image:url('https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= @this_video_token %>/image'); width:100%; padding-top:70%;"></div>      
+      <h6 style="margin:5px 0 3px;"> <b>Rehearsal <%= (rhs - index).to_s %> </b></h6>
+      <%= rehearsal.refnum %>
+      <div id="rehearsal_<%= rehearsal.id %>_status" class="<%= rehearsal_approved(rehearsal.id) %>"></div>
+    </div>
   </a>
 
 </div>

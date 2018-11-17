@@ -1,0 +1,80 @@
+<div class="rehearsals_title">
+  You have <span class="num"><%= rehearsals_notif %></span> submissions without feedback.
+</div>
+
+<hr>
+
+<div class="box_sep">
+  <div class="lesson_half"></div>
+
+  <div class="title">
+    <%= @re_title %>
+    <div style="float:right;">
+      <!-- <a href="/rehearsals/all">New rehearsals</a> | -->
+      <a href="#" class="show_all_rehearsals">All rehearsals</a>
+    </div>
+    <br>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="rehearsal_courses">
+        <h4>Courses:</h4>
+        <% @courses.each do |c_key, c_val| %>
+          
+          <div class="rhs_course"><%= c_key +"  ("+c_val['course'].submitted_rehearsals.size.to_s+")" %></div>
+
+          <div class="rhs_topics">
+            <% c_val['topics'].each do |t_key, t_val| %>
+              
+              <div class="rhs_topic"><%= t_key +"  ("+t_val['topic'].submitted_rehearsals.size.to_s+")" %></div>
+
+              <div class="rhs_lessons">
+
+                <% t_val['lessons'].each do |l_key, l_val| %>
+                  <div class="rhs_lesson" data-rehearsals="<%= l_val['rehearsals'].to_json %>">
+                    <%= l_key[0...20] +"  ("+l_val['lesson'].submitted_rehearsals.size.to_s+")" %>
+                  </div>
+                <% end %>
+
+              </div>
+
+            <% end %>
+          </div>
+
+        <% end %>
+
+
+      </div>
+      <div class="all_rehearsals_list" style="overflow:hidden;">
+        <h4>New Rehearsals:</h4>
+          <% @courses.each do |ckey, cvalue| %>
+          <% cvalue['topics'].each do |tkey, tvalue| %>
+            <% tvalue['lessons'].each do |lkey, lvalue| %>
+              <% lvalue['rehearsals'].each do |rkey, rvalue| %>
+                <%= (render 'rehearsalbtn', user: User.find(rvalue['student_id']), lesson_id: lvalue['lesson'].id, rehearsals_count: rvalue['rhs_count']) if lvalue['lesson'].has_new_rehearsals_from_user( User.find(rvalue['student_id']) ) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <h4>All Rehearsals</h4>
+        <% @courses.each do |ckey, cvalue| %>
+          <% cvalue['topics'].each do |tkey, tvalue| %>
+            <% tvalue['lessons'].each do |lkey, lvalue| %>
+              <% lvalue['rehearsals'].each do |rkey, rvalue| %>
+                <%= (render 'rehearsalbtn', user: User.find(rvalue['student_id']), lesson_id: lvalue['lesson'].id, rehearsals_count: rvalue['rhs_count']) if !lvalue['lesson'].has_new_rehearsals_from_user( User.find(rvalue['student_id']) ) %>              
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+
+      </div>
+      <div class="filtered_rehearsals_list" style="display:none; overflow:hidden;">
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

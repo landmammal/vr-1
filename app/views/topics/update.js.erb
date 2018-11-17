@@ -1,0 +1,7 @@
+'use strict';
+
+$('.topic_<%= @topic.id %>').each(function(){
+    let card = $(this);
+    card.find(".tt_<%= @topic.id %>").text('<%= @topic.title %>');
+    card.find("#td_<%= @topic.id %>").text('<%= @topic.description %>');
+})

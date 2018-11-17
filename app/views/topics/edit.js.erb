@@ -1,0 +1,5 @@
+'use strict';
+
+var editTopic = "<%= escape_javascript (render partial: './topics/popForm',  locals: {topic: @topic, editMode:'quick' } ) %>";
+$('.topicForm').html(editTopic);
+$('.topicForm').delay(500).find('.shadebox_bg').addClass('open');

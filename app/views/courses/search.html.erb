@@ -1,32 +1,59 @@
-<!-- <p id="notice"><%= notice %></p> -->
+<div class="search_form left">
+  <input id="search_input" type="text" class="search" placeholder="Search Courses ...">
+  <button id="search_btn" class="reg_btn blue ion-search"></button>
+</div>
 
-<!-- <h3>Search for Courses</h3>
-<%= form_tag do %>
-	<%= text_field_tag :search, nil, style:"width:400px;", placeholder:"search courses" %>
-	<%= button_tag "Search", class:"reg_btn blue" %>
-<%end%>
-<hr> -->
 <% if current_user.level_2 %>
-	<div class="title">
-		<button class="js-add_form_btn creator_btn" data-form="course">
-			Create New Course
-		</button>
-	</div>
-	<div class="body">
-		<!-- <div class="js-display_my_courses" style="display: none;"></div> -->
-		<div class="js-course_form" style="display:none;">
-			<%= render './courses/form' %>
+  <%= button_to  "Add Course", new_user_course_path(current_user), class:'small right green_sft', method: :get, remote: true %>
+  <div class="courseForm"></div>
+<%end%>
+
+<br> <br> <hr>
+
+<div class="search_area">
+	<!-- <div class="side"></div> -->
+	
+	<div class="search_list">
+		<div class="card_list card_list_search" style="display:none;"></div>
+
+		<div class="card_list card_list_original">
+			<% @courses.each do |course| %>
+				<%= render 'card', course_item:course, search:true %>
+			<% end %>
 		</div>
 	</div>
-<%end%>
-
-<div class="card_list card_list_search" style="display:none;">
-	
 </div>
 
-<div class="card_list card_list_original">
-	<% @courses.each do |course| %>
-		<% @item = course %>
-	    <%= render 'searchcard' %>
-	<% end %>
-</div>
+
+<script>
+  var timer;
+
+  function searhCourses(){
+    let searchTerm = $('input#search_input').val();
+    
+    if( searchTerm === "" ){    
+      $('.card_list_search').hide();
+      $('.card_list_original').show();
+    }else{
+      $('.card_list_original').hide();
+      $('.card_list_search').show();
+    }
+
+    $.ajax({
+      url:`/courses/search?term=${searchTerm}&f=js`,
+      success: function(data){
+        //console.log(data);
+        console.log( `Search term: ${searchTerm}` );
+      }
+    });
+  }
+
+  $('.search_btn').click(function(){ searhCourses(); });
+
+  $('input#search_input').on('input', function(){ 
+    clearTimeout( timer );
+    timer = setTimeout(function(){
+      searhCourses(); 
+    },500);
+  });
+</script>

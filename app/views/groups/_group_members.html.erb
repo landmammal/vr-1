@@ -1,6 +1,6 @@
-<div class="shadebox">
-  <div class="shade box">
-    <div class="shadebox_title">
+<div class="shadebox_bg">
+  <div class="shadebox">
+    <div class="shadebox_header">
       <%= @group.name %>
       <% @this_user = User.find(@group.instructor_id) %>
       <button class="shade_close red small_btn">x</button>
@@ -14,7 +14,7 @@
       <%= @group.description %>
       <hr>
     </div>
-    <div class="shadebox_bottom">
+    <div class="shadebox_footer">
       <%= form_for [current_user, @group, @user_group ], remote: true, :html => { :class => "group_registration_form" } do |f| %>
           <%= f.submit "Register To Group", class:"green_sft shade_close" %>
       <% end %>

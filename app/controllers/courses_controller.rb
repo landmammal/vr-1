@@ -1,28 +1,132 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user! , except: [:index, :all, :display, :reentry]
-  before_action :set_course, only: [:show, :edit, :update, :destroy, :display, :reentry]
-  # GET /courses
-  # GET /courses.json
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :display, :reentry, :change_topics_order]
+
+  
   def index
     @courses = current_user.courses
-    @courses_api = Course.all
+  end
 
-    if current_user.level_2
-      @course = Course.new
-      @new_topic = Topic.new
-      @new_lesson = Lesson.new
+
+  def show
+    @users = @course.users.order("id DESC").limit(8)
+    @topics = @course.topics_order.collect {|r| Topic.find_by_refnum(r) }.compact
+
+    remainder = @course.users.size % @users.size if @users.size > 0
+    if @users.size > 0
+      remainder > 0 ? @pages = ((@course.users.size - (remainder))/@users.size + 1) : @pages = @course.users.size/@users.size
+    else
+      @pages = 0
+    end
+
+    @topic = Topic.new
+    @course_registration = CourseRegistration.new
+
+    respond_to do |format|
+      format.html {}
+      format.json { render json: @course if current_user.admin? }
     end
   end
 
+
+  # SEARCH FEATURE
   def search
-    @courses = Course.all.map{ |x| x if ( x.privacy != 3 && x.cstatus == 1 ) }.compact
+    @courses = Course.where.not( privacy: 3 ).where( cstatus: 1 )
     @site_title = 'Search Courses'
-    if current_user.level_2
-      @course = Course.new
-      @new_topic = Topic.new
-      @new_lesson = Lesson.new
+
+    if params[:term]
+      columns = %w{title short_desc tags}
+      @results = Course.where( columns.map {|c| "lower(#{c}) like :term" }.join(' OR '), term: "%#{params[:term].downcase}%" )
+      @courses = @results.map{ |x| x if ( x.privacy != 3 && x.cstatus == 1 ) }.compact
+
+      respond_to do |format|
+        if params[:f] == 'js'
+          format.js { } 
+        else
+          format.html { }
+        end
+      end
+    end
+
+  end
+
+  def new
+    @newCourse = Course.new
+    respond_to { |format| format.js { } }
+  end
+
+
+  def edit    
+    respond_to do |format| 
+      format.html{} 
+      format.js{} 
     end
   end
+
+
+  def create
+    @new_course = current_user.courses.build(course_params)
+    @new_course.price = (params[:course][:price].to_d * 100.00) if params[:course][:price] != ''
+    
+    respond_to do |format|
+      if @new_course.save
+        format.html { redirect_to @new_course, notice: 'Course was successfully created.' }
+      else
+        format.html { render :new }
+        format.json { render json: @course.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+
+
+  def update
+    
+    respond_to do |format|
+      if @course.update(course_update)
+        @course.title = 'Unnamed Course' if @course.title.blank?
+        @course.price = (params[:course][:price].to_d * 100.00) if params[:course][:price] != ''
+        @course.save
+        
+        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
+        format.json { render json: @course }
+        format.js {}
+      else
+        format.html { render :edit }
+        format.json { render json: @course.errors, status: :unprocessable_entity }
+        format.js {}
+      end
+    end
+  end
+
+  def destroy
+    Topic.where( course_id: @course.id ).destroy_all
+    @course.delete_associations
+    @course.destroy
+    respond_to do |format|
+      format.html { redirect_to user_path(current_user), notice: 'Course was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+  # OTHER METHODS ---------------------
+
+  def change_topics_order
+    @course.topics_order = params[:order]
+    @course.save
+  end
+
 
   def send_invite
     @course = Course.find(params[:course_id])
@@ -152,7 +256,7 @@ class CoursesController < ApplicationController
 
 
   def reentry
-    AdminMailer.reentry( current_user, @course ).deliver_now
+    AdminMailer.reentry( current_user, @course ).deliver_later
     respond_to do |f|
       f.js{ }
     end
@@ -183,26 +287,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  
-
-  def show
-    # get original topics created by that course
-    @orig_topics = Topic.where(course_id: @course.id)
-    @users = @course.users.order("id DESC").limit(8)
-
-    remainder = @course.users.size % @users.size if @users.size > 0
-    if @users.size > 0
-      remainder > 0 ? @pages = ((@course.users.size - (remainder))/@users.size + 1) : @pages = @course.users.size/@users.size
-    else
-      @pages = 0
-    end
-
-    @topic = Topic.new
-    @course_registration = CourseRegistration.new
-  end
-
-
-
 
   def generate_code
     new_code = "CA-"+SecureRandom.hex(n=3)
@@ -217,81 +301,13 @@ class CoursesController < ApplicationController
 
 
 
-  def display
-    if current_user
-      redirect_to '/courses/'+params[:id].to_s
-    end
-  end
-
-  
-  
-
-  def new
-    @course = Course.new
-  end
-
- 
-  
-
-  def edit
-  end
-
-
-  
-
-  def create
-    @new_course = current_user.courses.build(course_params)
-    @new_course.title = 'New Course (rename)' if @new_course.title == ''
-    @new_course.price = (params[:course][:price].to_d * 100.00) if params[:course][:price] != ''
-    # @new_course.save
-    
-    respond_to do |format|
-      if @new_course.save
-        format.html { redirect_to @new_course, notice: 'Course was successfully created.' }
-        # format.json { render :show, status: :created, location: @course }
-        # format.js { }
-      else
-        format.html { render :new }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
-    end
-
-  end
-
-
-  
-
-  def update
-    @course.title = 'New Course (rename)' if params[:course][:title] == ''
-    
-    # puts '==============='
-    # puts params[:title]
-    
-    respond_to do |format|
-      if @course.update(course_update)
-        @course.price = (params[:course][:price].to_d * 100.00) if params[:course][:price] != ''
-        @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
-        format.json { render :show, status: :ok, location: @course }
-      else
-        format.html { render :edit }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  
 
 
 
-  def destroy
-    @course.delete_associations
-    @course.destroy
-    respond_to do |format|
-      format.html { redirect_to user_path(current_user), notice: 'Course was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+
+
+
+
 
 
 
@@ -308,10 +324,9 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:title, :description, :tags, :cstatus, :access_code, :instructor_id, :approval_status,
-                                     :cover, :cover_cache, :privacy, :language, :price)
+      params.require(:course).permit(:title, :description, :requirements, :short_desc, :color, :tags, :cstatus, :access_code, :refnum, :instructor_id, :approval_status, :cover, :cover_cache, :privacy, :language, :price, :topics_list)
     end
     def course_update
-      params.require(:course).permit(:title, :description, :tags, :cstatus, :access_code, :approval_status, :privacy, :language, :price)
+      params.require(:course).permit(:title, :description, :requirements, :short_desc, :color, :tags, :cstatus, :access_code, :approval_status, :cover, :cover_cache, :privacy, :language, :price, :topics_list)
     end
 end

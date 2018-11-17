@@ -19,19 +19,29 @@
     <hr>
 
     <div class="col3">
-		<div class="js-player prompt_video">
-            Prompt:
+        <% if @prompt %>
+            <% @item = @prompt %>
+            <% @name = 'prompt' %>
+        <% elsif @model %>
+            <% @item = @model %>
+            <% @name = 'model' %>
+        <% elsif @explanation  %>
+            <% @item = @explanation %>
+            <% @name = 'explanation' %>
+        <% end %>
+		<div class="js-player <%= @name %>_video">
+            <%= @name.capitalize %>:
             <br><br>
 		
 			<div class="video_black_bg media_wrapper">
 				<div class="ziggeo">
-					<%= render './shared/ziggeoplayer', this_class: "prompt", token:@prompt.video_token %>
+                    <%= render './shared/ziggeoplayer', this_class: @name, token:@item.video_token %>
 				</div>
 			</div>
-			<div class="lesson_script prompt_script">
-				<%= simple_format(@prompt.script) %>
+			<div class="lesson_script <%= @name %>_script peer_<%= @name %>_script">
+				<%= simple_format(@item.script) %>
 			</div>
-			<%= render './lessons/scriptcontrol' %>
+			<%= render './lessons/scriptcontrol', thisclass: 'peer_'+@name %>
 		</div>
     </div>
     
@@ -45,10 +55,10 @@
 					<%= render './shared/ziggeoplayer', this_class: "rehearsal", token:@rehearsal.video_token %>
 				</div>
 			</div>
-			<div class="lesson_script prompt_script">
+			<div class="lesson_script prompt_script rehearsal_script">
 				<%= simple_format(@rehearsal.script) %>
 			</div>
-			<%= render './lessons/scriptcontrol' %>
+			<%= render './lessons/scriptcontrol', thisclass: 'rehearsal' %>
 		</div>
     </div>
     

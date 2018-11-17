@@ -1,0 +1,26 @@
+<div class="dropdown" data-dropdown="notifDropdown">
+    <div class="arrow_up center"></div>
+
+    <div class="item">
+        <h4 class="left">Notifications</h4>
+        <div class="right ion-ios-gear-outline" style="font-size:18px; margin-top:10px;"></div>
+    </div>
+
+    <hr>
+    <a href="<%= feedback_all_path %>" class="item link">
+        <div class="left">Feedback</div>
+        <% if current_user.pending_feedback %>
+            <div class="notif_num alert_only"></div>
+        <% end %>
+    </a>
+
+    <% if current_user.level_3 %>
+        <hr>
+        <a href="<%= rehearsals_all_path %>" class="item link">
+            <div class="left">Rehearsals</div>
+            <% if current_user.pending_rehearsals %>
+                <div class="notif_num alert_only"></div>
+            <% end %>
+        </a>
+    <% end %>
+</div>

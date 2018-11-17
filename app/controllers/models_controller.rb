@@ -6,11 +6,7 @@ class ModelsController < ApplicationController
 
 
   def new
-    # @newComponent = Model.new
-    # @this_component = 'Model'
-    # @this_error = 'error_model'
-    # @this_added_class = 'model'
-    # respond_to { |format| format.js { }}
+    
   end
 
   def create
@@ -20,12 +16,8 @@ class ModelsController < ApplicationController
     respond_to do |format|
       if @lesson.save
         @newComponent = Model.find(@lesson.models.last)
-        # format.html { redirect_to edit_model_path(@model)}
-        # format.json { render :show, status: :created, location: @topic }
         format.js { }
       else
-        # format.html { render :new }
-        # format.json { render json: @topic.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -48,7 +40,6 @@ class ModelsController < ApplicationController
 
   def destroy
     # will become invalid if models are sold to other users
-    @model.lesson_models.delete_all
     @model.destroy
     respond_to do |format|
       format.html { redirect_to course_topic_lesson_path(@course, @topic, @lesson), notice: 'Role Model was successfully deleted.' }
@@ -66,7 +57,7 @@ class ModelsController < ApplicationController
   end
 
   def model_params
-    params.require(:model).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :position_prior)
+    params.require(:model).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :refnum, :position_prior)
   end
   def model_update
     params.require(:model).permit(:title, :script, :privacy, :language, :token, :video_token, :position_prior)

@@ -1,0 +1,18 @@
+<div class="card lesson_card lesson_<%= lesson.id %> <%= 'draft' if lesson.privacy == 0 %>" id="lesson_card_<%= lesson.id %>" data-refnum="<%= lesson.refnum %>">
+    <a href="<%= course_topic_lesson_path(@course, @topic, lesson) %>">
+    <div class="ctitle lt_<%= lesson.id %>"><%= lesson.title[0...25] %><%= '...' if lesson.title.length > 25 %></div>
+    <div class="description" id="ld_<%= lesson.id %>">
+        <% if !lesson.description.blank? %>
+        <%= lesson.description[0...130] %><%= "..." if lesson.description.length > 130 %>
+        <% end %>
+    </div>
+    </a>
+
+    <div class="actions <%= 'owner' if lesson.owner(current_user) %>">
+    <div>
+        <div class="lesson_status <%= topic_lesson_status(lesson) ? 'ready' : 'notready' %>"></div>
+    </div>
+    <%= ( link_to '', edit_course_topic_lesson_path(@course, @topic, lesson), class:'edit ion-edit', remote: true) if lesson.owner(current_user)  %>
+    <%= ( link_to '', course_topic_lesson_path(@course, @topic, lesson), class:'delete ion-trash-a', method: :delete, data: {confirm: "Are you sure you want to delete #{ lesson.title }?"} ) if lesson.owner(current_user)  %>
+    </div>
+</div>

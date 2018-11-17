@@ -1,0 +1,6 @@
+<% if notice || alert %>
+  <div id="notice_wrapper" class="<%= notice ? 'notice' : 'alert' %>">
+    <%= notice ? notice : alert %>
+    <div class="close_notice">x</div>
+  </div>
+<% end %>

@@ -13,11 +13,11 @@
 
 *Ignore images hosted on AS3
 /app/assets/images/as3
+/public/system
 
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
 /tmp
 .idea
-seeds.rb
 .env

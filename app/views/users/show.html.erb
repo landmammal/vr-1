@@ -2,37 +2,72 @@
 	<%= current_user.role.capitalize %> Dashboard
 </div>
 
-<%= render 'topinfo' %>
 
-<% if current_user.level_4 %>
-	<button class="tab selected" data-frame="my_courses" data-group='top'>My Courses</button>
-<% end %> <% if current_user.level_3 %>
-	<!-- <button class="tab" data-frame="coaching_tools" data-group='top'>Coaching Tools</button> -->
-<% end %> <% if current_user.level_2 %>
-	<button class="tab" data-frame="instructor_tools" data-group='top'>Instructor Tools</button>
-<% end %> <% if current_user.level_1 %>
-	<button class="tab" data-frame="admin_tools" data-group='top'>Admin Tools</button>
-<% end %> 
 
-<div class="box_sep">
-	
-	<div class="all_content js-my_courses_content">
-		<%= render 'my_courses' if current_user.level_4 %>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-9">
+
+
+			<% if current_user.level_4 %>
+				<button class="tab selected" data-frame="my_courses" data-group='top'>My Courses</button>
+			<% end %> <% if current_user.level_3 %>
+				<!-- <button class="tab" data-frame="coaching_tools" data-group='top'>Coaching Tools</button> -->
+			<% end %> <% if current_user.level_2 %>
+				<button class="tab" data-frame="instructor_tools" data-group='top'>Instructor Tools</button>
+			<% end %> <% if current_user.level_1 %>
+				<button class="tab" data-frame="admin_tools" data-group='top'>Admin Tools</button>
+			<% end %> 
+
+			<div class="box_sep">
+				
+				<div class="all_content js-my_courses_content">
+					<%= render './users/dashboard/my_courses' if current_user.level_4 %>
+				</div>
+
+
+				<div class="all_content js-coaching_tools_content" style="display: none;">
+					<%= render './users/dashboard/coachingtools' if current_user.level_3 %>
+				</div>
+
+
+				<div class="all_content js-instructor_tools_content" style="display: none;">
+					<%= render './users/dashboard/instructor_tools' if current_user.level_2 %>
+				</div>
+
+
+				<div class="all_content js-admin_tools_content" style="display: none;">
+					<%= render './users/dashboard/admintools' if current_user.level_1 %>
+				</div>
+				
+				<% if current_user.level_2 %>		
+					<div class="courseForm"></div>
+				<% end %>
+
+			</div>
+
+
+		</div>
+		<div class="col-sm-3">
+
+			<h5>Feedback:</h5>
+			<hr>
+			<% @feedbacks.each_with_index do |feedback, index| %>
+				<a href="/feedbacks/<%= feedback.id %>">
+					<div class="dashboard_feedback_item <%= 'even' if !feedback.viewed_by_user %>">
+						<b><%= feedback.user.first_name %></b> on <b><%= feedback.rehearsal.lesson.title %></b>
+						<br>	
+						<span style="font-size:10px;">submitted: <%= feedback.created_at.strftime("%m/%d/%Y at %I:%M%p") %> </span>
+					</div>
+				</a>
+			<% end %>
+
+			<br>
+			<span style="color:#0070C0;"><%= (link_to  "All Feedbacks", "/feedback/all") if @feedbacks.size == 10 %><span>
+			
+		</div>
 	</div>
-
-
-	<div class="all_content js-coaching_tools_content" style="display: none;">
-		<%= render 'coachingtools' if current_user.level_3 %>
-	</div>
-
-
-	<div class="all_content js-instructor_tools_content" style="display: none;">
-		<%= render 'instructor_tools' if current_user.level_2 %>
-	</div>
-
-
-	<div class="all_content js-admin_tools_content" style="display: none;">
-		<%= render 'admintools' if current_user.level_1 %>
-	</div>
-
 </div>
+
+
+

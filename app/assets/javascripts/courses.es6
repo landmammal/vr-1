@@ -1,60 +1,30 @@
-function edit_or_start_course(course){
-	var course = course;
+// function edit_or_start_course(course){
+// 	var course = course;
 
-	$('.js-edit_'+course).click(function(event){
-		event.preventDefault();
+// 	$('.js-edit_'+course).click(function(event){
+// 		event.preventDefault();
 
-        // console.log('clicked to edit')
-        $('.edit_'+course).toggle();
-        $('.more_'+course).toggle();
-        $('.edit_sec_'+course).toggle();
-        $('.card_desc_'+course).toggle();
-    });
+//         // console.log('clicked to edit')
+//         $('.edit_'+course).toggle();
+//         $('.more_'+course).toggle();
+//         $('.edit_sec_'+course).toggle();
+//         $('.card_desc_'+course).toggle();
+//     });
 
     
-};
-
-
-
-
-// function click_on_course(course_id, course_title){
-// 	$('.js-c_'+course_id).click(function(event){
-// 		event.preventDefault();													
-// 		var node = document.getElementById('topics_for_'+course_id);
-// 		var topics_list = node.innerHTML;
-
-// 		$('.js-my_courses_list').hide();
-// 		$('.js-my_topics_list').show();
-// 		$('.js-topics_list').html(topics_list);
-// 		$('.js-course_name').text(course_title);
-// 		$('.js-cn').show();
-// 		$('.js-course_form_hide').hide();
-
-// 	});
-// };
-
-// function click_on_topic(topic_id, topic_title){
-// 	$('.js-t_'+topic_id).click(function(action){
-// 		action.preventDefault();							
-// 		var node_2 = document.getElementById('lessons_for_'+topic_id)
-// 		var lessons_list = node_2.innerHTML;
-
-// 		$('.js-my_topics_list').hide();
-// 		$('.js-my_lessons_list').show();
-// 		$('.js-lessons_list').html(lessons_list);
-// 		$('.js-topic_name').text(topic_title+' :: Lessons');
-// 		$('.js-tn').show();
-// 	});
-// };
-
-// function click_on_lesson(lesson_id){
-
 // };
 
 
 
 
+function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
 
+function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
 
 
 
@@ -72,18 +42,18 @@ var pageReady = function(){
 		}, 1000);
 	});
 
-	$('form.edit_course').on("change", function(){
-		if($('#course_privacy').val() === "2" ){
-			$('.course_price').show();
+	$(document).on("change", 'form.edit_course', function(){
+		if($(this).find('#course_privacy').val() === "2" ){
+			$(this).find('.course_price').show();
 		}else{
-			$('.course_price').hide();
+			$(this).find('.course_price').hide();
 		}
 	});
-	$('form.new_course').on("change", function(){
-		if($('#course_privacy').val() === "2" ){
-			$('.course_price').show();
+	$(document).on("change", 'form.new_course', function(){
+		if($(this).find('#course_privacy').val() === "2" ){
+			$(this).find('.course_price').show();
 		}else{
-			$('.course_price').hide();
+			$(this).find('.course_price').hide();
 		}
 	});
 
@@ -138,6 +108,7 @@ var pageReady = function(){
 		}, 500);
 	});
 
+	// TODO: CHECK TO SEE IF WE"RE STILL USING THIS FUNCTION
 	$('.js-add_form_btn').click(function(event){
 		event.preventDefault();
 		var thisForm = $(this).data('form');

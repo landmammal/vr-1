@@ -9,14 +9,19 @@ class Rehearsal < ApplicationRecord
   belongs_to :lesson, optional: true
   belongs_to :group, optional: true
 
-  has_many :lesson_rehearsals, dependent: :destroy
-  has_many :lessons, through: :lesson_rehearsals
+  # has_many :lesson_rehearsals, dependent: :destroy
+  # has_many :lessons, through: :lesson_rehearsals
 
-  has_many :performance_feedbacks, dependent: :destroy
-  has_many :feedbacks, through: :performance_feedbacks, dependent: :destroy
+  # has_many :performance_feedbacks, dependent: :destroy
+  has_many :feedbacks, dependent: :destroy
 
   has_many :review_requests
   has_many :peer_reviews, through: :review_requests, dependent: :destroy
+
+  after_initialize :set_defaults, :if => :new_record?
+  def set_defaults
+    self.refnum ||= "Re-"+SecureRandom.hex(n=3)
+  end
 
   def submitted?
     self.submission != nil || self.submission
@@ -32,6 +37,12 @@ class Rehearsal < ApplicationRecord
 
   def has_feedback?
     self.feedbacks.size > 0
+  end
+
+  def pending_feedback
+    has_pending = false
+    has_pending = true if self.feedbacks.where(viewed_by_user: true).size > 0
+    has_pending
   end
 
   def new?

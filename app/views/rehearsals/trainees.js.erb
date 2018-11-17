@@ -1,0 +1,17 @@
+'use strict';
+
+$('.lesson_rehearsal_item').removeClass('selected');
+$('.lesson_rehearsal_item#lesson_'+<%= @lesson.id %>).addClass('selected');
+
+<% if @trainees.size > 0 %>
+    $('.result').hide();
+    $('.result#success').show();
+    $('.result#success').empty();
+    <% @trainees.each do |trainee| %>
+        var trainee = "<%= escape_javascript (render partial: './rehearsals/rehearsalbtn', locals:{ user: trainee, lesson: @lesson }) %>";
+        $('.students .result#success').prepend(trainee);
+    <% end %>
+<% else %>
+    $('.result').hide();
+    $('.result#nosubmissions').show();
+<% end %>

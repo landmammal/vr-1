@@ -1,17 +1,17 @@
 <% if @all_prt || @mdl_prt %>
 <div class="column js-Video-container">
 <div class="js-player demonstration model_video first_contact_intro" data-intro="In this screen, you’ll see the best practice response to the Prompt.">
-Role Model <span class="tooltip-custom" data-tooltip="This is the best practice response to the prompt that you need to emulate."> <img src="/assets/Antu_help_hover.png" width="22px"></span><br><br>
+Role Model: <span class="tooltip-custom" data-tooltip="This is the best practice response to the prompt that you need to emulate."> <img src="/assets/Antu_help_hover.png" width="22px"></span><br><br>
 
 	<div class="video_black_bg media_wrapper">
 		<div class="ziggeo">
 			<%= render './shared/ziggeoplayer', this_class: "model", token:@prior_model.video_token %>
 		</div>
 	</div>
-	<div class="lesson_script <%= @this_added_class %>_script">
+	<div class="lesson_script <%= @this_added_class %>_script" id="<%= @this_added_class %>_script">
 		<%= simple_format(@prior_model.script) %>
 	</div>
-	<%= render 'scriptcontrol' %>
+	<%= render 'scriptcontrol', thisclass: @this_added_class %>
 
 </div>
 </div>

@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col course_demo">
+
+            <div class="course_info">
+
+                <%= render './courses/mode/header' %>
+                
+                <% if @course.description %>
+                    <h4>About this Course</h4>
+                    <%= @course.description.html_safe %>
+                <% end %>
+
+                <% if @course.requirements %>
+                    <div class="course_requirements">
+                        <h4>Requirements:</h4>
+                        <%= @course.requirements %>
+                    </div>
+                <% end %>
+
+                <div class="tags">
+                    <hr>
+                    <h5>Tags</h5>
+                    <% @course.get_tags.each do |tag| %>
+                        <a href="/courses/search?term=<%= tag.strip %>"> <div class="tag"> <%= tag %> </div> </a>
+                    <% end %>
+                </div>
+
+                <% if @course.related.size > 0 %>
+                    <h4>Related Courses</h4><hr class="small">
+                    <div class="card_list">
+                        <% @course.related.each do |course| %>
+                            <%= render './courses/card', course_item:course, search:true %>
+                        <% end %>
+                    </div>
+                <% end %>
+                
+
+            </div>
+
+            <%= render './courses/mode/demoSide' %>
+
+        </div>
+    </div>
+</div>

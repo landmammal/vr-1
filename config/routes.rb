@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   # MENU LINKS
   menu_routes = [
     'about','markets','overview','process','contact','versions','jobs',
-    'theteam','termsandservices','FAQs','requirements','policies','press',
-    'teach','coach','learn','create','companies','support'
+    'team','termsandservices','faqs','requirements','policies','press',
+    'teach','coach','education','workforce','business','wellness','create','companies','support',
   ]
   menu_routes.each do |menu|
     get "/#{menu}" => "welcome##{menu}"
@@ -32,46 +32,46 @@ Rails.application.routes.draw do
 
   # EXTRA LINKS ------
 
-      get "/rehearsals/student" => "rehearsals#student"
-      get "/rehearsals/all" => "rehearsals#all"
-      
-      get "/feedback/all" => "feedbacks#all"
-      
-      # COURSE LINKS
-      post "/courses_search/api" => "api#courses_search_api"
-      post '/courses/:course_id/topics/:topic_id/lessons/new' => "lessons#create"
-      get "/course_registrations/" => "course_registrations#index"
-      post "/email_exits" => "users#email_exits"
-      post "/leave_course" => "courses#leave_course"
-      post "/remove_student" => "courses#remove_student"
-      post "/activate_deactivate_student" => "courses#activate_deactivate_student"
-      post "/reentry/:id/" => "courses#reentry"
-      
-      # COURSE INVITATIONS
-      get "/generate_course_code/" => "courses#generate_code"
-      post "/invite_student/" => "courses#send_invite"
-      post "/register_with_access_code" => "courses#register_with_access_code"
-      get "/courses/:course_id/accept_invitation/" => "courses#accept_invitation"
-      get "/courses/:course_id/accept_invitation/:user_id" => "courses#accept_invitation"
+    get "/rehearsals/student" => "rehearsals#student"
+    get "/rehearsals/all" => "rehearsals#all"
+    
+    get "/feedback/all" => "feedbacks#all"
+    
 
-      post '/topic/create' => "topics#create"
+    # COURSE LINKS
+    post "/courses_search/api" => "api#courses_search_api"
+    post '/courses/:course_id/topics/:topic_id/lessons/new' => "lessons#create"
+    get "/course_registrations/" => "course_registrations#index"
+    post "/email_exits" => "users#email_exits"
+    post "/leave_course" => "courses#leave_course"
+    post "/remove_student" => "courses#remove_student"
+    post "/activate_deactivate_student" => "courses#activate_deactivate_student"
+    post "/reentry/:id/" => "courses#reentry"
+    
+    
+    # COURSE INVITATIONS
+    get "/generate_course_code/" => "courses#generate_code"
+    post "/invite_student/" => "courses#send_invite"
+    post "/register_with_access_code" => "courses#register_with_access_code"
+    get "/courses/:course_id/accept_invitation/" => "courses#accept_invitation"
+    get "/courses/:course_id/accept_invitation/:user_id" => "courses#accept_invitation"
 
-      get '/group_registrations/group/:id' => 'group_registrations#registrations'
-      post '/group_registrations/group/:id' => 'group_registrations#create'
-      get "/groups/all_groups" => "groups#all_groups"
-      get '/groups/:id' => 'groups#my_group'
-      
-      # OTHER LINKS
-      post "/users/course_list_nav" => "users#course_list_nav"
-      post "/courses/student_list_nav" => "courses#student_list_nav"
-      get "/change_first_contact" => "users#change_first_contact"
-      post "/job_application" => "welcome#job_application"
-      get "/test" => "welcome#test"
-      get "/reset" => "welcome#reset"
-      get "/lessonexp/" => "lesson_explanations#index"
-      get "/display_course/:id" => "courses#display"
-      get "/new_termsandservices" => "welcome#reviewtermsandservices"
-      post "/accepttermsandservices" => "welcome#accepttermandservices"
+    post '/topic/create' => "topics#create"
+
+    get '/group_registrations/group/:id' => 'group_registrations#registrations'
+    post '/group_registrations/group/:id' => 'group_registrations#create'
+    get "/groups/all_groups" => "groups#all_groups"
+    get '/groups/:id' => 'groups#my_group'
+    
+    # OTHER LINKS
+    get "/change_first_contact" => "users#change_first_contact"
+    post "/job_application" => "welcome#job_application"
+    get "/test" => "welcome#test"
+    get "/reset" => "welcome#reset"
+    get "/lessonexp/" => "lesson_explanations#index"
+    get "/display_course/:id" => "courses#display"
+    get "/new_termsandservices" => "welcome#reviewtermsandservices"
+    post "/accepttermsandservices" => "welcome#accepttermandservices"
   
   # EXTRA LINKS ------ END
 
@@ -83,21 +83,34 @@ Rails.application.routes.draw do
       resources :group_registrations
     end
     collection do
-      post 'batch_update' => "users#batch_update"
+      post 'batch_update'
+      post "course_list_nav"
     end
+    resources :courses
   end
 
 
   resources :courses do
     resources :course_registrations
     collection do
-      get '/search' => "courses#search"
+      get 'search'
+      post "student_list_nav"
+    end
+    member do 
+      post 'change_topics_order'
+      # get 'accept_invitation'
     end
     resources :topics do
       resources :lessons
     end
   end
-
+  
+  resources :topics do
+    resources :lessons
+    member do 
+      post 'change_lessons_order'
+    end
+  end
 
   resources :lessons, shallow: true do
     resources :explanations
@@ -106,6 +119,9 @@ Rails.application.routes.draw do
     resources :concepts
     resources :rehearsals do
       resources :feedbacks
+      collection do
+        get 'trainees'
+      end
     end
   end
 

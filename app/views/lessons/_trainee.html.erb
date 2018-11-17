@@ -11,20 +11,23 @@
     
    <!-- VIDEO WINDOWS -->
 
-  <div class="shadebox" data-name="explanation">
-    <div class="shade box" style="max-width:630px; margin-top:10px;">
-        <div class="shadebox_title">
-          <div class="put_title_here">Explanation Video</div>
-        </div>
-        <div class="shadebox_content" style="text-align:center;">
-          <div class="put_video_here">
-            <div class="js-player explanation explanation_video">
-              <%= render 'explanation' %>
-            </div>
+  <div class="shadebox_bg" data-name="explanation">
+    <div class="shadebox no_header">
+      
+        <div class="shadebox_content no_padding">
+          <%= render 'explanation' %>
+          <div class="content">
+            <h3>Explanation Video</h3>
+            <hr>
+            <%= simple_format(@prior_expl.script) %>
           </div>
         </div>
-        <div class="shadebox_bottom">
+
+        <div class="shadebox_footer">
+          <div class="content"></div>
+          <div class="shade_close ion-ios-close"></div>
         </div>
+
     </div>
   </div>
 
@@ -35,7 +38,7 @@
 
    <div class="js-custom-player-container">
       <div id="send_to_instructor" class="hide" style="font-size:15px; font-weight:800; text-align:left;">
-         You have <span class="js-num_rehearsals" style="color:#2FA0FF;"><%= rehearsals_for_this_lesson.size.to_s %></span> Rehearsals for this lesson.
+         You have <span class="js-num_rehearsals" style="color:#2FA0FF;"><%= rehearsals_for_this_lesson(@lesson, current_user).size.to_s %></span> Rehearsals for this lesson.
          <br>
          <span style="font-size:11px;">Click on the ones you want to send for feedback</span>
       </div>
@@ -60,28 +63,20 @@
      
      <div class="rehearsals-list">
              
-     <label class="title-head">Rehearsals List <span class="tooltip-custom" data-tooltip="Choose the rehearsal from this list that you would like to send to the instructor for approval or feedback."> <img src="/assets/Antu_help_hover.png" width="22px"></span></label>
+     <h5>Rehearsals List <span class="tooltip-custom" data-tooltip="Choose the rehearsal from this list that you would like to send to the instructor for approval or feedback."> <img src="/assets/Antu_help_hover.png" width="22px"></span></h5>     
      <div class="contenido">
         <div class="list_of_lesson_rehearsals">
-           <% rehearsals_for_this_lesson.each_with_index do |rehearsal, index| %>
+           <% rehearsals_for_this_lesson(@lesson, current_user).each_with_index do |rehearsal, index| %>
            <% @this_video_token = rehearsal.video_token %>
            <% @this_added_class = 'rehearsal_'+rehearsal.id.to_s %>
            <div class="rehearsal_thumbnail">
               
-              <a href="/reviewrehearsal/<%= rehearsal.id %>/api" data-remote="true">
-                <button class="rehearsal_btn" data-shadebox="rehearsal" data-rehearsal="<%= rehearsal.id.to_s %>" data-rehearsalnumber="<%= (index+1).to_s %>">
-                  Rehearsal <%= (index+1).to_s %>
-                  <div id="rehearsal_<%= rehearsal.id.to_s %>_status" class="<%= rehearsal_approved(rehearsal.id) %>"></div>
-                  <div class="rehearsal-thumb-round">
-                      <img src='https://embed.ziggeo.com/v1/applications/<%=ENV["ZIGGEO_TOKEN"]%>/videos/<%= @this_video_token %>/image' width="100%" class="rehearsal_img">
-                  </div>
-                  ref#: <%= genReherasalRef(rehearsal.id) %>
-                </button>
-              </a>
+              <%= render "./rehearsals/rehearsal", rehearsal: rehearsal, index: index, rhs: rehearsals_for_this_lesson(@lesson, current_user).size %>
 
            </div>
            <% end %>
         </div>
+        <div class="rehearsal_shade_video"></div>  
      </div>
   </div>
 
@@ -97,24 +92,24 @@
 
    <br>
    <br>
-<div style="overflow:hidden;">
-  <% if !@lesson.instructor.chat.blank? %>
-    <a href="<%= @lesson.instructor.chat %>" target="_blank" onclick="alert('This will open a live video chat with the course instrustor. Click OK to call.')">
-      <button class="green_sft" style=" float:left;"> <img src="/assets/live_chat.png" width="20px"> Live video chat</button>
-    </a>
-  <% end %>
+  <div style="overflow:hidden;">
+    <% if !@lesson.instructor.chat.blank? %>
+      <a target="popup" onclick="window.open('<%= @lesson.instructor.chat %>','popup','width=800,height=600')" >
+        <button class="green_sft" style=" float:left;"> <img src="/assets/live_chat.png" width="20px"> Live video chat</button>
+      </a>
+    <% end %>
 
-  <div class="first_contact_intro lesson_views" data-intro="Use these buttons to rearrange your recording area to best fit your learning style.">
-    <span class="tooltip-custom" data-tooltip="Choose the view that you feel most comfortable with as you rehearse."> <img src="/assets/Antu_help_hover.png" width="22px"></span>
-    <button class="blue lesson_next training-path-1"> View 1</button>
-    <button class="lesson_next training-path-2"> View 2</button>
+    <div class="first_contact_intro lesson_views" data-intro="Use these buttons to rearrange your recording area to best fit your learning style.">
+      <span class="tooltip-custom" data-tooltip="Choose the view that you feel most comfortable with as you rehearse."> <img src="/assets/Antu_help_hover.png" width="22px"></span>
+      <button class="blue lesson_next training-path-1"> View 1</button>
+      <button class="lesson_next training-path-2"> View 2</button>
+    </div>
+
   </div>
-
-</div>
 
   </div>
   <div class="clearfix"></div>
 
-  <div class="rehearsal_shade_video"></div>  
+  
 
 <% end %>

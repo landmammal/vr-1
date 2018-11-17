@@ -19,28 +19,33 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @courses = current_user.registered_courses.order('id DESC').map{ |x| x if (x.course_registrations.find_by(user_id: current_user.id).approval_status) }.compact
     @courses_pending = current_user.registered_courses.order('id DESC').map{ |x| x if (!x.course_registrations.find_by(user_id: current_user.id).approval_status) }.compact
-    ( Rails.env.development? || Rails.env.test? ) ? starter_course = Course.all.first : starter_course = Course.find(201) 
-
-    if !current_user.level_1 && starter_course && !@courses.include?(starter_course)
-      current_user.course_registrations.build(course_id: starter_course.id).save
-    end
-
-    
+        
     @all_courses = Course.all.page( params[:page] ).reverse_order if current_user.level_1
     
     if current_user.level_2
-      @course = Course.new
-      @topic = Topic.new
-      @lesson = Lesson.new
+      @new_course = Course.new
     end
 
     @site_title = current_user.first_name+' '+current_user.last_name
     
-    if !current_user.level_1 && current_user.first_contact && starter_course
-      ( Rails.env.development? || Rails.env.test? ) ? re_pa = starter_course.topics.first.lessons.first.path : re_pa = Lesson.find(485).path
-      redirect_to re_pa
+    # if !current_user.level_1 && current_user.first_contact && starter_course
+    #   ( Rails.env.development? || Rails.env.test? ) ? re_pa = starter_course.topics.first.lessons.first.path : re_pa = Lesson.find(485).path
+    #   redirect_to re_pa
+    # end
+
+
+    user_rehearsals = current_user.rehearsals.order('id DESC')
+    @feedbacks = []
+
+    user_rehearsals.each do |rehearsal| 
+      r_feedbacks = rehearsal.feedbacks.order('id DESC')
+
+      r_feedbacks.each do |feedback| 
+        @feedbacks.push(feedback) if @feedbacks.size < 10
+      end
+
     end
-    
+
     authorize @user
   end
 
@@ -194,7 +199,7 @@ class UsersController < ApplicationController
   private
 
   def secure_params
-    params.require(:user).permit(:role, :username, :approved, :chat, :terms_of_use, :email)
+    params.require(:user).permit(:role, :username, :approved, :chat, :terms_of_use, :email, :auth_token)
   end
   
 end

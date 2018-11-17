@@ -24,9 +24,15 @@ class User < ApplicationRecord
   validates_attachment_content_type :banner, :content_type => /\Aimage\/.*\Z/
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :age, presence: true
+  # validates :age, presence: true
   validates :username, presence: true
   validates_uniqueness_of :username
+
+  after_initialize :set_defaults, :if => :new_record?
+  
+  def set_defaults
+    self.auth_token ||= SecureRandom.hex(n=10)
+  end
 
   # checking for approved in user field
   def active_for_authentication?
@@ -97,6 +103,36 @@ class User < ApplicationRecord
   # trainee & coach & instructor & admin
   def level_4
     [@@r[0], @@r[1], @@r[2], @@r[3]].include? self.role
+  end
+
+  def pending_feedback
+    has_pending = false
+    self.rehearsals.each do |r|
+      has_pending = r.pending_feedback
+      if has_pending
+        break
+      end
+    end
+    has_pending
+  end
+
+  def pending_rehearsals
+    has_pending = false
+    self.courses.each do |c|
+      has_pending = c.pending_rehearsals
+      if has_pending
+        break
+      end      
+    end
+    has_pending
+  end
+
+  def notifications
+    self.pending_rehearsals || self.pending_feedback
+  end
+
+  def registered(item)
+    self.registered_courses.include?(item)
   end
 
   # associations

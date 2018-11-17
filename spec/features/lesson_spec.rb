@@ -3,10 +3,10 @@ require 'rails_helper'
   feature 'Lesson', type: :feature do
     context 'instructor', js: true do
 
-      let!(:instructor) { FactoryGirl.create(:user, :as_instructor) }
-      let!(:course) { FactoryGirl.create :course, instructor: instructor }
-      let!(:topic) { FactoryGirl.create :topic, instructor: instructor, courses: [course] }
-      let!(:lesson) { FactoryGirl.create :lesson, instructor: instructor, topics: [topic] }
+      let!(:instructor) { FactoryBot.create(:user, :as_instructor) }
+      let!(:course) { FactoryBot.create :course, instructor: instructor }
+      let!(:topic) { FactoryBot.create :topic, instructor: instructor, courses: [course] }
+      let!(:lesson) { FactoryBot.create :lesson, instructor: instructor, topics: [topic] }
 
       it 'can create a lesson' do
         visit new_user_session_path
@@ -18,7 +18,7 @@ require 'rails_helper'
         click_on 'Create New Lesson', match: :first
         fill_in 'Title', with: Faker::Lorem.word
         fill_in 'Description', with: Faker::Lorem.paragraph
-        fill_in 'tags (comma separated)', with: 'hello,my,name'
+        fill_in 'tags (separate with comma)', with: 'hello,my,name'
         click_on 'Create Lesson'
         expect(page).to have_content 'Lesson was successfully created.'
       end
