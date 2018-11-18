@@ -1,4 +1,4 @@
-Videoreharser.com is training management platform for enterprises build through the power of the rehearser API.
+TestingVideoreharser.com is training management platform for enterprises build through the power of the rehearser API.
 Runing the app locally:
 
 
