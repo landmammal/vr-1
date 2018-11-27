@@ -1,4 +1,7 @@
 class Explanation < ApplicationRecord
+  # mounting image uploader
+  mount_uploader :image, ImageUploader
+
   belongs_to :user, optional: true
   belongs_to :lesson, optional: true
 
