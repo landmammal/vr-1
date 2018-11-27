@@ -28,7 +28,7 @@ class PromptsController < ApplicationController
         @newComponent = Prompt.find(@lesson.prompts.last)
         # format.html { redirect_to edit_prompt_path(@prompt) }
         # format.json { render :show, status: :created, location: @topic }
-        format.js { }        
+        format.js { }
       else
         # format.html { render :new }
         # format.json { render json: @topic.errors, status: :unprocessable_entity }
@@ -67,10 +67,10 @@ class PromptsController < ApplicationController
   end
 
   def prompt_params
-    params.require(:prompt).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :refnum, :position_prior)
+    params.require(:prompt).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :refnum, :position_prior, :image)
   end
   def prompt_update
-    params.require(:prompt).permit(:title, :script, :privacy, :language, :token, :video_token, :position_prior)
+    params.require(:prompt).permit(:title, :script, :privacy, :language, :token, :video_token, :position_prior, :image)
   end
 
   def set_prompt_update

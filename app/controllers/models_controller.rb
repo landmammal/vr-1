@@ -6,7 +6,7 @@ class ModelsController < ApplicationController
 
 
   def new
-    
+
   end
 
   def create
@@ -57,10 +57,10 @@ class ModelsController < ApplicationController
   end
 
   def model_params
-    params.require(:model).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :refnum, :position_prior)
+    params.require(:model).permit(:user_id, :lesson_id, :title, :script, :privacy, :language, :token, :video_token, :refnum, :position_prior, :image)
   end
   def model_update
-    params.require(:model).permit(:title, :script, :privacy, :language, :token, :video_token, :position_prior)
+    params.require(:model).permit(:title, :script, :privacy, :language, :token, :video_token, :position_prior, :image)
   end
 
   def set_model_update
