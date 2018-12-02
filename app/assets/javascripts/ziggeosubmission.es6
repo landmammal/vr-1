@@ -10,11 +10,44 @@ var pageReady = function(checkrecorder){
 				var recorderClass = value.className.split(' ')[0];
 				// console.log(recorderClass);
 
+        // save explanation,prompt,model if there is an image in the form
+        $('#img_prev').hide();
+        $(document).on('change', '.uploaded', function() {
+          $('.ziggeo').remove();
+          $('#img_prev').show();
+        
+          var input = this;
+          if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+            $('#img_prev')
+              .attr('src', e.target.result)
+              .width(150)
+              .height(200);
+          };
+
+          reader.readAsDataURL(input.files[0]);
+          }
+          var streamToken = 'no video';
+          var videoToken = 'no video';
+          var thisForm = recorderClass;
+           $('.save_'+recorderClass).show();
+           // console.log('component');
+           $('.save_'+recorderClass).click(function() {
+             postTokenInForm(thisForm, videoToken, streamToken);
+             if($(this).hasClass('shade_close')){
+               $('.shadebox_bg').removeClass('open');
+               recorder.reset();
+             }
+           });
+         })
+
 			    var recorder = ZiggeoApi.V2.Recorder.findByElement($('ziggeorecorder.'+recorderClass));
 			    // console.log(recorder);
 			    // recorder.record();
 
-			    $(document).on('click', '.shade_close', function() {
+			  $(document).on('click', '.shade_close', function() {
 					recorder.reset();
 					$(this).closest('.shadebox').find('.save_'+recorderClass).show();
 					$(this).closest('.shadebox_bg').find('form')[0].reset();
@@ -52,14 +85,13 @@ var pageReady = function(checkrecorder){
 				    // console.log('clicked');
 				});
 
-				$(document).on("click", ".ba-videorecorder-button-primary[data-selector=stop-primary-button]", function(){	
+				$(document).on("click", ".ba-videorecorder-button-primary[data-selector=stop-primary-button]", function(){
 					$('.recorder_please_wait').fadeIn(1000);
 				});
 
-				
+
 				recorder.on('recording', function() {
 				});
-
 
 			    recorder.on('verified', function() {
 			    	// console.log('Ziggeo');
@@ -69,8 +101,8 @@ var pageReady = function(checkrecorder){
 			    	var thisForm = recorderClass;
 					// console.log(thisForm+" 01 ");
 					$('.recorder_please_wait').hide();
-					
-			    	
+
+
 			    	setTimeout(function(){
 				    	if(thisForm == 'rehearsal'){
 				    		// console.log(" PUT BUTTON");
@@ -99,17 +131,17 @@ var pageReady = function(checkrecorder){
 						    	$('.submit_'+recorderClass+' span').fadeOut(100);
 						    	$('.submit_'+recorderClass+' span').empty();
 						    	$('.submit_'+recorderClass+' span').addClass('ion-checkmark-circled');
-						    	
+
 							    $('.submit_'+recorderClass+' span').delay(700).fadeIn(500);
-						    	
+
 						    	$('.ba-videoplayer-theme-modern-rerecord-button').fadeOut(500);
-						    	
+
 					    		$('.submit_'+recorderClass).delay(1500).fadeOut(500);
-						    	
+
 					    		$('.ba-videoplayer-theme-modern-rerecord-button-container').delay(2000).append("<button class='record_another_rehearsal blue' style='float:right; display:none;'>Record Another</button>")
 						        $('.record_another_'+recorderClass).delay(2000).hide(100);
 						        $('.record_another_'+recorderClass).delay(2000).fadeIn(100);
-						    	
+
 					    	}
 				    	});
 				    }else if($('.save_ziggeo').length > 0){
@@ -141,7 +173,7 @@ var pageReady = function(checkrecorder){
 				    });
 
 			    });
-				
+
 				$(document).on('click', '.record_another_'+recorderClass, function() {
 					location.reload();
 					// recorder.reset();
