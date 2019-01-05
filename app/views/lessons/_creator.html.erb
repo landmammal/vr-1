@@ -1,0 +1,162 @@
+<!-- CREATION PROGRESS -->
+
+          <div class="show_trainee_view" style="display:none;">
+            <%= render 'trainee' if topic_lesson_status(@lesson) %>
+          </div>
+
+          <% progressItems = [[@explanations, 'explanation', @explanation], [@prompts, 'prompt', @prompt], [@models, 'model', @model]] %>
+
+          <% progressItems.each do |progressbox| %>
+
+              <div class="<%= progressbox[1] %>_check lesson_progress">
+                <div class="progress_btn js-<%= progressbox[1] %>_prog"></div>
+
+                <% if @lesson.lesson_type == 2 && progressbox[1] == 'explanation' %>
+                    Explanation
+                <% elsif @lesson.lesson_type == 2 && progressbox[1] == 'prompt' %>
+                    Question
+                <% elsif @lesson.lesson_type == 1 && progressbox[1] == 'explanation' %>
+                    Demonstration
+                <% elsif @lesson.lesson_type == 1 && progressbox[1] == 'model' %>
+                    Example
+                <% else %>
+                    <%= progressbox[1].capitalize %>
+                <% end %>
+
+                <div class="lesson_err_wrapper">
+                  <div class="<%= progressbox[1] %>_prog_err lesson_err"></div>
+                </div>
+
+                <%= button_tag "Add ", class: "blue shadebox_btn", :data => {:shadebox => progressbox[1]+'_box'}, style: 'margin-bottom:15px;' %>
+
+                <div class="js_listOf<%= progressbox[1] %>s">
+                  <% progressbox[0].order('id ASC').each_with_index do |item, index| %>
+                      <a href="<%= '/'+progressbox[1]+'s/'+item.id.to_s+'/edit' %>">
+                        <% @progressbox = progressbox %>
+                        <% @item = item %>
+                        <% @index = index %>
+                        <%= render './lessons/componentcreate' %>
+                      </a>
+                  <% end %>
+                </div>
+              </div>
+
+
+              <div class="shadebox_bg" data-name='<%= progressbox[1] %>_box'>
+                <div class="shadebox" style="max-width:630px; margin-top:10px;">
+                  <div class="shadebox_header">
+                    New <%= progressbox[1].capitalize %>
+                  </div>
+                  <div class="shadebox_content">
+                    <% @newForm = progressbox[2] %>
+                    <% @this_added_class = progressbox[1] %>
+                    <% @this_component = progressbox[1].capitalize %>
+                    <% @this_error = 'error_'+progressbox[1] %>
+                    <%= render 'componentnew' %>
+                  </div>
+                  <div class="shadebox_footer">
+                    <div class="content"></div>
+                    <div class="shade_close ion-ios-close"></div>
+                  </div>
+                </div>
+              </div>
+
+          <% end %>
+
+          <div class="component_space"></div>
+
+          <br>
+
+          <center>
+            <div class="lesson_desc" style="margin:25px 0 70px;"></div>
+          </center>
+
+
+          <!-- <div class="concept_list">
+            <div class="concept_title">
+              Concepts
+              <% if lesson_creator %>
+                  <button class="shadebox_btn blue add_btn small" data-shadebox='add_concept' style="padding:2px 6px;">
+                    +
+                  </button>
+              <% end %>
+            </div>
+            <hr>
+            <% @lesson.concepts.each do |concept| %>
+                <a href="<%= edit_concept_path(concept) %>">
+                  <div class="concepts" data-conceptid='concept_<%= concept.id.to_s %>'>
+                    <% @ConceptWeigth = LessonConcept.where(lesson_id: @lesson.id).where(concept_id: concept.id)[0] %>
+                    <%= concept.description %>
+                    <div class="concept_weigth"><%= @ConceptWeigth.weight %></div>
+                  </div>
+                </a>
+            <% end %>
+          </div> -->
+
+          <%= (button_to 'Add Lesson +', course_topic_path(@course, @topic), class:'green_sft small', method: :get) if course_creator %>
+
+          <% if course_creator %>
+            <div class="rehearsals_side">
+              <h4 style="padding:7px 0;">Rehearsals List</h4>
+
+              <hr>
+              <% @course.users.each do |student| %>
+                <% if @lesson.has_rehearsals_from_user(student) %>
+                  <a href="/rehearsals/student/?student=<%= student.id %>&lesson=<%= @lesson.id %>">
+                    <div class="user_bubble <%= student.id %>">
+                      <img src="<%= student_pic(student) %>" class="img-circle" width="30px" style="float:left;">
+                      <div class="info">
+                        <%= student.full_name %>
+                        <br>
+                        <% if @lesson.has_new_rehearsals_from_user(student) %>
+                          <span style="color:red; font-size:11px;">NEW!</span>
+                        <%end%>                      
+                      </div>
+                    </div>
+                  </a>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+
+
+          <!-- CONCEPTS -->
+          <!-- <div class="shadebox_bg" data-name='add_concept'>
+            <div class="shadebox" style="max-width:630px; top:20%;">
+              <div class="shadebox_header">
+                <div class="put_title_here">
+                  <span style="font-family:'gotham';">Add Concept</span>
+                </div>
+              </div>
+              <div class="shadebox_content">
+                Concept for: <%= @lesson.title %><br><br>
+                <%= form_for [@lesson, @concept], remote: true do |f| %>
+                    <% if @concept.errors.any? %>
+                        <div id="error_explanation">
+                          <h2><%= pluralize(@concept.errors.count, "error") %> prohibited this lesson from being
+                            saved:</h2>
+
+                          <ul>
+                            <% @concept.errors.full_messages.each do |message| %>
+                                <li><%= message %></li>
+                            <% end %>
+                          </ul>
+                        </div>
+                    <% end %>
+                    <%= f.text_field :user_id, type: "hidden", value: current_user.id %>
+                    <%= f.text_field :lesson_id, type: "hidden", value: @lesson.id %>
+                    <%= f.text_field :description, placeholder: 'add a lesson concept...', style: 'width:300px;' %>
+                    <%= f.select :privacy, (@privacy) %>
+                    <%= f.select :language, (@languages) %><br><br>
+
+                    <b>Concept weight:</b> <span class='js-concept_weight'></span>/10<br>
+                    <input id="concept_weight" name="concept_weight" type="range" min="1" max="10" step="0.25" value="0" style="width:200px; float:left; position:relative; left:-10px;"/>
+
+
+                    <%= f.submit 'Add Concept', class: 'shade_close blue', style: 'float:right;' %>
+                <% end %>
+              </div>
+              <div class="shadebox_footer">
+              </div>
+            </div>
+          </div> -->

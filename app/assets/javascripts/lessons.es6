@@ -72,7 +72,7 @@ function reloadIfTrue(){
 	}
 }
 
-
+// keeps track of the lesson progress and adds icon classes appropriately 
 function lessonProgress(les_type, expl_arr, prompt_arr, model_arr){
 	// console.log(expl, prompt, model)
 

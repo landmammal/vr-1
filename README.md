@@ -60,3 +60,9 @@ add the upstream to our main repo
 Now you can push to `origin`: your own repo, and then after submitting a pullrequest, you can later fetch and merge master from  `upstream`: the main Repo.
 PS: NEVER PUSH to the main repo's `master`, always work on a branch
 PS: if forking out repo, NEVER push to `upstream`/`master`, always push to your own and make a pull request.
+
+
+task
+
+1) lessons/show.html.erb line 77 refactor into a partial for the lesson creator
+2) courses/_card.html.erb  line 20 add instructor name to the course table and refrence it here

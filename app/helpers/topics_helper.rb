@@ -1,5 +1,6 @@
 module TopicsHelper
 
+	#  checks if lesson is ready return bool
 	def topic_lesson_status(lesson)
 		lType = lesson.lesson_type
 		check = [[lesson.explanations, false],[lesson.prompts, false],[lesson.models, false]]
